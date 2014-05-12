@@ -1,0 +1,16 @@
+# SensorRead
+# 2014-05-07 22:45:04Z
+
+# IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 0
+# IO_1@[IOP=(1)][IoId=(1)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 1
+# IO_3@[IOP=(1)][IoId=(3)] is reserved: SWDDebugEnabled
+dont_use_io iocell 1 3
+set_location "ClockBlock" clockblockcell -1 -1 0
+set_io "Vaisala_RH(0)" iocell 0 0
+set_io "Vaisala_Temp(0)" iocell 0 1
+set_location "\ADC_DelSig:DEC\" decimatorcell -1 -1 0
+set_location "\ADC_DelSig:DSM\" dsmodcell -1 -1 0
+set_location "\ADC_DelSig:IRQ\" interrupt -1 -1 29
+set_location "__ONE__" 1 3 0 0

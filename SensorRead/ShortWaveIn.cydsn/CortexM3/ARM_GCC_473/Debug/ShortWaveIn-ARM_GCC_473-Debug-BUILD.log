@@ -1,0 +1,58 @@
+--------------- Build Started: 05/07/2014 18:45:32 Project: ShortWaveIn, Configuration: ARM GCC 4.7.3 Debug ---------------
+cydsfit.exe "-.appdatapath" "C:\Users\Ryan\AppData\Local\Cypress Semiconductor\PSoC Creator\3.0" "-.fdsnotice" "-.fdswarpdepfile=warp_dependencies.txt" "-.fdselabdepfile=elab_dependencies.txt" "-.fdsbldfile=generated_files.txt" "-p" "C:\Users\Ryan\Documents\summer2014\SensorRead\ShortWaveIn.cydsn\ShortWaveIn.cyprj" "-d" "CY8C5868AXI-LP035" "-s" "C:\Users\Ryan\Documents\summer2014\SensorRead\ShortWaveIn.cydsn\Generated_Source\PSoC5" "--" "-yv2" "-v3" "-ygs" "-q10" "-o2" "-.fftcfgtype=LE"
+Elaborating Design...
+HDL Generation ...
+Synthesis ...
+Place and Route ...
+Tech mapping ...
+Info: mpr.M0037: Unused pieces of the design have been optimized out. See the Tech mapping section of the report file for details. (App=cydsfit)
+Analog Placement ...
+Analog Routing ...
+Analog Code Generation ...
+Digital Placement ...
+Digital Routing ...
+Bitstream Generation ...
+Static timing analysis ...
+API Generation ...
+Dependency Generation ...
+Clean Temporary Files ...
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM3\ARM_GCC_473\Debug\main.o
+.\main.c: In function 'main':
+.\main.c:46:9: warning: pointer targets in passing argument 1 of 'sprintf' differ in signedness [-Wpointer-sign]
+In file included from .\main.c:13:0:
+c:\program files (x86)\cypress\psoc creator\3.0\psoc creator\import\gnu_cs\arm\4.7.3\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdio.h:226:5: note: expected 'char *' but argument is of type 'uint8 *'
+.\main.c:46:9: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32' [-Wformat]
+.\main.c:46:9: warning: format '%d' expects argument of type 'int', but argument 3 has type 'int32' [-Wformat]
+.\main.c:47:9: warning: pointer targets in passing argument 1 of 'LCD_Char_PrintString' differ in signedness [-Wpointer-sign]
+In file included from ./Generated_Source/PSoC5/project.h:27:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/LCD_Char.h:60:6: note: expected 'const char8 *' but argument is of type 'uint8 *'
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyfitter_cfg.c -o .\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cymetadata.lst -ffunction-sections -c .\Generated_Source\PSoC5\cymetadata.c -o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_PM.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig_PM.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_PM.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_INT.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig_INT.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_INT.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\SW_In_Pos.lst -ffunction-sections -c .\Generated_Source\PSoC5\SW_In_Pos.c -o .\CortexM3\ARM_GCC_473\Debug\SW_In_Pos.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\SW_In_Neg.lst -ffunction-sections -c .\Generated_Source\PSoC5\SW_In_Neg.c -o .\CortexM3\ARM_GCC_473\Debug\SW_In_Neg.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\LCD_Char.lst -ffunction-sections -c .\Generated_Source\PSoC5\LCD_Char.c -o .\CortexM3\ARM_GCC_473\Debug\LCD_Char.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\LCD_Char_PM.lst -ffunction-sections -c .\Generated_Source\PSoC5\LCD_Char_PM.c -o .\CortexM3\ARM_GCC_473\Debug\LCD_Char_PM.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_Ext_CP_Clk.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig_Ext_CP_Clk.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_Ext_CP_Clk.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_IRQ.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig_IRQ.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_IRQ.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_theACLK.lst -ffunction-sections -c .\Generated_Source\PSoC5\ADC_DelSig_theACLK.c -o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_theACLK.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\LCD_Char_LCDPort.lst -ffunction-sections -c .\Generated_Source\PSoC5\LCD_Char_LCDPort.c -o .\CortexM3\ARM_GCC_473\Debug\LCD_Char_LCDPort.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\Cm3Start.lst -ffunction-sections -c .\Generated_Source\PSoC5\Cm3Start.c -o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+arm-none-eabi-as.exe -I. -I./Generated_Source/PSoC5 -mcpu=cortex-m3 -mthumb -g -alh=.\CortexM3\ARM_GCC_473\Debug/CyBootAsmGnu.lst -o .\CortexM3\ARM_GCC_473\Debug\CyBootAsmGnu.o .\Generated_Source\PSoC5\CyBootAsmGnu.s
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyDmac.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyDmac.c -o .\CortexM3\ARM_GCC_473\Debug\CyDmac.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyFlash.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyFlash.c -o .\CortexM3\ARM_GCC_473\Debug\CyFlash.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyLib.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyLib.c -o .\CortexM3\ARM_GCC_473\Debug\CyLib.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyPm.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyPm.c -o .\CortexM3\ARM_GCC_473\Debug\cyPm.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CySpc.lst -ffunction-sections -c .\Generated_Source\PSoC5\CySpc.c -o .\CortexM3\ARM_GCC_473\Debug\CySpc.o
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyutils.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyutils.c -o .\CortexM3\ARM_GCC_473\Debug\cyutils.o
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.a .\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_PM.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_INT.o .\CortexM3\ARM_GCC_473\Debug\SW_In_Pos.o .\CortexM3\ARM_GCC_473\Debug\SW_In_Neg.o .\CortexM3\ARM_GCC_473\Debug\LCD_Char.o .\CortexM3\ARM_GCC_473\Debug\LCD_Char_PM.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_Ext_CP_Clk.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_IRQ.o .\CortexM3\ARM_GCC_473\Debug\ADC_DelSig_theACLK.o .\CortexM3\ARM_GCC_473\Debug\LCD_Char_LCDPort.o .\CortexM3\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_473\Debug\CyDmac.o .\CortexM3\ARM_GCC_473\Debug\CyFlash.o .\CortexM3\ARM_GCC_473\Debug\CyLib.o .\CortexM3\ARM_GCC_473\Debug\cyPm.o .\CortexM3\ARM_GCC_473\Debug\CySpc.o .\CortexM3\ARM_GCC_473\Debug\cyutils.o
+arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.a
+arm-none-eabi-gcc.exe -mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g -Wl,-Map,.\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.map -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o .\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.elf .\CortexM3\ARM_GCC_473\Debug\main.o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o .\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_473\Debug\CyComponentLibrary.a" -Wl,--end-group
+cyelftool.exe -C C:\Users\Ryan\Documents\summer2014\SensorRead\ShortWaveIn.cydsn\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.elf --flash_size 262144 --flash_row_size 256
+cyelftool.exe -S C:\Users\Ryan\Documents\summer2014\SensorRead\ShortWaveIn.cydsn\CortexM3\ARM_GCC_473\Debug\ShortWaveIn.elf
+Flash used: 9848 of 262144 bytes (3.8 %).
+SRAM used: 20933 of 65536 bytes (31.9 %).
+--------------- Build Succeeded: 05/07/2014 18:46:14 ---------------
