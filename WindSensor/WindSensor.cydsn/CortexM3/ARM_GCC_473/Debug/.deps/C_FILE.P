@@ -1,0 +1,44 @@
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/CortexM3/ARM_GCC_473/Debug/main.o : C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/UART_Wind.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/UART_Wind_IntClock.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cmFunc.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cmInstr.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/isr_Wind.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/project.h C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/main.c 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyDmac.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/UART_Wind.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/UART_Wind_IntClock.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cmFunc.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/core_cmInstr.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/isr_Wind.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/Generated_Source/PSoC5/project.h : 
+
+C:/Users/Kevin/Google\ Drive/PSoC_Sensor\ tutorial/WindSensor/WindSensor.cydsn/main.c : 
+
