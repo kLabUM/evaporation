@@ -13,9 +13,135 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\TransmitReadings_freeSoC\Source Files\thermocouple.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\thermocouple interface\TopDesign.cysch">
 <ExpandedNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest\TopDesign.cysch</v>
+<v>WindSensor\airmartest\airmartest.cydwr</v>
+<v>WindSensor\airmartest\Header Files</v>
+<v>WindSensor\airmartest\Header Files\thermocouple.h</v>
+<v>WindSensor\airmartest\Header Files\wind.h</v>
+<v>WindSensor\airmartest\Source Files</v>
+<v>WindSensor\airmartest\Source Files\main.c</v>
+<v>WindSensor\airmartest\Source Files\thermocouple.c</v>
+<v>WindSensor\airmartest\Source Files\wind.c</v>
+<v>WindSensor\airmartest\Generated_Source</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_in</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_in\A_in.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_in\A_in.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_in\A_in_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_out</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_out\A_out.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_out\A_out.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\A_out\A_out_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar\Airmar.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar\Airmar.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar\Airmar_BOOT.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar\Airmar_INT.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar\Airmar_PM.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar_IntClock</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar_IntClock\Airmar_IntClock.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Airmar_IntClock\Airmar_IntClock.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_in</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_in\B_in.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_in\B_in.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_in\B_in_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_out</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_out\B_out.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_out\B_out.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\B_out\B_out_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clock</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clock\clock.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clock\clock.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clockPin</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clockPin\clockPin.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clockPin\clockPin.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\clockPin\clockPin_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Comp</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Comp\Comp.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Comp\Comp.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Comp\Comp_PM.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyBootAsmIar.s</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyBootAsmRv.s</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyDmac.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyDmac.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyFlash.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyFlash.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyLib.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CyLib.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cypins.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cyPm.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cyPm.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CySpc.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\CySpc.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cytypes.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cy_boot\cyutils.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\dataPin</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\dataPin\dataPin.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\dataPin\dataPin.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\dataPin\dataPin_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\isr_airmar</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\isr_airmar\isr_airmar.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\isr_airmar\isr_airmar.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master\master.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master\master.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master\master_INT.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master\master_PM.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\master\master_PVT.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_1</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_1\Pin_1.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_1\Pin_1.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_1\Pin_1_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_2</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_2\Pin_2.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_2\Pin_2.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\Pin_2\Pin_2_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\SBD_reply</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\SBD_reply\SBD_reply.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\SBD_reply\SBD_reply.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\selectPin</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\selectPin\selectPin.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\selectPin\selectPin.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\selectPin\selectPin_aliases.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD\UART_SBD.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD\UART_SBD.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD\UART_SBD_BOOT.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD\UART_SBD_INT.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD\UART_SBD_PM.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD_IntClock</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD_IntClock\UART_SBD_IntClock.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\UART_SBD_IntClock\UART_SBD_IntClock.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevice.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevicegnu.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevicegnu_trm.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydeviceiar.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydeviceiar_trm.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevicerv.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydevicerv_trm.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cydisabledsheets.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfitter.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfitter_cfg.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfitter_cfg.h</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfittergnu.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfitteriar.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cyfitterrv.inc</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\cymetadata.c</v>
+<v>WindSensor\airmartest\Generated_Source\PSoC5\project.h</v>
 <v>WindSensor\Alternative Power Scheme\TopDesign.cysch</v>
 <v>WindSensor\Alternative Power Scheme\Alternative Power Scheme.cydwr</v>
 <v>WindSensor\Alternative Power Scheme\Header Files</v>
@@ -363,6 +489,7 @@
 <v>WindSensor\Thermocouple\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>WindSensor\Thermocouple\Generated_Source\PSoC5\cymetadata.c</v>
 <v>WindSensor\Thermocouple\Generated_Source\PSoC5\project.h</v>
+<v>WindSensor\thermocouple interface</v>
 <v>WindSensor\thermocouple interface\TopDesign.cysch</v>
 <v>WindSensor\thermocouple interface\thermocouple interface.cydwr</v>
 <v>WindSensor\thermocouple interface\Header Files</v>
@@ -736,41 +863,44 @@
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Communicating_to_SBD</v>
 <v>WindSensor\Magnetometer</v>
 <v>WindSensor\Thermocouple</v>
 <v>WindSensor\thermocouple interface</v>
-<v>WindSensor\TransmitReadings</v>
-<v>WindSensor\TransmitReadings_freeSoC</v>
-<v>WindSensor\TransmitReadings_freeSoC\TopDesign.cysch</v>
-<v>WindSensor\TransmitReadings_freeSoC\TransmitReadings_freeSoC.cydwr</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\magnetometer.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\thermocouple.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\magnetometer.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\main.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\thermocouple.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clock</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clock\clock.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clock\clock.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clockPin</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clockPin\clockPin.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clockPin\clockPin.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\clockPin\clockPin_aliases.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\cy_boot</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>WindSensor\thermocouple interface\TopDesign.cysch</v>
+<v>WindSensor\thermocouple interface\thermocouple interface.cydwr</v>
+<v>WindSensor\thermocouple interface\Header Files</v>
+<v>WindSensor\thermocouple interface\Source Files</v>
+<v>WindSensor\thermocouple interface\Source Files\main.c</v>
+<v>WindSensor\thermocouple interface\Generated_Source</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clock</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clock\clock.c</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clock\clock.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clockPin</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clockPin\clockPin.c</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clockPin\clockPin.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\clockPin\clockPin_aliases.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\cm3gcc.ld</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\Cm3Iar.icf</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\Cm3RealView.scat</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\Cm3Start.c</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\core_cm3.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\core_cm3_psoc5.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\core_cmFunc.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\core_cmInstr.h</v>
+<v>WindSensor\thermocouple interface\Generated_Source\PSoC5\cy_boot\CyBootAsmGnu.s</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\TopDesign</v>
+<v>WindSensor\airmartest\TopDesign\TopDesign.cysch</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Alternative Power Scheme\TopDesign</v>
 <v>WindSensor\Alternative Power Scheme\TopDesign\TopDesign.cysch</v>
@@ -798,6 +928,9 @@
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\TopDesign</v>
+<v>WindSensor\airmartest\TopDesign\TopDesign.cysch</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Alternative Power Scheme\TopDesign</v>
 <v>WindSensor\Alternative Power Scheme\TopDesign\TopDesign.cysch</v>
@@ -827,6 +960,56 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\CortexM3</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\A_in.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\A_out.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_BOOT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_INT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_IntClock.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\B_in.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\B_out.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\clock.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\clockPin.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\dataPin.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\isr_airmar.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\main.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\master.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\master_INT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\master_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Pin_1.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Pin_2.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\SBD_reply.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\selectPin.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\thermocouple.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\UART_SBD.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\UART_SBD_BOOT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\UART_SBD_INT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\UART_SBD_IntClock.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\UART_SBD_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\wind.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\airmartest.elf</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\airmartest.hex</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\airmartest.map</v>
+<v>WindSensor\airmartest\airmartest.rpt</v>
+<v>WindSensor\airmartest\airmartest_timing.html</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Alternative Power Scheme\CortexM3</v>
 <v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473</v>
@@ -1137,36 +1320,36 @@
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>WindSensor</v>
-<v>WindSensor\Alternative Power Scheme</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\clock.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\clockPin.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\dataPin.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\EEPROM.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\isr_Wind.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\magnetometer.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\main.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\master.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\master_INT.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\master_PM.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_BOOT.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_INT.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_MASTER.lst</v>
-<v>WindSensor\Alternative Power Scheme\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_PM.lst</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\CortexM3</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\A_in.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\A_out.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_BOOT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_INT.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_IntClock.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\B_in.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\B_out.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\clock.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\clockPin.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp_PM.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\dataPin.lst</v>
+<v>WindSensor\airmartest\CortexM3\ARM_GCC_473\Debug\Listing Files\isr_airmar.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
@@ -1177,14 +1360,27 @@
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
 <ExpandedNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\PSoC 5 Architecture TRM</v>
+<v>WindSensor\airmartest\CY8C58LP Family Datasheet</v>
+<v>WindSensor\airmartest\System Reference Guide v4_10</v>
+<v>WindSensor\airmartest\and_v1_0</v>
+<v>WindSensor\airmartest\Comp_v2_0</v>
+<v>WindSensor\airmartest\cy_clock_v2_20</v>
+<v>WindSensor\airmartest\cy_constant_v1_0</v>
+<v>WindSensor\airmartest\cy_isr_v1_70</v>
+<v>WindSensor\airmartest\cy_pins_v2_0</v>
+<v>WindSensor\airmartest\nand_v1_0</v>
+<v>WindSensor\airmartest\SPI_Master_v2_40</v>
+<v>WindSensor\airmartest\UART_v2_30</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Alternative Power Scheme\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Alternative Power Scheme\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Alternative Power Scheme\System Reference Guide v4_0</v>
-<v>WindSensor\Alternative Power Scheme\cy_clock_v2_10</v>
+<v>WindSensor\Alternative Power Scheme\System Reference Guide v4_10</v>
+<v>WindSensor\Alternative Power Scheme\cy_clock_v2_20</v>
 <v>WindSensor\Alternative Power Scheme\cy_constant_v1_0</v>
 <v>WindSensor\Alternative Power Scheme\cy_isr_v1_70</v>
-<v>WindSensor\Alternative Power Scheme\cy_pins_v1_90</v>
+<v>WindSensor\Alternative Power Scheme\cy_pins_v2_0</v>
 <v>WindSensor\Alternative Power Scheme\EEPROM_v2_10</v>
 <v>WindSensor\Alternative Power Scheme\I2C_v3_30</v>
 <v>WindSensor\Alternative Power Scheme\SPI_Master_v2_40</v>
@@ -1192,76 +1388,89 @@
 <v>WindSensor\Communicating_to_SBD</v>
 <v>WindSensor\Communicating_to_SBD\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Communicating_to_SBD\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Communicating_to_SBD\System Reference Guide v4_0</v>
+<v>WindSensor\Communicating_to_SBD\System Reference Guide v4_10</v>
 <v>WindSensor\Communicating_to_SBD\cy_constant_v1_0</v>
 <v>WindSensor\Communicating_to_SBD\cy_isr_v1_70</v>
-<v>WindSensor\Communicating_to_SBD\cy_pins_v1_90</v>
+<v>WindSensor\Communicating_to_SBD\cy_pins_v2_0</v>
 <v>WindSensor\Communicating_to_SBD\UART_v2_30</v>
 <v>WindSensor\Magnetometer</v>
 <v>WindSensor\Magnetometer\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Magnetometer\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Magnetometer\System Reference Guide v4_0</v>
-<v>WindSensor\Magnetometer\cy_pins_v1_90</v>
+<v>WindSensor\Magnetometer\System Reference Guide v4_10</v>
+<v>WindSensor\Magnetometer\cy_pins_v2_0</v>
 <v>WindSensor\Magnetometer\I2C_v3_30</v>
 <v>WindSensor\Thermocouple</v>
 <v>WindSensor\Thermocouple\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Thermocouple\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Thermocouple\System Reference Guide v4_0</v>
+<v>WindSensor\Thermocouple\System Reference Guide v4_10</v>
 <v>WindSensor\Thermocouple\ADC_DelSig_v3_0</v>
 <v>WindSensor\Thermocouple\AMux_v1_80</v>
-<v>WindSensor\Thermocouple\CharLCD_v1_90</v>
-<v>WindSensor\Thermocouple\cy_pins_v1_90</v>
+<v>WindSensor\Thermocouple\CharLCD_v2_0</v>
+<v>WindSensor\Thermocouple\cy_pins_v2_0</v>
 <v>WindSensor\Thermocouple\I2C_v3_30</v>
 <v>WindSensor\Thermocouple\ThermocoupleCalc_v1_20</v>
 <v>WindSensor\thermocouple interface</v>
 <v>WindSensor\thermocouple interface\PSoC 5 Architecture TRM</v>
 <v>WindSensor\thermocouple interface\CY8C58LP Family Datasheet</v>
-<v>WindSensor\thermocouple interface\System Reference Guide v4_0</v>
-<v>WindSensor\thermocouple interface\CharLCD_v1_90</v>
-<v>WindSensor\thermocouple interface\cy_clock_v2_10</v>
-<v>WindSensor\thermocouple interface\cy_pins_v1_90</v>
+<v>WindSensor\thermocouple interface\System Reference Guide v4_10</v>
+<v>WindSensor\thermocouple interface\CharLCD_v2_0</v>
+<v>WindSensor\thermocouple interface\cy_clock_v2_20</v>
+<v>WindSensor\thermocouple interface\cy_pins_v2_0</v>
 <v>WindSensor\thermocouple interface\SPI_Master_v2_40</v>
 <v>WindSensor\TransmitReadings</v>
 <v>WindSensor\TransmitReadings\PSoC 5 Architecture TRM</v>
 <v>WindSensor\TransmitReadings\CY8C58LP Family Datasheet</v>
-<v>WindSensor\TransmitReadings\System Reference Guide v4_0</v>
-<v>WindSensor\TransmitReadings\cy_clock_v2_10</v>
+<v>WindSensor\TransmitReadings\System Reference Guide v4_10</v>
+<v>WindSensor\TransmitReadings\cy_clock_v2_20</v>
 <v>WindSensor\TransmitReadings\cy_constant_v1_0</v>
 <v>WindSensor\TransmitReadings\cy_isr_v1_70</v>
-<v>WindSensor\TransmitReadings\cy_pins_v1_90</v>
+<v>WindSensor\TransmitReadings\cy_pins_v2_0</v>
 <v>WindSensor\TransmitReadings\I2C_v3_30</v>
 <v>WindSensor\TransmitReadings\SPI_Master_v2_40</v>
 <v>WindSensor\TransmitReadings\UART_v2_30</v>
 <v>WindSensor\TransmitReadings_freeSoC</v>
 <v>WindSensor\TransmitReadings_freeSoC\PSoC 5 Architecture TRM</v>
 <v>WindSensor\TransmitReadings_freeSoC\CY8C58LP Family Datasheet</v>
-<v>WindSensor\TransmitReadings_freeSoC\System Reference Guide v4_0</v>
-<v>WindSensor\TransmitReadings_freeSoC\cy_clock_v2_10</v>
+<v>WindSensor\TransmitReadings_freeSoC\System Reference Guide v4_10</v>
+<v>WindSensor\TransmitReadings_freeSoC\cy_clock_v2_20</v>
 <v>WindSensor\TransmitReadings_freeSoC\cy_constant_v1_0</v>
 <v>WindSensor\TransmitReadings_freeSoC\cy_isr_v1_70</v>
-<v>WindSensor\TransmitReadings_freeSoC\cy_pins_v1_90</v>
+<v>WindSensor\TransmitReadings_freeSoC\cy_pins_v2_0</v>
 <v>WindSensor\TransmitReadings_freeSoC\I2C_v3_30</v>
 <v>WindSensor\TransmitReadings_freeSoC\SPI_Master_v2_40</v>
 <v>WindSensor\TransmitReadings_freeSoC\UART_v2_30</v>
 <v>WindSensor\WindSensor</v>
 <v>WindSensor\WindSensor\PSoC 5 Architecture TRM</v>
 <v>WindSensor\WindSensor\CY8C58LP Family Datasheet</v>
-<v>WindSensor\WindSensor\System Reference Guide v4_0</v>
+<v>WindSensor\WindSensor\System Reference Guide v4_10</v>
 <v>WindSensor\WindSensor\cy_constant_v1_0</v>
 <v>WindSensor\WindSensor\cy_isr_v1_70</v>
-<v>WindSensor\WindSensor\cy_pins_v1_90</v>
+<v>WindSensor\WindSensor\cy_pins_v2_0</v>
 <v>WindSensor\WindSensor\UART_v2_30</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>WindSensor</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\airmartest\PSoC 5 Architecture TRM</v>
+<v>WindSensor\airmartest\CY8C58LP Family Datasheet</v>
+<v>WindSensor\airmartest\System Reference Guide v4_10</v>
+<v>WindSensor\airmartest\and_v1_0</v>
+<v>WindSensor\airmartest\Comp_v2_0</v>
+<v>WindSensor\airmartest\cy_clock_v2_20</v>
+<v>WindSensor\airmartest\cy_constant_v1_0</v>
+<v>WindSensor\airmartest\cy_isr_v1_70</v>
+<v>WindSensor\airmartest\cy_pins_v2_0</v>
+<v>WindSensor\airmartest\nand_v1_0</v>
+<v>WindSensor\airmartest\SPI_Master_v2_40</v>
+<v>WindSensor\airmartest\UART_v2_30</v>
 <v>WindSensor\Alternative Power Scheme</v>
 <v>WindSensor\Alternative Power Scheme\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Alternative Power Scheme\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Alternative Power Scheme\System Reference Guide v4_0</v>
-<v>WindSensor\Alternative Power Scheme\cy_clock_v2_10</v>
+<v>WindSensor\Alternative Power Scheme\System Reference Guide v4_10</v>
+<v>WindSensor\Alternative Power Scheme\cy_clock_v2_20</v>
 <v>WindSensor\Alternative Power Scheme\cy_constant_v1_0</v>
 <v>WindSensor\Alternative Power Scheme\cy_isr_v1_70</v>
-<v>WindSensor\Alternative Power Scheme\cy_pins_v1_90</v>
+<v>WindSensor\Alternative Power Scheme\cy_pins_v2_0</v>
 <v>WindSensor\Alternative Power Scheme\EEPROM_v2_10</v>
 <v>WindSensor\Alternative Power Scheme\I2C_v3_30</v>
 <v>WindSensor\Alternative Power Scheme\SPI_Master_v2_40</v>
@@ -1269,21 +1478,8 @@
 <v>WindSensor\Communicating_to_SBD</v>
 <v>WindSensor\Communicating_to_SBD\PSoC 5 Architecture TRM</v>
 <v>WindSensor\Communicating_to_SBD\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Communicating_to_SBD\System Reference Guide v4_0</v>
+<v>WindSensor\Communicating_to_SBD\System Reference Guide v4_10</v>
 <v>WindSensor\Communicating_to_SBD\cy_constant_v1_0</v>
-<v>WindSensor\Communicating_to_SBD\cy_isr_v1_70</v>
-<v>WindSensor\Communicating_to_SBD\cy_pins_v1_90</v>
-<v>WindSensor\Communicating_to_SBD\UART_v2_30</v>
-<v>WindSensor\Magnetometer</v>
-<v>WindSensor\Magnetometer\PSoC 5 Architecture TRM</v>
-<v>WindSensor\Magnetometer\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Magnetometer\System Reference Guide v4_0</v>
-<v>WindSensor\Magnetometer\cy_pins_v1_90</v>
-<v>WindSensor\Magnetometer\I2C_v3_30</v>
-<v>WindSensor\Thermocouple</v>
-<v>WindSensor\Thermocouple\PSoC 5 Architecture TRM</v>
-<v>WindSensor\Thermocouple\CY8C58LP Family Datasheet</v>
-<v>WindSensor\Thermocouple\System Reference Guide v4_0</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStatesV2>
@@ -1298,8 +1494,13 @@
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
 <OpenDocs>
-<name v=".\TransmitReadings_freeSoC.cydsn\TransmitReadings_freeSoC.cydwr" />
-<name v=".\TransmitReadings_freeSoC.cydsn\main.c" />
+<name v=".\airmartest.cydsn\main.c" />
+<name v=".\airmartest.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\airmartest.cydsn\airmartest.cydwr" />
+<name v=".\airmartest.cydsn\wind.h" />
+<name v=".\airmartest.cydsn\thermocouple.c" />
+<name v=".\airmartest.cydsn\wind.c" />
+<name v=".\airmartest.cydsn\thermocouple.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
