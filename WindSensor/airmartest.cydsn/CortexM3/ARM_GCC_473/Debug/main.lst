@@ -1,0 +1,2051 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	windData,128,4
+  19              		.comm	gpsData,128,4
+  20              		.comm	text,256,4
+  21              		.comm	windspeedarray,256,4
+  22              		.comm	winddirectionarray,256,4
+  23              		.global	windDataPointer
+  24              		.bss
+  25              		.align	2
+  26              		.type	windDataPointer, %object
+  27              		.size	windDataPointer, 4
+  28              	windDataPointer:
+  29 0000 00000000 		.space	4
+  30              		.global	windpacketReceived
+  31              		.align	2
+  32              		.type	windpacketReceived, %object
+  33              		.size	windpacketReceived, 4
+  34              	windpacketReceived:
+  35 0004 00000000 		.space	4
+  36              		.global	gpsandwindReceived
+  37              		.align	2
+  38              		.type	gpsandwindReceived, %object
+  39              		.size	gpsandwindReceived, 4
+  40              	gpsandwindReceived:
+  41 0008 00000000 		.space	4
+  42              		.global	gpsvalid
+  43              		.align	2
+  44              		.type	gpsvalid, %object
+  45              		.size	gpsvalid, 4
+  46              	gpsvalid:
+  47 000c 00000000 		.space	4
+  48              		.global	i
+  49              		.align	2
+  50              		.type	i, %object
+  51              		.size	i, 4
+  52              	i:
+  53 0010 00000000 		.space	4
+  54              		.global	gpsretry
+  55              		.align	2
+  56              		.type	gpsretry, %object
+  57              		.size	gpsretry, 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 2
+
+
+  58              	gpsretry:
+  59 0014 00000000 		.space	4
+  60              		.comm	pch,4,4
+  61              		.comm	startofwinddata,4,4
+  62              		.comm	pressure,8,4
+  63              		.comm	airtemp,8,4
+  64              		.comm	windDirection,8,4
+  65              		.comm	windSpeed,8,4
+  66              		.comm	watertemp,2,2
+  67              		.section	.rodata
+  68              		.align	2
+  69              	.LC0:
+  70 0000 2450414D 		.ascii	"$PAMTX\015\012\000"
+  70      54580D0A 
+  70      00
+  71 0009 000000   		.align	2
+  72              	.LC1:
+  73 000c 2450414D 		.ascii	"$PAMTC,EN,ALL,0\015\012\000"
+  73      54432C45 
+  73      4E2C414C 
+  73      4C2C300D 
+  73      0A00
+  74 001e 0000     		.align	2
+  75              	.LC2:
+  76 0020 2450414D 		.ascii	"$PAMTC,EN,RMC,1,50\015\012\000"
+  76      54432C45 
+  76      4E2C524D 
+  76      432C312C 
+  76      35300D0A 
+  77 0035 000000   		.align	2
+  78              	.LC3:
+  79 0038 2450414D 		.ascii	"$PAMTC,EN,MWD,1,50\015\012\000"
+  79      54432C45 
+  79      4E2C4D57 
+  79      442C312C 
+  79      35300D0A 
+  80 004d 000000   		.align	2
+  81              	.LC4:
+  82 0050 2450414D 		.ascii	"$PAMTX,1\015\012\000"
+  82      54582C31 
+  82      0D0A00
+  83 005b 00       		.align	2
+  84              	.LC5:
+  85 005c 2C00     		.ascii	",\000"
+  86 005e 0000     		.align	2
+  87              	.LC6:
+  88 0060 2450414D 		.ascii	"$PAMTC,EN,MDA,1,5\015\012\000"
+  88      54432C45 
+  88      4E2C4D44 
+  88      412C312C 
+  88      350D0A00 
+  89              		.align	2
+  90              	.LC7:
+  91 0074 2450414D 		.ascii	"$PAMTC,EN,MWD,1,5\015\012\000"
+  91      54432C45 
+  91      4E2C4D57 
+  91      442C312C 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 3
+
+
+  91      350D0A00 
+  92              		.align	2
+  93              	.LC8:
+  94 0088 41542D57 		.ascii	"AT-WSMOST=%s,%s,%s,%s,%s,%d\015\012\000"
+  94      534D4F53 
+  94      543D2573 
+  94      2C25732C 
+  94      25732C25 
+  95 00a6 0000     		.align	2
+  96              	.LC9:
+  97 00a8 41542D57 		.ascii	"AT-WSEPOFF\015\012\000"
+  97      5345504F 
+  97      46460D0A 
+  97      00
+  98 00b5 000000   		.section	.text.main,"ax",%progbits
+  99              		.align	2
+ 100              		.global	main
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.type	main, %function
+ 104              	main:
+ 105              	.LFB56:
+ 106              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <string.h>
+  14:.\main.c      **** #include <stdio.h>
+  15:.\main.c      **** #include <thermocouple.h>
+  16:.\main.c      **** #include <wind.h>
+  17:.\main.c      **** 
+  18:.\main.c      **** CY_ISR_PROTO(airmar_int);
+  19:.\main.c      **** void clearPacketwind();
+  20:.\main.c      **** char windData[128];
+  21:.\main.c      **** char gpsData[128];
+  22:.\main.c      **** char text[256];
+  23:.\main.c      **** float windspeedarray[64];
+  24:.\main.c      **** float winddirectionarray[64];
+  25:.\main.c      **** int windDataPointer = 0;
+  26:.\main.c      **** int windpacketReceived = 0;
+  27:.\main.c      **** int gpsandwindReceived = 0;
+  28:.\main.c      **** int gpsvalid = 0;
+  29:.\main.c      **** int i = 0;
+  30:.\main.c      **** int gpsretry = 0;
+  31:.\main.c      **** char * pch;
+  32:.\main.c      **** char * startofwinddata;
+  33:.\main.c      **** char pressure[8];
+  34:.\main.c      **** char airtemp[8];
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 4
+
+
+  35:.\main.c      **** char windDirection[8];
+  36:.\main.c      **** char windSpeed[8];
+  37:.\main.c      **** int16 watertemp;
+  38:.\main.c      **** 
+  39:.\main.c      **** int main()
+  40:.\main.c      **** {
+ 107              		.loc 1 40 0
+ 108              		.cfi_startproc
+ 109              		@ args = 0, pretend = 0, frame = 0
+ 110              		@ frame_needed = 1, uses_anonymous_args = 0
+ 111 0000 80B5     		push	{r7, lr}
+ 112              	.LCFI0:
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 7, -8
+ 115              		.cfi_offset 14, -4
+ 116 0002 84B0     		sub	sp, sp, #16
+ 117              	.LCFI1:
+ 118              		.cfi_def_cfa_offset 24
+ 119 0004 04AF     		add	r7, sp, #16
+ 120              	.LCFI2:
+ 121              		.cfi_def_cfa 7, 8
+  41:.\main.c      **** 	memset (pressure, 0, 8);
+ 122              		.loc 1 41 0
+ 123 0006 40F20000 		movw	r0, #:lower16:pressure
+ 124 000a C0F20000 		movt	r0, #:upper16:pressure
+ 125 000e 4FF00001 		mov	r1, #0
+ 126 0012 4FF00802 		mov	r2, #8
+ 127 0016 FFF7FEFF 		bl	memset
+  42:.\main.c      **** 	memset (airtemp, 0, 8);
+ 128              		.loc 1 42 0
+ 129 001a 40F20000 		movw	r0, #:lower16:airtemp
+ 130 001e C0F20000 		movt	r0, #:upper16:airtemp
+ 131 0022 4FF00001 		mov	r1, #0
+ 132 0026 4FF00802 		mov	r2, #8
+ 133 002a FFF7FEFF 		bl	memset
+  43:.\main.c      **** 	memset (windDirection, 0, 8);
+ 134              		.loc 1 43 0
+ 135 002e 40F20000 		movw	r0, #:lower16:windDirection
+ 136 0032 C0F20000 		movt	r0, #:upper16:windDirection
+ 137 0036 4FF00001 		mov	r1, #0
+ 138 003a 4FF00802 		mov	r2, #8
+ 139 003e FFF7FEFF 		bl	memset
+  44:.\main.c      **** 	memset (windSpeed, 0, 8);
+ 140              		.loc 1 44 0
+ 141 0042 40F20000 		movw	r0, #:lower16:windSpeed
+ 142 0046 C0F20000 		movt	r0, #:upper16:windSpeed
+ 143 004a 4FF00001 		mov	r1, #0
+ 144 004e 4FF00802 		mov	r2, #8
+ 145 0052 FFF7FEFF 		bl	memset
+  45:.\main.c      **** 	
+  46:.\main.c      **** 	Comp_Start();
+ 146              		.loc 1 46 0
+ 147 0056 FFF7FEFF 		bl	Comp_Start
+  47:.\main.c      ****     Airmar_Start();
+ 148              		.loc 1 47 0
+ 149 005a FFF7FEFF 		bl	Airmar_Start
+  48:.\main.c      **** 	master_Start();
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 5
+
+
+ 150              		.loc 1 48 0
+ 151 005e FFF7FEFF 		bl	master_Start
+  49:.\main.c      **** 	UART_SBD_Start();
+ 152              		.loc 1 49 0
+ 153 0062 FFF7FEFF 		bl	UART_SBD_Start
+  50:.\main.c      **** 	isr_airmar_StartEx(airmar_int);
+ 154              		.loc 1 50 0
+ 155 0066 40F20000 		movw	r0, #:lower16:airmar_int
+ 156 006a C0F20000 		movt	r0, #:upper16:airmar_int
+ 157 006e FFF7FEFF 		bl	isr_airmar_StartEx
+  51:.\main.c      **** 
+  52:.\main.c      ****     CyGlobalIntEnable;
+ 158              		.loc 1 52 0
+ 159              	@ 52 ".\main.c" 1
+ 160 0072 62B6     		CPSIE   i
+ 161              	@ 0 "" 2
+  53:.\main.c      **** 	isr_airmar_Stop();
+ 162              		.loc 1 53 0
+ 163              		.thumb
+ 164 0074 FFF7FEFF 		bl	isr_airmar_Stop
+ 165              	.L31:
+  54:.\main.c      **** 	
+  55:.\main.c      ****     for(;;)
+  56:.\main.c      ****     {
+  57:.\main.c      **** 		Airmar_PutString("$PAMTX\r\n");
+ 166              		.loc 1 57 0
+ 167 0078 40F20000 		movw	r0, #:lower16:.LC0
+ 168 007c C0F20000 		movt	r0, #:upper16:.LC0
+ 169 0080 FFF7FEFF 		bl	Airmar_PutString
+  58:.\main.c      ****        	Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
+ 170              		.loc 1 58 0
+ 171 0084 40F20000 		movw	r0, #:lower16:.LC1
+ 172 0088 C0F20000 		movt	r0, #:upper16:.LC1
+ 173 008c FFF7FEFF 		bl	Airmar_PutString
+  59:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,RMC,1,50\r\n");
+ 174              		.loc 1 59 0
+ 175 0090 40F20000 		movw	r0, #:lower16:.LC2
+ 176 0094 C0F20000 		movt	r0, #:upper16:.LC2
+ 177 0098 FFF7FEFF 		bl	Airmar_PutString
+  60:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,MWD,1,50\r\n");
+ 178              		.loc 1 60 0
+ 179 009c 40F20000 		movw	r0, #:lower16:.LC3
+ 180 00a0 C0F20000 		movt	r0, #:upper16:.LC3
+ 181 00a4 FFF7FEFF 		bl	Airmar_PutString
+  61:.\main.c      **** 		Airmar_PutString("$PAMTX,1\r\n");
+ 182              		.loc 1 61 0
+ 183 00a8 40F20000 		movw	r0, #:lower16:.LC4
+ 184 00ac C0F20000 		movt	r0, #:upper16:.LC4
+ 185 00b0 FFF7FEFF 		bl	Airmar_PutString
+  62:.\main.c      **** 		isr_airmar_StartEx(airmar_int);
+ 186              		.loc 1 62 0
+ 187 00b4 40F20000 		movw	r0, #:lower16:airmar_int
+ 188 00b8 C0F20000 		movt	r0, #:upper16:airmar_int
+ 189 00bc FFF7FEFF 		bl	isr_airmar_StartEx
+  63:.\main.c      **** 		
+  64:.\main.c      **** 		while(gpsvalid == 0)
+ 190              		.loc 1 64 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 6
+
+
+ 191 00c0 0DE1     		b	.L2
+ 192              	.L15:
+  65:.\main.c      **** 		{
+  66:.\main.c      **** 			if(gpsandwindReceived)
+ 193              		.loc 1 66 0
+ 194 00c2 40F20003 		movw	r3, #:lower16:gpsandwindReceived
+ 195 00c6 C0F20003 		movt	r3, #:upper16:gpsandwindReceived
+ 196 00ca 1B68     		ldr	r3, [r3, #0]
+ 197 00cc 002B     		cmp	r3, #0
+ 198 00ce 00F00681 		beq	.L2
+  67:.\main.c      **** 			{
+  68:.\main.c      **** 				isr_airmar_Stop();
+ 199              		.loc 1 68 0
+ 200 00d2 FFF7FEFF 		bl	isr_airmar_Stop
+  69:.\main.c      **** 				for(i=0;i<40;i++)
+ 201              		.loc 1 69 0
+ 202 00d6 40F20003 		movw	r3, #:lower16:i
+ 203 00da C0F20003 		movt	r3, #:upper16:i
+ 204 00de 4FF00002 		mov	r2, #0
+ 205 00e2 1A60     		str	r2, [r3, #0]
+ 206 00e4 75E0     		b	.L3
+ 207              	.L8:
+  70:.\main.c      **** 				{
+  71:.\main.c      **** 					if(windData[i] == 'V')
+ 208              		.loc 1 71 0
+ 209 00e6 40F20003 		movw	r3, #:lower16:i
+ 210 00ea C0F20003 		movt	r3, #:upper16:i
+ 211 00ee 1A68     		ldr	r2, [r3, #0]
+ 212 00f0 40F20003 		movw	r3, #:lower16:windData
+ 213 00f4 C0F20003 		movt	r3, #:upper16:windData
+ 214 00f8 9B5C     		ldrb	r3, [r3, r2]	@ zero_extendqisi2
+ 215 00fa 562B     		cmp	r3, #86
+ 216 00fc 38D1     		bne	.L4
+  72:.\main.c      **** 					{
+  73:.\main.c      **** 						gpsretry++;
+ 217              		.loc 1 73 0
+ 218 00fe 40F20003 		movw	r3, #:lower16:gpsretry
+ 219 0102 C0F20003 		movt	r3, #:upper16:gpsretry
+ 220 0106 1B68     		ldr	r3, [r3, #0]
+ 221 0108 03F10102 		add	r2, r3, #1
+ 222 010c 40F20003 		movw	r3, #:lower16:gpsretry
+ 223 0110 C0F20003 		movt	r3, #:upper16:gpsretry
+ 224 0114 1A60     		str	r2, [r3, #0]
+  74:.\main.c      **** 						gpsvalid = 0;
+ 225              		.loc 1 74 0
+ 226 0116 40F20003 		movw	r3, #:lower16:gpsvalid
+ 227 011a C0F20003 		movt	r3, #:upper16:gpsvalid
+ 228 011e 4FF00002 		mov	r2, #0
+ 229 0122 1A60     		str	r2, [r3, #0]
+  75:.\main.c      **** 						isr_airmar_StartEx(airmar_int);
+ 230              		.loc 1 75 0
+ 231 0124 40F20000 		movw	r0, #:lower16:airmar_int
+ 232 0128 C0F20000 		movt	r0, #:upper16:airmar_int
+ 233 012c FFF7FEFF 		bl	isr_airmar_StartEx
+  76:.\main.c      **** 						
+  77:.\main.c      **** 						
+  78:.\main.c      **** 						if(gpsretry >= 5)
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 7
+
+
+ 234              		.loc 1 78 0
+ 235 0130 40F20003 		movw	r3, #:lower16:gpsretry
+ 236 0134 C0F20003 		movt	r3, #:upper16:gpsretry
+ 237 0138 1B68     		ldr	r3, [r3, #0]
+ 238 013a 042B     		cmp	r3, #4
+ 239 013c 51DD     		ble	.L35
+  79:.\main.c      **** 						{
+  80:.\main.c      **** 							memcpy(gpsData, windData, 128);
+ 240              		.loc 1 80 0
+ 241 013e 40F20002 		movw	r2, #:lower16:gpsData
+ 242 0142 C0F20002 		movt	r2, #:upper16:gpsData
+ 243 0146 40F20003 		movw	r3, #:lower16:windData
+ 244 014a C0F20003 		movt	r3, #:upper16:windData
+ 245 014e 1146     		mov	r1, r2
+ 246 0150 1A46     		mov	r2, r3
+ 247 0152 4FF08003 		mov	r3, #128
+ 248 0156 0846     		mov	r0, r1
+ 249 0158 1146     		mov	r1, r2
+ 250 015a 1A46     		mov	r2, r3
+ 251 015c FFF7FEFF 		bl	memcpy
+  81:.\main.c      **** 							gpsvalid = 1;
+ 252              		.loc 1 81 0
+ 253 0160 40F20003 		movw	r3, #:lower16:gpsvalid
+ 254 0164 C0F20003 		movt	r3, #:upper16:gpsvalid
+ 255 0168 4FF00102 		mov	r2, #1
+ 256 016c 1A60     		str	r2, [r3, #0]
+  82:.\main.c      **** 						}
+  83:.\main.c      **** 						break;
+ 257              		.loc 1 83 0
+ 258 016e 38E0     		b	.L35
+ 259              	.L4:
+  84:.\main.c      **** 					}
+  85:.\main.c      **** 		
+  86:.\main.c      **** 					if(windData[i] == 'A')
+ 260              		.loc 1 86 0
+ 261 0170 40F20003 		movw	r3, #:lower16:i
+ 262 0174 C0F20003 		movt	r3, #:upper16:i
+ 263 0178 1A68     		ldr	r2, [r3, #0]
+ 264 017a 40F20003 		movw	r3, #:lower16:windData
+ 265 017e C0F20003 		movt	r3, #:upper16:windData
+ 266 0182 9B5C     		ldrb	r3, [r3, r2]	@ zero_extendqisi2
+ 267 0184 412B     		cmp	r3, #65
+ 268 0186 18D1     		bne	.L7
+  87:.\main.c      **** 					{
+  88:.\main.c      **** 						gpsvalid = 1;
+ 269              		.loc 1 88 0
+ 270 0188 40F20003 		movw	r3, #:lower16:gpsvalid
+ 271 018c C0F20003 		movt	r3, #:upper16:gpsvalid
+ 272 0190 4FF00102 		mov	r2, #1
+ 273 0194 1A60     		str	r2, [r3, #0]
+  89:.\main.c      **** 						memcpy(gpsData, windData, 128);
+ 274              		.loc 1 89 0
+ 275 0196 40F20002 		movw	r2, #:lower16:gpsData
+ 276 019a C0F20002 		movt	r2, #:upper16:gpsData
+ 277 019e 40F20003 		movw	r3, #:lower16:windData
+ 278 01a2 C0F20003 		movt	r3, #:upper16:windData
+ 279 01a6 1146     		mov	r1, r2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 8
+
+
+ 280 01a8 1A46     		mov	r2, r3
+ 281 01aa 4FF08003 		mov	r3, #128
+ 282 01ae 0846     		mov	r0, r1
+ 283 01b0 1146     		mov	r1, r2
+ 284 01b2 1A46     		mov	r2, r3
+ 285 01b4 FFF7FEFF 		bl	memcpy
+  90:.\main.c      **** 						
+  91:.\main.c      **** 						break;
+ 286              		.loc 1 91 0
+ 287 01b8 14E0     		b	.L6
+ 288              	.L7:
+  69:.\main.c      **** 				for(i=0;i<40;i++)
+ 289              		.loc 1 69 0
+ 290 01ba 40F20003 		movw	r3, #:lower16:i
+ 291 01be C0F20003 		movt	r3, #:upper16:i
+ 292 01c2 1B68     		ldr	r3, [r3, #0]
+ 293 01c4 03F10102 		add	r2, r3, #1
+ 294 01c8 40F20003 		movw	r3, #:lower16:i
+ 295 01cc C0F20003 		movt	r3, #:upper16:i
+ 296 01d0 1A60     		str	r2, [r3, #0]
+ 297              	.L3:
+  69:.\main.c      **** 				for(i=0;i<40;i++)
+ 298              		.loc 1 69 0 is_stmt 0 discriminator 1
+ 299 01d2 40F20003 		movw	r3, #:lower16:i
+ 300 01d6 C0F20003 		movt	r3, #:upper16:i
+ 301 01da 1B68     		ldr	r3, [r3, #0]
+ 302 01dc 272B     		cmp	r3, #39
+ 303 01de 82DD     		ble	.L8
+ 304 01e0 00E0     		b	.L6
+ 305              	.L35:
+  83:.\main.c      **** 						break;
+ 306              		.loc 1 83 0 is_stmt 1
+ 307 01e2 00BF     		nop
+ 308              	.L6:
+  92:.\main.c      **** 					}
+  93:.\main.c      **** 				}
+  94:.\main.c      **** 				
+  95:.\main.c      **** 				startofwinddata = strchr(windData, '\0');
+ 309              		.loc 1 95 0
+ 310 01e4 40F20000 		movw	r0, #:lower16:windData
+ 311 01e8 C0F20000 		movt	r0, #:upper16:windData
+ 312 01ec 4FF00001 		mov	r1, #0
+ 313 01f0 FFF7FEFF 		bl	strchr
+ 314 01f4 0246     		mov	r2, r0
+ 315 01f6 40F20003 		movw	r3, #:lower16:startofwinddata
+ 316 01fa C0F20003 		movt	r3, #:upper16:startofwinddata
+ 317 01fe 1A60     		str	r2, [r3, #0]
+  96:.\main.c      **** 			
+  97:.\main.c      **** 				pch = strtok (windData + (startofwinddata - windData + 2),",");
+ 318              		.loc 1 97 0
+ 319 0200 40F20003 		movw	r3, #:lower16:startofwinddata
+ 320 0204 C0F20003 		movt	r3, #:upper16:startofwinddata
+ 321 0208 1B68     		ldr	r3, [r3, #0]
+ 322 020a 1A46     		mov	r2, r3
+ 323 020c 40F20003 		movw	r3, #:lower16:windData
+ 324 0210 C0F20003 		movt	r3, #:upper16:windData
+ 325 0214 C3F10203 		rsb	r3, r3, #2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 9
+
+
+ 326 0218 D218     		adds	r2, r2, r3
+ 327 021a 40F20003 		movw	r3, #:lower16:windData
+ 328 021e C0F20003 		movt	r3, #:upper16:windData
+ 329 0222 D318     		adds	r3, r2, r3
+ 330 0224 1846     		mov	r0, r3
+ 331 0226 40F20001 		movw	r1, #:lower16:.LC5
+ 332 022a C0F20001 		movt	r1, #:upper16:.LC5
+ 333 022e FFF7FEFF 		bl	strtok
+ 334 0232 0246     		mov	r2, r0
+ 335 0234 40F20003 		movw	r3, #:lower16:pch
+ 336 0238 C0F20003 		movt	r3, #:upper16:pch
+ 337 023c 1A60     		str	r2, [r3, #0]
+  98:.\main.c      **** 		
+  99:.\main.c      **** 				for(i=1;i<8;i++)
+ 338              		.loc 1 99 0
+ 339 023e 40F20003 		movw	r3, #:lower16:i
+ 340 0242 C0F20003 		movt	r3, #:upper16:i
+ 341 0246 4FF00102 		mov	r2, #1
+ 342 024a 1A60     		str	r2, [r3, #0]
+ 343 024c 3EE0     		b	.L9
+ 344              	.L14:
+ 100:.\main.c      **** 				{
+ 101:.\main.c      **** 					pch = strtok (NULL, ",");
+ 345              		.loc 1 101 0
+ 346 024e 4FF00000 		mov	r0, #0
+ 347 0252 40F20001 		movw	r1, #:lower16:.LC5
+ 348 0256 C0F20001 		movt	r1, #:upper16:.LC5
+ 349 025a FFF7FEFF 		bl	strtok
+ 350 025e 0246     		mov	r2, r0
+ 351 0260 40F20003 		movw	r3, #:lower16:pch
+ 352 0264 C0F20003 		movt	r3, #:upper16:pch
+ 353 0268 1A60     		str	r2, [r3, #0]
+ 102:.\main.c      **** 			
+ 103:.\main.c      **** 					switch(i)
+ 354              		.loc 1 103 0
+ 355 026a 40F20003 		movw	r3, #:lower16:i
+ 356 026e C0F20003 		movt	r3, #:upper16:i
+ 357 0272 1B68     		ldr	r3, [r3, #0]
+ 358 0274 032B     		cmp	r3, #3
+ 359 0276 02D0     		beq	.L11
+ 360 0278 072B     		cmp	r3, #7
+ 361 027a 0DD0     		beq	.L12
+ 362 027c 19E0     		b	.L32
+ 363              	.L11:
+ 104:.\main.c      **** 					{
+ 105:.\main.c      **** 						case 3:
+ 106:.\main.c      **** 							sprintf(windDirection, "%s", pch);
+ 364              		.loc 1 106 0
+ 365 027e 40F20003 		movw	r3, #:lower16:pch
+ 366 0282 C0F20003 		movt	r3, #:upper16:pch
+ 367 0286 1B68     		ldr	r3, [r3, #0]
+ 368 0288 40F20000 		movw	r0, #:lower16:windDirection
+ 369 028c C0F20000 		movt	r0, #:upper16:windDirection
+ 370 0290 1946     		mov	r1, r3
+ 371 0292 FFF7FEFF 		bl	strcpy
+ 107:.\main.c      **** 							break;
+ 372              		.loc 1 107 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 10
+
+
+ 373 0296 0DE0     		b	.L13
+ 374              	.L12:
+ 108:.\main.c      **** 						case 7:
+ 109:.\main.c      **** 							sprintf(windSpeed, "%s", pch);
+ 375              		.loc 1 109 0
+ 376 0298 40F20003 		movw	r3, #:lower16:pch
+ 377 029c C0F20003 		movt	r3, #:upper16:pch
+ 378 02a0 1B68     		ldr	r3, [r3, #0]
+ 379 02a2 40F20000 		movw	r0, #:lower16:windSpeed
+ 380 02a6 C0F20000 		movt	r0, #:upper16:windSpeed
+ 381 02aa 1946     		mov	r1, r3
+ 382 02ac FFF7FEFF 		bl	strcpy
+ 110:.\main.c      **** 							break;
+ 383              		.loc 1 110 0
+ 384 02b0 00E0     		b	.L13
+ 385              	.L32:
+ 111:.\main.c      **** 						default:
+ 112:.\main.c      **** 							break;
+ 386              		.loc 1 112 0
+ 387 02b2 00BF     		nop
+ 388              	.L13:
+  99:.\main.c      **** 				for(i=1;i<8;i++)
+ 389              		.loc 1 99 0
+ 390 02b4 40F20003 		movw	r3, #:lower16:i
+ 391 02b8 C0F20003 		movt	r3, #:upper16:i
+ 392 02bc 1B68     		ldr	r3, [r3, #0]
+ 393 02be 03F10102 		add	r2, r3, #1
+ 394 02c2 40F20003 		movw	r3, #:lower16:i
+ 395 02c6 C0F20003 		movt	r3, #:upper16:i
+ 396 02ca 1A60     		str	r2, [r3, #0]
+ 397              	.L9:
+  99:.\main.c      **** 				for(i=1;i<8;i++)
+ 398              		.loc 1 99 0 is_stmt 0 discriminator 1
+ 399 02cc 40F20003 		movw	r3, #:lower16:i
+ 400 02d0 C0F20003 		movt	r3, #:upper16:i
+ 401 02d4 1B68     		ldr	r3, [r3, #0]
+ 402 02d6 072B     		cmp	r3, #7
+ 403 02d8 B9DD     		ble	.L14
+ 113:.\main.c      **** 					}
+ 114:.\main.c      **** 			
+ 115:.\main.c      ****     			}
+ 116:.\main.c      **** 				clearPacketwind();
+ 404              		.loc 1 116 0 is_stmt 1
+ 405 02da FFF7FEFF 		bl	clearPacketwind
+ 406              	.L2:
+  64:.\main.c      **** 		while(gpsvalid == 0)
+ 407              		.loc 1 64 0 discriminator 1
+ 408 02de 40F20003 		movw	r3, #:lower16:gpsvalid
+ 409 02e2 C0F20003 		movt	r3, #:upper16:gpsvalid
+ 410 02e6 1B68     		ldr	r3, [r3, #0]
+ 411 02e8 002B     		cmp	r3, #0
+ 412 02ea 3FF4EAAE 		beq	.L15
+ 117:.\main.c      **** 				
+ 118:.\main.c      **** 				
+ 119:.\main.c      **** 			}
+ 120:.\main.c      **** 		}
+ 121:.\main.c      **** 		
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 11
+
+
+ 122:.\main.c      **** 		isr_airmar_Stop();
+ 413              		.loc 1 122 0
+ 414 02ee FFF7FEFF 		bl	isr_airmar_Stop
+ 123:.\main.c      **** 		Airmar_PutString("$PAMTX\r\n");
+ 415              		.loc 1 123 0
+ 416 02f2 40F20000 		movw	r0, #:lower16:.LC0
+ 417 02f6 C0F20000 		movt	r0, #:upper16:.LC0
+ 418 02fa FFF7FEFF 		bl	Airmar_PutString
+ 124:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
+ 419              		.loc 1 124 0
+ 420 02fe 40F20000 		movw	r0, #:lower16:.LC1
+ 421 0302 C0F20000 		movt	r0, #:upper16:.LC1
+ 422 0306 FFF7FEFF 		bl	Airmar_PutString
+ 125:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,MDA,1,5\r\n");
+ 423              		.loc 1 125 0
+ 424 030a 40F20000 		movw	r0, #:lower16:.LC6
+ 425 030e C0F20000 		movt	r0, #:upper16:.LC6
+ 426 0312 FFF7FEFF 		bl	Airmar_PutString
+ 126:.\main.c      **** 		Airmar_PutString("$PAMTX,1\r\n");
+ 427              		.loc 1 126 0
+ 428 0316 40F20000 		movw	r0, #:lower16:.LC4
+ 429 031a C0F20000 		movt	r0, #:upper16:.LC4
+ 430 031e FFF7FEFF 		bl	Airmar_PutString
+ 127:.\main.c      **** 		isr_airmar_StartEx(airmar_int);
+ 431              		.loc 1 127 0
+ 432 0322 40F20000 		movw	r0, #:lower16:airmar_int
+ 433 0326 C0F20000 		movt	r0, #:upper16:airmar_int
+ 434 032a FFF7FEFF 		bl	isr_airmar_StartEx
+ 128:.\main.c      **** 		
+ 129:.\main.c      **** 		while(windpacketReceived == 0)
+ 435              		.loc 1 129 0
+ 436 032e 00BF     		nop
+ 437              	.L16:
+ 438              		.loc 1 129 0 is_stmt 0 discriminator 1
+ 439 0330 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 440 0334 C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 441 0338 1B68     		ldr	r3, [r3, #0]
+ 442 033a 002B     		cmp	r3, #0
+ 443 033c F8D0     		beq	.L16
+ 130:.\main.c      **** 		{
+ 131:.\main.c      **** 		}
+ 132:.\main.c      **** 		
+ 133:.\main.c      **** 		if(windpacketReceived)
+ 444              		.loc 1 133 0 is_stmt 1
+ 445 033e 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 446 0342 C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 447 0346 1B68     		ldr	r3, [r3, #0]
+ 448 0348 002B     		cmp	r3, #0
+ 449 034a 61D0     		beq	.L17
+ 134:.\main.c      **** 		{
+ 135:.\main.c      **** 			isr_airmar_Stop();
+ 450              		.loc 1 135 0
+ 451 034c FFF7FEFF 		bl	isr_airmar_Stop
+ 136:.\main.c      **** 			pch = strtok (windData,",");
+ 452              		.loc 1 136 0
+ 453 0350 40F20000 		movw	r0, #:lower16:windData
+ 454 0354 C0F20000 		movt	r0, #:upper16:windData
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 12
+
+
+ 455 0358 40F20001 		movw	r1, #:lower16:.LC5
+ 456 035c C0F20001 		movt	r1, #:upper16:.LC5
+ 457 0360 FFF7FEFF 		bl	strtok
+ 458 0364 0246     		mov	r2, r0
+ 459 0366 40F20003 		movw	r3, #:lower16:pch
+ 460 036a C0F20003 		movt	r3, #:upper16:pch
+ 461 036e 1A60     		str	r2, [r3, #0]
+ 137:.\main.c      ****   			for(i=1;i<6;i++)
+ 462              		.loc 1 137 0
+ 463 0370 40F20003 		movw	r3, #:lower16:i
+ 464 0374 C0F20003 		movt	r3, #:upper16:i
+ 465 0378 4FF00102 		mov	r2, #1
+ 466 037c 1A60     		str	r2, [r3, #0]
+ 467 037e 3EE0     		b	.L18
+ 468              	.L23:
+ 138:.\main.c      ****   			{
+ 139:.\main.c      ****     			pch = strtok (NULL, ",");
+ 469              		.loc 1 139 0
+ 470 0380 4FF00000 		mov	r0, #0
+ 471 0384 40F20001 		movw	r1, #:lower16:.LC5
+ 472 0388 C0F20001 		movt	r1, #:upper16:.LC5
+ 473 038c FFF7FEFF 		bl	strtok
+ 474 0390 0246     		mov	r2, r0
+ 475 0392 40F20003 		movw	r3, #:lower16:pch
+ 476 0396 C0F20003 		movt	r3, #:upper16:pch
+ 477 039a 1A60     		str	r2, [r3, #0]
+ 140:.\main.c      **** 				
+ 141:.\main.c      **** 				switch(i)
+ 478              		.loc 1 141 0
+ 479 039c 40F20003 		movw	r3, #:lower16:i
+ 480 03a0 C0F20003 		movt	r3, #:upper16:i
+ 481 03a4 1B68     		ldr	r3, [r3, #0]
+ 482 03a6 032B     		cmp	r3, #3
+ 483 03a8 02D0     		beq	.L20
+ 484 03aa 052B     		cmp	r3, #5
+ 485 03ac 0DD0     		beq	.L21
+ 486 03ae 19E0     		b	.L33
+ 487              	.L20:
+ 142:.\main.c      **** 				{
+ 143:.\main.c      **** 					case 3:
+ 144:.\main.c      **** 					sprintf(pressure, "%s", pch);
+ 488              		.loc 1 144 0
+ 489 03b0 40F20003 		movw	r3, #:lower16:pch
+ 490 03b4 C0F20003 		movt	r3, #:upper16:pch
+ 491 03b8 1B68     		ldr	r3, [r3, #0]
+ 492 03ba 40F20000 		movw	r0, #:lower16:pressure
+ 493 03be C0F20000 		movt	r0, #:upper16:pressure
+ 494 03c2 1946     		mov	r1, r3
+ 495 03c4 FFF7FEFF 		bl	strcpy
+ 145:.\main.c      **** 					break;
+ 496              		.loc 1 145 0
+ 497 03c8 0DE0     		b	.L22
+ 498              	.L21:
+ 146:.\main.c      **** 					
+ 147:.\main.c      **** 					case 5:
+ 148:.\main.c      **** 					sprintf(airtemp, "%s", pch);
+ 499              		.loc 1 148 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 13
+
+
+ 500 03ca 40F20003 		movw	r3, #:lower16:pch
+ 501 03ce C0F20003 		movt	r3, #:upper16:pch
+ 502 03d2 1B68     		ldr	r3, [r3, #0]
+ 503 03d4 40F20000 		movw	r0, #:lower16:airtemp
+ 504 03d8 C0F20000 		movt	r0, #:upper16:airtemp
+ 505 03dc 1946     		mov	r1, r3
+ 506 03de FFF7FEFF 		bl	strcpy
+ 149:.\main.c      **** 					break;
+ 507              		.loc 1 149 0
+ 508 03e2 00E0     		b	.L22
+ 509              	.L33:
+ 150:.\main.c      **** 					
+ 151:.\main.c      **** 					default:
+ 152:.\main.c      **** 					break;
+ 510              		.loc 1 152 0
+ 511 03e4 00BF     		nop
+ 512              	.L22:
+ 137:.\main.c      ****   			for(i=1;i<6;i++)
+ 513              		.loc 1 137 0
+ 514 03e6 40F20003 		movw	r3, #:lower16:i
+ 515 03ea C0F20003 		movt	r3, #:upper16:i
+ 516 03ee 1B68     		ldr	r3, [r3, #0]
+ 517 03f0 03F10102 		add	r2, r3, #1
+ 518 03f4 40F20003 		movw	r3, #:lower16:i
+ 519 03f8 C0F20003 		movt	r3, #:upper16:i
+ 520 03fc 1A60     		str	r2, [r3, #0]
+ 521              	.L18:
+ 137:.\main.c      ****   			for(i=1;i<6;i++)
+ 522              		.loc 1 137 0 is_stmt 0 discriminator 1
+ 523 03fe 40F20003 		movw	r3, #:lower16:i
+ 524 0402 C0F20003 		movt	r3, #:upper16:i
+ 525 0406 1B68     		ldr	r3, [r3, #0]
+ 526 0408 052B     		cmp	r3, #5
+ 527 040a B9DD     		ble	.L23
+ 153:.\main.c      **** 				}
+ 154:.\main.c      ****   			}
+ 155:.\main.c      **** 		
+ 156:.\main.c      **** 			clearPacketwind();
+ 528              		.loc 1 156 0 is_stmt 1
+ 529 040c FFF7FEFF 		bl	clearPacketwind
+ 530              	.L17:
+ 157:.\main.c      **** 		}
+ 158:.\main.c      **** 		
+ 159:.\main.c      **** 		isr_airmar_Stop();
+ 531              		.loc 1 159 0
+ 532 0410 FFF7FEFF 		bl	isr_airmar_Stop
+ 160:.\main.c      **** 		Airmar_PutString("$PAMTX\r\n");
+ 533              		.loc 1 160 0
+ 534 0414 40F20000 		movw	r0, #:lower16:.LC0
+ 535 0418 C0F20000 		movt	r0, #:upper16:.LC0
+ 536 041c FFF7FEFF 		bl	Airmar_PutString
+ 161:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
+ 537              		.loc 1 161 0
+ 538 0420 40F20000 		movw	r0, #:lower16:.LC1
+ 539 0424 C0F20000 		movt	r0, #:upper16:.LC1
+ 540 0428 FFF7FEFF 		bl	Airmar_PutString
+ 162:.\main.c      **** 		Airmar_PutString("$PAMTC,EN,MWD,1,5\r\n");
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 14
+
+
+ 541              		.loc 1 162 0
+ 542 042c 40F20000 		movw	r0, #:lower16:.LC7
+ 543 0430 C0F20000 		movt	r0, #:upper16:.LC7
+ 544 0434 FFF7FEFF 		bl	Airmar_PutString
+ 163:.\main.c      **** 		Airmar_PutString("$PAMTX,1\r\n");
+ 545              		.loc 1 163 0
+ 546 0438 40F20000 		movw	r0, #:lower16:.LC4
+ 547 043c C0F20000 		movt	r0, #:upper16:.LC4
+ 548 0440 FFF7FEFF 		bl	Airmar_PutString
+ 164:.\main.c      **** 		isr_airmar_StartEx(airmar_int);
+ 549              		.loc 1 164 0
+ 550 0444 40F20000 		movw	r0, #:lower16:airmar_int
+ 551 0448 C0F20000 		movt	r0, #:upper16:airmar_int
+ 552 044c FFF7FEFF 		bl	isr_airmar_StartEx
+ 165:.\main.c      **** 		
+ 166:.\main.c      **** 		while(windpacketReceived == 0)
+ 553              		.loc 1 166 0
+ 554 0450 00BF     		nop
+ 555              	.L24:
+ 556              		.loc 1 166 0 is_stmt 0 discriminator 1
+ 557 0452 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 558 0456 C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 559 045a 1B68     		ldr	r3, [r3, #0]
+ 560 045c 002B     		cmp	r3, #0
+ 561 045e F8D0     		beq	.L24
+ 167:.\main.c      **** 		{
+ 168:.\main.c      **** 		}
+ 169:.\main.c      **** 		
+ 170:.\main.c      **** 		isr_airmar_Stop();
+ 562              		.loc 1 170 0 is_stmt 1
+ 563 0460 FFF7FEFF 		bl	isr_airmar_Stop
+ 171:.\main.c      **** 		pch = strtok (windData,",");
+ 564              		.loc 1 171 0
+ 565 0464 40F20000 		movw	r0, #:lower16:windData
+ 566 0468 C0F20000 		movt	r0, #:upper16:windData
+ 567 046c 40F20001 		movw	r1, #:lower16:.LC5
+ 568 0470 C0F20001 		movt	r1, #:upper16:.LC5
+ 569 0474 FFF7FEFF 		bl	strtok
+ 570 0478 0246     		mov	r2, r0
+ 571 047a 40F20003 		movw	r3, #:lower16:pch
+ 572 047e C0F20003 		movt	r3, #:upper16:pch
+ 573 0482 1A60     		str	r2, [r3, #0]
+ 172:.\main.c      **** 		
+ 173:.\main.c      **** 		for(i=1;i<8;i++)
+ 574              		.loc 1 173 0
+ 575 0484 40F20003 		movw	r3, #:lower16:i
+ 576 0488 C0F20003 		movt	r3, #:upper16:i
+ 577 048c 4FF00102 		mov	r2, #1
+ 578 0490 1A60     		str	r2, [r3, #0]
+ 579 0492 3EE0     		b	.L25
+ 580              	.L30:
+ 174:.\main.c      **** 		{
+ 175:.\main.c      **** 			pch = strtok (NULL, ",");
+ 581              		.loc 1 175 0
+ 582 0494 4FF00000 		mov	r0, #0
+ 583 0498 40F20001 		movw	r1, #:lower16:.LC5
+ 584 049c C0F20001 		movt	r1, #:upper16:.LC5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 15
+
+
+ 585 04a0 FFF7FEFF 		bl	strtok
+ 586 04a4 0246     		mov	r2, r0
+ 587 04a6 40F20003 		movw	r3, #:lower16:pch
+ 588 04aa C0F20003 		movt	r3, #:upper16:pch
+ 589 04ae 1A60     		str	r2, [r3, #0]
+ 176:.\main.c      **** 			
+ 177:.\main.c      **** 			switch(i)
+ 590              		.loc 1 177 0
+ 591 04b0 40F20003 		movw	r3, #:lower16:i
+ 592 04b4 C0F20003 		movt	r3, #:upper16:i
+ 593 04b8 1B68     		ldr	r3, [r3, #0]
+ 594 04ba 032B     		cmp	r3, #3
+ 595 04bc 02D0     		beq	.L27
+ 596 04be 072B     		cmp	r3, #7
+ 597 04c0 0DD0     		beq	.L28
+ 598 04c2 19E0     		b	.L34
+ 599              	.L27:
+ 178:.\main.c      **** 			{
+ 179:.\main.c      **** 				case 3:
+ 180:.\main.c      **** 					sprintf(windDirection, "%s", pch);
+ 600              		.loc 1 180 0
+ 601 04c4 40F20003 		movw	r3, #:lower16:pch
+ 602 04c8 C0F20003 		movt	r3, #:upper16:pch
+ 603 04cc 1B68     		ldr	r3, [r3, #0]
+ 604 04ce 40F20000 		movw	r0, #:lower16:windDirection
+ 605 04d2 C0F20000 		movt	r0, #:upper16:windDirection
+ 606 04d6 1946     		mov	r1, r3
+ 607 04d8 FFF7FEFF 		bl	strcpy
+ 181:.\main.c      **** 					break;
+ 608              		.loc 1 181 0
+ 609 04dc 0DE0     		b	.L29
+ 610              	.L28:
+ 182:.\main.c      **** 				case 7:
+ 183:.\main.c      **** 					sprintf(windSpeed, "%s", pch);
+ 611              		.loc 1 183 0
+ 612 04de 40F20003 		movw	r3, #:lower16:pch
+ 613 04e2 C0F20003 		movt	r3, #:upper16:pch
+ 614 04e6 1B68     		ldr	r3, [r3, #0]
+ 615 04e8 40F20000 		movw	r0, #:lower16:windSpeed
+ 616 04ec C0F20000 		movt	r0, #:upper16:windSpeed
+ 617 04f0 1946     		mov	r1, r3
+ 618 04f2 FFF7FEFF 		bl	strcpy
+ 184:.\main.c      **** 					break;
+ 619              		.loc 1 184 0
+ 620 04f6 00E0     		b	.L29
+ 621              	.L34:
+ 185:.\main.c      **** 				default:
+ 186:.\main.c      **** 					break;
+ 622              		.loc 1 186 0
+ 623 04f8 00BF     		nop
+ 624              	.L29:
+ 173:.\main.c      **** 		for(i=1;i<8;i++)
+ 625              		.loc 1 173 0
+ 626 04fa 40F20003 		movw	r3, #:lower16:i
+ 627 04fe C0F20003 		movt	r3, #:upper16:i
+ 628 0502 1B68     		ldr	r3, [r3, #0]
+ 629 0504 03F10102 		add	r2, r3, #1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 16
+
+
+ 630 0508 40F20003 		movw	r3, #:lower16:i
+ 631 050c C0F20003 		movt	r3, #:upper16:i
+ 632 0510 1A60     		str	r2, [r3, #0]
+ 633              	.L25:
+ 173:.\main.c      **** 		for(i=1;i<8;i++)
+ 634              		.loc 1 173 0 is_stmt 0 discriminator 1
+ 635 0512 40F20003 		movw	r3, #:lower16:i
+ 636 0516 C0F20003 		movt	r3, #:upper16:i
+ 637 051a 1B68     		ldr	r3, [r3, #0]
+ 638 051c 072B     		cmp	r3, #7
+ 639 051e B9DD     		ble	.L30
+ 187:.\main.c      **** 			}
+ 188:.\main.c      **** 			
+ 189:.\main.c      ****     	}
+ 190:.\main.c      **** 		clearPacketwind();
+ 640              		.loc 1 190 0 is_stmt 1
+ 641 0520 FFF7FEFF 		bl	clearPacketwind
+ 191:.\main.c      **** 		
+ 192:.\main.c      **** 		watertemp = gettemperature();
+ 642              		.loc 1 192 0
+ 643 0524 FFF7FEFF 		bl	gettemperature
+ 644 0528 0346     		mov	r3, r0
+ 645 052a 1A46     		mov	r2, r3
+ 646 052c 40F20003 		movw	r3, #:lower16:watertemp
+ 647 0530 C0F20003 		movt	r3, #:upper16:watertemp
+ 648 0534 1A80     		strh	r2, [r3, #0]	@ movhi
+ 193:.\main.c      **** 		
+ 194:.\main.c      **** 		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%d\r\n", gpsData, windDirection, windSpeed, airtemp,press
+ 649              		.loc 1 194 0
+ 650 0536 40F20003 		movw	r3, #:lower16:watertemp
+ 651 053a C0F20003 		movt	r3, #:upper16:watertemp
+ 652 053e 1B88     		ldrh	r3, [r3, #0]
+ 653 0540 1AB2     		sxth	r2, r3
+ 654 0542 40F20003 		movw	r3, #:lower16:windSpeed
+ 655 0546 C0F20003 		movt	r3, #:upper16:windSpeed
+ 656 054a 0093     		str	r3, [sp, #0]
+ 657 054c 40F20003 		movw	r3, #:lower16:airtemp
+ 658 0550 C0F20003 		movt	r3, #:upper16:airtemp
+ 659 0554 0193     		str	r3, [sp, #4]
+ 660 0556 40F20003 		movw	r3, #:lower16:pressure
+ 661 055a C0F20003 		movt	r3, #:upper16:pressure
+ 662 055e 0293     		str	r3, [sp, #8]
+ 663 0560 0392     		str	r2, [sp, #12]
+ 664 0562 40F20000 		movw	r0, #:lower16:text
+ 665 0566 C0F20000 		movt	r0, #:upper16:text
+ 666 056a 40F20001 		movw	r1, #:lower16:.LC8
+ 667 056e C0F20001 		movt	r1, #:upper16:.LC8
+ 668 0572 40F20002 		movw	r2, #:lower16:gpsData
+ 669 0576 C0F20002 		movt	r2, #:upper16:gpsData
+ 670 057a 40F20003 		movw	r3, #:lower16:windDirection
+ 671 057e C0F20003 		movt	r3, #:upper16:windDirection
+ 672 0582 FFF7FEFF 		bl	sprintf
+ 195:.\main.c      **** 		UART_SBD_PutString(text);
+ 673              		.loc 1 195 0
+ 674 0586 40F20000 		movw	r0, #:lower16:text
+ 675 058a C0F20000 		movt	r0, #:upper16:text
+ 676 058e FFF7FEFF 		bl	UART_SBD_PutString
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 17
+
+
+ 196:.\main.c      **** 		UART_SBD_PutString("AT-WSEPOFF\r\n");
+ 677              		.loc 1 196 0
+ 678 0592 40F20000 		movw	r0, #:lower16:.LC9
+ 679 0596 C0F20000 		movt	r0, #:upper16:.LC9
+ 680 059a FFF7FEFF 		bl	UART_SBD_PutString
+ 197:.\main.c      **** 	}		
+ 681              		.loc 1 197 0
+ 682 059e 6BE5     		b	.L31
+ 683              		.cfi_endproc
+ 684              	.LFE56:
+ 685              		.size	main, .-main
+ 686              		.section	.text.airmar_int,"ax",%progbits
+ 687              		.align	2
+ 688              		.global	airmar_int
+ 689              		.thumb
+ 690              		.thumb_func
+ 691              		.type	airmar_int, %function
+ 692              	airmar_int:
+ 693              	.LFB57:
+ 198:.\main.c      **** 		
+ 199:.\main.c      **** }
+ 200:.\main.c      **** 
+ 201:.\main.c      **** CY_ISR(airmar_int)
+ 202:.\main.c      **** {
+ 694              		.loc 1 202 0
+ 695              		.cfi_startproc
+ 696              		@ args = 0, pretend = 0, frame = 8
+ 697              		@ frame_needed = 1, uses_anonymous_args = 0
+ 698 0000 80B5     		push	{r7, lr}
+ 699              	.LCFI3:
+ 700              		.cfi_def_cfa_offset 8
+ 701              		.cfi_offset 7, -8
+ 702              		.cfi_offset 14, -4
+ 703 0002 82B0     		sub	sp, sp, #8
+ 704              	.LCFI4:
+ 705              		.cfi_def_cfa_offset 16
+ 706 0004 00AF     		add	r7, sp, #0
+ 707              	.LCFI5:
+ 708              		.cfi_def_cfa_register 7
+ 203:.\main.c      **** 		
+ 204:.\main.c      ****  	    uint8 byte = Airmar_GetChar();
+ 709              		.loc 1 204 0
+ 710 0006 FFF7FEFF 		bl	Airmar_GetChar
+ 711 000a 0346     		mov	r3, r0
+ 712 000c FB71     		strb	r3, [r7, #7]
+ 205:.\main.c      **** 		if(byte !=0){
+ 713              		.loc 1 205 0
+ 714 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 715 0010 002B     		cmp	r3, #0
+ 716 0012 44D0     		beq	.L36
+ 206:.\main.c      **** 			windData[windDataPointer] = byte;
+ 717              		.loc 1 206 0
+ 718 0014 40F20003 		movw	r3, #:lower16:windDataPointer
+ 719 0018 C0F20003 		movt	r3, #:upper16:windDataPointer
+ 720 001c 1A68     		ldr	r2, [r3, #0]
+ 721 001e 40F20003 		movw	r3, #:lower16:windData
+ 722 0022 C0F20003 		movt	r3, #:upper16:windData
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 18
+
+
+ 723 0026 F979     		ldrb	r1, [r7, #7]
+ 724 0028 9954     		strb	r1, [r3, r2]
+ 207:.\main.c      **** 			if(byte == '\r')
+ 725              		.loc 1 207 0
+ 726 002a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 727 002c 0D2B     		cmp	r3, #13
+ 728 002e 0BD1     		bne	.L38
+ 208:.\main.c      **** 			{
+ 209:.\main.c      **** 				windData[windDataPointer] = '\0';	
+ 729              		.loc 1 209 0
+ 730 0030 40F20003 		movw	r3, #:lower16:windDataPointer
+ 731 0034 C0F20003 		movt	r3, #:upper16:windDataPointer
+ 732 0038 1A68     		ldr	r2, [r3, #0]
+ 733 003a 40F20003 		movw	r3, #:lower16:windData
+ 734 003e C0F20003 		movt	r3, #:upper16:windData
+ 735 0042 4FF00001 		mov	r1, #0
+ 736 0046 9954     		strb	r1, [r3, r2]
+ 737              	.L38:
+ 210:.\main.c      **** 			}
+ 211:.\main.c      **** 			if(byte == '\n')
+ 738              		.loc 1 211 0
+ 739 0048 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 740 004a 0A2B     		cmp	r3, #10
+ 741 004c 1BD1     		bne	.L39
+ 212:.\main.c      **** 			{
+ 213:.\main.c      **** 				if(windpacketReceived == 1)
+ 742              		.loc 1 213 0
+ 743 004e 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 744 0052 C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 745 0056 1B68     		ldr	r3, [r3, #0]
+ 746 0058 012B     		cmp	r3, #1
+ 747 005a 06D1     		bne	.L40
+ 214:.\main.c      **** 					gpsandwindReceived = 1;
+ 748              		.loc 1 214 0
+ 749 005c 40F20003 		movw	r3, #:lower16:gpsandwindReceived
+ 750 0060 C0F20003 		movt	r3, #:upper16:gpsandwindReceived
+ 751 0064 4FF00102 		mov	r2, #1
+ 752 0068 1A60     		str	r2, [r3, #0]
+ 753              	.L40:
+ 215:.\main.c      **** 				
+ 216:.\main.c      **** 				if(windpacketReceived == 0)
+ 754              		.loc 1 216 0
+ 755 006a 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 756 006e C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 757 0072 1B68     		ldr	r3, [r3, #0]
+ 758 0074 002B     		cmp	r3, #0
+ 759 0076 06D1     		bne	.L39
+ 217:.\main.c      **** 					windpacketReceived = 1;
+ 760              		.loc 1 217 0
+ 761 0078 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 762 007c C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 763 0080 4FF00102 		mov	r2, #1
+ 764 0084 1A60     		str	r2, [r3, #0]
+ 765              	.L39:
+ 218:.\main.c      **** 			}
+ 219:.\main.c      **** 			windDataPointer++;	
+ 766              		.loc 1 219 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 19
+
+
+ 767 0086 40F20003 		movw	r3, #:lower16:windDataPointer
+ 768 008a C0F20003 		movt	r3, #:upper16:windDataPointer
+ 769 008e 1B68     		ldr	r3, [r3, #0]
+ 770 0090 03F10102 		add	r2, r3, #1
+ 771 0094 40F20003 		movw	r3, #:lower16:windDataPointer
+ 772 0098 C0F20003 		movt	r3, #:upper16:windDataPointer
+ 773 009c 1A60     		str	r2, [r3, #0]
+ 774              	.L36:
+ 220:.\main.c      **** 			
+ 221:.\main.c      **** 		}
+ 222:.\main.c      **** }
+ 775              		.loc 1 222 0
+ 776 009e 07F10807 		add	r7, r7, #8
+ 777 00a2 BD46     		mov	sp, r7
+ 778 00a4 80BD     		pop	{r7, pc}
+ 779              		.cfi_endproc
+ 780              	.LFE57:
+ 781              		.size	airmar_int, .-airmar_int
+ 782 00a6 00BF     		.section	.text.clearPacketwind,"ax",%progbits
+ 783              		.align	2
+ 784              		.global	clearPacketwind
+ 785              		.thumb
+ 786              		.thumb_func
+ 787              		.type	clearPacketwind, %function
+ 788              	clearPacketwind:
+ 789              	.LFB58:
+ 223:.\main.c      **** 
+ 224:.\main.c      **** void clearPacketwind()
+ 225:.\main.c      **** {
+ 790              		.loc 1 225 0
+ 791              		.cfi_startproc
+ 792              		@ args = 0, pretend = 0, frame = 0
+ 793              		@ frame_needed = 1, uses_anonymous_args = 0
+ 794              		@ link register save eliminated.
+ 795 0000 80B4     		push	{r7}
+ 796              	.LCFI6:
+ 797              		.cfi_def_cfa_offset 4
+ 798              		.cfi_offset 7, -4
+ 799 0002 00AF     		add	r7, sp, #0
+ 800              	.LCFI7:
+ 801              		.cfi_def_cfa_register 7
+ 226:.\main.c      **** 	windDataPointer = 0;
+ 802              		.loc 1 226 0
+ 803 0004 40F20003 		movw	r3, #:lower16:windDataPointer
+ 804 0008 C0F20003 		movt	r3, #:upper16:windDataPointer
+ 805 000c 4FF00002 		mov	r2, #0
+ 806 0010 1A60     		str	r2, [r3, #0]
+ 227:.\main.c      **** 	windpacketReceived = 0;
+ 807              		.loc 1 227 0
+ 808 0012 40F20003 		movw	r3, #:lower16:windpacketReceived
+ 809 0016 C0F20003 		movt	r3, #:upper16:windpacketReceived
+ 810 001a 4FF00002 		mov	r2, #0
+ 811 001e 1A60     		str	r2, [r3, #0]
+ 228:.\main.c      **** 	gpsandwindReceived = 0;
+ 812              		.loc 1 228 0
+ 813 0020 40F20003 		movw	r3, #:lower16:gpsandwindReceived
+ 814 0024 C0F20003 		movt	r3, #:upper16:gpsandwindReceived
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 20
+
+
+ 815 0028 4FF00002 		mov	r2, #0
+ 816 002c 1A60     		str	r2, [r3, #0]
+ 229:.\main.c      **** }
+ 817              		.loc 1 229 0
+ 818 002e BD46     		mov	sp, r7
+ 819 0030 80BC     		pop	{r7}
+ 820 0032 7047     		bx	lr
+ 821              		.cfi_endproc
+ 822              	.LFE58:
+ 823              		.size	clearPacketwind, .-clearPacketwind
+ 824              		.text
+ 825              	.Letext0:
+ 826              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 827              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 828              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 829              		.section	.debug_info,"",%progbits
+ 830              	.Ldebug_info0:
+ 831 0000 A2020000 		.4byte	0x2a2
+ 832 0004 0200     		.2byte	0x2
+ 833 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 834 000a 04       		.byte	0x4
+ 835 000b 01       		.uleb128 0x1
+ 836 000c DB010000 		.4byte	.LASF34
+ 837 0010 01       		.byte	0x1
+ 838 0011 78000000 		.4byte	.LASF35
+ 839 0015 B9000000 		.4byte	.LASF36
+ 840 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 841 001d 00000000 		.4byte	0
+ 842 0021 00000000 		.4byte	0
+ 843 0025 00000000 		.4byte	.Ldebug_line0
+ 844 0029 02       		.uleb128 0x2
+ 845 002a 01       		.byte	0x1
+ 846 002b 06       		.byte	0x6
+ 847 002c 39020000 		.4byte	.LASF0
+ 848 0030 02       		.uleb128 0x2
+ 849 0031 01       		.byte	0x1
+ 850 0032 08       		.byte	0x8
+ 851 0033 26010000 		.4byte	.LASF1
+ 852 0037 02       		.uleb128 0x2
+ 853 0038 02       		.byte	0x2
+ 854 0039 05       		.byte	0x5
+ 855 003a B6010000 		.4byte	.LASF2
+ 856 003e 02       		.uleb128 0x2
+ 857 003f 02       		.byte	0x2
+ 858 0040 07       		.byte	0x7
+ 859 0041 99000000 		.4byte	.LASF3
+ 860 0045 03       		.uleb128 0x3
+ 861 0046 77010000 		.4byte	.LASF9
+ 862 004a 02       		.byte	0x2
+ 863 004b 4F       		.byte	0x4f
+ 864 004c 50000000 		.4byte	0x50
+ 865 0050 02       		.uleb128 0x2
+ 866 0051 04       		.byte	0x4
+ 867 0052 05       		.byte	0x5
+ 868 0053 24020000 		.4byte	.LASF4
+ 869 0057 02       		.uleb128 0x2
+ 870 0058 04       		.byte	0x4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 21
+
+
+ 871 0059 07       		.byte	0x7
+ 872 005a 87000000 		.4byte	.LASF5
+ 873 005e 02       		.uleb128 0x2
+ 874 005f 08       		.byte	0x8
+ 875 0060 05       		.byte	0x5
+ 876 0061 88010000 		.4byte	.LASF6
+ 877 0065 02       		.uleb128 0x2
+ 878 0066 08       		.byte	0x8
+ 879 0067 07       		.byte	0x7
+ 880 0068 4E000000 		.4byte	.LASF7
+ 881 006c 04       		.uleb128 0x4
+ 882 006d 04       		.byte	0x4
+ 883 006e 05       		.byte	0x5
+ 884 006f 696E7400 		.ascii	"int\000"
+ 885 0073 02       		.uleb128 0x2
+ 886 0074 04       		.byte	0x4
+ 887 0075 07       		.byte	0x7
+ 888 0076 34010000 		.4byte	.LASF8
+ 889 007a 03       		.uleb128 0x3
+ 890 007b D5010000 		.4byte	.LASF10
+ 891 007f 03       		.byte	0x3
+ 892 0080 5B       		.byte	0x5b
+ 893 0081 30000000 		.4byte	0x30
+ 894 0085 03       		.uleb128 0x3
+ 895 0086 81000000 		.4byte	.LASF11
+ 896 008a 03       		.byte	0x3
+ 897 008b 5F       		.byte	0x5f
+ 898 008c 37000000 		.4byte	0x37
+ 899 0090 02       		.uleb128 0x2
+ 900 0091 04       		.byte	0x4
+ 901 0092 04       		.byte	0x4
+ 902 0093 48000000 		.4byte	.LASF12
+ 903 0097 02       		.uleb128 0x2
+ 904 0098 08       		.byte	0x8
+ 905 0099 04       		.byte	0x4
+ 906 009a 01010000 		.4byte	.LASF13
+ 907 009e 02       		.uleb128 0x2
+ 908 009f 01       		.byte	0x1
+ 909 00a0 08       		.byte	0x8
+ 910 00a1 96010000 		.4byte	.LASF14
+ 911 00a5 02       		.uleb128 0x2
+ 912 00a6 04       		.byte	0x4
+ 913 00a7 07       		.byte	0x7
+ 914 00a8 7F010000 		.4byte	.LASF15
+ 915 00ac 05       		.uleb128 0x5
+ 916 00ad 04       		.byte	0x4
+ 917 00ae 9E000000 		.4byte	0x9e
+ 918 00b2 06       		.uleb128 0x6
+ 919 00b3 9E000000 		.4byte	0x9e
+ 920 00b7 C2000000 		.4byte	0xc2
+ 921 00bb 07       		.uleb128 0x7
+ 922 00bc A5000000 		.4byte	0xa5
+ 923 00c0 07       		.byte	0x7
+ 924 00c1 00       		.byte	0
+ 925 00c2 02       		.uleb128 0x2
+ 926 00c3 08       		.byte	0x8
+ 927 00c4 04       		.byte	0x4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 22
+
+
+ 928 00c5 2D020000 		.4byte	.LASF16
+ 929 00c9 08       		.uleb128 0x8
+ 930 00ca 01       		.byte	0x1
+ 931 00cb 12010000 		.4byte	.LASF37
+ 932 00cf 01       		.byte	0x1
+ 933 00d0 27       		.byte	0x27
+ 934 00d1 6C000000 		.4byte	0x6c
+ 935 00d5 00000000 		.4byte	.LFB56
+ 936 00d9 A0050000 		.4byte	.LFE56
+ 937 00dd 00000000 		.4byte	.LLST0
+ 938 00e1 01       		.byte	0x1
+ 939 00e2 09       		.uleb128 0x9
+ 940 00e3 01       		.byte	0x1
+ 941 00e4 6C010000 		.4byte	.LASF38
+ 942 00e8 01       		.byte	0x1
+ 943 00e9 C9       		.byte	0xc9
+ 944 00ea 01       		.byte	0x1
+ 945 00eb 00000000 		.4byte	.LFB57
+ 946 00ef A6000000 		.4byte	.LFE57
+ 947 00f3 38000000 		.4byte	.LLST1
+ 948 00f7 01       		.byte	0x1
+ 949 00f8 0B010000 		.4byte	0x10b
+ 950 00fc 0A       		.uleb128 0xa
+ 951 00fd C0010000 		.4byte	.LASF39
+ 952 0101 01       		.byte	0x1
+ 953 0102 CC       		.byte	0xcc
+ 954 0103 7A000000 		.4byte	0x7a
+ 955 0107 02       		.byte	0x2
+ 956 0108 91       		.byte	0x91
+ 957 0109 77       		.sleb128 -9
+ 958 010a 00       		.byte	0
+ 959 010b 0B       		.uleb128 0xb
+ 960 010c 01       		.byte	0x1
+ 961 010d 00000000 		.4byte	.LASF40
+ 962 0111 01       		.byte	0x1
+ 963 0112 E0       		.byte	0xe0
+ 964 0113 00000000 		.4byte	.LFB58
+ 965 0117 34000000 		.4byte	.LFE58
+ 966 011b 70000000 		.4byte	.LLST2
+ 967 011f 01       		.byte	0x1
+ 968 0120 0C       		.uleb128 0xc
+ 969 0121 AC000000 		.4byte	.LASF17
+ 970 0125 04       		.byte	0x4
+ 971 0126 1606     		.2byte	0x616
+ 972 0128 2E010000 		.4byte	0x12e
+ 973 012c 01       		.byte	0x1
+ 974 012d 01       		.byte	0x1
+ 975 012e 0D       		.uleb128 0xd
+ 976 012f 45000000 		.4byte	0x45
+ 977 0133 06       		.uleb128 0x6
+ 978 0134 9E000000 		.4byte	0x9e
+ 979 0138 43010000 		.4byte	0x143
+ 980 013c 07       		.uleb128 0x7
+ 981 013d A5000000 		.4byte	0xa5
+ 982 0141 7F       		.byte	0x7f
+ 983 0142 00       		.byte	0
+ 984 0143 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 23
+
+
+ 985 0144 F8000000 		.4byte	.LASF18
+ 986 0148 01       		.byte	0x1
+ 987 0149 14       		.byte	0x14
+ 988 014a 33010000 		.4byte	0x133
+ 989 014e 01       		.byte	0x1
+ 990 014f 05       		.byte	0x5
+ 991 0150 03       		.byte	0x3
+ 992 0151 00000000 		.4byte	windData
+ 993 0155 0E       		.uleb128 0xe
+ 994 0156 64010000 		.4byte	.LASF19
+ 995 015a 01       		.byte	0x1
+ 996 015b 15       		.byte	0x15
+ 997 015c 33010000 		.4byte	0x133
+ 998 0160 01       		.byte	0x1
+ 999 0161 05       		.byte	0x5
+ 1000 0162 03       		.byte	0x3
+ 1001 0163 00000000 		.4byte	gpsData
+ 1002 0167 06       		.uleb128 0x6
+ 1003 0168 9E000000 		.4byte	0x9e
+ 1004 016c 77010000 		.4byte	0x177
+ 1005 0170 07       		.uleb128 0x7
+ 1006 0171 A5000000 		.4byte	0xa5
+ 1007 0175 FF       		.byte	0xff
+ 1008 0176 00       		.byte	0
+ 1009 0177 0E       		.uleb128 0xe
+ 1010 0178 1E000000 		.4byte	.LASF20
+ 1011 017c 01       		.byte	0x1
+ 1012 017d 16       		.byte	0x16
+ 1013 017e 67010000 		.4byte	0x167
+ 1014 0182 01       		.byte	0x1
+ 1015 0183 05       		.byte	0x5
+ 1016 0184 03       		.byte	0x3
+ 1017 0185 00000000 		.4byte	text
+ 1018 0189 06       		.uleb128 0x6
+ 1019 018a 90000000 		.4byte	0x90
+ 1020 018e 99010000 		.4byte	0x199
+ 1021 0192 07       		.uleb128 0x7
+ 1022 0193 A5000000 		.4byte	0xa5
+ 1023 0197 3F       		.byte	0x3f
+ 1024 0198 00       		.byte	0
+ 1025 0199 0E       		.uleb128 0xe
+ 1026 019a 17010000 		.4byte	.LASF21
+ 1027 019e 01       		.byte	0x1
+ 1028 019f 17       		.byte	0x17
+ 1029 01a0 89010000 		.4byte	0x189
+ 1030 01a4 01       		.byte	0x1
+ 1031 01a5 05       		.byte	0x5
+ 1032 01a6 03       		.byte	0x3
+ 1033 01a7 00000000 		.4byte	windspeedarray
+ 1034 01ab 0E       		.uleb128 0xe
+ 1035 01ac 51010000 		.4byte	.LASF22
+ 1036 01b0 01       		.byte	0x1
+ 1037 01b1 18       		.byte	0x18
+ 1038 01b2 89010000 		.4byte	0x189
+ 1039 01b6 01       		.byte	0x1
+ 1040 01b7 05       		.byte	0x5
+ 1041 01b8 03       		.byte	0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 24
+
+
+ 1042 01b9 00000000 		.4byte	winddirectionarray
+ 1043 01bd 0E       		.uleb128 0xe
+ 1044 01be C5010000 		.4byte	.LASF23
+ 1045 01c2 01       		.byte	0x1
+ 1046 01c3 19       		.byte	0x19
+ 1047 01c4 6C000000 		.4byte	0x6c
+ 1048 01c8 01       		.byte	0x1
+ 1049 01c9 05       		.byte	0x5
+ 1050 01ca 03       		.byte	0x3
+ 1051 01cb 00000000 		.4byte	windDataPointer
+ 1052 01cf 0E       		.uleb128 0xe
+ 1053 01d0 2C000000 		.4byte	.LASF24
+ 1054 01d4 01       		.byte	0x1
+ 1055 01d5 1A       		.byte	0x1a
+ 1056 01d6 6C000000 		.4byte	0x6c
+ 1057 01da 01       		.byte	0x1
+ 1058 01db 05       		.byte	0x5
+ 1059 01dc 03       		.byte	0x3
+ 1060 01dd 00000000 		.4byte	windpacketReceived
+ 1061 01e1 0E       		.uleb128 0xe
+ 1062 01e2 65000000 		.4byte	.LASF25
+ 1063 01e6 01       		.byte	0x1
+ 1064 01e7 1B       		.byte	0x1b
+ 1065 01e8 6C000000 		.4byte	0x6c
+ 1066 01ec 01       		.byte	0x1
+ 1067 01ed 05       		.byte	0x5
+ 1068 01ee 03       		.byte	0x3
+ 1069 01ef 00000000 		.4byte	gpsandwindReceived
+ 1070 01f3 0E       		.uleb128 0xe
+ 1071 01f4 23000000 		.4byte	.LASF26
+ 1072 01f8 01       		.byte	0x1
+ 1073 01f9 1C       		.byte	0x1c
+ 1074 01fa 6C000000 		.4byte	0x6c
+ 1075 01fe 01       		.byte	0x1
+ 1076 01ff 05       		.byte	0x5
+ 1077 0200 03       		.byte	0x3
+ 1078 0201 00000000 		.4byte	gpsvalid
+ 1079 0205 0F       		.uleb128 0xf
+ 1080 0206 6900     		.ascii	"i\000"
+ 1081 0208 01       		.byte	0x1
+ 1082 0209 1D       		.byte	0x1d
+ 1083 020a 6C000000 		.4byte	0x6c
+ 1084 020e 01       		.byte	0x1
+ 1085 020f 05       		.byte	0x5
+ 1086 0210 03       		.byte	0x3
+ 1087 0211 00000000 		.4byte	i
+ 1088 0215 0E       		.uleb128 0xe
+ 1089 0216 AD010000 		.4byte	.LASF27
+ 1090 021a 01       		.byte	0x1
+ 1091 021b 1E       		.byte	0x1e
+ 1092 021c 6C000000 		.4byte	0x6c
+ 1093 0220 01       		.byte	0x1
+ 1094 0221 05       		.byte	0x5
+ 1095 0222 03       		.byte	0x3
+ 1096 0223 00000000 		.4byte	gpsretry
+ 1097 0227 0F       		.uleb128 0xf
+ 1098 0228 70636800 		.ascii	"pch\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 25
+
+
+ 1099 022c 01       		.byte	0x1
+ 1100 022d 1F       		.byte	0x1f
+ 1101 022e AC000000 		.4byte	0xac
+ 1102 0232 01       		.byte	0x1
+ 1103 0233 05       		.byte	0x5
+ 1104 0234 03       		.byte	0x3
+ 1105 0235 00000000 		.4byte	pch
+ 1106 0239 0E       		.uleb128 0xe
+ 1107 023a 41010000 		.4byte	.LASF28
+ 1108 023e 01       		.byte	0x1
+ 1109 023f 20       		.byte	0x20
+ 1110 0240 AC000000 		.4byte	0xac
+ 1111 0244 01       		.byte	0x1
+ 1112 0245 05       		.byte	0x5
+ 1113 0246 03       		.byte	0x3
+ 1114 0247 00000000 		.4byte	startofwinddata
+ 1115 024b 0E       		.uleb128 0xe
+ 1116 024c 3F000000 		.4byte	.LASF29
+ 1117 0250 01       		.byte	0x1
+ 1118 0251 21       		.byte	0x21
+ 1119 0252 B2000000 		.4byte	0xb2
+ 1120 0256 01       		.byte	0x1
+ 1121 0257 05       		.byte	0x5
+ 1122 0258 03       		.byte	0x3
+ 1123 0259 00000000 		.4byte	pressure
+ 1124 025d 0E       		.uleb128 0xe
+ 1125 025e A5010000 		.4byte	.LASF30
+ 1126 0262 01       		.byte	0x1
+ 1127 0263 22       		.byte	0x22
+ 1128 0264 B2000000 		.4byte	0xb2
+ 1129 0268 01       		.byte	0x1
+ 1130 0269 05       		.byte	0x5
+ 1131 026a 03       		.byte	0x3
+ 1132 026b 00000000 		.4byte	airtemp
+ 1133 026f 0E       		.uleb128 0xe
+ 1134 0270 10000000 		.4byte	.LASF31
+ 1135 0274 01       		.byte	0x1
+ 1136 0275 23       		.byte	0x23
+ 1137 0276 B2000000 		.4byte	0xb2
+ 1138 027a 01       		.byte	0x1
+ 1139 027b 05       		.byte	0x5
+ 1140 027c 03       		.byte	0x3
+ 1141 027d 00000000 		.4byte	windDirection
+ 1142 0281 0E       		.uleb128 0xe
+ 1143 0282 9B010000 		.4byte	.LASF32
+ 1144 0286 01       		.byte	0x1
+ 1145 0287 24       		.byte	0x24
+ 1146 0288 B2000000 		.4byte	0xb2
+ 1147 028c 01       		.byte	0x1
+ 1148 028d 05       		.byte	0x5
+ 1149 028e 03       		.byte	0x3
+ 1150 028f 00000000 		.4byte	windSpeed
+ 1151 0293 0E       		.uleb128 0xe
+ 1152 0294 08010000 		.4byte	.LASF33
+ 1153 0298 01       		.byte	0x1
+ 1154 0299 25       		.byte	0x25
+ 1155 029a 85000000 		.4byte	0x85
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 26
+
+
+ 1156 029e 01       		.byte	0x1
+ 1157 029f 05       		.byte	0x5
+ 1158 02a0 03       		.byte	0x3
+ 1159 02a1 00000000 		.4byte	watertemp
+ 1160 02a5 00       		.byte	0
+ 1161              		.section	.debug_abbrev,"",%progbits
+ 1162              	.Ldebug_abbrev0:
+ 1163 0000 01       		.uleb128 0x1
+ 1164 0001 11       		.uleb128 0x11
+ 1165 0002 01       		.byte	0x1
+ 1166 0003 25       		.uleb128 0x25
+ 1167 0004 0E       		.uleb128 0xe
+ 1168 0005 13       		.uleb128 0x13
+ 1169 0006 0B       		.uleb128 0xb
+ 1170 0007 03       		.uleb128 0x3
+ 1171 0008 0E       		.uleb128 0xe
+ 1172 0009 1B       		.uleb128 0x1b
+ 1173 000a 0E       		.uleb128 0xe
+ 1174 000b 55       		.uleb128 0x55
+ 1175 000c 06       		.uleb128 0x6
+ 1176 000d 11       		.uleb128 0x11
+ 1177 000e 01       		.uleb128 0x1
+ 1178 000f 52       		.uleb128 0x52
+ 1179 0010 01       		.uleb128 0x1
+ 1180 0011 10       		.uleb128 0x10
+ 1181 0012 06       		.uleb128 0x6
+ 1182 0013 00       		.byte	0
+ 1183 0014 00       		.byte	0
+ 1184 0015 02       		.uleb128 0x2
+ 1185 0016 24       		.uleb128 0x24
+ 1186 0017 00       		.byte	0
+ 1187 0018 0B       		.uleb128 0xb
+ 1188 0019 0B       		.uleb128 0xb
+ 1189 001a 3E       		.uleb128 0x3e
+ 1190 001b 0B       		.uleb128 0xb
+ 1191 001c 03       		.uleb128 0x3
+ 1192 001d 0E       		.uleb128 0xe
+ 1193 001e 00       		.byte	0
+ 1194 001f 00       		.byte	0
+ 1195 0020 03       		.uleb128 0x3
+ 1196 0021 16       		.uleb128 0x16
+ 1197 0022 00       		.byte	0
+ 1198 0023 03       		.uleb128 0x3
+ 1199 0024 0E       		.uleb128 0xe
+ 1200 0025 3A       		.uleb128 0x3a
+ 1201 0026 0B       		.uleb128 0xb
+ 1202 0027 3B       		.uleb128 0x3b
+ 1203 0028 0B       		.uleb128 0xb
+ 1204 0029 49       		.uleb128 0x49
+ 1205 002a 13       		.uleb128 0x13
+ 1206 002b 00       		.byte	0
+ 1207 002c 00       		.byte	0
+ 1208 002d 04       		.uleb128 0x4
+ 1209 002e 24       		.uleb128 0x24
+ 1210 002f 00       		.byte	0
+ 1211 0030 0B       		.uleb128 0xb
+ 1212 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 27
+
+
+ 1213 0032 3E       		.uleb128 0x3e
+ 1214 0033 0B       		.uleb128 0xb
+ 1215 0034 03       		.uleb128 0x3
+ 1216 0035 08       		.uleb128 0x8
+ 1217 0036 00       		.byte	0
+ 1218 0037 00       		.byte	0
+ 1219 0038 05       		.uleb128 0x5
+ 1220 0039 0F       		.uleb128 0xf
+ 1221 003a 00       		.byte	0
+ 1222 003b 0B       		.uleb128 0xb
+ 1223 003c 0B       		.uleb128 0xb
+ 1224 003d 49       		.uleb128 0x49
+ 1225 003e 13       		.uleb128 0x13
+ 1226 003f 00       		.byte	0
+ 1227 0040 00       		.byte	0
+ 1228 0041 06       		.uleb128 0x6
+ 1229 0042 01       		.uleb128 0x1
+ 1230 0043 01       		.byte	0x1
+ 1231 0044 49       		.uleb128 0x49
+ 1232 0045 13       		.uleb128 0x13
+ 1233 0046 01       		.uleb128 0x1
+ 1234 0047 13       		.uleb128 0x13
+ 1235 0048 00       		.byte	0
+ 1236 0049 00       		.byte	0
+ 1237 004a 07       		.uleb128 0x7
+ 1238 004b 21       		.uleb128 0x21
+ 1239 004c 00       		.byte	0
+ 1240 004d 49       		.uleb128 0x49
+ 1241 004e 13       		.uleb128 0x13
+ 1242 004f 2F       		.uleb128 0x2f
+ 1243 0050 0B       		.uleb128 0xb
+ 1244 0051 00       		.byte	0
+ 1245 0052 00       		.byte	0
+ 1246 0053 08       		.uleb128 0x8
+ 1247 0054 2E       		.uleb128 0x2e
+ 1248 0055 00       		.byte	0
+ 1249 0056 3F       		.uleb128 0x3f
+ 1250 0057 0C       		.uleb128 0xc
+ 1251 0058 03       		.uleb128 0x3
+ 1252 0059 0E       		.uleb128 0xe
+ 1253 005a 3A       		.uleb128 0x3a
+ 1254 005b 0B       		.uleb128 0xb
+ 1255 005c 3B       		.uleb128 0x3b
+ 1256 005d 0B       		.uleb128 0xb
+ 1257 005e 49       		.uleb128 0x49
+ 1258 005f 13       		.uleb128 0x13
+ 1259 0060 11       		.uleb128 0x11
+ 1260 0061 01       		.uleb128 0x1
+ 1261 0062 12       		.uleb128 0x12
+ 1262 0063 01       		.uleb128 0x1
+ 1263 0064 40       		.uleb128 0x40
+ 1264 0065 06       		.uleb128 0x6
+ 1265 0066 9642     		.uleb128 0x2116
+ 1266 0068 0C       		.uleb128 0xc
+ 1267 0069 00       		.byte	0
+ 1268 006a 00       		.byte	0
+ 1269 006b 09       		.uleb128 0x9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 28
+
+
+ 1270 006c 2E       		.uleb128 0x2e
+ 1271 006d 01       		.byte	0x1
+ 1272 006e 3F       		.uleb128 0x3f
+ 1273 006f 0C       		.uleb128 0xc
+ 1274 0070 03       		.uleb128 0x3
+ 1275 0071 0E       		.uleb128 0xe
+ 1276 0072 3A       		.uleb128 0x3a
+ 1277 0073 0B       		.uleb128 0xb
+ 1278 0074 3B       		.uleb128 0x3b
+ 1279 0075 0B       		.uleb128 0xb
+ 1280 0076 27       		.uleb128 0x27
+ 1281 0077 0C       		.uleb128 0xc
+ 1282 0078 11       		.uleb128 0x11
+ 1283 0079 01       		.uleb128 0x1
+ 1284 007a 12       		.uleb128 0x12
+ 1285 007b 01       		.uleb128 0x1
+ 1286 007c 40       		.uleb128 0x40
+ 1287 007d 06       		.uleb128 0x6
+ 1288 007e 9642     		.uleb128 0x2116
+ 1289 0080 0C       		.uleb128 0xc
+ 1290 0081 01       		.uleb128 0x1
+ 1291 0082 13       		.uleb128 0x13
+ 1292 0083 00       		.byte	0
+ 1293 0084 00       		.byte	0
+ 1294 0085 0A       		.uleb128 0xa
+ 1295 0086 34       		.uleb128 0x34
+ 1296 0087 00       		.byte	0
+ 1297 0088 03       		.uleb128 0x3
+ 1298 0089 0E       		.uleb128 0xe
+ 1299 008a 3A       		.uleb128 0x3a
+ 1300 008b 0B       		.uleb128 0xb
+ 1301 008c 3B       		.uleb128 0x3b
+ 1302 008d 0B       		.uleb128 0xb
+ 1303 008e 49       		.uleb128 0x49
+ 1304 008f 13       		.uleb128 0x13
+ 1305 0090 02       		.uleb128 0x2
+ 1306 0091 0A       		.uleb128 0xa
+ 1307 0092 00       		.byte	0
+ 1308 0093 00       		.byte	0
+ 1309 0094 0B       		.uleb128 0xb
+ 1310 0095 2E       		.uleb128 0x2e
+ 1311 0096 00       		.byte	0
+ 1312 0097 3F       		.uleb128 0x3f
+ 1313 0098 0C       		.uleb128 0xc
+ 1314 0099 03       		.uleb128 0x3
+ 1315 009a 0E       		.uleb128 0xe
+ 1316 009b 3A       		.uleb128 0x3a
+ 1317 009c 0B       		.uleb128 0xb
+ 1318 009d 3B       		.uleb128 0x3b
+ 1319 009e 0B       		.uleb128 0xb
+ 1320 009f 11       		.uleb128 0x11
+ 1321 00a0 01       		.uleb128 0x1
+ 1322 00a1 12       		.uleb128 0x12
+ 1323 00a2 01       		.uleb128 0x1
+ 1324 00a3 40       		.uleb128 0x40
+ 1325 00a4 06       		.uleb128 0x6
+ 1326 00a5 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 29
+
+
+ 1327 00a7 0C       		.uleb128 0xc
+ 1328 00a8 00       		.byte	0
+ 1329 00a9 00       		.byte	0
+ 1330 00aa 0C       		.uleb128 0xc
+ 1331 00ab 34       		.uleb128 0x34
+ 1332 00ac 00       		.byte	0
+ 1333 00ad 03       		.uleb128 0x3
+ 1334 00ae 0E       		.uleb128 0xe
+ 1335 00af 3A       		.uleb128 0x3a
+ 1336 00b0 0B       		.uleb128 0xb
+ 1337 00b1 3B       		.uleb128 0x3b
+ 1338 00b2 05       		.uleb128 0x5
+ 1339 00b3 49       		.uleb128 0x49
+ 1340 00b4 13       		.uleb128 0x13
+ 1341 00b5 3F       		.uleb128 0x3f
+ 1342 00b6 0C       		.uleb128 0xc
+ 1343 00b7 3C       		.uleb128 0x3c
+ 1344 00b8 0C       		.uleb128 0xc
+ 1345 00b9 00       		.byte	0
+ 1346 00ba 00       		.byte	0
+ 1347 00bb 0D       		.uleb128 0xd
+ 1348 00bc 35       		.uleb128 0x35
+ 1349 00bd 00       		.byte	0
+ 1350 00be 49       		.uleb128 0x49
+ 1351 00bf 13       		.uleb128 0x13
+ 1352 00c0 00       		.byte	0
+ 1353 00c1 00       		.byte	0
+ 1354 00c2 0E       		.uleb128 0xe
+ 1355 00c3 34       		.uleb128 0x34
+ 1356 00c4 00       		.byte	0
+ 1357 00c5 03       		.uleb128 0x3
+ 1358 00c6 0E       		.uleb128 0xe
+ 1359 00c7 3A       		.uleb128 0x3a
+ 1360 00c8 0B       		.uleb128 0xb
+ 1361 00c9 3B       		.uleb128 0x3b
+ 1362 00ca 0B       		.uleb128 0xb
+ 1363 00cb 49       		.uleb128 0x49
+ 1364 00cc 13       		.uleb128 0x13
+ 1365 00cd 3F       		.uleb128 0x3f
+ 1366 00ce 0C       		.uleb128 0xc
+ 1367 00cf 02       		.uleb128 0x2
+ 1368 00d0 0A       		.uleb128 0xa
+ 1369 00d1 00       		.byte	0
+ 1370 00d2 00       		.byte	0
+ 1371 00d3 0F       		.uleb128 0xf
+ 1372 00d4 34       		.uleb128 0x34
+ 1373 00d5 00       		.byte	0
+ 1374 00d6 03       		.uleb128 0x3
+ 1375 00d7 08       		.uleb128 0x8
+ 1376 00d8 3A       		.uleb128 0x3a
+ 1377 00d9 0B       		.uleb128 0xb
+ 1378 00da 3B       		.uleb128 0x3b
+ 1379 00db 0B       		.uleb128 0xb
+ 1380 00dc 49       		.uleb128 0x49
+ 1381 00dd 13       		.uleb128 0x13
+ 1382 00de 3F       		.uleb128 0x3f
+ 1383 00df 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 30
+
+
+ 1384 00e0 02       		.uleb128 0x2
+ 1385 00e1 0A       		.uleb128 0xa
+ 1386 00e2 00       		.byte	0
+ 1387 00e3 00       		.byte	0
+ 1388 00e4 00       		.byte	0
+ 1389              		.section	.debug_loc,"",%progbits
+ 1390              	.Ldebug_loc0:
+ 1391              	.LLST0:
+ 1392 0000 00000000 		.4byte	.LFB56
+ 1393 0004 02000000 		.4byte	.LCFI0
+ 1394 0008 0200     		.2byte	0x2
+ 1395 000a 7D       		.byte	0x7d
+ 1396 000b 00       		.sleb128 0
+ 1397 000c 02000000 		.4byte	.LCFI0
+ 1398 0010 04000000 		.4byte	.LCFI1
+ 1399 0014 0200     		.2byte	0x2
+ 1400 0016 7D       		.byte	0x7d
+ 1401 0017 08       		.sleb128 8
+ 1402 0018 04000000 		.4byte	.LCFI1
+ 1403 001c 06000000 		.4byte	.LCFI2
+ 1404 0020 0200     		.2byte	0x2
+ 1405 0022 7D       		.byte	0x7d
+ 1406 0023 18       		.sleb128 24
+ 1407 0024 06000000 		.4byte	.LCFI2
+ 1408 0028 A0050000 		.4byte	.LFE56
+ 1409 002c 0200     		.2byte	0x2
+ 1410 002e 77       		.byte	0x77
+ 1411 002f 08       		.sleb128 8
+ 1412 0030 00000000 		.4byte	0
+ 1413 0034 00000000 		.4byte	0
+ 1414              	.LLST1:
+ 1415 0038 00000000 		.4byte	.LFB57
+ 1416 003c 02000000 		.4byte	.LCFI3
+ 1417 0040 0200     		.2byte	0x2
+ 1418 0042 7D       		.byte	0x7d
+ 1419 0043 00       		.sleb128 0
+ 1420 0044 02000000 		.4byte	.LCFI3
+ 1421 0048 04000000 		.4byte	.LCFI4
+ 1422 004c 0200     		.2byte	0x2
+ 1423 004e 7D       		.byte	0x7d
+ 1424 004f 08       		.sleb128 8
+ 1425 0050 04000000 		.4byte	.LCFI4
+ 1426 0054 06000000 		.4byte	.LCFI5
+ 1427 0058 0200     		.2byte	0x2
+ 1428 005a 7D       		.byte	0x7d
+ 1429 005b 10       		.sleb128 16
+ 1430 005c 06000000 		.4byte	.LCFI5
+ 1431 0060 A6000000 		.4byte	.LFE57
+ 1432 0064 0200     		.2byte	0x2
+ 1433 0066 77       		.byte	0x77
+ 1434 0067 10       		.sleb128 16
+ 1435 0068 00000000 		.4byte	0
+ 1436 006c 00000000 		.4byte	0
+ 1437              	.LLST2:
+ 1438 0070 00000000 		.4byte	.LFB58
+ 1439 0074 02000000 		.4byte	.LCFI6
+ 1440 0078 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 31
+
+
+ 1441 007a 7D       		.byte	0x7d
+ 1442 007b 00       		.sleb128 0
+ 1443 007c 02000000 		.4byte	.LCFI6
+ 1444 0080 04000000 		.4byte	.LCFI7
+ 1445 0084 0200     		.2byte	0x2
+ 1446 0086 7D       		.byte	0x7d
+ 1447 0087 04       		.sleb128 4
+ 1448 0088 04000000 		.4byte	.LCFI7
+ 1449 008c 34000000 		.4byte	.LFE58
+ 1450 0090 0200     		.2byte	0x2
+ 1451 0092 77       		.byte	0x77
+ 1452 0093 04       		.sleb128 4
+ 1453 0094 00000000 		.4byte	0
+ 1454 0098 00000000 		.4byte	0
+ 1455              		.section	.debug_aranges,"",%progbits
+ 1456 0000 2C000000 		.4byte	0x2c
+ 1457 0004 0200     		.2byte	0x2
+ 1458 0006 00000000 		.4byte	.Ldebug_info0
+ 1459 000a 04       		.byte	0x4
+ 1460 000b 00       		.byte	0
+ 1461 000c 0000     		.2byte	0
+ 1462 000e 0000     		.2byte	0
+ 1463 0010 00000000 		.4byte	.LFB56
+ 1464 0014 A0050000 		.4byte	.LFE56-.LFB56
+ 1465 0018 00000000 		.4byte	.LFB57
+ 1466 001c A6000000 		.4byte	.LFE57-.LFB57
+ 1467 0020 00000000 		.4byte	.LFB58
+ 1468 0024 34000000 		.4byte	.LFE58-.LFB58
+ 1469 0028 00000000 		.4byte	0
+ 1470 002c 00000000 		.4byte	0
+ 1471              		.section	.debug_ranges,"",%progbits
+ 1472              	.Ldebug_ranges0:
+ 1473 0000 00000000 		.4byte	.LFB56
+ 1474 0004 A0050000 		.4byte	.LFE56
+ 1475 0008 00000000 		.4byte	.LFB57
+ 1476 000c A6000000 		.4byte	.LFE57
+ 1477 0010 00000000 		.4byte	.LFB58
+ 1478 0014 34000000 		.4byte	.LFE58
+ 1479 0018 00000000 		.4byte	0
+ 1480 001c 00000000 		.4byte	0
+ 1481              		.section	.debug_line,"",%progbits
+ 1482              	.Ldebug_line0:
+ 1483 0000 E3010000 		.section	.debug_str,"MS",%progbits,1
+ 1483      0200F900 
+ 1483      00000201 
+ 1483      FB0E0D00 
+ 1483      01010101 
+ 1484              	.LASF40:
+ 1485 0000 636C6561 		.ascii	"clearPacketwind\000"
+ 1485      72506163 
+ 1485      6B657477 
+ 1485      696E6400 
+ 1486              	.LASF31:
+ 1487 0010 77696E64 		.ascii	"windDirection\000"
+ 1487      44697265 
+ 1487      6374696F 
+ 1487      6E00
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 32
+
+
+ 1488              	.LASF20:
+ 1489 001e 74657874 		.ascii	"text\000"
+ 1489      00
+ 1490              	.LASF26:
+ 1491 0023 67707376 		.ascii	"gpsvalid\000"
+ 1491      616C6964 
+ 1491      00
+ 1492              	.LASF24:
+ 1493 002c 77696E64 		.ascii	"windpacketReceived\000"
+ 1493      7061636B 
+ 1493      65745265 
+ 1493      63656976 
+ 1493      656400
+ 1494              	.LASF29:
+ 1495 003f 70726573 		.ascii	"pressure\000"
+ 1495      73757265 
+ 1495      00
+ 1496              	.LASF12:
+ 1497 0048 666C6F61 		.ascii	"float\000"
+ 1497      7400
+ 1498              	.LASF7:
+ 1499 004e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1499      206C6F6E 
+ 1499      6720756E 
+ 1499      7369676E 
+ 1499      65642069 
+ 1500              	.LASF25:
+ 1501 0065 67707361 		.ascii	"gpsandwindReceived\000"
+ 1501      6E647769 
+ 1501      6E645265 
+ 1501      63656976 
+ 1501      656400
+ 1502              	.LASF35:
+ 1503 0078 2E5C6D61 		.ascii	".\\main.c\000"
+ 1503      696E2E63 
+ 1503      00
+ 1504              	.LASF11:
+ 1505 0081 696E7431 		.ascii	"int16\000"
+ 1505      3600
+ 1506              	.LASF5:
+ 1507 0087 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1507      20756E73 
+ 1507      69676E65 
+ 1507      6420696E 
+ 1507      7400
+ 1508              	.LASF3:
+ 1509 0099 73686F72 		.ascii	"short unsigned int\000"
+ 1509      7420756E 
+ 1509      7369676E 
+ 1509      65642069 
+ 1509      6E7400
+ 1510              	.LASF17:
+ 1511 00ac 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1511      52784275 
+ 1511      66666572 
+ 1511      00
+ 1512              	.LASF36:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 33
+
+
+ 1513 00b9 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 1513      73657273 
+ 1513      5C527961 
+ 1513      6E5C446F 
+ 1513      63756D65 
+ 1514 00e7 6169726D 		.ascii	"airmartest.cydsn\000"
+ 1514      61727465 
+ 1514      73742E63 
+ 1514      7964736E 
+ 1514      00
+ 1515              	.LASF18:
+ 1516 00f8 77696E64 		.ascii	"windData\000"
+ 1516      44617461 
+ 1516      00
+ 1517              	.LASF13:
+ 1518 0101 646F7562 		.ascii	"double\000"
+ 1518      6C6500
+ 1519              	.LASF33:
+ 1520 0108 77617465 		.ascii	"watertemp\000"
+ 1520      7274656D 
+ 1520      7000
+ 1521              	.LASF37:
+ 1522 0112 6D61696E 		.ascii	"main\000"
+ 1522      00
+ 1523              	.LASF21:
+ 1524 0117 77696E64 		.ascii	"windspeedarray\000"
+ 1524      73706565 
+ 1524      64617272 
+ 1524      617900
+ 1525              	.LASF1:
+ 1526 0126 756E7369 		.ascii	"unsigned char\000"
+ 1526      676E6564 
+ 1526      20636861 
+ 1526      7200
+ 1527              	.LASF8:
+ 1528 0134 756E7369 		.ascii	"unsigned int\000"
+ 1528      676E6564 
+ 1528      20696E74 
+ 1528      00
+ 1529              	.LASF28:
+ 1530 0141 73746172 		.ascii	"startofwinddata\000"
+ 1530      746F6677 
+ 1530      696E6464 
+ 1530      61746100 
+ 1531              	.LASF22:
+ 1532 0151 77696E64 		.ascii	"winddirectionarray\000"
+ 1532      64697265 
+ 1532      6374696F 
+ 1532      6E617272 
+ 1532      617900
+ 1533              	.LASF19:
+ 1534 0164 67707344 		.ascii	"gpsData\000"
+ 1534      61746100 
+ 1535              	.LASF38:
+ 1536 016c 6169726D 		.ascii	"airmar_int\000"
+ 1536      61725F69 
+ 1536      6E7400
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 34
+
+
+ 1537              	.LASF9:
+ 1538 0177 696E7433 		.ascii	"int32_t\000"
+ 1538      325F7400 
+ 1539              	.LASF15:
+ 1540 017f 73697A65 		.ascii	"sizetype\000"
+ 1540      74797065 
+ 1540      00
+ 1541              	.LASF6:
+ 1542 0188 6C6F6E67 		.ascii	"long long int\000"
+ 1542      206C6F6E 
+ 1542      6720696E 
+ 1542      7400
+ 1543              	.LASF14:
+ 1544 0196 63686172 		.ascii	"char\000"
+ 1544      00
+ 1545              	.LASF32:
+ 1546 019b 77696E64 		.ascii	"windSpeed\000"
+ 1546      53706565 
+ 1546      6400
+ 1547              	.LASF30:
+ 1548 01a5 61697274 		.ascii	"airtemp\000"
+ 1548      656D7000 
+ 1549              	.LASF27:
+ 1550 01ad 67707372 		.ascii	"gpsretry\000"
+ 1550      65747279 
+ 1550      00
+ 1551              	.LASF2:
+ 1552 01b6 73686F72 		.ascii	"short int\000"
+ 1552      7420696E 
+ 1552      7400
+ 1553              	.LASF39:
+ 1554 01c0 62797465 		.ascii	"byte\000"
+ 1554      00
+ 1555              	.LASF23:
+ 1556 01c5 77696E64 		.ascii	"windDataPointer\000"
+ 1556      44617461 
+ 1556      506F696E 
+ 1556      74657200 
+ 1557              	.LASF10:
+ 1558 01d5 75696E74 		.ascii	"uint8\000"
+ 1558      3800
+ 1559              	.LASF34:
+ 1560 01db 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1560      4320342E 
+ 1560      372E3320 
+ 1560      32303133 
+ 1560      30333132 
+ 1561 020e 616E6368 		.ascii	"anch revision 196615]\000"
+ 1561      20726576 
+ 1561      6973696F 
+ 1561      6E203139 
+ 1561      36363135 
+ 1562              	.LASF4:
+ 1563 0224 6C6F6E67 		.ascii	"long int\000"
+ 1563      20696E74 
+ 1563      00
+ 1564              	.LASF16:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccFYXSA2.s 			page 35
+
+
+ 1565 022d 6C6F6E67 		.ascii	"long double\000"
+ 1565      20646F75 
+ 1565      626C6500 
+ 1566              	.LASF0:
+ 1567 0239 7369676E 		.ascii	"signed char\000"
+ 1567      65642063 
+ 1567      68617200 
+ 1568              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

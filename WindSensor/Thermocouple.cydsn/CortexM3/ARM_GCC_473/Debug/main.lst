@@ -1,0 +1,1372 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.writeregister,"ax",%progbits
+  19              		.align	2
+  20              		.global	writeregister
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	writeregister, %function
+  24              	writeregister:
+  25              	.LFB56:
+  26              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <math.h>
+  14:.\main.c      **** 
+  15:.\main.c      **** void writeregister(uint8 theregister, uint8 write)
+  16:.\main.c      **** {
+  27              		.loc 1 16 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 84B0     		sub	sp, sp, #16
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 24
+  39 0004 00AF     		add	r7, sp, #0
+  40              	.LCFI2:
+  41              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 2
+
+
+  42 0006 0246     		mov	r2, r0
+  43 0008 0B46     		mov	r3, r1
+  44 000a FA71     		strb	r2, [r7, #7]
+  45 000c BB71     		strb	r3, [r7, #6]
+  17:.\main.c      **** 	uint8 writestatus = psoc_MasterSendStart(0x18, psoc_WRITE_XFER_MODE);
+  46              		.loc 1 17 0
+  47 000e 4FF01800 		mov	r0, #24
+  48 0012 4FF00001 		mov	r1, #0
+  49 0016 FFF7FEFF 		bl	psoc_MasterSendStart
+  50 001a 0346     		mov	r3, r0
+  51 001c FB73     		strb	r3, [r7, #15]
+  18:.\main.c      **** 	if(psoc_MSTR_NO_ERROR == writestatus)
+  52              		.loc 1 18 0
+  53 001e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  54 0020 002B     		cmp	r3, #0
+  55 0022 0BD1     		bne	.L2
+  19:.\main.c      **** 	{
+  20:.\main.c      **** 		writestatus = psoc_MasterWriteByte(theregister);
+  56              		.loc 1 20 0
+  57 0024 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  58 0026 1846     		mov	r0, r3
+  59 0028 FFF7FEFF 		bl	psoc_MasterWriteByte
+  60 002c 0346     		mov	r3, r0
+  61 002e FB73     		strb	r3, [r7, #15]
+  21:.\main.c      **** 		writestatus = psoc_MasterWriteByte(write);
+  62              		.loc 1 21 0
+  63 0030 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+  64 0032 1846     		mov	r0, r3
+  65 0034 FFF7FEFF 		bl	psoc_MasterWriteByte
+  66 0038 0346     		mov	r3, r0
+  67 003a FB73     		strb	r3, [r7, #15]
+  68              	.L2:
+  22:.\main.c      **** 	}
+  23:.\main.c      **** 	psoc_MasterSendStop();
+  69              		.loc 1 23 0
+  70 003c FFF7FEFF 		bl	psoc_MasterSendStop
+  24:.\main.c      **** 	
+  25:.\main.c      **** }
+  71              		.loc 1 25 0
+  72 0040 07F11007 		add	r7, r7, #16
+  73 0044 BD46     		mov	sp, r7
+  74 0046 80BD     		pop	{r7, pc}
+  75              		.cfi_endproc
+  76              	.LFE56:
+  77              		.size	writeregister, .-writeregister
+  78              		.section	.text.readtempregister,"ax",%progbits
+  79              		.align	2
+  80              		.global	readtempregister
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	readtempregister, %function
+  84              	readtempregister:
+  85              	.LFB57:
+  26:.\main.c      **** 
+  27:.\main.c      **** void readtempregister(uint8 theregister, uint8* upper, uint8* lower)
+  28:.\main.c      **** {
+  86              		.loc 1 28 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 3
+
+
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 24
+  89              		@ frame_needed = 1, uses_anonymous_args = 0
+  90 0000 80B5     		push	{r7, lr}
+  91              	.LCFI3:
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 7, -8
+  94              		.cfi_offset 14, -4
+  95 0002 86B0     		sub	sp, sp, #24
+  96              	.LCFI4:
+  97              		.cfi_def_cfa_offset 32
+  98 0004 00AF     		add	r7, sp, #0
+  99              	.LCFI5:
+ 100              		.cfi_def_cfa_register 7
+ 101 0006 0346     		mov	r3, r0
+ 102 0008 B960     		str	r1, [r7, #8]
+ 103 000a 7A60     		str	r2, [r7, #4]
+ 104 000c FB73     		strb	r3, [r7, #15]
+  29:.\main.c      **** 	uint8 writestatus = psoc_MasterSendStart(0x18, psoc_WRITE_XFER_MODE);
+ 105              		.loc 1 29 0
+ 106 000e 4FF01800 		mov	r0, #24
+ 107 0012 4FF00001 		mov	r1, #0
+ 108 0016 FFF7FEFF 		bl	psoc_MasterSendStart
+ 109 001a 0346     		mov	r3, r0
+ 110 001c FB75     		strb	r3, [r7, #23]
+  30:.\main.c      **** 	if(psoc_MSTR_NO_ERROR == writestatus) //ensures there is no error before writing
+ 111              		.loc 1 30 0
+ 112 001e FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 113 0020 002B     		cmp	r3, #0
+ 114 0022 05D1     		bne	.L4
+  31:.\main.c      **** 	{
+  32:.\main.c      **** 		writestatus = psoc_MasterWriteByte(theregister);
+ 115              		.loc 1 32 0
+ 116 0024 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 117 0026 1846     		mov	r0, r3
+ 118 0028 FFF7FEFF 		bl	psoc_MasterWriteByte
+ 119 002c 0346     		mov	r3, r0
+ 120 002e FB75     		strb	r3, [r7, #23]
+ 121              	.L4:
+  33:.\main.c      **** 	}
+  34:.\main.c      **** 	psoc_MasterSendStop();
+ 122              		.loc 1 34 0
+ 123 0030 FFF7FEFF 		bl	psoc_MasterSendStop
+  35:.\main.c      **** 
+  36:.\main.c      ****     uint8 status = psoc_MasterSendStart(0x18, psoc_READ_XFER_MODE);
+ 124              		.loc 1 36 0
+ 125 0034 4FF01800 		mov	r0, #24
+ 126 0038 4FF00101 		mov	r1, #1
+ 127 003c FFF7FEFF 		bl	psoc_MasterSendStart
+ 128 0040 0346     		mov	r3, r0
+ 129 0042 BB75     		strb	r3, [r7, #22]
+  37:.\main.c      **** 	if(psoc_MSTR_NO_ERROR == status) //ensures these is no error before reading
+ 130              		.loc 1 37 0
+ 131 0044 BB7D     		ldrb	r3, [r7, #22]	@ zero_extendqisi2
+ 132 0046 002B     		cmp	r3, #0
+ 133 0048 0FD1     		bne	.L5
+  38:.\main.c      **** 	{
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 4
+
+
+  39:.\main.c      **** 		*upper = psoc_MasterReadByte(psoc_ACK_DATA); 
+ 134              		.loc 1 39 0
+ 135 004a 4FF00100 		mov	r0, #1
+ 136 004e FFF7FEFF 		bl	psoc_MasterReadByte
+ 137 0052 0346     		mov	r3, r0
+ 138 0054 1A46     		mov	r2, r3
+ 139 0056 BB68     		ldr	r3, [r7, #8]
+ 140 0058 1A70     		strb	r2, [r3, #0]
+  40:.\main.c      **** 		*lower = psoc_MasterReadByte(psoc_NAK_DATA);
+ 141              		.loc 1 40 0
+ 142 005a 4FF00000 		mov	r0, #0
+ 143 005e FFF7FEFF 		bl	psoc_MasterReadByte
+ 144 0062 0346     		mov	r3, r0
+ 145 0064 1A46     		mov	r2, r3
+ 146 0066 7B68     		ldr	r3, [r7, #4]
+ 147 0068 1A70     		strb	r2, [r3, #0]
+ 148              	.L5:
+  41:.\main.c      **** 	}
+  42:.\main.c      **** 	
+  43:.\main.c      **** 	psoc_MasterSendStop();
+ 149              		.loc 1 43 0
+ 150 006a FFF7FEFF 		bl	psoc_MasterSendStop
+  44:.\main.c      **** }
+ 151              		.loc 1 44 0
+ 152 006e 07F11807 		add	r7, r7, #24
+ 153 0072 BD46     		mov	sp, r7
+ 154 0074 80BD     		pop	{r7, pc}
+ 155              		.cfi_endproc
+ 156              	.LFE57:
+ 157              		.size	readtempregister, .-readtempregister
+ 158              		.global	__aeabi_i2f
+ 159              		.global	__aeabi_fmul
+ 160              		.global	__aeabi_f2iz
+ 161 0076 00BF     		.section	.rodata
+ 162              		.align	2
+ 163              	.LC0:
+ 164 0000 54656D70 		.ascii	"Temp: \000"
+ 164      3A2000
+ 165 0007 00       		.section	.text.main,"ax",%progbits
+ 166              		.align	2
+ 167              		.global	main
+ 168              		.thumb
+ 169              		.thumb_func
+ 170              		.type	main, %function
+ 171              	main:
+ 172              	.LFB58:
+  45:.\main.c      **** 
+  46:.\main.c      **** int main()
+  47:.\main.c      **** {
+ 173              		.loc 1 47 0
+ 174              		.cfi_startproc
+ 175              		@ args = 0, pretend = 0, frame = 48
+ 176              		@ frame_needed = 1, uses_anonymous_args = 0
+ 177 0000 80B5     		push	{r7, lr}
+ 178              	.LCFI6:
+ 179              		.cfi_def_cfa_offset 8
+ 180              		.cfi_offset 7, -8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 5
+
+
+ 181              		.cfi_offset 14, -4
+ 182 0002 8CB0     		sub	sp, sp, #48
+ 183              	.LCFI7:
+ 184              		.cfi_def_cfa_offset 56
+ 185 0004 00AF     		add	r7, sp, #0
+ 186              	.LCFI8:
+ 187              		.cfi_def_cfa_register 7
+  48:.\main.c      **** 	int32 tcColdJnuVolt, tcHotJnuVolt, tcuVolt, tcTemp, tempavg;
+  49:.\main.c      **** 	float coldJnTemp;
+  50:.\main.c      **** 	psoc_Start();
+ 188              		.loc 1 50 0
+ 189 0006 FFF7FEFF 		bl	psoc_Start
+  51:.\main.c      ****     ADC_DelSig_Start();
+ 190              		.loc 1 51 0
+ 191 000a FFF7FEFF 		bl	ADC_DelSig_Start
+  52:.\main.c      ****     AMux_Start();
+ 192              		.loc 1 52 0
+ 193 000e FFF7FEFF 		bl	AMux_Start
+  53:.\main.c      **** 	LCD_Start();
+ 194              		.loc 1 53 0
+ 195 0012 FFF7FEFF 		bl	LCD_Start
+  54:.\main.c      **** 	
+  55:.\main.c      **** 
+  56:.\main.c      ****     CyGlobalIntEnable;  /* Uncomment this line to enable global interrupts. */
+ 196              		.loc 1 56 0
+ 197              	@ 56 ".\main.c" 1
+ 198 0016 62B6     		CPSIE   i
+ 199              	@ 0 "" 2
+ 200              		.thumb
+ 201              	.L15:
+ 202              	.LBB2:
+  57:.\main.c      ****     for(;;)
+  58:.\main.c      ****     {
+  59:.\main.c      **** 		tempavg = 0;
+ 203              		.loc 1 59 0
+ 204 0018 4FF00003 		mov	r3, #0
+ 205 001c BB62     		str	r3, [r7, #40]
+  60:.\main.c      **** 		int32 i, j;
+  61:.\main.c      **** 		uint8 a = 0;
+ 206              		.loc 1 61 0
+ 207 001e 4FF00003 		mov	r3, #0
+ 208 0022 FB70     		strb	r3, [r7, #3]
+  62:.\main.c      **** 		uint8 b = 0;
+ 209              		.loc 1 62 0
+ 210 0024 4FF00003 		mov	r3, #0
+ 211 0028 BB70     		strb	r3, [r7, #2]
+  63:.\main.c      **** 		uint8* upper;
+  64:.\main.c      **** 		uint8* lower;
+  65:.\main.c      **** 		lower = &a;
+ 212              		.loc 1 65 0
+ 213 002a 07F10303 		add	r3, r7, #3
+ 214 002e BB61     		str	r3, [r7, #24]
+  66:.\main.c      **** 		upper = &b;
+ 215              		.loc 1 66 0
+ 216 0030 07F10203 		add	r3, r7, #2
+ 217 0034 7B61     		str	r3, [r7, #20]
+  67:.\main.c      **** 		float output;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 6
+
+
+  68:.\main.c      **** 		
+  69:.\main.c      **** 		for(j=0;j<5;j++)
+ 218              		.loc 1 69 0
+ 219 0036 4FF00003 		mov	r3, #0
+ 220 003a FB61     		str	r3, [r7, #28]
+ 221 003c 9AE0     		b	.L7
+ 222              	.L14:
+  70:.\main.c      **** 		{
+  71:.\main.c      **** 		readtempregister(0x05, upper, lower);
+ 223              		.loc 1 71 0
+ 224 003e 4FF00500 		mov	r0, #5
+ 225 0042 7969     		ldr	r1, [r7, #20]
+ 226 0044 BA69     		ldr	r2, [r7, #24]
+ 227 0046 FFF7FEFF 		bl	readtempregister
+  72:.\main.c      **** 		*upper = *upper & 0x1F;
+ 228              		.loc 1 72 0
+ 229 004a 7B69     		ldr	r3, [r7, #20]
+ 230 004c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 231 004e 03F01F03 		and	r3, r3, #31
+ 232 0052 DAB2     		uxtb	r2, r3
+ 233 0054 7B69     		ldr	r3, [r7, #20]
+ 234 0056 1A70     		strb	r2, [r3, #0]
+  73:.\main.c      **** 		if ((*upper & 0x10) == 0x10)
+ 235              		.loc 1 73 0
+ 236 0058 7B69     		ldr	r3, [r7, #20]
+ 237 005a 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 238 005c 03F01003 		and	r3, r3, #16
+ 239 0060 002B     		cmp	r3, #0
+ 240 0062 1ED0     		beq	.L8
+  74:.\main.c      **** 		{ 
+  75:.\main.c      **** 			*upper = *upper & 0x0F; 
+ 241              		.loc 1 75 0
+ 242 0064 7B69     		ldr	r3, [r7, #20]
+ 243 0066 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 244 0068 03F00F03 		and	r3, r3, #15
+ 245 006c DAB2     		uxtb	r2, r3
+ 246 006e 7B69     		ldr	r3, [r7, #20]
+ 247 0070 1A70     		strb	r2, [r3, #0]
+  76:.\main.c      **** 			coldJnTemp = 256 - (*upper * 16 + *lower / 16);
+ 248              		.loc 1 76 0
+ 249 0072 7B69     		ldr	r3, [r7, #20]
+ 250 0074 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 251 0076 1A46     		mov	r2, r3
+ 252 0078 1346     		mov	r3, r2
+ 253 007a 4FEA0373 		lsl	r3, r3, #28
+ 254 007e 9B1A     		subs	r3, r3, r2
+ 255 0080 4FEA0313 		lsl	r3, r3, #4
+ 256 0084 1A46     		mov	r2, r3
+ 257 0086 BB69     		ldr	r3, [r7, #24]
+ 258 0088 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 259 008a 4FEA1313 		lsr	r3, r3, #4
+ 260 008e DBB2     		uxtb	r3, r3
+ 261 0090 D31A     		subs	r3, r2, r3
+ 262 0092 03F58073 		add	r3, r3, #256
+ 263 0096 1846     		mov	r0, r3
+ 264 0098 FFF7FEFF 		bl	__aeabi_i2f
+ 265 009c 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 7
+
+
+ 266 009e 7B62     		str	r3, [r7, #36]	@ float
+ 267 00a0 0EE0     		b	.L9
+ 268              	.L8:
+  77:.\main.c      **** 		}
+  78:.\main.c      **** 		else 
+  79:.\main.c      **** 		{
+  80:.\main.c      **** 			coldJnTemp = ((*upper * 16) + (*lower / 16));
+ 269              		.loc 1 80 0
+ 270 00a2 7B69     		ldr	r3, [r7, #20]
+ 271 00a4 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 272 00a6 4FEA0312 		lsl	r2, r3, #4
+ 273 00aa BB69     		ldr	r3, [r7, #24]
+ 274 00ac 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 275 00ae 4FEA1313 		lsr	r3, r3, #4
+ 276 00b2 DBB2     		uxtb	r3, r3
+ 277 00b4 D318     		adds	r3, r2, r3
+ 278 00b6 1846     		mov	r0, r3
+ 279 00b8 FFF7FEFF 		bl	__aeabi_i2f
+ 280 00bc 0346     		mov	r3, r0
+ 281 00be 7B62     		str	r3, [r7, #36]	@ float
+ 282              	.L9:
+  81:.\main.c      **** 		}
+  82:.\main.c      **** 		
+  83:.\main.c      **** 		tcColdJnuVolt = Thermocouple_1_GetVoltage ((int32)(coldJnTemp*100)); 
+ 283              		.loc 1 83 0
+ 284 00c0 786A     		ldr	r0, [r7, #36]	@ float
+ 285 00c2 4FF00001 		mov	r1, #0
+ 286 00c6 C4F2C821 		movt	r1, 17096
+ 287 00ca FFF7FEFF 		bl	__aeabi_fmul
+ 288 00ce 0346     		mov	r3, r0
+ 289 00d0 1846     		mov	r0, r3
+ 290 00d2 FFF7FEFF 		bl	__aeabi_f2iz
+ 291 00d6 0346     		mov	r3, r0
+ 292 00d8 1846     		mov	r0, r3
+ 293 00da FFF7FEFF 		bl	Thermocouple_1_GetVoltage
+ 294 00de 3861     		str	r0, [r7, #16]
+  84:.\main.c      **** 		
+  85:.\main.c      **** 	    AMux_Select(0);
+ 295              		.loc 1 85 0
+ 296 00e0 4FF00000 		mov	r0, #0
+ 297 00e4 FFF7FEFF 		bl	AMux_FastSelect
+  86:.\main.c      **** 	    ADC_DelSig_SelectConfiguration(ADC_DelSig_CFG2,1);
+ 298              		.loc 1 86 0
+ 299 00e8 4FF00200 		mov	r0, #2
+ 300 00ec 4FF00101 		mov	r1, #1
+ 301 00f0 FFF7FEFF 		bl	ADC_DelSig_SelectConfiguration
+  87:.\main.c      **** 	    ADC_DelSig_StartConvert();
+ 302              		.loc 1 87 0
+ 303 00f4 FFF7FEFF 		bl	ADC_DelSig_StartConvert
+  88:.\main.c      **** 	    CyDelay(100u);
+ 304              		.loc 1 88 0
+ 305 00f8 4FF06400 		mov	r0, #100
+ 306 00fc FFF7FEFF 		bl	CyDelay
+  89:.\main.c      **** 	    for(i = 0; i < 100; i++)
+ 307              		.loc 1 89 0
+ 308 0100 4FF00003 		mov	r3, #0
+ 309 0104 3B62     		str	r3, [r7, #32]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 8
+
+
+ 310 0106 20E0     		b	.L10
+ 311              	.L13:
+  90:.\main.c      **** 	    {
+  91:.\main.c      **** 	        if(ADC_DelSig_IsEndConversion(ADC_DelSig_WAIT_FOR_RESULT))
+ 312              		.loc 1 91 0
+ 313 0108 4FF00000 		mov	r0, #0
+ 314 010c FFF7FEFF 		bl	ADC_DelSig_IsEndConversion
+ 315 0110 0346     		mov	r3, r0
+ 316 0112 002B     		cmp	r3, #0
+ 317 0114 11D0     		beq	.L11
+  92:.\main.c      **** 	        {
+  93:.\main.c      **** 	            output = ADC_DelSig_CountsTo_uVolts(ADC_DelSig_GetResult32());
+ 318              		.loc 1 93 0
+ 319 0116 FFF7FEFF 		bl	ADC_DelSig_GetResult32
+ 320 011a 0346     		mov	r3, r0
+ 321 011c 1846     		mov	r0, r3
+ 322 011e FFF7FEFF 		bl	ADC_DelSig_CountsTo_uVolts
+ 323 0122 0346     		mov	r3, r0
+ 324 0124 1846     		mov	r0, r3
+ 325 0126 FFF7FEFF 		bl	__aeabi_i2f
+ 326 012a 0346     		mov	r3, r0
+ 327 012c FB60     		str	r3, [r7, #12]	@ float
+  94:.\main.c      **** 	            tcHotJnuVolt = (float)output;
+ 328              		.loc 1 94 0
+ 329 012e F868     		ldr	r0, [r7, #12]	@ float
+ 330 0130 FFF7FEFF 		bl	__aeabi_f2iz
+ 331 0134 0346     		mov	r3, r0
+ 332 0136 FB62     		str	r3, [r7, #44]
+  95:.\main.c      **** 	            break;
+ 333              		.loc 1 95 0
+ 334 0138 0AE0     		b	.L12
+ 335              	.L11:
+  96:.\main.c      **** 	        }
+  97:.\main.c      **** 	        CyDelay(5u);
+ 336              		.loc 1 97 0
+ 337 013a 4FF00500 		mov	r0, #5
+ 338 013e FFF7FEFF 		bl	CyDelay
+  89:.\main.c      **** 	    for(i = 0; i < 100; i++)
+ 339              		.loc 1 89 0
+ 340 0142 3B6A     		ldr	r3, [r7, #32]
+ 341 0144 03F10103 		add	r3, r3, #1
+ 342 0148 3B62     		str	r3, [r7, #32]
+ 343              	.L10:
+  89:.\main.c      **** 	    for(i = 0; i < 100; i++)
+ 344              		.loc 1 89 0 is_stmt 0 discriminator 1
+ 345 014a 3B6A     		ldr	r3, [r7, #32]
+ 346 014c 632B     		cmp	r3, #99
+ 347 014e DBDD     		ble	.L13
+ 348              	.L12:
+  98:.\main.c      **** 	    }
+  99:.\main.c      **** 	    ADC_DelSig_StopConvert();
+ 349              		.loc 1 99 0 is_stmt 1
+ 350 0150 FFF7FEFF 		bl	ADC_DelSig_StopConvert
+ 100:.\main.c      **** 		
+ 101:.\main.c      **** 		tcuVolt = tcColdJnuVolt + tcHotJnuVolt; 
+ 351              		.loc 1 101 0
+ 352 0154 3A69     		ldr	r2, [r7, #16]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 9
+
+
+ 353 0156 FB6A     		ldr	r3, [r7, #44]
+ 354 0158 D318     		adds	r3, r2, r3
+ 355 015a BB60     		str	r3, [r7, #8]
+ 102:.\main.c      **** 		tcTemp = Thermocouple_1_GetTemperature(tcuVolt);
+ 356              		.loc 1 102 0
+ 357 015c B868     		ldr	r0, [r7, #8]
+ 358 015e FFF7FEFF 		bl	Thermocouple_1_GetTemperature
+ 359 0162 7860     		str	r0, [r7, #4]
+ 103:.\main.c      **** 		tempavg = tcTemp + tempavg;
+ 360              		.loc 1 103 0
+ 361 0164 BA6A     		ldr	r2, [r7, #40]
+ 362 0166 7B68     		ldr	r3, [r7, #4]
+ 363 0168 D318     		adds	r3, r2, r3
+ 364 016a BB62     		str	r3, [r7, #40]
+  69:.\main.c      **** 		for(j=0;j<5;j++)
+ 365              		.loc 1 69 0
+ 366 016c FB69     		ldr	r3, [r7, #28]
+ 367 016e 03F10103 		add	r3, r3, #1
+ 368 0172 FB61     		str	r3, [r7, #28]
+ 369              	.L7:
+  69:.\main.c      **** 		for(j=0;j<5;j++)
+ 370              		.loc 1 69 0 is_stmt 0 discriminator 1
+ 371 0174 FB69     		ldr	r3, [r7, #28]
+ 372 0176 042B     		cmp	r3, #4
+ 373 0178 7FF761AF 		ble	.L14
+ 104:.\main.c      **** 		}
+ 105:.\main.c      **** 		LCD_WriteControl(LCD_CLEAR_DISPLAY);
+ 374              		.loc 1 105 0 is_stmt 1
+ 375 017c 4FF00100 		mov	r0, #1
+ 376 0180 FFF7FEFF 		bl	LCD_WriteControl
+ 106:.\main.c      **** 		LCD_Position(0,0);
+ 377              		.loc 1 106 0
+ 378 0184 4FF00000 		mov	r0, #0
+ 379 0188 4FF00001 		mov	r1, #0
+ 380 018c FFF7FEFF 		bl	LCD_Position
+ 107:.\main.c      **** 		LCD_PrintString("Temp: ");
+ 381              		.loc 1 107 0
+ 382 0190 40F20000 		movw	r0, #:lower16:.LC0
+ 383 0194 C0F20000 		movt	r0, #:upper16:.LC0
+ 384 0198 FFF7FEFF 		bl	LCD_PrintString
+ 108:.\main.c      **** 		LCD_Position(0,5);
+ 385              		.loc 1 108 0
+ 386 019c 4FF00000 		mov	r0, #0
+ 387 01a0 4FF00501 		mov	r1, #5
+ 388 01a4 FFF7FEFF 		bl	LCD_Position
+ 109:.\main.c      **** 		LCD_PrintNumber(tempavg/5);
+ 389              		.loc 1 109 0
+ 390 01a8 BA6A     		ldr	r2, [r7, #40]
+ 391 01aa 46F26763 		movw	r3, #26215
+ 392 01ae C6F26663 		movt	r3, 26214
+ 393 01b2 83FB0213 		smull	r1, r3, r3, r2
+ 394 01b6 4FEA6301 		asr	r1, r3, #1
+ 395 01ba 4FEAE273 		asr	r3, r2, #31
+ 396 01be CB1A     		subs	r3, r1, r3
+ 397 01c0 9BB2     		uxth	r3, r3
+ 398 01c2 1846     		mov	r0, r3
+ 399 01c4 FFF7FEFF 		bl	LCD_PrintNumber
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 10
+
+
+ 400              	.LBE2:
+ 110:.\main.c      **** 		
+ 111:.\main.c      **** 		
+ 112:.\main.c      **** 		
+ 113:.\main.c      **** 
+ 114:.\main.c      **** 	}
+ 401              		.loc 1 114 0
+ 402 01c8 26E7     		b	.L15
+ 403              		.cfi_endproc
+ 404              	.LFE58:
+ 405              		.size	main, .-main
+ 406 01ca 00BF     		.text
+ 407              	.Letext0:
+ 408              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 409              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 410              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 411              		.section	.debug_info,"",%progbits
+ 412              	.Ldebug_info0:
+ 413 0000 45020000 		.4byte	0x245
+ 414 0004 0200     		.2byte	0x2
+ 415 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 416 000a 04       		.byte	0x4
+ 417 000b 01       		.uleb128 0x1
+ 418 000c 78010000 		.4byte	.LASF33
+ 419 0010 01       		.byte	0x1
+ 420 0011 9A000000 		.4byte	.LASF34
+ 421 0015 0D000000 		.4byte	.LASF35
+ 422 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 423 001d 00000000 		.4byte	0
+ 424 0021 00000000 		.4byte	0
+ 425 0025 00000000 		.4byte	.Ldebug_line0
+ 426 0029 02       		.uleb128 0x2
+ 427 002a 01       		.byte	0x1
+ 428 002b 06       		.byte	0x6
+ 429 002c EC010000 		.4byte	.LASF0
+ 430 0030 02       		.uleb128 0x2
+ 431 0031 01       		.byte	0x1
+ 432 0032 08       		.byte	0x8
+ 433 0033 8C000000 		.4byte	.LASF1
+ 434 0037 02       		.uleb128 0x2
+ 435 0038 02       		.byte	0x2
+ 436 0039 05       		.byte	0x5
+ 437 003a 61010000 		.4byte	.LASF2
+ 438 003e 02       		.uleb128 0x2
+ 439 003f 02       		.byte	0x2
+ 440 0040 07       		.byte	0x7
+ 441 0041 4E000000 		.4byte	.LASF3
+ 442 0045 03       		.uleb128 0x3
+ 443 0046 3D010000 		.4byte	.LASF9
+ 444 004a 02       		.byte	0x2
+ 445 004b 4F       		.byte	0x4f
+ 446 004c 50000000 		.4byte	0x50
+ 447 0050 02       		.uleb128 0x2
+ 448 0051 04       		.byte	0x4
+ 449 0052 05       		.byte	0x5
+ 450 0053 CF010000 		.4byte	.LASF4
+ 451 0057 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 11
+
+
+ 452 0058 04       		.byte	0x4
+ 453 0059 07       		.byte	0x7
+ 454 005a A3000000 		.4byte	.LASF5
+ 455 005e 02       		.uleb128 0x2
+ 456 005f 08       		.byte	0x8
+ 457 0060 05       		.byte	0x5
+ 458 0061 4E010000 		.4byte	.LASF6
+ 459 0065 02       		.uleb128 0x2
+ 460 0066 08       		.byte	0x8
+ 461 0067 07       		.byte	0x7
+ 462 0068 02010000 		.4byte	.LASF7
+ 463 006c 04       		.uleb128 0x4
+ 464 006d 04       		.byte	0x4
+ 465 006e 05       		.byte	0x5
+ 466 006f 696E7400 		.ascii	"int\000"
+ 467 0073 02       		.uleb128 0x2
+ 468 0074 04       		.byte	0x4
+ 469 0075 07       		.byte	0x7
+ 470 0076 F5000000 		.4byte	.LASF8
+ 471 007a 03       		.uleb128 0x3
+ 472 007b 72010000 		.4byte	.LASF10
+ 473 007f 03       		.byte	0x3
+ 474 0080 5B       		.byte	0x5b
+ 475 0081 30000000 		.4byte	0x30
+ 476 0085 03       		.uleb128 0x3
+ 477 0086 BD000000 		.4byte	.LASF11
+ 478 008a 03       		.byte	0x3
+ 479 008b 60       		.byte	0x60
+ 480 008c 50000000 		.4byte	0x50
+ 481 0090 02       		.uleb128 0x2
+ 482 0091 04       		.byte	0x4
+ 483 0092 04       		.byte	0x4
+ 484 0093 86000000 		.4byte	.LASF12
+ 485 0097 02       		.uleb128 0x2
+ 486 0098 08       		.byte	0x8
+ 487 0099 04       		.byte	0x4
+ 488 009a 61000000 		.4byte	.LASF13
+ 489 009e 02       		.uleb128 0x2
+ 490 009f 01       		.byte	0x1
+ 491 00a0 08       		.byte	0x8
+ 492 00a1 5C010000 		.4byte	.LASF14
+ 493 00a5 02       		.uleb128 0x2
+ 494 00a6 04       		.byte	0x4
+ 495 00a7 07       		.byte	0x7
+ 496 00a8 45010000 		.4byte	.LASF15
+ 497 00ac 02       		.uleb128 0x2
+ 498 00ad 08       		.byte	0x8
+ 499 00ae 04       		.byte	0x4
+ 500 00af E0010000 		.4byte	.LASF16
+ 501 00b3 05       		.uleb128 0x5
+ 502 00b4 01       		.byte	0x1
+ 503 00b5 C1010000 		.4byte	.LASF19
+ 504 00b9 01       		.byte	0x1
+ 505 00ba 0F       		.byte	0xf
+ 506 00bb 01       		.byte	0x1
+ 507 00bc 00000000 		.4byte	.LFB56
+ 508 00c0 48000000 		.4byte	.LFE56
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 12
+
+
+ 509 00c4 00000000 		.4byte	.LLST0
+ 510 00c8 01       		.byte	0x1
+ 511 00c9 F8000000 		.4byte	0xf8
+ 512 00cd 06       		.uleb128 0x6
+ 513 00ce 24010000 		.4byte	.LASF17
+ 514 00d2 01       		.byte	0x1
+ 515 00d3 0F       		.byte	0xf
+ 516 00d4 7A000000 		.4byte	0x7a
+ 517 00d8 02       		.byte	0x2
+ 518 00d9 91       		.byte	0x91
+ 519 00da 6F       		.sleb128 -17
+ 520 00db 06       		.uleb128 0x6
+ 521 00dc C3000000 		.4byte	.LASF18
+ 522 00e0 01       		.byte	0x1
+ 523 00e1 0F       		.byte	0xf
+ 524 00e2 7A000000 		.4byte	0x7a
+ 525 00e6 02       		.byte	0x2
+ 526 00e7 91       		.byte	0x91
+ 527 00e8 6E       		.sleb128 -18
+ 528 00e9 07       		.uleb128 0x7
+ 529 00ea D6000000 		.4byte	.LASF23
+ 530 00ee 01       		.byte	0x1
+ 531 00ef 11       		.byte	0x11
+ 532 00f0 7A000000 		.4byte	0x7a
+ 533 00f4 02       		.byte	0x2
+ 534 00f5 91       		.byte	0x91
+ 535 00f6 77       		.sleb128 -9
+ 536 00f7 00       		.byte	0
+ 537 00f8 05       		.uleb128 0x5
+ 538 00f9 01       		.byte	0x1
+ 539 00fa 75000000 		.4byte	.LASF20
+ 540 00fe 01       		.byte	0x1
+ 541 00ff 1B       		.byte	0x1b
+ 542 0100 01       		.byte	0x1
+ 543 0101 00000000 		.4byte	.LFB57
+ 544 0105 76000000 		.4byte	.LFE57
+ 545 0109 38000000 		.4byte	.LLST1
+ 546 010d 01       		.byte	0x1
+ 547 010e 59010000 		.4byte	0x159
+ 548 0112 06       		.uleb128 0x6
+ 549 0113 24010000 		.4byte	.LASF17
+ 550 0117 01       		.byte	0x1
+ 551 0118 1B       		.byte	0x1b
+ 552 0119 7A000000 		.4byte	0x7a
+ 553 011d 02       		.byte	0x2
+ 554 011e 91       		.byte	0x91
+ 555 011f 6F       		.sleb128 -17
+ 556 0120 06       		.uleb128 0x6
+ 557 0121 07000000 		.4byte	.LASF21
+ 558 0125 01       		.byte	0x1
+ 559 0126 1B       		.byte	0x1b
+ 560 0127 59010000 		.4byte	0x159
+ 561 012b 02       		.byte	0x2
+ 562 012c 91       		.byte	0x91
+ 563 012d 68       		.sleb128 -24
+ 564 012e 06       		.uleb128 0x6
+ 565 012f 6F000000 		.4byte	.LASF22
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 13
+
+
+ 566 0133 01       		.byte	0x1
+ 567 0134 1B       		.byte	0x1b
+ 568 0135 59010000 		.4byte	0x159
+ 569 0139 02       		.byte	0x2
+ 570 013a 91       		.byte	0x91
+ 571 013b 64       		.sleb128 -28
+ 572 013c 07       		.uleb128 0x7
+ 573 013d D6000000 		.4byte	.LASF23
+ 574 0141 01       		.byte	0x1
+ 575 0142 1D       		.byte	0x1d
+ 576 0143 7A000000 		.4byte	0x7a
+ 577 0147 02       		.byte	0x2
+ 578 0148 91       		.byte	0x91
+ 579 0149 77       		.sleb128 -9
+ 580 014a 07       		.uleb128 0x7
+ 581 014b 00000000 		.4byte	.LASF24
+ 582 014f 01       		.byte	0x1
+ 583 0150 24       		.byte	0x24
+ 584 0151 7A000000 		.4byte	0x7a
+ 585 0155 02       		.byte	0x2
+ 586 0156 91       		.byte	0x91
+ 587 0157 76       		.sleb128 -10
+ 588 0158 00       		.byte	0
+ 589 0159 08       		.uleb128 0x8
+ 590 015a 04       		.byte	0x4
+ 591 015b 7A000000 		.4byte	0x7a
+ 592 015f 09       		.uleb128 0x9
+ 593 0160 01       		.byte	0x1
+ 594 0161 F0000000 		.4byte	.LASF25
+ 595 0165 01       		.byte	0x1
+ 596 0166 2E       		.byte	0x2e
+ 597 0167 6C000000 		.4byte	0x6c
+ 598 016b 00000000 		.4byte	.LFB58
+ 599 016f CA010000 		.4byte	.LFE58
+ 600 0173 70000000 		.4byte	.LLST2
+ 601 0177 01       		.byte	0x1
+ 602 0178 35020000 		.4byte	0x235
+ 603 017c 07       		.uleb128 0x7
+ 604 017d E2000000 		.4byte	.LASF26
+ 605 0181 01       		.byte	0x1
+ 606 0182 30       		.byte	0x30
+ 607 0183 85000000 		.4byte	0x85
+ 608 0187 02       		.byte	0x2
+ 609 0188 91       		.byte	0x91
+ 610 0189 58       		.sleb128 -40
+ 611 018a 07       		.uleb128 0x7
+ 612 018b 30010000 		.4byte	.LASF27
+ 613 018f 01       		.byte	0x1
+ 614 0190 30       		.byte	0x30
+ 615 0191 85000000 		.4byte	0x85
+ 616 0195 02       		.byte	0x2
+ 617 0196 91       		.byte	0x91
+ 618 0197 74       		.sleb128 -12
+ 619 0198 07       		.uleb128 0x7
+ 620 0199 D8010000 		.4byte	.LASF28
+ 621 019d 01       		.byte	0x1
+ 622 019e 30       		.byte	0x30
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 14
+
+
+ 623 019f 85000000 		.4byte	0x85
+ 624 01a3 02       		.byte	0x2
+ 625 01a4 91       		.byte	0x91
+ 626 01a5 50       		.sleb128 -48
+ 627 01a6 07       		.uleb128 0x7
+ 628 01a7 68000000 		.4byte	.LASF29
+ 629 01ab 01       		.byte	0x1
+ 630 01ac 30       		.byte	0x30
+ 631 01ad 85000000 		.4byte	0x85
+ 632 01b1 02       		.byte	0x2
+ 633 01b2 91       		.byte	0x91
+ 634 01b3 4C       		.sleb128 -52
+ 635 01b4 07       		.uleb128 0x7
+ 636 01b5 B5000000 		.4byte	.LASF30
+ 637 01b9 01       		.byte	0x1
+ 638 01ba 30       		.byte	0x30
+ 639 01bb 85000000 		.4byte	0x85
+ 640 01bf 02       		.byte	0x2
+ 641 01c0 91       		.byte	0x91
+ 642 01c1 70       		.sleb128 -16
+ 643 01c2 07       		.uleb128 0x7
+ 644 01c3 19010000 		.4byte	.LASF31
+ 645 01c7 01       		.byte	0x1
+ 646 01c8 31       		.byte	0x31
+ 647 01c9 90000000 		.4byte	0x90
+ 648 01cd 02       		.byte	0x2
+ 649 01ce 91       		.byte	0x91
+ 650 01cf 6C       		.sleb128 -20
+ 651 01d0 0A       		.uleb128 0xa
+ 652 01d1 18000000 		.4byte	.LBB2
+ 653 01d5 C8010000 		.4byte	.LBE2
+ 654 01d9 0B       		.uleb128 0xb
+ 655 01da 6900     		.ascii	"i\000"
+ 656 01dc 01       		.byte	0x1
+ 657 01dd 3C       		.byte	0x3c
+ 658 01de 85000000 		.4byte	0x85
+ 659 01e2 02       		.byte	0x2
+ 660 01e3 91       		.byte	0x91
+ 661 01e4 68       		.sleb128 -24
+ 662 01e5 0B       		.uleb128 0xb
+ 663 01e6 6A00     		.ascii	"j\000"
+ 664 01e8 01       		.byte	0x1
+ 665 01e9 3C       		.byte	0x3c
+ 666 01ea 85000000 		.4byte	0x85
+ 667 01ee 02       		.byte	0x2
+ 668 01ef 91       		.byte	0x91
+ 669 01f0 64       		.sleb128 -28
+ 670 01f1 0B       		.uleb128 0xb
+ 671 01f2 6100     		.ascii	"a\000"
+ 672 01f4 01       		.byte	0x1
+ 673 01f5 3D       		.byte	0x3d
+ 674 01f6 7A000000 		.4byte	0x7a
+ 675 01fa 02       		.byte	0x2
+ 676 01fb 91       		.byte	0x91
+ 677 01fc 4B       		.sleb128 -53
+ 678 01fd 0B       		.uleb128 0xb
+ 679 01fe 6200     		.ascii	"b\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 15
+
+
+ 680 0200 01       		.byte	0x1
+ 681 0201 3E       		.byte	0x3e
+ 682 0202 7A000000 		.4byte	0x7a
+ 683 0206 02       		.byte	0x2
+ 684 0207 91       		.byte	0x91
+ 685 0208 4A       		.sleb128 -54
+ 686 0209 07       		.uleb128 0x7
+ 687 020a 07000000 		.4byte	.LASF21
+ 688 020e 01       		.byte	0x1
+ 689 020f 3F       		.byte	0x3f
+ 690 0210 59010000 		.4byte	0x159
+ 691 0214 02       		.byte	0x2
+ 692 0215 91       		.byte	0x91
+ 693 0216 5C       		.sleb128 -36
+ 694 0217 07       		.uleb128 0x7
+ 695 0218 6F000000 		.4byte	.LASF22
+ 696 021c 01       		.byte	0x1
+ 697 021d 40       		.byte	0x40
+ 698 021e 59010000 		.4byte	0x159
+ 699 0222 02       		.byte	0x2
+ 700 0223 91       		.byte	0x91
+ 701 0224 60       		.sleb128 -32
+ 702 0225 07       		.uleb128 0x7
+ 703 0226 6B010000 		.4byte	.LASF32
+ 704 022a 01       		.byte	0x1
+ 705 022b 43       		.byte	0x43
+ 706 022c 90000000 		.4byte	0x90
+ 707 0230 02       		.byte	0x2
+ 708 0231 91       		.byte	0x91
+ 709 0232 54       		.sleb128 -44
+ 710 0233 00       		.byte	0
+ 711 0234 00       		.byte	0
+ 712 0235 0C       		.uleb128 0xc
+ 713 0236 C9000000 		.4byte	.LASF36
+ 714 023a 04       		.byte	0x4
+ 715 023b 1606     		.2byte	0x616
+ 716 023d 43020000 		.4byte	0x243
+ 717 0241 01       		.byte	0x1
+ 718 0242 01       		.byte	0x1
+ 719 0243 0D       		.uleb128 0xd
+ 720 0244 45000000 		.4byte	0x45
+ 721 0248 00       		.byte	0
+ 722              		.section	.debug_abbrev,"",%progbits
+ 723              	.Ldebug_abbrev0:
+ 724 0000 01       		.uleb128 0x1
+ 725 0001 11       		.uleb128 0x11
+ 726 0002 01       		.byte	0x1
+ 727 0003 25       		.uleb128 0x25
+ 728 0004 0E       		.uleb128 0xe
+ 729 0005 13       		.uleb128 0x13
+ 730 0006 0B       		.uleb128 0xb
+ 731 0007 03       		.uleb128 0x3
+ 732 0008 0E       		.uleb128 0xe
+ 733 0009 1B       		.uleb128 0x1b
+ 734 000a 0E       		.uleb128 0xe
+ 735 000b 55       		.uleb128 0x55
+ 736 000c 06       		.uleb128 0x6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 16
+
+
+ 737 000d 11       		.uleb128 0x11
+ 738 000e 01       		.uleb128 0x1
+ 739 000f 52       		.uleb128 0x52
+ 740 0010 01       		.uleb128 0x1
+ 741 0011 10       		.uleb128 0x10
+ 742 0012 06       		.uleb128 0x6
+ 743 0013 00       		.byte	0
+ 744 0014 00       		.byte	0
+ 745 0015 02       		.uleb128 0x2
+ 746 0016 24       		.uleb128 0x24
+ 747 0017 00       		.byte	0
+ 748 0018 0B       		.uleb128 0xb
+ 749 0019 0B       		.uleb128 0xb
+ 750 001a 3E       		.uleb128 0x3e
+ 751 001b 0B       		.uleb128 0xb
+ 752 001c 03       		.uleb128 0x3
+ 753 001d 0E       		.uleb128 0xe
+ 754 001e 00       		.byte	0
+ 755 001f 00       		.byte	0
+ 756 0020 03       		.uleb128 0x3
+ 757 0021 16       		.uleb128 0x16
+ 758 0022 00       		.byte	0
+ 759 0023 03       		.uleb128 0x3
+ 760 0024 0E       		.uleb128 0xe
+ 761 0025 3A       		.uleb128 0x3a
+ 762 0026 0B       		.uleb128 0xb
+ 763 0027 3B       		.uleb128 0x3b
+ 764 0028 0B       		.uleb128 0xb
+ 765 0029 49       		.uleb128 0x49
+ 766 002a 13       		.uleb128 0x13
+ 767 002b 00       		.byte	0
+ 768 002c 00       		.byte	0
+ 769 002d 04       		.uleb128 0x4
+ 770 002e 24       		.uleb128 0x24
+ 771 002f 00       		.byte	0
+ 772 0030 0B       		.uleb128 0xb
+ 773 0031 0B       		.uleb128 0xb
+ 774 0032 3E       		.uleb128 0x3e
+ 775 0033 0B       		.uleb128 0xb
+ 776 0034 03       		.uleb128 0x3
+ 777 0035 08       		.uleb128 0x8
+ 778 0036 00       		.byte	0
+ 779 0037 00       		.byte	0
+ 780 0038 05       		.uleb128 0x5
+ 781 0039 2E       		.uleb128 0x2e
+ 782 003a 01       		.byte	0x1
+ 783 003b 3F       		.uleb128 0x3f
+ 784 003c 0C       		.uleb128 0xc
+ 785 003d 03       		.uleb128 0x3
+ 786 003e 0E       		.uleb128 0xe
+ 787 003f 3A       		.uleb128 0x3a
+ 788 0040 0B       		.uleb128 0xb
+ 789 0041 3B       		.uleb128 0x3b
+ 790 0042 0B       		.uleb128 0xb
+ 791 0043 27       		.uleb128 0x27
+ 792 0044 0C       		.uleb128 0xc
+ 793 0045 11       		.uleb128 0x11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 17
+
+
+ 794 0046 01       		.uleb128 0x1
+ 795 0047 12       		.uleb128 0x12
+ 796 0048 01       		.uleb128 0x1
+ 797 0049 40       		.uleb128 0x40
+ 798 004a 06       		.uleb128 0x6
+ 799 004b 9642     		.uleb128 0x2116
+ 800 004d 0C       		.uleb128 0xc
+ 801 004e 01       		.uleb128 0x1
+ 802 004f 13       		.uleb128 0x13
+ 803 0050 00       		.byte	0
+ 804 0051 00       		.byte	0
+ 805 0052 06       		.uleb128 0x6
+ 806 0053 05       		.uleb128 0x5
+ 807 0054 00       		.byte	0
+ 808 0055 03       		.uleb128 0x3
+ 809 0056 0E       		.uleb128 0xe
+ 810 0057 3A       		.uleb128 0x3a
+ 811 0058 0B       		.uleb128 0xb
+ 812 0059 3B       		.uleb128 0x3b
+ 813 005a 0B       		.uleb128 0xb
+ 814 005b 49       		.uleb128 0x49
+ 815 005c 13       		.uleb128 0x13
+ 816 005d 02       		.uleb128 0x2
+ 817 005e 0A       		.uleb128 0xa
+ 818 005f 00       		.byte	0
+ 819 0060 00       		.byte	0
+ 820 0061 07       		.uleb128 0x7
+ 821 0062 34       		.uleb128 0x34
+ 822 0063 00       		.byte	0
+ 823 0064 03       		.uleb128 0x3
+ 824 0065 0E       		.uleb128 0xe
+ 825 0066 3A       		.uleb128 0x3a
+ 826 0067 0B       		.uleb128 0xb
+ 827 0068 3B       		.uleb128 0x3b
+ 828 0069 0B       		.uleb128 0xb
+ 829 006a 49       		.uleb128 0x49
+ 830 006b 13       		.uleb128 0x13
+ 831 006c 02       		.uleb128 0x2
+ 832 006d 0A       		.uleb128 0xa
+ 833 006e 00       		.byte	0
+ 834 006f 00       		.byte	0
+ 835 0070 08       		.uleb128 0x8
+ 836 0071 0F       		.uleb128 0xf
+ 837 0072 00       		.byte	0
+ 838 0073 0B       		.uleb128 0xb
+ 839 0074 0B       		.uleb128 0xb
+ 840 0075 49       		.uleb128 0x49
+ 841 0076 13       		.uleb128 0x13
+ 842 0077 00       		.byte	0
+ 843 0078 00       		.byte	0
+ 844 0079 09       		.uleb128 0x9
+ 845 007a 2E       		.uleb128 0x2e
+ 846 007b 01       		.byte	0x1
+ 847 007c 3F       		.uleb128 0x3f
+ 848 007d 0C       		.uleb128 0xc
+ 849 007e 03       		.uleb128 0x3
+ 850 007f 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 18
+
+
+ 851 0080 3A       		.uleb128 0x3a
+ 852 0081 0B       		.uleb128 0xb
+ 853 0082 3B       		.uleb128 0x3b
+ 854 0083 0B       		.uleb128 0xb
+ 855 0084 49       		.uleb128 0x49
+ 856 0085 13       		.uleb128 0x13
+ 857 0086 11       		.uleb128 0x11
+ 858 0087 01       		.uleb128 0x1
+ 859 0088 12       		.uleb128 0x12
+ 860 0089 01       		.uleb128 0x1
+ 861 008a 40       		.uleb128 0x40
+ 862 008b 06       		.uleb128 0x6
+ 863 008c 9642     		.uleb128 0x2116
+ 864 008e 0C       		.uleb128 0xc
+ 865 008f 01       		.uleb128 0x1
+ 866 0090 13       		.uleb128 0x13
+ 867 0091 00       		.byte	0
+ 868 0092 00       		.byte	0
+ 869 0093 0A       		.uleb128 0xa
+ 870 0094 0B       		.uleb128 0xb
+ 871 0095 01       		.byte	0x1
+ 872 0096 11       		.uleb128 0x11
+ 873 0097 01       		.uleb128 0x1
+ 874 0098 12       		.uleb128 0x12
+ 875 0099 01       		.uleb128 0x1
+ 876 009a 00       		.byte	0
+ 877 009b 00       		.byte	0
+ 878 009c 0B       		.uleb128 0xb
+ 879 009d 34       		.uleb128 0x34
+ 880 009e 00       		.byte	0
+ 881 009f 03       		.uleb128 0x3
+ 882 00a0 08       		.uleb128 0x8
+ 883 00a1 3A       		.uleb128 0x3a
+ 884 00a2 0B       		.uleb128 0xb
+ 885 00a3 3B       		.uleb128 0x3b
+ 886 00a4 0B       		.uleb128 0xb
+ 887 00a5 49       		.uleb128 0x49
+ 888 00a6 13       		.uleb128 0x13
+ 889 00a7 02       		.uleb128 0x2
+ 890 00a8 0A       		.uleb128 0xa
+ 891 00a9 00       		.byte	0
+ 892 00aa 00       		.byte	0
+ 893 00ab 0C       		.uleb128 0xc
+ 894 00ac 34       		.uleb128 0x34
+ 895 00ad 00       		.byte	0
+ 896 00ae 03       		.uleb128 0x3
+ 897 00af 0E       		.uleb128 0xe
+ 898 00b0 3A       		.uleb128 0x3a
+ 899 00b1 0B       		.uleb128 0xb
+ 900 00b2 3B       		.uleb128 0x3b
+ 901 00b3 05       		.uleb128 0x5
+ 902 00b4 49       		.uleb128 0x49
+ 903 00b5 13       		.uleb128 0x13
+ 904 00b6 3F       		.uleb128 0x3f
+ 905 00b7 0C       		.uleb128 0xc
+ 906 00b8 3C       		.uleb128 0x3c
+ 907 00b9 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 19
+
+
+ 908 00ba 00       		.byte	0
+ 909 00bb 00       		.byte	0
+ 910 00bc 0D       		.uleb128 0xd
+ 911 00bd 35       		.uleb128 0x35
+ 912 00be 00       		.byte	0
+ 913 00bf 49       		.uleb128 0x49
+ 914 00c0 13       		.uleb128 0x13
+ 915 00c1 00       		.byte	0
+ 916 00c2 00       		.byte	0
+ 917 00c3 00       		.byte	0
+ 918              		.section	.debug_loc,"",%progbits
+ 919              	.Ldebug_loc0:
+ 920              	.LLST0:
+ 921 0000 00000000 		.4byte	.LFB56
+ 922 0004 02000000 		.4byte	.LCFI0
+ 923 0008 0200     		.2byte	0x2
+ 924 000a 7D       		.byte	0x7d
+ 925 000b 00       		.sleb128 0
+ 926 000c 02000000 		.4byte	.LCFI0
+ 927 0010 04000000 		.4byte	.LCFI1
+ 928 0014 0200     		.2byte	0x2
+ 929 0016 7D       		.byte	0x7d
+ 930 0017 08       		.sleb128 8
+ 931 0018 04000000 		.4byte	.LCFI1
+ 932 001c 06000000 		.4byte	.LCFI2
+ 933 0020 0200     		.2byte	0x2
+ 934 0022 7D       		.byte	0x7d
+ 935 0023 18       		.sleb128 24
+ 936 0024 06000000 		.4byte	.LCFI2
+ 937 0028 48000000 		.4byte	.LFE56
+ 938 002c 0200     		.2byte	0x2
+ 939 002e 77       		.byte	0x77
+ 940 002f 18       		.sleb128 24
+ 941 0030 00000000 		.4byte	0
+ 942 0034 00000000 		.4byte	0
+ 943              	.LLST1:
+ 944 0038 00000000 		.4byte	.LFB57
+ 945 003c 02000000 		.4byte	.LCFI3
+ 946 0040 0200     		.2byte	0x2
+ 947 0042 7D       		.byte	0x7d
+ 948 0043 00       		.sleb128 0
+ 949 0044 02000000 		.4byte	.LCFI3
+ 950 0048 04000000 		.4byte	.LCFI4
+ 951 004c 0200     		.2byte	0x2
+ 952 004e 7D       		.byte	0x7d
+ 953 004f 08       		.sleb128 8
+ 954 0050 04000000 		.4byte	.LCFI4
+ 955 0054 06000000 		.4byte	.LCFI5
+ 956 0058 0200     		.2byte	0x2
+ 957 005a 7D       		.byte	0x7d
+ 958 005b 20       		.sleb128 32
+ 959 005c 06000000 		.4byte	.LCFI5
+ 960 0060 76000000 		.4byte	.LFE57
+ 961 0064 0200     		.2byte	0x2
+ 962 0066 77       		.byte	0x77
+ 963 0067 20       		.sleb128 32
+ 964 0068 00000000 		.4byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 20
+
+
+ 965 006c 00000000 		.4byte	0
+ 966              	.LLST2:
+ 967 0070 00000000 		.4byte	.LFB58
+ 968 0074 02000000 		.4byte	.LCFI6
+ 969 0078 0200     		.2byte	0x2
+ 970 007a 7D       		.byte	0x7d
+ 971 007b 00       		.sleb128 0
+ 972 007c 02000000 		.4byte	.LCFI6
+ 973 0080 04000000 		.4byte	.LCFI7
+ 974 0084 0200     		.2byte	0x2
+ 975 0086 7D       		.byte	0x7d
+ 976 0087 08       		.sleb128 8
+ 977 0088 04000000 		.4byte	.LCFI7
+ 978 008c 06000000 		.4byte	.LCFI8
+ 979 0090 0200     		.2byte	0x2
+ 980 0092 7D       		.byte	0x7d
+ 981 0093 38       		.sleb128 56
+ 982 0094 06000000 		.4byte	.LCFI8
+ 983 0098 CA010000 		.4byte	.LFE58
+ 984 009c 0200     		.2byte	0x2
+ 985 009e 77       		.byte	0x77
+ 986 009f 38       		.sleb128 56
+ 987 00a0 00000000 		.4byte	0
+ 988 00a4 00000000 		.4byte	0
+ 989              		.section	.debug_aranges,"",%progbits
+ 990 0000 2C000000 		.4byte	0x2c
+ 991 0004 0200     		.2byte	0x2
+ 992 0006 00000000 		.4byte	.Ldebug_info0
+ 993 000a 04       		.byte	0x4
+ 994 000b 00       		.byte	0
+ 995 000c 0000     		.2byte	0
+ 996 000e 0000     		.2byte	0
+ 997 0010 00000000 		.4byte	.LFB56
+ 998 0014 48000000 		.4byte	.LFE56-.LFB56
+ 999 0018 00000000 		.4byte	.LFB57
+ 1000 001c 76000000 		.4byte	.LFE57-.LFB57
+ 1001 0020 00000000 		.4byte	.LFB58
+ 1002 0024 CA010000 		.4byte	.LFE58-.LFB58
+ 1003 0028 00000000 		.4byte	0
+ 1004 002c 00000000 		.4byte	0
+ 1005              		.section	.debug_ranges,"",%progbits
+ 1006              	.Ldebug_ranges0:
+ 1007 0000 00000000 		.4byte	.LFB56
+ 1008 0004 48000000 		.4byte	.LFE56
+ 1009 0008 00000000 		.4byte	.LFB57
+ 1010 000c 76000000 		.4byte	.LFE57
+ 1011 0010 00000000 		.4byte	.LFB58
+ 1012 0014 CA010000 		.4byte	.LFE58
+ 1013 0018 00000000 		.4byte	0
+ 1014 001c 00000000 		.4byte	0
+ 1015              		.section	.debug_line,"",%progbits
+ 1016              	.Ldebug_line0:
+ 1017 0000 7B010000 		.section	.debug_str,"MS",%progbits,1
+ 1017      0200F900 
+ 1017      00000201 
+ 1017      FB0E0D00 
+ 1017      01010101 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 21
+
+
+ 1018              	.LASF24:
+ 1019 0000 73746174 		.ascii	"status\000"
+ 1019      757300
+ 1020              	.LASF21:
+ 1021 0007 75707065 		.ascii	"upper\000"
+ 1021      7200
+ 1022              	.LASF35:
+ 1023 000d 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 1023      73657273 
+ 1023      5C527961 
+ 1023      6E5C446F 
+ 1023      63756D65 
+ 1024 003b 54686572 		.ascii	"Thermocouple.cydsn\000"
+ 1024      6D6F636F 
+ 1024      75706C65 
+ 1024      2E637964 
+ 1024      736E00
+ 1025              	.LASF3:
+ 1026 004e 73686F72 		.ascii	"short unsigned int\000"
+ 1026      7420756E 
+ 1026      7369676E 
+ 1026      65642069 
+ 1026      6E7400
+ 1027              	.LASF13:
+ 1028 0061 646F7562 		.ascii	"double\000"
+ 1028      6C6500
+ 1029              	.LASF29:
+ 1030 0068 74635465 		.ascii	"tcTemp\000"
+ 1030      6D7000
+ 1031              	.LASF22:
+ 1032 006f 6C6F7765 		.ascii	"lower\000"
+ 1032      7200
+ 1033              	.LASF20:
+ 1034 0075 72656164 		.ascii	"readtempregister\000"
+ 1034      74656D70 
+ 1034      72656769 
+ 1034      73746572 
+ 1034      00
+ 1035              	.LASF12:
+ 1036 0086 666C6F61 		.ascii	"float\000"
+ 1036      7400
+ 1037              	.LASF1:
+ 1038 008c 756E7369 		.ascii	"unsigned char\000"
+ 1038      676E6564 
+ 1038      20636861 
+ 1038      7200
+ 1039              	.LASF34:
+ 1040 009a 2E5C6D61 		.ascii	".\\main.c\000"
+ 1040      696E2E63 
+ 1040      00
+ 1041              	.LASF5:
+ 1042 00a3 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1042      20756E73 
+ 1042      69676E65 
+ 1042      6420696E 
+ 1042      7400
+ 1043              	.LASF30:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 22
+
+
+ 1044 00b5 74656D70 		.ascii	"tempavg\000"
+ 1044      61766700 
+ 1045              	.LASF11:
+ 1046 00bd 696E7433 		.ascii	"int32\000"
+ 1046      3200
+ 1047              	.LASF18:
+ 1048 00c3 77726974 		.ascii	"write\000"
+ 1048      6500
+ 1049              	.LASF36:
+ 1050 00c9 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1050      52784275 
+ 1050      66666572 
+ 1050      00
+ 1051              	.LASF23:
+ 1052 00d6 77726974 		.ascii	"writestatus\000"
+ 1052      65737461 
+ 1052      74757300 
+ 1053              	.LASF26:
+ 1054 00e2 7463436F 		.ascii	"tcColdJnuVolt\000"
+ 1054      6C644A6E 
+ 1054      75566F6C 
+ 1054      7400
+ 1055              	.LASF25:
+ 1056 00f0 6D61696E 		.ascii	"main\000"
+ 1056      00
+ 1057              	.LASF8:
+ 1058 00f5 756E7369 		.ascii	"unsigned int\000"
+ 1058      676E6564 
+ 1058      20696E74 
+ 1058      00
+ 1059              	.LASF7:
+ 1060 0102 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1060      206C6F6E 
+ 1060      6720756E 
+ 1060      7369676E 
+ 1060      65642069 
+ 1061              	.LASF31:
+ 1062 0119 636F6C64 		.ascii	"coldJnTemp\000"
+ 1062      4A6E5465 
+ 1062      6D7000
+ 1063              	.LASF17:
+ 1064 0124 74686572 		.ascii	"theregister\000"
+ 1064      65676973 
+ 1064      74657200 
+ 1065              	.LASF27:
+ 1066 0130 7463486F 		.ascii	"tcHotJnuVolt\000"
+ 1066      744A6E75 
+ 1066      566F6C74 
+ 1066      00
+ 1067              	.LASF9:
+ 1068 013d 696E7433 		.ascii	"int32_t\000"
+ 1068      325F7400 
+ 1069              	.LASF15:
+ 1070 0145 73697A65 		.ascii	"sizetype\000"
+ 1070      74797065 
+ 1070      00
+ 1071              	.LASF6:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccBVjbDj.s 			page 23
+
+
+ 1072 014e 6C6F6E67 		.ascii	"long long int\000"
+ 1072      206C6F6E 
+ 1072      6720696E 
+ 1072      7400
+ 1073              	.LASF14:
+ 1074 015c 63686172 		.ascii	"char\000"
+ 1074      00
+ 1075              	.LASF2:
+ 1076 0161 73686F72 		.ascii	"short int\000"
+ 1076      7420696E 
+ 1076      7400
+ 1077              	.LASF32:
+ 1078 016b 6F757470 		.ascii	"output\000"
+ 1078      757400
+ 1079              	.LASF10:
+ 1080 0172 75696E74 		.ascii	"uint8\000"
+ 1080      3800
+ 1081              	.LASF33:
+ 1082 0178 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1082      4320342E 
+ 1082      372E3320 
+ 1082      32303133 
+ 1082      30333132 
+ 1083 01ab 616E6368 		.ascii	"anch revision 196615]\000"
+ 1083      20726576 
+ 1083      6973696F 
+ 1083      6E203139 
+ 1083      36363135 
+ 1084              	.LASF19:
+ 1085 01c1 77726974 		.ascii	"writeregister\000"
+ 1085      65726567 
+ 1085      69737465 
+ 1085      7200
+ 1086              	.LASF4:
+ 1087 01cf 6C6F6E67 		.ascii	"long int\000"
+ 1087      20696E74 
+ 1087      00
+ 1088              	.LASF28:
+ 1089 01d8 74637556 		.ascii	"tcuVolt\000"
+ 1089      6F6C7400 
+ 1090              	.LASF16:
+ 1091 01e0 6C6F6E67 		.ascii	"long double\000"
+ 1091      20646F75 
+ 1091      626C6500 
+ 1092              	.LASF0:
+ 1093 01ec 7369676E 		.ascii	"signed char\000"
+ 1093      65642063 
+ 1093      68617200 
+ 1094              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

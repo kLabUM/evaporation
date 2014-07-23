@@ -1,0 +1,2481 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Thermocouple_1.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Thermocouple_1_MultShift24,"ax",%progbits
+  19              		.align	2
+  20              		.global	Thermocouple_1_MultShift24
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Thermocouple_1_MultShift24, %function
+  24              	Thermocouple_1_MultShift24:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Thermocouple_1.c"
+   1:.\Generated_Source\PSoC5/Thermocouple_1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Thermocouple_1.c **** * File Name: Thermocouple_1.c
+   3:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Version 1.20
+   4:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+   5:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Description:
+   6:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  This file provides the source code to the API for the Thermocouple_1
+   7:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  component
+   8:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+   9:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Note:
+  10:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  None
+  11:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+  12:.\Generated_Source\PSoC5/Thermocouple_1.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Copyright 2012-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/Thermocouple_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC5/Thermocouple_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC5/Thermocouple_1.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/Thermocouple_1.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  19:.\Generated_Source\PSoC5/Thermocouple_1.c **** #include "Thermocouple_1.h"
+  20:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  21:.\Generated_Source\PSoC5/Thermocouple_1.c **** #if(!CY_PSOC3)
+  22:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  23:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /*******************************************************************************
+  24:.\Generated_Source\PSoC5/Thermocouple_1.c ****     * Function Name: Thermocouple_1_MultShift24
+  25:.\Generated_Source\PSoC5/Thermocouple_1.c ****     ********************************************************************************
+  26:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *
+  27:.\Generated_Source\PSoC5/Thermocouple_1.c ****     * Summary:
+  28:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Performs the math function (op1 * op2) >> 24 using 64 bit arithmetic without
+  29:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  any loss of precision and without overflow.
+  30:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *
+  31:.\Generated_Source\PSoC5/Thermocouple_1.c ****     * Parameters:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  op1: Signed 32-bit operand
+  33:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  op2: Signed 24-bit operand
+  34:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *
+  35:.\Generated_Source\PSoC5/Thermocouple_1.c ****     * Return:
+  36:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Signed 32-bit result of the math calculation
+  37:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *
+  38:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *******************************************************************************/
+  39:.\Generated_Source\PSoC5/Thermocouple_1.c ****     int32 Thermocouple_1_MultShift24(int32 op1, int32 op2) 
+  40:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+  27              		.loc 1 40 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 2DE9F003 		push	{r4, r5, r6, r7, r8, r9}
+  33              	.LCFI0:
+  34              		.cfi_def_cfa_offset 24
+  35              		.cfi_offset 4, -24
+  36              		.cfi_offset 5, -20
+  37              		.cfi_offset 6, -16
+  38              		.cfi_offset 7, -12
+  39              		.cfi_offset 8, -8
+  40              		.cfi_offset 9, -4
+  41 0004 84B0     		sub	sp, sp, #16
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 40
+  44 0006 00AF     		add	r7, sp, #0
+  45              	.LCFI2:
+  46              		.cfi_def_cfa_register 7
+  47 0008 7860     		str	r0, [r7, #4]
+  48 000a 3960     		str	r1, [r7, #0]
+  41:.\Generated_Source\PSoC5/Thermocouple_1.c ****         int64 result=0;
+  49              		.loc 1 41 0
+  50 000c 4FF00002 		mov	r2, #0
+  51 0010 4FF00003 		mov	r3, #0
+  52 0014 C7E90223 		strd	r2, [r7, #8]
+  42:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  43:.\Generated_Source\PSoC5/Thermocouple_1.c ****         result = (int64)op1 * (int64)op2;
+  53              		.loc 1 43 0
+  54 0018 7B68     		ldr	r3, [r7, #4]
+  55 001a 1846     		mov	r0, r3
+  56 001c 4FEAE071 		asr	r1, r0, #31
+  57 0020 3E68     		ldr	r6, [r7, #0]
+  58 0022 3246     		mov	r2, r6
+  59 0024 4FEAE273 		asr	r3, r2, #31
+  60 0028 02FB01FC 		mul	ip, r2, r1
+  61 002c 00FB03F6 		mul	r6, r0, r3
+  62 0030 6644     		add	r6, ip, r6
+  63 0032 A0FB0223 		umull	r2, r3, r0, r2
+  64 0036 F118     		adds	r1, r6, r3
+  65 0038 0B46     		mov	r3, r1
+  66 003a C7E90223 		strd	r2, [r7, #8]
+  67 003e C7E90223 		strd	r2, [r7, #8]
+  44:.\Generated_Source\PSoC5/Thermocouple_1.c ****         if (result < 0)
+  68              		.loc 1 44 0
+  69 0042 D7E90223 		ldrd	r2, [r7, #8]
+  70 0046 002A     		cmp	r2, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 3
+
+
+  71 0048 73F10001 		sbcs	r1, r3, #0
+  72 004c 1EDA     		bge	.L2
+  45:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+  46:.\Generated_Source\PSoC5/Thermocouple_1.c ****             result = -result;
+  73              		.loc 1 46 0
+  74 004e D7E90223 		ldrd	r2, [r7, #8]
+  75 0052 5242     		negs	r2, r2
+  76 0054 63EB4303 		sbc	r3, r3, r3, lsl #1
+  77 0058 C7E90223 		strd	r2, [r7, #8]
+  47:.\Generated_Source\PSoC5/Thermocouple_1.c ****             result = (int32)((uint64)((uint64)result >> Thermocouple_1_24BIT_SHIFTING));
+  78              		.loc 1 47 0
+  79 005c D7E90223 		ldrd	r2, [r7, #8]
+  80 0060 4FEA0321 		lsl	r1, r3, #8
+  81 0064 4FEA1268 		lsr	r8, r2, #24
+  82 0068 41EA0808 		orr	r8, r1, r8
+  83 006c 4FEA1369 		lsr	r9, r3, #24
+  84 0070 4146     		mov	r1, r8
+  85 0072 0A46     		mov	r2, r1
+  86 0074 4FEAE273 		asr	r3, r2, #31
+  87 0078 C7E90223 		strd	r2, [r7, #8]
+  48:.\Generated_Source\PSoC5/Thermocouple_1.c ****             result = -result;
+  88              		.loc 1 48 0
+  89 007c D7E90223 		ldrd	r2, [r7, #8]
+  90 0080 5242     		negs	r2, r2
+  91 0082 63EB4303 		sbc	r3, r3, r3, lsl #1
+  92 0086 C7E90223 		strd	r2, [r7, #8]
+  93 008a 0EE0     		b	.L3
+  94              	.L2:
+  49:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+  50:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else
+  51:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+  52:.\Generated_Source\PSoC5/Thermocouple_1.c ****             result = (int32)((uint64)((uint64)result >> Thermocouple_1_24BIT_SHIFTING));
+  95              		.loc 1 52 0
+  96 008c D7E90223 		ldrd	r2, [r7, #8]
+  97 0090 4FEA0321 		lsl	r1, r3, #8
+  98 0094 4FEA1264 		lsr	r4, r2, #24
+  99 0098 0C43     		orrs	r4, r4, r1
+ 100 009a 4FEA1365 		lsr	r5, r3, #24
+ 101 009e 2146     		mov	r1, r4
+ 102 00a0 0A46     		mov	r2, r1
+ 103 00a2 4FEAE273 		asr	r3, r2, #31
+ 104 00a6 C7E90223 		strd	r2, [r7, #8]
+ 105              	.L3:
+  53:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+  54:.\Generated_Source\PSoC5/Thermocouple_1.c ****         return (result);
+ 106              		.loc 1 54 0
+ 107 00aa BB68     		ldr	r3, [r7, #8]
+  55:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }        
+ 108              		.loc 1 55 0
+ 109 00ac 1846     		mov	r0, r3
+ 110 00ae 07F11007 		add	r7, r7, #16
+ 111 00b2 BD46     		mov	sp, r7
+ 112 00b4 BDE8F003 		pop	{r4, r5, r6, r7, r8, r9}
+ 113 00b8 7047     		bx	lr
+ 114              		.cfi_endproc
+ 115              	.LFE0:
+ 116              		.size	Thermocouple_1_MultShift24, .-Thermocouple_1_MultShift24
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 4
+
+
+ 117 00ba 00BF     		.section	.rodata
+ 118              		.align	2
+ 119              	.LC1:
+ 120 0000 00000000 		.word	0
+ 121 0004 00000000 		.word	0
+ 122 0008 B641E6FF 		.word	-1687114
+ 123 000c 0D472800 		.word	2639629
+ 124 0010 24820200 		.word	164388
+ 125 0014 B7446A02 		.word	40518839
+ 126 0018 96B6F0FF 		.word	-1001834
+ 127 001c EF410000 		.word	16879
+ 128 0020 89359BFA 		.word	-90491511
+ 129 0024 B9AC8BFF 		.word	-7623495
+ 130 0028 721FE5FF 		.word	-1761422
+ 131 002c 8444BC0B 		.word	196887684
+ 132 0030 F657EAFC 		.word	-51750922
+ 133 0034 4B912401 		.word	19173707
+ 134 0038 A7F66AF2 		.word	-227871065
+ 135 003c BA327DF5 		.word	-176344390
+ 136 0040 562C78FA 		.word	-92787626
+ 137 0044 EB5B1E08 		.word	136207339
+ 138 0048 831C06EC 		.word	-335143805
+ 139 004c 2EDC770E 		.word	242736174
+ 140 0050 1FA01EFE 		.word	-31547361
+ 141 0054 A16642EC 		.word	-331192671
+ 142 0058 F8EEA8EA 		.word	-358027528
+ 143 005c 00000000 		.word	0
+ 144 0060 CC36F7F7 		.word	-134793524
+ 145 0064 C9ADC210 		.word	281193929
+ 146 0068 00000000 		.word	0
+ 147 006c 00000000 		.word	0
+ 148 0070 09A688FA 		.word	-91707895
+ 149 0074 00000000 		.word	0
+ 150              		.section	.text.Thermocouple_1_GetTemperature,"ax",%progbits
+ 151              		.align	2
+ 152              		.global	Thermocouple_1_GetTemperature
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.type	Thermocouple_1_GetTemperature, %function
+ 156              	Thermocouple_1_GetTemperature:
+ 157              	.LFB1:
+  56:.\Generated_Source\PSoC5/Thermocouple_1.c **** #endif /* End (!CY_PSOC3) */
+  57:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  58:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  59:.\Generated_Source\PSoC5/Thermocouple_1.c **** /*******************************************************************************
+  60:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Function Name: Thermocouple_1_GetTemperature
+  61:.\Generated_Source\PSoC5/Thermocouple_1.c **** ********************************************************************************
+  62:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+  63:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Summary:
+  64:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  This function takes thermocouple voltage in microvolt as i/p and calculates
+  65:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  temperature corresponding to the thermocouple voltage. The order of the
+  66:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  polynomial and the polynomial coefficients used to convert voltage to
+  67:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  temperature are dependent on the type of thermocouple selected.
+  68:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+  69:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Parameters:
+  70:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  int32 voltage : Thermocouple voltage measured in microvolts.
+  71:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 5
+
+
+  72:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Return:
+  73:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  int32 : Temperature in 1/100 degree C
+  74:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+  75:.\Generated_Source\PSoC5/Thermocouple_1.c **** *******************************************************************************/
+  76:.\Generated_Source\PSoC5/Thermocouple_1.c **** int32 Thermocouple_1_GetTemperature(int32 voltage) 
+  77:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  78:.\Generated_Source\PSoC5/Thermocouple_1.c **** #if(CY_PSOC3)
+  79:.\Generated_Source\PSoC5/Thermocouple_1.c **** {
+  80:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  81:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /***************************************
+  82:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Customizer Generated Coefficients
+  83:.\Generated_Source\PSoC5/Thermocouple_1.c ****     ***************************************/
+  84:.\Generated_Source\PSoC5/Thermocouple_1.c ****     const int32 CYCODE Thermocouple_1_coeffVT[][3] = {{0, 0, -1687114},
+  85:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {2639629, 164388, 40518839},
+  86:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-1001834, 16879, -90491511},
+  87:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-7623495, -1761422, 196887684},
+  88:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-51750922, 19173707, -227871065},
+  89:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-176344390, -92787626, 136207339},
+  90:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-335143805, 242736174, -31547361},
+  91:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-331192671, -358027528, 0},
+  92:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-134793524, 281193929, 0},
+  93:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {0, -91707895, 0}};
+  94:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  95:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int32 CYCODE Thermocouple_1_voltRange[2] = {0, 20644};
+  96:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+  97:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int8 CYCODE Thermocouple_1_xScaleVT[3] = {13, 15, 16};
+  98:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int8 CYCODE Thermocouple_1_coefScaleVT[3] = {7, 1, 7};
+  99:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 100:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /* Variable to store temperature */
+ 101:.\Generated_Source\PSoC5/Thermocouple_1.c ****     float32 temp=0.0f;
+ 102:.\Generated_Source\PSoC5/Thermocouple_1.c ****     float32 voltageNorm=0.0f;
+ 103:.\Generated_Source\PSoC5/Thermocouple_1.c ****     uint8 i=0u;
+ 104:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 105:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #if (Thermocouple_1_VT_RANGE_LEN == Thermocouple_1_THREE)
+ 106:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 107:.\Generated_Source\PSoC5/Thermocouple_1.c ****         voltageNorm = (float32)voltage;
+ 108:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 109:.\Generated_Source\PSoC5/Thermocouple_1.c ****         if(voltage < Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_0] )
+ 110:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 111:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 112:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 113:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_0]) * voltageNorm
+ 114:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 115:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 116:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 117:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 118:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_1] )
+ 119:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 120:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 121:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 122:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_1]) * voltageNorm
+ 123:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 124:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 125:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 126:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 127:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_2] )
+ 128:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 6
+
+
+ 129:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 130:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 131:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_2]) * voltageNorm
+ 132:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 133:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 134:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 135:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 136:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else
+ 137:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 138:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 139:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 140:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_3]) * voltageNorm
+ 141:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 142:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 143:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 144:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 145:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 146:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #else
+ 147:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 148:.\Generated_Source\PSoC5/Thermocouple_1.c ****         voltageNorm = (float32)voltage;
+ 149:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 150:.\Generated_Source\PSoC5/Thermocouple_1.c ****         if(voltage < Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_0] )
+ 151:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 152:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 153:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 154:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_0]) * voltageNorm
+ 155:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 156:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 157:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 158:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 159:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_1] )
+ 160:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 161:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 162:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 163:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_1]) * voltageNorm
+ 164:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 165:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 166:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 167:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 168:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else
+ 169:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 170:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 171:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 172:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (temp + Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_MAS_2]) * voltageNorm
+ 173:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 174:.\Generated_Source\PSoC5/Thermocouple_1.c ****             temp = (temp + Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE
+ 175:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 176:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 177:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 178:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #endif /* End  Thermocouple_1_VT_RANGE_LEN == Thermocouple_1_THREE */
+ 179:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 180:.\Generated_Source\PSoC5/Thermocouple_1.c ****     return ((int32)(temp));
+ 181:.\Generated_Source\PSoC5/Thermocouple_1.c **** }
+ 182:.\Generated_Source\PSoC5/Thermocouple_1.c **** #else
+ 183:.\Generated_Source\PSoC5/Thermocouple_1.c **** {
+ 158              		.loc 1 183 0
+ 159              		.cfi_startproc
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 7
+
+
+ 160              		@ args = 0, pretend = 0, frame = 224
+ 161              		@ frame_needed = 1, uses_anonymous_args = 0
+ 162 0000 2DE9B04F 		push	{r4, r5, r7, r8, r9, sl, fp, lr}
+ 163              	.LCFI3:
+ 164              		.cfi_def_cfa_offset 32
+ 165              		.cfi_offset 4, -32
+ 166              		.cfi_offset 5, -28
+ 167              		.cfi_offset 7, -24
+ 168              		.cfi_offset 8, -20
+ 169              		.cfi_offset 9, -16
+ 170              		.cfi_offset 10, -12
+ 171              		.cfi_offset 11, -8
+ 172              		.cfi_offset 14, -4
+ 173 0004 B8B0     		sub	sp, sp, #224
+ 174              	.LCFI4:
+ 175              		.cfi_def_cfa_offset 256
+ 176 0006 00AF     		add	r7, sp, #0
+ 177              	.LCFI5:
+ 178              		.cfi_def_cfa_register 7
+ 179 0008 7865     		str	r0, [r7, #84]
+ 184:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 185:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /***************************************
+ 186:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Customizer Generated Coefficients
+ 187:.\Generated_Source\PSoC5/Thermocouple_1.c ****     ***************************************/
+ 188:.\Generated_Source\PSoC5/Thermocouple_1.c ****     const int32 CYCODE Thermocouple_1_coeffVT[][3] = {{0, 0, -1687114},
+ 180              		.loc 1 188 0
+ 181 000a 40F20003 		movw	r3, #:lower16:.LC1
+ 182 000e C0F20003 		movt	r3, #:upper16:.LC1
+ 183 0012 07F16001 		add	r1, r7, #96
+ 184 0016 1A46     		mov	r2, r3
+ 185 0018 4FF07803 		mov	r3, #120
+ 186 001c 0846     		mov	r0, r1
+ 187 001e 1146     		mov	r1, r2
+ 188 0020 1A46     		mov	r2, r3
+ 189 0022 FFF7FEFF 		bl	memcpy
+ 189:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {2639629, 164388, 40518839},
+ 190:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-1001834, 16879, -90491511},
+ 191:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-7623495, -1761422, 196887684},
+ 192:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-51750922, 19173707, -227871065},
+ 193:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-176344390, -92787626, 136207339},
+ 194:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-335143805, 242736174, -31547361},
+ 195:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-331192671, -358027528, 0},
+ 196:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {-134793524, 281193929, 0},
+ 197:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                   {0, -91707895, 0}};
+ 198:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 199:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int32 CYCODE Thermocouple_1_voltRange[2] = {0, 20644};
+ 190              		.loc 1 199 0
+ 191 0026 4FF00003 		mov	r3, #0
+ 192 002a BB65     		str	r3, [r7, #88]
+ 193 002c 45F2A403 		movw	r3, #20644
+ 194 0030 FB65     		str	r3, [r7, #92]
+ 200:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 201:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int8 CYCODE Thermocouple_1_xScaleVT[3] = {13, 15, 16};
+ 202:.\Generated_Source\PSoC5/Thermocouple_1.c **** const int8 CYCODE Thermocouple_1_coefScaleVT[3] = {7, 1, 7};
+ 203:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 204:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /* Variable to store temperature */
+ 205:.\Generated_Source\PSoC5/Thermocouple_1.c ****     int32 temp=0;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 8
+
+
+ 195              		.loc 1 205 0
+ 196 0032 4FF00003 		mov	r3, #0
+ 197 0036 C7F8DC30 		str	r3, [r7, #220]
+ 206:.\Generated_Source\PSoC5/Thermocouple_1.c ****     uint8 i=0u;
+ 198              		.loc 1 206 0
+ 199 003a 4FF00003 		mov	r3, #0
+ 200 003e 87F8DB30 		strb	r3, [r7, #219]
+ 207:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 208:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #if (Thermocouple_1_VT_RANGE_LEN == Thermocouple_1_THREE)
+ 209:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 210:.\Generated_Source\PSoC5/Thermocouple_1.c ****         if(voltage < Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_0] )
+ 211:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 212:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 213:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 214:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 215:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 216:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 217:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_0]
+ 218:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 219:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 220:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 221:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 222:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 223:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 224:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_0]
+ 225:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }            
+ 226:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 227:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 228:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 229:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 230:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 231:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 232:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 233:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0] < 0)
+ 234:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 235:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 236:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 237:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0]));
+ 238:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 239:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 240:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 241:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 242:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 243:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 244:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0]));
+ 245:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 246:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 247:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 248:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_1] )
+ 249:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 250:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 251:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 252:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 253:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 254:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 255:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_1]
+ 256:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 9
+
+
+ 257:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 258:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 259:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 260:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 261:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 262:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_1]
+ 263:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }              
+ 264:.\Generated_Source\PSoC5/Thermocouple_1.c ****             
+ 265:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 266:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 267:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 268:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 269:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 270:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 271:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1] < 0)
+ 272:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 273:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 274:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 275:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1]));
+ 276:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 277:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 278:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 279:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 280:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 281:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 282:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1]));
+ 283:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 284:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 285:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 286:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 287:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_2] )
+ 288:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 289:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 290:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 291:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 292:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 293:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 294:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_2]
+ 295:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 296:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 297:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 298:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 299:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 300:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 301:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_2]
+ 302:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }              
+ 303:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 304:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 305:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 306:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 307:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 308:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 309:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 310:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2] < 0)
+ 311:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 312:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 313:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 10
+
+
+ 314:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2]));
+ 315:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 316:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 317:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 318:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 319:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 320:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 321:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2]));
+ 322:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 323:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 324:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 325:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else
+ 326:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 327:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 328:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 329:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 330:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 331:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 332:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_3]
+ 333:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 334:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 335:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 336:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 337:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 338:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 339:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_3]
+ 340:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }              
+ 341:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 342:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 343:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 344:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 345:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 346:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 347:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 348:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_3] < 0)
+ 349:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 350:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 351:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 352:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_3]));
+ 353:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 354:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 355:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 356:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 357:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 358:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 359:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_3]));
+ 360:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 361:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 362:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 363:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 364:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #else
+ 365:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 366:.\Generated_Source\PSoC5/Thermocouple_1.c ****         if(voltage < Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_0] )
+ 201              		.loc 1 366 0
+ 202 0042 BA6D     		ldr	r2, [r7, #88]
+ 203 0044 7B6D     		ldr	r3, [r7, #84]
+ 204 0046 9A42     		cmp	r2, r3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 11
+
+
+ 205 0048 40F3CE80 		ble	.L6
+ 367:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 368:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 206              		.loc 1 368 0
+ 207 004c 7B6D     		ldr	r3, [r7, #84]
+ 208 004e 002B     		cmp	r3, #0
+ 209 0050 30DA     		bge	.L7
+ 369:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 370:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 210              		.loc 1 370 0
+ 211 0052 7B6D     		ldr	r3, [r7, #84]
+ 212 0054 C3F10003 		rsb	r3, r3, #0
+ 213 0058 7B65     		str	r3, [r7, #84]
+ 371:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 214              		.loc 1 371 0
+ 215 005a 796D     		ldr	r1, [r7, #84]
+ 216 005c 0A46     		mov	r2, r1
+ 217 005e 4FEAE273 		asr	r3, r2, #31
+ 372:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 373:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_0]
+ 218              		.loc 1 373 0
+ 219 0062 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 220 0066 C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 221 006a 0978     		ldrb	r1, [r1, #0]	@ zero_extendqisi2
+ 372:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 222              		.loc 1 372 0
+ 223 006c 49B2     		sxtb	r1, r1
+ 224 006e C1F11801 		rsb	r1, r1, #24
+ 371:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 225              		.loc 1 371 0
+ 226 0072 A1F12000 		sub	r0, r1, #32
+ 227 0076 02FA00F4 		lsl	r4, r2, r0
+ 228 007a C1F12005 		rsb	r5, r1, #32
+ 229 007e 22FA05F5 		lsr	r5, r2, r5
+ 230 0082 03FA01FC 		lsl	ip, r3, r1
+ 231 0086 C7F84CC0 		str	ip, [r7, #76]
+ 232 008a D7F84CC0 		ldr	ip, [r7, #76]
+ 233 008e 45EA0C0C 		orr	ip, r5, ip
+ 234 0092 C7F84CC0 		str	ip, [r7, #76]
+ 235 0096 0028     		cmp	r0, #0
+ 236 0098 F86C     		ldr	r0, [r7, #76]
+ 237 009a A8BF     		it	ge
+ 238 009c 2046     		movge	r0, r4
+ 239 009e F864     		str	r0, [r7, #76]
+ 240 00a0 02FA01F1 		lsl	r1, r2, r1
+ 241 00a4 B964     		str	r1, [r7, #72]
+ 242 00a6 BB6C     		ldr	r3, [r7, #72]
+ 243 00a8 7B65     		str	r3, [r7, #84]
+ 374:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 244              		.loc 1 374 0
+ 245 00aa 7B6D     		ldr	r3, [r7, #84]
+ 246 00ac C3F10003 		rsb	r3, r3, #0
+ 247 00b0 7B65     		str	r3, [r7, #84]
+ 248 00b2 27E0     		b	.L8
+ 249              	.L7:
+ 375:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 376:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 12
+
+
+ 377:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 378:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 250              		.loc 1 378 0
+ 251 00b4 796D     		ldr	r1, [r7, #84]
+ 252 00b6 0A46     		mov	r2, r1
+ 253 00b8 4FEAE273 		asr	r3, r2, #31
+ 379:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 380:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_0]
+ 254              		.loc 1 380 0
+ 255 00bc 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 256 00c0 C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 257 00c4 0978     		ldrb	r1, [r1, #0]	@ zero_extendqisi2
+ 379:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 258              		.loc 1 379 0
+ 259 00c6 49B2     		sxtb	r1, r1
+ 260 00c8 C1F11801 		rsb	r1, r1, #24
+ 378:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 261              		.loc 1 378 0
+ 262 00cc A1F12000 		sub	r0, r1, #32
+ 263 00d0 02FA00F4 		lsl	r4, r2, r0
+ 264 00d4 C1F12005 		rsb	r5, r1, #32
+ 265 00d8 22FA05F5 		lsr	r5, r2, r5
+ 266 00dc 03FA01FC 		lsl	ip, r3, r1
+ 267 00e0 C7F844C0 		str	ip, [r7, #68]
+ 268 00e4 D7F844C0 		ldr	ip, [r7, #68]
+ 269 00e8 45EA0C0C 		orr	ip, r5, ip
+ 270 00ec C7F844C0 		str	ip, [r7, #68]
+ 271 00f0 0028     		cmp	r0, #0
+ 272 00f2 786C     		ldr	r0, [r7, #68]
+ 273 00f4 A8BF     		it	ge
+ 274 00f6 2046     		movge	r0, r4
+ 275 00f8 7864     		str	r0, [r7, #68]
+ 276 00fa 02FA01F1 		lsl	r1, r2, r1
+ 277 00fe 3964     		str	r1, [r7, #64]
+ 278 0100 3B6C     		ldr	r3, [r7, #64]
+ 279 0102 7B65     		str	r3, [r7, #84]
+ 280              	.L8:
+ 381:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }            
+ 382:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 383:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 281              		.loc 1 383 0
+ 282 0104 4FF00903 		mov	r3, #9
+ 283 0108 87F8DB30 		strb	r3, [r7, #219]
+ 284 010c 1CE0     		b	.L9
+ 285              	.L10:
+ 384:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 385:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 286              		.loc 1 385 0 discriminator 2
+ 287 010e 97F8DB20 		ldrb	r2, [r7, #219]	@ zero_extendqisi2
+ 288 0112 1346     		mov	r3, r2
+ 289 0114 4FEA4303 		lsl	r3, r3, #1
+ 290 0118 9B18     		adds	r3, r3, r2
+ 291 011a 4FEA8303 		lsl	r3, r3, #2
+ 292 011e 07F1E002 		add	r2, r7, #224
+ 293 0122 D318     		adds	r3, r2, r3
+ 294 0124 A3F18003 		sub	r3, r3, #128
+ 295 0128 1A68     		ldr	r2, [r3, #0]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 13
+
+
+ 296 012a D7F8DC30 		ldr	r3, [r7, #220]
+ 297 012e D318     		adds	r3, r2, r3
+ 298 0130 1846     		mov	r0, r3
+ 299 0132 796D     		ldr	r1, [r7, #84]
+ 300 0134 FFF7FEFF 		bl	Thermocouple_1_MultShift24
+ 301 0138 C7F8DC00 		str	r0, [r7, #220]
+ 383:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 302              		.loc 1 383 0 discriminator 2
+ 303 013c 97F8DB30 		ldrb	r3, [r7, #219]
+ 304 0140 03F1FF33 		add	r3, r3, #-1
+ 305 0144 87F8DB30 		strb	r3, [r7, #219]
+ 306              	.L9:
+ 383:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 307              		.loc 1 383 0 is_stmt 0 discriminator 1
+ 308 0148 97F8DB30 		ldrb	r3, [r7, #219]	@ zero_extendqisi2
+ 309 014c 002B     		cmp	r3, #0
+ 310 014e DED1     		bne	.L10
+ 386:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 387:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 388:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 389:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0] < 0)
+ 311              		.loc 1 389 0 is_stmt 1
+ 312 0150 40F20003 		movw	r3, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 313 0154 C0F20003 		movt	r3, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 314 0158 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 315 015a 5BB2     		sxtb	r3, r3
+ 316 015c 002B     		cmp	r3, #0
+ 317 015e 21DA     		bge	.L11
+ 390:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 391:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 392:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 318              		.loc 1 392 0
+ 319 0160 3A6E     		ldr	r2, [r7, #96]
+ 391:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 320              		.loc 1 391 0
+ 321 0162 D7F8DC30 		ldr	r3, [r7, #220]
+ 322 0166 D118     		adds	r1, r2, r3
+ 323 0168 0A46     		mov	r2, r1
+ 324 016a 4FEAE273 		asr	r3, r2, #31
+ 393:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0]));
+ 325              		.loc 1 393 0
+ 326 016e 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 327 0172 C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 328 0176 0978     		ldrb	r1, [r1, #0]	@ zero_extendqisi2
+ 391:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 329              		.loc 1 391 0
+ 330 0178 49B2     		sxtb	r1, r1
+ 331 017a A1F12000 		sub	r0, r1, #32
+ 332 017e 02FA00F4 		lsl	r4, r2, r0
+ 333 0182 C1F12005 		rsb	r5, r1, #32
+ 334 0186 22FA05F5 		lsr	r5, r2, r5
+ 335 018a 03FA01FB 		lsl	fp, r3, r1
+ 336 018e 45EA0B0B 		orr	fp, r5, fp
+ 337 0192 0028     		cmp	r0, #0
+ 338 0194 A8BF     		it	ge
+ 339 0196 A346     		movge	fp, r4
+ 340 0198 02FA01FA 		lsl	sl, r2, r1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 14
+
+
+ 341 019c 5346     		mov	r3, sl
+ 342 019e C7F8DC30 		str	r3, [r7, #220]
+ 343 01a2 E5E1     		b	.L12
+ 344              	.L11:
+ 394:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 395:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 396:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 397:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 398:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 399:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 345              		.loc 1 399 0
+ 346 01a4 3A6E     		ldr	r2, [r7, #96]
+ 398:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 347              		.loc 1 398 0
+ 348 01a6 D7F8DC30 		ldr	r3, [r7, #220]
+ 349 01aa D118     		adds	r1, r2, r3
+ 350 01ac 0A46     		mov	r2, r1
+ 351 01ae 4FEAE273 		asr	r3, r2, #31
+ 400:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_0]));
+ 352              		.loc 1 400 0
+ 353 01b2 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 354 01b6 C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 355 01ba 0978     		ldrb	r1, [r1, #0]	@ zero_extendqisi2
+ 399:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 356              		.loc 1 399 0
+ 357 01bc 49B2     		sxtb	r1, r1
+ 358 01be A1F12000 		sub	r0, r1, #32
+ 359 01c2 23FA00F4 		lsr	r4, r3, r0
+ 360 01c6 C1F12005 		rsb	r5, r1, #32
+ 361 01ca 03FA05F5 		lsl	r5, r3, r5
+ 362 01ce 22FA01F8 		lsr	r8, r2, r1
+ 363 01d2 45EA0808 		orr	r8, r5, r8
+ 364 01d6 0028     		cmp	r0, #0
+ 365 01d8 A8BF     		it	ge
+ 366 01da A046     		movge	r8, r4
+ 367 01dc 23FA01F9 		lsr	r9, r3, r1
+ 398:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 368              		.loc 1 398 0
+ 369 01e0 4346     		mov	r3, r8
+ 370 01e2 C7F8DC30 		str	r3, [r7, #220]
+ 371 01e6 C3E1     		b	.L12
+ 372              	.L6:
+ 401:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 402:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 403:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 404:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else if(voltage <= Thermocouple_1_voltRange[Thermocouple_1_RANGE_MAS_1] )
+ 373              		.loc 1 404 0
+ 374 01e8 FA6D     		ldr	r2, [r7, #92]
+ 375 01ea 7B6D     		ldr	r3, [r7, #84]
+ 376 01ec 9A42     		cmp	r2, r3
+ 377 01ee C0F2E080 		blt	.L13
+ 405:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 406:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 378              		.loc 1 406 0
+ 379 01f2 7B6D     		ldr	r3, [r7, #84]
+ 380 01f4 002B     		cmp	r3, #0
+ 381 01f6 30DA     		bge	.L14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 15
+
+
+ 407:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 408:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 382              		.loc 1 408 0
+ 383 01f8 7B6D     		ldr	r3, [r7, #84]
+ 384 01fa C3F10003 		rsb	r3, r3, #0
+ 385 01fe 7B65     		str	r3, [r7, #84]
+ 409:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 386              		.loc 1 409 0
+ 387 0200 796D     		ldr	r1, [r7, #84]
+ 388 0202 0A46     		mov	r2, r1
+ 389 0204 4FEAE273 		asr	r3, r2, #31
+ 410:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 411:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_1]
+ 390              		.loc 1 411 0
+ 391 0208 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 392 020c C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 393 0210 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 410:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 394              		.loc 1 410 0
+ 395 0212 49B2     		sxtb	r1, r1
+ 396 0214 C1F11801 		rsb	r1, r1, #24
+ 409:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 397              		.loc 1 409 0
+ 398 0218 A1F12000 		sub	r0, r1, #32
+ 399 021c 02FA00F4 		lsl	r4, r2, r0
+ 400 0220 C1F12005 		rsb	r5, r1, #32
+ 401 0224 22FA05F5 		lsr	r5, r2, r5
+ 402 0228 03FA01FC 		lsl	ip, r3, r1
+ 403 022c C7F83CC0 		str	ip, [r7, #60]
+ 404 0230 D7F83CC0 		ldr	ip, [r7, #60]
+ 405 0234 45EA0C0C 		orr	ip, r5, ip
+ 406 0238 C7F83CC0 		str	ip, [r7, #60]
+ 407 023c 0028     		cmp	r0, #0
+ 408 023e F86B     		ldr	r0, [r7, #60]
+ 409 0240 A8BF     		it	ge
+ 410 0242 2046     		movge	r0, r4
+ 411 0244 F863     		str	r0, [r7, #60]
+ 412 0246 02FA01F1 		lsl	r1, r2, r1
+ 413 024a B963     		str	r1, [r7, #56]
+ 414 024c BB6B     		ldr	r3, [r7, #56]
+ 415 024e 7B65     		str	r3, [r7, #84]
+ 412:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 416              		.loc 1 412 0
+ 417 0250 7B6D     		ldr	r3, [r7, #84]
+ 418 0252 C3F10003 		rsb	r3, r3, #0
+ 419 0256 7B65     		str	r3, [r7, #84]
+ 420 0258 27E0     		b	.L15
+ 421              	.L14:
+ 413:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 414:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 415:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 416:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 422              		.loc 1 416 0
+ 423 025a 796D     		ldr	r1, [r7, #84]
+ 424 025c 0A46     		mov	r2, r1
+ 425 025e 4FEAE273 		asr	r3, r2, #31
+ 417:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 16
+
+
+ 418:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_1]
+ 426              		.loc 1 418 0
+ 427 0262 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 428 0266 C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 429 026a 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 417:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 430              		.loc 1 417 0
+ 431 026c 49B2     		sxtb	r1, r1
+ 432 026e C1F11801 		rsb	r1, r1, #24
+ 416:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 433              		.loc 1 416 0
+ 434 0272 A1F12000 		sub	r0, r1, #32
+ 435 0276 02FA00F4 		lsl	r4, r2, r0
+ 436 027a C1F12005 		rsb	r5, r1, #32
+ 437 027e 22FA05F5 		lsr	r5, r2, r5
+ 438 0282 03FA01FC 		lsl	ip, r3, r1
+ 439 0286 C7F834C0 		str	ip, [r7, #52]
+ 440 028a D7F834C0 		ldr	ip, [r7, #52]
+ 441 028e 45EA0C0C 		orr	ip, r5, ip
+ 442 0292 C7F834C0 		str	ip, [r7, #52]
+ 443 0296 0028     		cmp	r0, #0
+ 444 0298 786B     		ldr	r0, [r7, #52]
+ 445 029a A8BF     		it	ge
+ 446 029c 2046     		movge	r0, r4
+ 447 029e 7863     		str	r0, [r7, #52]
+ 448 02a0 02FA01F1 		lsl	r1, r2, r1
+ 449 02a4 3963     		str	r1, [r7, #48]
+ 450 02a6 3B6B     		ldr	r3, [r7, #48]
+ 451 02a8 7B65     		str	r3, [r7, #84]
+ 452              	.L15:
+ 419:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }              
+ 420:.\Generated_Source\PSoC5/Thermocouple_1.c ****             
+ 421:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 453              		.loc 1 421 0
+ 454 02aa 4FF00903 		mov	r3, #9
+ 455 02ae 87F8DB30 		strb	r3, [r7, #219]
+ 456 02b2 1CE0     		b	.L16
+ 457              	.L17:
+ 422:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 423:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 458              		.loc 1 423 0 discriminator 2
+ 459 02b4 97F8DB20 		ldrb	r2, [r7, #219]	@ zero_extendqisi2
+ 460 02b8 1346     		mov	r3, r2
+ 461 02ba 4FEA4303 		lsl	r3, r3, #1
+ 462 02be 9B18     		adds	r3, r3, r2
+ 463 02c0 4FEA8303 		lsl	r3, r3, #2
+ 464 02c4 07F1E002 		add	r2, r7, #224
+ 465 02c8 D318     		adds	r3, r2, r3
+ 466 02ca A3F17C03 		sub	r3, r3, #124
+ 467 02ce 1A68     		ldr	r2, [r3, #0]
+ 468 02d0 D7F8DC30 		ldr	r3, [r7, #220]
+ 469 02d4 D318     		adds	r3, r2, r3
+ 470 02d6 1846     		mov	r0, r3
+ 471 02d8 796D     		ldr	r1, [r7, #84]
+ 472 02da FFF7FEFF 		bl	Thermocouple_1_MultShift24
+ 473 02de C7F8DC00 		str	r0, [r7, #220]
+ 421:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 17
+
+
+ 474              		.loc 1 421 0 discriminator 2
+ 475 02e2 97F8DB30 		ldrb	r3, [r7, #219]
+ 476 02e6 03F1FF33 		add	r3, r3, #-1
+ 477 02ea 87F8DB30 		strb	r3, [r7, #219]
+ 478              	.L16:
+ 421:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 479              		.loc 1 421 0 is_stmt 0 discriminator 1
+ 480 02ee 97F8DB30 		ldrb	r3, [r7, #219]	@ zero_extendqisi2
+ 481 02f2 002B     		cmp	r3, #0
+ 482 02f4 DED1     		bne	.L17
+ 424:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 425:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 426:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 427:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1] < 0)
+ 483              		.loc 1 427 0 is_stmt 1
+ 484 02f6 40F20003 		movw	r3, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 485 02fa C0F20003 		movt	r3, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 486 02fe 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 487 0300 5BB2     		sxtb	r3, r3
+ 488 0302 002B     		cmp	r3, #0
+ 489 0304 2ADA     		bge	.L18
+ 428:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 429:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 430:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 490              		.loc 1 430 0
+ 491 0306 7A6E     		ldr	r2, [r7, #100]
+ 429:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 492              		.loc 1 429 0
+ 493 0308 D7F8DC30 		ldr	r3, [r7, #220]
+ 494 030c D118     		adds	r1, r2, r3
+ 495 030e 0A46     		mov	r2, r1
+ 496 0310 4FEAE273 		asr	r3, r2, #31
+ 431:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1]));
+ 497              		.loc 1 431 0
+ 498 0314 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 499 0318 C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 500 031c 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 429:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 501              		.loc 1 429 0
+ 502 031e 49B2     		sxtb	r1, r1
+ 503 0320 A1F12000 		sub	r0, r1, #32
+ 504 0324 02FA00F4 		lsl	r4, r2, r0
+ 505 0328 C1F12005 		rsb	r5, r1, #32
+ 506 032c 22FA05F5 		lsr	r5, r2, r5
+ 507 0330 03FA01FC 		lsl	ip, r3, r1
+ 508 0334 C7F82CC0 		str	ip, [r7, #44]
+ 509 0338 D7F82CC0 		ldr	ip, [r7, #44]
+ 510 033c 45EA0C0C 		orr	ip, r5, ip
+ 511 0340 C7F82CC0 		str	ip, [r7, #44]
+ 512 0344 0028     		cmp	r0, #0
+ 513 0346 F86A     		ldr	r0, [r7, #44]
+ 514 0348 A8BF     		it	ge
+ 515 034a 2046     		movge	r0, r4
+ 516 034c F862     		str	r0, [r7, #44]
+ 517 034e 02FA01F1 		lsl	r1, r2, r1
+ 518 0352 B962     		str	r1, [r7, #40]
+ 519 0354 BB6A     		ldr	r3, [r7, #40]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 18
+
+
+ 520 0356 C7F8DC30 		str	r3, [r7, #220]
+ 521 035a 09E1     		b	.L12
+ 522              	.L18:
+ 432:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 433:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 434:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 435:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 436:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 437:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 523              		.loc 1 437 0
+ 524 035c 7A6E     		ldr	r2, [r7, #100]
+ 436:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 525              		.loc 1 436 0
+ 526 035e D7F8DC30 		ldr	r3, [r7, #220]
+ 527 0362 D118     		adds	r1, r2, r3
+ 528 0364 0A46     		mov	r2, r1
+ 529 0366 4FEAE273 		asr	r3, r2, #31
+ 438:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_1]));
+ 530              		.loc 1 438 0
+ 531 036a 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 532 036e C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 533 0372 4978     		ldrb	r1, [r1, #1]	@ zero_extendqisi2
+ 437:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 534              		.loc 1 437 0
+ 535 0374 49B2     		sxtb	r1, r1
+ 536 0376 A1F12000 		sub	r0, r1, #32
+ 537 037a 23FA00F4 		lsr	r4, r3, r0
+ 538 037e C1F12005 		rsb	r5, r1, #32
+ 539 0382 03FA05F5 		lsl	r5, r3, r5
+ 540 0386 22FA01FC 		lsr	ip, r2, r1
+ 541 038a C7F820C0 		str	ip, [r7, #32]
+ 542 038e D7F820C0 		ldr	ip, [r7, #32]
+ 543 0392 45EA0C0C 		orr	ip, r5, ip
+ 544 0396 C7F820C0 		str	ip, [r7, #32]
+ 545 039a 0028     		cmp	r0, #0
+ 546 039c 386A     		ldr	r0, [r7, #32]
+ 547 039e A8BF     		it	ge
+ 548 03a0 2046     		movge	r0, r4
+ 549 03a2 3862     		str	r0, [r7, #32]
+ 550 03a4 23FA01F1 		lsr	r1, r3, r1
+ 551 03a8 7962     		str	r1, [r7, #36]
+ 436:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 552              		.loc 1 436 0
+ 553 03aa 3B6A     		ldr	r3, [r7, #32]
+ 554 03ac C7F8DC30 		str	r3, [r7, #220]
+ 555 03b0 DEE0     		b	.L12
+ 556              	.L13:
+ 439:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 440:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 441:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 442:.\Generated_Source\PSoC5/Thermocouple_1.c ****         else
+ 443:.\Generated_Source\PSoC5/Thermocouple_1.c ****         {
+ 444:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if (voltage < 0)
+ 557              		.loc 1 444 0
+ 558 03b2 7B6D     		ldr	r3, [r7, #84]
+ 559 03b4 002B     		cmp	r3, #0
+ 560 03b6 30DA     		bge	.L19
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 19
+
+
+ 445:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 446:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 561              		.loc 1 446 0
+ 562 03b8 7B6D     		ldr	r3, [r7, #84]
+ 563 03ba C3F10003 		rsb	r3, r3, #0
+ 564 03be 7B65     		str	r3, [r7, #84]
+ 447:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 565              		.loc 1 447 0
+ 566 03c0 796D     		ldr	r1, [r7, #84]
+ 567 03c2 0A46     		mov	r2, r1
+ 568 03c4 4FEAE273 		asr	r3, r2, #31
+ 448:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 449:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_2]
+ 569              		.loc 1 449 0
+ 570 03c8 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 571 03cc C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 572 03d0 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 448:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 573              		.loc 1 448 0
+ 574 03d2 49B2     		sxtb	r1, r1
+ 575 03d4 C1F11801 		rsb	r1, r1, #24
+ 447:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 576              		.loc 1 447 0
+ 577 03d8 A1F12000 		sub	r0, r1, #32
+ 578 03dc 02FA00F4 		lsl	r4, r2, r0
+ 579 03e0 C1F12005 		rsb	r5, r1, #32
+ 580 03e4 22FA05F5 		lsr	r5, r2, r5
+ 581 03e8 03FA01FC 		lsl	ip, r3, r1
+ 582 03ec C7F81CC0 		str	ip, [r7, #28]
+ 583 03f0 D7F81CC0 		ldr	ip, [r7, #28]
+ 584 03f4 45EA0C0C 		orr	ip, r5, ip
+ 585 03f8 C7F81CC0 		str	ip, [r7, #28]
+ 586 03fc 0028     		cmp	r0, #0
+ 587 03fe F869     		ldr	r0, [r7, #28]
+ 588 0400 A8BF     		it	ge
+ 589 0402 2046     		movge	r0, r4
+ 590 0404 F861     		str	r0, [r7, #28]
+ 591 0406 02FA01F1 		lsl	r1, r2, r1
+ 592 040a B961     		str	r1, [r7, #24]
+ 593 040c BB69     		ldr	r3, [r7, #24]
+ 594 040e 7B65     		str	r3, [r7, #84]
+ 450:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = -voltage;
+ 595              		.loc 1 450 0
+ 596 0410 7B6D     		ldr	r3, [r7, #84]
+ 597 0412 C3F10003 		rsb	r3, r3, #0
+ 598 0416 7B65     		str	r3, [r7, #84]
+ 599 0418 27E0     		b	.L20
+ 600              	.L19:
+ 451:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 452:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 453:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 454:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 601              		.loc 1 454 0
+ 602 041a 796D     		ldr	r1, [r7, #84]
+ 603 041c 0A46     		mov	r2, r1
+ 604 041e 4FEAE273 		asr	r3, r2, #31
+ 455:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 20
+
+
+ 456:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 Thermocouple_1_xScaleVT[Thermocouple_1_RANGE_MAS_2]
+ 605              		.loc 1 456 0
+ 606 0422 40F20001 		movw	r1, #:lower16:Thermocouple_1_xScaleVT.4742
+ 607 0426 C0F20001 		movt	r1, #:upper16:Thermocouple_1_xScaleVT.4742
+ 608 042a 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 455:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                (Thermocouple_1_IN_NORMALIZATION_VT - 
+ 609              		.loc 1 455 0
+ 610 042c 49B2     		sxtb	r1, r1
+ 611 042e C1F11801 		rsb	r1, r1, #24
+ 454:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 voltage = (int32)((uint64)((uint64)voltage << 
+ 612              		.loc 1 454 0
+ 613 0432 A1F12000 		sub	r0, r1, #32
+ 614 0436 02FA00F4 		lsl	r4, r2, r0
+ 615 043a C1F12005 		rsb	r5, r1, #32
+ 616 043e 22FA05F5 		lsr	r5, r2, r5
+ 617 0442 03FA01FC 		lsl	ip, r3, r1
+ 618 0446 C7F814C0 		str	ip, [r7, #20]
+ 619 044a D7F814C0 		ldr	ip, [r7, #20]
+ 620 044e 45EA0C0C 		orr	ip, r5, ip
+ 621 0452 C7F814C0 		str	ip, [r7, #20]
+ 622 0456 0028     		cmp	r0, #0
+ 623 0458 7869     		ldr	r0, [r7, #20]
+ 624 045a A8BF     		it	ge
+ 625 045c 2046     		movge	r0, r4
+ 626 045e 7861     		str	r0, [r7, #20]
+ 627 0460 02FA01F1 		lsl	r1, r2, r1
+ 628 0464 3961     		str	r1, [r7, #16]
+ 629 0466 3B69     		ldr	r3, [r7, #16]
+ 630 0468 7B65     		str	r3, [r7, #84]
+ 631              	.L20:
+ 457:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }              
+ 458:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 459:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 632              		.loc 1 459 0
+ 633 046a 4FF00903 		mov	r3, #9
+ 634 046e 87F8DB30 		strb	r3, [r7, #219]
+ 635 0472 1CE0     		b	.L21
+ 636              	.L22:
+ 460:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 461:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = Thermocouple_1_MultShift24((Thermocouple_1_coeffVT[i][Thermocouple_1_RANGE_M
+ 637              		.loc 1 461 0 discriminator 2
+ 638 0474 97F8DB20 		ldrb	r2, [r7, #219]	@ zero_extendqisi2
+ 639 0478 1346     		mov	r3, r2
+ 640 047a 4FEA4303 		lsl	r3, r3, #1
+ 641 047e 9B18     		adds	r3, r3, r2
+ 642 0480 4FEA8303 		lsl	r3, r3, #2
+ 643 0484 07F1E002 		add	r2, r7, #224
+ 644 0488 D318     		adds	r3, r2, r3
+ 645 048a A3F17803 		sub	r3, r3, #120
+ 646 048e 1A68     		ldr	r2, [r3, #0]
+ 647 0490 D7F8DC30 		ldr	r3, [r7, #220]
+ 648 0494 D318     		adds	r3, r2, r3
+ 649 0496 1846     		mov	r0, r3
+ 650 0498 796D     		ldr	r1, [r7, #84]
+ 651 049a FFF7FEFF 		bl	Thermocouple_1_MultShift24
+ 652 049e C7F8DC00 		str	r0, [r7, #220]
+ 459:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 21
+
+
+ 653              		.loc 1 459 0 discriminator 2
+ 654 04a2 97F8DB30 		ldrb	r3, [r7, #219]
+ 655 04a6 03F1FF33 		add	r3, r3, #-1
+ 656 04aa 87F8DB30 		strb	r3, [r7, #219]
+ 657              	.L21:
+ 459:.\Generated_Source\PSoC5/Thermocouple_1.c ****             for (i=Thermocouple_1_ORDER_VT - 1u; i > 0u; i--)
+ 658              		.loc 1 459 0 is_stmt 0 discriminator 1
+ 659 04ae 97F8DB30 		ldrb	r3, [r7, #219]	@ zero_extendqisi2
+ 660 04b2 002B     		cmp	r3, #0
+ 661 04b4 DED1     		bne	.L22
+ 462:.\Generated_Source\PSoC5/Thermocouple_1.c ****                        temp), voltage);
+ 463:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 464:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 465:.\Generated_Source\PSoC5/Thermocouple_1.c ****             if(Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2] < 0)
+ 662              		.loc 1 465 0 is_stmt 1
+ 663 04b6 40F20003 		movw	r3, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 664 04ba C0F20003 		movt	r3, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 665 04be 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 666 04c0 5BB2     		sxtb	r3, r3
+ 667 04c2 002B     		cmp	r3, #0
+ 668 04c4 2ADA     		bge	.L23
+ 466:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 467:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 468:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 669              		.loc 1 468 0
+ 670 04c6 BA6E     		ldr	r2, [r7, #104]
+ 467:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 671              		.loc 1 467 0
+ 672 04c8 D7F8DC30 		ldr	r3, [r7, #220]
+ 673 04cc D118     		adds	r1, r2, r3
+ 674 04ce 0A46     		mov	r2, r1
+ 675 04d0 4FEAE273 		asr	r3, r2, #31
+ 469:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2]));
+ 676              		.loc 1 469 0
+ 677 04d4 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 678 04d8 C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 679 04dc 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 467:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint64)((uint64)(int32)(temp + 
+ 680              		.loc 1 467 0
+ 681 04de 49B2     		sxtb	r1, r1
+ 682 04e0 A1F12000 		sub	r0, r1, #32
+ 683 04e4 02FA00F4 		lsl	r4, r2, r0
+ 684 04e8 C1F12005 		rsb	r5, r1, #32
+ 685 04ec 22FA05F5 		lsr	r5, r2, r5
+ 686 04f0 03FA01FC 		lsl	ip, r3, r1
+ 687 04f4 C7F80CC0 		str	ip, [r7, #12]
+ 688 04f8 D7F80CC0 		ldr	ip, [r7, #12]
+ 689 04fc 45EA0C0C 		orr	ip, r5, ip
+ 690 0500 C7F80CC0 		str	ip, [r7, #12]
+ 691 0504 0028     		cmp	r0, #0
+ 692 0506 F868     		ldr	r0, [r7, #12]
+ 693 0508 A8BF     		it	ge
+ 694 050a 2046     		movge	r0, r4
+ 695 050c F860     		str	r0, [r7, #12]
+ 696 050e 02FA01F1 		lsl	r1, r2, r1
+ 697 0512 B960     		str	r1, [r7, #8]
+ 698 0514 BB68     		ldr	r3, [r7, #8]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 22
+
+
+ 699 0516 C7F8DC30 		str	r3, [r7, #220]
+ 700 051a 29E0     		b	.L12
+ 701              	.L23:
+ 470:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 471:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 472:.\Generated_Source\PSoC5/Thermocouple_1.c ****             else
+ 473:.\Generated_Source\PSoC5/Thermocouple_1.c ****             {
+ 474:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 475:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 702              		.loc 1 475 0
+ 703 051c BA6E     		ldr	r2, [r7, #104]
+ 474:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 704              		.loc 1 474 0
+ 705 051e D7F8DC30 		ldr	r3, [r7, #220]
+ 706 0522 D118     		adds	r1, r2, r3
+ 707 0524 0A46     		mov	r2, r1
+ 708 0526 4FEAE273 		asr	r3, r2, #31
+ 476:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coefScaleVT[Thermocouple_1_RANGE_MAS_2]));
+ 709              		.loc 1 476 0
+ 710 052a 40F20001 		movw	r1, #:lower16:Thermocouple_1_coefScaleVT.4743
+ 711 052e C0F20001 		movt	r1, #:upper16:Thermocouple_1_coefScaleVT.4743
+ 712 0532 8978     		ldrb	r1, [r1, #2]	@ zero_extendqisi2
+ 475:.\Generated_Source\PSoC5/Thermocouple_1.c ****                         Thermocouple_1_coeffVT[Thermocouple_1_FIRST_EL_MAS][Thermocouple_1_RANGE_MA
+ 713              		.loc 1 475 0
+ 714 0534 49B2     		sxtb	r1, r1
+ 715 0536 A1F12000 		sub	r0, r1, #32
+ 716 053a 23FA00F4 		lsr	r4, r3, r0
+ 717 053e C1F12005 		rsb	r5, r1, #32
+ 718 0542 03FA05F5 		lsl	r5, r3, r5
+ 719 0546 22FA01FC 		lsr	ip, r2, r1
+ 720 054a C7F800C0 		str	ip, [r7, #0]
+ 721 054e D7F800C0 		ldr	ip, [r7, #0]
+ 722 0552 45EA0C0C 		orr	ip, r5, ip
+ 723 0556 C7F800C0 		str	ip, [r7, #0]
+ 724 055a 0028     		cmp	r0, #0
+ 725 055c 3868     		ldr	r0, [r7, #0]
+ 726 055e A8BF     		it	ge
+ 727 0560 2046     		movge	r0, r4
+ 728 0562 3860     		str	r0, [r7, #0]
+ 729 0564 23FA01F1 		lsr	r1, r3, r1
+ 730 0568 7960     		str	r1, [r7, #4]
+ 474:.\Generated_Source\PSoC5/Thermocouple_1.c ****                 temp = (int32)((uint32)((uint64)(int32)(temp + 
+ 731              		.loc 1 474 0
+ 732 056a 3B68     		ldr	r3, [r7, #0]
+ 733 056c C7F8DC30 		str	r3, [r7, #220]
+ 734              	.L12:
+ 477:.\Generated_Source\PSoC5/Thermocouple_1.c ****             }
+ 478:.\Generated_Source\PSoC5/Thermocouple_1.c ****         }
+ 479:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 480:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 481:.\Generated_Source\PSoC5/Thermocouple_1.c ****     #endif /* End Thermocouple_1_VT_RANGE_LEN == Thermocouple_1_THREE */
+ 482:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 483:.\Generated_Source\PSoC5/Thermocouple_1.c ****     return (temp);
+ 735              		.loc 1 483 0
+ 736 0570 D7F8DC30 		ldr	r3, [r7, #220]
+ 484:.\Generated_Source\PSoC5/Thermocouple_1.c **** }
+ 737              		.loc 1 484 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 23
+
+
+ 738 0574 1846     		mov	r0, r3
+ 739 0576 07F1E007 		add	r7, r7, #224
+ 740 057a BD46     		mov	sp, r7
+ 741 057c BDE8B08F 		pop	{r4, r5, r7, r8, r9, sl, fp, pc}
+ 742              		.cfi_endproc
+ 743              	.LFE1:
+ 744              		.size	Thermocouple_1_GetTemperature, .-Thermocouple_1_GetTemperature
+ 745              		.section	.rodata
+ 746              		.align	2
+ 747              	.LC0:
+ 748 0078 00000000 		.word	0
+ 749 007c 27500600 		.word	413735
+ 750 0080 AC450100 		.word	83372
+ 751 0084 79E6FDFF 		.word	-137607
+ 752 0088 08A01000 		.word	1089544
+ 753 008c 4BBF67FF 		.word	-9978037
+ 754 0090 48C89802 		.word	43567176
+ 755 0094 99994BFA 		.word	-95708775
+ 756 0098 F24E0205 		.word	84037362
+ 757              		.section	.text.Thermocouple_1_GetVoltage,"ax",%progbits
+ 758              		.align	2
+ 759              		.global	Thermocouple_1_GetVoltage
+ 760              		.thumb
+ 761              		.thumb_func
+ 762              		.type	Thermocouple_1_GetVoltage, %function
+ 763              	Thermocouple_1_GetVoltage:
+ 764              	.LFB2:
+ 485:.\Generated_Source\PSoC5/Thermocouple_1.c **** #endif /* End CY_PSOC3 */
+ 486:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 487:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 488:.\Generated_Source\PSoC5/Thermocouple_1.c **** /*******************************************************************************
+ 489:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Function Name: Thermocouple_1_GetVoltage
+ 490:.\Generated_Source\PSoC5/Thermocouple_1.c **** ********************************************************************************
+ 491:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+ 492:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Summary:
+ 493:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  This function takes the temperature as input and provides the expected
+ 494:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  voltage for that temperature.
+ 495:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+ 496:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Parameters:
+ 497:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  int32 temperature : Temperature of the cold junction in 1/100 degree C
+ 498:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+ 499:.\Generated_Source\PSoC5/Thermocouple_1.c **** * Return:
+ 500:.\Generated_Source\PSoC5/Thermocouple_1.c **** *  int32 : Expected voltage output of the thermocouple in microvolts
+ 501:.\Generated_Source\PSoC5/Thermocouple_1.c **** *
+ 502:.\Generated_Source\PSoC5/Thermocouple_1.c **** *******************************************************************************/
+ 503:.\Generated_Source\PSoC5/Thermocouple_1.c **** int32 Thermocouple_1_GetVoltage(int32 temperature) 
+ 504:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 505:.\Generated_Source\PSoC5/Thermocouple_1.c **** #if (CY_PSOC3)
+ 506:.\Generated_Source\PSoC5/Thermocouple_1.c **** {
+ 507:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 508:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /***************************************
+ 509:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Customizer Generated Coefficients
+ 510:.\Generated_Source\PSoC5/Thermocouple_1.c ****     ***************************************/
+ 511:.\Generated_Source\PSoC5/Thermocouple_1.c ****     const int32 CYCODE Thermocouple_1_coeffTV[9] = {0, 
+ 512:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 413735, 
+ 513:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 83372, 
+ 514:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -137607, 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 24
+
+
+ 515:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 1089544, 
+ 516:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -9978037, 
+ 517:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 43567176, 
+ 518:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -95708775, 
+ 519:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 84037362};
+ 520:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 521:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /* Variable to store calculated voltage */
+ 522:.\Generated_Source\PSoC5/Thermocouple_1.c ****     uint8 i=0u;
+ 523:.\Generated_Source\PSoC5/Thermocouple_1.c ****     float32 voltage=0.0f;
+ 524:.\Generated_Source\PSoC5/Thermocouple_1.c ****     float32 temperatureNorm=0.0f;
+ 525:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 526:.\Generated_Source\PSoC5/Thermocouple_1.c ****     temperatureNorm  = (float32)temperature;
+ 527:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 528:.\Generated_Source\PSoC5/Thermocouple_1.c ****     for (i = Thermocouple_1_ORDER_TV - 1u; i > 0u; i--)
+ 529:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 530:.\Generated_Source\PSoC5/Thermocouple_1.c ****         voltage = (Thermocouple_1_coeffTV[i] + voltage) * temperatureNorm;
+ 531:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 532:.\Generated_Source\PSoC5/Thermocouple_1.c ****     voltage = (voltage + Thermocouple_1_coeffTV[Thermocouple_1_FIRST_EL_MAS]);
+ 533:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 534:.\Generated_Source\PSoC5/Thermocouple_1.c ****     return ((int32) (voltage));
+ 535:.\Generated_Source\PSoC5/Thermocouple_1.c **** }
+ 536:.\Generated_Source\PSoC5/Thermocouple_1.c **** #else
+ 537:.\Generated_Source\PSoC5/Thermocouple_1.c **** {
+ 765              		.loc 1 537 0
+ 766              		.cfi_startproc
+ 767              		@ args = 0, pretend = 0, frame = 64
+ 768              		@ frame_needed = 1, uses_anonymous_args = 0
+ 769 0000 2DE9B04F 		push	{r4, r5, r7, r8, r9, sl, fp, lr}
+ 770              	.LCFI6:
+ 771              		.cfi_def_cfa_offset 32
+ 772              		.cfi_offset 4, -32
+ 773              		.cfi_offset 5, -28
+ 774              		.cfi_offset 7, -24
+ 775              		.cfi_offset 8, -20
+ 776              		.cfi_offset 9, -16
+ 777              		.cfi_offset 10, -12
+ 778              		.cfi_offset 11, -8
+ 779              		.cfi_offset 14, -4
+ 780 0004 90B0     		sub	sp, sp, #64
+ 781              	.LCFI7:
+ 782              		.cfi_def_cfa_offset 96
+ 783 0006 00AF     		add	r7, sp, #0
+ 784              	.LCFI8:
+ 785              		.cfi_def_cfa_register 7
+ 786 0008 F860     		str	r0, [r7, #12]
+ 538:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 539:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /***************************************
+ 540:.\Generated_Source\PSoC5/Thermocouple_1.c ****     *  Customizer Generated Coefficients
+ 541:.\Generated_Source\PSoC5/Thermocouple_1.c ****     ***************************************/
+ 542:.\Generated_Source\PSoC5/Thermocouple_1.c ****     const int32 CYCODE Thermocouple_1_coeffTV[9] = {0, 
+ 787              		.loc 1 542 0
+ 788 000a 40F20003 		movw	r3, #:lower16:.LC0
+ 789 000e C0F20003 		movt	r3, #:upper16:.LC0
+ 790 0012 07F11404 		add	r4, r7, #20
+ 791 0016 1D46     		mov	r5, r3
+ 792 0018 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 793 001a 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 25
+
+
+ 794 001c 0FCD     		ldmia	r5!, {r0, r1, r2, r3}
+ 795 001e 0FC4     		stmia	r4!, {r0, r1, r2, r3}
+ 796 0020 2B68     		ldr	r3, [r5, #0]
+ 797 0022 2360     		str	r3, [r4, #0]
+ 543:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 413735, 
+ 544:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 83372, 
+ 545:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -137607, 
+ 546:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 1089544, 
+ 547:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -9978037, 
+ 548:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 43567176, 
+ 549:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 -95708775, 
+ 550:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                                 84037362};
+ 551:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 552:.\Generated_Source\PSoC5/Thermocouple_1.c ****     /* Variable to store calculated voltage */
+ 553:.\Generated_Source\PSoC5/Thermocouple_1.c ****     uint8 i=0u;
+ 798              		.loc 1 553 0
+ 799 0024 4FF00003 		mov	r3, #0
+ 800 0028 87F83F30 		strb	r3, [r7, #63]
+ 554:.\Generated_Source\PSoC5/Thermocouple_1.c ****     int32 voltage=0;
+ 801              		.loc 1 554 0
+ 802 002c 4FF00003 		mov	r3, #0
+ 803 0030 BB63     		str	r3, [r7, #56]
+ 555:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 556:.\Generated_Source\PSoC5/Thermocouple_1.c ****     if (temperature < 0)
+ 804              		.loc 1 556 0
+ 805 0032 FB68     		ldr	r3, [r7, #12]
+ 806 0034 002B     		cmp	r3, #0
+ 807 0036 19DA     		bge	.L26
+ 557:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 558:.\Generated_Source\PSoC5/Thermocouple_1.c ****         temperature = -temperature;
+ 808              		.loc 1 558 0
+ 809 0038 FB68     		ldr	r3, [r7, #12]
+ 810 003a C3F10003 		rsb	r3, r3, #0
+ 811 003e FB60     		str	r3, [r7, #12]
+ 559:.\Generated_Source\PSoC5/Thermocouple_1.c ****         temperature = (int32)((uint64)((uint64)temperature << 
+ 812              		.loc 1 559 0
+ 813 0040 F968     		ldr	r1, [r7, #12]
+ 814 0042 0A46     		mov	r2, r1
+ 815 0044 4FEAE273 		asr	r3, r2, #31
+ 816 0048 4FEAD251 		lsr	r1, r2, #23
+ 817 004c 4FEA4320 		lsl	r0, r3, #9
+ 818 0050 7860     		str	r0, [r7, #4]
+ 819 0052 7868     		ldr	r0, [r7, #4]
+ 820 0054 0843     		orrs	r0, r0, r1
+ 821 0056 7860     		str	r0, [r7, #4]
+ 822 0058 4FEA4221 		lsl	r1, r2, #9
+ 823 005c 3960     		str	r1, [r7, #0]
+ 824 005e 3B68     		ldr	r3, [r7, #0]
+ 825 0060 FB60     		str	r3, [r7, #12]
+ 560:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                        (Thermocouple_1_IN_NORMALIZATION_TV - Thermocouple_1_X_SCALE
+ 561:.\Generated_Source\PSoC5/Thermocouple_1.c ****         temperature = -temperature;
+ 826              		.loc 1 561 0
+ 827 0062 FB68     		ldr	r3, [r7, #12]
+ 828 0064 C3F10003 		rsb	r3, r3, #0
+ 829 0068 FB60     		str	r3, [r7, #12]
+ 830 006a 0DE0     		b	.L27
+ 831              	.L26:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 26
+
+
+ 562:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 563:.\Generated_Source\PSoC5/Thermocouple_1.c ****     else
+ 564:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 565:.\Generated_Source\PSoC5/Thermocouple_1.c ****         temperature = (int32)((uint64)((uint64)temperature << 
+ 832              		.loc 1 565 0
+ 833 006c F968     		ldr	r1, [r7, #12]
+ 834 006e 0A46     		mov	r2, r1
+ 835 0070 4FEAE273 		asr	r3, r2, #31
+ 836 0074 4FEAD251 		lsr	r1, r2, #23
+ 837 0078 4FEA432B 		lsl	fp, r3, #9
+ 838 007c 41EA0B0B 		orr	fp, r1, fp
+ 839 0080 4FEA422A 		lsl	sl, r2, #9
+ 840 0084 5346     		mov	r3, sl
+ 841 0086 FB60     		str	r3, [r7, #12]
+ 842              	.L27:
+ 566:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                        (Thermocouple_1_IN_NORMALIZATION_TV - Thermocouple_1_X_SCALE
+ 567:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 568:.\Generated_Source\PSoC5/Thermocouple_1.c ****     
+ 569:.\Generated_Source\PSoC5/Thermocouple_1.c ****     for (i = Thermocouple_1_ORDER_TV - 1u; i > 0u; i--)
+ 843              		.loc 1 569 0
+ 844 0088 4FF00803 		mov	r3, #8
+ 845 008c 87F83F30 		strb	r3, [r7, #63]
+ 846 0090 15E0     		b	.L28
+ 847              	.L29:
+ 570:.\Generated_Source\PSoC5/Thermocouple_1.c ****     {
+ 571:.\Generated_Source\PSoC5/Thermocouple_1.c ****         voltage = Thermocouple_1_MultShift24((Thermocouple_1_coeffTV[i] + voltage), temperature);
+ 848              		.loc 1 571 0 discriminator 2
+ 849 0092 97F83F30 		ldrb	r3, [r7, #63]	@ zero_extendqisi2
+ 850 0096 4FEA8303 		lsl	r3, r3, #2
+ 851 009a 07F14002 		add	r2, r7, #64
+ 852 009e D318     		adds	r3, r2, r3
+ 853 00a0 53F82C2C 		ldr	r2, [r3, #-44]
+ 854 00a4 BB6B     		ldr	r3, [r7, #56]
+ 855 00a6 D318     		adds	r3, r2, r3
+ 856 00a8 1846     		mov	r0, r3
+ 857 00aa F968     		ldr	r1, [r7, #12]
+ 858 00ac FFF7FEFF 		bl	Thermocouple_1_MultShift24
+ 859 00b0 B863     		str	r0, [r7, #56]
+ 569:.\Generated_Source\PSoC5/Thermocouple_1.c ****     for (i = Thermocouple_1_ORDER_TV - 1u; i > 0u; i--)
+ 860              		.loc 1 569 0 discriminator 2
+ 861 00b2 97F83F30 		ldrb	r3, [r7, #63]
+ 862 00b6 03F1FF33 		add	r3, r3, #-1
+ 863 00ba 87F83F30 		strb	r3, [r7, #63]
+ 864              	.L28:
+ 569:.\Generated_Source\PSoC5/Thermocouple_1.c ****     for (i = Thermocouple_1_ORDER_TV - 1u; i > 0u; i--)
+ 865              		.loc 1 569 0 is_stmt 0 discriminator 1
+ 866 00be 97F83F30 		ldrb	r3, [r7, #63]	@ zero_extendqisi2
+ 867 00c2 002B     		cmp	r3, #0
+ 868 00c4 E5D1     		bne	.L29
+ 572:.\Generated_Source\PSoC5/Thermocouple_1.c ****     }
+ 573:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 574:.\Generated_Source\PSoC5/Thermocouple_1.c ****     voltage = (int32)((uint32)((uint64)(int32)(voltage + Thermocouple_1_coeffTV[Thermocouple_1_FIRS
+ 869              		.loc 1 574 0 is_stmt 1
+ 870 00c6 7A69     		ldr	r2, [r7, #20]
+ 871 00c8 BB6B     		ldr	r3, [r7, #56]
+ 872 00ca D118     		adds	r1, r2, r3
+ 873 00cc 0A46     		mov	r2, r1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 27
+
+
+ 874 00ce 4FEAE273 		asr	r3, r2, #31
+ 875 00d2 4FEAC361 		lsl	r1, r3, #27
+ 876 00d6 4FEA5218 		lsr	r8, r2, #5
+ 877 00da 41EA0808 		orr	r8, r1, r8
+ 878 00de 4FEA5319 		lsr	r9, r3, #5
+ 879 00e2 4346     		mov	r3, r8
+ 880 00e4 BB63     		str	r3, [r7, #56]
+ 575:.\Generated_Source\PSoC5/Thermocouple_1.c ****                                         Thermocouple_1_COEF_SCALE_TV));
+ 576:.\Generated_Source\PSoC5/Thermocouple_1.c **** 
+ 577:.\Generated_Source\PSoC5/Thermocouple_1.c ****     return (voltage);
+ 881              		.loc 1 577 0
+ 882 00e6 BB6B     		ldr	r3, [r7, #56]
+ 578:.\Generated_Source\PSoC5/Thermocouple_1.c **** }
+ 883              		.loc 1 578 0
+ 884 00e8 1846     		mov	r0, r3
+ 885 00ea 07F14007 		add	r7, r7, #64
+ 886 00ee BD46     		mov	sp, r7
+ 887 00f0 BDE8B08F 		pop	{r4, r5, r7, r8, r9, sl, fp, pc}
+ 888              		.cfi_endproc
+ 889              	.LFE2:
+ 890              		.size	Thermocouple_1_GetVoltage, .-Thermocouple_1_GetVoltage
+ 891              		.section	.rodata
+ 892              		.align	2
+ 893              		.type	Thermocouple_1_xScaleVT.4742, %object
+ 894              		.size	Thermocouple_1_xScaleVT.4742, 3
+ 895              	Thermocouple_1_xScaleVT.4742:
+ 896 009c 0D       		.byte	13
+ 897 009d 0F       		.byte	15
+ 898 009e 10       		.byte	16
+ 899 009f 00       		.align	2
+ 900              		.type	Thermocouple_1_coefScaleVT.4743, %object
+ 901              		.size	Thermocouple_1_coefScaleVT.4743, 3
+ 902              	Thermocouple_1_coefScaleVT.4743:
+ 903 00a0 07       		.byte	7
+ 904 00a1 01       		.byte	1
+ 905 00a2 07       		.byte	7
+ 906 00a3 00       		.text
+ 907              	.Letext0:
+ 908              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 909              		.section	.debug_info,"",%progbits
+ 910              	.Ldebug_info0:
+ 911 0000 56020000 		.4byte	0x256
+ 912 0004 0200     		.2byte	0x2
+ 913 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 914 000a 04       		.byte	0x4
+ 915 000b 01       		.uleb128 0x1
+ 916 000c A7010000 		.4byte	.LASF31
+ 917 0010 01       		.byte	0x1
+ 918 0011 06000000 		.4byte	.LASF32
+ 919 0015 F0010000 		.4byte	.LASF33
+ 920 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 921 001d 00000000 		.4byte	0
+ 922 0021 00000000 		.4byte	0
+ 923 0025 00000000 		.4byte	.Ldebug_line0
+ 924 0029 02       		.uleb128 0x2
+ 925 002a 01       		.byte	0x1
+ 926 002b 06       		.byte	0x6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 28
+
+
+ 927 002c 57020000 		.4byte	.LASF0
+ 928 0030 02       		.uleb128 0x2
+ 929 0031 01       		.byte	0x1
+ 930 0032 08       		.byte	0x8
+ 931 0033 A6000000 		.4byte	.LASF1
+ 932 0037 02       		.uleb128 0x2
+ 933 0038 02       		.byte	0x2
+ 934 0039 05       		.byte	0x5
+ 935 003a 97010000 		.4byte	.LASF2
+ 936 003e 02       		.uleb128 0x2
+ 937 003f 02       		.byte	0x2
+ 938 0040 07       		.byte	0x7
+ 939 0041 51000000 		.4byte	.LASF3
+ 940 0045 03       		.uleb128 0x3
+ 941 0046 04       		.byte	0x4
+ 942 0047 05       		.byte	0x5
+ 943 0048 696E7400 		.ascii	"int\000"
+ 944 004c 02       		.uleb128 0x2
+ 945 004d 04       		.byte	0x4
+ 946 004e 07       		.byte	0x7
+ 947 004f 22010000 		.4byte	.LASF4
+ 948 0053 02       		.uleb128 0x2
+ 949 0054 08       		.byte	0x8
+ 950 0055 05       		.byte	0x5
+ 951 0056 56010000 		.4byte	.LASF5
+ 952 005a 02       		.uleb128 0x2
+ 953 005b 08       		.byte	0x8
+ 954 005c 07       		.byte	0x7
+ 955 005d 2F010000 		.4byte	.LASF6
+ 956 0061 02       		.uleb128 0x2
+ 957 0062 04       		.byte	0x4
+ 958 0063 05       		.byte	0x5
+ 959 0064 35020000 		.4byte	.LASF7
+ 960 0068 02       		.uleb128 0x2
+ 961 0069 04       		.byte	0x4
+ 962 006a 07       		.byte	0x7
+ 963 006b 4D010000 		.4byte	.LASF8
+ 964 006f 02       		.uleb128 0x2
+ 965 0070 04       		.byte	0x4
+ 966 0071 07       		.byte	0x7
+ 967 0072 CF000000 		.4byte	.LASF9
+ 968 0076 02       		.uleb128 0x2
+ 969 0077 01       		.byte	0x1
+ 970 0078 08       		.byte	0x8
+ 971 0079 7B010000 		.4byte	.LASF10
+ 972 007d 04       		.uleb128 0x4
+ 973 007e A1010000 		.4byte	.LASF11
+ 974 0082 02       		.byte	0x2
+ 975 0083 5B       		.byte	0x5b
+ 976 0084 30000000 		.4byte	0x30
+ 977 0088 04       		.uleb128 0x4
+ 978 0089 1B010000 		.4byte	.LASF12
+ 979 008d 02       		.byte	0x2
+ 980 008e 5D       		.byte	0x5d
+ 981 008f 6F000000 		.4byte	0x6f
+ 982 0093 04       		.uleb128 0x4
+ 983 0094 16010000 		.4byte	.LASF13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 29
+
+
+ 984 0098 02       		.byte	0x2
+ 985 0099 5E       		.byte	0x5e
+ 986 009a 29000000 		.4byte	0x29
+ 987 009e 04       		.uleb128 0x4
+ 988 009f E6000000 		.4byte	.LASF14
+ 989 00a3 02       		.byte	0x2
+ 990 00a4 60       		.byte	0x60
+ 991 00a5 61000000 		.4byte	0x61
+ 992 00a9 02       		.uleb128 0x2
+ 993 00aa 04       		.byte	0x4
+ 994 00ab 04       		.byte	0x4
+ 995 00ac 00000000 		.4byte	.LASF15
+ 996 00b0 02       		.uleb128 0x2
+ 997 00b1 08       		.byte	0x8
+ 998 00b2 04       		.byte	0x4
+ 999 00b3 F4000000 		.4byte	.LASF16
+ 1000 00b7 04       		.uleb128 0x4
+ 1001 00b8 63020000 		.4byte	.LASF17
+ 1002 00bc 02       		.byte	0x2
+ 1003 00bd 66       		.byte	0x66
+ 1004 00be 53000000 		.4byte	0x53
+ 1005 00c2 04       		.uleb128 0x4
+ 1006 00c3 30000000 		.4byte	.LASF18
+ 1007 00c7 02       		.byte	0x2
+ 1008 00c8 67       		.byte	0x67
+ 1009 00c9 5A000000 		.4byte	0x5a
+ 1010 00cd 05       		.uleb128 0x5
+ 1011 00ce 01       		.byte	0x1
+ 1012 00cf FB000000 		.4byte	.LASF19
+ 1013 00d3 01       		.byte	0x1
+ 1014 00d4 27       		.byte	0x27
+ 1015 00d5 01       		.byte	0x1
+ 1016 00d6 9E000000 		.4byte	0x9e
+ 1017 00da 00000000 		.4byte	.LFB0
+ 1018 00de BA000000 		.4byte	.LFE0
+ 1019 00e2 00000000 		.4byte	.LLST0
+ 1020 00e6 01       		.byte	0x1
+ 1021 00e7 16010000 		.4byte	0x116
+ 1022 00eb 06       		.uleb128 0x6
+ 1023 00ec 6F703100 		.ascii	"op1\000"
+ 1024 00f0 01       		.byte	0x1
+ 1025 00f1 27       		.byte	0x27
+ 1026 00f2 9E000000 		.4byte	0x9e
+ 1027 00f6 02       		.byte	0x2
+ 1028 00f7 91       		.byte	0x91
+ 1029 00f8 5C       		.sleb128 -36
+ 1030 00f9 06       		.uleb128 0x6
+ 1031 00fa 6F703200 		.ascii	"op2\000"
+ 1032 00fe 01       		.byte	0x1
+ 1033 00ff 27       		.byte	0x27
+ 1034 0100 9E000000 		.4byte	0x9e
+ 1035 0104 02       		.byte	0x2
+ 1036 0105 91       		.byte	0x91
+ 1037 0106 58       		.sleb128 -40
+ 1038 0107 07       		.uleb128 0x7
+ 1039 0108 46010000 		.4byte	.LASF22
+ 1040 010c 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 30
+
+
+ 1041 010d 29       		.byte	0x29
+ 1042 010e B7000000 		.4byte	0xb7
+ 1043 0112 02       		.byte	0x2
+ 1044 0113 91       		.byte	0x91
+ 1045 0114 60       		.sleb128 -32
+ 1046 0115 00       		.byte	0
+ 1047 0116 08       		.uleb128 0x8
+ 1048 0117 01       		.byte	0x1
+ 1049 0118 7C000000 		.4byte	.LASF20
+ 1050 011c 01       		.byte	0x1
+ 1051 011d 4C       		.byte	0x4c
+ 1052 011e 01       		.byte	0x1
+ 1053 011f 9E000000 		.4byte	0x9e
+ 1054 0123 00000000 		.4byte	.LFB1
+ 1055 0127 80050000 		.4byte	.LFE1
+ 1056 012b 38000000 		.4byte	.LLST1
+ 1057 012f 01       		.byte	0x1
+ 1058 0130 9E010000 		.4byte	0x19e
+ 1059 0134 09       		.uleb128 0x9
+ 1060 0135 EC000000 		.4byte	.LASF21
+ 1061 0139 01       		.byte	0x1
+ 1062 013a 4C       		.byte	0x4c
+ 1063 013b 9E000000 		.4byte	0x9e
+ 1064 013f 03       		.byte	0x3
+ 1065 0140 91       		.byte	0x91
+ 1066 0141 D47E     		.sleb128 -172
+ 1067 0143 07       		.uleb128 0x7
+ 1068 0144 80010000 		.4byte	.LASF23
+ 1069 0148 01       		.byte	0x1
+ 1070 0149 BC       		.byte	0xbc
+ 1071 014a B4010000 		.4byte	0x1b4
+ 1072 014e 03       		.byte	0x3
+ 1073 014f 91       		.byte	0x91
+ 1074 0150 E07E     		.sleb128 -160
+ 1075 0152 07       		.uleb128 0x7
+ 1076 0153 3E020000 		.4byte	.LASF24
+ 1077 0157 01       		.byte	0x1
+ 1078 0158 C7       		.byte	0xc7
+ 1079 0159 C9010000 		.4byte	0x1c9
+ 1080 015d 03       		.byte	0x3
+ 1081 015e 91       		.byte	0x91
+ 1082 015f D87E     		.sleb128 -168
+ 1083 0161 07       		.uleb128 0x7
+ 1084 0162 64000000 		.4byte	.LASF25
+ 1085 0166 01       		.byte	0x1
+ 1086 0167 C9       		.byte	0xc9
+ 1087 0168 DE010000 		.4byte	0x1de
+ 1088 016c 05       		.byte	0x5
+ 1089 016d 03       		.byte	0x3
+ 1090 016e 9C000000 		.4byte	Thermocouple_1_xScaleVT.4742
+ 1091 0172 07       		.uleb128 0x7
+ 1092 0173 B4000000 		.4byte	.LASF26
+ 1093 0177 01       		.byte	0x1
+ 1094 0178 CA       		.byte	0xca
+ 1095 0179 E3010000 		.4byte	0x1e3
+ 1096 017d 05       		.byte	0x5
+ 1097 017e 03       		.byte	0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 31
+
+
+ 1098 017f A0000000 		.4byte	Thermocouple_1_coefScaleVT.4743
+ 1099 0183 07       		.uleb128 0x7
+ 1100 0184 E1000000 		.4byte	.LASF27
+ 1101 0188 01       		.byte	0x1
+ 1102 0189 CD       		.byte	0xcd
+ 1103 018a 9E000000 		.4byte	0x9e
+ 1104 018e 02       		.byte	0x2
+ 1105 018f 91       		.byte	0x91
+ 1106 0190 5C       		.sleb128 -36
+ 1107 0191 0A       		.uleb128 0xa
+ 1108 0192 6900     		.ascii	"i\000"
+ 1109 0194 01       		.byte	0x1
+ 1110 0195 CE       		.byte	0xce
+ 1111 0196 7D000000 		.4byte	0x7d
+ 1112 019a 02       		.byte	0x2
+ 1113 019b 91       		.byte	0x91
+ 1114 019c 5B       		.sleb128 -37
+ 1115 019d 00       		.byte	0
+ 1116 019e 0B       		.uleb128 0xb
+ 1117 019f 9E000000 		.4byte	0x9e
+ 1118 01a3 B4010000 		.4byte	0x1b4
+ 1119 01a7 0C       		.uleb128 0xc
+ 1120 01a8 68000000 		.4byte	0x68
+ 1121 01ac 09       		.byte	0x9
+ 1122 01ad 0C       		.uleb128 0xc
+ 1123 01ae 68000000 		.4byte	0x68
+ 1124 01b2 02       		.byte	0x2
+ 1125 01b3 00       		.byte	0
+ 1126 01b4 0D       		.uleb128 0xd
+ 1127 01b5 9E010000 		.4byte	0x19e
+ 1128 01b9 0B       		.uleb128 0xb
+ 1129 01ba 9E000000 		.4byte	0x9e
+ 1130 01be C9010000 		.4byte	0x1c9
+ 1131 01c2 0C       		.uleb128 0xc
+ 1132 01c3 68000000 		.4byte	0x68
+ 1133 01c7 01       		.byte	0x1
+ 1134 01c8 00       		.byte	0
+ 1135 01c9 0D       		.uleb128 0xd
+ 1136 01ca B9010000 		.4byte	0x1b9
+ 1137 01ce 0B       		.uleb128 0xb
+ 1138 01cf 93000000 		.4byte	0x93
+ 1139 01d3 DE010000 		.4byte	0x1de
+ 1140 01d7 0C       		.uleb128 0xc
+ 1141 01d8 68000000 		.4byte	0x68
+ 1142 01dc 02       		.byte	0x2
+ 1143 01dd 00       		.byte	0
+ 1144 01de 0D       		.uleb128 0xd
+ 1145 01df CE010000 		.4byte	0x1ce
+ 1146 01e3 0D       		.uleb128 0xd
+ 1147 01e4 CE010000 		.4byte	0x1ce
+ 1148 01e8 0E       		.uleb128 0xe
+ 1149 01e9 01       		.byte	0x1
+ 1150 01ea 37000000 		.4byte	.LASF28
+ 1151 01ee 01       		.byte	0x1
+ 1152 01ef F701     		.2byte	0x1f7
+ 1153 01f1 01       		.byte	0x1
+ 1154 01f2 9E000000 		.4byte	0x9e
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 32
+
+
+ 1155 01f6 00000000 		.4byte	.LFB2
+ 1156 01fa F4000000 		.4byte	.LFE2
+ 1157 01fe 72000000 		.4byte	.LLST2
+ 1158 0202 01       		.byte	0x1
+ 1159 0203 44020000 		.4byte	0x244
+ 1160 0207 0F       		.uleb128 0xf
+ 1161 0208 9A000000 		.4byte	.LASF29
+ 1162 020c 01       		.byte	0x1
+ 1163 020d F701     		.2byte	0x1f7
+ 1164 020f 9E000000 		.4byte	0x9e
+ 1165 0213 03       		.byte	0x3
+ 1166 0214 91       		.byte	0x91
+ 1167 0215 AC7F     		.sleb128 -84
+ 1168 0217 10       		.uleb128 0x10
+ 1169 0218 64010000 		.4byte	.LASF30
+ 1170 021c 01       		.byte	0x1
+ 1171 021d 1E02     		.2byte	0x21e
+ 1172 021f 54020000 		.4byte	0x254
+ 1173 0223 03       		.byte	0x3
+ 1174 0224 91       		.byte	0x91
+ 1175 0225 B47F     		.sleb128 -76
+ 1176 0227 11       		.uleb128 0x11
+ 1177 0228 6900     		.ascii	"i\000"
+ 1178 022a 01       		.byte	0x1
+ 1179 022b 2902     		.2byte	0x229
+ 1180 022d 7D000000 		.4byte	0x7d
+ 1181 0231 02       		.byte	0x2
+ 1182 0232 91       		.byte	0x91
+ 1183 0233 5F       		.sleb128 -33
+ 1184 0234 10       		.uleb128 0x10
+ 1185 0235 EC000000 		.4byte	.LASF21
+ 1186 0239 01       		.byte	0x1
+ 1187 023a 2A02     		.2byte	0x22a
+ 1188 023c 9E000000 		.4byte	0x9e
+ 1189 0240 02       		.byte	0x2
+ 1190 0241 91       		.byte	0x91
+ 1191 0242 58       		.sleb128 -40
+ 1192 0243 00       		.byte	0
+ 1193 0244 0B       		.uleb128 0xb
+ 1194 0245 9E000000 		.4byte	0x9e
+ 1195 0249 54020000 		.4byte	0x254
+ 1196 024d 0C       		.uleb128 0xc
+ 1197 024e 68000000 		.4byte	0x68
+ 1198 0252 08       		.byte	0x8
+ 1199 0253 00       		.byte	0
+ 1200 0254 0D       		.uleb128 0xd
+ 1201 0255 44020000 		.4byte	0x244
+ 1202 0259 00       		.byte	0
+ 1203              		.section	.debug_abbrev,"",%progbits
+ 1204              	.Ldebug_abbrev0:
+ 1205 0000 01       		.uleb128 0x1
+ 1206 0001 11       		.uleb128 0x11
+ 1207 0002 01       		.byte	0x1
+ 1208 0003 25       		.uleb128 0x25
+ 1209 0004 0E       		.uleb128 0xe
+ 1210 0005 13       		.uleb128 0x13
+ 1211 0006 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 33
+
+
+ 1212 0007 03       		.uleb128 0x3
+ 1213 0008 0E       		.uleb128 0xe
+ 1214 0009 1B       		.uleb128 0x1b
+ 1215 000a 0E       		.uleb128 0xe
+ 1216 000b 55       		.uleb128 0x55
+ 1217 000c 06       		.uleb128 0x6
+ 1218 000d 11       		.uleb128 0x11
+ 1219 000e 01       		.uleb128 0x1
+ 1220 000f 52       		.uleb128 0x52
+ 1221 0010 01       		.uleb128 0x1
+ 1222 0011 10       		.uleb128 0x10
+ 1223 0012 06       		.uleb128 0x6
+ 1224 0013 00       		.byte	0
+ 1225 0014 00       		.byte	0
+ 1226 0015 02       		.uleb128 0x2
+ 1227 0016 24       		.uleb128 0x24
+ 1228 0017 00       		.byte	0
+ 1229 0018 0B       		.uleb128 0xb
+ 1230 0019 0B       		.uleb128 0xb
+ 1231 001a 3E       		.uleb128 0x3e
+ 1232 001b 0B       		.uleb128 0xb
+ 1233 001c 03       		.uleb128 0x3
+ 1234 001d 0E       		.uleb128 0xe
+ 1235 001e 00       		.byte	0
+ 1236 001f 00       		.byte	0
+ 1237 0020 03       		.uleb128 0x3
+ 1238 0021 24       		.uleb128 0x24
+ 1239 0022 00       		.byte	0
+ 1240 0023 0B       		.uleb128 0xb
+ 1241 0024 0B       		.uleb128 0xb
+ 1242 0025 3E       		.uleb128 0x3e
+ 1243 0026 0B       		.uleb128 0xb
+ 1244 0027 03       		.uleb128 0x3
+ 1245 0028 08       		.uleb128 0x8
+ 1246 0029 00       		.byte	0
+ 1247 002a 00       		.byte	0
+ 1248 002b 04       		.uleb128 0x4
+ 1249 002c 16       		.uleb128 0x16
+ 1250 002d 00       		.byte	0
+ 1251 002e 03       		.uleb128 0x3
+ 1252 002f 0E       		.uleb128 0xe
+ 1253 0030 3A       		.uleb128 0x3a
+ 1254 0031 0B       		.uleb128 0xb
+ 1255 0032 3B       		.uleb128 0x3b
+ 1256 0033 0B       		.uleb128 0xb
+ 1257 0034 49       		.uleb128 0x49
+ 1258 0035 13       		.uleb128 0x13
+ 1259 0036 00       		.byte	0
+ 1260 0037 00       		.byte	0
+ 1261 0038 05       		.uleb128 0x5
+ 1262 0039 2E       		.uleb128 0x2e
+ 1263 003a 01       		.byte	0x1
+ 1264 003b 3F       		.uleb128 0x3f
+ 1265 003c 0C       		.uleb128 0xc
+ 1266 003d 03       		.uleb128 0x3
+ 1267 003e 0E       		.uleb128 0xe
+ 1268 003f 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 34
+
+
+ 1269 0040 0B       		.uleb128 0xb
+ 1270 0041 3B       		.uleb128 0x3b
+ 1271 0042 0B       		.uleb128 0xb
+ 1272 0043 27       		.uleb128 0x27
+ 1273 0044 0C       		.uleb128 0xc
+ 1274 0045 49       		.uleb128 0x49
+ 1275 0046 13       		.uleb128 0x13
+ 1276 0047 11       		.uleb128 0x11
+ 1277 0048 01       		.uleb128 0x1
+ 1278 0049 12       		.uleb128 0x12
+ 1279 004a 01       		.uleb128 0x1
+ 1280 004b 40       		.uleb128 0x40
+ 1281 004c 06       		.uleb128 0x6
+ 1282 004d 9742     		.uleb128 0x2117
+ 1283 004f 0C       		.uleb128 0xc
+ 1284 0050 01       		.uleb128 0x1
+ 1285 0051 13       		.uleb128 0x13
+ 1286 0052 00       		.byte	0
+ 1287 0053 00       		.byte	0
+ 1288 0054 06       		.uleb128 0x6
+ 1289 0055 05       		.uleb128 0x5
+ 1290 0056 00       		.byte	0
+ 1291 0057 03       		.uleb128 0x3
+ 1292 0058 08       		.uleb128 0x8
+ 1293 0059 3A       		.uleb128 0x3a
+ 1294 005a 0B       		.uleb128 0xb
+ 1295 005b 3B       		.uleb128 0x3b
+ 1296 005c 0B       		.uleb128 0xb
+ 1297 005d 49       		.uleb128 0x49
+ 1298 005e 13       		.uleb128 0x13
+ 1299 005f 02       		.uleb128 0x2
+ 1300 0060 0A       		.uleb128 0xa
+ 1301 0061 00       		.byte	0
+ 1302 0062 00       		.byte	0
+ 1303 0063 07       		.uleb128 0x7
+ 1304 0064 34       		.uleb128 0x34
+ 1305 0065 00       		.byte	0
+ 1306 0066 03       		.uleb128 0x3
+ 1307 0067 0E       		.uleb128 0xe
+ 1308 0068 3A       		.uleb128 0x3a
+ 1309 0069 0B       		.uleb128 0xb
+ 1310 006a 3B       		.uleb128 0x3b
+ 1311 006b 0B       		.uleb128 0xb
+ 1312 006c 49       		.uleb128 0x49
+ 1313 006d 13       		.uleb128 0x13
+ 1314 006e 02       		.uleb128 0x2
+ 1315 006f 0A       		.uleb128 0xa
+ 1316 0070 00       		.byte	0
+ 1317 0071 00       		.byte	0
+ 1318 0072 08       		.uleb128 0x8
+ 1319 0073 2E       		.uleb128 0x2e
+ 1320 0074 01       		.byte	0x1
+ 1321 0075 3F       		.uleb128 0x3f
+ 1322 0076 0C       		.uleb128 0xc
+ 1323 0077 03       		.uleb128 0x3
+ 1324 0078 0E       		.uleb128 0xe
+ 1325 0079 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 35
+
+
+ 1326 007a 0B       		.uleb128 0xb
+ 1327 007b 3B       		.uleb128 0x3b
+ 1328 007c 0B       		.uleb128 0xb
+ 1329 007d 27       		.uleb128 0x27
+ 1330 007e 0C       		.uleb128 0xc
+ 1331 007f 49       		.uleb128 0x49
+ 1332 0080 13       		.uleb128 0x13
+ 1333 0081 11       		.uleb128 0x11
+ 1334 0082 01       		.uleb128 0x1
+ 1335 0083 12       		.uleb128 0x12
+ 1336 0084 01       		.uleb128 0x1
+ 1337 0085 40       		.uleb128 0x40
+ 1338 0086 06       		.uleb128 0x6
+ 1339 0087 9642     		.uleb128 0x2116
+ 1340 0089 0C       		.uleb128 0xc
+ 1341 008a 01       		.uleb128 0x1
+ 1342 008b 13       		.uleb128 0x13
+ 1343 008c 00       		.byte	0
+ 1344 008d 00       		.byte	0
+ 1345 008e 09       		.uleb128 0x9
+ 1346 008f 05       		.uleb128 0x5
+ 1347 0090 00       		.byte	0
+ 1348 0091 03       		.uleb128 0x3
+ 1349 0092 0E       		.uleb128 0xe
+ 1350 0093 3A       		.uleb128 0x3a
+ 1351 0094 0B       		.uleb128 0xb
+ 1352 0095 3B       		.uleb128 0x3b
+ 1353 0096 0B       		.uleb128 0xb
+ 1354 0097 49       		.uleb128 0x49
+ 1355 0098 13       		.uleb128 0x13
+ 1356 0099 02       		.uleb128 0x2
+ 1357 009a 0A       		.uleb128 0xa
+ 1358 009b 00       		.byte	0
+ 1359 009c 00       		.byte	0
+ 1360 009d 0A       		.uleb128 0xa
+ 1361 009e 34       		.uleb128 0x34
+ 1362 009f 00       		.byte	0
+ 1363 00a0 03       		.uleb128 0x3
+ 1364 00a1 08       		.uleb128 0x8
+ 1365 00a2 3A       		.uleb128 0x3a
+ 1366 00a3 0B       		.uleb128 0xb
+ 1367 00a4 3B       		.uleb128 0x3b
+ 1368 00a5 0B       		.uleb128 0xb
+ 1369 00a6 49       		.uleb128 0x49
+ 1370 00a7 13       		.uleb128 0x13
+ 1371 00a8 02       		.uleb128 0x2
+ 1372 00a9 0A       		.uleb128 0xa
+ 1373 00aa 00       		.byte	0
+ 1374 00ab 00       		.byte	0
+ 1375 00ac 0B       		.uleb128 0xb
+ 1376 00ad 01       		.uleb128 0x1
+ 1377 00ae 01       		.byte	0x1
+ 1378 00af 49       		.uleb128 0x49
+ 1379 00b0 13       		.uleb128 0x13
+ 1380 00b1 01       		.uleb128 0x1
+ 1381 00b2 13       		.uleb128 0x13
+ 1382 00b3 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 36
+
+
+ 1383 00b4 00       		.byte	0
+ 1384 00b5 0C       		.uleb128 0xc
+ 1385 00b6 21       		.uleb128 0x21
+ 1386 00b7 00       		.byte	0
+ 1387 00b8 49       		.uleb128 0x49
+ 1388 00b9 13       		.uleb128 0x13
+ 1389 00ba 2F       		.uleb128 0x2f
+ 1390 00bb 0B       		.uleb128 0xb
+ 1391 00bc 00       		.byte	0
+ 1392 00bd 00       		.byte	0
+ 1393 00be 0D       		.uleb128 0xd
+ 1394 00bf 26       		.uleb128 0x26
+ 1395 00c0 00       		.byte	0
+ 1396 00c1 49       		.uleb128 0x49
+ 1397 00c2 13       		.uleb128 0x13
+ 1398 00c3 00       		.byte	0
+ 1399 00c4 00       		.byte	0
+ 1400 00c5 0E       		.uleb128 0xe
+ 1401 00c6 2E       		.uleb128 0x2e
+ 1402 00c7 01       		.byte	0x1
+ 1403 00c8 3F       		.uleb128 0x3f
+ 1404 00c9 0C       		.uleb128 0xc
+ 1405 00ca 03       		.uleb128 0x3
+ 1406 00cb 0E       		.uleb128 0xe
+ 1407 00cc 3A       		.uleb128 0x3a
+ 1408 00cd 0B       		.uleb128 0xb
+ 1409 00ce 3B       		.uleb128 0x3b
+ 1410 00cf 05       		.uleb128 0x5
+ 1411 00d0 27       		.uleb128 0x27
+ 1412 00d1 0C       		.uleb128 0xc
+ 1413 00d2 49       		.uleb128 0x49
+ 1414 00d3 13       		.uleb128 0x13
+ 1415 00d4 11       		.uleb128 0x11
+ 1416 00d5 01       		.uleb128 0x1
+ 1417 00d6 12       		.uleb128 0x12
+ 1418 00d7 01       		.uleb128 0x1
+ 1419 00d8 40       		.uleb128 0x40
+ 1420 00d9 06       		.uleb128 0x6
+ 1421 00da 9642     		.uleb128 0x2116
+ 1422 00dc 0C       		.uleb128 0xc
+ 1423 00dd 01       		.uleb128 0x1
+ 1424 00de 13       		.uleb128 0x13
+ 1425 00df 00       		.byte	0
+ 1426 00e0 00       		.byte	0
+ 1427 00e1 0F       		.uleb128 0xf
+ 1428 00e2 05       		.uleb128 0x5
+ 1429 00e3 00       		.byte	0
+ 1430 00e4 03       		.uleb128 0x3
+ 1431 00e5 0E       		.uleb128 0xe
+ 1432 00e6 3A       		.uleb128 0x3a
+ 1433 00e7 0B       		.uleb128 0xb
+ 1434 00e8 3B       		.uleb128 0x3b
+ 1435 00e9 05       		.uleb128 0x5
+ 1436 00ea 49       		.uleb128 0x49
+ 1437 00eb 13       		.uleb128 0x13
+ 1438 00ec 02       		.uleb128 0x2
+ 1439 00ed 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 37
+
+
+ 1440 00ee 00       		.byte	0
+ 1441 00ef 00       		.byte	0
+ 1442 00f0 10       		.uleb128 0x10
+ 1443 00f1 34       		.uleb128 0x34
+ 1444 00f2 00       		.byte	0
+ 1445 00f3 03       		.uleb128 0x3
+ 1446 00f4 0E       		.uleb128 0xe
+ 1447 00f5 3A       		.uleb128 0x3a
+ 1448 00f6 0B       		.uleb128 0xb
+ 1449 00f7 3B       		.uleb128 0x3b
+ 1450 00f8 05       		.uleb128 0x5
+ 1451 00f9 49       		.uleb128 0x49
+ 1452 00fa 13       		.uleb128 0x13
+ 1453 00fb 02       		.uleb128 0x2
+ 1454 00fc 0A       		.uleb128 0xa
+ 1455 00fd 00       		.byte	0
+ 1456 00fe 00       		.byte	0
+ 1457 00ff 11       		.uleb128 0x11
+ 1458 0100 34       		.uleb128 0x34
+ 1459 0101 00       		.byte	0
+ 1460 0102 03       		.uleb128 0x3
+ 1461 0103 08       		.uleb128 0x8
+ 1462 0104 3A       		.uleb128 0x3a
+ 1463 0105 0B       		.uleb128 0xb
+ 1464 0106 3B       		.uleb128 0x3b
+ 1465 0107 05       		.uleb128 0x5
+ 1466 0108 49       		.uleb128 0x49
+ 1467 0109 13       		.uleb128 0x13
+ 1468 010a 02       		.uleb128 0x2
+ 1469 010b 0A       		.uleb128 0xa
+ 1470 010c 00       		.byte	0
+ 1471 010d 00       		.byte	0
+ 1472 010e 00       		.byte	0
+ 1473              		.section	.debug_loc,"",%progbits
+ 1474              	.Ldebug_loc0:
+ 1475              	.LLST0:
+ 1476 0000 00000000 		.4byte	.LFB0
+ 1477 0004 04000000 		.4byte	.LCFI0
+ 1478 0008 0200     		.2byte	0x2
+ 1479 000a 7D       		.byte	0x7d
+ 1480 000b 00       		.sleb128 0
+ 1481 000c 04000000 		.4byte	.LCFI0
+ 1482 0010 06000000 		.4byte	.LCFI1
+ 1483 0014 0200     		.2byte	0x2
+ 1484 0016 7D       		.byte	0x7d
+ 1485 0017 18       		.sleb128 24
+ 1486 0018 06000000 		.4byte	.LCFI1
+ 1487 001c 08000000 		.4byte	.LCFI2
+ 1488 0020 0200     		.2byte	0x2
+ 1489 0022 7D       		.byte	0x7d
+ 1490 0023 28       		.sleb128 40
+ 1491 0024 08000000 		.4byte	.LCFI2
+ 1492 0028 BA000000 		.4byte	.LFE0
+ 1493 002c 0200     		.2byte	0x2
+ 1494 002e 77       		.byte	0x77
+ 1495 002f 28       		.sleb128 40
+ 1496 0030 00000000 		.4byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 38
+
+
+ 1497 0034 00000000 		.4byte	0
+ 1498              	.LLST1:
+ 1499 0038 00000000 		.4byte	.LFB1
+ 1500 003c 04000000 		.4byte	.LCFI3
+ 1501 0040 0200     		.2byte	0x2
+ 1502 0042 7D       		.byte	0x7d
+ 1503 0043 00       		.sleb128 0
+ 1504 0044 04000000 		.4byte	.LCFI3
+ 1505 0048 06000000 		.4byte	.LCFI4
+ 1506 004c 0200     		.2byte	0x2
+ 1507 004e 7D       		.byte	0x7d
+ 1508 004f 20       		.sleb128 32
+ 1509 0050 06000000 		.4byte	.LCFI4
+ 1510 0054 08000000 		.4byte	.LCFI5
+ 1511 0058 0300     		.2byte	0x3
+ 1512 005a 7D       		.byte	0x7d
+ 1513 005b 8002     		.sleb128 256
+ 1514 005d 08000000 		.4byte	.LCFI5
+ 1515 0061 80050000 		.4byte	.LFE1
+ 1516 0065 0300     		.2byte	0x3
+ 1517 0067 77       		.byte	0x77
+ 1518 0068 8002     		.sleb128 256
+ 1519 006a 00000000 		.4byte	0
+ 1520 006e 00000000 		.4byte	0
+ 1521              	.LLST2:
+ 1522 0072 00000000 		.4byte	.LFB2
+ 1523 0076 04000000 		.4byte	.LCFI6
+ 1524 007a 0200     		.2byte	0x2
+ 1525 007c 7D       		.byte	0x7d
+ 1526 007d 00       		.sleb128 0
+ 1527 007e 04000000 		.4byte	.LCFI6
+ 1528 0082 06000000 		.4byte	.LCFI7
+ 1529 0086 0200     		.2byte	0x2
+ 1530 0088 7D       		.byte	0x7d
+ 1531 0089 20       		.sleb128 32
+ 1532 008a 06000000 		.4byte	.LCFI7
+ 1533 008e 08000000 		.4byte	.LCFI8
+ 1534 0092 0300     		.2byte	0x3
+ 1535 0094 7D       		.byte	0x7d
+ 1536 0095 E000     		.sleb128 96
+ 1537 0097 08000000 		.4byte	.LCFI8
+ 1538 009b F4000000 		.4byte	.LFE2
+ 1539 009f 0300     		.2byte	0x3
+ 1540 00a1 77       		.byte	0x77
+ 1541 00a2 E000     		.sleb128 96
+ 1542 00a4 00000000 		.4byte	0
+ 1543 00a8 00000000 		.4byte	0
+ 1544              		.section	.debug_aranges,"",%progbits
+ 1545 0000 2C000000 		.4byte	0x2c
+ 1546 0004 0200     		.2byte	0x2
+ 1547 0006 00000000 		.4byte	.Ldebug_info0
+ 1548 000a 04       		.byte	0x4
+ 1549 000b 00       		.byte	0
+ 1550 000c 0000     		.2byte	0
+ 1551 000e 0000     		.2byte	0
+ 1552 0010 00000000 		.4byte	.LFB0
+ 1553 0014 BA000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 39
+
+
+ 1554 0018 00000000 		.4byte	.LFB1
+ 1555 001c 80050000 		.4byte	.LFE1-.LFB1
+ 1556 0020 00000000 		.4byte	.LFB2
+ 1557 0024 F4000000 		.4byte	.LFE2-.LFB2
+ 1558 0028 00000000 		.4byte	0
+ 1559 002c 00000000 		.4byte	0
+ 1560              		.section	.debug_ranges,"",%progbits
+ 1561              	.Ldebug_ranges0:
+ 1562 0000 00000000 		.4byte	.LFB0
+ 1563 0004 BA000000 		.4byte	.LFE0
+ 1564 0008 00000000 		.4byte	.LFB1
+ 1565 000c 80050000 		.4byte	.LFE1
+ 1566 0010 00000000 		.4byte	.LFB2
+ 1567 0014 F4000000 		.4byte	.LFE2
+ 1568 0018 00000000 		.4byte	0
+ 1569 001c 00000000 		.4byte	0
+ 1570              		.section	.debug_line,"",%progbits
+ 1571              	.Ldebug_line0:
+ 1572 0000 3F010000 		.section	.debug_str,"MS",%progbits,1
+ 1572      02004D00 
+ 1572      00000201 
+ 1572      FB0E0D00 
+ 1572      01010101 
+ 1573              	.LASF15:
+ 1574 0000 666C6F61 		.ascii	"float\000"
+ 1574      7400
+ 1575              	.LASF32:
+ 1576 0006 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Thermocouple_1.c\000"
+ 1576      6E657261 
+ 1576      7465645F 
+ 1576      536F7572 
+ 1576      63655C50 
+ 1577              	.LASF18:
+ 1578 0030 75696E74 		.ascii	"uint64\000"
+ 1578      363400
+ 1579              	.LASF28:
+ 1580 0037 54686572 		.ascii	"Thermocouple_1_GetVoltage\000"
+ 1580      6D6F636F 
+ 1580      75706C65 
+ 1580      5F315F47 
+ 1580      6574566F 
+ 1581              	.LASF3:
+ 1582 0051 73686F72 		.ascii	"short unsigned int\000"
+ 1582      7420756E 
+ 1582      7369676E 
+ 1582      65642069 
+ 1582      6E7400
+ 1583              	.LASF25:
+ 1584 0064 54686572 		.ascii	"Thermocouple_1_xScaleVT\000"
+ 1584      6D6F636F 
+ 1584      75706C65 
+ 1584      5F315F78 
+ 1584      5363616C 
+ 1585              	.LASF20:
+ 1586 007c 54686572 		.ascii	"Thermocouple_1_GetTemperature\000"
+ 1586      6D6F636F 
+ 1586      75706C65 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 40
+
+
+ 1586      5F315F47 
+ 1586      65745465 
+ 1587              	.LASF29:
+ 1588 009a 74656D70 		.ascii	"temperature\000"
+ 1588      65726174 
+ 1588      75726500 
+ 1589              	.LASF1:
+ 1590 00a6 756E7369 		.ascii	"unsigned char\000"
+ 1590      676E6564 
+ 1590      20636861 
+ 1590      7200
+ 1591              	.LASF26:
+ 1592 00b4 54686572 		.ascii	"Thermocouple_1_coefScaleVT\000"
+ 1592      6D6F636F 
+ 1592      75706C65 
+ 1592      5F315F63 
+ 1592      6F656653 
+ 1593              	.LASF9:
+ 1594 00cf 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1594      20756E73 
+ 1594      69676E65 
+ 1594      6420696E 
+ 1594      7400
+ 1595              	.LASF27:
+ 1596 00e1 74656D70 		.ascii	"temp\000"
+ 1596      00
+ 1597              	.LASF14:
+ 1598 00e6 696E7433 		.ascii	"int32\000"
+ 1598      3200
+ 1599              	.LASF21:
+ 1600 00ec 766F6C74 		.ascii	"voltage\000"
+ 1600      61676500 
+ 1601              	.LASF16:
+ 1602 00f4 646F7562 		.ascii	"double\000"
+ 1602      6C6500
+ 1603              	.LASF19:
+ 1604 00fb 54686572 		.ascii	"Thermocouple_1_MultShift24\000"
+ 1604      6D6F636F 
+ 1604      75706C65 
+ 1604      5F315F4D 
+ 1604      756C7453 
+ 1605              	.LASF13:
+ 1606 0116 696E7438 		.ascii	"int8\000"
+ 1606      00
+ 1607              	.LASF12:
+ 1608 011b 75696E74 		.ascii	"uint32\000"
+ 1608      333200
+ 1609              	.LASF4:
+ 1610 0122 756E7369 		.ascii	"unsigned int\000"
+ 1610      676E6564 
+ 1610      20696E74 
+ 1610      00
+ 1611              	.LASF6:
+ 1612 012f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1612      206C6F6E 
+ 1612      6720756E 
+ 1612      7369676E 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 41
+
+
+ 1612      65642069 
+ 1613              	.LASF22:
+ 1614 0146 72657375 		.ascii	"result\000"
+ 1614      6C7400
+ 1615              	.LASF8:
+ 1616 014d 73697A65 		.ascii	"sizetype\000"
+ 1616      74797065 
+ 1616      00
+ 1617              	.LASF5:
+ 1618 0156 6C6F6E67 		.ascii	"long long int\000"
+ 1618      206C6F6E 
+ 1618      6720696E 
+ 1618      7400
+ 1619              	.LASF30:
+ 1620 0164 54686572 		.ascii	"Thermocouple_1_coeffTV\000"
+ 1620      6D6F636F 
+ 1620      75706C65 
+ 1620      5F315F63 
+ 1620      6F656666 
+ 1621              	.LASF10:
+ 1622 017b 63686172 		.ascii	"char\000"
+ 1622      00
+ 1623              	.LASF23:
+ 1624 0180 54686572 		.ascii	"Thermocouple_1_coeffVT\000"
+ 1624      6D6F636F 
+ 1624      75706C65 
+ 1624      5F315F63 
+ 1624      6F656666 
+ 1625              	.LASF2:
+ 1626 0197 73686F72 		.ascii	"short int\000"
+ 1626      7420696E 
+ 1626      7400
+ 1627              	.LASF11:
+ 1628 01a1 75696E74 		.ascii	"uint8\000"
+ 1628      3800
+ 1629              	.LASF31:
+ 1630 01a7 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1630      4320342E 
+ 1630      372E3320 
+ 1630      32303133 
+ 1630      30333132 
+ 1631 01da 616E6368 		.ascii	"anch revision 196615]\000"
+ 1631      20726576 
+ 1631      6973696F 
+ 1631      6E203139 
+ 1631      36363135 
+ 1632              	.LASF33:
+ 1633 01f0 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 1633      73657273 
+ 1633      5C527961 
+ 1633      6E5C446F 
+ 1633      63756D65 
+ 1634 021e 5472616E 		.ascii	"TransmitReadings.cydsn\000"
+ 1634      736D6974 
+ 1634      52656164 
+ 1634      696E6773 
+ 1634      2E637964 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsNEJ9m.s 			page 42
+
+
+ 1635              	.LASF7:
+ 1636 0235 6C6F6E67 		.ascii	"long int\000"
+ 1636      20696E74 
+ 1636      00
+ 1637              	.LASF24:
+ 1638 023e 54686572 		.ascii	"Thermocouple_1_voltRange\000"
+ 1638      6D6F636F 
+ 1638      75706C65 
+ 1638      5F315F76 
+ 1638      6F6C7452 
+ 1639              	.LASF0:
+ 1640 0257 7369676E 		.ascii	"signed char\000"
+ 1640      65642063 
+ 1640      68617200 
+ 1641              	.LASF17:
+ 1642 0263 696E7436 		.ascii	"int64\000"
+ 1642      3400
+ 1643              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

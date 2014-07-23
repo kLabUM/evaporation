@@ -1,0 +1,1259 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"magnetometer.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.writeregister,"ax",%progbits
+  19              		.align	2
+  20              		.global	writeregister
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	writeregister, %function
+  24              	writeregister:
+  25              	.LFB56:
+  26              		.file 1 ".\\magnetometer.c"
+   1:.\magnetometer.c **** #include <magnetometer.h>
+   2:.\magnetometer.c **** 
+   3:.\magnetometer.c **** void writeregister(uint8 theregister, uint8 write)
+   4:.\magnetometer.c **** {
+  27              		.loc 1 4 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 84B0     		sub	sp, sp, #16
+  37              	.LCFI1:
+  38              		.cfi_def_cfa_offset 24
+  39 0004 00AF     		add	r7, sp, #0
+  40              	.LCFI2:
+  41              		.cfi_def_cfa_register 7
+  42 0006 0246     		mov	r2, r0
+  43 0008 0B46     		mov	r3, r1
+  44 000a FA71     		strb	r2, [r7, #7]
+  45 000c BB71     		strb	r3, [r7, #6]
+   5:.\magnetometer.c **** 	uint8 writestatus = psoc_MasterSendStart(30, psoc_WRITE_XFER_MODE);
+  46              		.loc 1 5 0
+  47 000e 4FF01E00 		mov	r0, #30
+  48 0012 4FF00001 		mov	r1, #0
+  49 0016 FFF7FEFF 		bl	psoc_MasterSendStart
+  50 001a 0346     		mov	r3, r0
+  51 001c FB73     		strb	r3, [r7, #15]
+   6:.\magnetometer.c **** 	if(psoc_MSTR_NO_ERROR == writestatus)
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 2
+
+
+  52              		.loc 1 6 0
+  53 001e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  54 0020 002B     		cmp	r3, #0
+  55 0022 0BD1     		bne	.L2
+   7:.\magnetometer.c **** 	{
+   8:.\magnetometer.c **** 		writestatus = psoc_MasterWriteByte(theregister);
+  56              		.loc 1 8 0
+  57 0024 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  58 0026 1846     		mov	r0, r3
+  59 0028 FFF7FEFF 		bl	psoc_MasterWriteByte
+  60 002c 0346     		mov	r3, r0
+  61 002e FB73     		strb	r3, [r7, #15]
+   9:.\magnetometer.c **** 		writestatus = psoc_MasterWriteByte(write);
+  62              		.loc 1 9 0
+  63 0030 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+  64 0032 1846     		mov	r0, r3
+  65 0034 FFF7FEFF 		bl	psoc_MasterWriteByte
+  66 0038 0346     		mov	r3, r0
+  67 003a FB73     		strb	r3, [r7, #15]
+  68              	.L2:
+  10:.\magnetometer.c **** 	}
+  11:.\magnetometer.c **** 	psoc_MasterSendStop();
+  69              		.loc 1 11 0
+  70 003c FFF7FEFF 		bl	psoc_MasterSendStop
+  12:.\magnetometer.c **** 	
+  13:.\magnetometer.c **** }
+  71              		.loc 1 13 0
+  72 0040 07F11007 		add	r7, r7, #16
+  73 0044 BD46     		mov	sp, r7
+  74 0046 80BD     		pop	{r7, pc}
+  75              		.cfi_endproc
+  76              	.LFE56:
+  77              		.size	writeregister, .-writeregister
+  78              		.section	.text.readregister,"ax",%progbits
+  79              		.align	2
+  80              		.global	readregister
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	readregister, %function
+  84              	readregister:
+  85              	.LFB57:
+  14:.\magnetometer.c **** 
+  15:.\magnetometer.c **** uint8 readregister(uint8 theregister)
+  16:.\magnetometer.c **** {
+  86              		.loc 1 16 0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 16
+  89              		@ frame_needed = 1, uses_anonymous_args = 0
+  90 0000 80B5     		push	{r7, lr}
+  91              	.LCFI3:
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 7, -8
+  94              		.cfi_offset 14, -4
+  95 0002 84B0     		sub	sp, sp, #16
+  96              	.LCFI4:
+  97              		.cfi_def_cfa_offset 24
+  98 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 3
+
+
+  99              	.LCFI5:
+ 100              		.cfi_def_cfa_register 7
+ 101 0006 0346     		mov	r3, r0
+ 102 0008 FB71     		strb	r3, [r7, #7]
+  17:.\magnetometer.c **** 	uint8 value;
+  18:.\magnetometer.c **** 	uint8 writestatus = psoc_MasterSendStart(30, psoc_WRITE_XFER_MODE);
+ 103              		.loc 1 18 0
+ 104 000a 4FF01E00 		mov	r0, #30
+ 105 000e 4FF00001 		mov	r1, #0
+ 106 0012 FFF7FEFF 		bl	psoc_MasterSendStart
+ 107 0016 0346     		mov	r3, r0
+ 108 0018 BB73     		strb	r3, [r7, #14]
+  19:.\magnetometer.c **** 	if(psoc_MSTR_NO_ERROR == writestatus) //ensures there is no error before writing
+ 109              		.loc 1 19 0
+ 110 001a BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 111 001c 002B     		cmp	r3, #0
+ 112 001e 05D1     		bne	.L4
+  20:.\magnetometer.c **** 	{
+  21:.\magnetometer.c **** 		writestatus = psoc_MasterWriteByte(theregister);
+ 113              		.loc 1 21 0
+ 114 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 115 0022 1846     		mov	r0, r3
+ 116 0024 FFF7FEFF 		bl	psoc_MasterWriteByte
+ 117 0028 0346     		mov	r3, r0
+ 118 002a BB73     		strb	r3, [r7, #14]
+ 119              	.L4:
+  22:.\magnetometer.c **** 	}
+  23:.\magnetometer.c **** 	psoc_MasterSendStop();
+ 120              		.loc 1 23 0
+ 121 002c FFF7FEFF 		bl	psoc_MasterSendStop
+  24:.\magnetometer.c **** 
+  25:.\magnetometer.c ****     uint8 status = psoc_MasterSendStart(30, psoc_READ_XFER_MODE);
+ 122              		.loc 1 25 0
+ 123 0030 4FF01E00 		mov	r0, #30
+ 124 0034 4FF00101 		mov	r1, #1
+ 125 0038 FFF7FEFF 		bl	psoc_MasterSendStart
+ 126 003c 0346     		mov	r3, r0
+ 127 003e 7B73     		strb	r3, [r7, #13]
+  26:.\magnetometer.c **** 	if(psoc_MSTR_NO_ERROR == status) //ensures these is no error before reading
+ 128              		.loc 1 26 0
+ 129 0040 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 130 0042 002B     		cmp	r3, #0
+ 131 0044 05D1     		bne	.L5
+  27:.\magnetometer.c **** 	{
+  28:.\magnetometer.c **** 		value = psoc_MasterReadByte(psoc_NAK_DATA); //reads data then sends NAK to signal to slave
+ 132              		.loc 1 28 0
+ 133 0046 4FF00000 		mov	r0, #0
+ 134 004a FFF7FEFF 		bl	psoc_MasterReadByte
+ 135 004e 0346     		mov	r3, r0
+ 136 0050 FB73     		strb	r3, [r7, #15]
+ 137              	.L5:
+  29:.\magnetometer.c **** 	}
+  30:.\magnetometer.c **** 	psoc_MasterSendStop();
+ 138              		.loc 1 30 0
+ 139 0052 FFF7FEFF 		bl	psoc_MasterSendStop
+  31:.\magnetometer.c **** 	
+  32:.\magnetometer.c **** 	return value;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 4
+
+
+ 140              		.loc 1 32 0
+ 141 0056 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  33:.\magnetometer.c **** }
+ 142              		.loc 1 33 0
+ 143 0058 1846     		mov	r0, r3
+ 144 005a 07F11007 		add	r7, r7, #16
+ 145 005e BD46     		mov	sp, r7
+ 146 0060 80BD     		pop	{r7, pc}
+ 147              		.cfi_endproc
+ 148              	.LFE57:
+ 149              		.size	readregister, .-readregister
+ 150 0062 00BF     		.section	.text.getmeasurement,"ax",%progbits
+ 151              		.align	2
+ 152              		.global	getmeasurement
+ 153              		.thumb
+ 154              		.thumb_func
+ 155              		.type	getmeasurement, %function
+ 156              	getmeasurement:
+ 157              	.LFB58:
+  34:.\magnetometer.c **** 
+  35:.\magnetometer.c **** int16 getmeasurement(uint8 registerA, uint8 registerB)
+  36:.\magnetometer.c **** {
+ 158              		.loc 1 36 0
+ 159              		.cfi_startproc
+ 160              		@ args = 0, pretend = 0, frame = 16
+ 161              		@ frame_needed = 1, uses_anonymous_args = 0
+ 162 0000 80B5     		push	{r7, lr}
+ 163              	.LCFI6:
+ 164              		.cfi_def_cfa_offset 8
+ 165              		.cfi_offset 7, -8
+ 166              		.cfi_offset 14, -4
+ 167 0002 84B0     		sub	sp, sp, #16
+ 168              	.LCFI7:
+ 169              		.cfi_def_cfa_offset 24
+ 170 0004 00AF     		add	r7, sp, #0
+ 171              	.LCFI8:
+ 172              		.cfi_def_cfa_register 7
+ 173 0006 0246     		mov	r2, r0
+ 174 0008 0B46     		mov	r3, r1
+ 175 000a FA71     		strb	r2, [r7, #7]
+ 176 000c BB71     		strb	r3, [r7, #6]
+  37:.\magnetometer.c **** 	uint8 MSB;
+  38:.\magnetometer.c **** 	uint8 LSB;
+  39:.\magnetometer.c **** 	
+  40:.\magnetometer.c **** 	MSB = readregister(registerA);
+ 177              		.loc 1 40 0
+ 178 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 179 0010 1846     		mov	r0, r3
+ 180 0012 FFF7FEFF 		bl	readregister
+ 181 0016 0346     		mov	r3, r0
+ 182 0018 FB73     		strb	r3, [r7, #15]
+  41:.\magnetometer.c **** 	LSB = readregister(registerB);
+ 183              		.loc 1 41 0
+ 184 001a BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 185 001c 1846     		mov	r0, r3
+ 186 001e FFF7FEFF 		bl	readregister
+ 187 0022 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 5
+
+
+ 188 0024 BB73     		strb	r3, [r7, #14]
+  42:.\magnetometer.c **** 	
+  43:.\magnetometer.c **** 	int16 reading = ((uint16)MSB << 8) | LSB;
+ 189              		.loc 1 43 0
+ 190 0026 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 191 0028 4FEA0323 		lsl	r3, r3, #8
+ 192 002c 9AB2     		uxth	r2, r3
+ 193 002e BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 194 0030 9BB2     		uxth	r3, r3
+ 195 0032 1343     		orrs	r3, r3, r2
+ 196 0034 BB81     		strh	r3, [r7, #12]	@ movhi
+  44:.\magnetometer.c **** 	return reading;
+ 197              		.loc 1 44 0
+ 198 0036 BB89     		ldrh	r3, [r7, #12]
+ 199 0038 1BB2     		sxth	r3, r3
+  45:.\magnetometer.c **** }
+ 200              		.loc 1 45 0
+ 201 003a 1846     		mov	r0, r3
+ 202 003c 07F11007 		add	r7, r7, #16
+ 203 0040 BD46     		mov	sp, r7
+ 204 0042 80BD     		pop	{r7, pc}
+ 205              		.cfi_endproc
+ 206              	.LFE58:
+ 207              		.size	getmeasurement, .-getmeasurement
+ 208              		.global	__aeabi_i2d
+ 209              		.global	__aeabi_dmul
+ 210              		.global	__aeabi_ddiv
+ 211              		.global	__aeabi_dsub
+ 212              		.global	__aeabi_d2iz
+ 213              		.section	.text.getheading,"ax",%progbits
+ 214              		.align	2
+ 215              		.global	getheading
+ 216              		.thumb
+ 217              		.thumb_func
+ 218              		.type	getheading, %function
+ 219              	getheading:
+ 220              	.LFB59:
+  46:.\magnetometer.c **** 
+  47:.\magnetometer.c **** int16 getheading(int16 x, int16 y)
+  48:.\magnetometer.c **** {
+ 221              		.loc 1 48 0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 16
+ 224              		@ frame_needed = 1, uses_anonymous_args = 0
+ 225 0000 80B5     		push	{r7, lr}
+ 226              	.LCFI9:
+ 227              		.cfi_def_cfa_offset 8
+ 228              		.cfi_offset 7, -8
+ 229              		.cfi_offset 14, -4
+ 230 0002 84B0     		sub	sp, sp, #16
+ 231              	.LCFI10:
+ 232              		.cfi_def_cfa_offset 24
+ 233 0004 00AF     		add	r7, sp, #0
+ 234              	.LCFI11:
+ 235              		.cfi_def_cfa_register 7
+ 236 0006 0246     		mov	r2, r0
+ 237 0008 0B46     		mov	r3, r1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 6
+
+
+ 238 000a FA80     		strh	r2, [r7, #6]	@ movhi
+ 239 000c BB80     		strh	r3, [r7, #4]	@ movhi
+  49:.\magnetometer.c **** 	int16 heading;
+  50:.\magnetometer.c **** 	
+  51:.\magnetometer.c **** 	if(y > 0)
+ 240              		.loc 1 51 0
+ 241 000e B7F90430 		ldrsh	r3, [r7, #4]
+ 242 0012 002B     		cmp	r3, #0
+ 243 0014 36DD     		ble	.L10
+  52:.\magnetometer.c **** 	{
+  53:.\magnetometer.c **** 		heading = 90 - atan(x / y) * 180/3.14156;
+ 244              		.loc 1 53 0
+ 245 0016 B7F90620 		ldrsh	r2, [r7, #6]
+ 246 001a B7F90430 		ldrsh	r3, [r7, #4]
+ 247 001e 92FBF3F3 		sdiv	r3, r2, r3
+ 248 0022 1846     		mov	r0, r3
+ 249 0024 FFF7FEFF 		bl	__aeabi_i2d
+ 250 0028 0246     		mov	r2, r0
+ 251 002a 0B46     		mov	r3, r1
+ 252 002c 1046     		mov	r0, r2
+ 253 002e 1946     		mov	r1, r3
+ 254 0030 FFF7FEFF 		bl	atan
+ 255 0034 0246     		mov	r2, r0
+ 256 0036 0B46     		mov	r3, r1
+ 257 0038 1046     		mov	r0, r2
+ 258 003a 1946     		mov	r1, r3
+ 259 003c 4FF00002 		mov	r2, #0
+ 260 0040 4FF40043 		mov	r3, #32768
+ 261 0044 C4F26603 		movt	r3, 16486
+ 262 0048 FFF7FEFF 		bl	__aeabi_dmul
+ 263 004c 0246     		mov	r2, r0
+ 264 004e 0B46     		mov	r3, r1
+ 265 0050 1046     		mov	r0, r2
+ 266 0052 1946     		mov	r1, r3
+ 267 0054 32A3     		adr	r3, .L15
+ 268 0056 D3E90023 		ldrd	r2, [r3]
+ 269 005a FFF7FEFF 		bl	__aeabi_ddiv
+ 270 005e 0246     		mov	r2, r0
+ 271 0060 0B46     		mov	r3, r1
+ 272 0062 4FF00000 		mov	r0, #0
+ 273 0066 4FF40041 		mov	r1, #32768
+ 274 006a C4F25601 		movt	r1, 16470
+ 275 006e FFF7FEFF 		bl	__aeabi_dsub
+ 276 0072 0246     		mov	r2, r0
+ 277 0074 0B46     		mov	r3, r1
+ 278 0076 1046     		mov	r0, r2
+ 279 0078 1946     		mov	r1, r3
+ 280 007a FFF7FEFF 		bl	__aeabi_d2iz
+ 281 007e 0346     		mov	r3, r0
+ 282 0080 FB81     		strh	r3, [r7, #14]	@ movhi
+ 283 0082 46E0     		b	.L11
+ 284              	.L10:
+  54:.\magnetometer.c **** 	}
+  55:.\magnetometer.c **** 	else if(y < 0)
+ 285              		.loc 1 55 0
+ 286 0084 B7F90430 		ldrsh	r3, [r7, #4]
+ 287 0088 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 7
+
+
+ 288 008a 33DA     		bge	.L12
+  56:.\magnetometer.c **** 	{
+  57:.\magnetometer.c **** 		heading = 270 - atan(x / y) * 180/3.14156;
+ 289              		.loc 1 57 0
+ 290 008c B7F90620 		ldrsh	r2, [r7, #6]
+ 291 0090 B7F90430 		ldrsh	r3, [r7, #4]
+ 292 0094 92FBF3F3 		sdiv	r3, r2, r3
+ 293 0098 1846     		mov	r0, r3
+ 294 009a FFF7FEFF 		bl	__aeabi_i2d
+ 295 009e 0246     		mov	r2, r0
+ 296 00a0 0B46     		mov	r3, r1
+ 297 00a2 1046     		mov	r0, r2
+ 298 00a4 1946     		mov	r1, r3
+ 299 00a6 FFF7FEFF 		bl	atan
+ 300 00aa 0246     		mov	r2, r0
+ 301 00ac 0B46     		mov	r3, r1
+ 302 00ae 1046     		mov	r0, r2
+ 303 00b0 1946     		mov	r1, r3
+ 304 00b2 4FF00002 		mov	r2, #0
+ 305 00b6 4FF40043 		mov	r3, #32768
+ 306 00ba C4F26603 		movt	r3, 16486
+ 307 00be FFF7FEFF 		bl	__aeabi_dmul
+ 308 00c2 0246     		mov	r2, r0
+ 309 00c4 0B46     		mov	r3, r1
+ 310 00c6 1046     		mov	r0, r2
+ 311 00c8 1946     		mov	r1, r3
+ 312 00ca 15A3     		adr	r3, .L15
+ 313 00cc D3E90023 		ldrd	r2, [r3]
+ 314 00d0 FFF7FEFF 		bl	__aeabi_ddiv
+ 315 00d4 0246     		mov	r2, r0
+ 316 00d6 0B46     		mov	r3, r1
+ 317 00d8 13A1     		adr	r1, .L15+8
+ 318 00da D1E90001 		ldrd	r0, [r1]
+ 319 00de FFF7FEFF 		bl	__aeabi_dsub
+ 320 00e2 0246     		mov	r2, r0
+ 321 00e4 0B46     		mov	r3, r1
+ 322 00e6 1046     		mov	r0, r2
+ 323 00e8 1946     		mov	r1, r3
+ 324 00ea FFF7FEFF 		bl	__aeabi_d2iz
+ 325 00ee 0346     		mov	r3, r0
+ 326 00f0 FB81     		strh	r3, [r7, #14]	@ movhi
+ 327 00f2 0EE0     		b	.L11
+ 328              	.L12:
+  58:.\magnetometer.c **** 	}
+  59:.\magnetometer.c **** 	else if(y == 0 && x < 0)
+ 329              		.loc 1 59 0
+ 330 00f4 B7F90430 		ldrsh	r3, [r7, #4]
+ 331 00f8 002B     		cmp	r3, #0
+ 332 00fa 07D1     		bne	.L13
+ 333              		.loc 1 59 0 is_stmt 0 discriminator 1
+ 334 00fc B7F90630 		ldrsh	r3, [r7, #6]
+ 335 0100 002B     		cmp	r3, #0
+ 336 0102 03DA     		bge	.L13
+  60:.\magnetometer.c **** 	{
+  61:.\magnetometer.c **** 		heading = 180;
+ 337              		.loc 1 61 0 is_stmt 1
+ 338 0104 4FF0B403 		mov	r3, #180
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 8
+
+
+ 339 0108 FB81     		strh	r3, [r7, #14]	@ movhi
+ 340 010a 02E0     		b	.L11
+ 341              	.L13:
+  62:.\magnetometer.c **** 	}
+  63:.\magnetometer.c **** 	else
+  64:.\magnetometer.c **** 	{
+  65:.\magnetometer.c **** 		heading = 0;
+ 342              		.loc 1 65 0
+ 343 010c 4FF00003 		mov	r3, #0
+ 344 0110 FB81     		strh	r3, [r7, #14]	@ movhi
+ 345              	.L11:
+  66:.\magnetometer.c **** 	}
+  67:.\magnetometer.c **** 	return heading;
+ 346              		.loc 1 67 0
+ 347 0112 FB89     		ldrh	r3, [r7, #14]
+ 348 0114 1BB2     		sxth	r3, r3
+  68:.\magnetometer.c **** }
+ 349              		.loc 1 68 0
+ 350 0116 1846     		mov	r0, r3
+ 351 0118 07F11007 		add	r7, r7, #16
+ 352 011c BD46     		mov	sp, r7
+ 353 011e 80BD     		pop	{r7, pc}
+ 354              	.L16:
+ 355              		.align	3
+ 356              	.L15:
+ 357 0120 C45F9335 		.word	898850756
+ 358 0124 EA210940 		.word	1074340330
+ 359 0128 00000000 		.word	0
+ 360 012c 00E07040 		.word	1081139200
+ 361              		.cfi_endproc
+ 362              	.LFE59:
+ 363              		.size	getheading, .-getheading
+ 364              		.text
+ 365              	.Letext0:
+ 366              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 367              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 368              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 369              		.section	.debug_info,"",%progbits
+ 370              	.Ldebug_info0:
+ 371 0000 14020000 		.4byte	0x214
+ 372 0004 0200     		.2byte	0x2
+ 373 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 374 000a 04       		.byte	0x4
+ 375 000b 01       		.uleb128 0x1
+ 376 000c 75010000 		.4byte	.LASF30
+ 377 0010 01       		.byte	0x1
+ 378 0011 ED010000 		.4byte	.LASF31
+ 379 0015 3D000000 		.4byte	.LASF32
+ 380 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 381 001d 00000000 		.4byte	0
+ 382 0021 00000000 		.4byte	0
+ 383 0025 00000000 		.4byte	.Ldebug_line0
+ 384 0029 02       		.uleb128 0x2
+ 385 002a 01       		.byte	0x1
+ 386 002b 06       		.byte	0x6
+ 387 002c E1010000 		.4byte	.LASF0
+ 388 0030 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 9
+
+
+ 389 0031 01       		.byte	0x1
+ 390 0032 08       		.byte	0x8
+ 391 0033 2F000000 		.4byte	.LASF1
+ 392 0037 02       		.uleb128 0x2
+ 393 0038 02       		.byte	0x2
+ 394 0039 05       		.byte	0x5
+ 395 003a 65010000 		.4byte	.LASF2
+ 396 003e 02       		.uleb128 0x2
+ 397 003f 02       		.byte	0x2
+ 398 0040 07       		.byte	0x7
+ 399 0041 A2000000 		.4byte	.LASF3
+ 400 0045 03       		.uleb128 0x3
+ 401 0046 41010000 		.4byte	.LASF9
+ 402 004a 02       		.byte	0x2
+ 403 004b 4F       		.byte	0x4f
+ 404 004c 50000000 		.4byte	0x50
+ 405 0050 02       		.uleb128 0x2
+ 406 0051 04       		.byte	0x4
+ 407 0052 05       		.byte	0x5
+ 408 0053 CC010000 		.4byte	.LASF4
+ 409 0057 02       		.uleb128 0x2
+ 410 0058 04       		.byte	0x4
+ 411 0059 07       		.byte	0x7
+ 412 005a 90000000 		.4byte	.LASF5
+ 413 005e 02       		.uleb128 0x2
+ 414 005f 08       		.byte	0x8
+ 415 0060 05       		.byte	0x5
+ 416 0061 52010000 		.4byte	.LASF6
+ 417 0065 02       		.uleb128 0x2
+ 418 0066 08       		.byte	0x8
+ 419 0067 07       		.byte	0x7
+ 420 0068 13010000 		.4byte	.LASF7
+ 421 006c 04       		.uleb128 0x4
+ 422 006d 04       		.byte	0x4
+ 423 006e 05       		.byte	0x5
+ 424 006f 696E7400 		.ascii	"int\000"
+ 425 0073 02       		.uleb128 0x2
+ 426 0074 04       		.byte	0x4
+ 427 0075 07       		.byte	0x7
+ 428 0076 06010000 		.4byte	.LASF8
+ 429 007a 03       		.uleb128 0x3
+ 430 007b 6F010000 		.4byte	.LASF10
+ 431 007f 03       		.byte	0x3
+ 432 0080 5B       		.byte	0x5b
+ 433 0081 30000000 		.4byte	0x30
+ 434 0085 03       		.uleb128 0x3
+ 435 0086 FF000000 		.4byte	.LASF11
+ 436 008a 03       		.byte	0x3
+ 437 008b 5C       		.byte	0x5c
+ 438 008c 3E000000 		.4byte	0x3e
+ 439 0090 03       		.uleb128 0x3
+ 440 0091 8A000000 		.4byte	.LASF12
+ 441 0095 03       		.byte	0x3
+ 442 0096 5F       		.byte	0x5f
+ 443 0097 37000000 		.4byte	0x37
+ 444 009b 02       		.uleb128 0x2
+ 445 009c 04       		.byte	0x4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 10
+
+
+ 446 009d 04       		.byte	0x4
+ 447 009e 29000000 		.4byte	.LASF13
+ 448 00a2 02       		.uleb128 0x2
+ 449 00a3 08       		.byte	0x8
+ 450 00a4 04       		.byte	0x4
+ 451 00a5 06000000 		.4byte	.LASF14
+ 452 00a9 02       		.uleb128 0x2
+ 453 00aa 01       		.byte	0x1
+ 454 00ab 08       		.byte	0x8
+ 455 00ac 60010000 		.4byte	.LASF15
+ 456 00b0 02       		.uleb128 0x2
+ 457 00b1 04       		.byte	0x4
+ 458 00b2 07       		.byte	0x7
+ 459 00b3 49010000 		.4byte	.LASF16
+ 460 00b7 02       		.uleb128 0x2
+ 461 00b8 08       		.byte	0x8
+ 462 00b9 04       		.byte	0x4
+ 463 00ba D5010000 		.4byte	.LASF17
+ 464 00be 05       		.uleb128 0x5
+ 465 00bf 01       		.byte	0x1
+ 466 00c0 BE010000 		.4byte	.LASF33
+ 467 00c4 01       		.byte	0x1
+ 468 00c5 03       		.byte	0x3
+ 469 00c6 01       		.byte	0x1
+ 470 00c7 00000000 		.4byte	.LFB56
+ 471 00cb 48000000 		.4byte	.LFE56
+ 472 00cf 00000000 		.4byte	.LLST0
+ 473 00d3 01       		.byte	0x1
+ 474 00d4 03010000 		.4byte	0x103
+ 475 00d8 06       		.uleb128 0x6
+ 476 00d9 2A010000 		.4byte	.LASF18
+ 477 00dd 01       		.byte	0x1
+ 478 00de 03       		.byte	0x3
+ 479 00df 7A000000 		.4byte	0x7a
+ 480 00e3 02       		.byte	0x2
+ 481 00e4 91       		.byte	0x91
+ 482 00e5 6F       		.sleb128 -17
+ 483 00e6 06       		.uleb128 0x6
+ 484 00e7 B5000000 		.4byte	.LASF19
+ 485 00eb 01       		.byte	0x1
+ 486 00ec 03       		.byte	0x3
+ 487 00ed 7A000000 		.4byte	0x7a
+ 488 00f1 02       		.byte	0x2
+ 489 00f2 91       		.byte	0x91
+ 490 00f3 6E       		.sleb128 -18
+ 491 00f4 07       		.uleb128 0x7
+ 492 00f5 F3000000 		.4byte	.LASF20
+ 493 00f9 01       		.byte	0x1
+ 494 00fa 05       		.byte	0x5
+ 495 00fb 7A000000 		.4byte	0x7a
+ 496 00ff 02       		.byte	0x2
+ 497 0100 91       		.byte	0x91
+ 498 0101 77       		.sleb128 -9
+ 499 0102 00       		.byte	0
+ 500 0103 08       		.uleb128 0x8
+ 501 0104 01       		.byte	0x1
+ 502 0105 14000000 		.4byte	.LASF23
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 11
+
+
+ 503 0109 01       		.byte	0x1
+ 504 010a 0F       		.byte	0xf
+ 505 010b 01       		.byte	0x1
+ 506 010c 7A000000 		.4byte	0x7a
+ 507 0110 00000000 		.4byte	.LFB57
+ 508 0114 62000000 		.4byte	.LFE57
+ 509 0118 38000000 		.4byte	.LLST1
+ 510 011c 01       		.byte	0x1
+ 511 011d 5A010000 		.4byte	0x15a
+ 512 0121 06       		.uleb128 0x6
+ 513 0122 2A010000 		.4byte	.LASF18
+ 514 0126 01       		.byte	0x1
+ 515 0127 0F       		.byte	0xf
+ 516 0128 7A000000 		.4byte	0x7a
+ 517 012c 02       		.byte	0x2
+ 518 012d 91       		.byte	0x91
+ 519 012e 6F       		.sleb128 -17
+ 520 012f 07       		.uleb128 0x7
+ 521 0130 00000000 		.4byte	.LASF21
+ 522 0134 01       		.byte	0x1
+ 523 0135 11       		.byte	0x11
+ 524 0136 7A000000 		.4byte	0x7a
+ 525 013a 02       		.byte	0x2
+ 526 013b 91       		.byte	0x91
+ 527 013c 77       		.sleb128 -9
+ 528 013d 07       		.uleb128 0x7
+ 529 013e F3000000 		.4byte	.LASF20
+ 530 0142 01       		.byte	0x1
+ 531 0143 12       		.byte	0x12
+ 532 0144 7A000000 		.4byte	0x7a
+ 533 0148 02       		.byte	0x2
+ 534 0149 91       		.byte	0x91
+ 535 014a 76       		.sleb128 -10
+ 536 014b 07       		.uleb128 0x7
+ 537 014c 0D000000 		.4byte	.LASF22
+ 538 0150 01       		.byte	0x1
+ 539 0151 19       		.byte	0x19
+ 540 0152 7A000000 		.4byte	0x7a
+ 541 0156 02       		.byte	0x2
+ 542 0157 91       		.byte	0x91
+ 543 0158 75       		.sleb128 -11
+ 544 0159 00       		.byte	0
+ 545 015a 08       		.uleb128 0x8
+ 546 015b 01       		.byte	0x1
+ 547 015c BB000000 		.4byte	.LASF24
+ 548 0160 01       		.byte	0x1
+ 549 0161 23       		.byte	0x23
+ 550 0162 01       		.byte	0x1
+ 551 0163 90000000 		.4byte	0x90
+ 552 0167 00000000 		.4byte	.LFB58
+ 553 016b 44000000 		.4byte	.LFE58
+ 554 016f 70000000 		.4byte	.LLST2
+ 555 0173 01       		.byte	0x1
+ 556 0174 BF010000 		.4byte	0x1bf
+ 557 0178 06       		.uleb128 0x6
+ 558 0179 DF000000 		.4byte	.LASF25
+ 559 017d 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 12
+
+
+ 560 017e 23       		.byte	0x23
+ 561 017f 7A000000 		.4byte	0x7a
+ 562 0183 02       		.byte	0x2
+ 563 0184 91       		.byte	0x91
+ 564 0185 6F       		.sleb128 -17
+ 565 0186 06       		.uleb128 0x6
+ 566 0187 E9000000 		.4byte	.LASF26
+ 567 018b 01       		.byte	0x1
+ 568 018c 23       		.byte	0x23
+ 569 018d 7A000000 		.4byte	0x7a
+ 570 0191 02       		.byte	0x2
+ 571 0192 91       		.byte	0x91
+ 572 0193 6E       		.sleb128 -18
+ 573 0194 09       		.uleb128 0x9
+ 574 0195 4D534200 		.ascii	"MSB\000"
+ 575 0199 01       		.byte	0x1
+ 576 019a 25       		.byte	0x25
+ 577 019b 7A000000 		.4byte	0x7a
+ 578 019f 02       		.byte	0x2
+ 579 01a0 91       		.byte	0x91
+ 580 01a1 77       		.sleb128 -9
+ 581 01a2 09       		.uleb128 0x9
+ 582 01a3 4C534200 		.ascii	"LSB\000"
+ 583 01a7 01       		.byte	0x1
+ 584 01a8 26       		.byte	0x26
+ 585 01a9 7A000000 		.4byte	0x7a
+ 586 01ad 02       		.byte	0x2
+ 587 01ae 91       		.byte	0x91
+ 588 01af 76       		.sleb128 -10
+ 589 01b0 07       		.uleb128 0x7
+ 590 01b1 21000000 		.4byte	.LASF27
+ 591 01b5 01       		.byte	0x1
+ 592 01b6 2B       		.byte	0x2b
+ 593 01b7 90000000 		.4byte	0x90
+ 594 01bb 02       		.byte	0x2
+ 595 01bc 91       		.byte	0x91
+ 596 01bd 74       		.sleb128 -12
+ 597 01be 00       		.byte	0
+ 598 01bf 08       		.uleb128 0x8
+ 599 01c0 01       		.byte	0x1
+ 600 01c1 36010000 		.4byte	.LASF28
+ 601 01c5 01       		.byte	0x1
+ 602 01c6 2F       		.byte	0x2f
+ 603 01c7 01       		.byte	0x1
+ 604 01c8 90000000 		.4byte	0x90
+ 605 01cc 00000000 		.4byte	.LFB59
+ 606 01d0 30010000 		.4byte	.LFE59
+ 607 01d4 A8000000 		.4byte	.LLST3
+ 608 01d8 01       		.byte	0x1
+ 609 01d9 04020000 		.4byte	0x204
+ 610 01dd 0A       		.uleb128 0xa
+ 611 01de 7800     		.ascii	"x\000"
+ 612 01e0 01       		.byte	0x1
+ 613 01e1 2F       		.byte	0x2f
+ 614 01e2 90000000 		.4byte	0x90
+ 615 01e6 02       		.byte	0x2
+ 616 01e7 91       		.byte	0x91
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 13
+
+
+ 617 01e8 6E       		.sleb128 -18
+ 618 01e9 0A       		.uleb128 0xa
+ 619 01ea 7900     		.ascii	"y\000"
+ 620 01ec 01       		.byte	0x1
+ 621 01ed 2F       		.byte	0x2f
+ 622 01ee 90000000 		.4byte	0x90
+ 623 01f2 02       		.byte	0x2
+ 624 01f3 91       		.byte	0x91
+ 625 01f4 6C       		.sleb128 -20
+ 626 01f5 07       		.uleb128 0x7
+ 627 01f6 D7000000 		.4byte	.LASF29
+ 628 01fa 01       		.byte	0x1
+ 629 01fb 31       		.byte	0x31
+ 630 01fc 90000000 		.4byte	0x90
+ 631 0200 02       		.byte	0x2
+ 632 0201 91       		.byte	0x91
+ 633 0202 76       		.sleb128 -10
+ 634 0203 00       		.byte	0
+ 635 0204 0B       		.uleb128 0xb
+ 636 0205 CA000000 		.4byte	.LASF34
+ 637 0209 04       		.byte	0x4
+ 638 020a 1606     		.2byte	0x616
+ 639 020c 12020000 		.4byte	0x212
+ 640 0210 01       		.byte	0x1
+ 641 0211 01       		.byte	0x1
+ 642 0212 0C       		.uleb128 0xc
+ 643 0213 45000000 		.4byte	0x45
+ 644 0217 00       		.byte	0
+ 645              		.section	.debug_abbrev,"",%progbits
+ 646              	.Ldebug_abbrev0:
+ 647 0000 01       		.uleb128 0x1
+ 648 0001 11       		.uleb128 0x11
+ 649 0002 01       		.byte	0x1
+ 650 0003 25       		.uleb128 0x25
+ 651 0004 0E       		.uleb128 0xe
+ 652 0005 13       		.uleb128 0x13
+ 653 0006 0B       		.uleb128 0xb
+ 654 0007 03       		.uleb128 0x3
+ 655 0008 0E       		.uleb128 0xe
+ 656 0009 1B       		.uleb128 0x1b
+ 657 000a 0E       		.uleb128 0xe
+ 658 000b 55       		.uleb128 0x55
+ 659 000c 06       		.uleb128 0x6
+ 660 000d 11       		.uleb128 0x11
+ 661 000e 01       		.uleb128 0x1
+ 662 000f 52       		.uleb128 0x52
+ 663 0010 01       		.uleb128 0x1
+ 664 0011 10       		.uleb128 0x10
+ 665 0012 06       		.uleb128 0x6
+ 666 0013 00       		.byte	0
+ 667 0014 00       		.byte	0
+ 668 0015 02       		.uleb128 0x2
+ 669 0016 24       		.uleb128 0x24
+ 670 0017 00       		.byte	0
+ 671 0018 0B       		.uleb128 0xb
+ 672 0019 0B       		.uleb128 0xb
+ 673 001a 3E       		.uleb128 0x3e
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 14
+
+
+ 674 001b 0B       		.uleb128 0xb
+ 675 001c 03       		.uleb128 0x3
+ 676 001d 0E       		.uleb128 0xe
+ 677 001e 00       		.byte	0
+ 678 001f 00       		.byte	0
+ 679 0020 03       		.uleb128 0x3
+ 680 0021 16       		.uleb128 0x16
+ 681 0022 00       		.byte	0
+ 682 0023 03       		.uleb128 0x3
+ 683 0024 0E       		.uleb128 0xe
+ 684 0025 3A       		.uleb128 0x3a
+ 685 0026 0B       		.uleb128 0xb
+ 686 0027 3B       		.uleb128 0x3b
+ 687 0028 0B       		.uleb128 0xb
+ 688 0029 49       		.uleb128 0x49
+ 689 002a 13       		.uleb128 0x13
+ 690 002b 00       		.byte	0
+ 691 002c 00       		.byte	0
+ 692 002d 04       		.uleb128 0x4
+ 693 002e 24       		.uleb128 0x24
+ 694 002f 00       		.byte	0
+ 695 0030 0B       		.uleb128 0xb
+ 696 0031 0B       		.uleb128 0xb
+ 697 0032 3E       		.uleb128 0x3e
+ 698 0033 0B       		.uleb128 0xb
+ 699 0034 03       		.uleb128 0x3
+ 700 0035 08       		.uleb128 0x8
+ 701 0036 00       		.byte	0
+ 702 0037 00       		.byte	0
+ 703 0038 05       		.uleb128 0x5
+ 704 0039 2E       		.uleb128 0x2e
+ 705 003a 01       		.byte	0x1
+ 706 003b 3F       		.uleb128 0x3f
+ 707 003c 0C       		.uleb128 0xc
+ 708 003d 03       		.uleb128 0x3
+ 709 003e 0E       		.uleb128 0xe
+ 710 003f 3A       		.uleb128 0x3a
+ 711 0040 0B       		.uleb128 0xb
+ 712 0041 3B       		.uleb128 0x3b
+ 713 0042 0B       		.uleb128 0xb
+ 714 0043 27       		.uleb128 0x27
+ 715 0044 0C       		.uleb128 0xc
+ 716 0045 11       		.uleb128 0x11
+ 717 0046 01       		.uleb128 0x1
+ 718 0047 12       		.uleb128 0x12
+ 719 0048 01       		.uleb128 0x1
+ 720 0049 40       		.uleb128 0x40
+ 721 004a 06       		.uleb128 0x6
+ 722 004b 9642     		.uleb128 0x2116
+ 723 004d 0C       		.uleb128 0xc
+ 724 004e 01       		.uleb128 0x1
+ 725 004f 13       		.uleb128 0x13
+ 726 0050 00       		.byte	0
+ 727 0051 00       		.byte	0
+ 728 0052 06       		.uleb128 0x6
+ 729 0053 05       		.uleb128 0x5
+ 730 0054 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 15
+
+
+ 731 0055 03       		.uleb128 0x3
+ 732 0056 0E       		.uleb128 0xe
+ 733 0057 3A       		.uleb128 0x3a
+ 734 0058 0B       		.uleb128 0xb
+ 735 0059 3B       		.uleb128 0x3b
+ 736 005a 0B       		.uleb128 0xb
+ 737 005b 49       		.uleb128 0x49
+ 738 005c 13       		.uleb128 0x13
+ 739 005d 02       		.uleb128 0x2
+ 740 005e 0A       		.uleb128 0xa
+ 741 005f 00       		.byte	0
+ 742 0060 00       		.byte	0
+ 743 0061 07       		.uleb128 0x7
+ 744 0062 34       		.uleb128 0x34
+ 745 0063 00       		.byte	0
+ 746 0064 03       		.uleb128 0x3
+ 747 0065 0E       		.uleb128 0xe
+ 748 0066 3A       		.uleb128 0x3a
+ 749 0067 0B       		.uleb128 0xb
+ 750 0068 3B       		.uleb128 0x3b
+ 751 0069 0B       		.uleb128 0xb
+ 752 006a 49       		.uleb128 0x49
+ 753 006b 13       		.uleb128 0x13
+ 754 006c 02       		.uleb128 0x2
+ 755 006d 0A       		.uleb128 0xa
+ 756 006e 00       		.byte	0
+ 757 006f 00       		.byte	0
+ 758 0070 08       		.uleb128 0x8
+ 759 0071 2E       		.uleb128 0x2e
+ 760 0072 01       		.byte	0x1
+ 761 0073 3F       		.uleb128 0x3f
+ 762 0074 0C       		.uleb128 0xc
+ 763 0075 03       		.uleb128 0x3
+ 764 0076 0E       		.uleb128 0xe
+ 765 0077 3A       		.uleb128 0x3a
+ 766 0078 0B       		.uleb128 0xb
+ 767 0079 3B       		.uleb128 0x3b
+ 768 007a 0B       		.uleb128 0xb
+ 769 007b 27       		.uleb128 0x27
+ 770 007c 0C       		.uleb128 0xc
+ 771 007d 49       		.uleb128 0x49
+ 772 007e 13       		.uleb128 0x13
+ 773 007f 11       		.uleb128 0x11
+ 774 0080 01       		.uleb128 0x1
+ 775 0081 12       		.uleb128 0x12
+ 776 0082 01       		.uleb128 0x1
+ 777 0083 40       		.uleb128 0x40
+ 778 0084 06       		.uleb128 0x6
+ 779 0085 9642     		.uleb128 0x2116
+ 780 0087 0C       		.uleb128 0xc
+ 781 0088 01       		.uleb128 0x1
+ 782 0089 13       		.uleb128 0x13
+ 783 008a 00       		.byte	0
+ 784 008b 00       		.byte	0
+ 785 008c 09       		.uleb128 0x9
+ 786 008d 34       		.uleb128 0x34
+ 787 008e 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 16
+
+
+ 788 008f 03       		.uleb128 0x3
+ 789 0090 08       		.uleb128 0x8
+ 790 0091 3A       		.uleb128 0x3a
+ 791 0092 0B       		.uleb128 0xb
+ 792 0093 3B       		.uleb128 0x3b
+ 793 0094 0B       		.uleb128 0xb
+ 794 0095 49       		.uleb128 0x49
+ 795 0096 13       		.uleb128 0x13
+ 796 0097 02       		.uleb128 0x2
+ 797 0098 0A       		.uleb128 0xa
+ 798 0099 00       		.byte	0
+ 799 009a 00       		.byte	0
+ 800 009b 0A       		.uleb128 0xa
+ 801 009c 05       		.uleb128 0x5
+ 802 009d 00       		.byte	0
+ 803 009e 03       		.uleb128 0x3
+ 804 009f 08       		.uleb128 0x8
+ 805 00a0 3A       		.uleb128 0x3a
+ 806 00a1 0B       		.uleb128 0xb
+ 807 00a2 3B       		.uleb128 0x3b
+ 808 00a3 0B       		.uleb128 0xb
+ 809 00a4 49       		.uleb128 0x49
+ 810 00a5 13       		.uleb128 0x13
+ 811 00a6 02       		.uleb128 0x2
+ 812 00a7 0A       		.uleb128 0xa
+ 813 00a8 00       		.byte	0
+ 814 00a9 00       		.byte	0
+ 815 00aa 0B       		.uleb128 0xb
+ 816 00ab 34       		.uleb128 0x34
+ 817 00ac 00       		.byte	0
+ 818 00ad 03       		.uleb128 0x3
+ 819 00ae 0E       		.uleb128 0xe
+ 820 00af 3A       		.uleb128 0x3a
+ 821 00b0 0B       		.uleb128 0xb
+ 822 00b1 3B       		.uleb128 0x3b
+ 823 00b2 05       		.uleb128 0x5
+ 824 00b3 49       		.uleb128 0x49
+ 825 00b4 13       		.uleb128 0x13
+ 826 00b5 3F       		.uleb128 0x3f
+ 827 00b6 0C       		.uleb128 0xc
+ 828 00b7 3C       		.uleb128 0x3c
+ 829 00b8 0C       		.uleb128 0xc
+ 830 00b9 00       		.byte	0
+ 831 00ba 00       		.byte	0
+ 832 00bb 0C       		.uleb128 0xc
+ 833 00bc 35       		.uleb128 0x35
+ 834 00bd 00       		.byte	0
+ 835 00be 49       		.uleb128 0x49
+ 836 00bf 13       		.uleb128 0x13
+ 837 00c0 00       		.byte	0
+ 838 00c1 00       		.byte	0
+ 839 00c2 00       		.byte	0
+ 840              		.section	.debug_loc,"",%progbits
+ 841              	.Ldebug_loc0:
+ 842              	.LLST0:
+ 843 0000 00000000 		.4byte	.LFB56
+ 844 0004 02000000 		.4byte	.LCFI0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 17
+
+
+ 845 0008 0200     		.2byte	0x2
+ 846 000a 7D       		.byte	0x7d
+ 847 000b 00       		.sleb128 0
+ 848 000c 02000000 		.4byte	.LCFI0
+ 849 0010 04000000 		.4byte	.LCFI1
+ 850 0014 0200     		.2byte	0x2
+ 851 0016 7D       		.byte	0x7d
+ 852 0017 08       		.sleb128 8
+ 853 0018 04000000 		.4byte	.LCFI1
+ 854 001c 06000000 		.4byte	.LCFI2
+ 855 0020 0200     		.2byte	0x2
+ 856 0022 7D       		.byte	0x7d
+ 857 0023 18       		.sleb128 24
+ 858 0024 06000000 		.4byte	.LCFI2
+ 859 0028 48000000 		.4byte	.LFE56
+ 860 002c 0200     		.2byte	0x2
+ 861 002e 77       		.byte	0x77
+ 862 002f 18       		.sleb128 24
+ 863 0030 00000000 		.4byte	0
+ 864 0034 00000000 		.4byte	0
+ 865              	.LLST1:
+ 866 0038 00000000 		.4byte	.LFB57
+ 867 003c 02000000 		.4byte	.LCFI3
+ 868 0040 0200     		.2byte	0x2
+ 869 0042 7D       		.byte	0x7d
+ 870 0043 00       		.sleb128 0
+ 871 0044 02000000 		.4byte	.LCFI3
+ 872 0048 04000000 		.4byte	.LCFI4
+ 873 004c 0200     		.2byte	0x2
+ 874 004e 7D       		.byte	0x7d
+ 875 004f 08       		.sleb128 8
+ 876 0050 04000000 		.4byte	.LCFI4
+ 877 0054 06000000 		.4byte	.LCFI5
+ 878 0058 0200     		.2byte	0x2
+ 879 005a 7D       		.byte	0x7d
+ 880 005b 18       		.sleb128 24
+ 881 005c 06000000 		.4byte	.LCFI5
+ 882 0060 62000000 		.4byte	.LFE57
+ 883 0064 0200     		.2byte	0x2
+ 884 0066 77       		.byte	0x77
+ 885 0067 18       		.sleb128 24
+ 886 0068 00000000 		.4byte	0
+ 887 006c 00000000 		.4byte	0
+ 888              	.LLST2:
+ 889 0070 00000000 		.4byte	.LFB58
+ 890 0074 02000000 		.4byte	.LCFI6
+ 891 0078 0200     		.2byte	0x2
+ 892 007a 7D       		.byte	0x7d
+ 893 007b 00       		.sleb128 0
+ 894 007c 02000000 		.4byte	.LCFI6
+ 895 0080 04000000 		.4byte	.LCFI7
+ 896 0084 0200     		.2byte	0x2
+ 897 0086 7D       		.byte	0x7d
+ 898 0087 08       		.sleb128 8
+ 899 0088 04000000 		.4byte	.LCFI7
+ 900 008c 06000000 		.4byte	.LCFI8
+ 901 0090 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 18
+
+
+ 902 0092 7D       		.byte	0x7d
+ 903 0093 18       		.sleb128 24
+ 904 0094 06000000 		.4byte	.LCFI8
+ 905 0098 44000000 		.4byte	.LFE58
+ 906 009c 0200     		.2byte	0x2
+ 907 009e 77       		.byte	0x77
+ 908 009f 18       		.sleb128 24
+ 909 00a0 00000000 		.4byte	0
+ 910 00a4 00000000 		.4byte	0
+ 911              	.LLST3:
+ 912 00a8 00000000 		.4byte	.LFB59
+ 913 00ac 02000000 		.4byte	.LCFI9
+ 914 00b0 0200     		.2byte	0x2
+ 915 00b2 7D       		.byte	0x7d
+ 916 00b3 00       		.sleb128 0
+ 917 00b4 02000000 		.4byte	.LCFI9
+ 918 00b8 04000000 		.4byte	.LCFI10
+ 919 00bc 0200     		.2byte	0x2
+ 920 00be 7D       		.byte	0x7d
+ 921 00bf 08       		.sleb128 8
+ 922 00c0 04000000 		.4byte	.LCFI10
+ 923 00c4 06000000 		.4byte	.LCFI11
+ 924 00c8 0200     		.2byte	0x2
+ 925 00ca 7D       		.byte	0x7d
+ 926 00cb 18       		.sleb128 24
+ 927 00cc 06000000 		.4byte	.LCFI11
+ 928 00d0 30010000 		.4byte	.LFE59
+ 929 00d4 0200     		.2byte	0x2
+ 930 00d6 77       		.byte	0x77
+ 931 00d7 18       		.sleb128 24
+ 932 00d8 00000000 		.4byte	0
+ 933 00dc 00000000 		.4byte	0
+ 934              		.section	.debug_aranges,"",%progbits
+ 935 0000 34000000 		.4byte	0x34
+ 936 0004 0200     		.2byte	0x2
+ 937 0006 00000000 		.4byte	.Ldebug_info0
+ 938 000a 04       		.byte	0x4
+ 939 000b 00       		.byte	0
+ 940 000c 0000     		.2byte	0
+ 941 000e 0000     		.2byte	0
+ 942 0010 00000000 		.4byte	.LFB56
+ 943 0014 48000000 		.4byte	.LFE56-.LFB56
+ 944 0018 00000000 		.4byte	.LFB57
+ 945 001c 62000000 		.4byte	.LFE57-.LFB57
+ 946 0020 00000000 		.4byte	.LFB58
+ 947 0024 44000000 		.4byte	.LFE58-.LFB58
+ 948 0028 00000000 		.4byte	.LFB59
+ 949 002c 30010000 		.4byte	.LFE59-.LFB59
+ 950 0030 00000000 		.4byte	0
+ 951 0034 00000000 		.4byte	0
+ 952              		.section	.debug_ranges,"",%progbits
+ 953              	.Ldebug_ranges0:
+ 954 0000 00000000 		.4byte	.LFB56
+ 955 0004 48000000 		.4byte	.LFE56
+ 956 0008 00000000 		.4byte	.LFB57
+ 957 000c 62000000 		.4byte	.LFE57
+ 958 0010 00000000 		.4byte	.LFB58
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 19
+
+
+ 959 0014 44000000 		.4byte	.LFE58
+ 960 0018 00000000 		.4byte	.LFB59
+ 961 001c 30010000 		.4byte	.LFE59
+ 962 0020 00000000 		.4byte	0
+ 963 0024 00000000 		.4byte	0
+ 964              		.section	.debug_line,"",%progbits
+ 965              	.Ldebug_line0:
+ 966 0000 6A010000 		.section	.debug_str,"MS",%progbits,1
+ 966      02000101 
+ 966      00000201 
+ 966      FB0E0D00 
+ 966      01010101 
+ 967              	.LASF21:
+ 968 0000 76616C75 		.ascii	"value\000"
+ 968      6500
+ 969              	.LASF14:
+ 970 0006 646F7562 		.ascii	"double\000"
+ 970      6C6500
+ 971              	.LASF22:
+ 972 000d 73746174 		.ascii	"status\000"
+ 972      757300
+ 973              	.LASF23:
+ 974 0014 72656164 		.ascii	"readregister\000"
+ 974      72656769 
+ 974      73746572 
+ 974      00
+ 975              	.LASF27:
+ 976 0021 72656164 		.ascii	"reading\000"
+ 976      696E6700 
+ 977              	.LASF13:
+ 978 0029 666C6F61 		.ascii	"float\000"
+ 978      7400
+ 979              	.LASF1:
+ 980 002f 756E7369 		.ascii	"unsigned char\000"
+ 980      676E6564 
+ 980      20636861 
+ 980      7200
+ 981              	.LASF32:
+ 982 003d 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 982      73657273 
+ 982      5C527961 
+ 982      6E5C446F 
+ 982      63756D65 
+ 983 006b 416C7465 		.ascii	"Alternative Power Scheme.cydsn\000"
+ 983      726E6174 
+ 983      69766520 
+ 983      506F7765 
+ 983      72205363 
+ 984              	.LASF12:
+ 985 008a 696E7431 		.ascii	"int16\000"
+ 985      3600
+ 986              	.LASF5:
+ 987 0090 6C6F6E67 		.ascii	"long unsigned int\000"
+ 987      20756E73 
+ 987      69676E65 
+ 987      6420696E 
+ 987      7400
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 20
+
+
+ 988              	.LASF3:
+ 989 00a2 73686F72 		.ascii	"short unsigned int\000"
+ 989      7420756E 
+ 989      7369676E 
+ 989      65642069 
+ 989      6E7400
+ 990              	.LASF19:
+ 991 00b5 77726974 		.ascii	"write\000"
+ 991      6500
+ 992              	.LASF24:
+ 993 00bb 6765746D 		.ascii	"getmeasurement\000"
+ 993      65617375 
+ 993      72656D65 
+ 993      6E7400
+ 994              	.LASF34:
+ 995 00ca 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 995      52784275 
+ 995      66666572 
+ 995      00
+ 996              	.LASF29:
+ 997 00d7 68656164 		.ascii	"heading\000"
+ 997      696E6700 
+ 998              	.LASF25:
+ 999 00df 72656769 		.ascii	"registerA\000"
+ 999      73746572 
+ 999      4100
+ 1000              	.LASF26:
+ 1001 00e9 72656769 		.ascii	"registerB\000"
+ 1001      73746572 
+ 1001      4200
+ 1002              	.LASF20:
+ 1003 00f3 77726974 		.ascii	"writestatus\000"
+ 1003      65737461 
+ 1003      74757300 
+ 1004              	.LASF11:
+ 1005 00ff 75696E74 		.ascii	"uint16\000"
+ 1005      313600
+ 1006              	.LASF8:
+ 1007 0106 756E7369 		.ascii	"unsigned int\000"
+ 1007      676E6564 
+ 1007      20696E74 
+ 1007      00
+ 1008              	.LASF7:
+ 1009 0113 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1009      206C6F6E 
+ 1009      6720756E 
+ 1009      7369676E 
+ 1009      65642069 
+ 1010              	.LASF18:
+ 1011 012a 74686572 		.ascii	"theregister\000"
+ 1011      65676973 
+ 1011      74657200 
+ 1012              	.LASF28:
+ 1013 0136 67657468 		.ascii	"getheading\000"
+ 1013      65616469 
+ 1013      6E6700
+ 1014              	.LASF9:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccEhDK8w.s 			page 21
+
+
+ 1015 0141 696E7433 		.ascii	"int32_t\000"
+ 1015      325F7400 
+ 1016              	.LASF16:
+ 1017 0149 73697A65 		.ascii	"sizetype\000"
+ 1017      74797065 
+ 1017      00
+ 1018              	.LASF6:
+ 1019 0152 6C6F6E67 		.ascii	"long long int\000"
+ 1019      206C6F6E 
+ 1019      6720696E 
+ 1019      7400
+ 1020              	.LASF15:
+ 1021 0160 63686172 		.ascii	"char\000"
+ 1021      00
+ 1022              	.LASF2:
+ 1023 0165 73686F72 		.ascii	"short int\000"
+ 1023      7420696E 
+ 1023      7400
+ 1024              	.LASF10:
+ 1025 016f 75696E74 		.ascii	"uint8\000"
+ 1025      3800
+ 1026              	.LASF30:
+ 1027 0175 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1027      4320342E 
+ 1027      372E3320 
+ 1027      32303133 
+ 1027      30333132 
+ 1028 01a8 616E6368 		.ascii	"anch revision 196615]\000"
+ 1028      20726576 
+ 1028      6973696F 
+ 1028      6E203139 
+ 1028      36363135 
+ 1029              	.LASF33:
+ 1030 01be 77726974 		.ascii	"writeregister\000"
+ 1030      65726567 
+ 1030      69737465 
+ 1030      7200
+ 1031              	.LASF4:
+ 1032 01cc 6C6F6E67 		.ascii	"long int\000"
+ 1032      20696E74 
+ 1032      00
+ 1033              	.LASF17:
+ 1034 01d5 6C6F6E67 		.ascii	"long double\000"
+ 1034      20646F75 
+ 1034      626C6500 
+ 1035              	.LASF0:
+ 1036 01e1 7369676E 		.ascii	"signed char\000"
+ 1036      65642063 
+ 1036      68617200 
+ 1037              	.LASF31:
+ 1038 01ed 2E5C6D61 		.ascii	".\\magnetometer.c\000"
+ 1038      676E6574 
+ 1038      6F6D6574 
+ 1038      65722E63 
+ 1038      00
+ 1039              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

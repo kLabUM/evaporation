@@ -1,0 +1,38 @@
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_DelSig.o : C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_Ext_CP_Clk.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_theACLK.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_Ext_CP_Clk.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_theACLK.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_DelSig_INT.o : C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_INT.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_INT.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_DelSig_PM.o : C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_PM.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/ADC_DelSig_PM.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/CortexM3/ARM_GCC_473/Debug/cymetadata.o : C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cymetadata.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/Thermocouple.cydsn/Generated_Source/PSoC5/cymetadata.c : 
+

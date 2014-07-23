@@ -1,0 +1,2938 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"cymetadata.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	cy_meta_configecc
+  19              		.section	.cyconfigecc,"a",%progbits
+  20              		.align	2
+  21              		.type	cy_meta_configecc, %object
+  22              		.size	cy_meta_configecc, 2304
+  23              	cy_meta_configecc:
+  24 0000 03       		.byte	3
+  25 0001 52       		.byte	82
+  26 0002 00       		.byte	0
+  27 0003 40       		.byte	64
+  28 0004 04       		.byte	4
+  29 0005 64       		.byte	100
+  30 0006 00       		.byte	0
+  31 0007 40       		.byte	64
+  32 0008 03       		.byte	3
+  33 0009 65       		.byte	101
+  34 000a 00       		.byte	0
+  35 000b 40       		.byte	64
+  36 000c 01       		.byte	1
+  37 000d 05       		.byte	5
+  38 000e 01       		.byte	1
+  39 000f 40       		.byte	64
+  40 0010 01       		.byte	1
+  41 0011 07       		.byte	7
+  42 0012 01       		.byte	1
+  43 0013 40       		.byte	64
+  44 0014 56       		.byte	86
+  45 0015 08       		.byte	8
+  46 0016 01       		.byte	1
+  47 0017 40       		.byte	64
+  48 0018 4C       		.byte	76
+  49 0019 09       		.byte	9
+  50 001a 01       		.byte	1
+  51 001b 40       		.byte	64
+  52 001c 56       		.byte	86
+  53 001d 0A       		.byte	10
+  54 001e 01       		.byte	1
+  55 001f 40       		.byte	64
+  56 0020 4F       		.byte	79
+  57 0021 0B       		.byte	11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 2
+
+
+  58 0022 01       		.byte	1
+  59 0023 40       		.byte	64
+  60 0024 24       		.byte	36
+  61 0025 0C       		.byte	12
+  62 0026 01       		.byte	1
+  63 0027 40       		.byte	64
+  64 0028 4D       		.byte	77
+  65 0029 0D       		.byte	13
+  66 002a 01       		.byte	1
+  67 002b 40       		.byte	64
+  68 002c 6C       		.byte	108
+  69 002d 0E       		.byte	14
+  70 002e 01       		.byte	1
+  71 002f 40       		.byte	64
+  72 0030 3C       		.byte	60
+  73 0031 0F       		.byte	15
+  74 0032 01       		.byte	1
+  75 0033 40       		.byte	64
+  76 0034 02       		.byte	2
+  77 0035 15       		.byte	21
+  78 0036 01       		.byte	1
+  79 0037 40       		.byte	64
+  80 0038 4A       		.byte	74
+  81 0039 18       		.byte	24
+  82 003a 01       		.byte	1
+  83 003b 40       		.byte	64
+  84 003c 48       		.byte	72
+  85 003d 19       		.byte	25
+  86 003e 01       		.byte	1
+  87 003f 40       		.byte	64
+  88 0040 5A       		.byte	90
+  89 0041 1A       		.byte	26
+  90 0042 01       		.byte	1
+  91 0043 40       		.byte	64
+  92 0044 42       		.byte	66
+  93 0045 1B       		.byte	27
+  94 0046 01       		.byte	1
+  95 0047 40       		.byte	64
+  96 0048 03       		.byte	3
+  97 0049 40       		.byte	64
+  98 004a 01       		.byte	1
+  99 004b 40       		.byte	64
+ 100 004c 02       		.byte	2
+ 101 004d 41       		.byte	65
+ 102 004e 01       		.byte	1
+ 103 004f 40       		.byte	64
+ 104 0050 09       		.byte	9
+ 105 0051 42       		.byte	66
+ 106 0052 01       		.byte	1
+ 107 0053 40       		.byte	64
+ 108 0054 04       		.byte	4
+ 109 0055 43       		.byte	67
+ 110 0056 01       		.byte	1
+ 111 0057 40       		.byte	64
+ 112 0058 02       		.byte	2
+ 113 0059 44       		.byte	68
+ 114 005a 01       		.byte	1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 3
+
+
+ 115 005b 40       		.byte	64
+ 116 005c 11       		.byte	17
+ 117 005d 45       		.byte	69
+ 118 005e 01       		.byte	1
+ 119 005f 40       		.byte	64
+ 120 0060 0B       		.byte	11
+ 121 0061 46       		.byte	70
+ 122 0062 01       		.byte	1
+ 123 0063 40       		.byte	64
+ 124 0064 05       		.byte	5
+ 125 0065 47       		.byte	71
+ 126 0066 01       		.byte	1
+ 127 0067 40       		.byte	64
+ 128 0068 01       		.byte	1
+ 129 0069 48       		.byte	72
+ 130 006a 01       		.byte	1
+ 131 006b 40       		.byte	64
+ 132 006c 07       		.byte	7
+ 133 006d 49       		.byte	73
+ 134 006e 01       		.byte	1
+ 135 006f 40       		.byte	64
+ 136 0070 0B       		.byte	11
+ 137 0071 4C       		.byte	76
+ 138 0072 01       		.byte	1
+ 139 0073 40       		.byte	64
+ 140 0074 04       		.byte	4
+ 141 0075 4D       		.byte	77
+ 142 0076 01       		.byte	1
+ 143 0077 40       		.byte	64
+ 144 0078 05       		.byte	5
+ 145 0079 50       		.byte	80
+ 146 007a 01       		.byte	1
+ 147 007b 40       		.byte	64
+ 148 007c 02       		.byte	2
+ 149 007d 51       		.byte	81
+ 150 007e 01       		.byte	1
+ 151 007f 40       		.byte	64
+ 152 0080 10       		.byte	16
+ 153 0081 48       		.byte	72
+ 154 0082 11       		.byte	17
+ 155 0083 50       		.byte	80
+ 156 0084 14       		.byte	20
+ 157 0085 25       		.byte	37
+ 158 0086 89       		.byte	-119
+ 159 0087 72       		.byte	114
+ 160 0088 8A       		.byte	-118
+ 161 0089 38       		.byte	56
+ 162 008a 8B       		.byte	-117
+ 163 008b 38       		.byte	56
+ 164 008c 8F       		.byte	-113
+ 165 008d 72       		.byte	114
+ 166 008e 88       		.byte	-120
+ 167 008f 1B       		.byte	27
+ 168 0090 89       		.byte	-119
+ 169 0091 0F       		.byte	15
+ 170 0092 8B       		.byte	-117
+ 171 0093 0F       		.byte	15
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 4
+
+
+ 172 0094 E6       		.byte	-26
+ 173 0095 09       		.byte	9
+ 174 0096 E0       		.byte	-32
+ 175 0097 04       		.byte	4
+ 176 0098 00       		.byte	0
+ 177 0099 80       		.byte	-128
+ 178 009a 02       		.byte	2
+ 179 009b 10       		.byte	16
+ 180 009c 03       		.byte	3
+ 181 009d 0E       		.byte	14
+ 182 009e 04       		.byte	4
+ 183 009f 9C       		.byte	-100
+ 184 00a0 05       		.byte	5
+ 185 00a1 03       		.byte	3
+ 186 00a2 06       		.byte	6
+ 187 00a3 22       		.byte	34
+ 188 00a4 07       		.byte	7
+ 189 00a5 04       		.byte	4
+ 190 00a6 0C       		.byte	12
+ 191 00a7 14       		.byte	20
+ 192 00a8 0D       		.byte	13
+ 193 00a9 03       		.byte	3
+ 194 00aa 0F       		.byte	15
+ 195 00ab 04       		.byte	4
+ 196 00ac 15       		.byte	21
+ 197 00ad 03       		.byte	3
+ 198 00ae 17       		.byte	23
+ 199 00af 0C       		.byte	12
+ 200 00b0 19       		.byte	25
+ 201 00b1 09       		.byte	9
+ 202 00b2 1A       		.byte	26
+ 203 00b3 03       		.byte	3
+ 204 00b4 1C       		.byte	28
+ 205 00b5 09       		.byte	9
+ 206 00b6 1E       		.byte	30
+ 207 00b7 F0       		.byte	-16
+ 208 00b8 24       		.byte	36
+ 209 00b9 30       		.byte	48
+ 210 00ba 26       		.byte	38
+ 211 00bb 4C       		.byte	76
+ 212 00bc 2C       		.byte	44
+ 213 00bd 2C       		.byte	44
+ 214 00be 2E       		.byte	46
+ 215 00bf D1       		.byte	-47
+ 216 00c0 32       		.byte	50
+ 217 00c1 E0       		.byte	-32
+ 218 00c2 34       		.byte	52
+ 219 00c3 1F       		.byte	31
+ 220 00c4 35       		.byte	53
+ 221 00c5 0F       		.byte	15
+ 222 00c6 3A       		.byte	58
+ 223 00c7 08       		.byte	8
+ 224 00c8 3B       		.byte	59
+ 225 00c9 20       		.byte	32
+ 226 00ca 54       		.byte	84
+ 227 00cb 09       		.byte	9
+ 228 00cc 58       		.byte	88
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 5
+
+
+ 229 00cd 04       		.byte	4
+ 230 00ce 59       		.byte	89
+ 231 00cf 04       		.byte	4
+ 232 00d0 5B       		.byte	91
+ 233 00d1 04       		.byte	4
+ 234 00d2 5C       		.byte	92
+ 235 00d3 11       		.byte	17
+ 236 00d4 5F       		.byte	95
+ 237 00d5 01       		.byte	1
+ 238 00d6 84       		.byte	-124
+ 239 00d7 F3       		.byte	-13
+ 240 00d8 86       		.byte	-122
+ 241 00d9 0C       		.byte	12
+ 242 00da 88       		.byte	-120
+ 243 00db 82       		.byte	-126
+ 244 00dc 8B       		.byte	-117
+ 245 00dd 01       		.byte	1
+ 246 00de 8E       		.byte	-114
+ 247 00df E3       		.byte	-29
+ 248 00e0 90       		.byte	-112
+ 249 00e1 3C       		.byte	60
+ 250 00e2 92       		.byte	-110
+ 251 00e3 C3       		.byte	-61
+ 252 00e4 94       		.byte	-108
+ 253 00e5 FF       		.byte	-1
+ 254 00e6 98       		.byte	-104
+ 255 00e7 C3       		.byte	-61
+ 256 00e8 9C       		.byte	-100
+ 257 00e9 1F       		.byte	31
+ 258 00ea 9E       		.byte	-98
+ 259 00eb E0       		.byte	-32
+ 260 00ec A0       		.byte	-96
+ 261 00ed 08       		.byte	8
+ 262 00ee A4       		.byte	-92
+ 263 00ef 04       		.byte	4
+ 264 00f0 A7       		.byte	-89
+ 265 00f1 01       		.byte	1
+ 266 00f2 A8       		.byte	-88
+ 267 00f3 0C       		.byte	12
+ 268 00f4 AC       		.byte	-84
+ 269 00f5 41       		.byte	65
+ 270 00f6 B0       		.byte	-80
+ 271 00f7 10       		.byte	16
+ 272 00f8 B2       		.byte	-78
+ 273 00f9 2C       		.byte	44
+ 274 00fa B4       		.byte	-76
+ 275 00fb 0F       		.byte	15
+ 276 00fc B6       		.byte	-74
+ 277 00fd C0       		.byte	-64
+ 278 00fe B7       		.byte	-73
+ 279 00ff 01       		.byte	1
+ 280 0100 BA       		.byte	-70
+ 281 0101 20       		.byte	32
+ 282 0102 BE       		.byte	-66
+ 283 0103 01       		.byte	1
+ 284 0104 BF       		.byte	-65
+ 285 0105 40       		.byte	64
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 6
+
+
+ 286 0106 C0       		.byte	-64
+ 287 0107 25       		.byte	37
+ 288 0108 C1       		.byte	-63
+ 289 0109 03       		.byte	3
+ 290 010a C2       		.byte	-62
+ 291 010b 06       		.byte	6
+ 292 010c C4       		.byte	-60
+ 293 010d 04       		.byte	4
+ 294 010e C6       		.byte	-58
+ 295 010f CE       		.byte	-50
+ 296 0110 C8       		.byte	-56
+ 297 0111 0C       		.byte	12
+ 298 0112 C9       		.byte	-55
+ 299 0113 FF       		.byte	-1
+ 300 0114 CA       		.byte	-54
+ 301 0115 FF       		.byte	-1
+ 302 0116 CB       		.byte	-53
+ 303 0117 FF       		.byte	-1
+ 304 0118 CC       		.byte	-52
+ 305 0119 62       		.byte	98
+ 306 011a CD       		.byte	-51
+ 307 011b A0       		.byte	-96
+ 308 011c CE       		.byte	-50
+ 309 011d F0       		.byte	-16
+ 310 011e CF       		.byte	-49
+ 311 011f 41       		.byte	65
+ 312 0120 D0       		.byte	-48
+ 313 0121 0C       		.byte	12
+ 314 0122 D6       		.byte	-42
+ 315 0123 02       		.byte	2
+ 316 0124 D7       		.byte	-41
+ 317 0125 13       		.byte	19
+ 318 0126 D8       		.byte	-40
+ 319 0127 04       		.byte	4
+ 320 0128 D9       		.byte	-39
+ 321 0129 04       		.byte	4
+ 322 012a DA       		.byte	-38
+ 323 012b 04       		.byte	4
+ 324 012c DB       		.byte	-37
+ 325 012d 04       		.byte	4
+ 326 012e DC       		.byte	-36
+ 327 012f 01       		.byte	1
+ 328 0130 DD       		.byte	-35
+ 329 0131 11       		.byte	17
+ 330 0132 DF       		.byte	-33
+ 331 0133 01       		.byte	1
+ 332 0134 E6       		.byte	-26
+ 333 0135 40       		.byte	64
+ 334 0136 E7       		.byte	-25
+ 335 0137 02       		.byte	2
+ 336 0138 E9       		.byte	-23
+ 337 0139 10       		.byte	16
+ 338 013a EA       		.byte	-22
+ 339 013b 30       		.byte	48
+ 340 013c EB       		.byte	-21
+ 341 013d 10       		.byte	16
+ 342 013e ED       		.byte	-19
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 7
+
+
+ 343 013f 10       		.byte	16
+ 344 0140 EE       		.byte	-18
+ 345 0141 10       		.byte	16
+ 346 0142 EF       		.byte	-17
+ 347 0143 12       		.byte	18
+ 348 0144 00       		.byte	0
+ 349 0145 10       		.byte	16
+ 350 0146 01       		.byte	1
+ 351 0147 80       		.byte	-128
+ 352 0148 03       		.byte	3
+ 353 0149 20       		.byte	32
+ 354 014a 05       		.byte	5
+ 355 014b 04       		.byte	4
+ 356 014c 06       		.byte	6
+ 357 014d 82       		.byte	-126
+ 358 014e 09       		.byte	9
+ 359 014f 08       		.byte	8
+ 360 0150 0A       		.byte	10
+ 361 0151 86       		.byte	-122
+ 362 0152 0E       		.byte	14
+ 363 0153 08       		.byte	8
+ 364 0154 0F       		.byte	15
+ 365 0155 02       		.byte	2
+ 366 0156 10       		.byte	16
+ 367 0157 A8       		.byte	-88
+ 368 0158 13       		.byte	19
+ 369 0159 40       		.byte	64
+ 370 015a 15       		.byte	21
+ 371 015b 40       		.byte	64
+ 372 015c 17       		.byte	23
+ 373 015d 04       		.byte	4
+ 374 015e 19       		.byte	25
+ 375 015f 0A       		.byte	10
+ 376 0160 1A       		.byte	26
+ 377 0161 01       		.byte	1
+ 378 0162 1B       		.byte	27
+ 379 0163 20       		.byte	32
+ 380 0164 1D       		.byte	29
+ 381 0165 04       		.byte	4
+ 382 0166 1E       		.byte	30
+ 383 0167 28       		.byte	40
+ 384 0168 23       		.byte	35
+ 385 0169 01       		.byte	1
+ 386 016a 27       		.byte	39
+ 387 016b 04       		.byte	4
+ 388 016c 29       		.byte	41
+ 389 016d 08       		.byte	8
+ 390 016e 36       		.byte	54
+ 391 016f 10       		.byte	16
+ 392 0170 37       		.byte	55
+ 393 0171 04       		.byte	4
+ 394 0172 38       		.byte	56
+ 395 0173 20       		.byte	32
+ 396 0174 3D       		.byte	61
+ 397 0175 C2       		.byte	-62
+ 398 0176 3F       		.byte	63
+ 399 0177 0A       		.byte	10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 8
+
+
+ 400 0178 40       		.byte	64
+ 401 0179 40       		.byte	64
+ 402 017a 41       		.byte	65
+ 403 017b 08       		.byte	8
+ 404 017c 43       		.byte	67
+ 405 017d 20       		.byte	32
+ 406 017e 48       		.byte	72
+ 407 017f 01       		.byte	1
+ 408 0180 49       		.byte	73
+ 409 0181 80       		.byte	-128
+ 410 0182 4B       		.byte	75
+ 411 0183 10       		.byte	16
+ 412 0184 50       		.byte	80
+ 413 0185 50       		.byte	80
+ 414 0186 59       		.byte	89
+ 415 0187 02       		.byte	2
+ 416 0188 5C       		.byte	92
+ 417 0189 02       		.byte	2
+ 418 018a 5E       		.byte	94
+ 419 018b 90       		.byte	-112
+ 420 018c 5F       		.byte	95
+ 421 018d 04       		.byte	4
+ 422 018e 60       		.byte	96
+ 423 018f 02       		.byte	2
+ 424 0190 61       		.byte	97
+ 425 0191 40       		.byte	64
+ 426 0192 65       		.byte	101
+ 427 0193 08       		.byte	8
+ 428 0194 67       		.byte	103
+ 429 0195 12       		.byte	18
+ 430 0196 68       		.byte	104
+ 431 0197 02       		.byte	2
+ 432 0198 6A       		.byte	106
+ 433 0199 20       		.byte	32
+ 434 019a 6B       		.byte	107
+ 435 019b 20       		.byte	32
+ 436 019c 70       		.byte	112
+ 437 019d A8       		.byte	-88
+ 438 019e 90       		.byte	-112
+ 439 019f 58       		.byte	88
+ 440 01a0 91       		.byte	-111
+ 441 01a1 80       		.byte	-128
+ 442 01a2 92       		.byte	-110
+ 443 01a3 04       		.byte	4
+ 444 01a4 93       		.byte	-109
+ 445 01a5 06       		.byte	6
+ 446 01a6 96       		.byte	-106
+ 447 01a7 21       		.byte	33
+ 448 01a8 97       		.byte	-105
+ 449 01a9 21       		.byte	33
+ 450 01aa 98       		.byte	-104
+ 451 01ab 50       		.byte	80
+ 452 01ac 99       		.byte	-103
+ 453 01ad B1       		.byte	-79
+ 454 01ae 9B       		.byte	-101
+ 455 01af 10       		.byte	16
+ 456 01b0 9D       		.byte	-99
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 9
+
+
+ 457 01b1 40       		.byte	64
+ 458 01b2 9F       		.byte	-97
+ 459 01b3 20       		.byte	32
+ 460 01b4 A1       		.byte	-95
+ 461 01b5 21       		.byte	33
+ 462 01b6 A2       		.byte	-94
+ 463 01b7 0A       		.byte	10
+ 464 01b8 A4       		.byte	-92
+ 465 01b9 06       		.byte	6
+ 466 01ba A6       		.byte	-90
+ 467 01bb 24       		.byte	36
+ 468 01bc A7       		.byte	-89
+ 469 01bd 0A       		.byte	10
+ 470 01be A8       		.byte	-88
+ 471 01bf 80       		.byte	-128
+ 472 01c0 AB       		.byte	-85
+ 473 01c1 10       		.byte	16
+ 474 01c2 B0       		.byte	-80
+ 475 01c3 04       		.byte	4
+ 476 01c4 B1       		.byte	-79
+ 477 01c5 05       		.byte	5
+ 478 01c6 C0       		.byte	-64
+ 479 01c7 B7       		.byte	-73
+ 480 01c8 C2       		.byte	-62
+ 481 01c9 CF       		.byte	-49
+ 482 01ca C4       		.byte	-60
+ 483 01cb AF       		.byte	-81
+ 484 01cc CA       		.byte	-54
+ 485 01cd 02       		.byte	2
+ 486 01ce CC       		.byte	-52
+ 487 01cf 60       		.byte	96
+ 488 01d0 CE       		.byte	-50
+ 489 01d1 D4       		.byte	-44
+ 490 01d2 D0       		.byte	-48
+ 491 01d3 07       		.byte	7
+ 492 01d4 D2       		.byte	-46
+ 493 01d5 0C       		.byte	12
+ 494 01d6 D6       		.byte	-42
+ 495 01d7 F1       		.byte	-15
+ 496 01d8 D8       		.byte	-40
+ 497 01d9 10       		.byte	16
+ 498 01da E0       		.byte	-32
+ 499 01db 04       		.byte	4
+ 500 01dc 05       		.byte	5
+ 501 01dd 20       		.byte	32
+ 502 01de 07       		.byte	7
+ 503 01df 18       		.byte	24
+ 504 01e0 08       		.byte	8
+ 505 01e1 44       		.byte	68
+ 506 01e2 0A       		.byte	10
+ 507 01e3 31       		.byte	49
+ 508 01e4 0D       		.byte	13
+ 509 01e5 38       		.byte	56
+ 510 01e6 0F       		.byte	15
+ 511 01e7 04       		.byte	4
+ 512 01e8 11       		.byte	17
+ 513 01e9 40       		.byte	64
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 10
+
+
+ 514 01ea 13       		.byte	19
+ 515 01eb 06       		.byte	6
+ 516 01ec 14       		.byte	20
+ 517 01ed E7       		.byte	-25
+ 518 01ee 15       		.byte	21
+ 519 01ef 18       		.byte	24
+ 520 01f0 17       		.byte	23
+ 521 01f1 22       		.byte	34
+ 522 01f2 18       		.byte	24
+ 523 01f3 01       		.byte	1
+ 524 01f4 19       		.byte	25
+ 525 01f5 28       		.byte	40
+ 526 01f6 1A       		.byte	26
+ 527 01f7 0E       		.byte	14
+ 528 01f8 23       		.byte	35
+ 529 01f9 01       		.byte	1
+ 530 01fa 24       		.byte	36
+ 531 01fb 22       		.byte	34
+ 532 01fc 25       		.byte	37
+ 533 01fd 12       		.byte	18
+ 534 01fe 26       		.byte	38
+ 535 01ff 51       		.byte	81
+ 536 0200 27       		.byte	39
+ 537 0201 20       		.byte	32
+ 538 0202 28       		.byte	40
+ 539 0203 E7       		.byte	-25
+ 540 0204 2C       		.byte	44
+ 541 0205 80       		.byte	-128
+ 542 0206 2F       		.byte	47
+ 543 0207 20       		.byte	32
+ 544 0208 30       		.byte	48
+ 545 0209 18       		.byte	24
+ 546 020a 31       		.byte	49
+ 547 020b 3E       		.byte	62
+ 548 020c 32       		.byte	50
+ 549 020d 60       		.byte	96
+ 550 020e 33       		.byte	51
+ 551 020f 40       		.byte	64
+ 552 0210 34       		.byte	52
+ 553 0211 07       		.byte	7
+ 554 0212 36       		.byte	54
+ 555 0213 80       		.byte	-128
+ 556 0214 37       		.byte	55
+ 557 0215 01       		.byte	1
+ 558 0216 3E       		.byte	62
+ 559 0217 01       		.byte	1
+ 560 0218 3F       		.byte	63
+ 561 0219 04       		.byte	4
+ 562 021a 40       		.byte	64
+ 563 021b 24       		.byte	36
+ 564 021c 41       		.byte	65
+ 565 021d 06       		.byte	6
+ 566 021e 45       		.byte	69
+ 567 021f E0       		.byte	-32
+ 568 0220 46       		.byte	70
+ 569 0221 BC       		.byte	-68
+ 570 0222 48       		.byte	72
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 11
+
+
+ 571 0223 0E       		.byte	14
+ 572 0224 49       		.byte	73
+ 573 0225 FF       		.byte	-1
+ 574 0226 4A       		.byte	74
+ 575 0227 FF       		.byte	-1
+ 576 0228 4B       		.byte	75
+ 577 0229 FF       		.byte	-1
+ 578 022a 4E       		.byte	78
+ 579 022b F0       		.byte	-16
+ 580 022c 4F       		.byte	79
+ 581 022d 44       		.byte	68
+ 582 022e 50       		.byte	80
+ 583 022f 0C       		.byte	12
+ 584 0230 54       		.byte	84
+ 585 0231 18       		.byte	24
+ 586 0232 56       		.byte	86
+ 587 0233 04       		.byte	4
+ 588 0234 58       		.byte	88
+ 589 0235 04       		.byte	4
+ 590 0236 59       		.byte	89
+ 591 0237 04       		.byte	4
+ 592 0238 5A       		.byte	90
+ 593 0239 04       		.byte	4
+ 594 023a 5B       		.byte	91
+ 595 023b 04       		.byte	4
+ 596 023c 5C       		.byte	92
+ 597 023d 21       		.byte	33
+ 598 023e 5D       		.byte	93
+ 599 023f 12       		.byte	18
+ 600 0240 5F       		.byte	95
+ 601 0241 01       		.byte	1
+ 602 0242 66       		.byte	102
+ 603 0243 C0       		.byte	-64
+ 604 0244 6A       		.byte	106
+ 605 0245 40       		.byte	64
+ 606 0246 6B       		.byte	107
+ 607 0247 02       		.byte	2
+ 608 0248 83       		.byte	-125
+ 609 0249 01       		.byte	1
+ 610 024a 86       		.byte	-122
+ 611 024b 02       		.byte	2
+ 612 024c 88       		.byte	-120
+ 613 024d 08       		.byte	8
+ 614 024e 8A       		.byte	-118
+ 615 024f 34       		.byte	52
+ 616 0250 8B       		.byte	-117
+ 617 0251 02       		.byte	2
+ 618 0252 93       		.byte	-109
+ 619 0253 02       		.byte	2
+ 620 0254 94       		.byte	-108
+ 621 0255 64       		.byte	100
+ 622 0256 96       		.byte	-106
+ 623 0257 1B       		.byte	27
+ 624 0258 A0       		.byte	-96
+ 625 0259 4D       		.byte	77
+ 626 025a A2       		.byte	-94
+ 627 025b 30       		.byte	48
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 12
+
+
+ 628 025c A3       		.byte	-93
+ 629 025d 01       		.byte	1
+ 630 025e A4       		.byte	-92
+ 631 025f 54       		.byte	84
+ 632 0260 A6       		.byte	-90
+ 633 0261 2B       		.byte	43
+ 634 0262 AD       		.byte	-83
+ 635 0263 04       		.byte	4
+ 636 0264 B0       		.byte	-80
+ 637 0265 40       		.byte	64
+ 638 0266 B1       		.byte	-79
+ 639 0267 04       		.byte	4
+ 640 0268 B2       		.byte	-78
+ 641 0269 03       		.byte	3
+ 642 026a B3       		.byte	-77
+ 643 026b 02       		.byte	2
+ 644 026c B4       		.byte	-76
+ 645 026d 3C       		.byte	60
+ 646 026e B5       		.byte	-75
+ 647 026f 04       		.byte	4
+ 648 0270 B7       		.byte	-73
+ 649 0271 01       		.byte	1
+ 650 0272 BA       		.byte	-70
+ 651 0273 20       		.byte	32
+ 652 0274 BE       		.byte	-66
+ 653 0275 01       		.byte	1
+ 654 0276 BF       		.byte	-65
+ 655 0277 54       		.byte	84
+ 656 0278 D4       		.byte	-44
+ 657 0279 18       		.byte	24
+ 658 027a D6       		.byte	-42
+ 659 027b 04       		.byte	4
+ 660 027c D8       		.byte	-40
+ 661 027d 04       		.byte	4
+ 662 027e D9       		.byte	-39
+ 663 027f 04       		.byte	4
+ 664 0280 DB       		.byte	-37
+ 665 0281 04       		.byte	4
+ 666 0282 DC       		.byte	-36
+ 667 0283 10       		.byte	16
+ 668 0284 DD       		.byte	-35
+ 669 0285 20       		.byte	32
+ 670 0286 DF       		.byte	-33
+ 671 0287 01       		.byte	1
+ 672 0288 00       		.byte	0
+ 673 0289 10       		.byte	16
+ 674 028a 05       		.byte	5
+ 675 028b 14       		.byte	20
+ 676 028c 0A       		.byte	10
+ 677 028d 24       		.byte	36
+ 678 028e 0F       		.byte	15
+ 679 028f 10       		.byte	16
+ 680 0290 10       		.byte	16
+ 681 0291 12       		.byte	18
+ 682 0292 13       		.byte	19
+ 683 0293 20       		.byte	32
+ 684 0294 15       		.byte	21
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 13
+
+
+ 685 0295 02       		.byte	2
+ 686 0296 16       		.byte	22
+ 687 0297 10       		.byte	16
+ 688 0298 18       		.byte	24
+ 689 0299 50       		.byte	80
+ 690 029a 19       		.byte	25
+ 691 029b 80       		.byte	-128
+ 692 029c 1A       		.byte	26
+ 693 029d 04       		.byte	4
+ 694 029e 1D       		.byte	29
+ 695 029f 14       		.byte	20
+ 696 02a0 1F       		.byte	31
+ 697 02a1 01       		.byte	1
+ 698 02a2 21       		.byte	33
+ 699 02a3 06       		.byte	6
+ 700 02a4 22       		.byte	34
+ 701 02a5 80       		.byte	-128
+ 702 02a6 24       		.byte	36
+ 703 02a7 08       		.byte	8
+ 704 02a8 25       		.byte	37
+ 705 02a9 09       		.byte	9
+ 706 02aa 27       		.byte	39
+ 707 02ab 01       		.byte	1
+ 708 02ac 28       		.byte	40
+ 709 02ad 01       		.byte	1
+ 710 02ae 29       		.byte	41
+ 711 02af 0A       		.byte	10
+ 712 02b0 2A       		.byte	42
+ 713 02b1 10       		.byte	16
+ 714 02b2 2B       		.byte	43
+ 715 02b3 08       		.byte	8
+ 716 02b4 2F       		.byte	47
+ 717 02b5 82       		.byte	-126
+ 718 02b6 30       		.byte	48
+ 719 02b7 28       		.byte	40
+ 720 02b8 31       		.byte	49
+ 721 02b9 02       		.byte	2
+ 722 02ba 37       		.byte	55
+ 723 02bb 02       		.byte	2
+ 724 02bc 3A       		.byte	58
+ 725 02bd 08       		.byte	8
+ 726 02be 3B       		.byte	59
+ 727 02bf 40       		.byte	64
+ 728 02c0 3D       		.byte	61
+ 729 02c1 20       		.byte	32
+ 730 02c2 3F       		.byte	63
+ 731 02c3 02       		.byte	2
+ 732 02c4 41       		.byte	65
+ 733 02c5 10       		.byte	16
+ 734 02c6 42       		.byte	66
+ 735 02c7 48       		.byte	72
+ 736 02c8 45       		.byte	69
+ 737 02c9 08       		.byte	8
+ 738 02ca 46       		.byte	70
+ 739 02cb A0       		.byte	-96
+ 740 02cc 47       		.byte	71
+ 741 02cd 01       		.byte	1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 14
+
+
+ 742 02ce 48       		.byte	72
+ 743 02cf 08       		.byte	8
+ 744 02d0 49       		.byte	73
+ 745 02d1 01       		.byte	1
+ 746 02d2 50       		.byte	80
+ 747 02d3 A0       		.byte	-96
+ 748 02d4 52       		.byte	82
+ 749 02d5 40       		.byte	64
+ 750 02d6 5A       		.byte	90
+ 751 02d7 01       		.byte	1
+ 752 02d8 5C       		.byte	92
+ 753 02d9 08       		.byte	8
+ 754 02da 5E       		.byte	94
+ 755 02db 0A       		.byte	10
+ 756 02dc 60       		.byte	96
+ 757 02dd 80       		.byte	-128
+ 758 02de 62       		.byte	98
+ 759 02df 20       		.byte	32
+ 760 02e0 63       		.byte	99
+ 761 02e1 01       		.byte	1
+ 762 02e2 66       		.byte	102
+ 763 02e3 A2       		.byte	-94
+ 764 02e4 80       		.byte	-128
+ 765 02e5 80       		.byte	-128
+ 766 02e6 86       		.byte	-122
+ 767 02e7 02       		.byte	2
+ 768 02e8 8D       		.byte	-115
+ 769 02e9 04       		.byte	4
+ 770 02ea 91       		.byte	-111
+ 771 02eb A0       		.byte	-96
+ 772 02ec 92       		.byte	-110
+ 773 02ed 40       		.byte	64
+ 774 02ee 93       		.byte	-109
+ 775 02ef 54       		.byte	84
+ 776 02f0 97       		.byte	-105
+ 777 02f1 20       		.byte	32
+ 778 02f2 98       		.byte	-104
+ 779 02f3 51       		.byte	81
+ 780 02f4 99       		.byte	-103
+ 781 02f5 2A       		.byte	42
+ 782 02f6 9B       		.byte	-101
+ 783 02f7 02       		.byte	2
+ 784 02f8 9C       		.byte	-100
+ 785 02f9 08       		.byte	8
+ 786 02fa 9D       		.byte	-99
+ 787 02fb 40       		.byte	64
+ 788 02fc 9E       		.byte	-98
+ 789 02fd 40       		.byte	64
+ 790 02fe A0       		.byte	-96
+ 791 02ff 08       		.byte	8
+ 792 0300 A1       		.byte	-95
+ 793 0301 30       		.byte	48
+ 794 0302 A2       		.byte	-94
+ 795 0303 0B       		.byte	11
+ 796 0304 A3       		.byte	-93
+ 797 0305 81       		.byte	-127
+ 798 0306 A4       		.byte	-92
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 15
+
+
+ 799 0307 04       		.byte	4
+ 800 0308 A6       		.byte	-90
+ 801 0309 80       		.byte	-128
+ 802 030a A7       		.byte	-89
+ 803 030b 08       		.byte	8
+ 804 030c B0       		.byte	-80
+ 805 030d 30       		.byte	48
+ 806 030e B1       		.byte	-79
+ 807 030f 0A       		.byte	10
+ 808 0310 B6       		.byte	-74
+ 809 0311 20       		.byte	32
+ 810 0312 C0       		.byte	-64
+ 811 0313 62       		.byte	98
+ 812 0314 C2       		.byte	-62
+ 813 0315 26       		.byte	38
+ 814 0316 C4       		.byte	-60
+ 815 0317 37       		.byte	55
+ 816 0318 CA       		.byte	-54
+ 817 0319 9B       		.byte	-101
+ 818 031a CC       		.byte	-52
+ 819 031b 87       		.byte	-121
+ 820 031c CE       		.byte	-50
+ 821 031d AA       		.byte	-86
+ 822 031e D0       		.byte	-48
+ 823 031f 05       		.byte	5
+ 824 0320 D2       		.byte	-46
+ 825 0321 04       		.byte	4
+ 826 0322 D6       		.byte	-42
+ 827 0323 81       		.byte	-127
+ 828 0324 D8       		.byte	-40
+ 829 0325 BD       		.byte	-67
+ 830 0326 9B       		.byte	-101
+ 831 0327 01       		.byte	1
+ 832 0328 A9       		.byte	-87
+ 833 0329 02       		.byte	2
+ 834 032a B1       		.byte	-79
+ 835 032b 01       		.byte	1
+ 836 032c B5       		.byte	-75
+ 837 032d 02       		.byte	2
+ 838 032e BF       		.byte	-65
+ 839 032f 10       		.byte	16
+ 840 0330 C0       		.byte	-64
+ 841 0331 36       		.byte	54
+ 842 0332 C1       		.byte	-63
+ 843 0333 02       		.byte	2
+ 844 0334 C2       		.byte	-62
+ 845 0335 50       		.byte	80
+ 846 0336 C4       		.byte	-60
+ 847 0337 04       		.byte	4
+ 848 0338 C5       		.byte	-59
+ 849 0339 0E       		.byte	14
+ 850 033a C6       		.byte	-58
+ 851 033b FC       		.byte	-4
+ 852 033c C7       		.byte	-57
+ 853 033d D0       		.byte	-48
+ 854 033e C8       		.byte	-56
+ 855 033f 2D       		.byte	45
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 16
+
+
+ 856 0340 C9       		.byte	-55
+ 857 0341 FF       		.byte	-1
+ 858 0342 CA       		.byte	-54
+ 859 0343 FF       		.byte	-1
+ 860 0344 CB       		.byte	-53
+ 861 0345 FF       		.byte	-1
+ 862 0346 CC       		.byte	-52
+ 863 0347 02       		.byte	2
+ 864 0348 CE       		.byte	-50
+ 865 0349 70       		.byte	112
+ 866 034a CF       		.byte	-49
+ 867 034b 08       		.byte	8
+ 868 034c D0       		.byte	-48
+ 869 034d 04       		.byte	4
+ 870 034e D9       		.byte	-39
+ 871 034f 04       		.byte	4
+ 872 0350 DA       		.byte	-38
+ 873 0351 04       		.byte	4
+ 874 0352 DC       		.byte	-36
+ 875 0353 10       		.byte	16
+ 876 0354 DF       		.byte	-33
+ 877 0355 01       		.byte	1
+ 878 0356 E2       		.byte	-30
+ 879 0357 C0       		.byte	-64
+ 880 0358 E4       		.byte	-28
+ 881 0359 40       		.byte	64
+ 882 035a E5       		.byte	-27
+ 883 035b 01       		.byte	1
+ 884 035c E6       		.byte	-26
+ 885 035d 10       		.byte	16
+ 886 035e E7       		.byte	-25
+ 887 035f 11       		.byte	17
+ 888 0360 E8       		.byte	-24
+ 889 0361 C0       		.byte	-64
+ 890 0362 E9       		.byte	-23
+ 891 0363 01       		.byte	1
+ 892 0364 EB       		.byte	-21
+ 893 0365 11       		.byte	17
+ 894 0366 EC       		.byte	-20
+ 895 0367 40       		.byte	64
+ 896 0368 ED       		.byte	-19
+ 897 0369 01       		.byte	1
+ 898 036a EE       		.byte	-18
+ 899 036b 40       		.byte	64
+ 900 036c EF       		.byte	-17
+ 901 036d 01       		.byte	1
+ 902 036e 00       		.byte	0
+ 903 036f 0C       		.byte	12
+ 904 0370 04       		.byte	4
+ 905 0371 58       		.byte	88
+ 906 0372 05       		.byte	5
+ 907 0373 02       		.byte	2
+ 908 0374 0E       		.byte	14
+ 909 0375 29       		.byte	41
+ 910 0376 15       		.byte	21
+ 911 0377 15       		.byte	21
+ 912 0378 16       		.byte	22
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 17
+
+
+ 913 0379 03       		.byte	3
+ 914 037a 17       		.byte	23
+ 915 037b 09       		.byte	9
+ 916 037c 1C       		.byte	28
+ 917 037d 60       		.byte	96
+ 918 037e 1D       		.byte	29
+ 919 037f 08       		.byte	8
+ 920 0380 1E       		.byte	30
+ 921 0381 04       		.byte	4
+ 922 0382 1F       		.byte	31
+ 923 0383 81       		.byte	-127
+ 924 0384 22       		.byte	34
+ 925 0385 22       		.byte	34
+ 926 0386 24       		.byte	36
+ 927 0387 10       		.byte	16
+ 928 0388 26       		.byte	38
+ 929 0389 11       		.byte	17
+ 930 038a 27       		.byte	39
+ 931 038b 32       		.byte	50
+ 932 038c 28       		.byte	40
+ 933 038d 88       		.byte	-120
+ 934 038e 2B       		.byte	43
+ 935 038f 80       		.byte	-128
+ 936 0390 2C       		.byte	44
+ 937 0391 20       		.byte	32
+ 938 0392 2E       		.byte	46
+ 939 0393 02       		.byte	2
+ 940 0394 2F       		.byte	47
+ 941 0395 05       		.byte	5
+ 942 0396 30       		.byte	48
+ 943 0397 10       		.byte	16
+ 944 0398 35       		.byte	53
+ 945 0399 02       		.byte	2
+ 946 039a 36       		.byte	54
+ 947 039b 94       		.byte	-108
+ 948 039c 39       		.byte	57
+ 949 039d 02       		.byte	2
+ 950 039e 3B       		.byte	59
+ 951 039f 01       		.byte	1
+ 952 03a0 3D       		.byte	61
+ 953 03a1 15       		.byte	21
+ 954 03a2 3E       		.byte	62
+ 955 03a3 A0       		.byte	-96
+ 956 03a4 40       		.byte	64
+ 957 03a5 04       		.byte	4
+ 958 03a6 41       		.byte	65
+ 959 03a7 02       		.byte	2
+ 960 03a8 43       		.byte	67
+ 961 03a9 08       		.byte	8
+ 962 03aa 44       		.byte	68
+ 963 03ab 80       		.byte	-128
+ 964 03ac 45       		.byte	69
+ 965 03ad 88       		.byte	-120
+ 966 03ae 47       		.byte	71
+ 967 03af 10       		.byte	16
+ 968 03b0 49       		.byte	73
+ 969 03b1 40       		.byte	64
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 18
+
+
+ 970 03b2 4A       		.byte	74
+ 971 03b3 08       		.byte	8
+ 972 03b4 4B       		.byte	75
+ 973 03b5 14       		.byte	20
+ 974 03b6 4C       		.byte	76
+ 975 03b7 04       		.byte	4
+ 976 03b8 4E       		.byte	78
+ 977 03b9 04       		.byte	4
+ 978 03ba 4F       		.byte	79
+ 979 03bb 02       		.byte	2
+ 980 03bc 51       		.byte	81
+ 981 03bd 41       		.byte	65
+ 982 03be 52       		.byte	82
+ 983 03bf 10       		.byte	16
+ 984 03c0 53       		.byte	83
+ 985 03c1 40       		.byte	64
+ 986 03c2 55       		.byte	85
+ 987 03c3 10       		.byte	16
+ 988 03c4 66       		.byte	102
+ 989 03c5 10       		.byte	16
+ 990 03c6 67       		.byte	103
+ 991 03c7 21       		.byte	33
+ 992 03c8 88       		.byte	-120
+ 993 03c9 10       		.byte	16
+ 994 03ca 89       		.byte	-119
+ 995 03cb 23       		.byte	35
+ 996 03cc 8A       		.byte	-118
+ 997 03cd 01       		.byte	1
+ 998 03ce 8E       		.byte	-114
+ 999 03cf 80       		.byte	-128
+ 1000 03d0 8F       		.byte	-113
+ 1001 03d1 20       		.byte	32
+ 1002 03d2 91       		.byte	-111
+ 1003 03d3 20       		.byte	32
+ 1004 03d4 92       		.byte	-110
+ 1005 03d5 48       		.byte	72
+ 1006 03d6 93       		.byte	-109
+ 1007 03d7 48       		.byte	72
+ 1008 03d8 94       		.byte	-108
+ 1009 03d9 04       		.byte	4
+ 1010 03da 96       		.byte	-106
+ 1011 03db 04       		.byte	4
+ 1012 03dc 97       		.byte	-105
+ 1013 03dd 80       		.byte	-128
+ 1014 03de 98       		.byte	-104
+ 1015 03df 41       		.byte	65
+ 1016 03e0 99       		.byte	-103
+ 1017 03e1 08       		.byte	8
+ 1018 03e2 9A       		.byte	-102
+ 1019 03e3 21       		.byte	33
+ 1020 03e4 9B       		.byte	-101
+ 1021 03e5 09       		.byte	9
+ 1022 03e6 9D       		.byte	-99
+ 1023 03e7 42       		.byte	66
+ 1024 03e8 9E       		.byte	-98
+ 1025 03e9 40       		.byte	64
+ 1026 03ea A0       		.byte	-96
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 19
+
+
+ 1027 03eb 08       		.byte	8
+ 1028 03ec A1       		.byte	-95
+ 1029 03ed A0       		.byte	-96
+ 1030 03ee A2       		.byte	-94
+ 1031 03ef 0C       		.byte	12
+ 1032 03f0 A5       		.byte	-91
+ 1033 03f1 02       		.byte	2
+ 1034 03f2 A7       		.byte	-89
+ 1035 03f3 08       		.byte	8
+ 1036 03f4 B3       		.byte	-77
+ 1037 03f5 02       		.byte	2
+ 1038 03f6 C0       		.byte	-64
+ 1039 03f7 F0       		.byte	-16
+ 1040 03f8 C2       		.byte	-62
+ 1041 03f9 E0       		.byte	-32
+ 1042 03fa C4       		.byte	-60
+ 1043 03fb F0       		.byte	-16
+ 1044 03fc CA       		.byte	-54
+ 1045 03fd F4       		.byte	-12
+ 1046 03fe CC       		.byte	-52
+ 1047 03ff F4       		.byte	-12
+ 1048 0400 CE       		.byte	-50
+ 1049 0401 F0       		.byte	-16
+ 1050 0402 D0       		.byte	-48
+ 1051 0403 F7       		.byte	-9
+ 1052 0404 D2       		.byte	-46
+ 1053 0405 2C       		.byte	44
+ 1054 0406 D8       		.byte	-40
+ 1055 0407 70       		.byte	112
+ 1056 0408 02       		.byte	2
+ 1057 0409 01       		.byte	1
+ 1058 040a 06       		.byte	6
+ 1059 040b 05       		.byte	5
+ 1060 040c 0D       		.byte	13
+ 1061 040d 0E       		.byte	14
+ 1062 040e 0F       		.byte	15
+ 1063 040f 40       		.byte	64
+ 1064 0410 14       		.byte	20
+ 1065 0411 07       		.byte	7
+ 1066 0412 15       		.byte	21
+ 1067 0413 58       		.byte	88
+ 1068 0414 17       		.byte	23
+ 1069 0415 23       		.byte	35
+ 1070 0416 19       		.byte	25
+ 1071 0417 58       		.byte	88
+ 1072 0418 1B       		.byte	27
+ 1073 0419 25       		.byte	37
+ 1074 041a 1D       		.byte	29
+ 1075 041b 18       		.byte	24
+ 1076 041c 1F       		.byte	31
+ 1077 041d 20       		.byte	32
+ 1078 041e 20       		.byte	32
+ 1079 041f 08       		.byte	8
+ 1080 0420 24       		.byte	36
+ 1081 0421 07       		.byte	7
+ 1082 0422 27       		.byte	39
+ 1083 0423 77       		.byte	119
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 20
+
+
+ 1084 0424 2C       		.byte	44
+ 1085 0425 02       		.byte	2
+ 1086 0426 2D       		.byte	45
+ 1087 0427 02       		.byte	2
+ 1088 0428 2E       		.byte	46
+ 1089 0429 01       		.byte	1
+ 1090 042a 30       		.byte	48
+ 1091 042b 08       		.byte	8
+ 1092 042c 31       		.byte	49
+ 1093 042d 43       		.byte	67
+ 1094 042e 32       		.byte	50
+ 1095 042f 08       		.byte	8
+ 1096 0430 33       		.byte	51
+ 1097 0431 07       		.byte	7
+ 1098 0432 34       		.byte	52
+ 1099 0433 06       		.byte	6
+ 1100 0434 35       		.byte	53
+ 1101 0435 3C       		.byte	60
+ 1102 0436 36       		.byte	54
+ 1103 0437 01       		.byte	1
+ 1104 0438 38       		.byte	56
+ 1105 0439 20       		.byte	32
+ 1106 043a 3B       		.byte	59
+ 1107 043b 2A       		.byte	42
+ 1108 043c 3E       		.byte	62
+ 1109 043d 51       		.byte	81
+ 1110 043e 40       		.byte	64
+ 1111 043f 36       		.byte	54
+ 1112 0440 41       		.byte	65
+ 1113 0441 02       		.byte	2
+ 1114 0442 42       		.byte	66
+ 1115 0443 50       		.byte	80
+ 1116 0444 44       		.byte	68
+ 1117 0445 04       		.byte	4
+ 1118 0446 46       		.byte	70
+ 1119 0447 B0       		.byte	-80
+ 1120 0448 48       		.byte	72
+ 1121 0449 08       		.byte	8
+ 1122 044a 49       		.byte	73
+ 1123 044b 3F       		.byte	63
+ 1124 044c 4A       		.byte	74
+ 1125 044d FF       		.byte	-1
+ 1126 044e 4B       		.byte	75
+ 1127 044f FF       		.byte	-1
+ 1128 0450 4C       		.byte	76
+ 1129 0451 23       		.byte	35
+ 1130 0452 4E       		.byte	78
+ 1131 0453 D0       		.byte	-48
+ 1132 0454 4F       		.byte	79
+ 1133 0455 08       		.byte	8
+ 1134 0456 50       		.byte	80
+ 1135 0457 04       		.byte	4
+ 1136 0458 58       		.byte	88
+ 1137 0459 04       		.byte	4
+ 1138 045a 59       		.byte	89
+ 1139 045b 04       		.byte	4
+ 1140 045c 5A       		.byte	90
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 21
+
+
+ 1141 045d 04       		.byte	4
+ 1142 045e 5C       		.byte	92
+ 1143 045f 22       		.byte	34
+ 1144 0460 5F       		.byte	95
+ 1145 0461 01       		.byte	1
+ 1146 0462 62       		.byte	98
+ 1147 0463 C0       		.byte	-64
+ 1148 0464 64       		.byte	100
+ 1149 0465 40       		.byte	64
+ 1150 0466 65       		.byte	101
+ 1151 0467 01       		.byte	1
+ 1152 0468 66       		.byte	102
+ 1153 0469 10       		.byte	16
+ 1154 046a 67       		.byte	103
+ 1155 046b 11       		.byte	17
+ 1156 046c 68       		.byte	104
+ 1157 046d C0       		.byte	-64
+ 1158 046e 69       		.byte	105
+ 1159 046f 01       		.byte	1
+ 1160 0470 6B       		.byte	107
+ 1161 0471 11       		.byte	17
+ 1162 0472 6C       		.byte	108
+ 1163 0473 40       		.byte	64
+ 1164 0474 6D       		.byte	109
+ 1165 0475 01       		.byte	1
+ 1166 0476 6E       		.byte	110
+ 1167 0477 40       		.byte	64
+ 1168 0478 6F       		.byte	111
+ 1169 0479 01       		.byte	1
+ 1170 047a 80       		.byte	-128
+ 1171 047b 21       		.byte	33
+ 1172 047c 82       		.byte	-126
+ 1173 047d 4A       		.byte	74
+ 1174 047e 85       		.byte	-123
+ 1175 047f 19       		.byte	25
+ 1176 0480 87       		.byte	-121
+ 1177 0481 22       		.byte	34
+ 1178 0482 8C       		.byte	-116
+ 1179 0483 02       		.byte	2
+ 1180 0484 8E       		.byte	-114
+ 1181 0485 15       		.byte	21
+ 1182 0486 91       		.byte	-111
+ 1183 0487 70       		.byte	112
+ 1184 0488 95       		.byte	-107
+ 1185 0489 24       		.byte	36
+ 1186 048a 97       		.byte	-105
+ 1187 048b 48       		.byte	72
+ 1188 048c 98       		.byte	-104
+ 1189 048d 44       		.byte	68
+ 1190 048e 9A       		.byte	-102
+ 1191 048f 2A       		.byte	42
+ 1192 0490 A1       		.byte	-95
+ 1193 0491 04       		.byte	4
+ 1194 0492 A4       		.byte	-92
+ 1195 0493 E7       		.byte	-25
+ 1196 0494 A8       		.byte	-88
+ 1197 0495 E7       		.byte	-25
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 22
+
+
+ 1198 0496 A9       		.byte	-87
+ 1199 0497 2E       		.byte	46
+ 1200 0498 AB       		.byte	-85
+ 1201 0499 51       		.byte	81
+ 1202 049a AC       		.byte	-84
+ 1203 049b 80       		.byte	-128
+ 1204 049c B0       		.byte	-80
+ 1205 049d 07       		.byte	7
+ 1206 049e B2       		.byte	-78
+ 1207 049f 80       		.byte	-128
+ 1208 04a0 B3       		.byte	-77
+ 1209 04a1 07       		.byte	7
+ 1210 04a2 B4       		.byte	-76
+ 1211 04a3 60       		.byte	96
+ 1212 04a4 B6       		.byte	-74
+ 1213 04a5 18       		.byte	24
+ 1214 04a6 B7       		.byte	-73
+ 1215 04a7 78       		.byte	120
+ 1216 04a8 B9       		.byte	-71
+ 1217 04a9 80       		.byte	-128
+ 1218 04aa BB       		.byte	-69
+ 1219 04ab 08       		.byte	8
+ 1220 04ac BE       		.byte	-66
+ 1221 04ad 40       		.byte	64
+ 1222 04ae C0       		.byte	-64
+ 1223 04af 06       		.byte	6
+ 1224 04b0 C5       		.byte	-59
+ 1225 04b1 10       		.byte	16
+ 1226 04b2 C7       		.byte	-57
+ 1227 04b3 50       		.byte	80
+ 1228 04b4 C8       		.byte	-56
+ 1229 04b5 22       		.byte	34
+ 1230 04b6 C9       		.byte	-55
+ 1231 04b7 FF       		.byte	-1
+ 1232 04b8 CA       		.byte	-54
+ 1233 04b9 07       		.byte	7
+ 1234 04ba CB       		.byte	-53
+ 1235 04bb FF       		.byte	-1
+ 1236 04bc CC       		.byte	-52
+ 1237 04bd 40       		.byte	64
+ 1238 04be CD       		.byte	-51
+ 1239 04bf 20       		.byte	32
+ 1240 04c0 CE       		.byte	-50
+ 1241 04c1 F0       		.byte	-16
+ 1242 04c2 CF       		.byte	-49
+ 1243 04c3 05       		.byte	5
+ 1244 04c4 D0       		.byte	-48
+ 1245 04c5 08       		.byte	8
+ 1246 04c6 D6       		.byte	-42
+ 1247 04c7 02       		.byte	2
+ 1248 04c8 D7       		.byte	-41
+ 1249 04c9 12       		.byte	18
+ 1250 04ca D8       		.byte	-40
+ 1251 04cb 04       		.byte	4
+ 1252 04cc D9       		.byte	-39
+ 1253 04cd 04       		.byte	4
+ 1254 04ce DA       		.byte	-38
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 23
+
+
+ 1255 04cf 04       		.byte	4
+ 1256 04d0 DB       		.byte	-37
+ 1257 04d1 04       		.byte	4
+ 1258 04d2 DC       		.byte	-36
+ 1259 04d3 02       		.byte	2
+ 1260 04d4 DD       		.byte	-35
+ 1261 04d5 22       		.byte	34
+ 1262 04d6 DF       		.byte	-33
+ 1263 04d7 01       		.byte	1
+ 1264 04d8 E0       		.byte	-32
+ 1265 04d9 40       		.byte	64
+ 1266 04da E1       		.byte	-31
+ 1267 04db A8       		.byte	-88
+ 1268 04dc E2       		.byte	-30
+ 1269 04dd 40       		.byte	64
+ 1270 04de E3       		.byte	-29
+ 1271 04df 20       		.byte	32
+ 1272 04e0 01       		.byte	1
+ 1273 04e1 08       		.byte	8
+ 1274 04e2 02       		.byte	2
+ 1275 04e3 C0       		.byte	-64
+ 1276 04e4 04       		.byte	4
+ 1277 04e5 40       		.byte	64
+ 1278 04e6 05       		.byte	5
+ 1279 04e7 02       		.byte	2
+ 1280 04e8 06       		.byte	6
+ 1281 04e9 01       		.byte	1
+ 1282 04ea 09       		.byte	9
+ 1283 04eb 08       		.byte	8
+ 1284 04ec 0A       		.byte	10
+ 1285 04ed 08       		.byte	8
+ 1286 04ee 0B       		.byte	11
+ 1287 04ef 08       		.byte	8
+ 1288 04f0 0C       		.byte	12
+ 1289 04f1 48       		.byte	72
+ 1290 04f2 0D       		.byte	13
+ 1291 04f3 08       		.byte	8
+ 1292 04f4 0E       		.byte	14
+ 1293 04f5 09       		.byte	9
+ 1294 04f6 10       		.byte	16
+ 1295 04f7 80       		.byte	-128
+ 1296 04f8 12       		.byte	18
+ 1297 04f9 22       		.byte	34
+ 1298 04fa 15       		.byte	21
+ 1299 04fb 40       		.byte	64
+ 1300 04fc 17       		.byte	23
+ 1301 04fd 14       		.byte	20
+ 1302 04fe 19       		.byte	25
+ 1303 04ff 08       		.byte	8
+ 1304 0500 1A       		.byte	26
+ 1305 0501 41       		.byte	65
+ 1306 0502 1B       		.byte	27
+ 1307 0503 10       		.byte	16
+ 1308 0504 1C       		.byte	28
+ 1309 0505 40       		.byte	64
+ 1310 0506 1D       		.byte	29
+ 1311 0507 80       		.byte	-128
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 24
+
+
+ 1312 0508 1E       		.byte	30
+ 1313 0509 08       		.byte	8
+ 1314 050a 1F       		.byte	31
+ 1315 050b 04       		.byte	4
+ 1316 050c 21       		.byte	33
+ 1317 050d 18       		.byte	24
+ 1318 050e 22       		.byte	34
+ 1319 050f 22       		.byte	34
+ 1320 0510 23       		.byte	35
+ 1321 0511 40       		.byte	64
+ 1322 0512 26       		.byte	38
+ 1323 0513 08       		.byte	8
+ 1324 0514 27       		.byte	39
+ 1325 0515 02       		.byte	2
+ 1326 0516 28       		.byte	40
+ 1327 0517 01       		.byte	1
+ 1328 0518 29       		.byte	41
+ 1329 0519 08       		.byte	8
+ 1330 051a 2B       		.byte	43
+ 1331 051b 02       		.byte	2
+ 1332 051c 2F       		.byte	47
+ 1333 051d 48       		.byte	72
+ 1334 051e 31       		.byte	49
+ 1335 051f 08       		.byte	8
+ 1336 0520 32       		.byte	50
+ 1337 0521 A0       		.byte	-96
+ 1338 0522 36       		.byte	54
+ 1339 0523 08       		.byte	8
+ 1340 0524 37       		.byte	55
+ 1341 0525 02       		.byte	2
+ 1342 0526 3B       		.byte	59
+ 1343 0527 40       		.byte	64
+ 1344 0528 3C       		.byte	60
+ 1345 0529 04       		.byte	4
+ 1346 052a 40       		.byte	64
+ 1347 052b 04       		.byte	4
+ 1348 052c 41       		.byte	65
+ 1349 052d 02       		.byte	2
+ 1350 052e 43       		.byte	67
+ 1351 052f 08       		.byte	8
+ 1352 0530 49       		.byte	73
+ 1353 0531 40       		.byte	64
+ 1354 0532 4A       		.byte	74
+ 1355 0533 08       		.byte	8
+ 1356 0534 4C       		.byte	76
+ 1357 0535 80       		.byte	-128
+ 1358 0536 4F       		.byte	79
+ 1359 0537 20       		.byte	32
+ 1360 0538 51       		.byte	81
+ 1361 0539 20       		.byte	32
+ 1362 053a 57       		.byte	87
+ 1363 053b 02       		.byte	2
+ 1364 053c 5E       		.byte	94
+ 1365 053d 04       		.byte	4
+ 1366 053e 6D       		.byte	109
+ 1367 053f 40       		.byte	64
+ 1368 0540 6F       		.byte	111
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 25
+
+
+ 1369 0541 14       		.byte	20
+ 1370 0542 76       		.byte	118
+ 1371 0543 20       		.byte	32
+ 1372 0544 77       		.byte	119
+ 1373 0545 09       		.byte	9
+ 1374 0546 C0       		.byte	-64
+ 1375 0547 9C       		.byte	-100
+ 1376 0548 C2       		.byte	-62
+ 1377 0549 44       		.byte	68
+ 1378 054a C4       		.byte	-60
+ 1379 054b ED       		.byte	-19
+ 1380 054c CA       		.byte	-54
+ 1381 054d AA       		.byte	-86
+ 1382 054e CC       		.byte	-52
+ 1383 054f CE       		.byte	-50
+ 1384 0550 CE       		.byte	-50
+ 1385 0551 48       		.byte	72
+ 1386 0552 D0       		.byte	-48
+ 1387 0553 07       		.byte	7
+ 1388 0554 D2       		.byte	-46
+ 1389 0555 2C       		.byte	44
+ 1390 0556 D6       		.byte	-42
+ 1391 0557 40       		.byte	64
+ 1392 0558 EA       		.byte	-22
+ 1393 0559 01       		.byte	1
+ 1394 055a EE       		.byte	-18
+ 1395 055b 01       		.byte	1
+ 1396 055c 05       		.byte	5
+ 1397 055d 04       		.byte	4
+ 1398 055e 07       		.byte	7
+ 1399 055f 0A       		.byte	10
+ 1400 0560 09       		.byte	9
+ 1401 0561 35       		.byte	53
+ 1402 0562 0D       		.byte	13
+ 1403 0563 35       		.byte	53
+ 1404 0564 11       		.byte	17
+ 1405 0565 35       		.byte	53
+ 1406 0566 15       		.byte	21
+ 1407 0567 08       		.byte	8
+ 1408 0568 17       		.byte	23
+ 1409 0569 22       		.byte	34
+ 1410 056a 1B       		.byte	27
+ 1411 056b 01       		.byte	1
+ 1412 056c 1D       		.byte	29
+ 1413 056d 08       		.byte	8
+ 1414 056e 1F       		.byte	31
+ 1415 056f 34       		.byte	52
+ 1416 0570 21       		.byte	33
+ 1417 0571 40       		.byte	64
+ 1418 0572 25       		.byte	37
+ 1419 0573 35       		.byte	53
+ 1420 0574 29       		.byte	41
+ 1421 0575 0A       		.byte	10
+ 1422 0576 2B       		.byte	43
+ 1423 0577 10       		.byte	16
+ 1424 0578 2D       		.byte	45
+ 1425 0579 34       		.byte	52
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 26
+
+
+ 1426 057a 2F       		.byte	47
+ 1427 057b 01       		.byte	1
+ 1428 057c 31       		.byte	49
+ 1429 057d 3C       		.byte	60
+ 1430 057e 33       		.byte	51
+ 1431 057f 01       		.byte	1
+ 1432 0580 35       		.byte	53
+ 1433 0581 40       		.byte	64
+ 1434 0582 37       		.byte	55
+ 1435 0583 02       		.byte	2
+ 1436 0584 3B       		.byte	59
+ 1437 0585 02       		.byte	2
+ 1438 0586 3F       		.byte	63
+ 1439 0587 54       		.byte	84
+ 1440 0588 40       		.byte	64
+ 1441 0589 36       		.byte	54
+ 1442 058a 41       		.byte	65
+ 1443 058b 01       		.byte	1
+ 1444 058c 45       		.byte	69
+ 1445 058d EC       		.byte	-20
+ 1446 058e 47       		.byte	71
+ 1447 058f B0       		.byte	-80
+ 1448 0590 48       		.byte	72
+ 1449 0591 23       		.byte	35
+ 1450 0592 49       		.byte	73
+ 1451 0593 FF       		.byte	-1
+ 1452 0594 4A       		.byte	74
+ 1453 0595 FF       		.byte	-1
+ 1454 0596 4B       		.byte	75
+ 1455 0597 FF       		.byte	-1
+ 1456 0598 4E       		.byte	78
+ 1457 0599 F0       		.byte	-16
+ 1458 059a 4F       		.byte	79
+ 1459 059b 44       		.byte	68
+ 1460 059c 50       		.byte	80
+ 1461 059d 0C       		.byte	12
+ 1462 059e 56       		.byte	86
+ 1463 059f 02       		.byte	2
+ 1464 05a0 57       		.byte	87
+ 1465 05a1 24       		.byte	36
+ 1466 05a2 59       		.byte	89
+ 1467 05a3 04       		.byte	4
+ 1468 05a4 5A       		.byte	90
+ 1469 05a5 04       		.byte	4
+ 1470 05a6 5B       		.byte	91
+ 1471 05a7 04       		.byte	4
+ 1472 05a8 5D       		.byte	93
+ 1473 05a9 01       		.byte	1
+ 1474 05aa 5F       		.byte	95
+ 1475 05ab 01       		.byte	1
+ 1476 05ac 66       		.byte	102
+ 1477 05ad C0       		.byte	-64
+ 1478 05ae 6A       		.byte	106
+ 1479 05af 40       		.byte	64
+ 1480 05b0 6B       		.byte	107
+ 1481 05b1 02       		.byte	2
+ 1482 05b2 82       		.byte	-126
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 27
+
+
+ 1483 05b3 43       		.byte	67
+ 1484 05b4 84       		.byte	-124
+ 1485 05b5 47       		.byte	71
+ 1486 05b6 86       		.byte	-122
+ 1487 05b7 18       		.byte	24
+ 1488 05b8 8C       		.byte	-116
+ 1489 05b9 1C       		.byte	28
+ 1490 05ba 8E       		.byte	-114
+ 1491 05bb 41       		.byte	65
+ 1492 05bc 8F       		.byte	-113
+ 1493 05bd 01       		.byte	1
+ 1494 05be 90       		.byte	-112
+ 1495 05bf 1C       		.byte	28
+ 1496 05c0 92       		.byte	-110
+ 1497 05c1 42       		.byte	66
+ 1498 05c2 93       		.byte	-109
+ 1499 05c3 01       		.byte	1
+ 1500 05c4 94       		.byte	-108
+ 1501 05c5 5F       		.byte	95
+ 1502 05c6 98       		.byte	-104
+ 1503 05c7 04       		.byte	4
+ 1504 05c8 9C       		.byte	-100
+ 1505 05c9 20       		.byte	32
+ 1506 05ca A0       		.byte	-96
+ 1507 05cb 10       		.byte	16
+ 1508 05cc A4       		.byte	-92
+ 1509 05cd 08       		.byte	8
+ 1510 05ce A8       		.byte	-88
+ 1511 05cf 18       		.byte	24
+ 1512 05d0 AE       		.byte	-82
+ 1513 05d1 04       		.byte	4
+ 1514 05d2 B0       		.byte	-80
+ 1515 05d3 1F       		.byte	31
+ 1516 05d4 B4       		.byte	-76
+ 1517 05d5 20       		.byte	32
+ 1518 05d6 B5       		.byte	-75
+ 1519 05d7 01       		.byte	1
+ 1520 05d8 B6       		.byte	-74
+ 1521 05d9 58       		.byte	88
+ 1522 05da BA       		.byte	-70
+ 1523 05db 82       		.byte	-126
+ 1524 05dc BB       		.byte	-69
+ 1525 05dd 08       		.byte	8
+ 1526 05de BE       		.byte	-66
+ 1527 05df 10       		.byte	16
+ 1528 05e0 BF       		.byte	-65
+ 1529 05e1 10       		.byte	16
+ 1530 05e2 D4       		.byte	-44
+ 1531 05e3 01       		.byte	1
+ 1532 05e4 D8       		.byte	-40
+ 1533 05e5 04       		.byte	4
+ 1534 05e6 D9       		.byte	-39
+ 1535 05e7 04       		.byte	4
+ 1536 05e8 DB       		.byte	-37
+ 1537 05e9 04       		.byte	4
+ 1538 05ea DC       		.byte	-36
+ 1539 05eb 11       		.byte	17
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 28
+
+
+ 1540 05ec DD       		.byte	-35
+ 1541 05ed 20       		.byte	32
+ 1542 05ee DF       		.byte	-33
+ 1543 05ef 01       		.byte	1
+ 1544 05f0 00       		.byte	0
+ 1545 05f1 02       		.byte	2
+ 1546 05f2 01       		.byte	1
+ 1547 05f3 80       		.byte	-128
+ 1548 05f4 03       		.byte	3
+ 1549 05f5 20       		.byte	32
+ 1550 05f6 08       		.byte	8
+ 1551 05f7 10       		.byte	16
+ 1552 05f8 09       		.byte	9
+ 1553 05f9 08       		.byte	8
+ 1554 05fa 0A       		.byte	10
+ 1555 05fb 81       		.byte	-127
+ 1556 05fc 10       		.byte	16
+ 1557 05fd A8       		.byte	-88
+ 1558 05fe 12       		.byte	18
+ 1559 05ff 02       		.byte	2
+ 1560 0600 19       		.byte	25
+ 1561 0601 80       		.byte	-128
+ 1562 0602 1A       		.byte	26
+ 1563 0603 8A       		.byte	-118
+ 1564 0604 21       		.byte	33
+ 1565 0605 08       		.byte	8
+ 1566 0606 22       		.byte	34
+ 1567 0607 20       		.byte	32
+ 1568 0608 26       		.byte	38
+ 1569 0609 44       		.byte	68
+ 1570 060a 27       		.byte	39
+ 1571 060b 48       		.byte	72
+ 1572 060c 2D       		.byte	45
+ 1573 060d 45       		.byte	69
+ 1574 060e 2F       		.byte	47
+ 1575 060f 08       		.byte	8
+ 1576 0610 31       		.byte	49
+ 1577 0611 02       		.byte	2
+ 1578 0612 34       		.byte	52
+ 1579 0613 08       		.byte	8
+ 1580 0614 35       		.byte	53
+ 1581 0615 20       		.byte	32
+ 1582 0616 36       		.byte	54
+ 1583 0617 09       		.byte	9
+ 1584 0618 37       		.byte	55
+ 1585 0619 40       		.byte	64
+ 1586 061a 38       		.byte	56
+ 1587 061b 80       		.byte	-128
+ 1588 061c 3C       		.byte	60
+ 1589 061d 88       		.byte	-120
+ 1590 061e 3E       		.byte	62
+ 1591 061f 10       		.byte	16
+ 1592 0620 45       		.byte	69
+ 1593 0621 40       		.byte	64
+ 1594 0622 47       		.byte	71
+ 1595 0623 04       		.byte	4
+ 1596 0624 4A       		.byte	74
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 29
+
+
+ 1597 0625 04       		.byte	4
+ 1598 0626 4B       		.byte	75
+ 1599 0627 20       		.byte	32
+ 1600 0628 4C       		.byte	76
+ 1601 0629 04       		.byte	4
+ 1602 062a 4D       		.byte	77
+ 1603 062b 01       		.byte	1
+ 1604 062c 4F       		.byte	79
+ 1605 062d 08       		.byte	8
+ 1606 062e 56       		.byte	86
+ 1607 062f 02       		.byte	2
+ 1608 0630 58       		.byte	88
+ 1609 0631 40       		.byte	64
+ 1610 0632 59       		.byte	89
+ 1611 0633 01       		.byte	1
+ 1612 0634 5A       		.byte	90
+ 1613 0635 09       		.byte	9
+ 1614 0636 5B       		.byte	91
+ 1615 0637 10       		.byte	16
+ 1616 0638 65       		.byte	101
+ 1617 0639 10       		.byte	16
+ 1618 063a 6D       		.byte	109
+ 1619 063b 44       		.byte	68
+ 1620 063c 6E       		.byte	110
+ 1621 063d 12       		.byte	18
+ 1622 063e 6F       		.byte	111
+ 1623 063f 80       		.byte	-128
+ 1624 0640 74       		.byte	116
+ 1625 0641 40       		.byte	64
+ 1626 0642 77       		.byte	119
+ 1627 0643 02       		.byte	2
+ 1628 0644 90       		.byte	-112
+ 1629 0645 88       		.byte	-120
+ 1630 0646 91       		.byte	-111
+ 1631 0647 80       		.byte	-128
+ 1632 0648 96       		.byte	-106
+ 1633 0649 82       		.byte	-126
+ 1634 064a 97       		.byte	-105
+ 1635 064b 20       		.byte	32
+ 1636 064c 98       		.byte	-104
+ 1637 064d 50       		.byte	80
+ 1638 064e 99       		.byte	-103
+ 1639 064f 31       		.byte	49
+ 1640 0650 9B       		.byte	-101
+ 1641 0651 14       		.byte	20
+ 1642 0652 9D       		.byte	-99
+ 1643 0653 40       		.byte	64
+ 1644 0654 9E       		.byte	-98
+ 1645 0655 82       		.byte	-126
+ 1646 0656 A0       		.byte	-96
+ 1647 0657 A9       		.byte	-87
+ 1648 0658 A1       		.byte	-95
+ 1649 0659 21       		.byte	33
+ 1650 065a A2       		.byte	-94
+ 1651 065b 1A       		.byte	26
+ 1652 065c A3       		.byte	-93
+ 1653 065d 20       		.byte	32
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 30
+
+
+ 1654 065e A4       		.byte	-92
+ 1655 065f 04       		.byte	4
+ 1656 0660 A5       		.byte	-91
+ 1657 0661 48       		.byte	72
+ 1658 0662 A6       		.byte	-90
+ 1659 0663 60       		.byte	96
+ 1660 0664 A7       		.byte	-89
+ 1661 0665 0E       		.byte	14
+ 1662 0666 B3       		.byte	-77
+ 1663 0667 40       		.byte	64
+ 1664 0668 B5       		.byte	-75
+ 1665 0669 40       		.byte	64
+ 1666 066a B6       		.byte	-74
+ 1667 066b 10       		.byte	16
+ 1668 066c C0       		.byte	-64
+ 1669 066d 0D       		.byte	13
+ 1670 066e C2       		.byte	-62
+ 1671 066f 0F       		.byte	15
+ 1672 0670 C4       		.byte	-60
+ 1673 0671 0F       		.byte	15
+ 1674 0672 CA       		.byte	-54
+ 1675 0673 F0       		.byte	-16
+ 1676 0674 CC       		.byte	-52
+ 1677 0675 F1       		.byte	-15
+ 1678 0676 CE       		.byte	-50
+ 1679 0677 78       		.byte	120
+ 1680 0678 D0       		.byte	-48
+ 1681 0679 50       		.byte	80
+ 1682 067a D2       		.byte	-46
+ 1683 067b 20       		.byte	32
+ 1684 067c D6       		.byte	-42
+ 1685 067d 0F       		.byte	15
+ 1686 067e D8       		.byte	-40
+ 1687 067f 20       		.byte	32
+ 1688 0680 00       		.byte	0
+ 1689 0681 84       		.byte	-124
+ 1690 0682 04       		.byte	4
+ 1691 0683 01       		.byte	1
+ 1692 0684 08       		.byte	8
+ 1693 0685 0A       		.byte	10
+ 1694 0686 0A       		.byte	10
+ 1695 0687 10       		.byte	16
+ 1696 0688 0C       		.byte	12
+ 1697 0689 04       		.byte	4
+ 1698 068a 0E       		.byte	14
+ 1699 068b 80       		.byte	-128
+ 1700 068c 10       		.byte	16
+ 1701 068d 04       		.byte	4
+ 1702 068e 13       		.byte	19
+ 1703 068f 01       		.byte	1
+ 1704 0690 14       		.byte	20
+ 1705 0691 80       		.byte	-128
+ 1706 0692 15       		.byte	21
+ 1707 0693 01       		.byte	1
+ 1708 0694 16       		.byte	22
+ 1709 0695 04       		.byte	4
+ 1710 0696 18       		.byte	24
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 31
+
+
+ 1711 0697 60       		.byte	96
+ 1712 0698 19       		.byte	25
+ 1713 0699 01       		.byte	1
+ 1714 069a 1C       		.byte	28
+ 1715 069b 07       		.byte	7
+ 1716 069c 1E       		.byte	30
+ 1717 069d 38       		.byte	56
+ 1718 069e 1F       		.byte	31
+ 1719 069f 01       		.byte	1
+ 1720 06a0 20       		.byte	32
+ 1721 06a1 84       		.byte	-124
+ 1722 06a2 24       		.byte	36
+ 1723 06a3 84       		.byte	-124
+ 1724 06a4 28       		.byte	40
+ 1725 06a5 56       		.byte	86
+ 1726 06a6 2A       		.byte	42
+ 1727 06a7 09       		.byte	9
+ 1728 06a8 31       		.byte	49
+ 1729 06a9 01       		.byte	1
+ 1730 06aa 34       		.byte	52
+ 1731 06ab 7F       		.byte	127
+ 1732 06ac 36       		.byte	54
+ 1733 06ad 80       		.byte	-128
+ 1734 06ae 38       		.byte	56
+ 1735 06af 20       		.byte	32
+ 1736 06b0 39       		.byte	57
+ 1737 06b1 02       		.byte	2
+ 1738 06b2 3E       		.byte	62
+ 1739 06b3 40       		.byte	64
+ 1740 06b4 58       		.byte	88
+ 1741 06b5 04       		.byte	4
+ 1742 06b6 59       		.byte	89
+ 1743 06b7 04       		.byte	4
+ 1744 06b8 5C       		.byte	92
+ 1745 06b9 10       		.byte	16
+ 1746 06ba 5F       		.byte	95
+ 1747 06bb 01       		.byte	1
+ 1748 06bc 80       		.byte	-128
+ 1749 06bd 9A       		.byte	-102
+ 1750 06be 83       		.byte	-125
+ 1751 06bf 37       		.byte	55
+ 1752 06c0 84       		.byte	-124
+ 1753 06c1 21       		.byte	33
+ 1754 06c2 86       		.byte	-122
+ 1755 06c3 D8       		.byte	-40
+ 1756 06c4 87       		.byte	-121
+ 1757 06c5 20       		.byte	32
+ 1758 06c6 8C       		.byte	-116
+ 1759 06c7 98       		.byte	-104
+ 1760 06c8 8E       		.byte	-114
+ 1761 06c9 02       		.byte	2
+ 1762 06ca 90       		.byte	-112
+ 1763 06cb 38       		.byte	56
+ 1764 06cc 92       		.byte	-110
+ 1765 06cd C0       		.byte	-64
+ 1766 06ce 94       		.byte	-108
+ 1767 06cf 02       		.byte	2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 32
+
+
+ 1768 06d0 95       		.byte	-107
+ 1769 06d1 38       		.byte	56
+ 1770 06d2 96       		.byte	-106
+ 1771 06d3 98       		.byte	-104
+ 1772 06d4 97       		.byte	-105
+ 1773 06d5 05       		.byte	5
+ 1774 06d6 98       		.byte	-104
+ 1775 06d7 13       		.byte	19
+ 1776 06d8 99       		.byte	-103
+ 1777 06d9 0E       		.byte	14
+ 1778 06da 9A       		.byte	-102
+ 1779 06db 64       		.byte	100
+ 1780 06dc 9B       		.byte	-101
+ 1781 06dd 20       		.byte	32
+ 1782 06de 9C       		.byte	-100
+ 1783 06df 02       		.byte	2
+ 1784 06e0 9D       		.byte	-99
+ 1785 06e1 38       		.byte	56
+ 1786 06e2 9F       		.byte	-97
+ 1787 06e3 03       		.byte	3
+ 1788 06e4 A0       		.byte	-96
+ 1789 06e5 9A       		.byte	-102
+ 1790 06e6 A4       		.byte	-92
+ 1791 06e7 98       		.byte	-104
+ 1792 06e8 A6       		.byte	-90
+ 1793 06e9 02       		.byte	2
+ 1794 06ea A8       		.byte	-88
+ 1795 06eb FC       		.byte	-4
+ 1796 06ec AA       		.byte	-86
+ 1797 06ed 03       		.byte	3
+ 1798 06ee AD       		.byte	-83
+ 1799 06ef 02       		.byte	2
+ 1800 06f0 B0       		.byte	-80
+ 1801 06f1 E0       		.byte	-32
+ 1802 06f2 B1       		.byte	-79
+ 1803 06f3 20       		.byte	32
+ 1804 06f4 B2       		.byte	-78
+ 1805 06f5 0F       		.byte	15
+ 1806 06f6 B3       		.byte	-77
+ 1807 06f7 18       		.byte	24
+ 1808 06f8 B4       		.byte	-76
+ 1809 06f9 13       		.byte	19
+ 1810 06fa B7       		.byte	-73
+ 1811 06fb 07       		.byte	7
+ 1812 06fc B9       		.byte	-71
+ 1813 06fd 08       		.byte	8
+ 1814 06fe BA       		.byte	-70
+ 1815 06ff 0A       		.byte	10
+ 1816 0700 BB       		.byte	-69
+ 1817 0701 80       		.byte	-128
+ 1818 0702 BF       		.byte	-65
+ 1819 0703 05       		.byte	5
+ 1820 0704 C0       		.byte	-64
+ 1821 0705 02       		.byte	2
+ 1822 0706 C6       		.byte	-58
+ 1823 0707 05       		.byte	5
+ 1824 0708 C7       		.byte	-57
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 33
+
+
+ 1825 0709 10       		.byte	16
+ 1826 070a C8       		.byte	-56
+ 1827 070b 24       		.byte	36
+ 1828 070c C9       		.byte	-55
+ 1829 070d FF       		.byte	-1
+ 1830 070e CA       		.byte	-54
+ 1831 070f 07       		.byte	7
+ 1832 0710 CB       		.byte	-53
+ 1833 0711 FF       		.byte	-1
+ 1834 0712 CC       		.byte	-52
+ 1835 0713 40       		.byte	64
+ 1836 0714 CD       		.byte	-51
+ 1837 0715 20       		.byte	32
+ 1838 0716 CE       		.byte	-50
+ 1839 0717 F0       		.byte	-16
+ 1840 0718 CF       		.byte	-49
+ 1841 0719 05       		.byte	5
+ 1842 071a D0       		.byte	-48
+ 1843 071b 08       		.byte	8
+ 1844 071c D4       		.byte	-44
+ 1845 071d 01       		.byte	1
+ 1846 071e D8       		.byte	-40
+ 1847 071f 04       		.byte	4
+ 1848 0720 D9       		.byte	-39
+ 1849 0721 04       		.byte	4
+ 1850 0722 DA       		.byte	-38
+ 1851 0723 04       		.byte	4
+ 1852 0724 DB       		.byte	-37
+ 1853 0725 04       		.byte	4
+ 1854 0726 DC       		.byte	-36
+ 1855 0727 10       		.byte	16
+ 1856 0728 DD       		.byte	-35
+ 1857 0729 11       		.byte	17
+ 1858 072a DF       		.byte	-33
+ 1859 072b 01       		.byte	1
+ 1860 072c E0       		.byte	-32
+ 1861 072d 40       		.byte	64
+ 1862 072e E1       		.byte	-31
+ 1863 072f A8       		.byte	-88
+ 1864 0730 E2       		.byte	-30
+ 1865 0731 40       		.byte	64
+ 1866 0732 E3       		.byte	-29
+ 1867 0733 20       		.byte	32
+ 1868 0734 00       		.byte	0
+ 1869 0735 04       		.byte	4
+ 1870 0736 01       		.byte	1
+ 1871 0737 40       		.byte	64
+ 1872 0738 03       		.byte	3
+ 1873 0739 C9       		.byte	-55
+ 1874 073a 05       		.byte	5
+ 1875 073b 04       		.byte	4
+ 1876 073c 07       		.byte	7
+ 1877 073d 41       		.byte	65
+ 1878 073e 08       		.byte	8
+ 1879 073f 80       		.byte	-128
+ 1880 0740 09       		.byte	9
+ 1881 0741 20       		.byte	32
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 34
+
+
+ 1882 0742 0A       		.byte	10
+ 1883 0743 50       		.byte	80
+ 1884 0744 0D       		.byte	13
+ 1885 0745 40       		.byte	64
+ 1886 0746 0E       		.byte	14
+ 1887 0747 54       		.byte	84
+ 1888 0748 11       		.byte	17
+ 1889 0749 04       		.byte	4
+ 1890 074a 12       		.byte	18
+ 1891 074b 08       		.byte	8
+ 1892 074c 13       		.byte	19
+ 1893 074d 02       		.byte	2
+ 1894 074e 14       		.byte	20
+ 1895 074f 08       		.byte	8
+ 1896 0750 15       		.byte	21
+ 1897 0751 04       		.byte	4
+ 1898 0752 17       		.byte	23
+ 1899 0753 02       		.byte	2
+ 1900 0754 18       		.byte	24
+ 1901 0755 04       		.byte	4
+ 1902 0756 19       		.byte	25
+ 1903 0757 40       		.byte	64
+ 1904 0758 1C       		.byte	28
+ 1905 0759 08       		.byte	8
+ 1906 075a 1D       		.byte	29
+ 1907 075b 04       		.byte	4
+ 1908 075c 1E       		.byte	30
+ 1909 075d 44       		.byte	68
+ 1910 075e 1F       		.byte	31
+ 1911 075f 08       		.byte	8
+ 1912 0760 21       		.byte	33
+ 1913 0761 02       		.byte	2
+ 1914 0762 24       		.byte	36
+ 1915 0763 40       		.byte	64
+ 1916 0764 25       		.byte	37
+ 1917 0765 40       		.byte	64
+ 1918 0766 26       		.byte	38
+ 1919 0767 80       		.byte	-128
+ 1920 0768 27       		.byte	39
+ 1921 0769 10       		.byte	16
+ 1922 076a 2E       		.byte	46
+ 1923 076b 80       		.byte	-128
+ 1924 076c 31       		.byte	49
+ 1925 076d 08       		.byte	8
+ 1926 076e 32       		.byte	50
+ 1927 076f 41       		.byte	65
+ 1928 0770 33       		.byte	51
+ 1929 0771 20       		.byte	32
+ 1930 0772 36       		.byte	54
+ 1931 0773 90       		.byte	-112
+ 1932 0774 37       		.byte	55
+ 1933 0775 04       		.byte	4
+ 1934 0776 3D       		.byte	61
+ 1935 0777 02       		.byte	2
+ 1936 0778 3F       		.byte	63
+ 1937 0779 08       		.byte	8
+ 1938 077a 47       		.byte	71
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 35
+
+
+ 1939 077b 10       		.byte	16
+ 1940 077c 56       		.byte	86
+ 1941 077d 80       		.byte	-128
+ 1942 077e 57       		.byte	87
+ 1943 077f 02       		.byte	2
+ 1944 0780 5C       		.byte	92
+ 1945 0781 60       		.byte	96
+ 1946 0782 5D       		.byte	93
+ 1947 0783 01       		.byte	1
+ 1948 0784 5F       		.byte	95
+ 1949 0785 08       		.byte	8
+ 1950 0786 88       		.byte	-120
+ 1951 0787 84       		.byte	-124
+ 1952 0788 8C       		.byte	-116
+ 1953 0789 20       		.byte	32
+ 1954 078a 8F       		.byte	-113
+ 1955 078b 04       		.byte	4
+ 1956 078c 91       		.byte	-111
+ 1957 078d C5       		.byte	-59
+ 1958 078e 92       		.byte	-110
+ 1959 078f 92       		.byte	-110
+ 1960 0790 98       		.byte	-104
+ 1961 0791 08       		.byte	8
+ 1962 0792 9B       		.byte	-101
+ 1963 0793 0E       		.byte	14
+ 1964 0794 9D       		.byte	-99
+ 1965 0795 40       		.byte	64
+ 1966 0796 9E       		.byte	-98
+ 1967 0797 80       		.byte	-128
+ 1968 0798 A1       		.byte	-95
+ 1969 0799 29       		.byte	41
+ 1970 079a A2       		.byte	-94
+ 1971 079b 18       		.byte	24
+ 1972 079c A3       		.byte	-93
+ 1973 079d A4       		.byte	-92
+ 1974 079e A4       		.byte	-92
+ 1975 079f 04       		.byte	4
+ 1976 07a0 A5       		.byte	-91
+ 1977 07a1 42       		.byte	66
+ 1978 07a2 A7       		.byte	-89
+ 1979 07a3 0A       		.byte	10
+ 1980 07a4 C0       		.byte	-64
+ 1981 07a5 BF       		.byte	-65
+ 1982 07a6 C2       		.byte	-62
+ 1983 07a7 FF       		.byte	-1
+ 1984 07a8 C4       		.byte	-60
+ 1985 07a9 7E       		.byte	126
+ 1986 07aa CA       		.byte	-54
+ 1987 07ab 10       		.byte	16
+ 1988 07ac CC       		.byte	-52
+ 1989 07ad 7F       		.byte	127
+ 1990 07ae CE       		.byte	-50
+ 1991 07af C0       		.byte	-64
+ 1992 07b0 D0       		.byte	-48
+ 1993 07b1 20       		.byte	32
+ 1994 07b2 D6       		.byte	-42
+ 1995 07b3 F0       		.byte	-16
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 36
+
+
+ 1996 07b4 EA       		.byte	-22
+ 1997 07b5 01       		.byte	1
+ 1998 07b6 EE       		.byte	-18
+ 1999 07b7 01       		.byte	1
+ 2000 07b8 32       		.byte	50
+ 2001 07b9 40       		.byte	64
+ 2002 07ba 36       		.byte	54
+ 2003 07bb 10       		.byte	16
+ 2004 07bc CC       		.byte	-52
+ 2005 07bd 30       		.byte	48
+ 2006 07be 96       		.byte	-106
+ 2007 07bf 80       		.byte	-128
+ 2008 07c0 A6       		.byte	-90
+ 2009 07c1 10       		.byte	16
+ 2010 07c2 07       		.byte	7
+ 2011 07c3 10       		.byte	16
+ 2012 07c4 3E       		.byte	62
+ 2013 07c5 10       		.byte	16
+ 2014 07c6 82       		.byte	-126
+ 2015 07c7 40       		.byte	64
+ 2016 07c8 86       		.byte	-122
+ 2017 07c9 10       		.byte	16
+ 2018 07ca 96       		.byte	-106
+ 2019 07cb 80       		.byte	-128
+ 2020 07cc A6       		.byte	-90
+ 2021 07cd 10       		.byte	16
+ 2022 07ce C0       		.byte	-64
+ 2023 07cf 20       		.byte	32
+ 2024 07d0 CE       		.byte	-50
+ 2025 07d1 20       		.byte	32
+ 2026 07d2 E6       		.byte	-26
+ 2027 07d3 90       		.byte	-112
+ 2028 07d4 83       		.byte	-125
+ 2029 07d5 10       		.byte	16
+ 2030 07d6 96       		.byte	-106
+ 2031 07d7 10       		.byte	16
+ 2032 07d8 9B       		.byte	-101
+ 2033 07d9 10       		.byte	16
+ 2034 07da E0       		.byte	-32
+ 2035 07db 20       		.byte	32
+ 2036 07dc 10       		.byte	16
+ 2037 07dd 10       		.byte	16
+ 2038 07de C4       		.byte	-60
+ 2039 07df 08       		.byte	8
+ 2040 07e0 00       		.byte	0
+ 2041 07e1 08       		.byte	8
+ 2042 07e2 02       		.byte	2
+ 2043 07e3 02       		.byte	2
+ 2044 07e4 0E       		.byte	14
+ 2045 07e5 20       		.byte	32
+ 2046 07e6 50       		.byte	80
+ 2047 07e7 04       		.byte	4
+ 2048 07e8 57       		.byte	87
+ 2049 07e9 08       		.byte	8
+ 2050 07ea 63       		.byte	99
+ 2051 07eb 20       		.byte	32
+ 2052 07ec 67       		.byte	103
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 37
+
+
+ 2053 07ed 10       		.byte	16
+ 2054 07ee 8A       		.byte	-118
+ 2055 07ef 02       		.byte	2
+ 2056 07f0 98       		.byte	-104
+ 2057 07f1 10       		.byte	16
+ 2058 07f2 A3       		.byte	-93
+ 2059 07f3 08       		.byte	8
+ 2060 07f4 B3       		.byte	-77
+ 2061 07f5 08       		.byte	8
+ 2062 07f6 C0       		.byte	-64
+ 2063 07f7 0A       		.byte	10
+ 2064 07f8 C2       		.byte	-62
+ 2065 07f9 04       		.byte	4
+ 2066 07fa D4       		.byte	-44
+ 2067 07fb 06       		.byte	6
+ 2068 07fc D8       		.byte	-40
+ 2069 07fd 03       		.byte	3
+ 2070 07fe E6       		.byte	-26
+ 2071 07ff 04       		.byte	4
+ 2072 0800 E8       		.byte	-24
+ 2073 0801 04       		.byte	4
+ 2074 0802 8F       		.byte	-113
+ 2075 0803 10       		.byte	16
+ 2076 0804 97       		.byte	-105
+ 2077 0805 10       		.byte	16
+ 2078 0806 98       		.byte	-104
+ 2079 0807 10       		.byte	16
+ 2080 0808 A0       		.byte	-96
+ 2081 0809 04       		.byte	4
+ 2082 080a A7       		.byte	-89
+ 2083 080b 10       		.byte	16
+ 2084 080c B0       		.byte	-80
+ 2085 080d 04       		.byte	4
+ 2086 080e B2       		.byte	-78
+ 2087 080f 10       		.byte	16
+ 2088 0810 B4       		.byte	-76
+ 2089 0811 04       		.byte	4
+ 2090 0812 E0       		.byte	-32
+ 2091 0813 08       		.byte	8
+ 2092 0814 E8       		.byte	-24
+ 2093 0815 08       		.byte	8
+ 2094 0816 EA       		.byte	-22
+ 2095 0817 05       		.byte	5
+ 2096 0818 81       		.byte	-127
+ 2097 0819 04       		.byte	4
+ 2098 081a 98       		.byte	-104
+ 2099 081b 10       		.byte	16
+ 2100 081c A0       		.byte	-96
+ 2101 081d 04       		.byte	4
+ 2102 081e B3       		.byte	-77
+ 2103 081f 10       		.byte	16
+ 2104 0820 EC       		.byte	-20
+ 2105 0821 01       		.byte	1
+ 2106 0822 96       		.byte	-106
+ 2107 0823 10       		.byte	16
+ 2108 0824 77       		.byte	119
+ 2109 0825 40       		.byte	64
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 38
+
+
+ 2110 0826 9B       		.byte	-101
+ 2111 0827 40       		.byte	64
+ 2112 0828 AA       		.byte	-86
+ 2113 0829 10       		.byte	16
+ 2114 082a AB       		.byte	-85
+ 2115 082b 40       		.byte	64
+ 2116 082c DE       		.byte	-34
+ 2117 082d 20       		.byte	32
+ 2118 082e EA       		.byte	-22
+ 2119 082f 80       		.byte	-128
+ 2120 0830 EE       		.byte	-18
+ 2121 0831 80       		.byte	-128
+ 2122 0832 10       		.byte	16
+ 2123 0833 40       		.byte	64
+ 2124 0834 13       		.byte	19
+ 2125 0835 20       		.byte	32
+ 2126 0836 17       		.byte	23
+ 2127 0837 02       		.byte	2
+ 2128 0838 78       		.byte	120
+ 2129 0839 10       		.byte	16
+ 2130 083a 7D       		.byte	125
+ 2131 083b 08       		.byte	8
+ 2132 083c 98       		.byte	-104
+ 2133 083d 10       		.byte	16
+ 2134 083e A1       		.byte	-95
+ 2135 083f 04       		.byte	4
+ 2136 0840 B0       		.byte	-80
+ 2137 0841 04       		.byte	4
+ 2138 0842 C4       		.byte	-60
+ 2139 0843 0E       		.byte	14
+ 2140 0844 DE       		.byte	-34
+ 2141 0845 03       		.byte	3
+ 2142 0846 EA       		.byte	-22
+ 2143 0847 04       		.byte	4
+ 2144 0848 78       		.byte	120
+ 2145 0849 40       		.byte	64
+ 2146 084a 98       		.byte	-104
+ 2147 084b 40       		.byte	64
+ 2148 084c AB       		.byte	-85
+ 2149 084d 22       		.byte	34
+ 2150 084e DC       		.byte	-36
+ 2151 084f 01       		.byte	1
+ 2152 0850 00       		.byte	0
+ 2153 0851 07       		.byte	7
+ 2154 0852 0C       		.byte	12
+ 2155 0853 07       		.byte	7
+ 2156 0854 0E       		.byte	14
+ 2157 0855 07       		.byte	7
+ 2158 0856 10       		.byte	16
+ 2159 0857 07       		.byte	7
+ 2160 0858 1C       		.byte	28
+ 2161 0859 07       		.byte	7
+ 2162 085a 00       		.byte	0
+ 2163 085b 0F       		.byte	15
+ 2164 085c 03       		.byte	3
+ 2165 085d C0       		.byte	-64
+ 2166 085e 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 39
+
+
+ 2167 085f 00       		.byte	0
+ 2168 0860 08       		.byte	8
+ 2169 0861 10       		.byte	16
+ 2170 0862 00       		.byte	0
+ 2171 0863 00       		.byte	0
+ 2172 0864 18       		.byte	24
+ 2173 0865 00       		.byte	0
+ 2174 0866 00       		.byte	0
+ 2175 0867 00       		.byte	0
+ 2176 0868 01       		.byte	1
+ 2177 0869 10       		.byte	16
+ 2178 086a 00       		.byte	0
+ 2179 086b 00       		.byte	0
+ 2180 086c 00       		.byte	0
+ 2181 086d 08       		.byte	8
+ 2182 086e 63       		.byte	99
+ 2183 086f 00       		.byte	0
+ 2184 0870 7F       		.byte	127
+ 2185 0871 18       		.byte	24
+ 2186 0872 00       		.byte	0
+ 2187 0873 00       		.byte	0
+ 2188 0874 1F       		.byte	31
+ 2189 0875 FF       		.byte	-1
+ 2190 0876 60       		.byte	96
+ 2191 0877 00       		.byte	0
+ 2192 0878 00       		.byte	0
+ 2193 0879 24       		.byte	36
+ 2194 087a 00       		.byte	0
+ 2195 087b 00       		.byte	0
+ 2196 087c 5C       		.byte	92
+ 2197 087d 40       		.byte	64
+ 2198 087e 23       		.byte	35
+ 2199 087f 00       		.byte	0
+ 2200 0880 02       		.byte	2
+ 2201 0881 1C       		.byte	28
+ 2202 0882 00       		.byte	0
+ 2203 0883 E2       		.byte	-30
+ 2204 0884 73       		.byte	115
+ 2205 0885 00       		.byte	0
+ 2206 0886 0C       		.byte	12
+ 2207 0887 04       		.byte	4
+ 2208 0888 08       		.byte	8
+ 2209 0889 60       		.byte	96
+ 2210 088a 00       		.byte	0
+ 2211 088b 00       		.byte	0
+ 2212 088c 04       		.byte	4
+ 2213 088d E7       		.byte	-25
+ 2214 088e 00       		.byte	0
+ 2215 088f 18       		.byte	24
+ 2216 0890 0C       		.byte	12
+ 2217 0891 00       		.byte	0
+ 2218 0892 00       		.byte	0
+ 2219 0893 63       		.byte	99
+ 2220 0894 03       		.byte	3
+ 2221 0895 1C       		.byte	28
+ 2222 0896 00       		.byte	0
+ 2223 0897 E1       		.byte	-31
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 40
+
+
+ 2224 0898 2C       		.byte	44
+ 2225 0899 60       		.byte	96
+ 2226 089a 0F       		.byte	15
+ 2227 089b 00       		.byte	0
+ 2228 089c 10       		.byte	16
+ 2229 089d 1F       		.byte	31
+ 2230 089e 4C       		.byte	76
+ 2231 089f 80       		.byte	-128
+ 2232 08a0 00       		.byte	0
+ 2233 08a1 80       		.byte	-128
+ 2234 08a2 0A       		.byte	10
+ 2235 08a3 28       		.byte	40
+ 2236 08a4 00       		.byte	0
+ 2237 08a5 00       		.byte	0
+ 2238 08a6 10       		.byte	16
+ 2239 08a7 00       		.byte	0
+ 2240 08a8 36       		.byte	54
+ 2241 08a9 02       		.byte	2
+ 2242 08aa 04       		.byte	4
+ 2243 08ab 00       		.byte	0
+ 2244 08ac 01       		.byte	1
+ 2245 08ad C0       		.byte	-64
+ 2246 08ae E0       		.byte	-32
+ 2247 08af 00       		.byte	0
+ 2248 08b0 0A       		.byte	10
+ 2249 08b1 FF       		.byte	-1
+ 2250 08b2 FF       		.byte	-1
+ 2251 08b3 FF       		.byte	-1
+ 2252 08b4 62       		.byte	98
+ 2253 08b5 A0       		.byte	-96
+ 2254 08b6 F0       		.byte	-16
+ 2255 08b7 41       		.byte	65
+ 2256 08b8 0C       		.byte	12
+ 2257 08b9 00       		.byte	0
+ 2258 08ba 00       		.byte	0
+ 2259 08bb 00       		.byte	0
+ 2260 08bc 40       		.byte	64
+ 2261 08bd 00       		.byte	0
+ 2262 08be 00       		.byte	0
+ 2263 08bf 00       		.byte	0
+ 2264 08c0 04       		.byte	4
+ 2265 08c1 04       		.byte	4
+ 2266 08c2 04       		.byte	4
+ 2267 08c3 04       		.byte	4
+ 2268 08c4 22       		.byte	34
+ 2269 08c5 02       		.byte	2
+ 2270 08c6 00       		.byte	0
+ 2271 08c7 01       		.byte	1
+ 2272 08c8 00       		.byte	0
+ 2273 08c9 00       		.byte	0
+ 2274 08ca 00       		.byte	0
+ 2275 08cb 00       		.byte	0
+ 2276 08cc 00       		.byte	0
+ 2277 08cd 00       		.byte	0
+ 2278 08ce 40       		.byte	64
+ 2279 08cf 02       		.byte	2
+ 2280 08d0 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 41
+
+
+ 2281 08d1 10       		.byte	16
+ 2282 08d2 30       		.byte	48
+ 2283 08d3 10       		.byte	16
+ 2284 08d4 00       		.byte	0
+ 2285 08d5 10       		.byte	16
+ 2286 08d6 10       		.byte	16
+ 2287 08d7 12       		.byte	18
+ 2288 08d8 00       		.byte	0
+ 2289 08d9 00       		.byte	0
+ 2290 08da 00       		.byte	0
+ 2291 08db 00       		.byte	0
+ 2292 08dc 00       		.byte	0
+ 2293 08dd 00       		.byte	0
+ 2294 08de 00       		.byte	0
+ 2295 08df 00       		.byte	0
+ 2296 08e0 00       		.byte	0
+ 2297 08e1 00       		.byte	0
+ 2298 08e2 00       		.byte	0
+ 2299 08e3 00       		.byte	0
+ 2300 08e4 00       		.byte	0
+ 2301 08e5 00       		.byte	0
+ 2302 08e6 00       		.byte	0
+ 2303 08e7 00       		.byte	0
+ 2304 08e8 18       		.byte	24
+ 2305 08e9 00       		.byte	0
+ 2306 08ea 00       		.byte	0
+ 2307 08eb 00       		.byte	0
+ 2308 08ec 18       		.byte	24
+ 2309 08ed 00       		.byte	0
+ 2310 08ee 18       		.byte	24
+ 2311 08ef 00       		.byte	0
+ 2312 08f0 00       		.byte	0
+ 2313 08f1 00       		.byte	0
+ 2314 08f2 00       		.byte	0
+ 2315 08f3 00       		.byte	0
+ 2316 08f4 42       		.byte	66
+ 2317 08f5 00       		.byte	0
+ 2318 08f6 25       		.byte	37
+ 2319 08f7 5A       		.byte	90
+ 2320 08f8 5A       		.byte	90
+ 2321 08f9 00       		.byte	0
+ 2322 08fa 5A       		.byte	90
+ 2323 08fb 00       		.byte	0
+ 2324 08fc 00       		.byte	0
+ 2325 08fd 00       		.byte	0
+ 2326 08fe 00       		.byte	0
+ 2327 08ff 00       		.byte	0
+ 2328              		.global	cy_meta_custnvl
+ 2329              		.section	.cycustnvl,"a",%progbits
+ 2330              		.align	2
+ 2331              		.type	cy_meta_custnvl, %object
+ 2332              		.size	cy_meta_custnvl, 4
+ 2333              	cy_meta_custnvl:
+ 2334 0000 00       		.byte	0
+ 2335 0001 00       		.byte	0
+ 2336 0002 40       		.byte	64
+ 2337 0003 05       		.byte	5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 42
+
+
+ 2338              		.global	cy_meta_wonvl
+ 2339              		.section	.cywolatch,"a",%progbits
+ 2340              		.align	2
+ 2341              		.type	cy_meta_wonvl, %object
+ 2342              		.size	cy_meta_wonvl, 4
+ 2343              	cy_meta_wonvl:
+ 2344 0000 BC       		.byte	-68
+ 2345 0001 90       		.byte	-112
+ 2346 0002 AC       		.byte	-84
+ 2347 0003 AF       		.byte	-81
+ 2348              		.global	cy_meta_flashprotect
+ 2349              		.section	.cyflashprotect,"a",%progbits
+ 2350              		.align	2
+ 2351              		.type	cy_meta_flashprotect, %object
+ 2352              		.size	cy_meta_flashprotect, 256
+ 2353              	cy_meta_flashprotect:
+ 2354 0000 00000000 		.space	256
+ 2354      00000000 
+ 2354      00000000 
+ 2354      00000000 
+ 2354      00000000 
+ 2355              		.global	cy_metadata
+ 2356              		.section	.cymeta,"a",%progbits
+ 2357              		.align	2
+ 2358              		.type	cy_metadata, %object
+ 2359              		.size	cy_metadata, 12
+ 2360              	cy_metadata:
+ 2361 0000 00       		.byte	0
+ 2362 0001 01       		.byte	1
+ 2363 0002 2E       		.byte	46
+ 2364 0003 12       		.byte	18
+ 2365 0004 70       		.byte	112
+ 2366 0005 69       		.byte	105
+ 2367 0006 00       		.byte	0
+ 2368 0007 01       		.byte	1
+ 2369 0008 00       		.byte	0
+ 2370 0009 00       		.byte	0
+ 2371 000a 00       		.byte	0
+ 2372 000b 00       		.byte	0
+ 2373              		.text
+ 2374              	.Letext0:
+ 2375              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
+ 2376              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 2377              		.section	.debug_info,"",%progbits
+ 2378              	.Ldebug_info0:
+ 2379 0000 3F010000 		.4byte	0x13f
+ 2380 0004 0200     		.2byte	0x2
+ 2381 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 2382 000a 04       		.byte	0x4
+ 2383 000b 01       		.uleb128 0x1
+ 2384 000c 54010000 		.4byte	.LASF18
+ 2385 0010 01       		.byte	0x1
+ 2386 0011 4D000000 		.4byte	.LASF19
+ 2387 0015 00000000 		.4byte	.LASF20
+ 2388 0019 00000000 		.4byte	.Ldebug_line0
+ 2389 001d 02       		.uleb128 0x2
+ 2390 001e 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 43
+
+
+ 2391 001f 06       		.byte	0x6
+ 2392 0020 A6010000 		.4byte	.LASF0
+ 2393 0024 02       		.uleb128 0x2
+ 2394 0025 01       		.byte	0x1
+ 2395 0026 08       		.byte	0x8
+ 2396 0027 85000000 		.4byte	.LASF1
+ 2397 002b 02       		.uleb128 0x2
+ 2398 002c 02       		.byte	0x2
+ 2399 002d 05       		.byte	0x5
+ 2400 002e 44010000 		.4byte	.LASF2
+ 2401 0032 02       		.uleb128 0x2
+ 2402 0033 02       		.byte	0x2
+ 2403 0034 07       		.byte	0x7
+ 2404 0035 A5000000 		.4byte	.LASF3
+ 2405 0039 02       		.uleb128 0x2
+ 2406 003a 04       		.byte	0x4
+ 2407 003b 05       		.byte	0x5
+ 2408 003c 9D010000 		.4byte	.LASF4
+ 2409 0040 02       		.uleb128 0x2
+ 2410 0041 04       		.byte	0x4
+ 2411 0042 07       		.byte	0x7
+ 2412 0043 93000000 		.4byte	.LASF5
+ 2413 0047 02       		.uleb128 0x2
+ 2414 0048 08       		.byte	0x8
+ 2415 0049 05       		.byte	0x5
+ 2416 004a 31010000 		.4byte	.LASF6
+ 2417 004e 02       		.uleb128 0x2
+ 2418 004f 08       		.byte	0x8
+ 2419 0050 07       		.byte	0x7
+ 2420 0051 EE000000 		.4byte	.LASF7
+ 2421 0055 03       		.uleb128 0x3
+ 2422 0056 04       		.byte	0x4
+ 2423 0057 05       		.byte	0x5
+ 2424 0058 696E7400 		.ascii	"int\000"
+ 2425 005c 02       		.uleb128 0x2
+ 2426 005d 04       		.byte	0x4
+ 2427 005e 07       		.byte	0x7
+ 2428 005f E1000000 		.4byte	.LASF8
+ 2429 0063 04       		.uleb128 0x4
+ 2430 0064 4E010000 		.4byte	.LASF21
+ 2431 0068 02       		.byte	0x2
+ 2432 0069 5B       		.byte	0x5b
+ 2433 006a 24000000 		.4byte	0x24
+ 2434 006e 02       		.uleb128 0x2
+ 2435 006f 04       		.byte	0x4
+ 2436 0070 04       		.byte	0x4
+ 2437 0071 7F000000 		.4byte	.LASF9
+ 2438 0075 02       		.uleb128 0x2
+ 2439 0076 08       		.byte	0x8
+ 2440 0077 04       		.byte	0x4
+ 2441 0078 B8000000 		.4byte	.LASF10
+ 2442 007c 02       		.uleb128 0x2
+ 2443 007d 01       		.byte	0x1
+ 2444 007e 08       		.byte	0x8
+ 2445 007f 3F010000 		.4byte	.LASF11
+ 2446 0083 05       		.uleb128 0x5
+ 2447 0084 63000000 		.4byte	0x63
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 44
+
+
+ 2448 0088 94000000 		.4byte	0x94
+ 2449 008c 06       		.uleb128 0x6
+ 2450 008d 94000000 		.4byte	0x94
+ 2451 0091 FF08     		.2byte	0x8ff
+ 2452 0093 00       		.byte	0
+ 2453 0094 02       		.uleb128 0x2
+ 2454 0095 04       		.byte	0x4
+ 2455 0096 07       		.byte	0x7
+ 2456 0097 28010000 		.4byte	.LASF12
+ 2457 009b 07       		.uleb128 0x7
+ 2458 009c CF000000 		.4byte	.LASF13
+ 2459 00a0 01       		.byte	0x1
+ 2460 00a1 1C       		.byte	0x1c
+ 2461 00a2 AD000000 		.4byte	0xad
+ 2462 00a6 01       		.byte	0x1
+ 2463 00a7 05       		.byte	0x5
+ 2464 00a8 03       		.byte	0x3
+ 2465 00a9 00000000 		.4byte	cy_meta_configecc
+ 2466 00ad 08       		.uleb128 0x8
+ 2467 00ae 83000000 		.4byte	0x83
+ 2468 00b2 05       		.uleb128 0x5
+ 2469 00b3 63000000 		.4byte	0x63
+ 2470 00b7 C2000000 		.4byte	0xc2
+ 2471 00bb 09       		.uleb128 0x9
+ 2472 00bc 94000000 		.4byte	0x94
+ 2473 00c0 03       		.byte	0x3
+ 2474 00c1 00       		.byte	0
+ 2475 00c2 0A       		.uleb128 0xa
+ 2476 00c3 BF000000 		.4byte	.LASF14
+ 2477 00c7 01       		.byte	0x1
+ 2478 00c8 4601     		.2byte	0x146
+ 2479 00ca D5000000 		.4byte	0xd5
+ 2480 00ce 01       		.byte	0x1
+ 2481 00cf 05       		.byte	0x5
+ 2482 00d0 03       		.byte	0x3
+ 2483 00d1 00000000 		.4byte	cy_meta_custnvl
+ 2484 00d5 08       		.uleb128 0x8
+ 2485 00d6 B2000000 		.4byte	0xb2
+ 2486 00da 0A       		.uleb128 0xa
+ 2487 00db 1A010000 		.4byte	.LASF15
+ 2488 00df 01       		.byte	0x1
+ 2489 00e0 5101     		.2byte	0x151
+ 2490 00e2 ED000000 		.4byte	0xed
+ 2491 00e6 01       		.byte	0x1
+ 2492 00e7 05       		.byte	0x5
+ 2493 00e8 03       		.byte	0x3
+ 2494 00e9 00000000 		.4byte	cy_meta_wonvl
+ 2495 00ed 08       		.uleb128 0x8
+ 2496 00ee B2000000 		.4byte	0xb2
+ 2497 00f2 05       		.uleb128 0x5
+ 2498 00f3 63000000 		.4byte	0x63
+ 2499 00f7 02010000 		.4byte	0x102
+ 2500 00fb 09       		.uleb128 0x9
+ 2501 00fc 94000000 		.4byte	0x94
+ 2502 0100 FF       		.byte	0xff
+ 2503 0101 00       		.byte	0
+ 2504 0102 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 45
+
+
+ 2505 0103 05010000 		.4byte	.LASF16
+ 2506 0107 01       		.byte	0x1
+ 2507 0108 5C01     		.2byte	0x15c
+ 2508 010a 15010000 		.4byte	0x115
+ 2509 010e 01       		.byte	0x1
+ 2510 010f 05       		.byte	0x5
+ 2511 0110 03       		.byte	0x3
+ 2512 0111 00000000 		.4byte	cy_meta_flashprotect
+ 2513 0115 08       		.uleb128 0x8
+ 2514 0116 F2000000 		.4byte	0xf2
+ 2515 011a 05       		.uleb128 0x5
+ 2516 011b 63000000 		.4byte	0x63
+ 2517 011f 2A010000 		.4byte	0x12a
+ 2518 0123 09       		.uleb128 0x9
+ 2519 0124 94000000 		.4byte	0x94
+ 2520 0128 0B       		.byte	0xb
+ 2521 0129 00       		.byte	0
+ 2522 012a 0A       		.uleb128 0xa
+ 2523 012b 73000000 		.4byte	.LASF17
+ 2524 012f 01       		.byte	0x1
+ 2525 0130 8601     		.2byte	0x186
+ 2526 0132 3D010000 		.4byte	0x13d
+ 2527 0136 01       		.byte	0x1
+ 2528 0137 05       		.byte	0x5
+ 2529 0138 03       		.byte	0x3
+ 2530 0139 00000000 		.4byte	cy_metadata
+ 2531 013d 08       		.uleb128 0x8
+ 2532 013e 1A010000 		.4byte	0x11a
+ 2533 0142 00       		.byte	0
+ 2534              		.section	.debug_abbrev,"",%progbits
+ 2535              	.Ldebug_abbrev0:
+ 2536 0000 01       		.uleb128 0x1
+ 2537 0001 11       		.uleb128 0x11
+ 2538 0002 01       		.byte	0x1
+ 2539 0003 25       		.uleb128 0x25
+ 2540 0004 0E       		.uleb128 0xe
+ 2541 0005 13       		.uleb128 0x13
+ 2542 0006 0B       		.uleb128 0xb
+ 2543 0007 03       		.uleb128 0x3
+ 2544 0008 0E       		.uleb128 0xe
+ 2545 0009 1B       		.uleb128 0x1b
+ 2546 000a 0E       		.uleb128 0xe
+ 2547 000b 10       		.uleb128 0x10
+ 2548 000c 06       		.uleb128 0x6
+ 2549 000d 00       		.byte	0
+ 2550 000e 00       		.byte	0
+ 2551 000f 02       		.uleb128 0x2
+ 2552 0010 24       		.uleb128 0x24
+ 2553 0011 00       		.byte	0
+ 2554 0012 0B       		.uleb128 0xb
+ 2555 0013 0B       		.uleb128 0xb
+ 2556 0014 3E       		.uleb128 0x3e
+ 2557 0015 0B       		.uleb128 0xb
+ 2558 0016 03       		.uleb128 0x3
+ 2559 0017 0E       		.uleb128 0xe
+ 2560 0018 00       		.byte	0
+ 2561 0019 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 46
+
+
+ 2562 001a 03       		.uleb128 0x3
+ 2563 001b 24       		.uleb128 0x24
+ 2564 001c 00       		.byte	0
+ 2565 001d 0B       		.uleb128 0xb
+ 2566 001e 0B       		.uleb128 0xb
+ 2567 001f 3E       		.uleb128 0x3e
+ 2568 0020 0B       		.uleb128 0xb
+ 2569 0021 03       		.uleb128 0x3
+ 2570 0022 08       		.uleb128 0x8
+ 2571 0023 00       		.byte	0
+ 2572 0024 00       		.byte	0
+ 2573 0025 04       		.uleb128 0x4
+ 2574 0026 16       		.uleb128 0x16
+ 2575 0027 00       		.byte	0
+ 2576 0028 03       		.uleb128 0x3
+ 2577 0029 0E       		.uleb128 0xe
+ 2578 002a 3A       		.uleb128 0x3a
+ 2579 002b 0B       		.uleb128 0xb
+ 2580 002c 3B       		.uleb128 0x3b
+ 2581 002d 0B       		.uleb128 0xb
+ 2582 002e 49       		.uleb128 0x49
+ 2583 002f 13       		.uleb128 0x13
+ 2584 0030 00       		.byte	0
+ 2585 0031 00       		.byte	0
+ 2586 0032 05       		.uleb128 0x5
+ 2587 0033 01       		.uleb128 0x1
+ 2588 0034 01       		.byte	0x1
+ 2589 0035 49       		.uleb128 0x49
+ 2590 0036 13       		.uleb128 0x13
+ 2591 0037 01       		.uleb128 0x1
+ 2592 0038 13       		.uleb128 0x13
+ 2593 0039 00       		.byte	0
+ 2594 003a 00       		.byte	0
+ 2595 003b 06       		.uleb128 0x6
+ 2596 003c 21       		.uleb128 0x21
+ 2597 003d 00       		.byte	0
+ 2598 003e 49       		.uleb128 0x49
+ 2599 003f 13       		.uleb128 0x13
+ 2600 0040 2F       		.uleb128 0x2f
+ 2601 0041 05       		.uleb128 0x5
+ 2602 0042 00       		.byte	0
+ 2603 0043 00       		.byte	0
+ 2604 0044 07       		.uleb128 0x7
+ 2605 0045 34       		.uleb128 0x34
+ 2606 0046 00       		.byte	0
+ 2607 0047 03       		.uleb128 0x3
+ 2608 0048 0E       		.uleb128 0xe
+ 2609 0049 3A       		.uleb128 0x3a
+ 2610 004a 0B       		.uleb128 0xb
+ 2611 004b 3B       		.uleb128 0x3b
+ 2612 004c 0B       		.uleb128 0xb
+ 2613 004d 49       		.uleb128 0x49
+ 2614 004e 13       		.uleb128 0x13
+ 2615 004f 3F       		.uleb128 0x3f
+ 2616 0050 0C       		.uleb128 0xc
+ 2617 0051 02       		.uleb128 0x2
+ 2618 0052 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 47
+
+
+ 2619 0053 00       		.byte	0
+ 2620 0054 00       		.byte	0
+ 2621 0055 08       		.uleb128 0x8
+ 2622 0056 26       		.uleb128 0x26
+ 2623 0057 00       		.byte	0
+ 2624 0058 49       		.uleb128 0x49
+ 2625 0059 13       		.uleb128 0x13
+ 2626 005a 00       		.byte	0
+ 2627 005b 00       		.byte	0
+ 2628 005c 09       		.uleb128 0x9
+ 2629 005d 21       		.uleb128 0x21
+ 2630 005e 00       		.byte	0
+ 2631 005f 49       		.uleb128 0x49
+ 2632 0060 13       		.uleb128 0x13
+ 2633 0061 2F       		.uleb128 0x2f
+ 2634 0062 0B       		.uleb128 0xb
+ 2635 0063 00       		.byte	0
+ 2636 0064 00       		.byte	0
+ 2637 0065 0A       		.uleb128 0xa
+ 2638 0066 34       		.uleb128 0x34
+ 2639 0067 00       		.byte	0
+ 2640 0068 03       		.uleb128 0x3
+ 2641 0069 0E       		.uleb128 0xe
+ 2642 006a 3A       		.uleb128 0x3a
+ 2643 006b 0B       		.uleb128 0xb
+ 2644 006c 3B       		.uleb128 0x3b
+ 2645 006d 05       		.uleb128 0x5
+ 2646 006e 49       		.uleb128 0x49
+ 2647 006f 13       		.uleb128 0x13
+ 2648 0070 3F       		.uleb128 0x3f
+ 2649 0071 0C       		.uleb128 0xc
+ 2650 0072 02       		.uleb128 0x2
+ 2651 0073 0A       		.uleb128 0xa
+ 2652 0074 00       		.byte	0
+ 2653 0075 00       		.byte	0
+ 2654 0076 00       		.byte	0
+ 2655              		.section	.debug_aranges,"",%progbits
+ 2656 0000 14000000 		.4byte	0x14
+ 2657 0004 0200     		.2byte	0x2
+ 2658 0006 00000000 		.4byte	.Ldebug_info0
+ 2659 000a 04       		.byte	0x4
+ 2660 000b 00       		.byte	0
+ 2661 000c 0000     		.2byte	0
+ 2662 000e 0000     		.2byte	0
+ 2663 0010 00000000 		.4byte	0
+ 2664 0014 00000000 		.4byte	0
+ 2665              		.section	.debug_line,"",%progbits
+ 2666              	.Ldebug_line0:
+ 2667 0000 4F000000 		.section	.debug_str,"MS",%progbits,1
+ 2667      02004900 
+ 2667      00000201 
+ 2667      FB0E0D00 
+ 2667      01010101 
+ 2668              	.LASF20:
+ 2669 0000 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 2669      73657273 
+ 2669      5C527961 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 48
+
+
+ 2669      6E5C446F 
+ 2669      63756D65 
+ 2670 002e 5472616E 		.ascii	"TransmitReadings_freeSoC.cydsn\000"
+ 2670      736D6974 
+ 2670      52656164 
+ 2670      696E6773 
+ 2670      5F667265 
+ 2671              	.LASF19:
+ 2672 004d 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\cymetadata.c\000"
+ 2672      6E657261 
+ 2672      7465645F 
+ 2672      536F7572 
+ 2672      63655C50 
+ 2673              	.LASF17:
+ 2674 0073 63795F6D 		.ascii	"cy_metadata\000"
+ 2674      65746164 
+ 2674      61746100 
+ 2675              	.LASF9:
+ 2676 007f 666C6F61 		.ascii	"float\000"
+ 2676      7400
+ 2677              	.LASF1:
+ 2678 0085 756E7369 		.ascii	"unsigned char\000"
+ 2678      676E6564 
+ 2678      20636861 
+ 2678      7200
+ 2679              	.LASF5:
+ 2680 0093 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2680      20756E73 
+ 2680      69676E65 
+ 2680      6420696E 
+ 2680      7400
+ 2681              	.LASF3:
+ 2682 00a5 73686F72 		.ascii	"short unsigned int\000"
+ 2682      7420756E 
+ 2682      7369676E 
+ 2682      65642069 
+ 2682      6E7400
+ 2683              	.LASF10:
+ 2684 00b8 646F7562 		.ascii	"double\000"
+ 2684      6C6500
+ 2685              	.LASF14:
+ 2686 00bf 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 2686      6574615F 
+ 2686      63757374 
+ 2686      6E766C00 
+ 2687              	.LASF13:
+ 2688 00cf 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 2688      6574615F 
+ 2688      636F6E66 
+ 2688      69676563 
+ 2688      6300
+ 2689              	.LASF8:
+ 2690 00e1 756E7369 		.ascii	"unsigned int\000"
+ 2690      676E6564 
+ 2690      20696E74 
+ 2690      00
+ 2691              	.LASF7:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccoSroYa.s 			page 49
+
+
+ 2692 00ee 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2692      206C6F6E 
+ 2692      6720756E 
+ 2692      7369676E 
+ 2692      65642069 
+ 2693              	.LASF16:
+ 2694 0105 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 2694      6574615F 
+ 2694      666C6173 
+ 2694      6870726F 
+ 2694      74656374 
+ 2695              	.LASF15:
+ 2696 011a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 2696      6574615F 
+ 2696      776F6E76 
+ 2696      6C00
+ 2697              	.LASF12:
+ 2698 0128 73697A65 		.ascii	"sizetype\000"
+ 2698      74797065 
+ 2698      00
+ 2699              	.LASF6:
+ 2700 0131 6C6F6E67 		.ascii	"long long int\000"
+ 2700      206C6F6E 
+ 2700      6720696E 
+ 2700      7400
+ 2701              	.LASF11:
+ 2702 013f 63686172 		.ascii	"char\000"
+ 2702      00
+ 2703              	.LASF2:
+ 2704 0144 73686F72 		.ascii	"short int\000"
+ 2704      7420696E 
+ 2704      7400
+ 2705              	.LASF21:
+ 2706 014e 75696E74 		.ascii	"uint8\000"
+ 2706      3800
+ 2707              	.LASF18:
+ 2708 0154 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2708      4320342E 
+ 2708      372E3320 
+ 2708      32303133 
+ 2708      30333132 
+ 2709 0187 616E6368 		.ascii	"anch revision 196615]\000"
+ 2709      20726576 
+ 2709      6973696F 
+ 2709      6E203139 
+ 2709      36363135 
+ 2710              	.LASF4:
+ 2711 019d 6C6F6E67 		.ascii	"long int\000"
+ 2711      20696E74 
+ 2711      00
+ 2712              	.LASF0:
+ 2713 01a6 7369676E 		.ascii	"signed char\000"
+ 2713      65642063 
+ 2713      68617200 
+ 2714              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

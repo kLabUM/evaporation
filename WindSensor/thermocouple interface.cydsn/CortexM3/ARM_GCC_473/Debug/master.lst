@@ -1,0 +1,4304 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"master.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	master_initVar
+  19              		.bss
+  20              		.type	master_initVar, %object
+  21              		.size	master_initVar, 1
+  22              	master_initVar:
+  23 0000 00       		.space	1
+  24              		.comm	master_swStatusTx,1,1
+  25              		.comm	master_swStatusRx,1,1
+  26              		.section	.text.master_Init,"ax",%progbits
+  27              		.align	2
+  28              		.global	master_Init
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	master_Init, %function
+  32              	master_Init:
+  33              	.LFB0:
+  34              		.file 1 ".\\Generated_Source\\PSoC5\\master.c"
+   1:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/master.c **** * File Name: master.c
+   3:.\Generated_Source\PSoC5/master.c **** * Version 2.40
+   4:.\Generated_Source\PSoC5/master.c **** *
+   5:.\Generated_Source\PSoC5/master.c **** * Description:
+   6:.\Generated_Source\PSoC5/master.c **** *  This file provides all API functionality of the SPI Master component.
+   7:.\Generated_Source\PSoC5/master.c **** *
+   8:.\Generated_Source\PSoC5/master.c **** * Note:
+   9:.\Generated_Source\PSoC5/master.c **** *  None.
+  10:.\Generated_Source\PSoC5/master.c **** *
+  11:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/master.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/master.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/master.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/master.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/master.c **** 
+  18:.\Generated_Source\PSoC5/master.c **** #include "master_PVT.h"
+  19:.\Generated_Source\PSoC5/master.c **** 
+  20:.\Generated_Source\PSoC5/master.c **** #if(master_TX_SOFTWARE_BUF_ENABLED)
+  21:.\Generated_Source\PSoC5/master.c ****     volatile uint16 master_txBuffer[master_TX_BUFFER_SIZE] = {0u};
+  22:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_txBufferFull;
+  23:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_txBufferRead;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 2
+
+
+  24:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_txBufferWrite;
+  25:.\Generated_Source\PSoC5/master.c **** #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+  26:.\Generated_Source\PSoC5/master.c **** 
+  27:.\Generated_Source\PSoC5/master.c **** #if(master_RX_SOFTWARE_BUF_ENABLED)
+  28:.\Generated_Source\PSoC5/master.c ****     volatile uint16 master_rxBuffer[master_RX_BUFFER_SIZE] = {0u};
+  29:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_rxBufferFull;
+  30:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_rxBufferRead;
+  31:.\Generated_Source\PSoC5/master.c ****     volatile uint8 master_rxBufferWrite;
+  32:.\Generated_Source\PSoC5/master.c **** #endif /* (master_RX_SOFTWARE_BUF_ENABLED) */
+  33:.\Generated_Source\PSoC5/master.c **** 
+  34:.\Generated_Source\PSoC5/master.c **** uint8 master_initVar = 0u;
+  35:.\Generated_Source\PSoC5/master.c **** 
+  36:.\Generated_Source\PSoC5/master.c **** volatile uint8 master_swStatusTx;
+  37:.\Generated_Source\PSoC5/master.c **** volatile uint8 master_swStatusRx;
+  38:.\Generated_Source\PSoC5/master.c **** 
+  39:.\Generated_Source\PSoC5/master.c **** 
+  40:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+  41:.\Generated_Source\PSoC5/master.c **** * Function Name: master_Init
+  42:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+  43:.\Generated_Source\PSoC5/master.c **** *
+  44:.\Generated_Source\PSoC5/master.c **** * Summary:
+  45:.\Generated_Source\PSoC5/master.c **** *  Inits/Restores default SPIM configuration provided with customizer.
+  46:.\Generated_Source\PSoC5/master.c **** *
+  47:.\Generated_Source\PSoC5/master.c **** * Parameters:
+  48:.\Generated_Source\PSoC5/master.c **** *  None.
+  49:.\Generated_Source\PSoC5/master.c **** *
+  50:.\Generated_Source\PSoC5/master.c **** * Return:
+  51:.\Generated_Source\PSoC5/master.c **** *  None.
+  52:.\Generated_Source\PSoC5/master.c **** *
+  53:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+  54:.\Generated_Source\PSoC5/master.c **** *  When this function is called it initializes all of the necessary parameters
+  55:.\Generated_Source\PSoC5/master.c **** *  for execution. i.e. setting the initial interrupt mask, configuring the
+  56:.\Generated_Source\PSoC5/master.c **** *  interrupt service routine, configuring the bit-counter parameters and
+  57:.\Generated_Source\PSoC5/master.c **** *  clearing the FIFO and Status Register.
+  58:.\Generated_Source\PSoC5/master.c **** *
+  59:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+  60:.\Generated_Source\PSoC5/master.c **** *  No.
+  61:.\Generated_Source\PSoC5/master.c **** *
+  62:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+  63:.\Generated_Source\PSoC5/master.c **** void master_Init(void) 
+  64:.\Generated_Source\PSoC5/master.c **** {
+  35              		.loc 1 64 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39 0000 80B5     		push	{r7, lr}
+  40              	.LCFI0:
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 7, -8
+  43              		.cfi_offset 14, -4
+  44 0002 00AF     		add	r7, sp, #0
+  45              	.LCFI1:
+  46              		.cfi_def_cfa_register 7
+  65:.\Generated_Source\PSoC5/master.c ****     /* Initialize the Bit counter */
+  66:.\Generated_Source\PSoC5/master.c ****     master_COUNTER_PERIOD_REG = master_BITCTR_INIT;
+  47              		.loc 1 66 0
+  48 0004 46F28753 		movw	r3, #25991
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 3
+
+
+  49 0008 C4F20003 		movt	r3, 16384
+  50 000c 4FF01B02 		mov	r2, #27
+  51 0010 1A70     		strb	r2, [r3, #0]
+  67:.\Generated_Source\PSoC5/master.c **** 
+  68:.\Generated_Source\PSoC5/master.c ****     /* Init TX ISR  */
+  69:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_TX_INT_ENABLED)
+  70:.\Generated_Source\PSoC5/master.c ****         CyIntDisable         (master_TX_ISR_NUMBER);
+  71:.\Generated_Source\PSoC5/master.c ****         CyIntSetPriority     (master_TX_ISR_NUMBER,  master_TX_ISR_PRIORITY);
+  72:.\Generated_Source\PSoC5/master.c ****         (void) CyIntSetVector(master_TX_ISR_NUMBER, &master_TX_ISR);
+  73:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_TX_INT_ENABLED) */
+  74:.\Generated_Source\PSoC5/master.c **** 
+  75:.\Generated_Source\PSoC5/master.c ****     /* Init RX ISR  */
+  76:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_RX_INT_ENABLED)
+  77:.\Generated_Source\PSoC5/master.c ****         CyIntDisable         (master_RX_ISR_NUMBER);
+  78:.\Generated_Source\PSoC5/master.c ****         CyIntSetPriority     (master_RX_ISR_NUMBER,  master_RX_ISR_PRIORITY);
+  79:.\Generated_Source\PSoC5/master.c ****         (void) CyIntSetVector(master_RX_ISR_NUMBER, &master_RX_ISR);
+  80:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_RX_INT_ENABLED) */
+  81:.\Generated_Source\PSoC5/master.c **** 
+  82:.\Generated_Source\PSoC5/master.c ****     /* Clear any stray data from the RX and TX FIFO */
+  83:.\Generated_Source\PSoC5/master.c ****     master_ClearFIFO();
+  52              		.loc 1 83 0
+  53 0012 FFF7FEFF 		bl	master_ClearFIFO
+  84:.\Generated_Source\PSoC5/master.c **** 
+  85:.\Generated_Source\PSoC5/master.c ****     #if(master_RX_SOFTWARE_BUF_ENABLED)
+  86:.\Generated_Source\PSoC5/master.c ****         master_rxBufferFull  = 0u;
+  87:.\Generated_Source\PSoC5/master.c ****         master_rxBufferRead  = 0u;
+  88:.\Generated_Source\PSoC5/master.c ****         master_rxBufferWrite = 0u;
+  89:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_RX_SOFTWARE_BUF_ENABLED) */
+  90:.\Generated_Source\PSoC5/master.c **** 
+  91:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED)
+  92:.\Generated_Source\PSoC5/master.c ****         master_txBufferFull  = 0u;
+  93:.\Generated_Source\PSoC5/master.c ****         master_txBufferRead  = 0u;
+  94:.\Generated_Source\PSoC5/master.c ****         master_txBufferWrite = 0u;
+  95:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+  96:.\Generated_Source\PSoC5/master.c **** 
+  97:.\Generated_Source\PSoC5/master.c ****     (void) master_ReadTxStatus(); /* Clear Tx status and swStatusTx */
+  54              		.loc 1 97 0
+  55 0016 FFF7FEFF 		bl	master_ReadTxStatus
+  98:.\Generated_Source\PSoC5/master.c ****     (void) master_ReadRxStatus(); /* Clear Rx status and swStatusRx */
+  56              		.loc 1 98 0
+  57 001a FFF7FEFF 		bl	master_ReadRxStatus
+  99:.\Generated_Source\PSoC5/master.c **** 
+ 100:.\Generated_Source\PSoC5/master.c ****     /* Configure TX and RX interrupt mask */
+ 101:.\Generated_Source\PSoC5/master.c ****     master_TX_STATUS_MASK_REG = master_TX_INIT_INTERRUPTS_MASK;
+  58              		.loc 1 101 0
+  59 001e 46F28553 		movw	r3, #25989
+  60 0022 C4F20003 		movt	r3, 16384
+  61 0026 4FF00002 		mov	r2, #0
+  62 002a 1A70     		strb	r2, [r3, #0]
+ 102:.\Generated_Source\PSoC5/master.c ****     master_RX_STATUS_MASK_REG = master_RX_INIT_INTERRUPTS_MASK;
+  63              		.loc 1 102 0
+  64 002c 46F28453 		movw	r3, #25988
+  65 0030 C4F20003 		movt	r3, 16384
+  66 0034 4FF00002 		mov	r2, #0
+  67 0038 1A70     		strb	r2, [r3, #0]
+ 103:.\Generated_Source\PSoC5/master.c **** }
+  68              		.loc 1 103 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 4
+
+
+  69 003a 80BD     		pop	{r7, pc}
+  70              		.cfi_endproc
+  71              	.LFE0:
+  72              		.size	master_Init, .-master_Init
+  73              		.section	.text.master_Enable,"ax",%progbits
+  74              		.align	2
+  75              		.global	master_Enable
+  76              		.thumb
+  77              		.thumb_func
+  78              		.type	master_Enable, %function
+  79              	master_Enable:
+  80              	.LFB1:
+ 104:.\Generated_Source\PSoC5/master.c **** 
+ 105:.\Generated_Source\PSoC5/master.c **** 
+ 106:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 107:.\Generated_Source\PSoC5/master.c **** * Function Name: master_Enable
+ 108:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 109:.\Generated_Source\PSoC5/master.c **** *
+ 110:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 111:.\Generated_Source\PSoC5/master.c **** *  Enable SPIM component.
+ 112:.\Generated_Source\PSoC5/master.c **** *
+ 113:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 114:.\Generated_Source\PSoC5/master.c **** *  None.
+ 115:.\Generated_Source\PSoC5/master.c **** *
+ 116:.\Generated_Source\PSoC5/master.c **** * Return:
+ 117:.\Generated_Source\PSoC5/master.c **** *  None.
+ 118:.\Generated_Source\PSoC5/master.c **** *
+ 119:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 120:.\Generated_Source\PSoC5/master.c **** void master_Enable(void) 
+ 121:.\Generated_Source\PSoC5/master.c **** {
+  81              		.loc 1 121 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 8
+  84              		@ frame_needed = 1, uses_anonymous_args = 0
+  85 0000 80B5     		push	{r7, lr}
+  86              	.LCFI2:
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 7, -8
+  89              		.cfi_offset 14, -4
+  90 0002 82B0     		sub	sp, sp, #8
+  91              	.LCFI3:
+  92              		.cfi_def_cfa_offset 16
+  93 0004 00AF     		add	r7, sp, #0
+  94              	.LCFI4:
+  95              		.cfi_def_cfa_register 7
+ 122:.\Generated_Source\PSoC5/master.c ****     uint8 enableInterrupts;
+ 123:.\Generated_Source\PSoC5/master.c **** 
+ 124:.\Generated_Source\PSoC5/master.c ****     enableInterrupts = CyEnterCriticalSection();
+  96              		.loc 1 124 0
+  97 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+  98 000a 0346     		mov	r3, r0
+  99 000c FB71     		strb	r3, [r7, #7]
+ 125:.\Generated_Source\PSoC5/master.c ****     master_COUNTER_CONTROL_REG |= master_CNTR_ENABLE;
+ 100              		.loc 1 125 0
+ 101 000e 46F29753 		movw	r3, #26007
+ 102 0012 C4F20003 		movt	r3, 16384
+ 103 0016 46F29752 		movw	r2, #26007
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 5
+
+
+ 104 001a C4F20002 		movt	r2, 16384
+ 105 001e 1278     		ldrb	r2, [r2, #0]
+ 106 0020 D2B2     		uxtb	r2, r2
+ 107 0022 42F02002 		orr	r2, r2, #32
+ 108 0026 D2B2     		uxtb	r2, r2
+ 109 0028 1A70     		strb	r2, [r3, #0]
+ 126:.\Generated_Source\PSoC5/master.c ****     master_TX_STATUS_ACTL_REG  |= master_INT_ENABLE;
+ 110              		.loc 1 126 0
+ 111 002a 46F29553 		movw	r3, #26005
+ 112 002e C4F20003 		movt	r3, 16384
+ 113 0032 46F29552 		movw	r2, #26005
+ 114 0036 C4F20002 		movt	r2, 16384
+ 115 003a 1278     		ldrb	r2, [r2, #0]
+ 116 003c D2B2     		uxtb	r2, r2
+ 117 003e 42F01002 		orr	r2, r2, #16
+ 118 0042 D2B2     		uxtb	r2, r2
+ 119 0044 1A70     		strb	r2, [r3, #0]
+ 127:.\Generated_Source\PSoC5/master.c ****     master_RX_STATUS_ACTL_REG  |= master_INT_ENABLE;
+ 120              		.loc 1 127 0
+ 121 0046 46F29453 		movw	r3, #26004
+ 122 004a C4F20003 		movt	r3, 16384
+ 123 004e 46F29452 		movw	r2, #26004
+ 124 0052 C4F20002 		movt	r2, 16384
+ 125 0056 1278     		ldrb	r2, [r2, #0]
+ 126 0058 D2B2     		uxtb	r2, r2
+ 127 005a 42F01002 		orr	r2, r2, #16
+ 128 005e D2B2     		uxtb	r2, r2
+ 129 0060 1A70     		strb	r2, [r3, #0]
+ 128:.\Generated_Source\PSoC5/master.c ****     CyExitCriticalSection(enableInterrupts);
+ 130              		.loc 1 128 0
+ 131 0062 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 132 0064 1846     		mov	r0, r3
+ 133 0066 FFF7FEFF 		bl	CyExitCriticalSection
+ 129:.\Generated_Source\PSoC5/master.c **** 
+ 130:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_CLOCK)
+ 131:.\Generated_Source\PSoC5/master.c ****         master_IntClock_Enable();
+ 132:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_CLOCK) */
+ 133:.\Generated_Source\PSoC5/master.c **** 
+ 134:.\Generated_Source\PSoC5/master.c ****     master_EnableTxInt();
+ 134              		.loc 1 134 0
+ 135 006a FFF7FEFF 		bl	master_EnableTxInt
+ 135:.\Generated_Source\PSoC5/master.c ****     master_EnableRxInt();
+ 136              		.loc 1 135 0
+ 137 006e FFF7FEFF 		bl	master_EnableRxInt
+ 136:.\Generated_Source\PSoC5/master.c **** }
+ 138              		.loc 1 136 0
+ 139 0072 07F10807 		add	r7, r7, #8
+ 140 0076 BD46     		mov	sp, r7
+ 141 0078 80BD     		pop	{r7, pc}
+ 142              		.cfi_endproc
+ 143              	.LFE1:
+ 144              		.size	master_Enable, .-master_Enable
+ 145              		.section	.text.master_Start,"ax",%progbits
+ 146              		.align	2
+ 147              		.global	master_Start
+ 148              		.thumb
+ 149              		.thumb_func
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 6
+
+
+ 150              		.type	master_Start, %function
+ 151              	master_Start:
+ 152              	.LFB2:
+ 137:.\Generated_Source\PSoC5/master.c **** 
+ 138:.\Generated_Source\PSoC5/master.c **** 
+ 139:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 140:.\Generated_Source\PSoC5/master.c **** * Function Name: master_Start
+ 141:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 142:.\Generated_Source\PSoC5/master.c **** *
+ 143:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 144:.\Generated_Source\PSoC5/master.c **** *  Initialize and Enable the SPI Master component.
+ 145:.\Generated_Source\PSoC5/master.c **** *
+ 146:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 147:.\Generated_Source\PSoC5/master.c **** *  None.
+ 148:.\Generated_Source\PSoC5/master.c **** *
+ 149:.\Generated_Source\PSoC5/master.c **** * Return:
+ 150:.\Generated_Source\PSoC5/master.c **** *  None.
+ 151:.\Generated_Source\PSoC5/master.c **** *
+ 152:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 153:.\Generated_Source\PSoC5/master.c **** *  master_initVar - used to check initial configuration, modified on
+ 154:.\Generated_Source\PSoC5/master.c **** *  first function call.
+ 155:.\Generated_Source\PSoC5/master.c **** *
+ 156:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 157:.\Generated_Source\PSoC5/master.c **** *  Enable the clock input to enable operation.
+ 158:.\Generated_Source\PSoC5/master.c **** *
+ 159:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 160:.\Generated_Source\PSoC5/master.c **** *  No.
+ 161:.\Generated_Source\PSoC5/master.c **** *
+ 162:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 163:.\Generated_Source\PSoC5/master.c **** void master_Start(void) 
+ 164:.\Generated_Source\PSoC5/master.c **** {
+ 153              		.loc 1 164 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 1, uses_anonymous_args = 0
+ 157 0000 80B5     		push	{r7, lr}
+ 158              	.LCFI5:
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 7, -8
+ 161              		.cfi_offset 14, -4
+ 162 0002 00AF     		add	r7, sp, #0
+ 163              	.LCFI6:
+ 164              		.cfi_def_cfa_register 7
+ 165:.\Generated_Source\PSoC5/master.c ****     if(0u == master_initVar)
+ 165              		.loc 1 165 0
+ 166 0004 40F20003 		movw	r3, #:lower16:master_initVar
+ 167 0008 C0F20003 		movt	r3, #:upper16:master_initVar
+ 168 000c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 169 000e 002B     		cmp	r3, #0
+ 170 0010 08D1     		bne	.L4
+ 166:.\Generated_Source\PSoC5/master.c ****     {
+ 167:.\Generated_Source\PSoC5/master.c ****         master_Init();
+ 171              		.loc 1 167 0
+ 172 0012 FFF7FEFF 		bl	master_Init
+ 168:.\Generated_Source\PSoC5/master.c ****         master_initVar = 1u;
+ 173              		.loc 1 168 0
+ 174 0016 40F20003 		movw	r3, #:lower16:master_initVar
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 7
+
+
+ 175 001a C0F20003 		movt	r3, #:upper16:master_initVar
+ 176 001e 4FF00102 		mov	r2, #1
+ 177 0022 1A70     		strb	r2, [r3, #0]
+ 178              	.L4:
+ 169:.\Generated_Source\PSoC5/master.c ****     }
+ 170:.\Generated_Source\PSoC5/master.c **** 
+ 171:.\Generated_Source\PSoC5/master.c ****     master_Enable();
+ 179              		.loc 1 171 0
+ 180 0024 FFF7FEFF 		bl	master_Enable
+ 172:.\Generated_Source\PSoC5/master.c **** }
+ 181              		.loc 1 172 0
+ 182 0028 80BD     		pop	{r7, pc}
+ 183              		.cfi_endproc
+ 184              	.LFE2:
+ 185              		.size	master_Start, .-master_Start
+ 186 002a 00BF     		.section	.text.master_Stop,"ax",%progbits
+ 187              		.align	2
+ 188              		.global	master_Stop
+ 189              		.thumb
+ 190              		.thumb_func
+ 191              		.type	master_Stop, %function
+ 192              	master_Stop:
+ 193              	.LFB3:
+ 173:.\Generated_Source\PSoC5/master.c **** 
+ 174:.\Generated_Source\PSoC5/master.c **** 
+ 175:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 176:.\Generated_Source\PSoC5/master.c **** * Function Name: master_Stop
+ 177:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 178:.\Generated_Source\PSoC5/master.c **** *
+ 179:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 180:.\Generated_Source\PSoC5/master.c **** *  Disable the SPI Master component.
+ 181:.\Generated_Source\PSoC5/master.c **** *
+ 182:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 183:.\Generated_Source\PSoC5/master.c **** *  None.
+ 184:.\Generated_Source\PSoC5/master.c **** *
+ 185:.\Generated_Source\PSoC5/master.c **** * Return:
+ 186:.\Generated_Source\PSoC5/master.c **** *  None.
+ 187:.\Generated_Source\PSoC5/master.c **** *
+ 188:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 189:.\Generated_Source\PSoC5/master.c **** *  Disable the clock input to enable operation.
+ 190:.\Generated_Source\PSoC5/master.c **** *
+ 191:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 192:.\Generated_Source\PSoC5/master.c **** void master_Stop(void) 
+ 193:.\Generated_Source\PSoC5/master.c **** {
+ 194              		.loc 1 193 0
+ 195              		.cfi_startproc
+ 196              		@ args = 0, pretend = 0, frame = 8
+ 197              		@ frame_needed = 1, uses_anonymous_args = 0
+ 198 0000 80B5     		push	{r7, lr}
+ 199              	.LCFI7:
+ 200              		.cfi_def_cfa_offset 8
+ 201              		.cfi_offset 7, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 82B0     		sub	sp, sp, #8
+ 204              	.LCFI8:
+ 205              		.cfi_def_cfa_offset 16
+ 206 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 8
+
+
+ 207              	.LCFI9:
+ 208              		.cfi_def_cfa_register 7
+ 194:.\Generated_Source\PSoC5/master.c ****     uint8 enableInterrupts;
+ 195:.\Generated_Source\PSoC5/master.c **** 
+ 196:.\Generated_Source\PSoC5/master.c ****     enableInterrupts = CyEnterCriticalSection();
+ 209              		.loc 1 196 0
+ 210 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 211 000a 0346     		mov	r3, r0
+ 212 000c FB71     		strb	r3, [r7, #7]
+ 197:.\Generated_Source\PSoC5/master.c ****     master_TX_STATUS_ACTL_REG &= ((uint8) ~master_INT_ENABLE);
+ 213              		.loc 1 197 0
+ 214 000e 46F29553 		movw	r3, #26005
+ 215 0012 C4F20003 		movt	r3, 16384
+ 216 0016 46F29552 		movw	r2, #26005
+ 217 001a C4F20002 		movt	r2, 16384
+ 218 001e 1278     		ldrb	r2, [r2, #0]
+ 219 0020 D2B2     		uxtb	r2, r2
+ 220 0022 22F01002 		bic	r2, r2, #16
+ 221 0026 D2B2     		uxtb	r2, r2
+ 222 0028 1A70     		strb	r2, [r3, #0]
+ 198:.\Generated_Source\PSoC5/master.c ****     master_RX_STATUS_ACTL_REG &= ((uint8) ~master_INT_ENABLE);
+ 223              		.loc 1 198 0
+ 224 002a 46F29453 		movw	r3, #26004
+ 225 002e C4F20003 		movt	r3, 16384
+ 226 0032 46F29452 		movw	r2, #26004
+ 227 0036 C4F20002 		movt	r2, 16384
+ 228 003a 1278     		ldrb	r2, [r2, #0]
+ 229 003c D2B2     		uxtb	r2, r2
+ 230 003e 22F01002 		bic	r2, r2, #16
+ 231 0042 D2B2     		uxtb	r2, r2
+ 232 0044 1A70     		strb	r2, [r3, #0]
+ 199:.\Generated_Source\PSoC5/master.c ****     CyExitCriticalSection(enableInterrupts);
+ 233              		.loc 1 199 0
+ 234 0046 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 235 0048 1846     		mov	r0, r3
+ 236 004a FFF7FEFF 		bl	CyExitCriticalSection
+ 200:.\Generated_Source\PSoC5/master.c **** 
+ 201:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_CLOCK)
+ 202:.\Generated_Source\PSoC5/master.c ****         master_IntClock_Disable();
+ 203:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_CLOCK) */
+ 204:.\Generated_Source\PSoC5/master.c **** 
+ 205:.\Generated_Source\PSoC5/master.c ****     master_DisableTxInt();
+ 237              		.loc 1 205 0
+ 238 004e FFF7FEFF 		bl	master_DisableTxInt
+ 206:.\Generated_Source\PSoC5/master.c ****     master_DisableRxInt();
+ 239              		.loc 1 206 0
+ 240 0052 FFF7FEFF 		bl	master_DisableRxInt
+ 207:.\Generated_Source\PSoC5/master.c **** }
+ 241              		.loc 1 207 0
+ 242 0056 07F10807 		add	r7, r7, #8
+ 243 005a BD46     		mov	sp, r7
+ 244 005c 80BD     		pop	{r7, pc}
+ 245              		.cfi_endproc
+ 246              	.LFE3:
+ 247              		.size	master_Stop, .-master_Stop
+ 248 005e 00BF     		.section	.text.master_EnableTxInt,"ax",%progbits
+ 249              		.align	2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 9
+
+
+ 250              		.global	master_EnableTxInt
+ 251              		.thumb
+ 252              		.thumb_func
+ 253              		.type	master_EnableTxInt, %function
+ 254              	master_EnableTxInt:
+ 255              	.LFB4:
+ 208:.\Generated_Source\PSoC5/master.c **** 
+ 209:.\Generated_Source\PSoC5/master.c **** 
+ 210:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 211:.\Generated_Source\PSoC5/master.c **** * Function Name: master_EnableTxInt
+ 212:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 213:.\Generated_Source\PSoC5/master.c **** *
+ 214:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 215:.\Generated_Source\PSoC5/master.c **** *  Enable internal Tx interrupt generation.
+ 216:.\Generated_Source\PSoC5/master.c **** *
+ 217:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 218:.\Generated_Source\PSoC5/master.c **** *  None.
+ 219:.\Generated_Source\PSoC5/master.c **** *
+ 220:.\Generated_Source\PSoC5/master.c **** * Return:
+ 221:.\Generated_Source\PSoC5/master.c **** *  None.
+ 222:.\Generated_Source\PSoC5/master.c **** *
+ 223:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 224:.\Generated_Source\PSoC5/master.c **** *  Enable the internal Tx interrupt output -or- the interrupt component itself.
+ 225:.\Generated_Source\PSoC5/master.c **** *
+ 226:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 227:.\Generated_Source\PSoC5/master.c **** void master_EnableTxInt(void) 
+ 228:.\Generated_Source\PSoC5/master.c **** {
+ 256              		.loc 1 228 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 1, uses_anonymous_args = 0
+ 260              		@ link register save eliminated.
+ 261 0000 80B4     		push	{r7}
+ 262              	.LCFI10:
+ 263              		.cfi_def_cfa_offset 4
+ 264              		.cfi_offset 7, -4
+ 265 0002 00AF     		add	r7, sp, #0
+ 266              	.LCFI11:
+ 267              		.cfi_def_cfa_register 7
+ 229:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_TX_INT_ENABLED)
+ 230:.\Generated_Source\PSoC5/master.c ****         CyIntEnable(master_TX_ISR_NUMBER);
+ 231:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_TX_INT_ENABLED) */
+ 232:.\Generated_Source\PSoC5/master.c **** }
+ 268              		.loc 1 232 0
+ 269 0004 BD46     		mov	sp, r7
+ 270 0006 80BC     		pop	{r7}
+ 271 0008 7047     		bx	lr
+ 272              		.cfi_endproc
+ 273              	.LFE4:
+ 274              		.size	master_EnableTxInt, .-master_EnableTxInt
+ 275 000a 00BF     		.section	.text.master_EnableRxInt,"ax",%progbits
+ 276              		.align	2
+ 277              		.global	master_EnableRxInt
+ 278              		.thumb
+ 279              		.thumb_func
+ 280              		.type	master_EnableRxInt, %function
+ 281              	master_EnableRxInt:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 10
+
+
+ 282              	.LFB5:
+ 233:.\Generated_Source\PSoC5/master.c **** 
+ 234:.\Generated_Source\PSoC5/master.c **** 
+ 235:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 236:.\Generated_Source\PSoC5/master.c **** * Function Name: master_EnableRxInt
+ 237:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 238:.\Generated_Source\PSoC5/master.c **** *
+ 239:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 240:.\Generated_Source\PSoC5/master.c **** *  Enable internal Rx interrupt generation.
+ 241:.\Generated_Source\PSoC5/master.c **** *
+ 242:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 243:.\Generated_Source\PSoC5/master.c **** *  None.
+ 244:.\Generated_Source\PSoC5/master.c **** *
+ 245:.\Generated_Source\PSoC5/master.c **** * Return:
+ 246:.\Generated_Source\PSoC5/master.c **** *  None.
+ 247:.\Generated_Source\PSoC5/master.c **** *
+ 248:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 249:.\Generated_Source\PSoC5/master.c **** *  Enable the internal Rx interrupt output -or- the interrupt component itself.
+ 250:.\Generated_Source\PSoC5/master.c **** *
+ 251:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 252:.\Generated_Source\PSoC5/master.c **** void master_EnableRxInt(void) 
+ 253:.\Generated_Source\PSoC5/master.c **** {
+ 283              		.loc 1 253 0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 1, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 288 0000 80B4     		push	{r7}
+ 289              	.LCFI12:
+ 290              		.cfi_def_cfa_offset 4
+ 291              		.cfi_offset 7, -4
+ 292 0002 00AF     		add	r7, sp, #0
+ 293              	.LCFI13:
+ 294              		.cfi_def_cfa_register 7
+ 254:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_RX_INT_ENABLED)
+ 255:.\Generated_Source\PSoC5/master.c ****         CyIntEnable(master_RX_ISR_NUMBER);
+ 256:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_RX_INT_ENABLED) */
+ 257:.\Generated_Source\PSoC5/master.c **** }
+ 295              		.loc 1 257 0
+ 296 0004 BD46     		mov	sp, r7
+ 297 0006 80BC     		pop	{r7}
+ 298 0008 7047     		bx	lr
+ 299              		.cfi_endproc
+ 300              	.LFE5:
+ 301              		.size	master_EnableRxInt, .-master_EnableRxInt
+ 302 000a 00BF     		.section	.text.master_DisableTxInt,"ax",%progbits
+ 303              		.align	2
+ 304              		.global	master_DisableTxInt
+ 305              		.thumb
+ 306              		.thumb_func
+ 307              		.type	master_DisableTxInt, %function
+ 308              	master_DisableTxInt:
+ 309              	.LFB6:
+ 258:.\Generated_Source\PSoC5/master.c **** 
+ 259:.\Generated_Source\PSoC5/master.c **** 
+ 260:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 261:.\Generated_Source\PSoC5/master.c **** * Function Name: master_DisableTxInt
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 11
+
+
+ 262:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 263:.\Generated_Source\PSoC5/master.c **** *
+ 264:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 265:.\Generated_Source\PSoC5/master.c **** *  Disable internal Tx interrupt generation.
+ 266:.\Generated_Source\PSoC5/master.c **** *
+ 267:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 268:.\Generated_Source\PSoC5/master.c **** *  None.
+ 269:.\Generated_Source\PSoC5/master.c **** *
+ 270:.\Generated_Source\PSoC5/master.c **** * Return:
+ 271:.\Generated_Source\PSoC5/master.c **** *  None.
+ 272:.\Generated_Source\PSoC5/master.c **** *
+ 273:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 274:.\Generated_Source\PSoC5/master.c **** *  Disable the internal Tx interrupt output -or- the interrupt component itself.
+ 275:.\Generated_Source\PSoC5/master.c **** *
+ 276:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 277:.\Generated_Source\PSoC5/master.c **** void master_DisableTxInt(void) 
+ 278:.\Generated_Source\PSoC5/master.c **** {
+ 310              		.loc 1 278 0
+ 311              		.cfi_startproc
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 1, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 315 0000 80B4     		push	{r7}
+ 316              	.LCFI14:
+ 317              		.cfi_def_cfa_offset 4
+ 318              		.cfi_offset 7, -4
+ 319 0002 00AF     		add	r7, sp, #0
+ 320              	.LCFI15:
+ 321              		.cfi_def_cfa_register 7
+ 279:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_TX_INT_ENABLED)
+ 280:.\Generated_Source\PSoC5/master.c ****         CyIntDisable(master_TX_ISR_NUMBER);
+ 281:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_TX_INT_ENABLED) */
+ 282:.\Generated_Source\PSoC5/master.c **** }
+ 322              		.loc 1 282 0
+ 323 0004 BD46     		mov	sp, r7
+ 324 0006 80BC     		pop	{r7}
+ 325 0008 7047     		bx	lr
+ 326              		.cfi_endproc
+ 327              	.LFE6:
+ 328              		.size	master_DisableTxInt, .-master_DisableTxInt
+ 329 000a 00BF     		.section	.text.master_DisableRxInt,"ax",%progbits
+ 330              		.align	2
+ 331              		.global	master_DisableRxInt
+ 332              		.thumb
+ 333              		.thumb_func
+ 334              		.type	master_DisableRxInt, %function
+ 335              	master_DisableRxInt:
+ 336              	.LFB7:
+ 283:.\Generated_Source\PSoC5/master.c **** 
+ 284:.\Generated_Source\PSoC5/master.c **** 
+ 285:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 286:.\Generated_Source\PSoC5/master.c **** * Function Name: master_DisableRxInt
+ 287:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 288:.\Generated_Source\PSoC5/master.c **** *
+ 289:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 290:.\Generated_Source\PSoC5/master.c **** *  Disable internal Rx interrupt generation.
+ 291:.\Generated_Source\PSoC5/master.c **** *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 12
+
+
+ 292:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 293:.\Generated_Source\PSoC5/master.c **** *  None.
+ 294:.\Generated_Source\PSoC5/master.c **** *
+ 295:.\Generated_Source\PSoC5/master.c **** * Return:
+ 296:.\Generated_Source\PSoC5/master.c **** *  None.
+ 297:.\Generated_Source\PSoC5/master.c **** *
+ 298:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 299:.\Generated_Source\PSoC5/master.c **** *  Disable the internal Rx interrupt output -or- the interrupt component itself.
+ 300:.\Generated_Source\PSoC5/master.c **** *
+ 301:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 302:.\Generated_Source\PSoC5/master.c **** void master_DisableRxInt(void) 
+ 303:.\Generated_Source\PSoC5/master.c **** {
+ 337              		.loc 1 303 0
+ 338              		.cfi_startproc
+ 339              		@ args = 0, pretend = 0, frame = 0
+ 340              		@ frame_needed = 1, uses_anonymous_args = 0
+ 341              		@ link register save eliminated.
+ 342 0000 80B4     		push	{r7}
+ 343              	.LCFI16:
+ 344              		.cfi_def_cfa_offset 4
+ 345              		.cfi_offset 7, -4
+ 346 0002 00AF     		add	r7, sp, #0
+ 347              	.LCFI17:
+ 348              		.cfi_def_cfa_register 7
+ 304:.\Generated_Source\PSoC5/master.c ****     #if(0u != master_INTERNAL_RX_INT_ENABLED)
+ 305:.\Generated_Source\PSoC5/master.c ****         CyIntDisable(master_RX_ISR_NUMBER);
+ 306:.\Generated_Source\PSoC5/master.c ****     #endif /* (0u != master_INTERNAL_RX_INT_ENABLED) */
+ 307:.\Generated_Source\PSoC5/master.c **** }
+ 349              		.loc 1 307 0
+ 350 0004 BD46     		mov	sp, r7
+ 351 0006 80BC     		pop	{r7}
+ 352 0008 7047     		bx	lr
+ 353              		.cfi_endproc
+ 354              	.LFE7:
+ 355              		.size	master_DisableRxInt, .-master_DisableRxInt
+ 356 000a 00BF     		.section	.text.master_SetTxInterruptMode,"ax",%progbits
+ 357              		.align	2
+ 358              		.global	master_SetTxInterruptMode
+ 359              		.thumb
+ 360              		.thumb_func
+ 361              		.type	master_SetTxInterruptMode, %function
+ 362              	master_SetTxInterruptMode:
+ 363              	.LFB8:
+ 308:.\Generated_Source\PSoC5/master.c **** 
+ 309:.\Generated_Source\PSoC5/master.c **** 
+ 310:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 311:.\Generated_Source\PSoC5/master.c **** * Function Name: master_SetTxInterruptMode
+ 312:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 313:.\Generated_Source\PSoC5/master.c **** *
+ 314:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 315:.\Generated_Source\PSoC5/master.c **** *  Configure which status bits trigger an interrupt event.
+ 316:.\Generated_Source\PSoC5/master.c **** *
+ 317:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 318:.\Generated_Source\PSoC5/master.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 319:.\Generated_Source\PSoC5/master.c **** *  header file).
+ 320:.\Generated_Source\PSoC5/master.c **** *
+ 321:.\Generated_Source\PSoC5/master.c **** * Return:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 13
+
+
+ 322:.\Generated_Source\PSoC5/master.c **** *  None.
+ 323:.\Generated_Source\PSoC5/master.c **** *
+ 324:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 325:.\Generated_Source\PSoC5/master.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 326:.\Generated_Source\PSoC5/master.c **** *
+ 327:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 328:.\Generated_Source\PSoC5/master.c **** void master_SetTxInterruptMode(uint8 intSrc) 
+ 329:.\Generated_Source\PSoC5/master.c **** {
+ 364              		.loc 1 329 0
+ 365              		.cfi_startproc
+ 366              		@ args = 0, pretend = 0, frame = 8
+ 367              		@ frame_needed = 1, uses_anonymous_args = 0
+ 368              		@ link register save eliminated.
+ 369 0000 80B4     		push	{r7}
+ 370              	.LCFI18:
+ 371              		.cfi_def_cfa_offset 4
+ 372              		.cfi_offset 7, -4
+ 373 0002 83B0     		sub	sp, sp, #12
+ 374              	.LCFI19:
+ 375              		.cfi_def_cfa_offset 16
+ 376 0004 00AF     		add	r7, sp, #0
+ 377              	.LCFI20:
+ 378              		.cfi_def_cfa_register 7
+ 379 0006 0346     		mov	r3, r0
+ 380 0008 FB71     		strb	r3, [r7, #7]
+ 330:.\Generated_Source\PSoC5/master.c ****     master_TX_STATUS_MASK_REG = intSrc;
+ 381              		.loc 1 330 0
+ 382 000a 46F28553 		movw	r3, #25989
+ 383 000e C4F20003 		movt	r3, 16384
+ 384 0012 FA79     		ldrb	r2, [r7, #7]
+ 385 0014 1A70     		strb	r2, [r3, #0]
+ 331:.\Generated_Source\PSoC5/master.c **** }
+ 386              		.loc 1 331 0
+ 387 0016 07F10C07 		add	r7, r7, #12
+ 388 001a BD46     		mov	sp, r7
+ 389 001c 80BC     		pop	{r7}
+ 390 001e 7047     		bx	lr
+ 391              		.cfi_endproc
+ 392              	.LFE8:
+ 393              		.size	master_SetTxInterruptMode, .-master_SetTxInterruptMode
+ 394              		.section	.text.master_SetRxInterruptMode,"ax",%progbits
+ 395              		.align	2
+ 396              		.global	master_SetRxInterruptMode
+ 397              		.thumb
+ 398              		.thumb_func
+ 399              		.type	master_SetRxInterruptMode, %function
+ 400              	master_SetRxInterruptMode:
+ 401              	.LFB9:
+ 332:.\Generated_Source\PSoC5/master.c **** 
+ 333:.\Generated_Source\PSoC5/master.c **** 
+ 334:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 335:.\Generated_Source\PSoC5/master.c **** * Function Name: master_SetRxInterruptMode
+ 336:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 337:.\Generated_Source\PSoC5/master.c **** *
+ 338:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 339:.\Generated_Source\PSoC5/master.c **** *  Configure which status bits trigger an interrupt event.
+ 340:.\Generated_Source\PSoC5/master.c **** *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 14
+
+
+ 341:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 342:.\Generated_Source\PSoC5/master.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+ 343:.\Generated_Source\PSoC5/master.c **** *  header file).
+ 344:.\Generated_Source\PSoC5/master.c **** *
+ 345:.\Generated_Source\PSoC5/master.c **** * Return:
+ 346:.\Generated_Source\PSoC5/master.c **** *  None.
+ 347:.\Generated_Source\PSoC5/master.c **** *
+ 348:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 349:.\Generated_Source\PSoC5/master.c **** *  Enables the output of specific status bits to the interrupt controller.
+ 350:.\Generated_Source\PSoC5/master.c **** *
+ 351:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 352:.\Generated_Source\PSoC5/master.c **** void master_SetRxInterruptMode(uint8 intSrc) 
+ 353:.\Generated_Source\PSoC5/master.c **** {
+ 402              		.loc 1 353 0
+ 403              		.cfi_startproc
+ 404              		@ args = 0, pretend = 0, frame = 8
+ 405              		@ frame_needed = 1, uses_anonymous_args = 0
+ 406              		@ link register save eliminated.
+ 407 0000 80B4     		push	{r7}
+ 408              	.LCFI21:
+ 409              		.cfi_def_cfa_offset 4
+ 410              		.cfi_offset 7, -4
+ 411 0002 83B0     		sub	sp, sp, #12
+ 412              	.LCFI22:
+ 413              		.cfi_def_cfa_offset 16
+ 414 0004 00AF     		add	r7, sp, #0
+ 415              	.LCFI23:
+ 416              		.cfi_def_cfa_register 7
+ 417 0006 0346     		mov	r3, r0
+ 418 0008 FB71     		strb	r3, [r7, #7]
+ 354:.\Generated_Source\PSoC5/master.c ****     master_RX_STATUS_MASK_REG  = intSrc;
+ 419              		.loc 1 354 0
+ 420 000a 46F28453 		movw	r3, #25988
+ 421 000e C4F20003 		movt	r3, 16384
+ 422 0012 FA79     		ldrb	r2, [r7, #7]
+ 423 0014 1A70     		strb	r2, [r3, #0]
+ 355:.\Generated_Source\PSoC5/master.c **** }
+ 424              		.loc 1 355 0
+ 425 0016 07F10C07 		add	r7, r7, #12
+ 426 001a BD46     		mov	sp, r7
+ 427 001c 80BC     		pop	{r7}
+ 428 001e 7047     		bx	lr
+ 429              		.cfi_endproc
+ 430              	.LFE9:
+ 431              		.size	master_SetRxInterruptMode, .-master_SetRxInterruptMode
+ 432              		.section	.text.master_ReadTxStatus,"ax",%progbits
+ 433              		.align	2
+ 434              		.global	master_ReadTxStatus
+ 435              		.thumb
+ 436              		.thumb_func
+ 437              		.type	master_ReadTxStatus, %function
+ 438              	master_ReadTxStatus:
+ 439              	.LFB10:
+ 356:.\Generated_Source\PSoC5/master.c **** 
+ 357:.\Generated_Source\PSoC5/master.c **** 
+ 358:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 359:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ReadTxStatus
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 15
+
+
+ 360:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 361:.\Generated_Source\PSoC5/master.c **** *
+ 362:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 363:.\Generated_Source\PSoC5/master.c **** *  Read the Tx status register for the component.
+ 364:.\Generated_Source\PSoC5/master.c **** *
+ 365:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 366:.\Generated_Source\PSoC5/master.c **** *  None.
+ 367:.\Generated_Source\PSoC5/master.c **** *
+ 368:.\Generated_Source\PSoC5/master.c **** * Return:
+ 369:.\Generated_Source\PSoC5/master.c **** *  Contents of the Tx status register.
+ 370:.\Generated_Source\PSoC5/master.c **** *
+ 371:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 372:.\Generated_Source\PSoC5/master.c **** *  master_swStatusTx - used to store in software status register,
+ 373:.\Generated_Source\PSoC5/master.c **** *  modified every function call - resets to zero.
+ 374:.\Generated_Source\PSoC5/master.c **** *
+ 375:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 376:.\Generated_Source\PSoC5/master.c **** *  Allows the user and the API to read the Tx status register for error
+ 377:.\Generated_Source\PSoC5/master.c **** *  detection and flow control.
+ 378:.\Generated_Source\PSoC5/master.c **** *
+ 379:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 380:.\Generated_Source\PSoC5/master.c **** *  Clear Tx status register of the component.
+ 381:.\Generated_Source\PSoC5/master.c **** *
+ 382:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 383:.\Generated_Source\PSoC5/master.c **** *  No.
+ 384:.\Generated_Source\PSoC5/master.c **** *
+ 385:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 386:.\Generated_Source\PSoC5/master.c **** uint8 master_ReadTxStatus(void) 
+ 387:.\Generated_Source\PSoC5/master.c **** {
+ 440              		.loc 1 387 0
+ 441              		.cfi_startproc
+ 442              		@ args = 0, pretend = 0, frame = 8
+ 443              		@ frame_needed = 1, uses_anonymous_args = 0
+ 444              		@ link register save eliminated.
+ 445 0000 80B4     		push	{r7}
+ 446              	.LCFI24:
+ 447              		.cfi_def_cfa_offset 4
+ 448              		.cfi_offset 7, -4
+ 449 0002 83B0     		sub	sp, sp, #12
+ 450              	.LCFI25:
+ 451              		.cfi_def_cfa_offset 16
+ 452 0004 00AF     		add	r7, sp, #0
+ 453              	.LCFI26:
+ 454              		.cfi_def_cfa_register 7
+ 388:.\Generated_Source\PSoC5/master.c ****     uint8 tmpStatus;
+ 389:.\Generated_Source\PSoC5/master.c **** 
+ 390:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED)
+ 391:.\Generated_Source\PSoC5/master.c ****         /* Disable TX interrupt to protect global veriables */
+ 392:.\Generated_Source\PSoC5/master.c ****         master_DisableTxInt();
+ 393:.\Generated_Source\PSoC5/master.c **** 
+ 394:.\Generated_Source\PSoC5/master.c ****         tmpStatus = master_GET_STATUS_TX(master_swStatusTx);
+ 395:.\Generated_Source\PSoC5/master.c ****         master_swStatusTx = 0u;
+ 396:.\Generated_Source\PSoC5/master.c **** 
+ 397:.\Generated_Source\PSoC5/master.c ****         master_EnableTxInt();
+ 398:.\Generated_Source\PSoC5/master.c **** 
+ 399:.\Generated_Source\PSoC5/master.c ****     #else
+ 400:.\Generated_Source\PSoC5/master.c **** 
+ 401:.\Generated_Source\PSoC5/master.c ****         tmpStatus = master_TX_STATUS_REG;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 16
+
+
+ 455              		.loc 1 401 0
+ 456 0006 46F26553 		movw	r3, #25957
+ 457 000a C4F20003 		movt	r3, 16384
+ 458 000e 1B78     		ldrb	r3, [r3, #0]
+ 459 0010 FB71     		strb	r3, [r7, #7]
+ 402:.\Generated_Source\PSoC5/master.c **** 
+ 403:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+ 404:.\Generated_Source\PSoC5/master.c **** 
+ 405:.\Generated_Source\PSoC5/master.c ****     return(tmpStatus);
+ 460              		.loc 1 405 0
+ 461 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 406:.\Generated_Source\PSoC5/master.c **** }
+ 462              		.loc 1 406 0
+ 463 0014 1846     		mov	r0, r3
+ 464 0016 07F10C07 		add	r7, r7, #12
+ 465 001a BD46     		mov	sp, r7
+ 466 001c 80BC     		pop	{r7}
+ 467 001e 7047     		bx	lr
+ 468              		.cfi_endproc
+ 469              	.LFE10:
+ 470              		.size	master_ReadTxStatus, .-master_ReadTxStatus
+ 471              		.section	.text.master_ReadRxStatus,"ax",%progbits
+ 472              		.align	2
+ 473              		.global	master_ReadRxStatus
+ 474              		.thumb
+ 475              		.thumb_func
+ 476              		.type	master_ReadRxStatus, %function
+ 477              	master_ReadRxStatus:
+ 478              	.LFB11:
+ 407:.\Generated_Source\PSoC5/master.c **** 
+ 408:.\Generated_Source\PSoC5/master.c **** 
+ 409:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 410:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ReadRxStatus
+ 411:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 412:.\Generated_Source\PSoC5/master.c **** *
+ 413:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 414:.\Generated_Source\PSoC5/master.c **** *  Read the Rx status register for the component.
+ 415:.\Generated_Source\PSoC5/master.c **** *
+ 416:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 417:.\Generated_Source\PSoC5/master.c **** *  None.
+ 418:.\Generated_Source\PSoC5/master.c **** *
+ 419:.\Generated_Source\PSoC5/master.c **** * Return:
+ 420:.\Generated_Source\PSoC5/master.c **** *  Contents of the Rx status register.
+ 421:.\Generated_Source\PSoC5/master.c **** *
+ 422:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 423:.\Generated_Source\PSoC5/master.c **** *  master_swStatusRx - used to store in software Rx status register,
+ 424:.\Generated_Source\PSoC5/master.c **** *  modified every function call - resets to zero.
+ 425:.\Generated_Source\PSoC5/master.c **** *
+ 426:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 427:.\Generated_Source\PSoC5/master.c **** *  Allows the user and the API to read the Rx status register for error
+ 428:.\Generated_Source\PSoC5/master.c **** *  detection and flow control.
+ 429:.\Generated_Source\PSoC5/master.c **** *
+ 430:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 431:.\Generated_Source\PSoC5/master.c **** *  Clear Rx status register of the component.
+ 432:.\Generated_Source\PSoC5/master.c **** *
+ 433:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 434:.\Generated_Source\PSoC5/master.c **** *  No.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 17
+
+
+ 435:.\Generated_Source\PSoC5/master.c **** *
+ 436:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 437:.\Generated_Source\PSoC5/master.c **** uint8 master_ReadRxStatus(void) 
+ 438:.\Generated_Source\PSoC5/master.c **** {
+ 479              		.loc 1 438 0
+ 480              		.cfi_startproc
+ 481              		@ args = 0, pretend = 0, frame = 8
+ 482              		@ frame_needed = 1, uses_anonymous_args = 0
+ 483              		@ link register save eliminated.
+ 484 0000 80B4     		push	{r7}
+ 485              	.LCFI27:
+ 486              		.cfi_def_cfa_offset 4
+ 487              		.cfi_offset 7, -4
+ 488 0002 83B0     		sub	sp, sp, #12
+ 489              	.LCFI28:
+ 490              		.cfi_def_cfa_offset 16
+ 491 0004 00AF     		add	r7, sp, #0
+ 492              	.LCFI29:
+ 493              		.cfi_def_cfa_register 7
+ 439:.\Generated_Source\PSoC5/master.c ****     uint8 tmpStatus;
+ 440:.\Generated_Source\PSoC5/master.c **** 
+ 441:.\Generated_Source\PSoC5/master.c ****     #if(master_RX_SOFTWARE_BUF_ENABLED)
+ 442:.\Generated_Source\PSoC5/master.c ****         /* Disable RX interrupt to protect global veriables */
+ 443:.\Generated_Source\PSoC5/master.c ****         master_DisableRxInt();
+ 444:.\Generated_Source\PSoC5/master.c **** 
+ 445:.\Generated_Source\PSoC5/master.c ****         tmpStatus = master_GET_STATUS_RX(master_swStatusRx);
+ 446:.\Generated_Source\PSoC5/master.c ****         master_swStatusRx = 0u;
+ 447:.\Generated_Source\PSoC5/master.c **** 
+ 448:.\Generated_Source\PSoC5/master.c ****         master_EnableRxInt();
+ 449:.\Generated_Source\PSoC5/master.c **** 
+ 450:.\Generated_Source\PSoC5/master.c ****     #else
+ 451:.\Generated_Source\PSoC5/master.c **** 
+ 452:.\Generated_Source\PSoC5/master.c ****         tmpStatus = master_RX_STATUS_REG;
+ 494              		.loc 1 452 0
+ 495 0006 46F26453 		movw	r3, #25956
+ 496 000a C4F20003 		movt	r3, 16384
+ 497 000e 1B78     		ldrb	r3, [r3, #0]
+ 498 0010 FB71     		strb	r3, [r7, #7]
+ 453:.\Generated_Source\PSoC5/master.c **** 
+ 454:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_RX_SOFTWARE_BUF_ENABLED) */
+ 455:.\Generated_Source\PSoC5/master.c **** 
+ 456:.\Generated_Source\PSoC5/master.c ****     return(tmpStatus);
+ 499              		.loc 1 456 0
+ 500 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 457:.\Generated_Source\PSoC5/master.c **** }
+ 501              		.loc 1 457 0
+ 502 0014 1846     		mov	r0, r3
+ 503 0016 07F10C07 		add	r7, r7, #12
+ 504 001a BD46     		mov	sp, r7
+ 505 001c 80BC     		pop	{r7}
+ 506 001e 7047     		bx	lr
+ 507              		.cfi_endproc
+ 508              	.LFE11:
+ 509              		.size	master_ReadRxStatus, .-master_ReadRxStatus
+ 510              		.section	.text.master_WriteTxData,"ax",%progbits
+ 511              		.align	2
+ 512              		.global	master_WriteTxData
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 18
+
+
+ 513              		.thumb
+ 514              		.thumb_func
+ 515              		.type	master_WriteTxData, %function
+ 516              	master_WriteTxData:
+ 517              	.LFB12:
+ 458:.\Generated_Source\PSoC5/master.c **** 
+ 459:.\Generated_Source\PSoC5/master.c **** 
+ 460:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 461:.\Generated_Source\PSoC5/master.c **** * Function Name: master_WriteTxData
+ 462:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 463:.\Generated_Source\PSoC5/master.c **** *
+ 464:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 465:.\Generated_Source\PSoC5/master.c **** *  Write a byte of data to be sent across the SPI.
+ 466:.\Generated_Source\PSoC5/master.c **** *
+ 467:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 468:.\Generated_Source\PSoC5/master.c **** *  txDataByte: The data value to send across the SPI.
+ 469:.\Generated_Source\PSoC5/master.c **** *
+ 470:.\Generated_Source\PSoC5/master.c **** * Return:
+ 471:.\Generated_Source\PSoC5/master.c **** *  None.
+ 472:.\Generated_Source\PSoC5/master.c **** *
+ 473:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 474:.\Generated_Source\PSoC5/master.c **** *  master_txBufferWrite - used for the account of the bytes which
+ 475:.\Generated_Source\PSoC5/master.c **** *  have been written down in the TX software buffer, modified every function
+ 476:.\Generated_Source\PSoC5/master.c **** *  call if TX Software Buffer is used.
+ 477:.\Generated_Source\PSoC5/master.c **** *  master_txBufferRead - used for the account of the bytes which
+ 478:.\Generated_Source\PSoC5/master.c **** *  have been read from the TX software buffer.
+ 479:.\Generated_Source\PSoC5/master.c **** *  master_txBuffer[master_TX_BUFFER_SIZE] - used to store
+ 480:.\Generated_Source\PSoC5/master.c **** *  data to sending, modified every function call if TX Software Buffer is used.
+ 481:.\Generated_Source\PSoC5/master.c **** *
+ 482:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 483:.\Generated_Source\PSoC5/master.c **** *  Allows the user to transmit any byte of data in a single transfer.
+ 484:.\Generated_Source\PSoC5/master.c **** *
+ 485:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 486:.\Generated_Source\PSoC5/master.c **** *  If this function is called again before the previous byte is finished then
+ 487:.\Generated_Source\PSoC5/master.c **** *  the next byte will be appended to the transfer with no time between
+ 488:.\Generated_Source\PSoC5/master.c **** *  the byte transfers. Clear Tx status register of the component.
+ 489:.\Generated_Source\PSoC5/master.c **** *
+ 490:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 491:.\Generated_Source\PSoC5/master.c **** *  No.
+ 492:.\Generated_Source\PSoC5/master.c **** *
+ 493:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 494:.\Generated_Source\PSoC5/master.c **** void master_WriteTxData(uint16 txData) 
+ 495:.\Generated_Source\PSoC5/master.c **** {
+ 518              		.loc 1 495 0
+ 519              		.cfi_startproc
+ 520              		@ args = 0, pretend = 0, frame = 8
+ 521              		@ frame_needed = 1, uses_anonymous_args = 0
+ 522              		@ link register save eliminated.
+ 523 0000 80B4     		push	{r7}
+ 524              	.LCFI30:
+ 525              		.cfi_def_cfa_offset 4
+ 526              		.cfi_offset 7, -4
+ 527 0002 83B0     		sub	sp, sp, #12
+ 528              	.LCFI31:
+ 529              		.cfi_def_cfa_offset 16
+ 530 0004 00AF     		add	r7, sp, #0
+ 531              	.LCFI32:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 19
+
+
+ 532              		.cfi_def_cfa_register 7
+ 533 0006 0346     		mov	r3, r0
+ 534 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 496:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED)
+ 497:.\Generated_Source\PSoC5/master.c **** 
+ 498:.\Generated_Source\PSoC5/master.c ****         uint8 tempStatus;
+ 499:.\Generated_Source\PSoC5/master.c ****         uint8 tmpTxBufferRead;
+ 500:.\Generated_Source\PSoC5/master.c **** 
+ 501:.\Generated_Source\PSoC5/master.c ****         /* Block if TX buffer is FULL: don't overwrite */
+ 502:.\Generated_Source\PSoC5/master.c ****         do
+ 503:.\Generated_Source\PSoC5/master.c ****         {
+ 504:.\Generated_Source\PSoC5/master.c ****             tmpTxBufferRead = master_txBufferRead;
+ 505:.\Generated_Source\PSoC5/master.c ****             if(0u == tmpTxBufferRead)
+ 506:.\Generated_Source\PSoC5/master.c ****             {
+ 507:.\Generated_Source\PSoC5/master.c ****                 tmpTxBufferRead = (master_TX_BUFFER_SIZE - 1u);
+ 508:.\Generated_Source\PSoC5/master.c ****             }
+ 509:.\Generated_Source\PSoC5/master.c ****             else
+ 510:.\Generated_Source\PSoC5/master.c ****             {
+ 511:.\Generated_Source\PSoC5/master.c ****                 tmpTxBufferRead--;
+ 512:.\Generated_Source\PSoC5/master.c ****             }
+ 513:.\Generated_Source\PSoC5/master.c **** 
+ 514:.\Generated_Source\PSoC5/master.c ****         }while(tmpTxBufferRead == master_txBufferWrite);
+ 515:.\Generated_Source\PSoC5/master.c **** 
+ 516:.\Generated_Source\PSoC5/master.c ****         /* Disable TX interrupt to protect global veriables */
+ 517:.\Generated_Source\PSoC5/master.c ****         master_DisableTxInt();
+ 518:.\Generated_Source\PSoC5/master.c **** 
+ 519:.\Generated_Source\PSoC5/master.c ****         tempStatus = master_GET_STATUS_TX(master_swStatusTx);
+ 520:.\Generated_Source\PSoC5/master.c ****         master_swStatusTx = tempStatus;
+ 521:.\Generated_Source\PSoC5/master.c **** 
+ 522:.\Generated_Source\PSoC5/master.c **** 
+ 523:.\Generated_Source\PSoC5/master.c ****         if((master_txBufferRead == master_txBufferWrite) &&
+ 524:.\Generated_Source\PSoC5/master.c ****            (0u != (master_swStatusTx & master_STS_TX_FIFO_NOT_FULL)))
+ 525:.\Generated_Source\PSoC5/master.c ****         {
+ 526:.\Generated_Source\PSoC5/master.c ****             /* Add directly to the TX FIFO */
+ 527:.\Generated_Source\PSoC5/master.c ****             CY_SET_REG16(master_TXDATA_PTR, txData);
+ 528:.\Generated_Source\PSoC5/master.c ****         }
+ 529:.\Generated_Source\PSoC5/master.c ****         else
+ 530:.\Generated_Source\PSoC5/master.c ****         {
+ 531:.\Generated_Source\PSoC5/master.c ****             /* Add to the TX software buffer */
+ 532:.\Generated_Source\PSoC5/master.c ****             master_txBufferWrite++;
+ 533:.\Generated_Source\PSoC5/master.c ****             if(master_txBufferWrite >= master_TX_BUFFER_SIZE)
+ 534:.\Generated_Source\PSoC5/master.c ****             {
+ 535:.\Generated_Source\PSoC5/master.c ****                 master_txBufferWrite = 0u;
+ 536:.\Generated_Source\PSoC5/master.c ****             }
+ 537:.\Generated_Source\PSoC5/master.c **** 
+ 538:.\Generated_Source\PSoC5/master.c ****             if(master_txBufferWrite == master_txBufferRead)
+ 539:.\Generated_Source\PSoC5/master.c ****             {
+ 540:.\Generated_Source\PSoC5/master.c ****                 master_txBufferRead++;
+ 541:.\Generated_Source\PSoC5/master.c ****                 if(master_txBufferRead >= master_TX_BUFFER_SIZE)
+ 542:.\Generated_Source\PSoC5/master.c ****                 {
+ 543:.\Generated_Source\PSoC5/master.c ****                     master_txBufferRead = 0u;
+ 544:.\Generated_Source\PSoC5/master.c ****                 }
+ 545:.\Generated_Source\PSoC5/master.c ****                 master_txBufferFull = 1u;
+ 546:.\Generated_Source\PSoC5/master.c ****             }
+ 547:.\Generated_Source\PSoC5/master.c **** 
+ 548:.\Generated_Source\PSoC5/master.c ****             master_txBuffer[master_txBufferWrite] = txData;
+ 549:.\Generated_Source\PSoC5/master.c **** 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 20
+
+
+ 550:.\Generated_Source\PSoC5/master.c ****             master_TX_STATUS_MASK_REG |= master_STS_TX_FIFO_NOT_FULL;
+ 551:.\Generated_Source\PSoC5/master.c ****         }
+ 552:.\Generated_Source\PSoC5/master.c **** 
+ 553:.\Generated_Source\PSoC5/master.c ****         master_EnableTxInt();
+ 554:.\Generated_Source\PSoC5/master.c **** 
+ 555:.\Generated_Source\PSoC5/master.c ****     #else
+ 556:.\Generated_Source\PSoC5/master.c **** 
+ 557:.\Generated_Source\PSoC5/master.c ****         while(0u == (master_TX_STATUS_REG & master_STS_TX_FIFO_NOT_FULL))
+ 535              		.loc 1 557 0
+ 536 000a 00BF     		nop
+ 537              	.L17:
+ 538              		.loc 1 557 0 is_stmt 0 discriminator 1
+ 539 000c 46F26553 		movw	r3, #25957
+ 540 0010 C4F20003 		movt	r3, 16384
+ 541 0014 1B78     		ldrb	r3, [r3, #0]
+ 542 0016 DBB2     		uxtb	r3, r3
+ 543 0018 03F00403 		and	r3, r3, #4
+ 544 001c 002B     		cmp	r3, #0
+ 545 001e F5D0     		beq	.L17
+ 558:.\Generated_Source\PSoC5/master.c ****         {
+ 559:.\Generated_Source\PSoC5/master.c ****             ; /* Wait for room in FIFO */
+ 560:.\Generated_Source\PSoC5/master.c ****         }
+ 561:.\Generated_Source\PSoC5/master.c **** 
+ 562:.\Generated_Source\PSoC5/master.c ****         /* Put byte in TX FIFO */
+ 563:.\Generated_Source\PSoC5/master.c ****         CY_SET_REG16(master_TXDATA_PTR, txData);
+ 546              		.loc 1 563 0 is_stmt 1
+ 547 0020 46F24453 		movw	r3, #25924
+ 548 0024 C4F20003 		movt	r3, 16384
+ 549 0028 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 550 002a 1A80     		strh	r2, [r3, #0]	@ movhi
+ 564:.\Generated_Source\PSoC5/master.c **** 
+ 565:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+ 566:.\Generated_Source\PSoC5/master.c **** }
+ 551              		.loc 1 566 0
+ 552 002c 07F10C07 		add	r7, r7, #12
+ 553 0030 BD46     		mov	sp, r7
+ 554 0032 80BC     		pop	{r7}
+ 555 0034 7047     		bx	lr
+ 556              		.cfi_endproc
+ 557              	.LFE12:
+ 558              		.size	master_WriteTxData, .-master_WriteTxData
+ 559 0036 00BF     		.section	.text.master_ReadRxData,"ax",%progbits
+ 560              		.align	2
+ 561              		.global	master_ReadRxData
+ 562              		.thumb
+ 563              		.thumb_func
+ 564              		.type	master_ReadRxData, %function
+ 565              	master_ReadRxData:
+ 566              	.LFB13:
+ 567:.\Generated_Source\PSoC5/master.c **** 
+ 568:.\Generated_Source\PSoC5/master.c **** 
+ 569:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 570:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ReadRxData
+ 571:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 572:.\Generated_Source\PSoC5/master.c **** *
+ 573:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 574:.\Generated_Source\PSoC5/master.c **** *  Read the next byte of data received across the SPI.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 21
+
+
+ 575:.\Generated_Source\PSoC5/master.c **** *
+ 576:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 577:.\Generated_Source\PSoC5/master.c **** *  None.
+ 578:.\Generated_Source\PSoC5/master.c **** *
+ 579:.\Generated_Source\PSoC5/master.c **** * Return:
+ 580:.\Generated_Source\PSoC5/master.c **** *  The next byte of data read from the FIFO.
+ 581:.\Generated_Source\PSoC5/master.c **** *
+ 582:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 583:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferWrite - used for the account of the bytes which
+ 584:.\Generated_Source\PSoC5/master.c **** *  have been written down in the RX software buffer.
+ 585:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferRead - used for the account of the bytes which
+ 586:.\Generated_Source\PSoC5/master.c **** *  have been read from the RX software buffer, modified every function
+ 587:.\Generated_Source\PSoC5/master.c **** *  call if RX Software Buffer is used.
+ 588:.\Generated_Source\PSoC5/master.c **** *  master_rxBuffer[master_RX_BUFFER_SIZE] - used to store
+ 589:.\Generated_Source\PSoC5/master.c **** *  received data.
+ 590:.\Generated_Source\PSoC5/master.c **** *
+ 591:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 592:.\Generated_Source\PSoC5/master.c **** *  Allows the user to read a byte of data received.
+ 593:.\Generated_Source\PSoC5/master.c **** *
+ 594:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 595:.\Generated_Source\PSoC5/master.c **** *  Will return invalid data if the FIFO is empty. The user should Call
+ 596:.\Generated_Source\PSoC5/master.c **** *  GetRxBufferSize() and if it returns a non-zero value then it is safe to call
+ 597:.\Generated_Source\PSoC5/master.c **** *  ReadByte() function.
+ 598:.\Generated_Source\PSoC5/master.c **** *
+ 599:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 600:.\Generated_Source\PSoC5/master.c **** *  No.
+ 601:.\Generated_Source\PSoC5/master.c **** *
+ 602:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 603:.\Generated_Source\PSoC5/master.c **** uint16 master_ReadRxData(void) 
+ 604:.\Generated_Source\PSoC5/master.c **** {
+ 567              		.loc 1 604 0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 8
+ 570              		@ frame_needed = 1, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+ 572 0000 80B4     		push	{r7}
+ 573              	.LCFI33:
+ 574              		.cfi_def_cfa_offset 4
+ 575              		.cfi_offset 7, -4
+ 576 0002 83B0     		sub	sp, sp, #12
+ 577              	.LCFI34:
+ 578              		.cfi_def_cfa_offset 16
+ 579 0004 00AF     		add	r7, sp, #0
+ 580              	.LCFI35:
+ 581              		.cfi_def_cfa_register 7
+ 605:.\Generated_Source\PSoC5/master.c ****     uint16 rxData;
+ 606:.\Generated_Source\PSoC5/master.c **** 
+ 607:.\Generated_Source\PSoC5/master.c ****     #if(master_RX_SOFTWARE_BUF_ENABLED)
+ 608:.\Generated_Source\PSoC5/master.c **** 
+ 609:.\Generated_Source\PSoC5/master.c ****         /* Disable RX interrupt to protect global veriables */
+ 610:.\Generated_Source\PSoC5/master.c ****         master_DisableRxInt();
+ 611:.\Generated_Source\PSoC5/master.c **** 
+ 612:.\Generated_Source\PSoC5/master.c ****         if(master_rxBufferRead != master_rxBufferWrite)
+ 613:.\Generated_Source\PSoC5/master.c ****         {
+ 614:.\Generated_Source\PSoC5/master.c ****             if(0u == master_rxBufferFull)
+ 615:.\Generated_Source\PSoC5/master.c ****             {
+ 616:.\Generated_Source\PSoC5/master.c ****                 master_rxBufferRead++;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 22
+
+
+ 617:.\Generated_Source\PSoC5/master.c ****                 if(master_rxBufferRead >= master_RX_BUFFER_SIZE)
+ 618:.\Generated_Source\PSoC5/master.c ****                 {
+ 619:.\Generated_Source\PSoC5/master.c ****                     master_rxBufferRead = 0u;
+ 620:.\Generated_Source\PSoC5/master.c ****                 }
+ 621:.\Generated_Source\PSoC5/master.c ****             }
+ 622:.\Generated_Source\PSoC5/master.c ****             else
+ 623:.\Generated_Source\PSoC5/master.c ****             {
+ 624:.\Generated_Source\PSoC5/master.c ****                 master_rxBufferFull = 0u;
+ 625:.\Generated_Source\PSoC5/master.c ****             }
+ 626:.\Generated_Source\PSoC5/master.c ****         }
+ 627:.\Generated_Source\PSoC5/master.c **** 
+ 628:.\Generated_Source\PSoC5/master.c ****         rxData = master_rxBuffer[master_rxBufferRead];
+ 629:.\Generated_Source\PSoC5/master.c **** 
+ 630:.\Generated_Source\PSoC5/master.c ****         master_EnableRxInt();
+ 631:.\Generated_Source\PSoC5/master.c **** 
+ 632:.\Generated_Source\PSoC5/master.c ****     #else
+ 633:.\Generated_Source\PSoC5/master.c **** 
+ 634:.\Generated_Source\PSoC5/master.c ****         rxData = CY_GET_REG16(master_RXDATA_PTR);
+ 582              		.loc 1 634 0
+ 583 0006 46F25453 		movw	r3, #25940
+ 584 000a C4F20003 		movt	r3, 16384
+ 585 000e 1B88     		ldrh	r3, [r3, #0]	@ movhi
+ 586 0010 FB80     		strh	r3, [r7, #6]	@ movhi
+ 635:.\Generated_Source\PSoC5/master.c **** 
+ 636:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_RX_SOFTWARE_BUF_ENABLED) */
+ 637:.\Generated_Source\PSoC5/master.c **** 
+ 638:.\Generated_Source\PSoC5/master.c ****     return(rxData);
+ 587              		.loc 1 638 0
+ 588 0012 FB88     		ldrh	r3, [r7, #6]
+ 639:.\Generated_Source\PSoC5/master.c **** }
+ 589              		.loc 1 639 0
+ 590 0014 1846     		mov	r0, r3
+ 591 0016 07F10C07 		add	r7, r7, #12
+ 592 001a BD46     		mov	sp, r7
+ 593 001c 80BC     		pop	{r7}
+ 594 001e 7047     		bx	lr
+ 595              		.cfi_endproc
+ 596              	.LFE13:
+ 597              		.size	master_ReadRxData, .-master_ReadRxData
+ 598              		.section	.text.master_GetRxBufferSize,"ax",%progbits
+ 599              		.align	2
+ 600              		.global	master_GetRxBufferSize
+ 601              		.thumb
+ 602              		.thumb_func
+ 603              		.type	master_GetRxBufferSize, %function
+ 604              	master_GetRxBufferSize:
+ 605              	.LFB14:
+ 640:.\Generated_Source\PSoC5/master.c **** 
+ 641:.\Generated_Source\PSoC5/master.c **** 
+ 642:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 643:.\Generated_Source\PSoC5/master.c **** * Function Name: master_GetRxBufferSize
+ 644:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 645:.\Generated_Source\PSoC5/master.c **** *
+ 646:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 647:.\Generated_Source\PSoC5/master.c **** *  Returns the number of bytes/words of data currently held in the RX buffer.
+ 648:.\Generated_Source\PSoC5/master.c **** *  If RX Software Buffer not used then function return 0 if FIFO empty or 1 if
+ 649:.\Generated_Source\PSoC5/master.c **** *  FIFO not empty. In another case function return size of RX Software Buffer.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 23
+
+
+ 650:.\Generated_Source\PSoC5/master.c **** *
+ 651:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 652:.\Generated_Source\PSoC5/master.c **** *  None.
+ 653:.\Generated_Source\PSoC5/master.c **** *
+ 654:.\Generated_Source\PSoC5/master.c **** * Return:
+ 655:.\Generated_Source\PSoC5/master.c **** *  Integer count of the number of bytes/words in the RX buffer.
+ 656:.\Generated_Source\PSoC5/master.c **** *
+ 657:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 658:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferWrite - used for the account of the bytes which
+ 659:.\Generated_Source\PSoC5/master.c **** *  have been written down in the RX software buffer.
+ 660:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferRead - used for the account of the bytes which
+ 661:.\Generated_Source\PSoC5/master.c **** *  have been read from the RX software buffer.
+ 662:.\Generated_Source\PSoC5/master.c **** *
+ 663:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 664:.\Generated_Source\PSoC5/master.c **** *  Clear status register of the component.
+ 665:.\Generated_Source\PSoC5/master.c **** *
+ 666:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 667:.\Generated_Source\PSoC5/master.c **** uint8 master_GetRxBufferSize(void) 
+ 668:.\Generated_Source\PSoC5/master.c **** {
+ 606              		.loc 1 668 0
+ 607              		.cfi_startproc
+ 608              		@ args = 0, pretend = 0, frame = 8
+ 609              		@ frame_needed = 1, uses_anonymous_args = 0
+ 610              		@ link register save eliminated.
+ 611 0000 80B4     		push	{r7}
+ 612              	.LCFI36:
+ 613              		.cfi_def_cfa_offset 4
+ 614              		.cfi_offset 7, -4
+ 615 0002 83B0     		sub	sp, sp, #12
+ 616              	.LCFI37:
+ 617              		.cfi_def_cfa_offset 16
+ 618 0004 00AF     		add	r7, sp, #0
+ 619              	.LCFI38:
+ 620              		.cfi_def_cfa_register 7
+ 669:.\Generated_Source\PSoC5/master.c ****     uint8 size;
+ 670:.\Generated_Source\PSoC5/master.c **** 
+ 671:.\Generated_Source\PSoC5/master.c ****     #if(master_RX_SOFTWARE_BUF_ENABLED)
+ 672:.\Generated_Source\PSoC5/master.c **** 
+ 673:.\Generated_Source\PSoC5/master.c ****         /* Disable RX interrupt to protect global veriables */
+ 674:.\Generated_Source\PSoC5/master.c ****         master_DisableRxInt();
+ 675:.\Generated_Source\PSoC5/master.c **** 
+ 676:.\Generated_Source\PSoC5/master.c ****         if(master_rxBufferRead == master_rxBufferWrite)
+ 677:.\Generated_Source\PSoC5/master.c ****         {
+ 678:.\Generated_Source\PSoC5/master.c ****             size = 0u;
+ 679:.\Generated_Source\PSoC5/master.c ****         }
+ 680:.\Generated_Source\PSoC5/master.c ****         else if(master_rxBufferRead < master_rxBufferWrite)
+ 681:.\Generated_Source\PSoC5/master.c ****         {
+ 682:.\Generated_Source\PSoC5/master.c ****             size = (master_rxBufferWrite - master_rxBufferRead);
+ 683:.\Generated_Source\PSoC5/master.c ****         }
+ 684:.\Generated_Source\PSoC5/master.c ****         else
+ 685:.\Generated_Source\PSoC5/master.c ****         {
+ 686:.\Generated_Source\PSoC5/master.c ****             size = (master_RX_BUFFER_SIZE - master_rxBufferRead) + master_rxBufferWrite;
+ 687:.\Generated_Source\PSoC5/master.c ****         }
+ 688:.\Generated_Source\PSoC5/master.c **** 
+ 689:.\Generated_Source\PSoC5/master.c ****         master_EnableRxInt();
+ 690:.\Generated_Source\PSoC5/master.c **** 
+ 691:.\Generated_Source\PSoC5/master.c ****     #else
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 24
+
+
+ 692:.\Generated_Source\PSoC5/master.c **** 
+ 693:.\Generated_Source\PSoC5/master.c ****         /* We can only know if there is data in the RX FIFO */
+ 694:.\Generated_Source\PSoC5/master.c ****         size = (0u != (master_RX_STATUS_REG & master_STS_RX_FIFO_NOT_EMPTY)) ? 1u : 0u;
+ 621              		.loc 1 694 0
+ 622 0006 46F26453 		movw	r3, #25956
+ 623 000a C4F20003 		movt	r3, 16384
+ 624 000e 1B78     		ldrb	r3, [r3, #0]
+ 625 0010 DBB2     		uxtb	r3, r3
+ 626 0012 03F02003 		and	r3, r3, #32
+ 627 0016 002B     		cmp	r3, #0
+ 628 0018 02D0     		beq	.L21
+ 629              		.loc 1 694 0 is_stmt 0 discriminator 1
+ 630 001a 4FF00103 		mov	r3, #1
+ 631 001e 01E0     		b	.L22
+ 632              	.L21:
+ 633              		.loc 1 694 0 discriminator 2
+ 634 0020 4FF00003 		mov	r3, #0
+ 635              	.L22:
+ 636              		.loc 1 694 0 discriminator 3
+ 637 0024 FB71     		strb	r3, [r7, #7]
+ 695:.\Generated_Source\PSoC5/master.c **** 
+ 696:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+ 697:.\Generated_Source\PSoC5/master.c **** 
+ 698:.\Generated_Source\PSoC5/master.c ****     return(size);
+ 638              		.loc 1 698 0 is_stmt 1 discriminator 3
+ 639 0026 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 699:.\Generated_Source\PSoC5/master.c **** }
+ 640              		.loc 1 699 0 discriminator 3
+ 641 0028 1846     		mov	r0, r3
+ 642 002a 07F10C07 		add	r7, r7, #12
+ 643 002e BD46     		mov	sp, r7
+ 644 0030 80BC     		pop	{r7}
+ 645 0032 7047     		bx	lr
+ 646              		.cfi_endproc
+ 647              	.LFE14:
+ 648              		.size	master_GetRxBufferSize, .-master_GetRxBufferSize
+ 649              		.section	.text.master_GetTxBufferSize,"ax",%progbits
+ 650              		.align	2
+ 651              		.global	master_GetTxBufferSize
+ 652              		.thumb
+ 653              		.thumb_func
+ 654              		.type	master_GetTxBufferSize, %function
+ 655              	master_GetTxBufferSize:
+ 656              	.LFB15:
+ 700:.\Generated_Source\PSoC5/master.c **** 
+ 701:.\Generated_Source\PSoC5/master.c **** 
+ 702:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 703:.\Generated_Source\PSoC5/master.c **** * Function Name: master_GetTxBufferSize
+ 704:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 705:.\Generated_Source\PSoC5/master.c **** *
+ 706:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 707:.\Generated_Source\PSoC5/master.c **** *  Returns the number of bytes/words of data currently held in the TX buffer.
+ 708:.\Generated_Source\PSoC5/master.c **** *  If TX Software Buffer not used then function return 0 - if FIFO empty, 1 - if
+ 709:.\Generated_Source\PSoC5/master.c **** *  FIFO not full, 4 - if FIFO full. In another case function return size of TX
+ 710:.\Generated_Source\PSoC5/master.c **** *  Software Buffer.
+ 711:.\Generated_Source\PSoC5/master.c **** *
+ 712:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 25
+
+
+ 713:.\Generated_Source\PSoC5/master.c **** *  None.
+ 714:.\Generated_Source\PSoC5/master.c **** *
+ 715:.\Generated_Source\PSoC5/master.c **** * Return:
+ 716:.\Generated_Source\PSoC5/master.c **** *  Integer count of the number of bytes/words in the TX buffer.
+ 717:.\Generated_Source\PSoC5/master.c **** *
+ 718:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 719:.\Generated_Source\PSoC5/master.c **** *  master_txBufferWrite - used for the account of the bytes which
+ 720:.\Generated_Source\PSoC5/master.c **** *  have been written down in the TX software buffer.
+ 721:.\Generated_Source\PSoC5/master.c **** *  master_txBufferRead - used for the account of the bytes which
+ 722:.\Generated_Source\PSoC5/master.c **** *  have been read from the TX software buffer.
+ 723:.\Generated_Source\PSoC5/master.c **** *
+ 724:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 725:.\Generated_Source\PSoC5/master.c **** *  Clear status register of the component.
+ 726:.\Generated_Source\PSoC5/master.c **** *
+ 727:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 728:.\Generated_Source\PSoC5/master.c **** uint8  master_GetTxBufferSize(void) 
+ 729:.\Generated_Source\PSoC5/master.c **** {
+ 657              		.loc 1 729 0
+ 658              		.cfi_startproc
+ 659              		@ args = 0, pretend = 0, frame = 8
+ 660              		@ frame_needed = 1, uses_anonymous_args = 0
+ 661              		@ link register save eliminated.
+ 662 0000 80B4     		push	{r7}
+ 663              	.LCFI39:
+ 664              		.cfi_def_cfa_offset 4
+ 665              		.cfi_offset 7, -4
+ 666 0002 83B0     		sub	sp, sp, #12
+ 667              	.LCFI40:
+ 668              		.cfi_def_cfa_offset 16
+ 669 0004 00AF     		add	r7, sp, #0
+ 670              	.LCFI41:
+ 671              		.cfi_def_cfa_register 7
+ 730:.\Generated_Source\PSoC5/master.c ****     uint8 size;
+ 731:.\Generated_Source\PSoC5/master.c **** 
+ 732:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED)
+ 733:.\Generated_Source\PSoC5/master.c ****         /* Disable TX interrupt to protect global veriables */
+ 734:.\Generated_Source\PSoC5/master.c ****         master_DisableTxInt();
+ 735:.\Generated_Source\PSoC5/master.c **** 
+ 736:.\Generated_Source\PSoC5/master.c ****         if(master_txBufferRead == master_txBufferWrite)
+ 737:.\Generated_Source\PSoC5/master.c ****         {
+ 738:.\Generated_Source\PSoC5/master.c ****             size = 0u;
+ 739:.\Generated_Source\PSoC5/master.c ****         }
+ 740:.\Generated_Source\PSoC5/master.c ****         else if(master_txBufferRead < master_txBufferWrite)
+ 741:.\Generated_Source\PSoC5/master.c ****         {
+ 742:.\Generated_Source\PSoC5/master.c ****             size = (master_txBufferWrite - master_txBufferRead);
+ 743:.\Generated_Source\PSoC5/master.c ****         }
+ 744:.\Generated_Source\PSoC5/master.c ****         else
+ 745:.\Generated_Source\PSoC5/master.c ****         {
+ 746:.\Generated_Source\PSoC5/master.c ****             size = (master_TX_BUFFER_SIZE - master_txBufferRead) + master_txBufferWrite;
+ 747:.\Generated_Source\PSoC5/master.c ****         }
+ 748:.\Generated_Source\PSoC5/master.c **** 
+ 749:.\Generated_Source\PSoC5/master.c ****         master_EnableTxInt();
+ 750:.\Generated_Source\PSoC5/master.c **** 
+ 751:.\Generated_Source\PSoC5/master.c ****     #else
+ 752:.\Generated_Source\PSoC5/master.c **** 
+ 753:.\Generated_Source\PSoC5/master.c ****         size = master_TX_STATUS_REG;
+ 672              		.loc 1 753 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 26
+
+
+ 673 0006 46F26553 		movw	r3, #25957
+ 674 000a C4F20003 		movt	r3, 16384
+ 675 000e 1B78     		ldrb	r3, [r3, #0]
+ 676 0010 FB71     		strb	r3, [r7, #7]
+ 754:.\Generated_Source\PSoC5/master.c **** 
+ 755:.\Generated_Source\PSoC5/master.c ****         if(0u != (size & master_STS_TX_FIFO_EMPTY))
+ 677              		.loc 1 755 0
+ 678 0012 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 679 0014 03F00203 		and	r3, r3, #2
+ 680 0018 002B     		cmp	r3, #0
+ 681 001a 03D0     		beq	.L25
+ 756:.\Generated_Source\PSoC5/master.c ****         {
+ 757:.\Generated_Source\PSoC5/master.c ****             size = 0u;
+ 682              		.loc 1 757 0
+ 683 001c 4FF00003 		mov	r3, #0
+ 684 0020 FB71     		strb	r3, [r7, #7]
+ 685 0022 0BE0     		b	.L26
+ 686              	.L25:
+ 758:.\Generated_Source\PSoC5/master.c ****         }
+ 759:.\Generated_Source\PSoC5/master.c ****         else if(0u != (size & master_STS_TX_FIFO_NOT_FULL))
+ 687              		.loc 1 759 0
+ 688 0024 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 689 0026 03F00403 		and	r3, r3, #4
+ 690 002a 002B     		cmp	r3, #0
+ 691 002c 03D0     		beq	.L27
+ 760:.\Generated_Source\PSoC5/master.c ****         {
+ 761:.\Generated_Source\PSoC5/master.c ****             size = 1u;
+ 692              		.loc 1 761 0
+ 693 002e 4FF00103 		mov	r3, #1
+ 694 0032 FB71     		strb	r3, [r7, #7]
+ 695 0034 02E0     		b	.L26
+ 696              	.L27:
+ 762:.\Generated_Source\PSoC5/master.c ****         }
+ 763:.\Generated_Source\PSoC5/master.c ****         else
+ 764:.\Generated_Source\PSoC5/master.c ****         {
+ 765:.\Generated_Source\PSoC5/master.c ****             size = master_FIFO_SIZE;
+ 697              		.loc 1 765 0
+ 698 0036 4FF00403 		mov	r3, #4
+ 699 003a FB71     		strb	r3, [r7, #7]
+ 700              	.L26:
+ 766:.\Generated_Source\PSoC5/master.c ****         }
+ 767:.\Generated_Source\PSoC5/master.c **** 
+ 768:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+ 769:.\Generated_Source\PSoC5/master.c **** 
+ 770:.\Generated_Source\PSoC5/master.c ****     return(size);
+ 701              		.loc 1 770 0
+ 702 003c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 771:.\Generated_Source\PSoC5/master.c **** }
+ 703              		.loc 1 771 0
+ 704 003e 1846     		mov	r0, r3
+ 705 0040 07F10C07 		add	r7, r7, #12
+ 706 0044 BD46     		mov	sp, r7
+ 707 0046 80BC     		pop	{r7}
+ 708 0048 7047     		bx	lr
+ 709              		.cfi_endproc
+ 710              	.LFE15:
+ 711              		.size	master_GetTxBufferSize, .-master_GetTxBufferSize
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 27
+
+
+ 712 004a 00BF     		.section	.text.master_ClearRxBuffer,"ax",%progbits
+ 713              		.align	2
+ 714              		.global	master_ClearRxBuffer
+ 715              		.thumb
+ 716              		.thumb_func
+ 717              		.type	master_ClearRxBuffer, %function
+ 718              	master_ClearRxBuffer:
+ 719              	.LFB16:
+ 772:.\Generated_Source\PSoC5/master.c **** 
+ 773:.\Generated_Source\PSoC5/master.c **** 
+ 774:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 775:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ClearRxBuffer
+ 776:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 777:.\Generated_Source\PSoC5/master.c **** *
+ 778:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 779:.\Generated_Source\PSoC5/master.c **** *  Clear the RX RAM buffer by setting the read and write pointers both to zero.
+ 780:.\Generated_Source\PSoC5/master.c **** *
+ 781:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 782:.\Generated_Source\PSoC5/master.c **** *  None.
+ 783:.\Generated_Source\PSoC5/master.c **** *
+ 784:.\Generated_Source\PSoC5/master.c **** * Return:
+ 785:.\Generated_Source\PSoC5/master.c **** *  None.
+ 786:.\Generated_Source\PSoC5/master.c **** *
+ 787:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 788:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferWrite - used for the account of the bytes which
+ 789:.\Generated_Source\PSoC5/master.c **** *  have been written down in the RX software buffer, modified every function
+ 790:.\Generated_Source\PSoC5/master.c **** *  call - resets to zero.
+ 791:.\Generated_Source\PSoC5/master.c **** *  master_rxBufferRead - used for the account of the bytes which
+ 792:.\Generated_Source\PSoC5/master.c **** *  have been read from the RX software buffer, modified every function call -
+ 793:.\Generated_Source\PSoC5/master.c **** *  resets to zero.
+ 794:.\Generated_Source\PSoC5/master.c **** *
+ 795:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 796:.\Generated_Source\PSoC5/master.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 797:.\Generated_Source\PSoC5/master.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 798:.\Generated_Source\PSoC5/master.c **** *  remained in the RAM.
+ 799:.\Generated_Source\PSoC5/master.c **** *
+ 800:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 801:.\Generated_Source\PSoC5/master.c **** *  Any received data not read from the RAM buffer will be lost when overwritten.
+ 802:.\Generated_Source\PSoC5/master.c **** *
+ 803:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 804:.\Generated_Source\PSoC5/master.c **** *  No.
+ 805:.\Generated_Source\PSoC5/master.c **** *
+ 806:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 807:.\Generated_Source\PSoC5/master.c **** void master_ClearRxBuffer(void) 
+ 808:.\Generated_Source\PSoC5/master.c **** {
+ 720              		.loc 1 808 0
+ 721              		.cfi_startproc
+ 722              		@ args = 0, pretend = 0, frame = 0
+ 723              		@ frame_needed = 1, uses_anonymous_args = 0
+ 724              		@ link register save eliminated.
+ 725 0000 80B4     		push	{r7}
+ 726              	.LCFI42:
+ 727              		.cfi_def_cfa_offset 4
+ 728              		.cfi_offset 7, -4
+ 729 0002 00AF     		add	r7, sp, #0
+ 730              	.LCFI43:
+ 731              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 28
+
+
+ 809:.\Generated_Source\PSoC5/master.c ****     /* Clear Hardware RX FIFO */
+ 810:.\Generated_Source\PSoC5/master.c ****     while(0u !=(master_RX_STATUS_REG & master_STS_RX_FIFO_NOT_EMPTY))
+ 732              		.loc 1 810 0
+ 733 0004 04E0     		b	.L30
+ 734              	.L31:
+ 811:.\Generated_Source\PSoC5/master.c ****     {
+ 812:.\Generated_Source\PSoC5/master.c ****         (void) CY_GET_REG16(master_RXDATA_PTR);
+ 735              		.loc 1 812 0
+ 736 0006 46F25453 		movw	r3, #25940
+ 737 000a C4F20003 		movt	r3, 16384
+ 738 000e 1B88     		ldrh	r3, [r3, #0]	@ movhi
+ 739              	.L30:
+ 810:.\Generated_Source\PSoC5/master.c ****     while(0u !=(master_RX_STATUS_REG & master_STS_RX_FIFO_NOT_EMPTY))
+ 740              		.loc 1 810 0 discriminator 1
+ 741 0010 46F26453 		movw	r3, #25956
+ 742 0014 C4F20003 		movt	r3, 16384
+ 743 0018 1B78     		ldrb	r3, [r3, #0]
+ 744 001a DBB2     		uxtb	r3, r3
+ 745 001c 03F02003 		and	r3, r3, #32
+ 746 0020 002B     		cmp	r3, #0
+ 747 0022 F0D1     		bne	.L31
+ 813:.\Generated_Source\PSoC5/master.c ****     }
+ 814:.\Generated_Source\PSoC5/master.c **** 
+ 815:.\Generated_Source\PSoC5/master.c ****     #if(master_RX_SOFTWARE_BUF_ENABLED)
+ 816:.\Generated_Source\PSoC5/master.c ****         /* Disable RX interrupt to protect global veriables */
+ 817:.\Generated_Source\PSoC5/master.c ****         master_DisableRxInt();
+ 818:.\Generated_Source\PSoC5/master.c **** 
+ 819:.\Generated_Source\PSoC5/master.c ****         master_rxBufferFull  = 0u;
+ 820:.\Generated_Source\PSoC5/master.c ****         master_rxBufferRead  = 0u;
+ 821:.\Generated_Source\PSoC5/master.c ****         master_rxBufferWrite = 0u;
+ 822:.\Generated_Source\PSoC5/master.c **** 
+ 823:.\Generated_Source\PSoC5/master.c ****         master_EnableRxInt();
+ 824:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_RX_SOFTWARE_BUF_ENABLED) */
+ 825:.\Generated_Source\PSoC5/master.c **** }
+ 748              		.loc 1 825 0
+ 749 0024 BD46     		mov	sp, r7
+ 750 0026 80BC     		pop	{r7}
+ 751 0028 7047     		bx	lr
+ 752              		.cfi_endproc
+ 753              	.LFE16:
+ 754              		.size	master_ClearRxBuffer, .-master_ClearRxBuffer
+ 755 002a 00BF     		.section	.text.master_ClearTxBuffer,"ax",%progbits
+ 756              		.align	2
+ 757              		.global	master_ClearTxBuffer
+ 758              		.thumb
+ 759              		.thumb_func
+ 760              		.type	master_ClearTxBuffer, %function
+ 761              	master_ClearTxBuffer:
+ 762              	.LFB17:
+ 826:.\Generated_Source\PSoC5/master.c **** 
+ 827:.\Generated_Source\PSoC5/master.c **** 
+ 828:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 829:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ClearTxBuffer
+ 830:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 831:.\Generated_Source\PSoC5/master.c **** *
+ 832:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 833:.\Generated_Source\PSoC5/master.c **** *  Clear the TX RAM buffer by setting the read and write pointers both to zero.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 29
+
+
+ 834:.\Generated_Source\PSoC5/master.c **** *
+ 835:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 836:.\Generated_Source\PSoC5/master.c **** *  None.
+ 837:.\Generated_Source\PSoC5/master.c **** *
+ 838:.\Generated_Source\PSoC5/master.c **** * Return:
+ 839:.\Generated_Source\PSoC5/master.c **** *  None.
+ 840:.\Generated_Source\PSoC5/master.c **** *
+ 841:.\Generated_Source\PSoC5/master.c **** * Global variables:
+ 842:.\Generated_Source\PSoC5/master.c **** *  master_txBufferWrite - used for the account of the bytes which
+ 843:.\Generated_Source\PSoC5/master.c **** *  have been written down in the TX software buffer, modified every function
+ 844:.\Generated_Source\PSoC5/master.c **** *  call - resets to zero.
+ 845:.\Generated_Source\PSoC5/master.c **** *  master_txBufferRead - used for the account of the bytes which
+ 846:.\Generated_Source\PSoC5/master.c **** *  have been read from the TX software buffer, modified every function call -
+ 847:.\Generated_Source\PSoC5/master.c **** *  resets to zero.
+ 848:.\Generated_Source\PSoC5/master.c **** *
+ 849:.\Generated_Source\PSoC5/master.c **** * Theory:
+ 850:.\Generated_Source\PSoC5/master.c **** *  Setting the pointers to zero makes the system believe there is no data to
+ 851:.\Generated_Source\PSoC5/master.c **** *  read and writing will resume at address 0 overwriting any data that may have
+ 852:.\Generated_Source\PSoC5/master.c **** *  remained in the RAM.
+ 853:.\Generated_Source\PSoC5/master.c **** *
+ 854:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 855:.\Generated_Source\PSoC5/master.c **** *  Any data not yet transmitted from the RAM buffer will be lost when
+ 856:.\Generated_Source\PSoC5/master.c **** *  overwritten.
+ 857:.\Generated_Source\PSoC5/master.c **** *
+ 858:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 859:.\Generated_Source\PSoC5/master.c **** *  No.
+ 860:.\Generated_Source\PSoC5/master.c **** *
+ 861:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 862:.\Generated_Source\PSoC5/master.c **** void master_ClearTxBuffer(void) 
+ 863:.\Generated_Source\PSoC5/master.c **** {
+ 763              		.loc 1 863 0
+ 764              		.cfi_startproc
+ 765              		@ args = 0, pretend = 0, frame = 8
+ 766              		@ frame_needed = 1, uses_anonymous_args = 0
+ 767 0000 80B5     		push	{r7, lr}
+ 768              	.LCFI44:
+ 769              		.cfi_def_cfa_offset 8
+ 770              		.cfi_offset 7, -8
+ 771              		.cfi_offset 14, -4
+ 772 0002 82B0     		sub	sp, sp, #8
+ 773              	.LCFI45:
+ 774              		.cfi_def_cfa_offset 16
+ 775 0004 00AF     		add	r7, sp, #0
+ 776              	.LCFI46:
+ 777              		.cfi_def_cfa_register 7
+ 864:.\Generated_Source\PSoC5/master.c ****     uint8 enableInterrupts;
+ 865:.\Generated_Source\PSoC5/master.c **** 
+ 866:.\Generated_Source\PSoC5/master.c ****     enableInterrupts = CyEnterCriticalSection();
+ 778              		.loc 1 866 0
+ 779 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 780 000a 0346     		mov	r3, r0
+ 781 000c FB71     		strb	r3, [r7, #7]
+ 867:.\Generated_Source\PSoC5/master.c ****     /* Clear TX FIFO */
+ 868:.\Generated_Source\PSoC5/master.c ****     master_AUX_CONTROL_DP0_REG |= ((uint8)  master_TX_FIFO_CLR);
+ 782              		.loc 1 868 0
+ 783 000e 46F29453 		movw	r3, #26004
+ 784 0012 C4F20003 		movt	r3, 16384
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 30
+
+
+ 785 0016 46F29452 		movw	r2, #26004
+ 786 001a C4F20002 		movt	r2, 16384
+ 787 001e 1278     		ldrb	r2, [r2, #0]
+ 788 0020 D2B2     		uxtb	r2, r2
+ 789 0022 42F00102 		orr	r2, r2, #1
+ 790 0026 D2B2     		uxtb	r2, r2
+ 791 0028 1A70     		strb	r2, [r3, #0]
+ 869:.\Generated_Source\PSoC5/master.c ****     master_AUX_CONTROL_DP0_REG &= ((uint8) ~master_TX_FIFO_CLR);
+ 792              		.loc 1 869 0
+ 793 002a 46F29453 		movw	r3, #26004
+ 794 002e C4F20003 		movt	r3, 16384
+ 795 0032 46F29452 		movw	r2, #26004
+ 796 0036 C4F20002 		movt	r2, 16384
+ 797 003a 1278     		ldrb	r2, [r2, #0]
+ 798 003c D2B2     		uxtb	r2, r2
+ 799 003e 22F00102 		bic	r2, r2, #1
+ 800 0042 D2B2     		uxtb	r2, r2
+ 801 0044 1A70     		strb	r2, [r3, #0]
+ 870:.\Generated_Source\PSoC5/master.c **** 
+ 871:.\Generated_Source\PSoC5/master.c ****     #if(master_USE_SECOND_DATAPATH)
+ 872:.\Generated_Source\PSoC5/master.c ****         /* Clear TX FIFO for 2nd Datapath */
+ 873:.\Generated_Source\PSoC5/master.c ****         master_AUX_CONTROL_DP1_REG |= ((uint8)  master_TX_FIFO_CLR);
+ 802              		.loc 1 873 0
+ 803 0046 46F29553 		movw	r3, #26005
+ 804 004a C4F20003 		movt	r3, 16384
+ 805 004e 46F29552 		movw	r2, #26005
+ 806 0052 C4F20002 		movt	r2, 16384
+ 807 0056 1278     		ldrb	r2, [r2, #0]
+ 808 0058 D2B2     		uxtb	r2, r2
+ 809 005a 42F00102 		orr	r2, r2, #1
+ 810 005e D2B2     		uxtb	r2, r2
+ 811 0060 1A70     		strb	r2, [r3, #0]
+ 874:.\Generated_Source\PSoC5/master.c ****         master_AUX_CONTROL_DP1_REG &= ((uint8) ~master_TX_FIFO_CLR);
+ 812              		.loc 1 874 0
+ 813 0062 46F29553 		movw	r3, #26005
+ 814 0066 C4F20003 		movt	r3, 16384
+ 815 006a 46F29552 		movw	r2, #26005
+ 816 006e C4F20002 		movt	r2, 16384
+ 817 0072 1278     		ldrb	r2, [r2, #0]
+ 818 0074 D2B2     		uxtb	r2, r2
+ 819 0076 22F00102 		bic	r2, r2, #1
+ 820 007a D2B2     		uxtb	r2, r2
+ 821 007c 1A70     		strb	r2, [r3, #0]
+ 875:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_USE_SECOND_DATAPATH) */
+ 876:.\Generated_Source\PSoC5/master.c ****     CyExitCriticalSection(enableInterrupts);
+ 822              		.loc 1 876 0
+ 823 007e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 824 0080 1846     		mov	r0, r3
+ 825 0082 FFF7FEFF 		bl	CyExitCriticalSection
+ 877:.\Generated_Source\PSoC5/master.c **** 
+ 878:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED)
+ 879:.\Generated_Source\PSoC5/master.c ****         /* Disable TX interrupt to protect global veriables */
+ 880:.\Generated_Source\PSoC5/master.c ****         master_DisableTxInt();
+ 881:.\Generated_Source\PSoC5/master.c **** 
+ 882:.\Generated_Source\PSoC5/master.c ****         master_txBufferFull  = 0u;
+ 883:.\Generated_Source\PSoC5/master.c ****         master_txBufferRead  = 0u;
+ 884:.\Generated_Source\PSoC5/master.c ****         master_txBufferWrite = 0u;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 31
+
+
+ 885:.\Generated_Source\PSoC5/master.c **** 
+ 886:.\Generated_Source\PSoC5/master.c ****         /* Buffer is EMPTY: disable TX FIFO NOT FULL interrupt */
+ 887:.\Generated_Source\PSoC5/master.c ****         master_TX_STATUS_MASK_REG &= ((uint8) ~master_STS_TX_FIFO_NOT_FULL);
+ 888:.\Generated_Source\PSoC5/master.c **** 
+ 889:.\Generated_Source\PSoC5/master.c ****         master_EnableTxInt();
+ 890:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED) */
+ 891:.\Generated_Source\PSoC5/master.c **** }
+ 826              		.loc 1 891 0
+ 827 0086 07F10807 		add	r7, r7, #8
+ 828 008a BD46     		mov	sp, r7
+ 829 008c 80BD     		pop	{r7, pc}
+ 830              		.cfi_endproc
+ 831              	.LFE17:
+ 832              		.size	master_ClearTxBuffer, .-master_ClearTxBuffer
+ 833 008e 00BF     		.section	.text.master_PutArray,"ax",%progbits
+ 834              		.align	2
+ 835              		.global	master_PutArray
+ 836              		.thumb
+ 837              		.thumb_func
+ 838              		.type	master_PutArray, %function
+ 839              	master_PutArray:
+ 840              	.LFB18:
+ 892:.\Generated_Source\PSoC5/master.c **** 
+ 893:.\Generated_Source\PSoC5/master.c **** 
+ 894:.\Generated_Source\PSoC5/master.c **** #if(0u != master_BIDIRECTIONAL_MODE)
+ 895:.\Generated_Source\PSoC5/master.c ****     /*******************************************************************************
+ 896:.\Generated_Source\PSoC5/master.c ****     * Function Name: master_TxEnable
+ 897:.\Generated_Source\PSoC5/master.c ****     ********************************************************************************
+ 898:.\Generated_Source\PSoC5/master.c ****     *
+ 899:.\Generated_Source\PSoC5/master.c ****     * Summary:
+ 900:.\Generated_Source\PSoC5/master.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 901:.\Generated_Source\PSoC5/master.c ****     *  will set the bi-directional pin to transmit.
+ 902:.\Generated_Source\PSoC5/master.c ****     *
+ 903:.\Generated_Source\PSoC5/master.c ****     * Parameters:
+ 904:.\Generated_Source\PSoC5/master.c ****     *  None.
+ 905:.\Generated_Source\PSoC5/master.c ****     *
+ 906:.\Generated_Source\PSoC5/master.c ****     * Return:
+ 907:.\Generated_Source\PSoC5/master.c ****     *  None.
+ 908:.\Generated_Source\PSoC5/master.c ****     *
+ 909:.\Generated_Source\PSoC5/master.c ****     *******************************************************************************/
+ 910:.\Generated_Source\PSoC5/master.c ****     void master_TxEnable(void) 
+ 911:.\Generated_Source\PSoC5/master.c ****     {
+ 912:.\Generated_Source\PSoC5/master.c ****         master_CONTROL_REG |= master_CTRL_TX_SIGNAL_EN;
+ 913:.\Generated_Source\PSoC5/master.c ****     }
+ 914:.\Generated_Source\PSoC5/master.c **** 
+ 915:.\Generated_Source\PSoC5/master.c **** 
+ 916:.\Generated_Source\PSoC5/master.c ****     /*******************************************************************************
+ 917:.\Generated_Source\PSoC5/master.c ****     * Function Name: master_TxDisable
+ 918:.\Generated_Source\PSoC5/master.c ****     ********************************************************************************
+ 919:.\Generated_Source\PSoC5/master.c ****     *
+ 920:.\Generated_Source\PSoC5/master.c ****     * Summary:
+ 921:.\Generated_Source\PSoC5/master.c ****     *  If the SPI master is configured to use a single bi-directional pin then this
+ 922:.\Generated_Source\PSoC5/master.c ****     *  will set the bi-directional pin to receive.
+ 923:.\Generated_Source\PSoC5/master.c ****     *
+ 924:.\Generated_Source\PSoC5/master.c ****     * Parameters:
+ 925:.\Generated_Source\PSoC5/master.c ****     *  None.
+ 926:.\Generated_Source\PSoC5/master.c ****     *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 32
+
+
+ 927:.\Generated_Source\PSoC5/master.c ****     * Return:
+ 928:.\Generated_Source\PSoC5/master.c ****     *  None.
+ 929:.\Generated_Source\PSoC5/master.c ****     *
+ 930:.\Generated_Source\PSoC5/master.c ****     *******************************************************************************/
+ 931:.\Generated_Source\PSoC5/master.c ****     void master_TxDisable(void) 
+ 932:.\Generated_Source\PSoC5/master.c ****     {
+ 933:.\Generated_Source\PSoC5/master.c ****         master_CONTROL_REG &= ((uint8) ~master_CTRL_TX_SIGNAL_EN);
+ 934:.\Generated_Source\PSoC5/master.c ****     }
+ 935:.\Generated_Source\PSoC5/master.c **** 
+ 936:.\Generated_Source\PSoC5/master.c **** #endif /* (0u != master_BIDIRECTIONAL_MODE) */
+ 937:.\Generated_Source\PSoC5/master.c **** 
+ 938:.\Generated_Source\PSoC5/master.c **** 
+ 939:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ 940:.\Generated_Source\PSoC5/master.c **** * Function Name: master_PutArray
+ 941:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 942:.\Generated_Source\PSoC5/master.c **** *
+ 943:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 944:.\Generated_Source\PSoC5/master.c **** *  Write available data from ROM/RAM to the TX buffer while space is available
+ 945:.\Generated_Source\PSoC5/master.c **** *  in the TX buffer. Keep trying until all data is passed to the TX buffer.
+ 946:.\Generated_Source\PSoC5/master.c **** *
+ 947:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 948:.\Generated_Source\PSoC5/master.c **** *  *buffer: Pointer to the location in RAM containing the data to send
+ 949:.\Generated_Source\PSoC5/master.c **** *  byteCount: The number of bytes to move to the transmit buffer.
+ 950:.\Generated_Source\PSoC5/master.c **** *
+ 951:.\Generated_Source\PSoC5/master.c **** * Return:
+ 952:.\Generated_Source\PSoC5/master.c **** *  None.
+ 953:.\Generated_Source\PSoC5/master.c **** *
+ 954:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 955:.\Generated_Source\PSoC5/master.c **** *  Will stay in this routine until all data has been sent.  May get locked in
+ 956:.\Generated_Source\PSoC5/master.c **** *  this loop if data is not being initiated by the master if there is not
+ 957:.\Generated_Source\PSoC5/master.c **** *  enough room in the TX FIFO.
+ 958:.\Generated_Source\PSoC5/master.c **** *
+ 959:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+ 960:.\Generated_Source\PSoC5/master.c **** *  No.
+ 961:.\Generated_Source\PSoC5/master.c **** *
+ 962:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 963:.\Generated_Source\PSoC5/master.c **** void master_PutArray(const uint16 buffer[], uint8 byteCount)
+ 964:.\Generated_Source\PSoC5/master.c ****                                                                           
+ 965:.\Generated_Source\PSoC5/master.c **** {
+ 841              		.loc 1 965 0
+ 842              		.cfi_startproc
+ 843              		@ args = 0, pretend = 0, frame = 16
+ 844              		@ frame_needed = 1, uses_anonymous_args = 0
+ 845 0000 80B5     		push	{r7, lr}
+ 846              	.LCFI47:
+ 847              		.cfi_def_cfa_offset 8
+ 848              		.cfi_offset 7, -8
+ 849              		.cfi_offset 14, -4
+ 850 0002 84B0     		sub	sp, sp, #16
+ 851              	.LCFI48:
+ 852              		.cfi_def_cfa_offset 24
+ 853 0004 00AF     		add	r7, sp, #0
+ 854              	.LCFI49:
+ 855              		.cfi_def_cfa_register 7
+ 856 0006 7860     		str	r0, [r7, #4]
+ 857 0008 0B46     		mov	r3, r1
+ 858 000a FB70     		strb	r3, [r7, #3]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 33
+
+
+ 966:.\Generated_Source\PSoC5/master.c ****     uint8 bufIndex;
+ 967:.\Generated_Source\PSoC5/master.c **** 
+ 968:.\Generated_Source\PSoC5/master.c ****     bufIndex = 0u;
+ 859              		.loc 1 968 0
+ 860 000c 4FF00003 		mov	r3, #0
+ 861 0010 FB73     		strb	r3, [r7, #15]
+ 969:.\Generated_Source\PSoC5/master.c **** 
+ 970:.\Generated_Source\PSoC5/master.c ****     while(byteCount > 0u)
+ 862              		.loc 1 970 0
+ 863 0012 10E0     		b	.L34
+ 864              	.L35:
+ 971:.\Generated_Source\PSoC5/master.c ****     {
+ 972:.\Generated_Source\PSoC5/master.c ****         master_WriteTxData(buffer[bufIndex]);
+ 865              		.loc 1 972 0
+ 866 0014 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 867 0016 4FEA4303 		lsl	r3, r3, #1
+ 868 001a 7A68     		ldr	r2, [r7, #4]
+ 869 001c D318     		adds	r3, r2, r3
+ 870 001e 1B88     		ldrh	r3, [r3, #0]
+ 871 0020 1846     		mov	r0, r3
+ 872 0022 FFF7FEFF 		bl	master_WriteTxData
+ 973:.\Generated_Source\PSoC5/master.c ****         bufIndex++;
+ 873              		.loc 1 973 0
+ 874 0026 FB7B     		ldrb	r3, [r7, #15]
+ 875 0028 03F10103 		add	r3, r3, #1
+ 876 002c FB73     		strb	r3, [r7, #15]
+ 974:.\Generated_Source\PSoC5/master.c ****         byteCount--;
+ 877              		.loc 1 974 0
+ 878 002e FB78     		ldrb	r3, [r7, #3]
+ 879 0030 03F1FF33 		add	r3, r3, #-1
+ 880 0034 FB70     		strb	r3, [r7, #3]
+ 881              	.L34:
+ 970:.\Generated_Source\PSoC5/master.c ****     while(byteCount > 0u)
+ 882              		.loc 1 970 0 discriminator 1
+ 883 0036 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 884 0038 002B     		cmp	r3, #0
+ 885 003a EBD1     		bne	.L35
+ 975:.\Generated_Source\PSoC5/master.c ****     }
+ 976:.\Generated_Source\PSoC5/master.c **** }
+ 886              		.loc 1 976 0
+ 887 003c 07F11007 		add	r7, r7, #16
+ 888 0040 BD46     		mov	sp, r7
+ 889 0042 80BD     		pop	{r7, pc}
+ 890              		.cfi_endproc
+ 891              	.LFE18:
+ 892              		.size	master_PutArray, .-master_PutArray
+ 893              		.section	.text.master_ClearFIFO,"ax",%progbits
+ 894              		.align	2
+ 895              		.global	master_ClearFIFO
+ 896              		.thumb
+ 897              		.thumb_func
+ 898              		.type	master_ClearFIFO, %function
+ 899              	master_ClearFIFO:
+ 900              	.LFB19:
+ 977:.\Generated_Source\PSoC5/master.c **** 
+ 978:.\Generated_Source\PSoC5/master.c **** 
+ 979:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 34
+
+
+ 980:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ClearFIFO
+ 981:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+ 982:.\Generated_Source\PSoC5/master.c **** *
+ 983:.\Generated_Source\PSoC5/master.c **** * Summary:
+ 984:.\Generated_Source\PSoC5/master.c **** *  Clear the RX and TX FIFO's of all data for a fresh start.
+ 985:.\Generated_Source\PSoC5/master.c **** *
+ 986:.\Generated_Source\PSoC5/master.c **** * Parameters:
+ 987:.\Generated_Source\PSoC5/master.c **** *  None.
+ 988:.\Generated_Source\PSoC5/master.c **** *
+ 989:.\Generated_Source\PSoC5/master.c **** * Return:
+ 990:.\Generated_Source\PSoC5/master.c **** *  None.
+ 991:.\Generated_Source\PSoC5/master.c **** *
+ 992:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+ 993:.\Generated_Source\PSoC5/master.c **** *  Clear status register of the component.
+ 994:.\Generated_Source\PSoC5/master.c **** *
+ 995:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+ 996:.\Generated_Source\PSoC5/master.c **** void master_ClearFIFO(void) 
+ 997:.\Generated_Source\PSoC5/master.c **** {
+ 901              		.loc 1 997 0
+ 902              		.cfi_startproc
+ 903              		@ args = 0, pretend = 0, frame = 8
+ 904              		@ frame_needed = 1, uses_anonymous_args = 0
+ 905 0000 80B5     		push	{r7, lr}
+ 906              	.LCFI50:
+ 907              		.cfi_def_cfa_offset 8
+ 908              		.cfi_offset 7, -8
+ 909              		.cfi_offset 14, -4
+ 910 0002 82B0     		sub	sp, sp, #8
+ 911              	.LCFI51:
+ 912              		.cfi_def_cfa_offset 16
+ 913 0004 00AF     		add	r7, sp, #0
+ 914              	.LCFI52:
+ 915              		.cfi_def_cfa_register 7
+ 998:.\Generated_Source\PSoC5/master.c ****     uint8 enableInterrupts;
+ 999:.\Generated_Source\PSoC5/master.c **** 
+1000:.\Generated_Source\PSoC5/master.c ****     /* Clear Hardware RX FIFO */
+1001:.\Generated_Source\PSoC5/master.c ****     while(0u !=(master_RX_STATUS_REG & master_STS_RX_FIFO_NOT_EMPTY))
+ 916              		.loc 1 1001 0
+ 917 0006 04E0     		b	.L37
+ 918              	.L38:
+1002:.\Generated_Source\PSoC5/master.c ****     {
+1003:.\Generated_Source\PSoC5/master.c ****         (void) CY_GET_REG16(master_RXDATA_PTR);
+ 919              		.loc 1 1003 0
+ 920 0008 46F25453 		movw	r3, #25940
+ 921 000c C4F20003 		movt	r3, 16384
+ 922 0010 1B88     		ldrh	r3, [r3, #0]	@ movhi
+ 923              	.L37:
+1001:.\Generated_Source\PSoC5/master.c ****     while(0u !=(master_RX_STATUS_REG & master_STS_RX_FIFO_NOT_EMPTY))
+ 924              		.loc 1 1001 0 discriminator 1
+ 925 0012 46F26453 		movw	r3, #25956
+ 926 0016 C4F20003 		movt	r3, 16384
+ 927 001a 1B78     		ldrb	r3, [r3, #0]
+ 928 001c DBB2     		uxtb	r3, r3
+ 929 001e 03F02003 		and	r3, r3, #32
+ 930 0022 002B     		cmp	r3, #0
+ 931 0024 F0D1     		bne	.L38
+1004:.\Generated_Source\PSoC5/master.c ****     }
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 35
+
+
+1005:.\Generated_Source\PSoC5/master.c **** 
+1006:.\Generated_Source\PSoC5/master.c ****     enableInterrupts = CyEnterCriticalSection();
+ 932              		.loc 1 1006 0
+ 933 0026 FFF7FEFF 		bl	CyEnterCriticalSection
+ 934 002a 0346     		mov	r3, r0
+ 935 002c FB71     		strb	r3, [r7, #7]
+1007:.\Generated_Source\PSoC5/master.c ****     /* Clear TX FIFO */
+1008:.\Generated_Source\PSoC5/master.c ****     master_AUX_CONTROL_DP0_REG |= ((uint8)  master_TX_FIFO_CLR);
+ 936              		.loc 1 1008 0
+ 937 002e 46F29453 		movw	r3, #26004
+ 938 0032 C4F20003 		movt	r3, 16384
+ 939 0036 46F29452 		movw	r2, #26004
+ 940 003a C4F20002 		movt	r2, 16384
+ 941 003e 1278     		ldrb	r2, [r2, #0]
+ 942 0040 D2B2     		uxtb	r2, r2
+ 943 0042 42F00102 		orr	r2, r2, #1
+ 944 0046 D2B2     		uxtb	r2, r2
+ 945 0048 1A70     		strb	r2, [r3, #0]
+1009:.\Generated_Source\PSoC5/master.c ****     master_AUX_CONTROL_DP0_REG &= ((uint8) ~master_TX_FIFO_CLR);
+ 946              		.loc 1 1009 0
+ 947 004a 46F29453 		movw	r3, #26004
+ 948 004e C4F20003 		movt	r3, 16384
+ 949 0052 46F29452 		movw	r2, #26004
+ 950 0056 C4F20002 		movt	r2, 16384
+ 951 005a 1278     		ldrb	r2, [r2, #0]
+ 952 005c D2B2     		uxtb	r2, r2
+ 953 005e 22F00102 		bic	r2, r2, #1
+ 954 0062 D2B2     		uxtb	r2, r2
+ 955 0064 1A70     		strb	r2, [r3, #0]
+1010:.\Generated_Source\PSoC5/master.c **** 
+1011:.\Generated_Source\PSoC5/master.c ****     #if(master_USE_SECOND_DATAPATH)
+1012:.\Generated_Source\PSoC5/master.c ****         /* Clear TX FIFO for 2nd Datapath */
+1013:.\Generated_Source\PSoC5/master.c ****         master_AUX_CONTROL_DP1_REG |= ((uint8)  master_TX_FIFO_CLR);
+ 956              		.loc 1 1013 0
+ 957 0066 46F29553 		movw	r3, #26005
+ 958 006a C4F20003 		movt	r3, 16384
+ 959 006e 46F29552 		movw	r2, #26005
+ 960 0072 C4F20002 		movt	r2, 16384
+ 961 0076 1278     		ldrb	r2, [r2, #0]
+ 962 0078 D2B2     		uxtb	r2, r2
+ 963 007a 42F00102 		orr	r2, r2, #1
+ 964 007e D2B2     		uxtb	r2, r2
+ 965 0080 1A70     		strb	r2, [r3, #0]
+1014:.\Generated_Source\PSoC5/master.c ****         master_AUX_CONTROL_DP1_REG &= ((uint8) ~master_TX_FIFO_CLR);
+ 966              		.loc 1 1014 0
+ 967 0082 46F29553 		movw	r3, #26005
+ 968 0086 C4F20003 		movt	r3, 16384
+ 969 008a 46F29552 		movw	r2, #26005
+ 970 008e C4F20002 		movt	r2, 16384
+ 971 0092 1278     		ldrb	r2, [r2, #0]
+ 972 0094 D2B2     		uxtb	r2, r2
+ 973 0096 22F00102 		bic	r2, r2, #1
+ 974 009a D2B2     		uxtb	r2, r2
+ 975 009c 1A70     		strb	r2, [r3, #0]
+1015:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_USE_SECOND_DATAPATH) */
+1016:.\Generated_Source\PSoC5/master.c ****     CyExitCriticalSection(enableInterrupts);
+ 976              		.loc 1 1016 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 36
+
+
+ 977 009e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 978 00a0 1846     		mov	r0, r3
+ 979 00a2 FFF7FEFF 		bl	CyExitCriticalSection
+1017:.\Generated_Source\PSoC5/master.c **** }
+ 980              		.loc 1 1017 0
+ 981 00a6 07F10807 		add	r7, r7, #8
+ 982 00aa BD46     		mov	sp, r7
+ 983 00ac 80BD     		pop	{r7, pc}
+ 984              		.cfi_endproc
+ 985              	.LFE19:
+ 986              		.size	master_ClearFIFO, .-master_ClearFIFO
+ 987 00ae 00BF     		.section	.text.master_EnableInt,"ax",%progbits
+ 988              		.align	2
+ 989              		.global	master_EnableInt
+ 990              		.thumb
+ 991              		.thumb_func
+ 992              		.type	master_EnableInt, %function
+ 993              	master_EnableInt:
+ 994              	.LFB20:
+1018:.\Generated_Source\PSoC5/master.c **** 
+1019:.\Generated_Source\PSoC5/master.c **** 
+1020:.\Generated_Source\PSoC5/master.c **** /* Following functions are for version Compatibility, they are obsolete.
+1021:.\Generated_Source\PSoC5/master.c **** *  Please do not use it in new projects.
+1022:.\Generated_Source\PSoC5/master.c **** */
+1023:.\Generated_Source\PSoC5/master.c **** 
+1024:.\Generated_Source\PSoC5/master.c **** 
+1025:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+1026:.\Generated_Source\PSoC5/master.c **** * Function Name: master_EnableInt
+1027:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+1028:.\Generated_Source\PSoC5/master.c **** *
+1029:.\Generated_Source\PSoC5/master.c **** * Summary:
+1030:.\Generated_Source\PSoC5/master.c **** *  Enable internal interrupt generation.
+1031:.\Generated_Source\PSoC5/master.c **** *
+1032:.\Generated_Source\PSoC5/master.c **** * Parameters:
+1033:.\Generated_Source\PSoC5/master.c **** *  None.
+1034:.\Generated_Source\PSoC5/master.c **** *
+1035:.\Generated_Source\PSoC5/master.c **** * Return:
+1036:.\Generated_Source\PSoC5/master.c **** *  None.
+1037:.\Generated_Source\PSoC5/master.c **** *
+1038:.\Generated_Source\PSoC5/master.c **** * Theory:
+1039:.\Generated_Source\PSoC5/master.c **** *  Enable the internal interrupt output -or- the interrupt component itself.
+1040:.\Generated_Source\PSoC5/master.c **** *
+1041:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+1042:.\Generated_Source\PSoC5/master.c **** void master_EnableInt(void) 
+1043:.\Generated_Source\PSoC5/master.c **** {
+ 995              		.loc 1 1043 0
+ 996              		.cfi_startproc
+ 997              		@ args = 0, pretend = 0, frame = 0
+ 998              		@ frame_needed = 1, uses_anonymous_args = 0
+ 999 0000 80B5     		push	{r7, lr}
+ 1000              	.LCFI53:
+ 1001              		.cfi_def_cfa_offset 8
+ 1002              		.cfi_offset 7, -8
+ 1003              		.cfi_offset 14, -4
+ 1004 0002 00AF     		add	r7, sp, #0
+ 1005              	.LCFI54:
+ 1006              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 37
+
+
+1044:.\Generated_Source\PSoC5/master.c ****     master_EnableRxInt();
+ 1007              		.loc 1 1044 0
+ 1008 0004 FFF7FEFF 		bl	master_EnableRxInt
+1045:.\Generated_Source\PSoC5/master.c ****     master_EnableTxInt();
+ 1009              		.loc 1 1045 0
+ 1010 0008 FFF7FEFF 		bl	master_EnableTxInt
+1046:.\Generated_Source\PSoC5/master.c **** }
+ 1011              		.loc 1 1046 0
+ 1012 000c 80BD     		pop	{r7, pc}
+ 1013              		.cfi_endproc
+ 1014              	.LFE20:
+ 1015              		.size	master_EnableInt, .-master_EnableInt
+ 1016 000e 00BF     		.section	.text.master_DisableInt,"ax",%progbits
+ 1017              		.align	2
+ 1018              		.global	master_DisableInt
+ 1019              		.thumb
+ 1020              		.thumb_func
+ 1021              		.type	master_DisableInt, %function
+ 1022              	master_DisableInt:
+ 1023              	.LFB21:
+1047:.\Generated_Source\PSoC5/master.c **** 
+1048:.\Generated_Source\PSoC5/master.c **** 
+1049:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+1050:.\Generated_Source\PSoC5/master.c **** * Function Name: master_DisableInt
+1051:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+1052:.\Generated_Source\PSoC5/master.c **** *
+1053:.\Generated_Source\PSoC5/master.c **** * Summary:
+1054:.\Generated_Source\PSoC5/master.c **** *  Disable internal interrupt generation.
+1055:.\Generated_Source\PSoC5/master.c **** *
+1056:.\Generated_Source\PSoC5/master.c **** * Parameters:
+1057:.\Generated_Source\PSoC5/master.c **** *  None.
+1058:.\Generated_Source\PSoC5/master.c **** *
+1059:.\Generated_Source\PSoC5/master.c **** * Return:
+1060:.\Generated_Source\PSoC5/master.c **** *  None.
+1061:.\Generated_Source\PSoC5/master.c **** *
+1062:.\Generated_Source\PSoC5/master.c **** * Theory:
+1063:.\Generated_Source\PSoC5/master.c **** *  Disable the internal interrupt output -or- the interrupt component itself.
+1064:.\Generated_Source\PSoC5/master.c **** *
+1065:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+1066:.\Generated_Source\PSoC5/master.c **** void master_DisableInt(void) 
+1067:.\Generated_Source\PSoC5/master.c **** {
+ 1024              		.loc 1 1067 0
+ 1025              		.cfi_startproc
+ 1026              		@ args = 0, pretend = 0, frame = 0
+ 1027              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1028 0000 80B5     		push	{r7, lr}
+ 1029              	.LCFI55:
+ 1030              		.cfi_def_cfa_offset 8
+ 1031              		.cfi_offset 7, -8
+ 1032              		.cfi_offset 14, -4
+ 1033 0002 00AF     		add	r7, sp, #0
+ 1034              	.LCFI56:
+ 1035              		.cfi_def_cfa_register 7
+1068:.\Generated_Source\PSoC5/master.c ****     master_DisableTxInt();
+ 1036              		.loc 1 1068 0
+ 1037 0004 FFF7FEFF 		bl	master_DisableTxInt
+1069:.\Generated_Source\PSoC5/master.c ****     master_DisableRxInt();
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 38
+
+
+ 1038              		.loc 1 1069 0
+ 1039 0008 FFF7FEFF 		bl	master_DisableRxInt
+1070:.\Generated_Source\PSoC5/master.c **** }
+ 1040              		.loc 1 1070 0
+ 1041 000c 80BD     		pop	{r7, pc}
+ 1042              		.cfi_endproc
+ 1043              	.LFE21:
+ 1044              		.size	master_DisableInt, .-master_DisableInt
+ 1045 000e 00BF     		.section	.text.master_SetInterruptMode,"ax",%progbits
+ 1046              		.align	2
+ 1047              		.global	master_SetInterruptMode
+ 1048              		.thumb
+ 1049              		.thumb_func
+ 1050              		.type	master_SetInterruptMode, %function
+ 1051              	master_SetInterruptMode:
+ 1052              	.LFB22:
+1071:.\Generated_Source\PSoC5/master.c **** 
+1072:.\Generated_Source\PSoC5/master.c **** 
+1073:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+1074:.\Generated_Source\PSoC5/master.c **** * Function Name: master_SetInterruptMode
+1075:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+1076:.\Generated_Source\PSoC5/master.c **** *
+1077:.\Generated_Source\PSoC5/master.c **** * Summary:
+1078:.\Generated_Source\PSoC5/master.c **** *  Configure which status bits trigger an interrupt event.
+1079:.\Generated_Source\PSoC5/master.c **** *
+1080:.\Generated_Source\PSoC5/master.c **** * Parameters:
+1081:.\Generated_Source\PSoC5/master.c **** *  intSrc: An or'd combination of the desired status bit masks (defined in the
+1082:.\Generated_Source\PSoC5/master.c **** *  header file).
+1083:.\Generated_Source\PSoC5/master.c **** *
+1084:.\Generated_Source\PSoC5/master.c **** * Return:
+1085:.\Generated_Source\PSoC5/master.c **** *  None.
+1086:.\Generated_Source\PSoC5/master.c **** *
+1087:.\Generated_Source\PSoC5/master.c **** * Theory:
+1088:.\Generated_Source\PSoC5/master.c **** *  Enables the output of specific status bits to the interrupt controller.
+1089:.\Generated_Source\PSoC5/master.c **** *
+1090:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+1091:.\Generated_Source\PSoC5/master.c **** void master_SetInterruptMode(uint8 intSrc) 
+1092:.\Generated_Source\PSoC5/master.c **** {
+ 1053              		.loc 1 1092 0
+ 1054              		.cfi_startproc
+ 1055              		@ args = 0, pretend = 0, frame = 8
+ 1056              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1057              		@ link register save eliminated.
+ 1058 0000 80B4     		push	{r7}
+ 1059              	.LCFI57:
+ 1060              		.cfi_def_cfa_offset 4
+ 1061              		.cfi_offset 7, -4
+ 1062 0002 83B0     		sub	sp, sp, #12
+ 1063              	.LCFI58:
+ 1064              		.cfi_def_cfa_offset 16
+ 1065 0004 00AF     		add	r7, sp, #0
+ 1066              	.LCFI59:
+ 1067              		.cfi_def_cfa_register 7
+ 1068 0006 0346     		mov	r3, r0
+ 1069 0008 FB71     		strb	r3, [r7, #7]
+1093:.\Generated_Source\PSoC5/master.c ****     master_TX_STATUS_MASK_REG  = (intSrc & ((uint8) ~master_STS_SPI_IDLE));
+ 1070              		.loc 1 1093 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 39
+
+
+ 1071 000a 46F28553 		movw	r3, #25989
+ 1072 000e C4F20003 		movt	r3, 16384
+ 1073 0012 FA79     		ldrb	r2, [r7, #7]
+ 1074 0014 22F01002 		bic	r2, r2, #16
+ 1075 0018 D2B2     		uxtb	r2, r2
+ 1076 001a 1A70     		strb	r2, [r3, #0]
+1094:.\Generated_Source\PSoC5/master.c ****     master_RX_STATUS_MASK_REG  =  intSrc;
+ 1077              		.loc 1 1094 0
+ 1078 001c 46F28453 		movw	r3, #25988
+ 1079 0020 C4F20003 		movt	r3, 16384
+ 1080 0024 FA79     		ldrb	r2, [r7, #7]
+ 1081 0026 1A70     		strb	r2, [r3, #0]
+1095:.\Generated_Source\PSoC5/master.c **** }
+ 1082              		.loc 1 1095 0
+ 1083 0028 07F10C07 		add	r7, r7, #12
+ 1084 002c BD46     		mov	sp, r7
+ 1085 002e 80BC     		pop	{r7}
+ 1086 0030 7047     		bx	lr
+ 1087              		.cfi_endproc
+ 1088              	.LFE22:
+ 1089              		.size	master_SetInterruptMode, .-master_SetInterruptMode
+ 1090 0032 00BF     		.section	.text.master_ReadStatus,"ax",%progbits
+ 1091              		.align	2
+ 1092              		.global	master_ReadStatus
+ 1093              		.thumb
+ 1094              		.thumb_func
+ 1095              		.type	master_ReadStatus, %function
+ 1096              	master_ReadStatus:
+ 1097              	.LFB23:
+1096:.\Generated_Source\PSoC5/master.c **** 
+1097:.\Generated_Source\PSoC5/master.c **** 
+1098:.\Generated_Source\PSoC5/master.c **** /*******************************************************************************
+1099:.\Generated_Source\PSoC5/master.c **** * Function Name: master_ReadStatus
+1100:.\Generated_Source\PSoC5/master.c **** ********************************************************************************
+1101:.\Generated_Source\PSoC5/master.c **** *
+1102:.\Generated_Source\PSoC5/master.c **** * Summary:
+1103:.\Generated_Source\PSoC5/master.c **** *  Read the status register for the component.
+1104:.\Generated_Source\PSoC5/master.c **** *
+1105:.\Generated_Source\PSoC5/master.c **** * Parameters:
+1106:.\Generated_Source\PSoC5/master.c **** *  None.
+1107:.\Generated_Source\PSoC5/master.c **** *
+1108:.\Generated_Source\PSoC5/master.c **** * Return:
+1109:.\Generated_Source\PSoC5/master.c **** *  Contents of the status register.
+1110:.\Generated_Source\PSoC5/master.c **** *
+1111:.\Generated_Source\PSoC5/master.c **** * Global variables:
+1112:.\Generated_Source\PSoC5/master.c **** *  master_swStatus - used to store in software status register,
+1113:.\Generated_Source\PSoC5/master.c **** *  modified every function call - resets to zero.
+1114:.\Generated_Source\PSoC5/master.c **** *
+1115:.\Generated_Source\PSoC5/master.c **** * Theory:
+1116:.\Generated_Source\PSoC5/master.c **** *  Allows the user and the API to read the status register for error detection
+1117:.\Generated_Source\PSoC5/master.c **** *  and flow control.
+1118:.\Generated_Source\PSoC5/master.c **** *
+1119:.\Generated_Source\PSoC5/master.c **** * Side Effects:
+1120:.\Generated_Source\PSoC5/master.c **** *  Clear status register of the component.
+1121:.\Generated_Source\PSoC5/master.c **** *
+1122:.\Generated_Source\PSoC5/master.c **** * Reentrant:
+1123:.\Generated_Source\PSoC5/master.c **** *  No.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 40
+
+
+1124:.\Generated_Source\PSoC5/master.c **** *
+1125:.\Generated_Source\PSoC5/master.c **** *******************************************************************************/
+1126:.\Generated_Source\PSoC5/master.c **** uint8 master_ReadStatus(void) 
+1127:.\Generated_Source\PSoC5/master.c **** {
+ 1098              		.loc 1 1127 0
+ 1099              		.cfi_startproc
+ 1100              		@ args = 0, pretend = 0, frame = 8
+ 1101              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1102              		@ link register save eliminated.
+ 1103 0000 80B4     		push	{r7}
+ 1104              	.LCFI60:
+ 1105              		.cfi_def_cfa_offset 4
+ 1106              		.cfi_offset 7, -4
+ 1107 0002 83B0     		sub	sp, sp, #12
+ 1108              	.LCFI61:
+ 1109              		.cfi_def_cfa_offset 16
+ 1110 0004 00AF     		add	r7, sp, #0
+ 1111              	.LCFI62:
+ 1112              		.cfi_def_cfa_register 7
+1128:.\Generated_Source\PSoC5/master.c ****     uint8 tmpStatus;
+1129:.\Generated_Source\PSoC5/master.c **** 
+1130:.\Generated_Source\PSoC5/master.c ****     #if(master_TX_SOFTWARE_BUF_ENABLED || master_RX_SOFTWARE_BUF_ENABLED)
+1131:.\Generated_Source\PSoC5/master.c **** 
+1132:.\Generated_Source\PSoC5/master.c ****         master_DisableInt();
+1133:.\Generated_Source\PSoC5/master.c **** 
+1134:.\Generated_Source\PSoC5/master.c ****         tmpStatus  = master_GET_STATUS_RX(master_swStatusRx);
+1135:.\Generated_Source\PSoC5/master.c ****         tmpStatus |= master_GET_STATUS_TX(master_swStatusTx);
+1136:.\Generated_Source\PSoC5/master.c ****         tmpStatus &= ((uint8) ~master_STS_SPI_IDLE);
+1137:.\Generated_Source\PSoC5/master.c **** 
+1138:.\Generated_Source\PSoC5/master.c ****         master_swStatusTx = 0u;
+1139:.\Generated_Source\PSoC5/master.c ****         master_swStatusRx = 0u;
+1140:.\Generated_Source\PSoC5/master.c **** 
+1141:.\Generated_Source\PSoC5/master.c ****         master_EnableInt();
+1142:.\Generated_Source\PSoC5/master.c **** 
+1143:.\Generated_Source\PSoC5/master.c ****     #else
+1144:.\Generated_Source\PSoC5/master.c **** 
+1145:.\Generated_Source\PSoC5/master.c ****         tmpStatus  = master_RX_STATUS_REG;
+ 1113              		.loc 1 1145 0
+ 1114 0006 46F26453 		movw	r3, #25956
+ 1115 000a C4F20003 		movt	r3, 16384
+ 1116 000e 1B78     		ldrb	r3, [r3, #0]
+ 1117 0010 FB71     		strb	r3, [r7, #7]
+1146:.\Generated_Source\PSoC5/master.c ****         tmpStatus |= master_TX_STATUS_REG;
+ 1118              		.loc 1 1146 0
+ 1119 0012 46F26553 		movw	r3, #25957
+ 1120 0016 C4F20003 		movt	r3, 16384
+ 1121 001a 1B78     		ldrb	r3, [r3, #0]
+ 1122 001c DAB2     		uxtb	r2, r3
+ 1123 001e FB79     		ldrb	r3, [r7, #7]
+ 1124 0020 1343     		orrs	r3, r3, r2
+ 1125 0022 FB71     		strb	r3, [r7, #7]
+1147:.\Generated_Source\PSoC5/master.c ****         tmpStatus &= ((uint8) ~master_STS_SPI_IDLE);
+ 1126              		.loc 1 1147 0
+ 1127 0024 FB79     		ldrb	r3, [r7, #7]
+ 1128 0026 23F01003 		bic	r3, r3, #16
+ 1129 002a FB71     		strb	r3, [r7, #7]
+1148:.\Generated_Source\PSoC5/master.c **** 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 41
+
+
+1149:.\Generated_Source\PSoC5/master.c ****     #endif /* (master_TX_SOFTWARE_BUF_ENABLED || master_RX_SOFTWARE_BUF_ENABLED) */
+1150:.\Generated_Source\PSoC5/master.c **** 
+1151:.\Generated_Source\PSoC5/master.c ****     return(tmpStatus);
+ 1130              		.loc 1 1151 0
+ 1131 002c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+1152:.\Generated_Source\PSoC5/master.c **** }
+ 1132              		.loc 1 1152 0
+ 1133 002e 1846     		mov	r0, r3
+ 1134 0030 07F10C07 		add	r7, r7, #12
+ 1135 0034 BD46     		mov	sp, r7
+ 1136 0036 80BC     		pop	{r7}
+ 1137 0038 7047     		bx	lr
+ 1138              		.cfi_endproc
+ 1139              	.LFE23:
+ 1140              		.size	master_ReadStatus, .-master_ReadStatus
+ 1141 003a 00BF     		.text
+ 1142              	.Letext0:
+ 1143              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 1144              		.section	.debug_info,"",%progbits
+ 1145              	.Ldebug_info0:
+ 1146 0000 81040000 		.4byte	0x481
+ 1147 0004 0200     		.2byte	0x2
+ 1148 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1149 000a 04       		.byte	0x4
+ 1150 000b 01       		.uleb128 0x1
+ 1151 000c BE020000 		.4byte	.LASF53
+ 1152 0010 01       		.byte	0x1
+ 1153 0011 49030000 		.4byte	.LASF54
+ 1154 0015 0F010000 		.4byte	.LASF55
+ 1155 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1156 001d 00000000 		.4byte	0
+ 1157 0021 00000000 		.4byte	0
+ 1158 0025 00000000 		.4byte	.Ldebug_line0
+ 1159 0029 02       		.uleb128 0x2
+ 1160 002a 01       		.byte	0x1
+ 1161 002b 06       		.byte	0x6
+ 1162 002c 6B030000 		.4byte	.LASF0
+ 1163 0030 02       		.uleb128 0x2
+ 1164 0031 01       		.byte	0x1
+ 1165 0032 08       		.byte	0x8
+ 1166 0033 A4010000 		.4byte	.LASF1
+ 1167 0037 02       		.uleb128 0x2
+ 1168 0038 02       		.byte	0x2
+ 1169 0039 05       		.byte	0x5
+ 1170 003a 98020000 		.4byte	.LASF2
+ 1171 003e 02       		.uleb128 0x2
+ 1172 003f 02       		.byte	0x2
+ 1173 0040 07       		.byte	0x7
+ 1174 0041 94000000 		.4byte	.LASF3
+ 1175 0045 02       		.uleb128 0x2
+ 1176 0046 04       		.byte	0x4
+ 1177 0047 05       		.byte	0x5
+ 1178 0048 8B000000 		.4byte	.LASF4
+ 1179 004c 02       		.uleb128 0x2
+ 1180 004d 04       		.byte	0x4
+ 1181 004e 07       		.byte	0x7
+ 1182 004f 5A010000 		.4byte	.LASF5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 42
+
+
+ 1183 0053 02       		.uleb128 0x2
+ 1184 0054 08       		.byte	0x8
+ 1185 0055 05       		.byte	0x5
+ 1186 0056 63020000 		.4byte	.LASF6
+ 1187 005a 02       		.uleb128 0x2
+ 1188 005b 08       		.byte	0x8
+ 1189 005c 07       		.byte	0x7
+ 1190 005d 15020000 		.4byte	.LASF7
+ 1191 0061 03       		.uleb128 0x3
+ 1192 0062 04       		.byte	0x4
+ 1193 0063 05       		.byte	0x5
+ 1194 0064 696E7400 		.ascii	"int\000"
+ 1195 0068 02       		.uleb128 0x2
+ 1196 0069 04       		.byte	0x4
+ 1197 006a 07       		.byte	0x7
+ 1198 006b 08020000 		.4byte	.LASF8
+ 1199 006f 04       		.uleb128 0x4
+ 1200 0070 6C010000 		.4byte	.LASF9
+ 1201 0074 02       		.byte	0x2
+ 1202 0075 5B       		.byte	0x5b
+ 1203 0076 30000000 		.4byte	0x30
+ 1204 007a 04       		.uleb128 0x4
+ 1205 007b CD010000 		.4byte	.LASF10
+ 1206 007f 02       		.byte	0x2
+ 1207 0080 5C       		.byte	0x5c
+ 1208 0081 3E000000 		.4byte	0x3e
+ 1209 0085 02       		.uleb128 0x2
+ 1210 0086 04       		.byte	0x4
+ 1211 0087 04       		.byte	0x4
+ 1212 0088 5E000000 		.4byte	.LASF11
+ 1213 008c 02       		.uleb128 0x2
+ 1214 008d 08       		.byte	0x8
+ 1215 008e 04       		.byte	0x4
+ 1216 008f A7000000 		.4byte	.LASF12
+ 1217 0093 02       		.uleb128 0x2
+ 1218 0094 01       		.byte	0x1
+ 1219 0095 08       		.byte	0x8
+ 1220 0096 71020000 		.4byte	.LASF13
+ 1221 009a 04       		.uleb128 0x4
+ 1222 009b 0A010000 		.4byte	.LASF14
+ 1223 009f 02       		.byte	0x2
+ 1224 00a0 F0       		.byte	0xf0
+ 1225 00a1 A5000000 		.4byte	0xa5
+ 1226 00a5 05       		.uleb128 0x5
+ 1227 00a6 6F000000 		.4byte	0x6f
+ 1228 00aa 04       		.uleb128 0x4
+ 1229 00ab 00000000 		.4byte	.LASF15
+ 1230 00af 02       		.byte	0x2
+ 1231 00b0 F1       		.byte	0xf1
+ 1232 00b1 B5000000 		.4byte	0xb5
+ 1233 00b5 05       		.uleb128 0x5
+ 1234 00b6 7A000000 		.4byte	0x7a
+ 1235 00ba 02       		.uleb128 0x2
+ 1236 00bb 04       		.byte	0x4
+ 1237 00bc 07       		.byte	0x7
+ 1238 00bd 5A020000 		.4byte	.LASF16
+ 1239 00c1 06       		.uleb128 0x6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 43
+
+
+ 1240 00c2 01       		.byte	0x1
+ 1241 00c3 85030000 		.4byte	.LASF17
+ 1242 00c7 01       		.byte	0x1
+ 1243 00c8 3F       		.byte	0x3f
+ 1244 00c9 01       		.byte	0x1
+ 1245 00ca 00000000 		.4byte	.LFB0
+ 1246 00ce 3C000000 		.4byte	.LFE0
+ 1247 00d2 00000000 		.4byte	.LLST0
+ 1248 00d6 01       		.byte	0x1
+ 1249 00d7 07       		.uleb128 0x7
+ 1250 00d8 01       		.byte	0x1
+ 1251 00d9 77030000 		.4byte	.LASF19
+ 1252 00dd 01       		.byte	0x1
+ 1253 00de 78       		.byte	0x78
+ 1254 00df 01       		.byte	0x1
+ 1255 00e0 00000000 		.4byte	.LFB1
+ 1256 00e4 7A000000 		.4byte	.LFE1
+ 1257 00e8 2C000000 		.4byte	.LLST1
+ 1258 00ec 01       		.byte	0x1
+ 1259 00ed 00010000 		.4byte	0x100
+ 1260 00f1 08       		.uleb128 0x8
+ 1261 00f2 93010000 		.4byte	.LASF21
+ 1262 00f6 01       		.byte	0x1
+ 1263 00f7 7A       		.byte	0x7a
+ 1264 00f8 6F000000 		.4byte	0x6f
+ 1265 00fc 02       		.byte	0x2
+ 1266 00fd 91       		.byte	0x91
+ 1267 00fe 77       		.sleb128 -9
+ 1268 00ff 00       		.byte	0
+ 1269 0100 06       		.uleb128 0x6
+ 1270 0101 01       		.byte	0x1
+ 1271 0102 77000000 		.4byte	.LASF18
+ 1272 0106 01       		.byte	0x1
+ 1273 0107 A3       		.byte	0xa3
+ 1274 0108 01       		.byte	0x1
+ 1275 0109 00000000 		.4byte	.LFB2
+ 1276 010d 2A000000 		.4byte	.LFE2
+ 1277 0111 64000000 		.4byte	.LLST2
+ 1278 0115 01       		.byte	0x1
+ 1279 0116 07       		.uleb128 0x7
+ 1280 0117 01       		.byte	0x1
+ 1281 0118 CC000000 		.4byte	.LASF20
+ 1282 011c 01       		.byte	0x1
+ 1283 011d C0       		.byte	0xc0
+ 1284 011e 01       		.byte	0x1
+ 1285 011f 00000000 		.4byte	.LFB3
+ 1286 0123 5E000000 		.4byte	.LFE3
+ 1287 0127 90000000 		.4byte	.LLST3
+ 1288 012b 01       		.byte	0x1
+ 1289 012c 3F010000 		.4byte	0x13f
+ 1290 0130 08       		.uleb128 0x8
+ 1291 0131 93010000 		.4byte	.LASF21
+ 1292 0135 01       		.byte	0x1
+ 1293 0136 C2       		.byte	0xc2
+ 1294 0137 6F000000 		.4byte	0x6f
+ 1295 013b 02       		.byte	0x2
+ 1296 013c 91       		.byte	0x91
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 44
+
+
+ 1297 013d 77       		.sleb128 -9
+ 1298 013e 00       		.byte	0
+ 1299 013f 09       		.uleb128 0x9
+ 1300 0140 01       		.byte	0x1
+ 1301 0141 64000000 		.4byte	.LASF22
+ 1302 0145 01       		.byte	0x1
+ 1303 0146 E3       		.byte	0xe3
+ 1304 0147 01       		.byte	0x1
+ 1305 0148 00000000 		.4byte	.LFB4
+ 1306 014c 0A000000 		.4byte	.LFE4
+ 1307 0150 C8000000 		.4byte	.LLST4
+ 1308 0154 01       		.byte	0x1
+ 1309 0155 09       		.uleb128 0x9
+ 1310 0156 01       		.byte	0x1
+ 1311 0157 2C020000 		.4byte	.LASF23
+ 1312 015b 01       		.byte	0x1
+ 1313 015c FC       		.byte	0xfc
+ 1314 015d 01       		.byte	0x1
+ 1315 015e 00000000 		.4byte	.LFB5
+ 1316 0162 0A000000 		.4byte	.LFE5
+ 1317 0166 F4000000 		.4byte	.LLST5
+ 1318 016a 01       		.byte	0x1
+ 1319 016b 0A       		.uleb128 0xa
+ 1320 016c 01       		.byte	0x1
+ 1321 016d 91030000 		.4byte	.LASF24
+ 1322 0171 01       		.byte	0x1
+ 1323 0172 1501     		.2byte	0x115
+ 1324 0174 01       		.byte	0x1
+ 1325 0175 00000000 		.4byte	.LFB6
+ 1326 0179 0A000000 		.4byte	.LFE6
+ 1327 017d 20010000 		.4byte	.LLST6
+ 1328 0181 01       		.byte	0x1
+ 1329 0182 0A       		.uleb128 0xa
+ 1330 0183 01       		.byte	0x1
+ 1331 0184 B2010000 		.4byte	.LASF25
+ 1332 0188 01       		.byte	0x1
+ 1333 0189 2E01     		.2byte	0x12e
+ 1334 018b 01       		.byte	0x1
+ 1335 018c 00000000 		.4byte	.LFB7
+ 1336 0190 0A000000 		.4byte	.LFE7
+ 1337 0194 4C010000 		.4byte	.LLST7
+ 1338 0198 01       		.byte	0x1
+ 1339 0199 0B       		.uleb128 0xb
+ 1340 019a 01       		.byte	0x1
+ 1341 019b 06000000 		.4byte	.LASF26
+ 1342 019f 01       		.byte	0x1
+ 1343 01a0 4801     		.2byte	0x148
+ 1344 01a2 01       		.byte	0x1
+ 1345 01a3 00000000 		.4byte	.LFB8
+ 1346 01a7 20000000 		.4byte	.LFE8
+ 1347 01ab 78010000 		.4byte	.LLST8
+ 1348 01af 01       		.byte	0x1
+ 1349 01b0 C4010000 		.4byte	0x1c4
+ 1350 01b4 0C       		.uleb128 0xc
+ 1351 01b5 C6010000 		.4byte	.LASF28
+ 1352 01b9 01       		.byte	0x1
+ 1353 01ba 4801     		.2byte	0x148
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 45
+
+
+ 1354 01bc 6F000000 		.4byte	0x6f
+ 1355 01c0 02       		.byte	0x2
+ 1356 01c1 91       		.byte	0x91
+ 1357 01c2 77       		.sleb128 -9
+ 1358 01c3 00       		.byte	0
+ 1359 01c4 0B       		.uleb128 0xb
+ 1360 01c5 01       		.byte	0x1
+ 1361 01c6 32000000 		.4byte	.LASF27
+ 1362 01ca 01       		.byte	0x1
+ 1363 01cb 6001     		.2byte	0x160
+ 1364 01cd 01       		.byte	0x1
+ 1365 01ce 00000000 		.4byte	.LFB9
+ 1366 01d2 20000000 		.4byte	.LFE9
+ 1367 01d6 B0010000 		.4byte	.LLST9
+ 1368 01da 01       		.byte	0x1
+ 1369 01db EF010000 		.4byte	0x1ef
+ 1370 01df 0C       		.uleb128 0xc
+ 1371 01e0 C6010000 		.4byte	.LASF28
+ 1372 01e4 01       		.byte	0x1
+ 1373 01e5 6001     		.2byte	0x160
+ 1374 01e7 6F000000 		.4byte	0x6f
+ 1375 01eb 02       		.byte	0x2
+ 1376 01ec 91       		.byte	0x91
+ 1377 01ed 77       		.sleb128 -9
+ 1378 01ee 00       		.byte	0
+ 1379 01ef 0D       		.uleb128 0xd
+ 1380 01f0 01       		.byte	0x1
+ 1381 01f1 D4010000 		.4byte	.LASF30
+ 1382 01f5 01       		.byte	0x1
+ 1383 01f6 8201     		.2byte	0x182
+ 1384 01f8 01       		.byte	0x1
+ 1385 01f9 6F000000 		.4byte	0x6f
+ 1386 01fd 00000000 		.4byte	.LFB10
+ 1387 0201 20000000 		.4byte	.LFE10
+ 1388 0205 E8010000 		.4byte	.LLST10
+ 1389 0209 01       		.byte	0x1
+ 1390 020a 1E020000 		.4byte	0x21e
+ 1391 020e 0E       		.uleb128 0xe
+ 1392 020f 2C030000 		.4byte	.LASF29
+ 1393 0213 01       		.byte	0x1
+ 1394 0214 8401     		.2byte	0x184
+ 1395 0216 6F000000 		.4byte	0x6f
+ 1396 021a 02       		.byte	0x2
+ 1397 021b 91       		.byte	0x91
+ 1398 021c 77       		.sleb128 -9
+ 1399 021d 00       		.byte	0
+ 1400 021e 0D       		.uleb128 0xd
+ 1401 021f 01       		.byte	0x1
+ 1402 0220 18030000 		.4byte	.LASF31
+ 1403 0224 01       		.byte	0x1
+ 1404 0225 B501     		.2byte	0x1b5
+ 1405 0227 01       		.byte	0x1
+ 1406 0228 6F000000 		.4byte	0x6f
+ 1407 022c 00000000 		.4byte	.LFB11
+ 1408 0230 20000000 		.4byte	.LFE11
+ 1409 0234 20020000 		.4byte	.LLST11
+ 1410 0238 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 46
+
+
+ 1411 0239 4D020000 		.4byte	0x24d
+ 1412 023d 0E       		.uleb128 0xe
+ 1413 023e 2C030000 		.4byte	.LASF29
+ 1414 0242 01       		.byte	0x1
+ 1415 0243 B701     		.2byte	0x1b7
+ 1416 0245 6F000000 		.4byte	0x6f
+ 1417 0249 02       		.byte	0x2
+ 1418 024a 91       		.byte	0x91
+ 1419 024b 77       		.sleb128 -9
+ 1420 024c 00       		.byte	0
+ 1421 024d 0B       		.uleb128 0xb
+ 1422 024e 01       		.byte	0x1
+ 1423 024f 36030000 		.4byte	.LASF32
+ 1424 0253 01       		.byte	0x1
+ 1425 0254 EE01     		.2byte	0x1ee
+ 1426 0256 01       		.byte	0x1
+ 1427 0257 00000000 		.4byte	.LFB12
+ 1428 025b 36000000 		.4byte	.LFE12
+ 1429 025f 58020000 		.4byte	.LLST12
+ 1430 0263 01       		.byte	0x1
+ 1431 0264 78020000 		.4byte	0x278
+ 1432 0268 0C       		.uleb128 0xc
+ 1433 0269 84000000 		.4byte	.LASF33
+ 1434 026d 01       		.byte	0x1
+ 1435 026e EE01     		.2byte	0x1ee
+ 1436 0270 7A000000 		.4byte	0x7a
+ 1437 0274 02       		.byte	0x2
+ 1438 0275 91       		.byte	0x91
+ 1439 0276 76       		.sleb128 -10
+ 1440 0277 00       		.byte	0
+ 1441 0278 0D       		.uleb128 0xd
+ 1442 0279 01       		.byte	0x1
+ 1443 027a A5030000 		.4byte	.LASF34
+ 1444 027e 01       		.byte	0x1
+ 1445 027f 5B02     		.2byte	0x25b
+ 1446 0281 01       		.byte	0x1
+ 1447 0282 7A000000 		.4byte	0x7a
+ 1448 0286 00000000 		.4byte	.LFB13
+ 1449 028a 20000000 		.4byte	.LFE13
+ 1450 028e 90020000 		.4byte	.LLST13
+ 1451 0292 01       		.byte	0x1
+ 1452 0293 A7020000 		.4byte	0x2a7
+ 1453 0297 0E       		.uleb128 0xe
+ 1454 0298 C5000000 		.4byte	.LASF35
+ 1455 029c 01       		.byte	0x1
+ 1456 029d 5D02     		.2byte	0x25d
+ 1457 029f 7A000000 		.4byte	0x7a
+ 1458 02a3 02       		.byte	0x2
+ 1459 02a4 91       		.byte	0x91
+ 1460 02a5 76       		.sleb128 -10
+ 1461 02a6 00       		.byte	0
+ 1462 02a7 0D       		.uleb128 0xd
+ 1463 02a8 01       		.byte	0x1
+ 1464 02a9 72010000 		.4byte	.LASF36
+ 1465 02ad 01       		.byte	0x1
+ 1466 02ae 9B02     		.2byte	0x29b
+ 1467 02b0 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 47
+
+
+ 1468 02b1 6F000000 		.4byte	0x6f
+ 1469 02b5 00000000 		.4byte	.LFB14
+ 1470 02b9 34000000 		.4byte	.LFE14
+ 1471 02bd C8020000 		.4byte	.LLST14
+ 1472 02c1 01       		.byte	0x1
+ 1473 02c2 D6020000 		.4byte	0x2d6
+ 1474 02c6 0E       		.uleb128 0xe
+ 1475 02c7 05010000 		.4byte	.LASF37
+ 1476 02cb 01       		.byte	0x1
+ 1477 02cc 9D02     		.2byte	0x29d
+ 1478 02ce 6F000000 		.4byte	0x6f
+ 1479 02d2 02       		.byte	0x2
+ 1480 02d3 91       		.byte	0x91
+ 1481 02d4 77       		.sleb128 -9
+ 1482 02d5 00       		.byte	0
+ 1483 02d6 0D       		.uleb128 0xd
+ 1484 02d7 01       		.byte	0x1
+ 1485 02d8 AE000000 		.4byte	.LASF38
+ 1486 02dc 01       		.byte	0x1
+ 1487 02dd D802     		.2byte	0x2d8
+ 1488 02df 01       		.byte	0x1
+ 1489 02e0 6F000000 		.4byte	0x6f
+ 1490 02e4 00000000 		.4byte	.LFB15
+ 1491 02e8 4A000000 		.4byte	.LFE15
+ 1492 02ec 00030000 		.4byte	.LLST15
+ 1493 02f0 01       		.byte	0x1
+ 1494 02f1 05030000 		.4byte	0x305
+ 1495 02f5 0E       		.uleb128 0xe
+ 1496 02f6 05010000 		.4byte	.LASF37
+ 1497 02fa 01       		.byte	0x1
+ 1498 02fb DA02     		.2byte	0x2da
+ 1499 02fd 6F000000 		.4byte	0x6f
+ 1500 0301 02       		.byte	0x2
+ 1501 0302 91       		.byte	0x91
+ 1502 0303 77       		.sleb128 -9
+ 1503 0304 00       		.byte	0
+ 1504 0305 0A       		.uleb128 0xa
+ 1505 0306 01       		.byte	0x1
+ 1506 0307 D8000000 		.4byte	.LASF39
+ 1507 030b 01       		.byte	0x1
+ 1508 030c 2703     		.2byte	0x327
+ 1509 030e 01       		.byte	0x1
+ 1510 030f 00000000 		.4byte	.LFB16
+ 1511 0313 2A000000 		.4byte	.LFE16
+ 1512 0317 38030000 		.4byte	.LLST16
+ 1513 031b 01       		.byte	0x1
+ 1514 031c 0F       		.uleb128 0xf
+ 1515 031d 01       		.byte	0x1
+ 1516 031e A2020000 		.4byte	.LASF40
+ 1517 0322 01       		.byte	0x1
+ 1518 0323 5E03     		.2byte	0x35e
+ 1519 0325 01       		.byte	0x1
+ 1520 0326 00000000 		.4byte	.LFB17
+ 1521 032a 8E000000 		.4byte	.LFE17
+ 1522 032e 64030000 		.4byte	.LLST17
+ 1523 0332 01       		.byte	0x1
+ 1524 0333 47030000 		.4byte	0x347
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 48
+
+
+ 1525 0337 0E       		.uleb128 0xe
+ 1526 0338 93010000 		.4byte	.LASF21
+ 1527 033c 01       		.byte	0x1
+ 1528 033d 6003     		.2byte	0x360
+ 1529 033f 6F000000 		.4byte	0x6f
+ 1530 0343 02       		.byte	0x2
+ 1531 0344 91       		.byte	0x91
+ 1532 0345 77       		.sleb128 -9
+ 1533 0346 00       		.byte	0
+ 1534 0347 0F       		.uleb128 0xf
+ 1535 0348 01       		.byte	0x1
+ 1536 0349 88020000 		.4byte	.LASF41
+ 1537 034d 01       		.byte	0x1
+ 1538 034e C303     		.2byte	0x3c3
+ 1539 0350 01       		.byte	0x1
+ 1540 0351 00000000 		.4byte	.LFB18
+ 1541 0355 44000000 		.4byte	.LFE18
+ 1542 0359 9C030000 		.4byte	.LLST18
+ 1543 035d 01       		.byte	0x1
+ 1544 035e 90030000 		.4byte	0x390
+ 1545 0362 0C       		.uleb128 0xc
+ 1546 0363 B7020000 		.4byte	.LASF42
+ 1547 0367 01       		.byte	0x1
+ 1548 0368 C303     		.2byte	0x3c3
+ 1549 036a 90030000 		.4byte	0x390
+ 1550 036e 02       		.byte	0x2
+ 1551 036f 91       		.byte	0x91
+ 1552 0370 6C       		.sleb128 -20
+ 1553 0371 0C       		.uleb128 0xc
+ 1554 0372 89010000 		.4byte	.LASF43
+ 1555 0376 01       		.byte	0x1
+ 1556 0377 C303     		.2byte	0x3c3
+ 1557 0379 6F000000 		.4byte	0x6f
+ 1558 037d 02       		.byte	0x2
+ 1559 037e 91       		.byte	0x91
+ 1560 037f 6B       		.sleb128 -21
+ 1561 0380 0E       		.uleb128 0xe
+ 1562 0381 51020000 		.4byte	.LASF44
+ 1563 0385 01       		.byte	0x1
+ 1564 0386 C603     		.2byte	0x3c6
+ 1565 0388 6F000000 		.4byte	0x6f
+ 1566 038c 02       		.byte	0x2
+ 1567 038d 91       		.byte	0x91
+ 1568 038e 77       		.sleb128 -9
+ 1569 038f 00       		.byte	0
+ 1570 0390 10       		.uleb128 0x10
+ 1571 0391 04       		.byte	0x4
+ 1572 0392 96030000 		.4byte	0x396
+ 1573 0396 11       		.uleb128 0x11
+ 1574 0397 7A000000 		.4byte	0x7a
+ 1575 039b 0F       		.uleb128 0xf
+ 1576 039c 01       		.byte	0x1
+ 1577 039d 07030000 		.4byte	.LASF45
+ 1578 03a1 01       		.byte	0x1
+ 1579 03a2 E403     		.2byte	0x3e4
+ 1580 03a4 01       		.byte	0x1
+ 1581 03a5 00000000 		.4byte	.LFB19
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 49
+
+
+ 1582 03a9 AE000000 		.4byte	.LFE19
+ 1583 03ad D4030000 		.4byte	.LLST19
+ 1584 03b1 01       		.byte	0x1
+ 1585 03b2 C6030000 		.4byte	0x3c6
+ 1586 03b6 0E       		.uleb128 0xe
+ 1587 03b7 93010000 		.4byte	.LASF21
+ 1588 03bb 01       		.byte	0x1
+ 1589 03bc E603     		.2byte	0x3e6
+ 1590 03be 6F000000 		.4byte	0x6f
+ 1591 03c2 02       		.byte	0x2
+ 1592 03c3 91       		.byte	0x91
+ 1593 03c4 77       		.sleb128 -9
+ 1594 03c5 00       		.byte	0
+ 1595 03c6 12       		.uleb128 0x12
+ 1596 03c7 01       		.byte	0x1
+ 1597 03c8 F7010000 		.4byte	.LASF46
+ 1598 03cc 01       		.byte	0x1
+ 1599 03cd 1204     		.2byte	0x412
+ 1600 03cf 01       		.byte	0x1
+ 1601 03d0 00000000 		.4byte	.LFB20
+ 1602 03d4 0E000000 		.4byte	.LFE20
+ 1603 03d8 0C040000 		.4byte	.LLST20
+ 1604 03dc 01       		.byte	0x1
+ 1605 03dd 12       		.uleb128 0x12
+ 1606 03de 01       		.byte	0x1
+ 1607 03df 3F020000 		.4byte	.LASF47
+ 1608 03e3 01       		.byte	0x1
+ 1609 03e4 2A04     		.2byte	0x42a
+ 1610 03e6 01       		.byte	0x1
+ 1611 03e7 00000000 		.4byte	.LFB21
+ 1612 03eb 0E000000 		.4byte	.LFE21
+ 1613 03ef 38040000 		.4byte	.LLST21
+ 1614 03f3 01       		.byte	0x1
+ 1615 03f4 0B       		.uleb128 0xb
+ 1616 03f5 01       		.byte	0x1
+ 1617 03f6 ED000000 		.4byte	.LASF48
+ 1618 03fa 01       		.byte	0x1
+ 1619 03fb 4304     		.2byte	0x443
+ 1620 03fd 01       		.byte	0x1
+ 1621 03fe 00000000 		.4byte	.LFB22
+ 1622 0402 32000000 		.4byte	.LFE22
+ 1623 0406 64040000 		.4byte	.LLST22
+ 1624 040a 01       		.byte	0x1
+ 1625 040b 1F040000 		.4byte	0x41f
+ 1626 040f 0C       		.uleb128 0xc
+ 1627 0410 C6010000 		.4byte	.LASF28
+ 1628 0414 01       		.byte	0x1
+ 1629 0415 4304     		.2byte	0x443
+ 1630 0417 6F000000 		.4byte	0x6f
+ 1631 041b 02       		.byte	0x2
+ 1632 041c 91       		.byte	0x91
+ 1633 041d 77       		.sleb128 -9
+ 1634 041e 00       		.byte	0
+ 1635 041f 0D       		.uleb128 0xd
+ 1636 0420 01       		.byte	0x1
+ 1637 0421 76020000 		.4byte	.LASF49
+ 1638 0425 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 50
+
+
+ 1639 0426 6604     		.2byte	0x466
+ 1640 0428 01       		.byte	0x1
+ 1641 0429 6F000000 		.4byte	0x6f
+ 1642 042d 00000000 		.4byte	.LFB23
+ 1643 0431 3A000000 		.4byte	.LFE23
+ 1644 0435 9C040000 		.4byte	.LLST23
+ 1645 0439 01       		.byte	0x1
+ 1646 043a 4E040000 		.4byte	0x44e
+ 1647 043e 0E       		.uleb128 0xe
+ 1648 043f 2C030000 		.4byte	.LASF29
+ 1649 0443 01       		.byte	0x1
+ 1650 0444 6804     		.2byte	0x468
+ 1651 0446 6F000000 		.4byte	0x6f
+ 1652 044a 02       		.byte	0x2
+ 1653 044b 91       		.byte	0x91
+ 1654 044c 77       		.sleb128 -9
+ 1655 044d 00       		.byte	0
+ 1656 044e 13       		.uleb128 0x13
+ 1657 044f E8010000 		.4byte	.LASF50
+ 1658 0453 01       		.byte	0x1
+ 1659 0454 22       		.byte	0x22
+ 1660 0455 6F000000 		.4byte	0x6f
+ 1661 0459 01       		.byte	0x1
+ 1662 045a 05       		.byte	0x5
+ 1663 045b 03       		.byte	0x3
+ 1664 045c 00000000 		.4byte	master_initVar
+ 1665 0460 13       		.uleb128 0x13
+ 1666 0461 4C000000 		.4byte	.LASF51
+ 1667 0465 01       		.byte	0x1
+ 1668 0466 24       		.byte	0x24
+ 1669 0467 A5000000 		.4byte	0xa5
+ 1670 046b 01       		.byte	0x1
+ 1671 046c 05       		.byte	0x5
+ 1672 046d 03       		.byte	0x3
+ 1673 046e 00000000 		.4byte	master_swStatusTx
+ 1674 0472 13       		.uleb128 0x13
+ 1675 0473 20000000 		.4byte	.LASF52
+ 1676 0477 01       		.byte	0x1
+ 1677 0478 25       		.byte	0x25
+ 1678 0479 A5000000 		.4byte	0xa5
+ 1679 047d 01       		.byte	0x1
+ 1680 047e 05       		.byte	0x5
+ 1681 047f 03       		.byte	0x3
+ 1682 0480 00000000 		.4byte	master_swStatusRx
+ 1683 0484 00       		.byte	0
+ 1684              		.section	.debug_abbrev,"",%progbits
+ 1685              	.Ldebug_abbrev0:
+ 1686 0000 01       		.uleb128 0x1
+ 1687 0001 11       		.uleb128 0x11
+ 1688 0002 01       		.byte	0x1
+ 1689 0003 25       		.uleb128 0x25
+ 1690 0004 0E       		.uleb128 0xe
+ 1691 0005 13       		.uleb128 0x13
+ 1692 0006 0B       		.uleb128 0xb
+ 1693 0007 03       		.uleb128 0x3
+ 1694 0008 0E       		.uleb128 0xe
+ 1695 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 51
+
+
+ 1696 000a 0E       		.uleb128 0xe
+ 1697 000b 55       		.uleb128 0x55
+ 1698 000c 06       		.uleb128 0x6
+ 1699 000d 11       		.uleb128 0x11
+ 1700 000e 01       		.uleb128 0x1
+ 1701 000f 52       		.uleb128 0x52
+ 1702 0010 01       		.uleb128 0x1
+ 1703 0011 10       		.uleb128 0x10
+ 1704 0012 06       		.uleb128 0x6
+ 1705 0013 00       		.byte	0
+ 1706 0014 00       		.byte	0
+ 1707 0015 02       		.uleb128 0x2
+ 1708 0016 24       		.uleb128 0x24
+ 1709 0017 00       		.byte	0
+ 1710 0018 0B       		.uleb128 0xb
+ 1711 0019 0B       		.uleb128 0xb
+ 1712 001a 3E       		.uleb128 0x3e
+ 1713 001b 0B       		.uleb128 0xb
+ 1714 001c 03       		.uleb128 0x3
+ 1715 001d 0E       		.uleb128 0xe
+ 1716 001e 00       		.byte	0
+ 1717 001f 00       		.byte	0
+ 1718 0020 03       		.uleb128 0x3
+ 1719 0021 24       		.uleb128 0x24
+ 1720 0022 00       		.byte	0
+ 1721 0023 0B       		.uleb128 0xb
+ 1722 0024 0B       		.uleb128 0xb
+ 1723 0025 3E       		.uleb128 0x3e
+ 1724 0026 0B       		.uleb128 0xb
+ 1725 0027 03       		.uleb128 0x3
+ 1726 0028 08       		.uleb128 0x8
+ 1727 0029 00       		.byte	0
+ 1728 002a 00       		.byte	0
+ 1729 002b 04       		.uleb128 0x4
+ 1730 002c 16       		.uleb128 0x16
+ 1731 002d 00       		.byte	0
+ 1732 002e 03       		.uleb128 0x3
+ 1733 002f 0E       		.uleb128 0xe
+ 1734 0030 3A       		.uleb128 0x3a
+ 1735 0031 0B       		.uleb128 0xb
+ 1736 0032 3B       		.uleb128 0x3b
+ 1737 0033 0B       		.uleb128 0xb
+ 1738 0034 49       		.uleb128 0x49
+ 1739 0035 13       		.uleb128 0x13
+ 1740 0036 00       		.byte	0
+ 1741 0037 00       		.byte	0
+ 1742 0038 05       		.uleb128 0x5
+ 1743 0039 35       		.uleb128 0x35
+ 1744 003a 00       		.byte	0
+ 1745 003b 49       		.uleb128 0x49
+ 1746 003c 13       		.uleb128 0x13
+ 1747 003d 00       		.byte	0
+ 1748 003e 00       		.byte	0
+ 1749 003f 06       		.uleb128 0x6
+ 1750 0040 2E       		.uleb128 0x2e
+ 1751 0041 00       		.byte	0
+ 1752 0042 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 52
+
+
+ 1753 0043 0C       		.uleb128 0xc
+ 1754 0044 03       		.uleb128 0x3
+ 1755 0045 0E       		.uleb128 0xe
+ 1756 0046 3A       		.uleb128 0x3a
+ 1757 0047 0B       		.uleb128 0xb
+ 1758 0048 3B       		.uleb128 0x3b
+ 1759 0049 0B       		.uleb128 0xb
+ 1760 004a 27       		.uleb128 0x27
+ 1761 004b 0C       		.uleb128 0xc
+ 1762 004c 11       		.uleb128 0x11
+ 1763 004d 01       		.uleb128 0x1
+ 1764 004e 12       		.uleb128 0x12
+ 1765 004f 01       		.uleb128 0x1
+ 1766 0050 40       		.uleb128 0x40
+ 1767 0051 06       		.uleb128 0x6
+ 1768 0052 9642     		.uleb128 0x2116
+ 1769 0054 0C       		.uleb128 0xc
+ 1770 0055 00       		.byte	0
+ 1771 0056 00       		.byte	0
+ 1772 0057 07       		.uleb128 0x7
+ 1773 0058 2E       		.uleb128 0x2e
+ 1774 0059 01       		.byte	0x1
+ 1775 005a 3F       		.uleb128 0x3f
+ 1776 005b 0C       		.uleb128 0xc
+ 1777 005c 03       		.uleb128 0x3
+ 1778 005d 0E       		.uleb128 0xe
+ 1779 005e 3A       		.uleb128 0x3a
+ 1780 005f 0B       		.uleb128 0xb
+ 1781 0060 3B       		.uleb128 0x3b
+ 1782 0061 0B       		.uleb128 0xb
+ 1783 0062 27       		.uleb128 0x27
+ 1784 0063 0C       		.uleb128 0xc
+ 1785 0064 11       		.uleb128 0x11
+ 1786 0065 01       		.uleb128 0x1
+ 1787 0066 12       		.uleb128 0x12
+ 1788 0067 01       		.uleb128 0x1
+ 1789 0068 40       		.uleb128 0x40
+ 1790 0069 06       		.uleb128 0x6
+ 1791 006a 9642     		.uleb128 0x2116
+ 1792 006c 0C       		.uleb128 0xc
+ 1793 006d 01       		.uleb128 0x1
+ 1794 006e 13       		.uleb128 0x13
+ 1795 006f 00       		.byte	0
+ 1796 0070 00       		.byte	0
+ 1797 0071 08       		.uleb128 0x8
+ 1798 0072 34       		.uleb128 0x34
+ 1799 0073 00       		.byte	0
+ 1800 0074 03       		.uleb128 0x3
+ 1801 0075 0E       		.uleb128 0xe
+ 1802 0076 3A       		.uleb128 0x3a
+ 1803 0077 0B       		.uleb128 0xb
+ 1804 0078 3B       		.uleb128 0x3b
+ 1805 0079 0B       		.uleb128 0xb
+ 1806 007a 49       		.uleb128 0x49
+ 1807 007b 13       		.uleb128 0x13
+ 1808 007c 02       		.uleb128 0x2
+ 1809 007d 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 53
+
+
+ 1810 007e 00       		.byte	0
+ 1811 007f 00       		.byte	0
+ 1812 0080 09       		.uleb128 0x9
+ 1813 0081 2E       		.uleb128 0x2e
+ 1814 0082 00       		.byte	0
+ 1815 0083 3F       		.uleb128 0x3f
+ 1816 0084 0C       		.uleb128 0xc
+ 1817 0085 03       		.uleb128 0x3
+ 1818 0086 0E       		.uleb128 0xe
+ 1819 0087 3A       		.uleb128 0x3a
+ 1820 0088 0B       		.uleb128 0xb
+ 1821 0089 3B       		.uleb128 0x3b
+ 1822 008a 0B       		.uleb128 0xb
+ 1823 008b 27       		.uleb128 0x27
+ 1824 008c 0C       		.uleb128 0xc
+ 1825 008d 11       		.uleb128 0x11
+ 1826 008e 01       		.uleb128 0x1
+ 1827 008f 12       		.uleb128 0x12
+ 1828 0090 01       		.uleb128 0x1
+ 1829 0091 40       		.uleb128 0x40
+ 1830 0092 06       		.uleb128 0x6
+ 1831 0093 9742     		.uleb128 0x2117
+ 1832 0095 0C       		.uleb128 0xc
+ 1833 0096 00       		.byte	0
+ 1834 0097 00       		.byte	0
+ 1835 0098 0A       		.uleb128 0xa
+ 1836 0099 2E       		.uleb128 0x2e
+ 1837 009a 00       		.byte	0
+ 1838 009b 3F       		.uleb128 0x3f
+ 1839 009c 0C       		.uleb128 0xc
+ 1840 009d 03       		.uleb128 0x3
+ 1841 009e 0E       		.uleb128 0xe
+ 1842 009f 3A       		.uleb128 0x3a
+ 1843 00a0 0B       		.uleb128 0xb
+ 1844 00a1 3B       		.uleb128 0x3b
+ 1845 00a2 05       		.uleb128 0x5
+ 1846 00a3 27       		.uleb128 0x27
+ 1847 00a4 0C       		.uleb128 0xc
+ 1848 00a5 11       		.uleb128 0x11
+ 1849 00a6 01       		.uleb128 0x1
+ 1850 00a7 12       		.uleb128 0x12
+ 1851 00a8 01       		.uleb128 0x1
+ 1852 00a9 40       		.uleb128 0x40
+ 1853 00aa 06       		.uleb128 0x6
+ 1854 00ab 9742     		.uleb128 0x2117
+ 1855 00ad 0C       		.uleb128 0xc
+ 1856 00ae 00       		.byte	0
+ 1857 00af 00       		.byte	0
+ 1858 00b0 0B       		.uleb128 0xb
+ 1859 00b1 2E       		.uleb128 0x2e
+ 1860 00b2 01       		.byte	0x1
+ 1861 00b3 3F       		.uleb128 0x3f
+ 1862 00b4 0C       		.uleb128 0xc
+ 1863 00b5 03       		.uleb128 0x3
+ 1864 00b6 0E       		.uleb128 0xe
+ 1865 00b7 3A       		.uleb128 0x3a
+ 1866 00b8 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 54
+
+
+ 1867 00b9 3B       		.uleb128 0x3b
+ 1868 00ba 05       		.uleb128 0x5
+ 1869 00bb 27       		.uleb128 0x27
+ 1870 00bc 0C       		.uleb128 0xc
+ 1871 00bd 11       		.uleb128 0x11
+ 1872 00be 01       		.uleb128 0x1
+ 1873 00bf 12       		.uleb128 0x12
+ 1874 00c0 01       		.uleb128 0x1
+ 1875 00c1 40       		.uleb128 0x40
+ 1876 00c2 06       		.uleb128 0x6
+ 1877 00c3 9742     		.uleb128 0x2117
+ 1878 00c5 0C       		.uleb128 0xc
+ 1879 00c6 01       		.uleb128 0x1
+ 1880 00c7 13       		.uleb128 0x13
+ 1881 00c8 00       		.byte	0
+ 1882 00c9 00       		.byte	0
+ 1883 00ca 0C       		.uleb128 0xc
+ 1884 00cb 05       		.uleb128 0x5
+ 1885 00cc 00       		.byte	0
+ 1886 00cd 03       		.uleb128 0x3
+ 1887 00ce 0E       		.uleb128 0xe
+ 1888 00cf 3A       		.uleb128 0x3a
+ 1889 00d0 0B       		.uleb128 0xb
+ 1890 00d1 3B       		.uleb128 0x3b
+ 1891 00d2 05       		.uleb128 0x5
+ 1892 00d3 49       		.uleb128 0x49
+ 1893 00d4 13       		.uleb128 0x13
+ 1894 00d5 02       		.uleb128 0x2
+ 1895 00d6 0A       		.uleb128 0xa
+ 1896 00d7 00       		.byte	0
+ 1897 00d8 00       		.byte	0
+ 1898 00d9 0D       		.uleb128 0xd
+ 1899 00da 2E       		.uleb128 0x2e
+ 1900 00db 01       		.byte	0x1
+ 1901 00dc 3F       		.uleb128 0x3f
+ 1902 00dd 0C       		.uleb128 0xc
+ 1903 00de 03       		.uleb128 0x3
+ 1904 00df 0E       		.uleb128 0xe
+ 1905 00e0 3A       		.uleb128 0x3a
+ 1906 00e1 0B       		.uleb128 0xb
+ 1907 00e2 3B       		.uleb128 0x3b
+ 1908 00e3 05       		.uleb128 0x5
+ 1909 00e4 27       		.uleb128 0x27
+ 1910 00e5 0C       		.uleb128 0xc
+ 1911 00e6 49       		.uleb128 0x49
+ 1912 00e7 13       		.uleb128 0x13
+ 1913 00e8 11       		.uleb128 0x11
+ 1914 00e9 01       		.uleb128 0x1
+ 1915 00ea 12       		.uleb128 0x12
+ 1916 00eb 01       		.uleb128 0x1
+ 1917 00ec 40       		.uleb128 0x40
+ 1918 00ed 06       		.uleb128 0x6
+ 1919 00ee 9742     		.uleb128 0x2117
+ 1920 00f0 0C       		.uleb128 0xc
+ 1921 00f1 01       		.uleb128 0x1
+ 1922 00f2 13       		.uleb128 0x13
+ 1923 00f3 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 55
+
+
+ 1924 00f4 00       		.byte	0
+ 1925 00f5 0E       		.uleb128 0xe
+ 1926 00f6 34       		.uleb128 0x34
+ 1927 00f7 00       		.byte	0
+ 1928 00f8 03       		.uleb128 0x3
+ 1929 00f9 0E       		.uleb128 0xe
+ 1930 00fa 3A       		.uleb128 0x3a
+ 1931 00fb 0B       		.uleb128 0xb
+ 1932 00fc 3B       		.uleb128 0x3b
+ 1933 00fd 05       		.uleb128 0x5
+ 1934 00fe 49       		.uleb128 0x49
+ 1935 00ff 13       		.uleb128 0x13
+ 1936 0100 02       		.uleb128 0x2
+ 1937 0101 0A       		.uleb128 0xa
+ 1938 0102 00       		.byte	0
+ 1939 0103 00       		.byte	0
+ 1940 0104 0F       		.uleb128 0xf
+ 1941 0105 2E       		.uleb128 0x2e
+ 1942 0106 01       		.byte	0x1
+ 1943 0107 3F       		.uleb128 0x3f
+ 1944 0108 0C       		.uleb128 0xc
+ 1945 0109 03       		.uleb128 0x3
+ 1946 010a 0E       		.uleb128 0xe
+ 1947 010b 3A       		.uleb128 0x3a
+ 1948 010c 0B       		.uleb128 0xb
+ 1949 010d 3B       		.uleb128 0x3b
+ 1950 010e 05       		.uleb128 0x5
+ 1951 010f 27       		.uleb128 0x27
+ 1952 0110 0C       		.uleb128 0xc
+ 1953 0111 11       		.uleb128 0x11
+ 1954 0112 01       		.uleb128 0x1
+ 1955 0113 12       		.uleb128 0x12
+ 1956 0114 01       		.uleb128 0x1
+ 1957 0115 40       		.uleb128 0x40
+ 1958 0116 06       		.uleb128 0x6
+ 1959 0117 9642     		.uleb128 0x2116
+ 1960 0119 0C       		.uleb128 0xc
+ 1961 011a 01       		.uleb128 0x1
+ 1962 011b 13       		.uleb128 0x13
+ 1963 011c 00       		.byte	0
+ 1964 011d 00       		.byte	0
+ 1965 011e 10       		.uleb128 0x10
+ 1966 011f 0F       		.uleb128 0xf
+ 1967 0120 00       		.byte	0
+ 1968 0121 0B       		.uleb128 0xb
+ 1969 0122 0B       		.uleb128 0xb
+ 1970 0123 49       		.uleb128 0x49
+ 1971 0124 13       		.uleb128 0x13
+ 1972 0125 00       		.byte	0
+ 1973 0126 00       		.byte	0
+ 1974 0127 11       		.uleb128 0x11
+ 1975 0128 26       		.uleb128 0x26
+ 1976 0129 00       		.byte	0
+ 1977 012a 49       		.uleb128 0x49
+ 1978 012b 13       		.uleb128 0x13
+ 1979 012c 00       		.byte	0
+ 1980 012d 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 56
+
+
+ 1981 012e 12       		.uleb128 0x12
+ 1982 012f 2E       		.uleb128 0x2e
+ 1983 0130 00       		.byte	0
+ 1984 0131 3F       		.uleb128 0x3f
+ 1985 0132 0C       		.uleb128 0xc
+ 1986 0133 03       		.uleb128 0x3
+ 1987 0134 0E       		.uleb128 0xe
+ 1988 0135 3A       		.uleb128 0x3a
+ 1989 0136 0B       		.uleb128 0xb
+ 1990 0137 3B       		.uleb128 0x3b
+ 1991 0138 05       		.uleb128 0x5
+ 1992 0139 27       		.uleb128 0x27
+ 1993 013a 0C       		.uleb128 0xc
+ 1994 013b 11       		.uleb128 0x11
+ 1995 013c 01       		.uleb128 0x1
+ 1996 013d 12       		.uleb128 0x12
+ 1997 013e 01       		.uleb128 0x1
+ 1998 013f 40       		.uleb128 0x40
+ 1999 0140 06       		.uleb128 0x6
+ 2000 0141 9642     		.uleb128 0x2116
+ 2001 0143 0C       		.uleb128 0xc
+ 2002 0144 00       		.byte	0
+ 2003 0145 00       		.byte	0
+ 2004 0146 13       		.uleb128 0x13
+ 2005 0147 34       		.uleb128 0x34
+ 2006 0148 00       		.byte	0
+ 2007 0149 03       		.uleb128 0x3
+ 2008 014a 0E       		.uleb128 0xe
+ 2009 014b 3A       		.uleb128 0x3a
+ 2010 014c 0B       		.uleb128 0xb
+ 2011 014d 3B       		.uleb128 0x3b
+ 2012 014e 0B       		.uleb128 0xb
+ 2013 014f 49       		.uleb128 0x49
+ 2014 0150 13       		.uleb128 0x13
+ 2015 0151 3F       		.uleb128 0x3f
+ 2016 0152 0C       		.uleb128 0xc
+ 2017 0153 02       		.uleb128 0x2
+ 2018 0154 0A       		.uleb128 0xa
+ 2019 0155 00       		.byte	0
+ 2020 0156 00       		.byte	0
+ 2021 0157 00       		.byte	0
+ 2022              		.section	.debug_loc,"",%progbits
+ 2023              	.Ldebug_loc0:
+ 2024              	.LLST0:
+ 2025 0000 00000000 		.4byte	.LFB0
+ 2026 0004 02000000 		.4byte	.LCFI0
+ 2027 0008 0200     		.2byte	0x2
+ 2028 000a 7D       		.byte	0x7d
+ 2029 000b 00       		.sleb128 0
+ 2030 000c 02000000 		.4byte	.LCFI0
+ 2031 0010 04000000 		.4byte	.LCFI1
+ 2032 0014 0200     		.2byte	0x2
+ 2033 0016 7D       		.byte	0x7d
+ 2034 0017 08       		.sleb128 8
+ 2035 0018 04000000 		.4byte	.LCFI1
+ 2036 001c 3C000000 		.4byte	.LFE0
+ 2037 0020 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 57
+
+
+ 2038 0022 77       		.byte	0x77
+ 2039 0023 08       		.sleb128 8
+ 2040 0024 00000000 		.4byte	0
+ 2041 0028 00000000 		.4byte	0
+ 2042              	.LLST1:
+ 2043 002c 00000000 		.4byte	.LFB1
+ 2044 0030 02000000 		.4byte	.LCFI2
+ 2045 0034 0200     		.2byte	0x2
+ 2046 0036 7D       		.byte	0x7d
+ 2047 0037 00       		.sleb128 0
+ 2048 0038 02000000 		.4byte	.LCFI2
+ 2049 003c 04000000 		.4byte	.LCFI3
+ 2050 0040 0200     		.2byte	0x2
+ 2051 0042 7D       		.byte	0x7d
+ 2052 0043 08       		.sleb128 8
+ 2053 0044 04000000 		.4byte	.LCFI3
+ 2054 0048 06000000 		.4byte	.LCFI4
+ 2055 004c 0200     		.2byte	0x2
+ 2056 004e 7D       		.byte	0x7d
+ 2057 004f 10       		.sleb128 16
+ 2058 0050 06000000 		.4byte	.LCFI4
+ 2059 0054 7A000000 		.4byte	.LFE1
+ 2060 0058 0200     		.2byte	0x2
+ 2061 005a 77       		.byte	0x77
+ 2062 005b 10       		.sleb128 16
+ 2063 005c 00000000 		.4byte	0
+ 2064 0060 00000000 		.4byte	0
+ 2065              	.LLST2:
+ 2066 0064 00000000 		.4byte	.LFB2
+ 2067 0068 02000000 		.4byte	.LCFI5
+ 2068 006c 0200     		.2byte	0x2
+ 2069 006e 7D       		.byte	0x7d
+ 2070 006f 00       		.sleb128 0
+ 2071 0070 02000000 		.4byte	.LCFI5
+ 2072 0074 04000000 		.4byte	.LCFI6
+ 2073 0078 0200     		.2byte	0x2
+ 2074 007a 7D       		.byte	0x7d
+ 2075 007b 08       		.sleb128 8
+ 2076 007c 04000000 		.4byte	.LCFI6
+ 2077 0080 2A000000 		.4byte	.LFE2
+ 2078 0084 0200     		.2byte	0x2
+ 2079 0086 77       		.byte	0x77
+ 2080 0087 08       		.sleb128 8
+ 2081 0088 00000000 		.4byte	0
+ 2082 008c 00000000 		.4byte	0
+ 2083              	.LLST3:
+ 2084 0090 00000000 		.4byte	.LFB3
+ 2085 0094 02000000 		.4byte	.LCFI7
+ 2086 0098 0200     		.2byte	0x2
+ 2087 009a 7D       		.byte	0x7d
+ 2088 009b 00       		.sleb128 0
+ 2089 009c 02000000 		.4byte	.LCFI7
+ 2090 00a0 04000000 		.4byte	.LCFI8
+ 2091 00a4 0200     		.2byte	0x2
+ 2092 00a6 7D       		.byte	0x7d
+ 2093 00a7 08       		.sleb128 8
+ 2094 00a8 04000000 		.4byte	.LCFI8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 58
+
+
+ 2095 00ac 06000000 		.4byte	.LCFI9
+ 2096 00b0 0200     		.2byte	0x2
+ 2097 00b2 7D       		.byte	0x7d
+ 2098 00b3 10       		.sleb128 16
+ 2099 00b4 06000000 		.4byte	.LCFI9
+ 2100 00b8 5E000000 		.4byte	.LFE3
+ 2101 00bc 0200     		.2byte	0x2
+ 2102 00be 77       		.byte	0x77
+ 2103 00bf 10       		.sleb128 16
+ 2104 00c0 00000000 		.4byte	0
+ 2105 00c4 00000000 		.4byte	0
+ 2106              	.LLST4:
+ 2107 00c8 00000000 		.4byte	.LFB4
+ 2108 00cc 02000000 		.4byte	.LCFI10
+ 2109 00d0 0200     		.2byte	0x2
+ 2110 00d2 7D       		.byte	0x7d
+ 2111 00d3 00       		.sleb128 0
+ 2112 00d4 02000000 		.4byte	.LCFI10
+ 2113 00d8 04000000 		.4byte	.LCFI11
+ 2114 00dc 0200     		.2byte	0x2
+ 2115 00de 7D       		.byte	0x7d
+ 2116 00df 04       		.sleb128 4
+ 2117 00e0 04000000 		.4byte	.LCFI11
+ 2118 00e4 0A000000 		.4byte	.LFE4
+ 2119 00e8 0200     		.2byte	0x2
+ 2120 00ea 77       		.byte	0x77
+ 2121 00eb 04       		.sleb128 4
+ 2122 00ec 00000000 		.4byte	0
+ 2123 00f0 00000000 		.4byte	0
+ 2124              	.LLST5:
+ 2125 00f4 00000000 		.4byte	.LFB5
+ 2126 00f8 02000000 		.4byte	.LCFI12
+ 2127 00fc 0200     		.2byte	0x2
+ 2128 00fe 7D       		.byte	0x7d
+ 2129 00ff 00       		.sleb128 0
+ 2130 0100 02000000 		.4byte	.LCFI12
+ 2131 0104 04000000 		.4byte	.LCFI13
+ 2132 0108 0200     		.2byte	0x2
+ 2133 010a 7D       		.byte	0x7d
+ 2134 010b 04       		.sleb128 4
+ 2135 010c 04000000 		.4byte	.LCFI13
+ 2136 0110 0A000000 		.4byte	.LFE5
+ 2137 0114 0200     		.2byte	0x2
+ 2138 0116 77       		.byte	0x77
+ 2139 0117 04       		.sleb128 4
+ 2140 0118 00000000 		.4byte	0
+ 2141 011c 00000000 		.4byte	0
+ 2142              	.LLST6:
+ 2143 0120 00000000 		.4byte	.LFB6
+ 2144 0124 02000000 		.4byte	.LCFI14
+ 2145 0128 0200     		.2byte	0x2
+ 2146 012a 7D       		.byte	0x7d
+ 2147 012b 00       		.sleb128 0
+ 2148 012c 02000000 		.4byte	.LCFI14
+ 2149 0130 04000000 		.4byte	.LCFI15
+ 2150 0134 0200     		.2byte	0x2
+ 2151 0136 7D       		.byte	0x7d
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 59
+
+
+ 2152 0137 04       		.sleb128 4
+ 2153 0138 04000000 		.4byte	.LCFI15
+ 2154 013c 0A000000 		.4byte	.LFE6
+ 2155 0140 0200     		.2byte	0x2
+ 2156 0142 77       		.byte	0x77
+ 2157 0143 04       		.sleb128 4
+ 2158 0144 00000000 		.4byte	0
+ 2159 0148 00000000 		.4byte	0
+ 2160              	.LLST7:
+ 2161 014c 00000000 		.4byte	.LFB7
+ 2162 0150 02000000 		.4byte	.LCFI16
+ 2163 0154 0200     		.2byte	0x2
+ 2164 0156 7D       		.byte	0x7d
+ 2165 0157 00       		.sleb128 0
+ 2166 0158 02000000 		.4byte	.LCFI16
+ 2167 015c 04000000 		.4byte	.LCFI17
+ 2168 0160 0200     		.2byte	0x2
+ 2169 0162 7D       		.byte	0x7d
+ 2170 0163 04       		.sleb128 4
+ 2171 0164 04000000 		.4byte	.LCFI17
+ 2172 0168 0A000000 		.4byte	.LFE7
+ 2173 016c 0200     		.2byte	0x2
+ 2174 016e 77       		.byte	0x77
+ 2175 016f 04       		.sleb128 4
+ 2176 0170 00000000 		.4byte	0
+ 2177 0174 00000000 		.4byte	0
+ 2178              	.LLST8:
+ 2179 0178 00000000 		.4byte	.LFB8
+ 2180 017c 02000000 		.4byte	.LCFI18
+ 2181 0180 0200     		.2byte	0x2
+ 2182 0182 7D       		.byte	0x7d
+ 2183 0183 00       		.sleb128 0
+ 2184 0184 02000000 		.4byte	.LCFI18
+ 2185 0188 04000000 		.4byte	.LCFI19
+ 2186 018c 0200     		.2byte	0x2
+ 2187 018e 7D       		.byte	0x7d
+ 2188 018f 04       		.sleb128 4
+ 2189 0190 04000000 		.4byte	.LCFI19
+ 2190 0194 06000000 		.4byte	.LCFI20
+ 2191 0198 0200     		.2byte	0x2
+ 2192 019a 7D       		.byte	0x7d
+ 2193 019b 10       		.sleb128 16
+ 2194 019c 06000000 		.4byte	.LCFI20
+ 2195 01a0 20000000 		.4byte	.LFE8
+ 2196 01a4 0200     		.2byte	0x2
+ 2197 01a6 77       		.byte	0x77
+ 2198 01a7 10       		.sleb128 16
+ 2199 01a8 00000000 		.4byte	0
+ 2200 01ac 00000000 		.4byte	0
+ 2201              	.LLST9:
+ 2202 01b0 00000000 		.4byte	.LFB9
+ 2203 01b4 02000000 		.4byte	.LCFI21
+ 2204 01b8 0200     		.2byte	0x2
+ 2205 01ba 7D       		.byte	0x7d
+ 2206 01bb 00       		.sleb128 0
+ 2207 01bc 02000000 		.4byte	.LCFI21
+ 2208 01c0 04000000 		.4byte	.LCFI22
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 60
+
+
+ 2209 01c4 0200     		.2byte	0x2
+ 2210 01c6 7D       		.byte	0x7d
+ 2211 01c7 04       		.sleb128 4
+ 2212 01c8 04000000 		.4byte	.LCFI22
+ 2213 01cc 06000000 		.4byte	.LCFI23
+ 2214 01d0 0200     		.2byte	0x2
+ 2215 01d2 7D       		.byte	0x7d
+ 2216 01d3 10       		.sleb128 16
+ 2217 01d4 06000000 		.4byte	.LCFI23
+ 2218 01d8 20000000 		.4byte	.LFE9
+ 2219 01dc 0200     		.2byte	0x2
+ 2220 01de 77       		.byte	0x77
+ 2221 01df 10       		.sleb128 16
+ 2222 01e0 00000000 		.4byte	0
+ 2223 01e4 00000000 		.4byte	0
+ 2224              	.LLST10:
+ 2225 01e8 00000000 		.4byte	.LFB10
+ 2226 01ec 02000000 		.4byte	.LCFI24
+ 2227 01f0 0200     		.2byte	0x2
+ 2228 01f2 7D       		.byte	0x7d
+ 2229 01f3 00       		.sleb128 0
+ 2230 01f4 02000000 		.4byte	.LCFI24
+ 2231 01f8 04000000 		.4byte	.LCFI25
+ 2232 01fc 0200     		.2byte	0x2
+ 2233 01fe 7D       		.byte	0x7d
+ 2234 01ff 04       		.sleb128 4
+ 2235 0200 04000000 		.4byte	.LCFI25
+ 2236 0204 06000000 		.4byte	.LCFI26
+ 2237 0208 0200     		.2byte	0x2
+ 2238 020a 7D       		.byte	0x7d
+ 2239 020b 10       		.sleb128 16
+ 2240 020c 06000000 		.4byte	.LCFI26
+ 2241 0210 20000000 		.4byte	.LFE10
+ 2242 0214 0200     		.2byte	0x2
+ 2243 0216 77       		.byte	0x77
+ 2244 0217 10       		.sleb128 16
+ 2245 0218 00000000 		.4byte	0
+ 2246 021c 00000000 		.4byte	0
+ 2247              	.LLST11:
+ 2248 0220 00000000 		.4byte	.LFB11
+ 2249 0224 02000000 		.4byte	.LCFI27
+ 2250 0228 0200     		.2byte	0x2
+ 2251 022a 7D       		.byte	0x7d
+ 2252 022b 00       		.sleb128 0
+ 2253 022c 02000000 		.4byte	.LCFI27
+ 2254 0230 04000000 		.4byte	.LCFI28
+ 2255 0234 0200     		.2byte	0x2
+ 2256 0236 7D       		.byte	0x7d
+ 2257 0237 04       		.sleb128 4
+ 2258 0238 04000000 		.4byte	.LCFI28
+ 2259 023c 06000000 		.4byte	.LCFI29
+ 2260 0240 0200     		.2byte	0x2
+ 2261 0242 7D       		.byte	0x7d
+ 2262 0243 10       		.sleb128 16
+ 2263 0244 06000000 		.4byte	.LCFI29
+ 2264 0248 20000000 		.4byte	.LFE11
+ 2265 024c 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 61
+
+
+ 2266 024e 77       		.byte	0x77
+ 2267 024f 10       		.sleb128 16
+ 2268 0250 00000000 		.4byte	0
+ 2269 0254 00000000 		.4byte	0
+ 2270              	.LLST12:
+ 2271 0258 00000000 		.4byte	.LFB12
+ 2272 025c 02000000 		.4byte	.LCFI30
+ 2273 0260 0200     		.2byte	0x2
+ 2274 0262 7D       		.byte	0x7d
+ 2275 0263 00       		.sleb128 0
+ 2276 0264 02000000 		.4byte	.LCFI30
+ 2277 0268 04000000 		.4byte	.LCFI31
+ 2278 026c 0200     		.2byte	0x2
+ 2279 026e 7D       		.byte	0x7d
+ 2280 026f 04       		.sleb128 4
+ 2281 0270 04000000 		.4byte	.LCFI31
+ 2282 0274 06000000 		.4byte	.LCFI32
+ 2283 0278 0200     		.2byte	0x2
+ 2284 027a 7D       		.byte	0x7d
+ 2285 027b 10       		.sleb128 16
+ 2286 027c 06000000 		.4byte	.LCFI32
+ 2287 0280 36000000 		.4byte	.LFE12
+ 2288 0284 0200     		.2byte	0x2
+ 2289 0286 77       		.byte	0x77
+ 2290 0287 10       		.sleb128 16
+ 2291 0288 00000000 		.4byte	0
+ 2292 028c 00000000 		.4byte	0
+ 2293              	.LLST13:
+ 2294 0290 00000000 		.4byte	.LFB13
+ 2295 0294 02000000 		.4byte	.LCFI33
+ 2296 0298 0200     		.2byte	0x2
+ 2297 029a 7D       		.byte	0x7d
+ 2298 029b 00       		.sleb128 0
+ 2299 029c 02000000 		.4byte	.LCFI33
+ 2300 02a0 04000000 		.4byte	.LCFI34
+ 2301 02a4 0200     		.2byte	0x2
+ 2302 02a6 7D       		.byte	0x7d
+ 2303 02a7 04       		.sleb128 4
+ 2304 02a8 04000000 		.4byte	.LCFI34
+ 2305 02ac 06000000 		.4byte	.LCFI35
+ 2306 02b0 0200     		.2byte	0x2
+ 2307 02b2 7D       		.byte	0x7d
+ 2308 02b3 10       		.sleb128 16
+ 2309 02b4 06000000 		.4byte	.LCFI35
+ 2310 02b8 20000000 		.4byte	.LFE13
+ 2311 02bc 0200     		.2byte	0x2
+ 2312 02be 77       		.byte	0x77
+ 2313 02bf 10       		.sleb128 16
+ 2314 02c0 00000000 		.4byte	0
+ 2315 02c4 00000000 		.4byte	0
+ 2316              	.LLST14:
+ 2317 02c8 00000000 		.4byte	.LFB14
+ 2318 02cc 02000000 		.4byte	.LCFI36
+ 2319 02d0 0200     		.2byte	0x2
+ 2320 02d2 7D       		.byte	0x7d
+ 2321 02d3 00       		.sleb128 0
+ 2322 02d4 02000000 		.4byte	.LCFI36
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 62
+
+
+ 2323 02d8 04000000 		.4byte	.LCFI37
+ 2324 02dc 0200     		.2byte	0x2
+ 2325 02de 7D       		.byte	0x7d
+ 2326 02df 04       		.sleb128 4
+ 2327 02e0 04000000 		.4byte	.LCFI37
+ 2328 02e4 06000000 		.4byte	.LCFI38
+ 2329 02e8 0200     		.2byte	0x2
+ 2330 02ea 7D       		.byte	0x7d
+ 2331 02eb 10       		.sleb128 16
+ 2332 02ec 06000000 		.4byte	.LCFI38
+ 2333 02f0 34000000 		.4byte	.LFE14
+ 2334 02f4 0200     		.2byte	0x2
+ 2335 02f6 77       		.byte	0x77
+ 2336 02f7 10       		.sleb128 16
+ 2337 02f8 00000000 		.4byte	0
+ 2338 02fc 00000000 		.4byte	0
+ 2339              	.LLST15:
+ 2340 0300 00000000 		.4byte	.LFB15
+ 2341 0304 02000000 		.4byte	.LCFI39
+ 2342 0308 0200     		.2byte	0x2
+ 2343 030a 7D       		.byte	0x7d
+ 2344 030b 00       		.sleb128 0
+ 2345 030c 02000000 		.4byte	.LCFI39
+ 2346 0310 04000000 		.4byte	.LCFI40
+ 2347 0314 0200     		.2byte	0x2
+ 2348 0316 7D       		.byte	0x7d
+ 2349 0317 04       		.sleb128 4
+ 2350 0318 04000000 		.4byte	.LCFI40
+ 2351 031c 06000000 		.4byte	.LCFI41
+ 2352 0320 0200     		.2byte	0x2
+ 2353 0322 7D       		.byte	0x7d
+ 2354 0323 10       		.sleb128 16
+ 2355 0324 06000000 		.4byte	.LCFI41
+ 2356 0328 4A000000 		.4byte	.LFE15
+ 2357 032c 0200     		.2byte	0x2
+ 2358 032e 77       		.byte	0x77
+ 2359 032f 10       		.sleb128 16
+ 2360 0330 00000000 		.4byte	0
+ 2361 0334 00000000 		.4byte	0
+ 2362              	.LLST16:
+ 2363 0338 00000000 		.4byte	.LFB16
+ 2364 033c 02000000 		.4byte	.LCFI42
+ 2365 0340 0200     		.2byte	0x2
+ 2366 0342 7D       		.byte	0x7d
+ 2367 0343 00       		.sleb128 0
+ 2368 0344 02000000 		.4byte	.LCFI42
+ 2369 0348 04000000 		.4byte	.LCFI43
+ 2370 034c 0200     		.2byte	0x2
+ 2371 034e 7D       		.byte	0x7d
+ 2372 034f 04       		.sleb128 4
+ 2373 0350 04000000 		.4byte	.LCFI43
+ 2374 0354 2A000000 		.4byte	.LFE16
+ 2375 0358 0200     		.2byte	0x2
+ 2376 035a 77       		.byte	0x77
+ 2377 035b 04       		.sleb128 4
+ 2378 035c 00000000 		.4byte	0
+ 2379 0360 00000000 		.4byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 63
+
+
+ 2380              	.LLST17:
+ 2381 0364 00000000 		.4byte	.LFB17
+ 2382 0368 02000000 		.4byte	.LCFI44
+ 2383 036c 0200     		.2byte	0x2
+ 2384 036e 7D       		.byte	0x7d
+ 2385 036f 00       		.sleb128 0
+ 2386 0370 02000000 		.4byte	.LCFI44
+ 2387 0374 04000000 		.4byte	.LCFI45
+ 2388 0378 0200     		.2byte	0x2
+ 2389 037a 7D       		.byte	0x7d
+ 2390 037b 08       		.sleb128 8
+ 2391 037c 04000000 		.4byte	.LCFI45
+ 2392 0380 06000000 		.4byte	.LCFI46
+ 2393 0384 0200     		.2byte	0x2
+ 2394 0386 7D       		.byte	0x7d
+ 2395 0387 10       		.sleb128 16
+ 2396 0388 06000000 		.4byte	.LCFI46
+ 2397 038c 8E000000 		.4byte	.LFE17
+ 2398 0390 0200     		.2byte	0x2
+ 2399 0392 77       		.byte	0x77
+ 2400 0393 10       		.sleb128 16
+ 2401 0394 00000000 		.4byte	0
+ 2402 0398 00000000 		.4byte	0
+ 2403              	.LLST18:
+ 2404 039c 00000000 		.4byte	.LFB18
+ 2405 03a0 02000000 		.4byte	.LCFI47
+ 2406 03a4 0200     		.2byte	0x2
+ 2407 03a6 7D       		.byte	0x7d
+ 2408 03a7 00       		.sleb128 0
+ 2409 03a8 02000000 		.4byte	.LCFI47
+ 2410 03ac 04000000 		.4byte	.LCFI48
+ 2411 03b0 0200     		.2byte	0x2
+ 2412 03b2 7D       		.byte	0x7d
+ 2413 03b3 08       		.sleb128 8
+ 2414 03b4 04000000 		.4byte	.LCFI48
+ 2415 03b8 06000000 		.4byte	.LCFI49
+ 2416 03bc 0200     		.2byte	0x2
+ 2417 03be 7D       		.byte	0x7d
+ 2418 03bf 18       		.sleb128 24
+ 2419 03c0 06000000 		.4byte	.LCFI49
+ 2420 03c4 44000000 		.4byte	.LFE18
+ 2421 03c8 0200     		.2byte	0x2
+ 2422 03ca 77       		.byte	0x77
+ 2423 03cb 18       		.sleb128 24
+ 2424 03cc 00000000 		.4byte	0
+ 2425 03d0 00000000 		.4byte	0
+ 2426              	.LLST19:
+ 2427 03d4 00000000 		.4byte	.LFB19
+ 2428 03d8 02000000 		.4byte	.LCFI50
+ 2429 03dc 0200     		.2byte	0x2
+ 2430 03de 7D       		.byte	0x7d
+ 2431 03df 00       		.sleb128 0
+ 2432 03e0 02000000 		.4byte	.LCFI50
+ 2433 03e4 04000000 		.4byte	.LCFI51
+ 2434 03e8 0200     		.2byte	0x2
+ 2435 03ea 7D       		.byte	0x7d
+ 2436 03eb 08       		.sleb128 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 64
+
+
+ 2437 03ec 04000000 		.4byte	.LCFI51
+ 2438 03f0 06000000 		.4byte	.LCFI52
+ 2439 03f4 0200     		.2byte	0x2
+ 2440 03f6 7D       		.byte	0x7d
+ 2441 03f7 10       		.sleb128 16
+ 2442 03f8 06000000 		.4byte	.LCFI52
+ 2443 03fc AE000000 		.4byte	.LFE19
+ 2444 0400 0200     		.2byte	0x2
+ 2445 0402 77       		.byte	0x77
+ 2446 0403 10       		.sleb128 16
+ 2447 0404 00000000 		.4byte	0
+ 2448 0408 00000000 		.4byte	0
+ 2449              	.LLST20:
+ 2450 040c 00000000 		.4byte	.LFB20
+ 2451 0410 02000000 		.4byte	.LCFI53
+ 2452 0414 0200     		.2byte	0x2
+ 2453 0416 7D       		.byte	0x7d
+ 2454 0417 00       		.sleb128 0
+ 2455 0418 02000000 		.4byte	.LCFI53
+ 2456 041c 04000000 		.4byte	.LCFI54
+ 2457 0420 0200     		.2byte	0x2
+ 2458 0422 7D       		.byte	0x7d
+ 2459 0423 08       		.sleb128 8
+ 2460 0424 04000000 		.4byte	.LCFI54
+ 2461 0428 0E000000 		.4byte	.LFE20
+ 2462 042c 0200     		.2byte	0x2
+ 2463 042e 77       		.byte	0x77
+ 2464 042f 08       		.sleb128 8
+ 2465 0430 00000000 		.4byte	0
+ 2466 0434 00000000 		.4byte	0
+ 2467              	.LLST21:
+ 2468 0438 00000000 		.4byte	.LFB21
+ 2469 043c 02000000 		.4byte	.LCFI55
+ 2470 0440 0200     		.2byte	0x2
+ 2471 0442 7D       		.byte	0x7d
+ 2472 0443 00       		.sleb128 0
+ 2473 0444 02000000 		.4byte	.LCFI55
+ 2474 0448 04000000 		.4byte	.LCFI56
+ 2475 044c 0200     		.2byte	0x2
+ 2476 044e 7D       		.byte	0x7d
+ 2477 044f 08       		.sleb128 8
+ 2478 0450 04000000 		.4byte	.LCFI56
+ 2479 0454 0E000000 		.4byte	.LFE21
+ 2480 0458 0200     		.2byte	0x2
+ 2481 045a 77       		.byte	0x77
+ 2482 045b 08       		.sleb128 8
+ 2483 045c 00000000 		.4byte	0
+ 2484 0460 00000000 		.4byte	0
+ 2485              	.LLST22:
+ 2486 0464 00000000 		.4byte	.LFB22
+ 2487 0468 02000000 		.4byte	.LCFI57
+ 2488 046c 0200     		.2byte	0x2
+ 2489 046e 7D       		.byte	0x7d
+ 2490 046f 00       		.sleb128 0
+ 2491 0470 02000000 		.4byte	.LCFI57
+ 2492 0474 04000000 		.4byte	.LCFI58
+ 2493 0478 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 65
+
+
+ 2494 047a 7D       		.byte	0x7d
+ 2495 047b 04       		.sleb128 4
+ 2496 047c 04000000 		.4byte	.LCFI58
+ 2497 0480 06000000 		.4byte	.LCFI59
+ 2498 0484 0200     		.2byte	0x2
+ 2499 0486 7D       		.byte	0x7d
+ 2500 0487 10       		.sleb128 16
+ 2501 0488 06000000 		.4byte	.LCFI59
+ 2502 048c 32000000 		.4byte	.LFE22
+ 2503 0490 0200     		.2byte	0x2
+ 2504 0492 77       		.byte	0x77
+ 2505 0493 10       		.sleb128 16
+ 2506 0494 00000000 		.4byte	0
+ 2507 0498 00000000 		.4byte	0
+ 2508              	.LLST23:
+ 2509 049c 00000000 		.4byte	.LFB23
+ 2510 04a0 02000000 		.4byte	.LCFI60
+ 2511 04a4 0200     		.2byte	0x2
+ 2512 04a6 7D       		.byte	0x7d
+ 2513 04a7 00       		.sleb128 0
+ 2514 04a8 02000000 		.4byte	.LCFI60
+ 2515 04ac 04000000 		.4byte	.LCFI61
+ 2516 04b0 0200     		.2byte	0x2
+ 2517 04b2 7D       		.byte	0x7d
+ 2518 04b3 04       		.sleb128 4
+ 2519 04b4 04000000 		.4byte	.LCFI61
+ 2520 04b8 06000000 		.4byte	.LCFI62
+ 2521 04bc 0200     		.2byte	0x2
+ 2522 04be 7D       		.byte	0x7d
+ 2523 04bf 10       		.sleb128 16
+ 2524 04c0 06000000 		.4byte	.LCFI62
+ 2525 04c4 3A000000 		.4byte	.LFE23
+ 2526 04c8 0200     		.2byte	0x2
+ 2527 04ca 77       		.byte	0x77
+ 2528 04cb 10       		.sleb128 16
+ 2529 04cc 00000000 		.4byte	0
+ 2530 04d0 00000000 		.4byte	0
+ 2531              		.section	.debug_aranges,"",%progbits
+ 2532 0000 D4000000 		.4byte	0xd4
+ 2533 0004 0200     		.2byte	0x2
+ 2534 0006 00000000 		.4byte	.Ldebug_info0
+ 2535 000a 04       		.byte	0x4
+ 2536 000b 00       		.byte	0
+ 2537 000c 0000     		.2byte	0
+ 2538 000e 0000     		.2byte	0
+ 2539 0010 00000000 		.4byte	.LFB0
+ 2540 0014 3C000000 		.4byte	.LFE0-.LFB0
+ 2541 0018 00000000 		.4byte	.LFB1
+ 2542 001c 7A000000 		.4byte	.LFE1-.LFB1
+ 2543 0020 00000000 		.4byte	.LFB2
+ 2544 0024 2A000000 		.4byte	.LFE2-.LFB2
+ 2545 0028 00000000 		.4byte	.LFB3
+ 2546 002c 5E000000 		.4byte	.LFE3-.LFB3
+ 2547 0030 00000000 		.4byte	.LFB4
+ 2548 0034 0A000000 		.4byte	.LFE4-.LFB4
+ 2549 0038 00000000 		.4byte	.LFB5
+ 2550 003c 0A000000 		.4byte	.LFE5-.LFB5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 66
+
+
+ 2551 0040 00000000 		.4byte	.LFB6
+ 2552 0044 0A000000 		.4byte	.LFE6-.LFB6
+ 2553 0048 00000000 		.4byte	.LFB7
+ 2554 004c 0A000000 		.4byte	.LFE7-.LFB7
+ 2555 0050 00000000 		.4byte	.LFB8
+ 2556 0054 20000000 		.4byte	.LFE8-.LFB8
+ 2557 0058 00000000 		.4byte	.LFB9
+ 2558 005c 20000000 		.4byte	.LFE9-.LFB9
+ 2559 0060 00000000 		.4byte	.LFB10
+ 2560 0064 20000000 		.4byte	.LFE10-.LFB10
+ 2561 0068 00000000 		.4byte	.LFB11
+ 2562 006c 20000000 		.4byte	.LFE11-.LFB11
+ 2563 0070 00000000 		.4byte	.LFB12
+ 2564 0074 36000000 		.4byte	.LFE12-.LFB12
+ 2565 0078 00000000 		.4byte	.LFB13
+ 2566 007c 20000000 		.4byte	.LFE13-.LFB13
+ 2567 0080 00000000 		.4byte	.LFB14
+ 2568 0084 34000000 		.4byte	.LFE14-.LFB14
+ 2569 0088 00000000 		.4byte	.LFB15
+ 2570 008c 4A000000 		.4byte	.LFE15-.LFB15
+ 2571 0090 00000000 		.4byte	.LFB16
+ 2572 0094 2A000000 		.4byte	.LFE16-.LFB16
+ 2573 0098 00000000 		.4byte	.LFB17
+ 2574 009c 8E000000 		.4byte	.LFE17-.LFB17
+ 2575 00a0 00000000 		.4byte	.LFB18
+ 2576 00a4 44000000 		.4byte	.LFE18-.LFB18
+ 2577 00a8 00000000 		.4byte	.LFB19
+ 2578 00ac AE000000 		.4byte	.LFE19-.LFB19
+ 2579 00b0 00000000 		.4byte	.LFB20
+ 2580 00b4 0E000000 		.4byte	.LFE20-.LFB20
+ 2581 00b8 00000000 		.4byte	.LFB21
+ 2582 00bc 0E000000 		.4byte	.LFE21-.LFB21
+ 2583 00c0 00000000 		.4byte	.LFB22
+ 2584 00c4 32000000 		.4byte	.LFE22-.LFB22
+ 2585 00c8 00000000 		.4byte	.LFB23
+ 2586 00cc 3A000000 		.4byte	.LFE23-.LFB23
+ 2587 00d0 00000000 		.4byte	0
+ 2588 00d4 00000000 		.4byte	0
+ 2589              		.section	.debug_ranges,"",%progbits
+ 2590              	.Ldebug_ranges0:
+ 2591 0000 00000000 		.4byte	.LFB0
+ 2592 0004 3C000000 		.4byte	.LFE0
+ 2593 0008 00000000 		.4byte	.LFB1
+ 2594 000c 7A000000 		.4byte	.LFE1
+ 2595 0010 00000000 		.4byte	.LFB2
+ 2596 0014 2A000000 		.4byte	.LFE2
+ 2597 0018 00000000 		.4byte	.LFB3
+ 2598 001c 5E000000 		.4byte	.LFE3
+ 2599 0020 00000000 		.4byte	.LFB4
+ 2600 0024 0A000000 		.4byte	.LFE4
+ 2601 0028 00000000 		.4byte	.LFB5
+ 2602 002c 0A000000 		.4byte	.LFE5
+ 2603 0030 00000000 		.4byte	.LFB6
+ 2604 0034 0A000000 		.4byte	.LFE6
+ 2605 0038 00000000 		.4byte	.LFB7
+ 2606 003c 0A000000 		.4byte	.LFE7
+ 2607 0040 00000000 		.4byte	.LFB8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 67
+
+
+ 2608 0044 20000000 		.4byte	.LFE8
+ 2609 0048 00000000 		.4byte	.LFB9
+ 2610 004c 20000000 		.4byte	.LFE9
+ 2611 0050 00000000 		.4byte	.LFB10
+ 2612 0054 20000000 		.4byte	.LFE10
+ 2613 0058 00000000 		.4byte	.LFB11
+ 2614 005c 20000000 		.4byte	.LFE11
+ 2615 0060 00000000 		.4byte	.LFB12
+ 2616 0064 36000000 		.4byte	.LFE12
+ 2617 0068 00000000 		.4byte	.LFB13
+ 2618 006c 20000000 		.4byte	.LFE13
+ 2619 0070 00000000 		.4byte	.LFB14
+ 2620 0074 34000000 		.4byte	.LFE14
+ 2621 0078 00000000 		.4byte	.LFB15
+ 2622 007c 4A000000 		.4byte	.LFE15
+ 2623 0080 00000000 		.4byte	.LFB16
+ 2624 0084 2A000000 		.4byte	.LFE16
+ 2625 0088 00000000 		.4byte	.LFB17
+ 2626 008c 8E000000 		.4byte	.LFE17
+ 2627 0090 00000000 		.4byte	.LFB18
+ 2628 0094 44000000 		.4byte	.LFE18
+ 2629 0098 00000000 		.4byte	.LFB19
+ 2630 009c AE000000 		.4byte	.LFE19
+ 2631 00a0 00000000 		.4byte	.LFB20
+ 2632 00a4 0E000000 		.4byte	.LFE20
+ 2633 00a8 00000000 		.4byte	.LFB21
+ 2634 00ac 0E000000 		.4byte	.LFE21
+ 2635 00b0 00000000 		.4byte	.LFB22
+ 2636 00b4 32000000 		.4byte	.LFE22
+ 2637 00b8 00000000 		.4byte	.LFB23
+ 2638 00bc 3A000000 		.4byte	.LFE23
+ 2639 00c0 00000000 		.4byte	0
+ 2640 00c4 00000000 		.4byte	0
+ 2641              		.section	.debug_line,"",%progbits
+ 2642              	.Ldebug_line0:
+ 2643 0000 70020000 		.section	.debug_str,"MS",%progbits,1
+ 2643      02004500 
+ 2643      00000201 
+ 2643      FB0E0D00 
+ 2643      01010101 
+ 2644              	.LASF15:
+ 2645 0000 72656731 		.ascii	"reg16\000"
+ 2645      3600
+ 2646              	.LASF26:
+ 2647 0006 6D617374 		.ascii	"master_SetTxInterruptMode\000"
+ 2647      65725F53 
+ 2647      65745478 
+ 2647      496E7465 
+ 2647      72727570 
+ 2648              	.LASF52:
+ 2649 0020 6D617374 		.ascii	"master_swStatusRx\000"
+ 2649      65725F73 
+ 2649      77537461 
+ 2649      74757352 
+ 2649      7800
+ 2650              	.LASF27:
+ 2651 0032 6D617374 		.ascii	"master_SetRxInterruptMode\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 68
+
+
+ 2651      65725F53 
+ 2651      65745278 
+ 2651      496E7465 
+ 2651      72727570 
+ 2652              	.LASF51:
+ 2653 004c 6D617374 		.ascii	"master_swStatusTx\000"
+ 2653      65725F73 
+ 2653      77537461 
+ 2653      74757354 
+ 2653      7800
+ 2654              	.LASF11:
+ 2655 005e 666C6F61 		.ascii	"float\000"
+ 2655      7400
+ 2656              	.LASF22:
+ 2657 0064 6D617374 		.ascii	"master_EnableTxInt\000"
+ 2657      65725F45 
+ 2657      6E61626C 
+ 2657      65547849 
+ 2657      6E7400
+ 2658              	.LASF18:
+ 2659 0077 6D617374 		.ascii	"master_Start\000"
+ 2659      65725F53 
+ 2659      74617274 
+ 2659      00
+ 2660              	.LASF33:
+ 2661 0084 74784461 		.ascii	"txData\000"
+ 2661      746100
+ 2662              	.LASF4:
+ 2663 008b 6C6F6E67 		.ascii	"long int\000"
+ 2663      20696E74 
+ 2663      00
+ 2664              	.LASF3:
+ 2665 0094 73686F72 		.ascii	"short unsigned int\000"
+ 2665      7420756E 
+ 2665      7369676E 
+ 2665      65642069 
+ 2665      6E7400
+ 2666              	.LASF12:
+ 2667 00a7 646F7562 		.ascii	"double\000"
+ 2667      6C6500
+ 2668              	.LASF38:
+ 2669 00ae 6D617374 		.ascii	"master_GetTxBufferSize\000"
+ 2669      65725F47 
+ 2669      65745478 
+ 2669      42756666 
+ 2669      65725369 
+ 2670              	.LASF35:
+ 2671 00c5 72784461 		.ascii	"rxData\000"
+ 2671      746100
+ 2672              	.LASF20:
+ 2673 00cc 6D617374 		.ascii	"master_Stop\000"
+ 2673      65725F53 
+ 2673      746F7000 
+ 2674              	.LASF39:
+ 2675 00d8 6D617374 		.ascii	"master_ClearRxBuffer\000"
+ 2675      65725F43 
+ 2675      6C656172 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 69
+
+
+ 2675      52784275 
+ 2675      66666572 
+ 2676              	.LASF48:
+ 2677 00ed 6D617374 		.ascii	"master_SetInterruptMode\000"
+ 2677      65725F53 
+ 2677      6574496E 
+ 2677      74657272 
+ 2677      7570744D 
+ 2678              	.LASF37:
+ 2679 0105 73697A65 		.ascii	"size\000"
+ 2679      00
+ 2680              	.LASF14:
+ 2681 010a 72656738 		.ascii	"reg8\000"
+ 2681      00
+ 2682              	.LASF55:
+ 2683 010f 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 2683      73657273 
+ 2683      5C527961 
+ 2683      6E5C446F 
+ 2683      63756D65 
+ 2684 013d 74686572 		.ascii	"thermocouple interface.cydsn\000"
+ 2684      6D6F636F 
+ 2684      75706C65 
+ 2684      20696E74 
+ 2684      65726661 
+ 2685              	.LASF5:
+ 2686 015a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2686      20756E73 
+ 2686      69676E65 
+ 2686      6420696E 
+ 2686      7400
+ 2687              	.LASF9:
+ 2688 016c 75696E74 		.ascii	"uint8\000"
+ 2688      3800
+ 2689              	.LASF36:
+ 2690 0172 6D617374 		.ascii	"master_GetRxBufferSize\000"
+ 2690      65725F47 
+ 2690      65745278 
+ 2690      42756666 
+ 2690      65725369 
+ 2691              	.LASF43:
+ 2692 0189 62797465 		.ascii	"byteCount\000"
+ 2692      436F756E 
+ 2692      7400
+ 2693              	.LASF21:
+ 2694 0193 656E6162 		.ascii	"enableInterrupts\000"
+ 2694      6C65496E 
+ 2694      74657272 
+ 2694      75707473 
+ 2694      00
+ 2695              	.LASF1:
+ 2696 01a4 756E7369 		.ascii	"unsigned char\000"
+ 2696      676E6564 
+ 2696      20636861 
+ 2696      7200
+ 2697              	.LASF25:
+ 2698 01b2 6D617374 		.ascii	"master_DisableRxInt\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 70
+
+
+ 2698      65725F44 
+ 2698      69736162 
+ 2698      6C655278 
+ 2698      496E7400 
+ 2699              	.LASF28:
+ 2700 01c6 696E7453 		.ascii	"intSrc\000"
+ 2700      726300
+ 2701              	.LASF10:
+ 2702 01cd 75696E74 		.ascii	"uint16\000"
+ 2702      313600
+ 2703              	.LASF30:
+ 2704 01d4 6D617374 		.ascii	"master_ReadTxStatus\000"
+ 2704      65725F52 
+ 2704      65616454 
+ 2704      78537461 
+ 2704      74757300 
+ 2705              	.LASF50:
+ 2706 01e8 6D617374 		.ascii	"master_initVar\000"
+ 2706      65725F69 
+ 2706      6E697456 
+ 2706      617200
+ 2707              	.LASF46:
+ 2708 01f7 6D617374 		.ascii	"master_EnableInt\000"
+ 2708      65725F45 
+ 2708      6E61626C 
+ 2708      65496E74 
+ 2708      00
+ 2709              	.LASF8:
+ 2710 0208 756E7369 		.ascii	"unsigned int\000"
+ 2710      676E6564 
+ 2710      20696E74 
+ 2710      00
+ 2711              	.LASF7:
+ 2712 0215 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2712      206C6F6E 
+ 2712      6720756E 
+ 2712      7369676E 
+ 2712      65642069 
+ 2713              	.LASF23:
+ 2714 022c 6D617374 		.ascii	"master_EnableRxInt\000"
+ 2714      65725F45 
+ 2714      6E61626C 
+ 2714      65527849 
+ 2714      6E7400
+ 2715              	.LASF47:
+ 2716 023f 6D617374 		.ascii	"master_DisableInt\000"
+ 2716      65725F44 
+ 2716      69736162 
+ 2716      6C65496E 
+ 2716      7400
+ 2717              	.LASF44:
+ 2718 0251 62756649 		.ascii	"bufIndex\000"
+ 2718      6E646578 
+ 2718      00
+ 2719              	.LASF16:
+ 2720 025a 73697A65 		.ascii	"sizetype\000"
+ 2720      74797065 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 71
+
+
+ 2720      00
+ 2721              	.LASF6:
+ 2722 0263 6C6F6E67 		.ascii	"long long int\000"
+ 2722      206C6F6E 
+ 2722      6720696E 
+ 2722      7400
+ 2723              	.LASF13:
+ 2724 0271 63686172 		.ascii	"char\000"
+ 2724      00
+ 2725              	.LASF49:
+ 2726 0276 6D617374 		.ascii	"master_ReadStatus\000"
+ 2726      65725F52 
+ 2726      65616453 
+ 2726      74617475 
+ 2726      7300
+ 2727              	.LASF41:
+ 2728 0288 6D617374 		.ascii	"master_PutArray\000"
+ 2728      65725F50 
+ 2728      75744172 
+ 2728      72617900 
+ 2729              	.LASF2:
+ 2730 0298 73686F72 		.ascii	"short int\000"
+ 2730      7420696E 
+ 2730      7400
+ 2731              	.LASF40:
+ 2732 02a2 6D617374 		.ascii	"master_ClearTxBuffer\000"
+ 2732      65725F43 
+ 2732      6C656172 
+ 2732      54784275 
+ 2732      66666572 
+ 2733              	.LASF42:
+ 2734 02b7 62756666 		.ascii	"buffer\000"
+ 2734      657200
+ 2735              	.LASF53:
+ 2736 02be 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2736      4320342E 
+ 2736      372E3320 
+ 2736      32303133 
+ 2736      30333132 
+ 2737 02f1 616E6368 		.ascii	"anch revision 196615]\000"
+ 2737      20726576 
+ 2737      6973696F 
+ 2737      6E203139 
+ 2737      36363135 
+ 2738              	.LASF45:
+ 2739 0307 6D617374 		.ascii	"master_ClearFIFO\000"
+ 2739      65725F43 
+ 2739      6C656172 
+ 2739      4649464F 
+ 2739      00
+ 2740              	.LASF31:
+ 2741 0318 6D617374 		.ascii	"master_ReadRxStatus\000"
+ 2741      65725F52 
+ 2741      65616452 
+ 2741      78537461 
+ 2741      74757300 
+ 2742              	.LASF29:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccO5msy0.s 			page 72
+
+
+ 2743 032c 746D7053 		.ascii	"tmpStatus\000"
+ 2743      74617475 
+ 2743      7300
+ 2744              	.LASF32:
+ 2745 0336 6D617374 		.ascii	"master_WriteTxData\000"
+ 2745      65725F57 
+ 2745      72697465 
+ 2745      54784461 
+ 2745      746100
+ 2746              	.LASF54:
+ 2747 0349 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\master.c\000"
+ 2747      6E657261 
+ 2747      7465645F 
+ 2747      536F7572 
+ 2747      63655C50 
+ 2748              	.LASF0:
+ 2749 036b 7369676E 		.ascii	"signed char\000"
+ 2749      65642063 
+ 2749      68617200 
+ 2750              	.LASF19:
+ 2751 0377 6D617374 		.ascii	"master_Enable\000"
+ 2751      65725F45 
+ 2751      6E61626C 
+ 2751      6500
+ 2752              	.LASF17:
+ 2753 0385 6D617374 		.ascii	"master_Init\000"
+ 2753      65725F49 
+ 2753      6E697400 
+ 2754              	.LASF24:
+ 2755 0391 6D617374 		.ascii	"master_DisableTxInt\000"
+ 2755      65725F44 
+ 2755      69736162 
+ 2755      6C655478 
+ 2755      496E7400 
+ 2756              	.LASF34:
+ 2757 03a5 6D617374 		.ascii	"master_ReadRxData\000"
+ 2757      65725F52 
+ 2757      65616452 
+ 2757      78446174 
+ 2757      6100
+ 2758              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

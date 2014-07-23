@@ -1,0 +1,121 @@
+Last Modified Date & Time: 07/09/2014 17:54:36
+
+Project : WindSensor
+		Schematic : TopDesign
+
+		Wind_Rx	v 1.90tv 2.0
+		Wind_Tx	v 1.90tv 2.0
+
+Project : Magnetometer
+		Schematic : TopDesign
+
+		SDA_1	v 1.90tv 2.0
+		SCL_1	v 1.90tv 2.0
+
+Project : Communicating_to_SBD
+		Schematic : TopDesign
+
+		SBD_Rx	v 1.90tv 2.0
+		SBD_Tx	v 1.90tv 2.0
+
+Project : TransmitReadings
+		Schematic : TopDesign
+
+		SDA_1	v 1.90tv 2.0
+		SCL_1	v 1.90tv 2.0
+		Wind_Rx	v 1.90tv 2.0
+		Wind_Tx	v 1.90tv 2.0
+		SBD_Rx	v 1.90tv 2.0
+		SBD_Tx	v 1.90tv 2.0
+		dataPin	v 1.90tv 2.0
+		selectPin	v 1.90tv 2.0
+		clockPin	v 1.90tv 2.0
+		clock	v 2.10tv 2.20
+
+Project : Thermocouple
+		Schematic : TopDesign
+
+		Thermocouple_Pos	v 1.90tv 2.0
+		Thermocouple_Neg	v 1.90tv 2.0
+		SDA_1	v 1.90tv 2.0
+		SCL_1	v 1.90tv 2.0
+		LCD	v 1.90tv 2.0
+
+Project : thermocouple interface
+		Schematic : TopDesign
+
+		clock	v 2.10tv 2.20
+		dataPin	v 1.90tv 2.0
+		selectPin	v 1.90tv 2.0
+		clockPin	v 1.90tv 2.0
+		LCD	v 1.90tv 2.0
+
+Project : TransmitReadings_freeSoC
+		Schematic : TopDesign
+
+		SDA_1	v 1.90tv 2.0
+		SCL_1	v 1.90tv 2.0
+		Wind_Rx	v 1.90tv 2.0
+		Wind_Tx	v 1.90tv 2.0
+		SBD_Rx	v 1.90tv 2.0
+		SBD_Tx	v 1.90tv 2.0
+		dataPin	v 1.90tv 2.0
+		selectPin	v 1.90tv 2.0
+		clockPin	v 1.90tv 2.0
+		clock	v 2.10tv 2.20
+
+Project : Alternative Power Scheme
+		Schematic : TopDesign
+
+		SDA_1	v 1.90tv 2.0
+		SCL_1	v 1.90tv 2.0
+		Wind_Rx	v 1.90tv 2.0
+		Wind_Tx	v 1.90tv 2.0
+		SBD_Rx	v 1.90tv 2.0
+		SBD_Tx	v 1.90tv 2.0
+		dataPin	v 1.90tv 2.0
+		selectPin	v 1.90tv 2.0
+		clockPin	v 1.90tv 2.0
+		clock	v 2.10tv 2.20
+
+Project : WindSensor
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : Magnetometer
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : Communicating_to_SBD
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : TransmitReadings
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : Thermocouple
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : thermocouple interface
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : TransmitReadings_freeSoC
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+Project : Alternative Power Scheme
+		Design Wide APIs
+
+		cy_boot	v 4.0	v 4.10
+
+

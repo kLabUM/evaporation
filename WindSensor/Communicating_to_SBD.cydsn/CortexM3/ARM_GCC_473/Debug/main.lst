@@ -1,0 +1,977 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	Data,256,4
+  19              		.global	Pointer
+  20              		.bss
+  21              		.align	1
+  22              		.type	Pointer, %object
+  23              		.size	Pointer, 2
+  24              	Pointer:
+  25 0000 0000     		.space	2
+  26              		.comm	packetReceived,1,1
+  27              		.section	.rodata
+  28              		.align	2
+  29              	.LC0:
+  30 0000 41542D57 		.ascii	"AT-WSGPF\015\012\000"
+  30      53475046 
+  30      0D0A00
+  31 000b 00       		.section	.text.main,"ax",%progbits
+  32              		.align	2
+  33              		.global	main
+  34              		.thumb
+  35              		.thumb_func
+  36              		.type	main, %function
+  37              	main:
+  38              	.LFB56:
+  39              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** 
+  14:.\main.c      **** CY_ISR_PROTO(SBD_int);
+  15:.\main.c      **** void processPacket();
+  16:.\main.c      **** void clearPacket();
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 2
+
+
+  17:.\main.c      **** 
+  18:.\main.c      **** uint8 Data[256];
+  19:.\main.c      **** uint16 Pointer = 0;
+  20:.\main.c      **** uint8 packetReceived;
+  21:.\main.c      **** 
+  22:.\main.c      **** 
+  23:.\main.c      **** int main()
+  24:.\main.c      **** {
+  40              		.loc 1 24 0
+  41              		.cfi_startproc
+  42              		@ args = 0, pretend = 0, frame = 0
+  43              		@ frame_needed = 1, uses_anonymous_args = 0
+  44 0000 80B5     		push	{r7, lr}
+  45              	.LCFI0:
+  46              		.cfi_def_cfa_offset 8
+  47              		.cfi_offset 7, -8
+  48              		.cfi_offset 14, -4
+  49 0002 00AF     		add	r7, sp, #0
+  50              	.LCFI1:
+  51              		.cfi_def_cfa_register 7
+  25:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  26:.\main.c      **** 	UART_Start();
+  52              		.loc 1 26 0
+  53 0004 FFF7FEFF 		bl	UART_Start
+  27:.\main.c      ****     CyGlobalIntEnable; /* Uncomment this line to enable global interrupts. */
+  54              		.loc 1 27 0
+  55              	@ 27 ".\main.c" 1
+  56 0008 62B6     		CPSIE   i
+  57              	@ 0 "" 2
+  28:.\main.c      **** 	SBD_reply_StartEx(SBD_int);
+  58              		.loc 1 28 0
+  59              		.thumb
+  60 000a 40F20000 		movw	r0, #:lower16:SBD_int
+  61 000e C0F20000 		movt	r0, #:upper16:SBD_int
+  62 0012 FFF7FEFF 		bl	SBD_reply_StartEx
+  29:.\main.c      **** 	clearPacket();
+  63              		.loc 1 29 0
+  64 0016 FFF7FEFF 		bl	clearPacket
+  30:.\main.c      **** 	UART_PutString("AT-WSGPF\r\n");
+  65              		.loc 1 30 0
+  66 001a 40F20000 		movw	r0, #:lower16:.LC0
+  67 001e C0F20000 		movt	r0, #:upper16:.LC0
+  68 0022 FFF7FEFF 		bl	UART_PutString
+  69              	.L3:
+  31:.\main.c      **** 	
+  32:.\main.c      ****     for(;;)
+  33:.\main.c      ****     {
+  34:.\main.c      **** 		if(packetReceived)
+  70              		.loc 1 34 0
+  71 0026 40F20003 		movw	r3, #:lower16:packetReceived
+  72 002a C0F20003 		movt	r3, #:upper16:packetReceived
+  73 002e 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+  74 0030 002B     		cmp	r3, #0
+  75 0032 01D0     		beq	.L2
+  35:.\main.c      **** 		{
+  36:.\main.c      **** 			processPacket();
+  76              		.loc 1 36 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 3
+
+
+  77 0034 FFF7FEFF 		bl	processPacket
+  78              	.L2:
+  37:.\main.c      **** 		}
+  38:.\main.c      **** 		
+  39:.\main.c      **** 		UART_PutString("AT-WSGPF\r\n");
+  79              		.loc 1 39 0
+  80 0038 40F20000 		movw	r0, #:lower16:.LC0
+  81 003c C0F20000 		movt	r0, #:upper16:.LC0
+  82 0040 FFF7FEFF 		bl	UART_PutString
+  40:.\main.c      **** 	}
+  83              		.loc 1 40 0
+  84 0044 EFE7     		b	.L3
+  85              		.cfi_endproc
+  86              	.LFE56:
+  87              		.size	main, .-main
+  88 0046 00BF     		.section	.text.processPacket,"ax",%progbits
+  89              		.align	2
+  90              		.global	processPacket
+  91              		.thumb
+  92              		.thumb_func
+  93              		.type	processPacket, %function
+  94              	processPacket:
+  95              	.LFB57:
+  41:.\main.c      **** }	
+  42:.\main.c      **** 
+  43:.\main.c      **** 	void processPacket(){
+  96              		.loc 1 43 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 1, uses_anonymous_args = 0
+ 100 0000 80B5     		push	{r7, lr}
+ 101              	.LCFI2:
+ 102              		.cfi_def_cfa_offset 8
+ 103              		.cfi_offset 7, -8
+ 104              		.cfi_offset 14, -4
+ 105 0002 00AF     		add	r7, sp, #0
+ 106              	.LCFI3:
+ 107              		.cfi_def_cfa_register 7
+  44:.\main.c      **** 	clearPacket();
+ 108              		.loc 1 44 0
+ 109 0004 FFF7FEFF 		bl	clearPacket
+  45:.\main.c      **** 	}
+ 110              		.loc 1 45 0
+ 111 0008 80BD     		pop	{r7, pc}
+ 112              		.cfi_endproc
+ 113              	.LFE57:
+ 114              		.size	processPacket, .-processPacket
+ 115 000a 00BF     		.section	.text.clearPacket,"ax",%progbits
+ 116              		.align	2
+ 117              		.global	clearPacket
+ 118              		.thumb
+ 119              		.thumb_func
+ 120              		.type	clearPacket, %function
+ 121              	clearPacket:
+ 122              	.LFB58:
+  46:.\main.c      **** 
+  47:.\main.c      **** 	void clearPacket(){
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 4
+
+
+ 123              		.loc 1 47 0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 1, uses_anonymous_args = 0
+ 127              		@ link register save eliminated.
+ 128 0000 80B4     		push	{r7}
+ 129              	.LCFI4:
+ 130              		.cfi_def_cfa_offset 4
+ 131              		.cfi_offset 7, -4
+ 132 0002 00AF     		add	r7, sp, #0
+ 133              	.LCFI5:
+ 134              		.cfi_def_cfa_register 7
+  48:.\main.c      **** 	Pointer = 0;
+ 135              		.loc 1 48 0
+ 136 0004 40F20003 		movw	r3, #:lower16:Pointer
+ 137 0008 C0F20003 		movt	r3, #:upper16:Pointer
+ 138 000c 4FF00002 		mov	r2, #0
+ 139 0010 1A80     		strh	r2, [r3, #0]	@ movhi
+  49:.\main.c      **** 	}
+ 140              		.loc 1 49 0
+ 141 0012 BD46     		mov	sp, r7
+ 142 0014 80BC     		pop	{r7}
+ 143 0016 7047     		bx	lr
+ 144              		.cfi_endproc
+ 145              	.LFE58:
+ 146              		.size	clearPacket, .-clearPacket
+ 147              		.section	.text.SBD_int,"ax",%progbits
+ 148              		.align	2
+ 149              		.global	SBD_int
+ 150              		.thumb
+ 151              		.thumb_func
+ 152              		.type	SBD_int, %function
+ 153              	SBD_int:
+ 154              	.LFB59:
+  50:.\main.c      **** 
+  51:.\main.c      **** 	CY_ISR(SBD_int)
+  52:.\main.c      **** 	{
+ 155              		.loc 1 52 0
+ 156              		.cfi_startproc
+ 157              		@ args = 0, pretend = 0, frame = 8
+ 158              		@ frame_needed = 1, uses_anonymous_args = 0
+ 159 0000 80B5     		push	{r7, lr}
+ 160              	.LCFI6:
+ 161              		.cfi_def_cfa_offset 8
+ 162              		.cfi_offset 7, -8
+ 163              		.cfi_offset 14, -4
+ 164 0002 82B0     		sub	sp, sp, #8
+ 165              	.LCFI7:
+ 166              		.cfi_def_cfa_offset 16
+ 167 0004 00AF     		add	r7, sp, #0
+ 168              	.LCFI8:
+ 169              		.cfi_def_cfa_register 7
+  53:.\main.c      ****  	    uint8 byte = UART_GetChar();
+ 170              		.loc 1 53 0
+ 171 0006 FFF7FEFF 		bl	UART_GetChar
+ 172 000a 0346     		mov	r3, r0
+ 173 000c FB71     		strb	r3, [r7, #7]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 5
+
+
+  54:.\main.c      **** 		if(byte !=0){
+ 174              		.loc 1 54 0
+ 175 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 176 0010 002B     		cmp	r3, #0
+ 177 0012 22D0     		beq	.L6
+  55:.\main.c      **** 			Data[Pointer] = byte;
+ 178              		.loc 1 55 0
+ 179 0014 40F20003 		movw	r3, #:lower16:Pointer
+ 180 0018 C0F20003 		movt	r3, #:upper16:Pointer
+ 181 001c 1B88     		ldrh	r3, [r3, #0]
+ 182 001e 1A46     		mov	r2, r3
+ 183 0020 40F20003 		movw	r3, #:lower16:Data
+ 184 0024 C0F20003 		movt	r3, #:upper16:Data
+ 185 0028 F979     		ldrb	r1, [r7, #7]
+ 186 002a 9954     		strb	r1, [r3, r2]
+  56:.\main.c      **** 			Pointer++;	
+ 187              		.loc 1 56 0
+ 188 002c 40F20003 		movw	r3, #:lower16:Pointer
+ 189 0030 C0F20003 		movt	r3, #:upper16:Pointer
+ 190 0034 1B88     		ldrh	r3, [r3, #0]
+ 191 0036 03F10103 		add	r3, r3, #1
+ 192 003a 9AB2     		uxth	r2, r3
+ 193 003c 40F20003 		movw	r3, #:lower16:Pointer
+ 194 0040 C0F20003 		movt	r3, #:upper16:Pointer
+ 195 0044 1A80     		strh	r2, [r3, #0]	@ movhi
+  57:.\main.c      **** 			if(byte == '\n'){
+ 196              		.loc 1 57 0
+ 197 0046 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 198 0048 0A2B     		cmp	r3, #10
+ 199 004a 06D1     		bne	.L6
+  58:.\main.c      **** 				packetReceived = 1;
+ 200              		.loc 1 58 0
+ 201 004c 40F20003 		movw	r3, #:lower16:packetReceived
+ 202 0050 C0F20003 		movt	r3, #:upper16:packetReceived
+ 203 0054 4FF00102 		mov	r2, #1
+ 204 0058 1A70     		strb	r2, [r3, #0]
+ 205              	.L6:
+  59:.\main.c      **** 			}
+  60:.\main.c      **** 			
+  61:.\main.c      **** 		}
+  62:.\main.c      **** 	}
+ 206              		.loc 1 62 0
+ 207 005a 07F10807 		add	r7, r7, #8
+ 208 005e BD46     		mov	sp, r7
+ 209 0060 80BD     		pop	{r7, pc}
+ 210              		.cfi_endproc
+ 211              	.LFE59:
+ 212              		.size	SBD_int, .-SBD_int
+ 213 0062 00BF     		.text
+ 214              	.Letext0:
+ 215              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 216              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 217              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 218              		.section	.debug_info,"",%progbits
+ 219              	.Ldebug_info0:
+ 220 0000 6E010000 		.4byte	0x16e
+ 221 0004 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 6
+
+
+ 222 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 223 000a 04       		.byte	0x4
+ 224 000b 01       		.uleb128 0x1
+ 225 000c 38000000 		.4byte	.LASF22
+ 226 0010 01       		.byte	0x1
+ 227 0011 99000000 		.4byte	.LASF23
+ 228 0015 2B010000 		.4byte	.LASF24
+ 229 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 230 001d 00000000 		.4byte	0
+ 231 0021 00000000 		.4byte	0
+ 232 0025 00000000 		.4byte	.Ldebug_line0
+ 233 0029 02       		.uleb128 0x2
+ 234 002a 01       		.byte	0x1
+ 235 002b 06       		.byte	0x6
+ 236 002c 1F010000 		.4byte	.LASF0
+ 237 0030 02       		.uleb128 0x2
+ 238 0031 01       		.byte	0x1
+ 239 0032 08       		.byte	0x8
+ 240 0033 C8000000 		.4byte	.LASF1
+ 241 0037 02       		.uleb128 0x2
+ 242 0038 02       		.byte	0x2
+ 243 0039 05       		.byte	0x5
+ 244 003a 7A010000 		.4byte	.LASF2
+ 245 003e 02       		.uleb128 0x2
+ 246 003f 02       		.byte	0x2
+ 247 0040 07       		.byte	0x7
+ 248 0041 0E000000 		.4byte	.LASF3
+ 249 0045 03       		.uleb128 0x3
+ 250 0046 8B010000 		.4byte	.LASF9
+ 251 004a 02       		.byte	0x2
+ 252 004b 4F       		.byte	0x4f
+ 253 004c 50000000 		.4byte	0x50
+ 254 0050 02       		.uleb128 0x2
+ 255 0051 04       		.byte	0x4
+ 256 0052 05       		.byte	0x5
+ 257 0053 DB000000 		.4byte	.LASF4
+ 258 0057 02       		.uleb128 0x2
+ 259 0058 04       		.byte	0x4
+ 260 0059 07       		.byte	0x7
+ 261 005a 87000000 		.4byte	.LASF5
+ 262 005e 02       		.uleb128 0x2
+ 263 005f 08       		.byte	0x8
+ 264 0060 05       		.byte	0x5
+ 265 0061 00000000 		.4byte	.LASF6
+ 266 0065 02       		.uleb128 0x2
+ 267 0066 08       		.byte	0x8
+ 268 0067 07       		.byte	0x7
+ 269 0068 A2000000 		.4byte	.LASF7
+ 270 006c 04       		.uleb128 0x4
+ 271 006d 04       		.byte	0x4
+ 272 006e 05       		.byte	0x5
+ 273 006f 696E7400 		.ascii	"int\000"
+ 274 0073 02       		.uleb128 0x2
+ 275 0074 04       		.byte	0x4
+ 276 0075 07       		.byte	0x7
+ 277 0076 21000000 		.4byte	.LASF8
+ 278 007a 03       		.uleb128 0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 7
+
+
+ 279 007b 81000000 		.4byte	.LASF10
+ 280 007f 03       		.byte	0x3
+ 281 0080 5B       		.byte	0x5b
+ 282 0081 30000000 		.4byte	0x30
+ 283 0085 03       		.uleb128 0x3
+ 284 0086 84010000 		.4byte	.LASF11
+ 285 008a 03       		.byte	0x3
+ 286 008b 5C       		.byte	0x5c
+ 287 008c 3E000000 		.4byte	0x3e
+ 288 0090 02       		.uleb128 0x2
+ 289 0091 04       		.byte	0x4
+ 290 0092 04       		.byte	0x4
+ 291 0093 74010000 		.4byte	.LASF12
+ 292 0097 02       		.uleb128 0x2
+ 293 0098 08       		.byte	0x8
+ 294 0099 04       		.byte	0x4
+ 295 009a E4000000 		.4byte	.LASF13
+ 296 009e 02       		.uleb128 0x2
+ 297 009f 01       		.byte	0x1
+ 298 00a0 08       		.byte	0x8
+ 299 00a1 D6000000 		.4byte	.LASF14
+ 300 00a5 02       		.uleb128 0x2
+ 301 00a6 04       		.byte	0x4
+ 302 00a7 07       		.byte	0x7
+ 303 00a8 93010000 		.4byte	.LASF15
+ 304 00ac 05       		.uleb128 0x5
+ 305 00ad 01       		.byte	0x1
+ 306 00ae 2E000000 		.4byte	.LASF25
+ 307 00b2 01       		.byte	0x1
+ 308 00b3 17       		.byte	0x17
+ 309 00b4 6C000000 		.4byte	0x6c
+ 310 00b8 00000000 		.4byte	.LFB56
+ 311 00bc 46000000 		.4byte	.LFE56
+ 312 00c0 00000000 		.4byte	.LLST0
+ 313 00c4 01       		.byte	0x1
+ 314 00c5 06       		.uleb128 0x6
+ 315 00c6 01       		.byte	0x1
+ 316 00c7 04010000 		.4byte	.LASF16
+ 317 00cb 01       		.byte	0x1
+ 318 00cc 2B       		.byte	0x2b
+ 319 00cd 00000000 		.4byte	.LFB57
+ 320 00d1 0A000000 		.4byte	.LFE57
+ 321 00d5 2C000000 		.4byte	.LLST1
+ 322 00d9 01       		.byte	0x1
+ 323 00da 07       		.uleb128 0x7
+ 324 00db 01       		.byte	0x1
+ 325 00dc EB000000 		.4byte	.LASF17
+ 326 00e0 01       		.byte	0x1
+ 327 00e1 2F       		.byte	0x2f
+ 328 00e2 00000000 		.4byte	.LFB58
+ 329 00e6 18000000 		.4byte	.LFE58
+ 330 00ea 58000000 		.4byte	.LLST2
+ 331 00ee 01       		.byte	0x1
+ 332 00ef 08       		.uleb128 0x8
+ 333 00f0 01       		.byte	0x1
+ 334 00f1 9C010000 		.4byte	.LASF26
+ 335 00f5 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 8
+
+
+ 336 00f6 33       		.byte	0x33
+ 337 00f7 01       		.byte	0x1
+ 338 00f8 00000000 		.4byte	.LFB59
+ 339 00fc 62000000 		.4byte	.LFE59
+ 340 0100 84000000 		.4byte	.LLST3
+ 341 0104 01       		.byte	0x1
+ 342 0105 18010000 		.4byte	0x118
+ 343 0109 09       		.uleb128 0x9
+ 344 010a FF000000 		.4byte	.LASF27
+ 345 010e 01       		.byte	0x1
+ 346 010f 35       		.byte	0x35
+ 347 0110 7A000000 		.4byte	0x7a
+ 348 0114 02       		.byte	0x2
+ 349 0115 91       		.byte	0x91
+ 350 0116 77       		.sleb128 -9
+ 351 0117 00       		.byte	0
+ 352 0118 0A       		.uleb128 0xa
+ 353 0119 12010000 		.4byte	.LASF18
+ 354 011d 04       		.byte	0x4
+ 355 011e 1606     		.2byte	0x616
+ 356 0120 26010000 		.4byte	0x126
+ 357 0124 01       		.byte	0x1
+ 358 0125 01       		.byte	0x1
+ 359 0126 0B       		.uleb128 0xb
+ 360 0127 45000000 		.4byte	0x45
+ 361 012b 0C       		.uleb128 0xc
+ 362 012c 7A000000 		.4byte	0x7a
+ 363 0130 3B010000 		.4byte	0x13b
+ 364 0134 0D       		.uleb128 0xd
+ 365 0135 A5000000 		.4byte	0xa5
+ 366 0139 FF       		.byte	0xff
+ 367 013a 00       		.byte	0
+ 368 013b 0E       		.uleb128 0xe
+ 369 013c 33000000 		.4byte	.LASF19
+ 370 0140 01       		.byte	0x1
+ 371 0141 12       		.byte	0x12
+ 372 0142 2B010000 		.4byte	0x12b
+ 373 0146 01       		.byte	0x1
+ 374 0147 05       		.byte	0x5
+ 375 0148 03       		.byte	0x3
+ 376 0149 00000000 		.4byte	Data
+ 377 014d 0E       		.uleb128 0xe
+ 378 014e F7000000 		.4byte	.LASF20
+ 379 0152 01       		.byte	0x1
+ 380 0153 13       		.byte	0x13
+ 381 0154 85000000 		.4byte	0x85
+ 382 0158 01       		.byte	0x1
+ 383 0159 05       		.byte	0x5
+ 384 015a 03       		.byte	0x3
+ 385 015b 00000000 		.4byte	Pointer
+ 386 015f 0E       		.uleb128 0xe
+ 387 0160 B9000000 		.4byte	.LASF21
+ 388 0164 01       		.byte	0x1
+ 389 0165 14       		.byte	0x14
+ 390 0166 7A000000 		.4byte	0x7a
+ 391 016a 01       		.byte	0x1
+ 392 016b 05       		.byte	0x5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 9
+
+
+ 393 016c 03       		.byte	0x3
+ 394 016d 00000000 		.4byte	packetReceived
+ 395 0171 00       		.byte	0
+ 396              		.section	.debug_abbrev,"",%progbits
+ 397              	.Ldebug_abbrev0:
+ 398 0000 01       		.uleb128 0x1
+ 399 0001 11       		.uleb128 0x11
+ 400 0002 01       		.byte	0x1
+ 401 0003 25       		.uleb128 0x25
+ 402 0004 0E       		.uleb128 0xe
+ 403 0005 13       		.uleb128 0x13
+ 404 0006 0B       		.uleb128 0xb
+ 405 0007 03       		.uleb128 0x3
+ 406 0008 0E       		.uleb128 0xe
+ 407 0009 1B       		.uleb128 0x1b
+ 408 000a 0E       		.uleb128 0xe
+ 409 000b 55       		.uleb128 0x55
+ 410 000c 06       		.uleb128 0x6
+ 411 000d 11       		.uleb128 0x11
+ 412 000e 01       		.uleb128 0x1
+ 413 000f 52       		.uleb128 0x52
+ 414 0010 01       		.uleb128 0x1
+ 415 0011 10       		.uleb128 0x10
+ 416 0012 06       		.uleb128 0x6
+ 417 0013 00       		.byte	0
+ 418 0014 00       		.byte	0
+ 419 0015 02       		.uleb128 0x2
+ 420 0016 24       		.uleb128 0x24
+ 421 0017 00       		.byte	0
+ 422 0018 0B       		.uleb128 0xb
+ 423 0019 0B       		.uleb128 0xb
+ 424 001a 3E       		.uleb128 0x3e
+ 425 001b 0B       		.uleb128 0xb
+ 426 001c 03       		.uleb128 0x3
+ 427 001d 0E       		.uleb128 0xe
+ 428 001e 00       		.byte	0
+ 429 001f 00       		.byte	0
+ 430 0020 03       		.uleb128 0x3
+ 431 0021 16       		.uleb128 0x16
+ 432 0022 00       		.byte	0
+ 433 0023 03       		.uleb128 0x3
+ 434 0024 0E       		.uleb128 0xe
+ 435 0025 3A       		.uleb128 0x3a
+ 436 0026 0B       		.uleb128 0xb
+ 437 0027 3B       		.uleb128 0x3b
+ 438 0028 0B       		.uleb128 0xb
+ 439 0029 49       		.uleb128 0x49
+ 440 002a 13       		.uleb128 0x13
+ 441 002b 00       		.byte	0
+ 442 002c 00       		.byte	0
+ 443 002d 04       		.uleb128 0x4
+ 444 002e 24       		.uleb128 0x24
+ 445 002f 00       		.byte	0
+ 446 0030 0B       		.uleb128 0xb
+ 447 0031 0B       		.uleb128 0xb
+ 448 0032 3E       		.uleb128 0x3e
+ 449 0033 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 10
+
+
+ 450 0034 03       		.uleb128 0x3
+ 451 0035 08       		.uleb128 0x8
+ 452 0036 00       		.byte	0
+ 453 0037 00       		.byte	0
+ 454 0038 05       		.uleb128 0x5
+ 455 0039 2E       		.uleb128 0x2e
+ 456 003a 00       		.byte	0
+ 457 003b 3F       		.uleb128 0x3f
+ 458 003c 0C       		.uleb128 0xc
+ 459 003d 03       		.uleb128 0x3
+ 460 003e 0E       		.uleb128 0xe
+ 461 003f 3A       		.uleb128 0x3a
+ 462 0040 0B       		.uleb128 0xb
+ 463 0041 3B       		.uleb128 0x3b
+ 464 0042 0B       		.uleb128 0xb
+ 465 0043 49       		.uleb128 0x49
+ 466 0044 13       		.uleb128 0x13
+ 467 0045 11       		.uleb128 0x11
+ 468 0046 01       		.uleb128 0x1
+ 469 0047 12       		.uleb128 0x12
+ 470 0048 01       		.uleb128 0x1
+ 471 0049 40       		.uleb128 0x40
+ 472 004a 06       		.uleb128 0x6
+ 473 004b 9642     		.uleb128 0x2116
+ 474 004d 0C       		.uleb128 0xc
+ 475 004e 00       		.byte	0
+ 476 004f 00       		.byte	0
+ 477 0050 06       		.uleb128 0x6
+ 478 0051 2E       		.uleb128 0x2e
+ 479 0052 00       		.byte	0
+ 480 0053 3F       		.uleb128 0x3f
+ 481 0054 0C       		.uleb128 0xc
+ 482 0055 03       		.uleb128 0x3
+ 483 0056 0E       		.uleb128 0xe
+ 484 0057 3A       		.uleb128 0x3a
+ 485 0058 0B       		.uleb128 0xb
+ 486 0059 3B       		.uleb128 0x3b
+ 487 005a 0B       		.uleb128 0xb
+ 488 005b 11       		.uleb128 0x11
+ 489 005c 01       		.uleb128 0x1
+ 490 005d 12       		.uleb128 0x12
+ 491 005e 01       		.uleb128 0x1
+ 492 005f 40       		.uleb128 0x40
+ 493 0060 06       		.uleb128 0x6
+ 494 0061 9642     		.uleb128 0x2116
+ 495 0063 0C       		.uleb128 0xc
+ 496 0064 00       		.byte	0
+ 497 0065 00       		.byte	0
+ 498 0066 07       		.uleb128 0x7
+ 499 0067 2E       		.uleb128 0x2e
+ 500 0068 00       		.byte	0
+ 501 0069 3F       		.uleb128 0x3f
+ 502 006a 0C       		.uleb128 0xc
+ 503 006b 03       		.uleb128 0x3
+ 504 006c 0E       		.uleb128 0xe
+ 505 006d 3A       		.uleb128 0x3a
+ 506 006e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 11
+
+
+ 507 006f 3B       		.uleb128 0x3b
+ 508 0070 0B       		.uleb128 0xb
+ 509 0071 11       		.uleb128 0x11
+ 510 0072 01       		.uleb128 0x1
+ 511 0073 12       		.uleb128 0x12
+ 512 0074 01       		.uleb128 0x1
+ 513 0075 40       		.uleb128 0x40
+ 514 0076 06       		.uleb128 0x6
+ 515 0077 9742     		.uleb128 0x2117
+ 516 0079 0C       		.uleb128 0xc
+ 517 007a 00       		.byte	0
+ 518 007b 00       		.byte	0
+ 519 007c 08       		.uleb128 0x8
+ 520 007d 2E       		.uleb128 0x2e
+ 521 007e 01       		.byte	0x1
+ 522 007f 3F       		.uleb128 0x3f
+ 523 0080 0C       		.uleb128 0xc
+ 524 0081 03       		.uleb128 0x3
+ 525 0082 0E       		.uleb128 0xe
+ 526 0083 3A       		.uleb128 0x3a
+ 527 0084 0B       		.uleb128 0xb
+ 528 0085 3B       		.uleb128 0x3b
+ 529 0086 0B       		.uleb128 0xb
+ 530 0087 27       		.uleb128 0x27
+ 531 0088 0C       		.uleb128 0xc
+ 532 0089 11       		.uleb128 0x11
+ 533 008a 01       		.uleb128 0x1
+ 534 008b 12       		.uleb128 0x12
+ 535 008c 01       		.uleb128 0x1
+ 536 008d 40       		.uleb128 0x40
+ 537 008e 06       		.uleb128 0x6
+ 538 008f 9642     		.uleb128 0x2116
+ 539 0091 0C       		.uleb128 0xc
+ 540 0092 01       		.uleb128 0x1
+ 541 0093 13       		.uleb128 0x13
+ 542 0094 00       		.byte	0
+ 543 0095 00       		.byte	0
+ 544 0096 09       		.uleb128 0x9
+ 545 0097 34       		.uleb128 0x34
+ 546 0098 00       		.byte	0
+ 547 0099 03       		.uleb128 0x3
+ 548 009a 0E       		.uleb128 0xe
+ 549 009b 3A       		.uleb128 0x3a
+ 550 009c 0B       		.uleb128 0xb
+ 551 009d 3B       		.uleb128 0x3b
+ 552 009e 0B       		.uleb128 0xb
+ 553 009f 49       		.uleb128 0x49
+ 554 00a0 13       		.uleb128 0x13
+ 555 00a1 02       		.uleb128 0x2
+ 556 00a2 0A       		.uleb128 0xa
+ 557 00a3 00       		.byte	0
+ 558 00a4 00       		.byte	0
+ 559 00a5 0A       		.uleb128 0xa
+ 560 00a6 34       		.uleb128 0x34
+ 561 00a7 00       		.byte	0
+ 562 00a8 03       		.uleb128 0x3
+ 563 00a9 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 12
+
+
+ 564 00aa 3A       		.uleb128 0x3a
+ 565 00ab 0B       		.uleb128 0xb
+ 566 00ac 3B       		.uleb128 0x3b
+ 567 00ad 05       		.uleb128 0x5
+ 568 00ae 49       		.uleb128 0x49
+ 569 00af 13       		.uleb128 0x13
+ 570 00b0 3F       		.uleb128 0x3f
+ 571 00b1 0C       		.uleb128 0xc
+ 572 00b2 3C       		.uleb128 0x3c
+ 573 00b3 0C       		.uleb128 0xc
+ 574 00b4 00       		.byte	0
+ 575 00b5 00       		.byte	0
+ 576 00b6 0B       		.uleb128 0xb
+ 577 00b7 35       		.uleb128 0x35
+ 578 00b8 00       		.byte	0
+ 579 00b9 49       		.uleb128 0x49
+ 580 00ba 13       		.uleb128 0x13
+ 581 00bb 00       		.byte	0
+ 582 00bc 00       		.byte	0
+ 583 00bd 0C       		.uleb128 0xc
+ 584 00be 01       		.uleb128 0x1
+ 585 00bf 01       		.byte	0x1
+ 586 00c0 49       		.uleb128 0x49
+ 587 00c1 13       		.uleb128 0x13
+ 588 00c2 01       		.uleb128 0x1
+ 589 00c3 13       		.uleb128 0x13
+ 590 00c4 00       		.byte	0
+ 591 00c5 00       		.byte	0
+ 592 00c6 0D       		.uleb128 0xd
+ 593 00c7 21       		.uleb128 0x21
+ 594 00c8 00       		.byte	0
+ 595 00c9 49       		.uleb128 0x49
+ 596 00ca 13       		.uleb128 0x13
+ 597 00cb 2F       		.uleb128 0x2f
+ 598 00cc 0B       		.uleb128 0xb
+ 599 00cd 00       		.byte	0
+ 600 00ce 00       		.byte	0
+ 601 00cf 0E       		.uleb128 0xe
+ 602 00d0 34       		.uleb128 0x34
+ 603 00d1 00       		.byte	0
+ 604 00d2 03       		.uleb128 0x3
+ 605 00d3 0E       		.uleb128 0xe
+ 606 00d4 3A       		.uleb128 0x3a
+ 607 00d5 0B       		.uleb128 0xb
+ 608 00d6 3B       		.uleb128 0x3b
+ 609 00d7 0B       		.uleb128 0xb
+ 610 00d8 49       		.uleb128 0x49
+ 611 00d9 13       		.uleb128 0x13
+ 612 00da 3F       		.uleb128 0x3f
+ 613 00db 0C       		.uleb128 0xc
+ 614 00dc 02       		.uleb128 0x2
+ 615 00dd 0A       		.uleb128 0xa
+ 616 00de 00       		.byte	0
+ 617 00df 00       		.byte	0
+ 618 00e0 00       		.byte	0
+ 619              		.section	.debug_loc,"",%progbits
+ 620              	.Ldebug_loc0:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 13
+
+
+ 621              	.LLST0:
+ 622 0000 00000000 		.4byte	.LFB56
+ 623 0004 02000000 		.4byte	.LCFI0
+ 624 0008 0200     		.2byte	0x2
+ 625 000a 7D       		.byte	0x7d
+ 626 000b 00       		.sleb128 0
+ 627 000c 02000000 		.4byte	.LCFI0
+ 628 0010 04000000 		.4byte	.LCFI1
+ 629 0014 0200     		.2byte	0x2
+ 630 0016 7D       		.byte	0x7d
+ 631 0017 08       		.sleb128 8
+ 632 0018 04000000 		.4byte	.LCFI1
+ 633 001c 46000000 		.4byte	.LFE56
+ 634 0020 0200     		.2byte	0x2
+ 635 0022 77       		.byte	0x77
+ 636 0023 08       		.sleb128 8
+ 637 0024 00000000 		.4byte	0
+ 638 0028 00000000 		.4byte	0
+ 639              	.LLST1:
+ 640 002c 00000000 		.4byte	.LFB57
+ 641 0030 02000000 		.4byte	.LCFI2
+ 642 0034 0200     		.2byte	0x2
+ 643 0036 7D       		.byte	0x7d
+ 644 0037 00       		.sleb128 0
+ 645 0038 02000000 		.4byte	.LCFI2
+ 646 003c 04000000 		.4byte	.LCFI3
+ 647 0040 0200     		.2byte	0x2
+ 648 0042 7D       		.byte	0x7d
+ 649 0043 08       		.sleb128 8
+ 650 0044 04000000 		.4byte	.LCFI3
+ 651 0048 0A000000 		.4byte	.LFE57
+ 652 004c 0200     		.2byte	0x2
+ 653 004e 77       		.byte	0x77
+ 654 004f 08       		.sleb128 8
+ 655 0050 00000000 		.4byte	0
+ 656 0054 00000000 		.4byte	0
+ 657              	.LLST2:
+ 658 0058 00000000 		.4byte	.LFB58
+ 659 005c 02000000 		.4byte	.LCFI4
+ 660 0060 0200     		.2byte	0x2
+ 661 0062 7D       		.byte	0x7d
+ 662 0063 00       		.sleb128 0
+ 663 0064 02000000 		.4byte	.LCFI4
+ 664 0068 04000000 		.4byte	.LCFI5
+ 665 006c 0200     		.2byte	0x2
+ 666 006e 7D       		.byte	0x7d
+ 667 006f 04       		.sleb128 4
+ 668 0070 04000000 		.4byte	.LCFI5
+ 669 0074 18000000 		.4byte	.LFE58
+ 670 0078 0200     		.2byte	0x2
+ 671 007a 77       		.byte	0x77
+ 672 007b 04       		.sleb128 4
+ 673 007c 00000000 		.4byte	0
+ 674 0080 00000000 		.4byte	0
+ 675              	.LLST3:
+ 676 0084 00000000 		.4byte	.LFB59
+ 677 0088 02000000 		.4byte	.LCFI6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 14
+
+
+ 678 008c 0200     		.2byte	0x2
+ 679 008e 7D       		.byte	0x7d
+ 680 008f 00       		.sleb128 0
+ 681 0090 02000000 		.4byte	.LCFI6
+ 682 0094 04000000 		.4byte	.LCFI7
+ 683 0098 0200     		.2byte	0x2
+ 684 009a 7D       		.byte	0x7d
+ 685 009b 08       		.sleb128 8
+ 686 009c 04000000 		.4byte	.LCFI7
+ 687 00a0 06000000 		.4byte	.LCFI8
+ 688 00a4 0200     		.2byte	0x2
+ 689 00a6 7D       		.byte	0x7d
+ 690 00a7 10       		.sleb128 16
+ 691 00a8 06000000 		.4byte	.LCFI8
+ 692 00ac 62000000 		.4byte	.LFE59
+ 693 00b0 0200     		.2byte	0x2
+ 694 00b2 77       		.byte	0x77
+ 695 00b3 10       		.sleb128 16
+ 696 00b4 00000000 		.4byte	0
+ 697 00b8 00000000 		.4byte	0
+ 698              		.section	.debug_aranges,"",%progbits
+ 699 0000 34000000 		.4byte	0x34
+ 700 0004 0200     		.2byte	0x2
+ 701 0006 00000000 		.4byte	.Ldebug_info0
+ 702 000a 04       		.byte	0x4
+ 703 000b 00       		.byte	0
+ 704 000c 0000     		.2byte	0
+ 705 000e 0000     		.2byte	0
+ 706 0010 00000000 		.4byte	.LFB56
+ 707 0014 46000000 		.4byte	.LFE56-.LFB56
+ 708 0018 00000000 		.4byte	.LFB57
+ 709 001c 0A000000 		.4byte	.LFE57-.LFB57
+ 710 0020 00000000 		.4byte	.LFB58
+ 711 0024 18000000 		.4byte	.LFE58-.LFB58
+ 712 0028 00000000 		.4byte	.LFB59
+ 713 002c 62000000 		.4byte	.LFE59-.LFB59
+ 714 0030 00000000 		.4byte	0
+ 715 0034 00000000 		.4byte	0
+ 716              		.section	.debug_ranges,"",%progbits
+ 717              	.Ldebug_ranges0:
+ 718 0000 00000000 		.4byte	.LFB56
+ 719 0004 46000000 		.4byte	.LFE56
+ 720 0008 00000000 		.4byte	.LFB57
+ 721 000c 0A000000 		.4byte	.LFE57
+ 722 0010 00000000 		.4byte	.LFB58
+ 723 0014 18000000 		.4byte	.LFE58
+ 724 0018 00000000 		.4byte	.LFB59
+ 725 001c 62000000 		.4byte	.LFE59
+ 726 0020 00000000 		.4byte	0
+ 727 0024 00000000 		.4byte	0
+ 728              		.section	.debug_line,"",%progbits
+ 729              	.Ldebug_line0:
+ 730 0000 4F010000 		.section	.debug_str,"MS",%progbits,1
+ 730      0200F900 
+ 730      00000201 
+ 730      FB0E0D00 
+ 730      01010101 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 15
+
+
+ 731              	.LASF6:
+ 732 0000 6C6F6E67 		.ascii	"long long int\000"
+ 732      206C6F6E 
+ 732      6720696E 
+ 732      7400
+ 733              	.LASF3:
+ 734 000e 73686F72 		.ascii	"short unsigned int\000"
+ 734      7420756E 
+ 734      7369676E 
+ 734      65642069 
+ 734      6E7400
+ 735              	.LASF8:
+ 736 0021 756E7369 		.ascii	"unsigned int\000"
+ 736      676E6564 
+ 736      20696E74 
+ 736      00
+ 737              	.LASF25:
+ 738 002e 6D61696E 		.ascii	"main\000"
+ 738      00
+ 739              	.LASF19:
+ 740 0033 44617461 		.ascii	"Data\000"
+ 740      00
+ 741              	.LASF22:
+ 742 0038 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 742      4320342E 
+ 742      372E3320 
+ 742      32303133 
+ 742      30333132 
+ 743 006b 616E6368 		.ascii	"anch revision 196615]\000"
+ 743      20726576 
+ 743      6973696F 
+ 743      6E203139 
+ 743      36363135 
+ 744              	.LASF10:
+ 745 0081 75696E74 		.ascii	"uint8\000"
+ 745      3800
+ 746              	.LASF5:
+ 747 0087 6C6F6E67 		.ascii	"long unsigned int\000"
+ 747      20756E73 
+ 747      69676E65 
+ 747      6420696E 
+ 747      7400
+ 748              	.LASF23:
+ 749 0099 2E5C6D61 		.ascii	".\\main.c\000"
+ 749      696E2E63 
+ 749      00
+ 750              	.LASF7:
+ 751 00a2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 751      206C6F6E 
+ 751      6720756E 
+ 751      7369676E 
+ 751      65642069 
+ 752              	.LASF21:
+ 753 00b9 7061636B 		.ascii	"packetReceived\000"
+ 753      65745265 
+ 753      63656976 
+ 753      656400
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 16
+
+
+ 754              	.LASF1:
+ 755 00c8 756E7369 		.ascii	"unsigned char\000"
+ 755      676E6564 
+ 755      20636861 
+ 755      7200
+ 756              	.LASF14:
+ 757 00d6 63686172 		.ascii	"char\000"
+ 757      00
+ 758              	.LASF4:
+ 759 00db 6C6F6E67 		.ascii	"long int\000"
+ 759      20696E74 
+ 759      00
+ 760              	.LASF13:
+ 761 00e4 646F7562 		.ascii	"double\000"
+ 761      6C6500
+ 762              	.LASF17:
+ 763 00eb 636C6561 		.ascii	"clearPacket\000"
+ 763      72506163 
+ 763      6B657400 
+ 764              	.LASF20:
+ 765 00f7 506F696E 		.ascii	"Pointer\000"
+ 765      74657200 
+ 766              	.LASF27:
+ 767 00ff 62797465 		.ascii	"byte\000"
+ 767      00
+ 768              	.LASF16:
+ 769 0104 70726F63 		.ascii	"processPacket\000"
+ 769      65737350 
+ 769      61636B65 
+ 769      7400
+ 770              	.LASF18:
+ 771 0112 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 771      52784275 
+ 771      66666572 
+ 771      00
+ 772              	.LASF0:
+ 773 011f 7369676E 		.ascii	"signed char\000"
+ 773      65642063 
+ 773      68617200 
+ 774              	.LASF24:
+ 775 012b 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 775      73657273 
+ 775      5C527961 
+ 775      6E5C446F 
+ 775      63756D65 
+ 776 0159 436F6D6D 		.ascii	"Communicating_to_SBD.cydsn\000"
+ 776      756E6963 
+ 776      6174696E 
+ 776      675F746F 
+ 776      5F534244 
+ 777              	.LASF12:
+ 778 0174 666C6F61 		.ascii	"float\000"
+ 778      7400
+ 779              	.LASF2:
+ 780 017a 73686F72 		.ascii	"short int\000"
+ 780      7420696E 
+ 780      7400
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3CDpQc.s 			page 17
+
+
+ 781              	.LASF11:
+ 782 0184 75696E74 		.ascii	"uint16\000"
+ 782      313600
+ 783              	.LASF9:
+ 784 018b 696E7433 		.ascii	"int32_t\000"
+ 784      325F7400 
+ 785              	.LASF15:
+ 786 0193 73697A65 		.ascii	"sizetype\000"
+ 786      74797065 
+ 786      00
+ 787              	.LASF26:
+ 788 019c 5342445F 		.ascii	"SBD_int\000"
+ 788      696E7400 
+ 789              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

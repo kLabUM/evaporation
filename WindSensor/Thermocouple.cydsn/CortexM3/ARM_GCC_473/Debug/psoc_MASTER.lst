@@ -1,0 +1,3653 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"psoc_MASTER.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	psoc_mstrStatus,1,1
+  19              		.comm	psoc_mstrControl,1,1
+  20              		.comm	psoc_mstrRdBufPtr,4,4
+  21              		.comm	psoc_mstrRdBufSize,1,1
+  22              		.comm	psoc_mstrRdBufIndex,1,1
+  23              		.comm	psoc_mstrWrBufPtr,4,4
+  24              		.comm	psoc_mstrWrBufSize,1,1
+  25              		.comm	psoc_mstrWrBufIndex,1,1
+  26              		.section	.text.psoc_MasterWriteBuf,"ax",%progbits
+  27              		.align	2
+  28              		.global	psoc_MasterWriteBuf
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	psoc_MasterWriteBuf, %function
+  32              	psoc_MasterWriteBuf:
+  33              	.LFB0:
+  34              		.file 1 ".\\Generated_Source\\PSoC5\\psoc_MASTER.c"
+   1:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/psoc_MASTER.c **** * File Name: psoc_MASTER.c
+   3:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+   5:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Description:
+   6:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This file provides the source code of APIs for the I2C component Master mode.
+   7:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+   8:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Note:
+   9:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  10:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************
+  11:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Copyright 2012, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/psoc_MASTER.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC5/psoc_MASTER.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC5/psoc_MASTER.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  17:.\Generated_Source\PSoC5/psoc_MASTER.c **** #include "psoc_PVT.h"
+  18:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  19:.\Generated_Source\PSoC5/psoc_MASTER.c **** #if(psoc_MODE_MASTER_ENABLED)
+  20:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  21:.\Generated_Source\PSoC5/psoc_MASTER.c **** /**********************************
+  22:.\Generated_Source\PSoC5/psoc_MASTER.c **** *      System variables
+  23:.\Generated_Source\PSoC5/psoc_MASTER.c **** **********************************/
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 2
+
+
+  24:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  25:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8 psoc_mstrStatus;     /* Master Status byte  */
+  26:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8 psoc_mstrControl;    /* Master Control byte */
+  27:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  28:.\Generated_Source\PSoC5/psoc_MASTER.c **** /* Transmit buffer variables */
+  29:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8 * psoc_mstrRdBufPtr;     /* Pointer to Master Read buffer */
+  30:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8   psoc_mstrRdBufSize;    /* Master Read buffer size       */
+  31:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8   psoc_mstrRdBufIndex;   /* Master Read buffer Index      */
+  32:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  33:.\Generated_Source\PSoC5/psoc_MASTER.c **** /* Receive buffer variables */
+  34:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8 * psoc_mstrWrBufPtr;     /* Pointer to Master Write buffer */
+  35:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8   psoc_mstrWrBufSize;    /* Master Write buffer size       */
+  36:.\Generated_Source\PSoC5/psoc_MASTER.c **** volatile uint8   psoc_mstrWrBufIndex;   /* Master Write buffer Index      */
+  37:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  38:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  39:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+  40:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterWriteBuf
+  41:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+  42:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  43:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+  44:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Automatically writes an entire buffer of data to a slave device. Once the
+  45:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  data transfer is initiated by this function, further data transfer is handled
+  46:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  by the included ISR in byte by byte mode.
+  47:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  48:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+  49:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  slaveAddr: 7-bit slave address.
+  50:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  xferData:  Pointer to buffer of data to be sent.
+  51:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  cnt:       Size of buffer to send.
+  52:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  mode:      Transfer mode defines: start or restart condition generation at
+  53:.\Generated_Source\PSoC5/psoc_MASTER.c **** *             begin of the transfer and complete the transfer or halt before
+  54:.\Generated_Source\PSoC5/psoc_MASTER.c **** *             generating a stop.
+  55:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  56:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+  57:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+  58:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  59:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+  60:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  The included ISR will start transfer after start or restart condition will
+  61:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  be generated.
+  62:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  63:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+  64:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus  - used to store current status of I2C Master.
+  65:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state       - used to store current state of software FSM.
+  66:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrControl - used to control master end of transaction with
+  67:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  or without the Stop generation.
+  68:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrWrBufPtr - used to store pointer to master write buffer.
+  69:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrWrBufIndex - used to current index within master write
+  70:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  buffer.
+  71:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrWrBufSize - used to store master write buffer size.
+  72:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  73:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+  74:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+  75:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+  76:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+  77:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterWriteBuf(uint8 slaveAddress, uint8 * wrData, uint8 cnt, uint8 mode)
+  78:.\Generated_Source\PSoC5/psoc_MASTER.c ****       
+  79:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+  35              		.loc 1 79 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 3
+
+
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 16
+  38              		@ frame_needed = 1, uses_anonymous_args = 0
+  39              		@ link register save eliminated.
+  40 0000 80B4     		push	{r7}
+  41              	.LCFI0:
+  42              		.cfi_def_cfa_offset 4
+  43              		.cfi_offset 7, -4
+  44 0002 85B0     		sub	sp, sp, #20
+  45              	.LCFI1:
+  46              		.cfi_def_cfa_offset 24
+  47 0004 00AF     		add	r7, sp, #0
+  48              	.LCFI2:
+  49              		.cfi_def_cfa_register 7
+  50 0006 3960     		str	r1, [r7, #0]
+  51 0008 0146     		mov	r1, r0
+  52 000a F971     		strb	r1, [r7, #7]
+  53 000c BA71     		strb	r2, [r7, #6]
+  54 000e 7B71     		strb	r3, [r7, #5]
+  80:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+  81:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  82:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+  55              		.loc 1 82 0
+  56 0010 4FF00203 		mov	r3, #2
+  57 0014 FB73     		strb	r3, [r7, #15]
+  83:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+  84:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(NULL != wrData)
+  58              		.loc 1 84 0
+  59 0016 3B68     		ldr	r3, [r7, #0]
+  60 0018 002B     		cmp	r3, #0
+  61 001a 00F09680 		beq	.L2
+  85:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+  86:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Check I2C state before transfer: valid are IDLE or HALT */
+  87:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_SM_IDLE == psoc_state)
+  62              		.loc 1 87 0
+  63 001e 40F20003 		movw	r3, #:lower16:psoc_state
+  64 0022 C0F20003 		movt	r3, #:upper16:psoc_state
+  65 0026 1B78     		ldrb	r3, [r3, #0]
+  66 0028 DBB2     		uxtb	r3, r3
+  67 002a 102B     		cmp	r3, #16
+  68 002c 11D1     		bne	.L3
+  88:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+  89:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Check if free: Master is ready to transaction */
+  90:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_BUS_FREE(psoc_MCSR_REG))
+  69              		.loc 1 90 0
+  70 002e 44F6D913 		movw	r3, #18905
+  71 0032 C4F20003 		movt	r3, 16384
+  72 0036 1B78     		ldrb	r3, [r3, #0]
+  73 0038 DBB2     		uxtb	r3, r3
+  74 003a 03F00803 		and	r3, r3, #8
+  75 003e 002B     		cmp	r3, #0
+  76 0040 03D1     		bne	.L4
+  91:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+  92:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_NO_ERROR;
+  77              		.loc 1 92 0
+  78 0042 4FF00003 		mov	r3, #0
+  79 0046 FB73     		strb	r3, [r7, #15]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 4
+
+
+  80 0048 23E0     		b	.L5
+  81              	.L4:
+  93:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+  94:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+  95:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+  96:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_BUS_BUSY;
+  82              		.loc 1 96 0
+  83 004a 4FF00103 		mov	r3, #1
+  84 004e FB73     		strb	r3, [r7, #15]
+  85 0050 1FE0     		b	.L5
+  86              	.L3:
+  97:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+  98:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+  99:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else if(psoc_SM_MSTR_HALT == psoc_state)
+  87              		.loc 1 99 0
+  88 0052 40F20003 		movw	r3, #:lower16:psoc_state
+  89 0056 C0F20003 		movt	r3, #:upper16:psoc_state
+  90 005a 1B78     		ldrb	r3, [r3, #0]
+  91 005c DBB2     		uxtb	r3, r3
+  92 005e 602B     		cmp	r3, #96
+  93 0060 17D1     		bne	.L5
+ 100:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 101:.\Generated_Source\PSoC5/psoc_MASTER.c ****             errStatus = psoc_MSTR_NO_ERROR;
+  94              		.loc 1 101 0
+  95 0062 4FF00003 		mov	r3, #0
+  96 0066 FB73     		strb	r3, [r7, #15]
+ 102:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 103:.\Generated_Source\PSoC5/psoc_MASTER.c ****             CyIntClearPending(psoc_ISR_NUMBER);
+  97              		.loc 1 103 0
+  98 0068 4EF28023 		movw	r3, #57984
+  99 006c CEF20003 		movt	r3, 57344
+ 100 0070 4FF40042 		mov	r2, #32768
+ 101 0074 1A60     		str	r2, [r3, #0]
+ 104:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrStatus &= ((uint8) ~psoc_MSTAT_XFER_HALT);
+ 102              		.loc 1 104 0
+ 103 0076 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 104 007a C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 105 007e 1B78     		ldrb	r3, [r3, #0]
+ 106 0080 DBB2     		uxtb	r3, r3
+ 107 0082 23F00803 		bic	r3, r3, #8
+ 108 0086 DAB2     		uxtb	r2, r3
+ 109 0088 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 110 008c C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 111 0090 1A70     		strb	r2, [r3, #0]
+ 112              	.L5:
+ 105:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 106:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else
+ 107:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 108:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* errStatus = psoc_MSTR_NOT_READY was send before */
+ 109:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 110:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 111:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_MSTR_NO_ERROR == errStatus)
+ 113              		.loc 1 111 0
+ 114 0092 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 115 0094 002B     		cmp	r3, #0
+ 116 0096 58D1     		bne	.L2
+ 112:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 5
+
+
+ 113:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state    = psoc_SM_MSTR_WR_ADDR;
+ 117              		.loc 1 113 0
+ 118 0098 40F20003 		movw	r3, #:lower16:psoc_state
+ 119 009c C0F20003 		movt	r3, #:upper16:psoc_state
+ 120 00a0 4FF04502 		mov	r2, #69
+ 121 00a4 1A70     		strb	r2, [r3, #0]
+ 114:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_DATA_REG = ((uint8) (slaveAddress << psoc_SLAVE_ADDR_SHIFT));
+ 122              		.loc 1 114 0
+ 123 00a6 44F6D813 		movw	r3, #18904
+ 124 00aa C4F20003 		movt	r3, 16384
+ 125 00ae FA79     		ldrb	r2, [r7, #7]
+ 126 00b0 4FEA4202 		lsl	r2, r2, #1
+ 127 00b4 D2B2     		uxtb	r2, r2
+ 128 00b6 1A70     		strb	r2, [r3, #0]
+ 115:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 116:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrWrBufIndex = 0u;
+ 129              		.loc 1 116 0
+ 130 00b8 40F20003 		movw	r3, #:lower16:psoc_mstrWrBufIndex
+ 131 00bc C0F20003 		movt	r3, #:upper16:psoc_mstrWrBufIndex
+ 132 00c0 4FF00002 		mov	r2, #0
+ 133 00c4 1A70     		strb	r2, [r3, #0]
+ 117:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrWrBufSize  = cnt;
+ 134              		.loc 1 117 0
+ 135 00c6 40F20003 		movw	r3, #:lower16:psoc_mstrWrBufSize
+ 136 00ca C0F20003 		movt	r3, #:upper16:psoc_mstrWrBufSize
+ 137 00ce BA79     		ldrb	r2, [r7, #6]
+ 138 00d0 1A70     		strb	r2, [r3, #0]
+ 118:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrWrBufPtr   = (volatile uint8 *) wrData;
+ 139              		.loc 1 118 0
+ 140 00d2 40F20003 		movw	r3, #:lower16:psoc_mstrWrBufPtr
+ 141 00d6 C0F20003 		movt	r3, #:upper16:psoc_mstrWrBufPtr
+ 142 00da 3A68     		ldr	r2, [r7, #0]
+ 143 00dc 1A60     		str	r2, [r3, #0]
+ 119:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 120:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrControl = mode;    /* Save transaction mode */
+ 144              		.loc 1 120 0
+ 145 00de 40F20003 		movw	r3, #:lower16:psoc_mstrControl
+ 146 00e2 C0F20003 		movt	r3, #:upper16:psoc_mstrControl
+ 147 00e6 7A79     		ldrb	r2, [r7, #5]
+ 148 00e8 1A70     		strb	r2, [r3, #0]
+ 121:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 122:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Generate a Start or ReStart depends on mode */
+ 123:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_RESTART(mode))
+ 149              		.loc 1 123 0
+ 150 00ea 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 151 00ec 03F00103 		and	r3, r3, #1
+ 152 00f0 002B     		cmp	r3, #0
+ 153 00f2 0ED0     		beq	.L6
+ 124:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 125:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_GENERATE_RESTART;
+ 154              		.loc 1 125 0
+ 155 00f4 44F6D913 		movw	r3, #18905
+ 156 00f8 C4F20003 		movt	r3, 16384
+ 157 00fc 4FF01202 		mov	r2, #18
+ 158 0100 1A70     		strb	r2, [r3, #0]
+ 159 0102 44F6D713 		movw	r3, #18903
+ 160 0106 C4F20003 		movt	r3, 16384
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 6
+
+
+ 161 010a 4FF00402 		mov	r2, #4
+ 162 010e 1A70     		strb	r2, [r3, #0]
+ 163 0110 06E0     		b	.L7
+ 164              	.L6:
+ 126:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 127:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 128:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 129:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_GENERATE_START;
+ 165              		.loc 1 129 0
+ 166 0112 44F6D913 		movw	r3, #18905
+ 167 0116 C4F20003 		movt	r3, 16384
+ 168 011a 4FF00102 		mov	r2, #1
+ 169 011e 1A70     		strb	r2, [r3, #0]
+ 170              	.L7:
+ 130:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 131:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 132:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrStatus &= ((uint8) ~psoc_MSTAT_WR_CMPLT);
+ 171              		.loc 1 132 0
+ 172 0120 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 173 0124 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 174 0128 1B78     		ldrb	r3, [r3, #0]
+ 175 012a DBB2     		uxtb	r3, r3
+ 176 012c 23F00203 		bic	r3, r3, #2
+ 177 0130 DAB2     		uxtb	r2, r3
+ 178 0132 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 179 0136 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 180 013a 1A70     		strb	r2, [r3, #0]
+ 133:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 134:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_EnableInt();   /* Enable intr to complete transfer */
+ 181              		.loc 1 134 0
+ 182 013c 4FF46143 		mov	r3, #57600
+ 183 0140 CEF20003 		movt	r3, 57344
+ 184 0144 4FF40042 		mov	r2, #32768
+ 185 0148 1A60     		str	r2, [r3, #0]
+ 186              	.L2:
+ 135:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 136:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 137:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 138:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 187              		.loc 1 138 0
+ 188 014a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 139:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 189              		.loc 1 139 0
+ 190 014c 1846     		mov	r0, r3
+ 191 014e 07F11407 		add	r7, r7, #20
+ 192 0152 BD46     		mov	sp, r7
+ 193 0154 80BC     		pop	{r7}
+ 194 0156 7047     		bx	lr
+ 195              		.cfi_endproc
+ 196              	.LFE0:
+ 197              		.size	psoc_MasterWriteBuf, .-psoc_MasterWriteBuf
+ 198              		.section	.text.psoc_MasterReadBuf,"ax",%progbits
+ 199              		.align	2
+ 200              		.global	psoc_MasterReadBuf
+ 201              		.thumb
+ 202              		.thumb_func
+ 203              		.type	psoc_MasterReadBuf, %function
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 7
+
+
+ 204              	psoc_MasterReadBuf:
+ 205              	.LFB1:
+ 140:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 141:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 142:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 143:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterReadBuf
+ 144:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 145:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 146:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 147:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Automatically writes an entire buffer of data to a slave device. Once the
+ 148:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  data transfer is initiated by this function, further data transfer is handled
+ 149:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  by the included ISR in byte by byte mode.
+ 150:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 151:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 152:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  slaveAddr: 7-bit slave address.
+ 153:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  xferData:  Pointer to buffer where to put data from slave.
+ 154:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  cnt:       Size of buffer to read.
+ 155:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  mode:      Transfer mode defines: start or restart condition generation at
+ 156:.\Generated_Source\PSoC5/psoc_MASTER.c **** *             begin of the transfer and complete the transfer or halt before
+ 157:.\Generated_Source\PSoC5/psoc_MASTER.c **** *             generating a stop.
+ 158:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 159:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 160:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+ 161:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 162:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 163:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  The included ISR will start transfer after start or restart condition will
+ 164:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  be generated.
+ 165:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 166:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 167:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus  - used to store current status of I2C Master.
+ 168:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state       - used to store current state of software FSM.
+ 169:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrControl - used to control master end of transaction with
+ 170:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  or without the Stop generation.
+ 171:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufPtr - used to store pointer to master write buffer.
+ 172:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufIndex - used to current index within master write
+ 173:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  buffer.
+ 174:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufSize - used to store master write buffer size.
+ 175:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 176:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 177:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 178:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 179:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 180:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterReadBuf(uint8 slaveAddress, uint8 * rdData, uint8 cnt, uint8 mode)
+ 181:.\Generated_Source\PSoC5/psoc_MASTER.c ****       
+ 182:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 206              		.loc 1 182 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 16
+ 209              		@ frame_needed = 1, uses_anonymous_args = 0
+ 210              		@ link register save eliminated.
+ 211 0000 80B4     		push	{r7}
+ 212              	.LCFI3:
+ 213              		.cfi_def_cfa_offset 4
+ 214              		.cfi_offset 7, -4
+ 215 0002 85B0     		sub	sp, sp, #20
+ 216              	.LCFI4:
+ 217              		.cfi_def_cfa_offset 24
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 8
+
+
+ 218 0004 00AF     		add	r7, sp, #0
+ 219              	.LCFI5:
+ 220              		.cfi_def_cfa_register 7
+ 221 0006 3960     		str	r1, [r7, #0]
+ 222 0008 0146     		mov	r1, r0
+ 223 000a F971     		strb	r1, [r7, #7]
+ 224 000c BA71     		strb	r2, [r7, #6]
+ 225 000e 7B71     		strb	r3, [r7, #5]
+ 183:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+ 184:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 185:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+ 226              		.loc 1 185 0
+ 227 0010 4FF00203 		mov	r3, #2
+ 228 0014 FB73     		strb	r3, [r7, #15]
+ 186:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 187:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(NULL != rdData)
+ 229              		.loc 1 187 0
+ 230 0016 3B68     		ldr	r3, [r7, #0]
+ 231 0018 002B     		cmp	r3, #0
+ 232 001a 00F09980 		beq	.L10
+ 188:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 189:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Check I2C state before transfer: valid are IDLE or HALT */
+ 190:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_SM_IDLE == psoc_state)
+ 233              		.loc 1 190 0
+ 234 001e 40F20003 		movw	r3, #:lower16:psoc_state
+ 235 0022 C0F20003 		movt	r3, #:upper16:psoc_state
+ 236 0026 1B78     		ldrb	r3, [r3, #0]
+ 237 0028 DBB2     		uxtb	r3, r3
+ 238 002a 102B     		cmp	r3, #16
+ 239 002c 11D1     		bne	.L11
+ 191:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 192:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Check if free: Master is ready to transaction */
+ 193:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_BUS_FREE(psoc_MCSR_REG))
+ 240              		.loc 1 193 0
+ 241 002e 44F6D913 		movw	r3, #18905
+ 242 0032 C4F20003 		movt	r3, 16384
+ 243 0036 1B78     		ldrb	r3, [r3, #0]
+ 244 0038 DBB2     		uxtb	r3, r3
+ 245 003a 03F00803 		and	r3, r3, #8
+ 246 003e 002B     		cmp	r3, #0
+ 247 0040 03D1     		bne	.L12
+ 194:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 195:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_NO_ERROR;
+ 248              		.loc 1 195 0
+ 249 0042 4FF00003 		mov	r3, #0
+ 250 0046 FB73     		strb	r3, [r7, #15]
+ 251 0048 23E0     		b	.L13
+ 252              	.L12:
+ 196:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 197:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 198:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 199:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_BUS_BUSY;
+ 253              		.loc 1 199 0
+ 254 004a 4FF00103 		mov	r3, #1
+ 255 004e FB73     		strb	r3, [r7, #15]
+ 256 0050 1FE0     		b	.L13
+ 257              	.L11:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 9
+
+
+ 200:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 201:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 202:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else if(psoc_SM_MSTR_HALT == psoc_state)
+ 258              		.loc 1 202 0
+ 259 0052 40F20003 		movw	r3, #:lower16:psoc_state
+ 260 0056 C0F20003 		movt	r3, #:upper16:psoc_state
+ 261 005a 1B78     		ldrb	r3, [r3, #0]
+ 262 005c DBB2     		uxtb	r3, r3
+ 263 005e 602B     		cmp	r3, #96
+ 264 0060 17D1     		bne	.L13
+ 203:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 204:.\Generated_Source\PSoC5/psoc_MASTER.c ****             errStatus = psoc_MSTR_NO_ERROR;
+ 265              		.loc 1 204 0
+ 266 0062 4FF00003 		mov	r3, #0
+ 267 0066 FB73     		strb	r3, [r7, #15]
+ 205:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 206:.\Generated_Source\PSoC5/psoc_MASTER.c ****             CyIntClearPending(psoc_ISR_NUMBER);
+ 268              		.loc 1 206 0
+ 269 0068 4EF28023 		movw	r3, #57984
+ 270 006c CEF20003 		movt	r3, 57344
+ 271 0070 4FF40042 		mov	r2, #32768
+ 272 0074 1A60     		str	r2, [r3, #0]
+ 207:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrStatus &= ((uint8) ~psoc_MSTAT_XFER_HALT);
+ 273              		.loc 1 207 0
+ 274 0076 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 275 007a C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 276 007e 1B78     		ldrb	r3, [r3, #0]
+ 277 0080 DBB2     		uxtb	r3, r3
+ 278 0082 23F00803 		bic	r3, r3, #8
+ 279 0086 DAB2     		uxtb	r2, r3
+ 280 0088 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 281 008c C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 282 0090 1A70     		strb	r2, [r3, #0]
+ 283              	.L13:
+ 208:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 209:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else
+ 210:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 211:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* errStatus = psoc_MSTR_NOT_READY was send before */
+ 212:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 213:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 214:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_MSTR_NO_ERROR == errStatus)
+ 284              		.loc 1 214 0
+ 285 0092 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 286 0094 002B     		cmp	r3, #0
+ 287 0096 5BD1     		bne	.L10
+ 215:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 216:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state    = psoc_SM_MSTR_RD_ADDR;
+ 288              		.loc 1 216 0
+ 289 0098 40F20003 		movw	r3, #:lower16:psoc_state
+ 290 009c C0F20003 		movt	r3, #:upper16:psoc_state
+ 291 00a0 4FF04902 		mov	r2, #73
+ 292 00a4 1A70     		strb	r2, [r3, #0]
+ 217:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_DATA_REG = (((uint8) (slaveAddress << psoc_SLAVE_ADDR_SHIFT)) |
+ 293              		.loc 1 217 0
+ 294 00a6 44F6D813 		movw	r3, #18904
+ 295 00aa C4F20003 		movt	r3, 16384
+ 296 00ae FA79     		ldrb	r2, [r7, #7]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 10
+
+
+ 297 00b0 4FEA4202 		lsl	r2, r2, #1
+ 298 00b4 D2B2     		uxtb	r2, r2
+ 299 00b6 42F00102 		orr	r2, r2, #1
+ 300 00ba D2B2     		uxtb	r2, r2
+ 301 00bc 1A70     		strb	r2, [r3, #0]
+ 218:.\Generated_Source\PSoC5/psoc_MASTER.c ****                                                    psoc_READ_FLAG);
+ 219:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 220:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrRdBufIndex  = 0u;
+ 302              		.loc 1 220 0
+ 303 00be 40F20003 		movw	r3, #:lower16:psoc_mstrRdBufIndex
+ 304 00c2 C0F20003 		movt	r3, #:upper16:psoc_mstrRdBufIndex
+ 305 00c6 4FF00002 		mov	r2, #0
+ 306 00ca 1A70     		strb	r2, [r3, #0]
+ 221:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrRdBufSize   = cnt;
+ 307              		.loc 1 221 0
+ 308 00cc 40F20003 		movw	r3, #:lower16:psoc_mstrRdBufSize
+ 309 00d0 C0F20003 		movt	r3, #:upper16:psoc_mstrRdBufSize
+ 310 00d4 BA79     		ldrb	r2, [r7, #6]
+ 311 00d6 1A70     		strb	r2, [r3, #0]
+ 222:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrRdBufPtr    = (volatile uint8 *) rdData;
+ 312              		.loc 1 222 0
+ 313 00d8 40F20003 		movw	r3, #:lower16:psoc_mstrRdBufPtr
+ 314 00dc C0F20003 		movt	r3, #:upper16:psoc_mstrRdBufPtr
+ 315 00e0 3A68     		ldr	r2, [r7, #0]
+ 316 00e2 1A60     		str	r2, [r3, #0]
+ 223:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 224:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrControl = mode;    /* Save transaction mode */
+ 317              		.loc 1 224 0
+ 318 00e4 40F20003 		movw	r3, #:lower16:psoc_mstrControl
+ 319 00e8 C0F20003 		movt	r3, #:upper16:psoc_mstrControl
+ 320 00ec 7A79     		ldrb	r2, [r7, #5]
+ 321 00ee 1A70     		strb	r2, [r3, #0]
+ 225:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 226:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Generate a Start or ReStart depends on mode */
+ 227:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_RESTART(mode))
+ 322              		.loc 1 227 0
+ 323 00f0 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 324 00f2 03F00103 		and	r3, r3, #1
+ 325 00f6 002B     		cmp	r3, #0
+ 326 00f8 0ED0     		beq	.L14
+ 228:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 229:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_GENERATE_RESTART;
+ 327              		.loc 1 229 0
+ 328 00fa 44F6D913 		movw	r3, #18905
+ 329 00fe C4F20003 		movt	r3, 16384
+ 330 0102 4FF01202 		mov	r2, #18
+ 331 0106 1A70     		strb	r2, [r3, #0]
+ 332 0108 44F6D713 		movw	r3, #18903
+ 333 010c C4F20003 		movt	r3, 16384
+ 334 0110 4FF00402 		mov	r2, #4
+ 335 0114 1A70     		strb	r2, [r3, #0]
+ 336 0116 06E0     		b	.L15
+ 337              	.L14:
+ 230:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 231:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 232:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 233:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_GENERATE_START;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 11
+
+
+ 338              		.loc 1 233 0
+ 339 0118 44F6D913 		movw	r3, #18905
+ 340 011c C4F20003 		movt	r3, 16384
+ 341 0120 4FF00102 		mov	r2, #1
+ 342 0124 1A70     		strb	r2, [r3, #0]
+ 343              	.L15:
+ 234:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 235:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 236:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_mstrStatus &= ((uint8) ~psoc_MSTAT_RD_CMPLT);
+ 344              		.loc 1 236 0
+ 345 0126 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 346 012a C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 347 012e 1B78     		ldrb	r3, [r3, #0]
+ 348 0130 DBB2     		uxtb	r3, r3
+ 349 0132 23F00103 		bic	r3, r3, #1
+ 350 0136 DAB2     		uxtb	r2, r3
+ 351 0138 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 352 013c C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 353 0140 1A70     		strb	r2, [r3, #0]
+ 237:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 238:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_EnableInt();   /* Enable intr to complete transfer */
+ 354              		.loc 1 238 0
+ 355 0142 4FF46143 		mov	r3, #57600
+ 356 0146 CEF20003 		movt	r3, 57344
+ 357 014a 4FF40042 		mov	r2, #32768
+ 358 014e 1A60     		str	r2, [r3, #0]
+ 359              	.L10:
+ 239:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 240:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 241:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 242:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 360              		.loc 1 242 0
+ 361 0150 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 243:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 362              		.loc 1 243 0
+ 363 0152 1846     		mov	r0, r3
+ 364 0154 07F11407 		add	r7, r7, #20
+ 365 0158 BD46     		mov	sp, r7
+ 366 015a 80BC     		pop	{r7}
+ 367 015c 7047     		bx	lr
+ 368              		.cfi_endproc
+ 369              	.LFE1:
+ 370              		.size	psoc_MasterReadBuf, .-psoc_MasterReadBuf
+ 371 015e 00BF     		.section	.text.psoc_MasterSendStart,"ax",%progbits
+ 372              		.align	2
+ 373              		.global	psoc_MasterSendStart
+ 374              		.thumb
+ 375              		.thumb_func
+ 376              		.type	psoc_MasterSendStart, %function
+ 377              	psoc_MasterSendStart:
+ 378              	.LFB2:
+ 244:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 245:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 246:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 247:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterSendStart
+ 248:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 249:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 12
+
+
+ 250:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 251:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Generates Start condition and sends slave address with read/write bit.
+ 252:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 253:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 254:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  slaveAddress:  7-bit slave address.
+ 255:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  R_nW:          Zero, send write command, non-zero send read command.
+ 256:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 257:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 258:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+ 259:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 260:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 261:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This function is entered without a 'byte complete' bit set in the I2C_CSR
+ 262:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  register. It does not exit until it will be set.
+ 263:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 264:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 265:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state - used to store current state of software FSM.
+ 266:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 267:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 268:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 269:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 270:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 271:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterSendStart(uint8 slaveAddress, uint8 R_nW)
+ 272:.\Generated_Source\PSoC5/psoc_MASTER.c ****       
+ 273:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 379              		.loc 1 273 0
+ 380              		.cfi_startproc
+ 381              		@ args = 0, pretend = 0, frame = 16
+ 382              		@ frame_needed = 1, uses_anonymous_args = 0
+ 383              		@ link register save eliminated.
+ 384 0000 80B4     		push	{r7}
+ 385              	.LCFI6:
+ 386              		.cfi_def_cfa_offset 4
+ 387              		.cfi_offset 7, -4
+ 388 0002 85B0     		sub	sp, sp, #20
+ 389              	.LCFI7:
+ 390              		.cfi_def_cfa_offset 24
+ 391 0004 00AF     		add	r7, sp, #0
+ 392              	.LCFI8:
+ 393              		.cfi_def_cfa_register 7
+ 394 0006 0246     		mov	r2, r0
+ 395 0008 0B46     		mov	r3, r1
+ 396 000a FA71     		strb	r2, [r7, #7]
+ 397 000c BB71     		strb	r3, [r7, #6]
+ 274:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+ 275:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 276:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+ 398              		.loc 1 276 0
+ 399 000e 4FF00203 		mov	r3, #2
+ 400 0012 FB73     		strb	r3, [r7, #15]
+ 277:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 278:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* If IDLE, check if bus is free */
+ 279:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_SM_IDLE == psoc_state)
+ 401              		.loc 1 279 0
+ 402 0014 40F20003 		movw	r3, #:lower16:psoc_state
+ 403 0018 C0F20003 		movt	r3, #:upper16:psoc_state
+ 404 001c 1B78     		ldrb	r3, [r3, #0]
+ 405 001e DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 13
+
+
+ 406 0020 102B     		cmp	r3, #16
+ 407 0022 5FD1     		bne	.L18
+ 280:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 281:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* If bus is free, generate Start condition */
+ 282:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_CHECK_BUS_FREE(psoc_MCSR_REG))
+ 408              		.loc 1 282 0
+ 409 0024 44F6D913 		movw	r3, #18905
+ 410 0028 C4F20003 		movt	r3, 16384
+ 411 002c 1B78     		ldrb	r3, [r3, #0]
+ 412 002e DBB2     		uxtb	r3, r3
+ 413 0030 03F00803 		and	r3, r3, #8
+ 414 0034 002B     		cmp	r3, #0
+ 415 0036 52D1     		bne	.L19
+ 283:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 284:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_DisableInt();  /* Disable ISR for Manual functions */
+ 416              		.loc 1 284 0
+ 417 0038 4EF28013 		movw	r3, #57728
+ 418 003c CEF20003 		movt	r3, 57344
+ 419 0040 4FF40042 		mov	r2, #32768
+ 420 0044 1A60     		str	r2, [r3, #0]
+ 285:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 286:.\Generated_Source\PSoC5/psoc_MASTER.c ****             slaveAddress = ((uint8) (slaveAddress << psoc_SLAVE_ADDR_SHIFT)); /* Set Address */
+ 421              		.loc 1 286 0
+ 422 0046 FB79     		ldrb	r3, [r7, #7]
+ 423 0048 4FEA4303 		lsl	r3, r3, #1
+ 424 004c FB71     		strb	r3, [r7, #7]
+ 287:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(0u != R_nW)                                      /* Set the Read/Write flag */
+ 425              		.loc 1 287 0
+ 426 004e BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 427 0050 002B     		cmp	r3, #0
+ 428 0052 0BD0     		beq	.L20
+ 288:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 289:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 slaveAddress |= psoc_READ_FLAG;
+ 429              		.loc 1 289 0
+ 430 0054 FB79     		ldrb	r3, [r7, #7]
+ 431 0056 43F00103 		orr	r3, r3, #1
+ 432 005a FB71     		strb	r3, [r7, #7]
+ 290:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_MSTR_RD_ADDR;
+ 433              		.loc 1 290 0
+ 434 005c 40F20003 		movw	r3, #:lower16:psoc_state
+ 435 0060 C0F20003 		movt	r3, #:upper16:psoc_state
+ 436 0064 4FF04902 		mov	r2, #73
+ 437 0068 1A70     		strb	r2, [r3, #0]
+ 438 006a 06E0     		b	.L21
+ 439              	.L20:
+ 291:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 292:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 293:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 294:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_MSTR_WR_ADDR;
+ 440              		.loc 1 294 0
+ 441 006c 40F20003 		movw	r3, #:lower16:psoc_state
+ 442 0070 C0F20003 		movt	r3, #:upper16:psoc_state
+ 443 0074 4FF04502 		mov	r2, #69
+ 444 0078 1A70     		strb	r2, [r3, #0]
+ 445              	.L21:
+ 295:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 296:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_DATA_REG = slaveAddress;   /* Write address to data reg */
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 14
+
+
+ 446              		.loc 1 296 0
+ 447 007a 44F6D813 		movw	r3, #18904
+ 448 007e C4F20003 		movt	r3, 16384
+ 449 0082 FA79     		ldrb	r2, [r7, #7]
+ 450 0084 1A70     		strb	r2, [r3, #0]
+ 297:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 298:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 299:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_GENERATE_START;
+ 451              		.loc 1 299 0
+ 452 0086 44F6D913 		movw	r3, #18905
+ 453 008a C4F20003 		movt	r3, 16384
+ 454 008e 4FF00102 		mov	r2, #1
+ 455 0092 1A70     		strb	r2, [r3, #0]
+ 300:.\Generated_Source\PSoC5/psoc_MASTER.c ****             while(psoc_WAIT_BYTE_COMPLETE(psoc_CSR_REG))
+ 456              		.loc 1 300 0
+ 457 0094 00BF     		nop
+ 458              	.L22:
+ 459              		.loc 1 300 0 is_stmt 0 discriminator 1
+ 460 0096 44F6D713 		movw	r3, #18903
+ 461 009a C4F20003 		movt	r3, 16384
+ 462 009e 1B78     		ldrb	r3, [r3, #0]
+ 463 00a0 DBB2     		uxtb	r3, r3
+ 464 00a2 03F00103 		and	r3, r3, #1
+ 465 00a6 002B     		cmp	r3, #0
+ 466 00a8 F5D0     		beq	.L22
+ 301:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 302:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 ; /* Wait for the address to be transfered */
+ 303:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 304:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 305:.\Generated_Source\PSoC5/psoc_MASTER.c ****             #if(psoc_MODE_MULTI_MASTER_SLAVE_ENABLED)
+ 306:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 if(psoc_CHECK_START_GEN(psoc_MCSR_REG))
+ 307:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 {
+ 308:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     psoc_CLEAR_START_GEN;
+ 309:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 310:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     /* Start condition was not generated: reset FSM to IDLE */
+ 311:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     psoc_state = psoc_SM_IDLE;
+ 312:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     errStatus = psoc_MSTR_ERR_ABORT_START_GEN;
+ 313:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 }
+ 314:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 else
+ 315:.\Generated_Source\PSoC5/psoc_MASTER.c ****             #endif /* (psoc_MODE_MULTI_MASTER_SLAVE_ENABLED) */
+ 316:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 317:.\Generated_Source\PSoC5/psoc_MASTER.c ****             #if(psoc_MODE_MULTI_MASTER_ENABLED)
+ 318:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 319:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 if(psoc_CHECK_LOST_ARB(psoc_CSR_REG))
+ 320:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 {
+ 321:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     psoc_BUS_RELEASE;
+ 322:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 323:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     /* Master lost arbitrage: reset FSM to IDLE */
+ 324:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     psoc_state = psoc_SM_IDLE;
+ 325:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     errStatus = psoc_MSTR_ERR_ARB_LOST;
+ 326:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 }
+ 327:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 else
+ 328:.\Generated_Source\PSoC5/psoc_MASTER.c ****             #endif /* (psoc_MODE_MULTI_MASTER_ENABLED) */
+ 329:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 330:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 if(psoc_CHECK_ADDR_NAK(psoc_CSR_REG))
+ 467              		.loc 1 330 0 is_stmt 1
+ 468 00aa 44F6D713 		movw	r3, #18903
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 15
+
+
+ 469 00ae C4F20003 		movt	r3, 16384
+ 470 00b2 1B78     		ldrb	r3, [r3, #0]
+ 471 00b4 DBB2     		uxtb	r3, r3
+ 472 00b6 03F00A03 		and	r3, r3, #10
+ 473 00ba DBB2     		uxtb	r3, r3
+ 474 00bc 0A2B     		cmp	r3, #10
+ 475 00be 0AD1     		bne	.L23
+ 331:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 {
+ 332:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     /* Address has been NACKed: reset FSM to IDLE */
+ 333:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     psoc_state = psoc_SM_IDLE;
+ 476              		.loc 1 333 0
+ 477 00c0 40F20003 		movw	r3, #:lower16:psoc_state
+ 478 00c4 C0F20003 		movt	r3, #:upper16:psoc_state
+ 479 00c8 4FF01002 		mov	r2, #16
+ 480 00cc 1A70     		strb	r2, [r3, #0]
+ 334:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     errStatus = psoc_MSTR_ERR_LB_NAK;
+ 481              		.loc 1 334 0
+ 482 00ce 4FF00303 		mov	r3, #3
+ 483 00d2 FB73     		strb	r3, [r7, #15]
+ 484 00d4 06E0     		b	.L18
+ 485              	.L23:
+ 335:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 }
+ 336:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 else
+ 337:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 {
+ 338:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     /* Start was sent witout errors */
+ 339:.\Generated_Source\PSoC5/psoc_MASTER.c ****                     errStatus = psoc_MSTR_NO_ERROR;
+ 486              		.loc 1 339 0
+ 487 00d6 4FF00003 		mov	r3, #0
+ 488 00da FB73     		strb	r3, [r7, #15]
+ 489 00dc 02E0     		b	.L18
+ 490              	.L19:
+ 340:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 }
+ 341:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 342:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else
+ 343:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 344:.\Generated_Source\PSoC5/psoc_MASTER.c ****             errStatus = psoc_MSTR_BUS_BUSY; /* Bus is busy */
+ 491              		.loc 1 344 0
+ 492 00de 4FF00103 		mov	r3, #1
+ 493 00e2 FB73     		strb	r3, [r7, #15]
+ 494              	.L18:
+ 345:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 346:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 347:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 348:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 495              		.loc 1 348 0
+ 496 00e4 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 349:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 497              		.loc 1 349 0
+ 498 00e6 1846     		mov	r0, r3
+ 499 00e8 07F11407 		add	r7, r7, #20
+ 500 00ec BD46     		mov	sp, r7
+ 501 00ee 80BC     		pop	{r7}
+ 502 00f0 7047     		bx	lr
+ 503              		.cfi_endproc
+ 504              	.LFE2:
+ 505              		.size	psoc_MasterSendStart, .-psoc_MasterSendStart
+ 506 00f2 00BF     		.section	.text.psoc_MasterSendRestart,"ax",%progbits
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 16
+
+
+ 507              		.align	2
+ 508              		.global	psoc_MasterSendRestart
+ 509              		.thumb
+ 510              		.thumb_func
+ 511              		.type	psoc_MasterSendRestart, %function
+ 512              	psoc_MasterSendRestart:
+ 513              	.LFB3:
+ 350:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 351:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 352:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 353:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterSendRestart
+ 354:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 355:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 356:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 357:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Generates ReStart condition and sends slave address with read/write bit.
+ 358:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 359:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 360:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  slaveAddress:  7-bit slave address.
+ 361:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  R_nW:          Zero, send write command, non-zero send read command.
+ 362:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 363:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 364:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+ 365:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 366:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 367:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This function is entered without a 'byte complete' bit set in the I2C_CSR
+ 368:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  register. It does not exit until it will be set.
+ 369:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 370:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 371:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state - used to store current state of software FSM.
+ 372:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 373:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 374:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 375:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 376:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 377:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterSendRestart(uint8 slaveAddress, uint8 R_nW)
+ 378:.\Generated_Source\PSoC5/psoc_MASTER.c ****       
+ 379:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 514              		.loc 1 379 0
+ 515              		.cfi_startproc
+ 516              		@ args = 0, pretend = 0, frame = 16
+ 517              		@ frame_needed = 1, uses_anonymous_args = 0
+ 518              		@ link register save eliminated.
+ 519 0000 80B4     		push	{r7}
+ 520              	.LCFI9:
+ 521              		.cfi_def_cfa_offset 4
+ 522              		.cfi_offset 7, -4
+ 523 0002 85B0     		sub	sp, sp, #20
+ 524              	.LCFI10:
+ 525              		.cfi_def_cfa_offset 24
+ 526 0004 00AF     		add	r7, sp, #0
+ 527              	.LCFI11:
+ 528              		.cfi_def_cfa_register 7
+ 529 0006 0246     		mov	r2, r0
+ 530 0008 0B46     		mov	r3, r1
+ 531 000a FA71     		strb	r2, [r7, #7]
+ 532 000c BB71     		strb	r3, [r7, #6]
+ 380:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 17
+
+
+ 381:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 382:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+ 533              		.loc 1 382 0
+ 534 000e 4FF00203 		mov	r3, #2
+ 535 0012 FB73     		strb	r3, [r7, #15]
+ 383:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 384:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Check if START condition was generated */
+ 385:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_CHECK_MASTER_MODE(psoc_MCSR_REG))
+ 536              		.loc 1 385 0
+ 537 0014 44F6D913 		movw	r3, #18905
+ 538 0018 C4F20003 		movt	r3, 16384
+ 539 001c 1B78     		ldrb	r3, [r3, #0]
+ 540 001e DBB2     		uxtb	r3, r3
+ 541 0020 03F00403 		and	r3, r3, #4
+ 542 0024 002B     		cmp	r3, #0
+ 543 0026 51D0     		beq	.L26
+ 386:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 387:.\Generated_Source\PSoC5/psoc_MASTER.c ****         slaveAddress = ((uint8) (slaveAddress << psoc_SLAVE_ADDR_SHIFT)); /* Set Address */
+ 544              		.loc 1 387 0
+ 545 0028 FB79     		ldrb	r3, [r7, #7]
+ 546 002a 4FEA4303 		lsl	r3, r3, #1
+ 547 002e FB71     		strb	r3, [r7, #7]
+ 388:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(0u != R_nW)  /* Set the Read/Write flag */
+ 548              		.loc 1 388 0
+ 549 0030 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 550 0032 002B     		cmp	r3, #0
+ 551 0034 0BD0     		beq	.L27
+ 389:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 390:.\Generated_Source\PSoC5/psoc_MASTER.c ****             slaveAddress |= psoc_READ_FLAG;
+ 552              		.loc 1 390 0
+ 553 0036 FB79     		ldrb	r3, [r7, #7]
+ 554 0038 43F00103 		orr	r3, r3, #1
+ 555 003c FB71     		strb	r3, [r7, #7]
+ 391:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state = psoc_SM_MSTR_RD_ADDR;
+ 556              		.loc 1 391 0
+ 557 003e 40F20003 		movw	r3, #:lower16:psoc_state
+ 558 0042 C0F20003 		movt	r3, #:upper16:psoc_state
+ 559 0046 4FF04902 		mov	r2, #73
+ 560 004a 1A70     		strb	r2, [r3, #0]
+ 561 004c 06E0     		b	.L28
+ 562              	.L27:
+ 392:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 393:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else
+ 394:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 395:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state = psoc_SM_MSTR_WR_ADDR;
+ 563              		.loc 1 395 0
+ 564 004e 40F20003 		movw	r3, #:lower16:psoc_state
+ 565 0052 C0F20003 		movt	r3, #:upper16:psoc_state
+ 566 0056 4FF04502 		mov	r2, #69
+ 567 005a 1A70     		strb	r2, [r3, #0]
+ 568              	.L28:
+ 396:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 397:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_DATA_REG = slaveAddress;    /* Write address to data reg */
+ 569              		.loc 1 397 0
+ 570 005c 44F6D813 		movw	r3, #18904
+ 571 0060 C4F20003 		movt	r3, 16384
+ 572 0064 FA79     		ldrb	r2, [r7, #7]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 18
+
+
+ 573 0066 1A70     		strb	r2, [r3, #0]
+ 398:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 399:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 400:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_GENERATE_RESTART_MANUAL;
+ 574              		.loc 1 400 0
+ 575 0068 44F6D913 		movw	r3, #18905
+ 576 006c C4F20003 		movt	r3, 16384
+ 577 0070 4FF01202 		mov	r2, #18
+ 578 0074 1A70     		strb	r2, [r3, #0]
+ 579 0076 44F6D713 		movw	r3, #18903
+ 580 007a C4F20003 		movt	r3, 16384
+ 581 007e 4FF00402 		mov	r2, #4
+ 582 0082 1A70     		strb	r2, [r3, #0]
+ 401:.\Generated_Source\PSoC5/psoc_MASTER.c ****         while(psoc_WAIT_BYTE_COMPLETE(psoc_CSR_REG))
+ 583              		.loc 1 401 0
+ 584 0084 00BF     		nop
+ 585              	.L29:
+ 586              		.loc 1 401 0 is_stmt 0 discriminator 1
+ 587 0086 44F6D713 		movw	r3, #18903
+ 588 008a C4F20003 		movt	r3, 16384
+ 589 008e 1B78     		ldrb	r3, [r3, #0]
+ 590 0090 DBB2     		uxtb	r3, r3
+ 591 0092 03F00103 		and	r3, r3, #1
+ 592 0096 002B     		cmp	r3, #0
+ 593 0098 F5D0     		beq	.L29
+ 402:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 403:.\Generated_Source\PSoC5/psoc_MASTER.c ****             ; /* Wait for the address to be transfered */
+ 404:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 405:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 406:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #if(psoc_MODE_MULTI_MASTER_ENABLED)
+ 407:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_LOST_ARB(psoc_CSR_REG))
+ 408:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 409:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_BUS_RELEASE;
+ 410:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 411:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 /* Master lost arbitrage: reset FSM to IDLE */
+ 412:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_IDLE;
+ 413:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_ERR_ARB_LOST;
+ 414:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 415:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 416:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #endif /* (psoc_MODE_MULTI_MASTER_ENABLED) */
+ 417:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 418:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_ADDR_NAK(psoc_CSR_REG))
+ 594              		.loc 1 418 0 is_stmt 1
+ 595 009a 44F6D713 		movw	r3, #18903
+ 596 009e C4F20003 		movt	r3, 16384
+ 597 00a2 1B78     		ldrb	r3, [r3, #0]
+ 598 00a4 DBB2     		uxtb	r3, r3
+ 599 00a6 03F00A03 		and	r3, r3, #10
+ 600 00aa DBB2     		uxtb	r3, r3
+ 601 00ac 0A2B     		cmp	r3, #10
+ 602 00ae 0AD1     		bne	.L30
+ 419:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 420:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 /* Address has been NACKed: reset FSM to IDLE */
+ 421:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_IDLE;
+ 603              		.loc 1 421 0
+ 604 00b0 40F20003 		movw	r3, #:lower16:psoc_state
+ 605 00b4 C0F20003 		movt	r3, #:upper16:psoc_state
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 19
+
+
+ 606 00b8 4FF01002 		mov	r2, #16
+ 607 00bc 1A70     		strb	r2, [r3, #0]
+ 422:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_ERR_LB_NAK;
+ 608              		.loc 1 422 0
+ 609 00be 4FF00303 		mov	r3, #3
+ 610 00c2 FB73     		strb	r3, [r7, #15]
+ 611 00c4 02E0     		b	.L26
+ 612              	.L30:
+ 423:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 424:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 425:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 426:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 /* ReStart was sent witout errors */
+ 427:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_NO_ERROR;
+ 613              		.loc 1 427 0
+ 614 00c6 4FF00003 		mov	r3, #0
+ 615 00ca FB73     		strb	r3, [r7, #15]
+ 616              	.L26:
+ 428:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 429:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 430:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 431:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 617              		.loc 1 431 0
+ 618 00cc FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 432:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 619              		.loc 1 432 0
+ 620 00ce 1846     		mov	r0, r3
+ 621 00d0 07F11407 		add	r7, r7, #20
+ 622 00d4 BD46     		mov	sp, r7
+ 623 00d6 80BC     		pop	{r7}
+ 624 00d8 7047     		bx	lr
+ 625              		.cfi_endproc
+ 626              	.LFE3:
+ 627              		.size	psoc_MasterSendRestart, .-psoc_MasterSendRestart
+ 628 00da 00BF     		.section	.text.psoc_MasterSendStop,"ax",%progbits
+ 629              		.align	2
+ 630              		.global	psoc_MasterSendStop
+ 631              		.thumb
+ 632              		.thumb_func
+ 633              		.type	psoc_MasterSendStop, %function
+ 634              	psoc_MasterSendStop:
+ 635              	.LFB4:
+ 433:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 434:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 435:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 436:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterSendStop
+ 437:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 438:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 439:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 440:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Generates I2C Stop condition on bus. Function do nothing if Start or Restart
+ 441:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  condition was failed before call this function.
+ 442:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 443:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 444:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 445:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 446:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 447:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+ 448:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 20
+
+
+ 449:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 450:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  The Stop generation is required to complete transaction.
+ 451:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This function does not wait whileStop condition will be generated.
+ 452:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 453:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 454:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state - used to store current state of software FSM.
+ 455:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 456:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 457:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 458:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 459:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 460:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterSendStop(void) 
+ 461:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 636              		.loc 1 461 0
+ 637              		.cfi_startproc
+ 638              		@ args = 0, pretend = 0, frame = 8
+ 639              		@ frame_needed = 1, uses_anonymous_args = 0
+ 640              		@ link register save eliminated.
+ 641 0000 80B4     		push	{r7}
+ 642              	.LCFI12:
+ 643              		.cfi_def_cfa_offset 4
+ 644              		.cfi_offset 7, -4
+ 645 0002 83B0     		sub	sp, sp, #12
+ 646              	.LCFI13:
+ 647              		.cfi_def_cfa_offset 16
+ 648 0004 00AF     		add	r7, sp, #0
+ 649              	.LCFI14:
+ 650              		.cfi_def_cfa_register 7
+ 462:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+ 463:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 464:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+ 651              		.loc 1 464 0
+ 652 0006 4FF00203 		mov	r3, #2
+ 653 000a FB71     		strb	r3, [r7, #7]
+ 465:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 466:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Check if START condition was generated */
+ 467:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_CHECK_MASTER_MODE(psoc_MCSR_REG))
+ 654              		.loc 1 467 0
+ 655 000c 44F6D913 		movw	r3, #18905
+ 656 0010 C4F20003 		movt	r3, 16384
+ 657 0014 1B78     		ldrb	r3, [r3, #0]
+ 658 0016 DBB2     		uxtb	r3, r3
+ 659 0018 03F00403 		and	r3, r3, #4
+ 660 001c 002B     		cmp	r3, #0
+ 661 001e 22D0     		beq	.L33
+ 468:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 469:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_GENERATE_STOP_MANUAL;              /* Generate STOP */
+ 662              		.loc 1 469 0
+ 663 0020 44F6D913 		movw	r3, #18905
+ 664 0024 C4F20003 		movt	r3, 16384
+ 665 0028 4FF01002 		mov	r2, #16
+ 666 002c 1A70     		strb	r2, [r3, #0]
+ 667 002e 44F6D713 		movw	r3, #18903
+ 668 0032 C4F20003 		movt	r3, 16384
+ 669 0036 4FF00402 		mov	r2, #4
+ 670 003a 1A70     		strb	r2, [r3, #0]
+ 470:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_state = psoc_SM_IDLE;  /* Reset state to IDLE */
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 21
+
+
+ 671              		.loc 1 470 0
+ 672 003c 40F20003 		movw	r3, #:lower16:psoc_state
+ 673 0040 C0F20003 		movt	r3, #:upper16:psoc_state
+ 674 0044 4FF01002 		mov	r2, #16
+ 675 0048 1A70     		strb	r2, [r3, #0]
+ 471:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 472:.\Generated_Source\PSoC5/psoc_MASTER.c ****         while(psoc_WAIT_STOP_COMPLETE(psoc_CSR_REG))
+ 676              		.loc 1 472 0
+ 677 004a 00BF     		nop
+ 678              	.L34:
+ 679              		.loc 1 472 0 is_stmt 0 discriminator 1
+ 680 004c 44F6D713 		movw	r3, #18903
+ 681 0050 C4F20003 		movt	r3, 16384
+ 682 0054 1B78     		ldrb	r3, [r3, #0]
+ 683 0056 DBB2     		uxtb	r3, r3
+ 684 0058 03F02103 		and	r3, r3, #33
+ 685 005c 002B     		cmp	r3, #0
+ 686 005e F5D0     		beq	.L34
+ 473:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 474:.\Generated_Source\PSoC5/psoc_MASTER.c ****             ; /* Wait for Stop to be generated */
+ 475:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 476:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 477:.\Generated_Source\PSoC5/psoc_MASTER.c ****         errStatus = psoc_MSTR_NO_ERROR;
+ 687              		.loc 1 477 0 is_stmt 1
+ 688 0060 4FF00003 		mov	r3, #0
+ 689 0064 FB71     		strb	r3, [r7, #7]
+ 690              	.L33:
+ 478:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #if(psoc_MODE_MULTI_MASTER_ENABLED)
+ 479:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_LOST_ARB(psoc_CSR_REG))
+ 480:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 481:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_BUS_RELEASE;
+ 482:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 483:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 /* NACK was generated by enother instead Stop */
+ 484:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_ERR_ARB_LOST;
+ 485:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 486:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #endif /* (psoc_MODE_MULTI_MASTER_ENABLED) */
+ 487:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 488:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 489:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 691              		.loc 1 489 0
+ 692 0066 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 490:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 693              		.loc 1 490 0
+ 694 0068 1846     		mov	r0, r3
+ 695 006a 07F10C07 		add	r7, r7, #12
+ 696 006e BD46     		mov	sp, r7
+ 697 0070 80BC     		pop	{r7}
+ 698 0072 7047     		bx	lr
+ 699              		.cfi_endproc
+ 700              	.LFE4:
+ 701              		.size	psoc_MasterSendStop, .-psoc_MasterSendStop
+ 702              		.section	.text.psoc_MasterWriteByte,"ax",%progbits
+ 703              		.align	2
+ 704              		.global	psoc_MasterWriteByte
+ 705              		.thumb
+ 706              		.thumb_func
+ 707              		.type	psoc_MasterWriteByte, %function
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 22
+
+
+ 708              	psoc_MasterWriteByte:
+ 709              	.LFB5:
+ 491:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 492:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 493:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 494:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterWriteByte
+ 495:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 496:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 497:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 498:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Sends one byte to a slave. A valid Start or ReStart condition must be
+ 499:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  generated before this call this function. Function do nothing if Start or
+ 500:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Restart condition was failed before call this function.
+ 501:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 502:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 503:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  data:  The data byte to send to the slave.
+ 504:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 505:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 506:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Status error - zero means no errors.
+ 507:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 508:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 509:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This function is entered without a 'byte complete' bit set in the I2C_CSR
+ 510:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  register. It does not exit until it will be set.
+ 511:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 512:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 513:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state - used to store current state of software FSM.
+ 514:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 515:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 516:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterWriteByte(uint8 theByte) 
+ 517:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 710              		.loc 1 517 0
+ 711              		.cfi_startproc
+ 712              		@ args = 0, pretend = 0, frame = 16
+ 713              		@ frame_needed = 1, uses_anonymous_args = 0
+ 714              		@ link register save eliminated.
+ 715 0000 80B4     		push	{r7}
+ 716              	.LCFI15:
+ 717              		.cfi_def_cfa_offset 4
+ 718              		.cfi_offset 7, -4
+ 719 0002 85B0     		sub	sp, sp, #20
+ 720              	.LCFI16:
+ 721              		.cfi_def_cfa_offset 24
+ 722 0004 00AF     		add	r7, sp, #0
+ 723              	.LCFI17:
+ 724              		.cfi_def_cfa_register 7
+ 725 0006 0346     		mov	r3, r0
+ 726 0008 FB71     		strb	r3, [r7, #7]
+ 518:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 errStatus;
+ 519:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 520:.\Generated_Source\PSoC5/psoc_MASTER.c ****     errStatus = psoc_MSTR_NOT_READY;
+ 727              		.loc 1 520 0
+ 728 000a 4FF00203 		mov	r3, #2
+ 729 000e FB73     		strb	r3, [r7, #15]
+ 521:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 522:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Check if START condition was generated */
+ 523:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_CHECK_MASTER_MODE(psoc_MCSR_REG))
+ 730              		.loc 1 523 0
+ 731 0010 44F6D913 		movw	r3, #18905
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 23
+
+
+ 732 0014 C4F20003 		movt	r3, 16384
+ 733 0018 1B78     		ldrb	r3, [r3, #0]
+ 734 001a DBB2     		uxtb	r3, r3
+ 735 001c 03F00403 		and	r3, r3, #4
+ 736 0020 002B     		cmp	r3, #0
+ 737 0022 3DD0     		beq	.L37
+ 524:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 525:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_DATA_REG = theByte;                        /* Write DATA register */
+ 738              		.loc 1 525 0
+ 739 0024 44F6D813 		movw	r3, #18904
+ 740 0028 C4F20003 		movt	r3, 16384
+ 741 002c FA79     		ldrb	r2, [r7, #7]
+ 742 002e 1A70     		strb	r2, [r3, #0]
+ 526:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_TRANSMIT_DATA_MANUAL;                      /* Set transmit mode */
+ 743              		.loc 1 526 0
+ 744 0030 44F6D713 		movw	r3, #18903
+ 745 0034 C4F20003 		movt	r3, 16384
+ 746 0038 4FF00402 		mov	r2, #4
+ 747 003c 1A70     		strb	r2, [r3, #0]
+ 527:.\Generated_Source\PSoC5/psoc_MASTER.c ****         psoc_state = psoc_SM_MSTR_WR_DATA;  /* Set state WR_DATA */
+ 748              		.loc 1 527 0
+ 749 003e 40F20003 		movw	r3, #:lower16:psoc_state
+ 750 0042 C0F20003 		movt	r3, #:upper16:psoc_state
+ 751 0046 4FF04602 		mov	r2, #70
+ 752 004a 1A70     		strb	r2, [r3, #0]
+ 528:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 529:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Make sure the last byte has been transfered first */
+ 530:.\Generated_Source\PSoC5/psoc_MASTER.c ****         while(psoc_WAIT_BYTE_COMPLETE(psoc_CSR_REG))
+ 753              		.loc 1 530 0
+ 754 004c 00BF     		nop
+ 755              	.L38:
+ 756              		.loc 1 530 0 is_stmt 0 discriminator 1
+ 757 004e 44F6D713 		movw	r3, #18903
+ 758 0052 C4F20003 		movt	r3, 16384
+ 759 0056 1B78     		ldrb	r3, [r3, #0]
+ 760 0058 DBB2     		uxtb	r3, r3
+ 761 005a 03F00103 		and	r3, r3, #1
+ 762 005e 002B     		cmp	r3, #0
+ 763 0060 F5D0     		beq	.L38
+ 531:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 532:.\Generated_Source\PSoC5/psoc_MASTER.c ****             ; /* Wait for byte to be written */
+ 533:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 534:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 535:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #if(psoc_MODE_MULTI_MASTER_ENABLED)
+ 536:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_LOST_ARB(psoc_CSR_REG))
+ 537:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 538:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_BUS_RELEASE;
+ 539:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 540:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 /* Master lost arbitrage: reset FSM to IDLE */
+ 541:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_IDLE;
+ 542:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_ERR_ARB_LOST;
+ 543:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 544:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Check LRB bit */
+ 545:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 546:.\Generated_Source\PSoC5/psoc_MASTER.c ****         #endif /* (psoc_MODE_MULTI_MASTER_ENABLED) */
+ 547:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 548:.\Generated_Source\PSoC5/psoc_MASTER.c ****             if(psoc_CHECK_DATA_ACK(psoc_CSR_REG))
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 24
+
+
+ 764              		.loc 1 548 0 is_stmt 1
+ 765 0062 44F6D713 		movw	r3, #18903
+ 766 0066 C4F20003 		movt	r3, 16384
+ 767 006a 1B78     		ldrb	r3, [r3, #0]
+ 768 006c DBB2     		uxtb	r3, r3
+ 769 006e 03F00203 		and	r3, r3, #2
+ 770 0072 002B     		cmp	r3, #0
+ 771 0074 0AD1     		bne	.L39
+ 549:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 550:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_MSTR_HALT;     /* Set state to HALT */
+ 772              		.loc 1 550 0
+ 773 0076 40F20003 		movw	r3, #:lower16:psoc_state
+ 774 007a C0F20003 		movt	r3, #:upper16:psoc_state
+ 775 007e 4FF06002 		mov	r2, #96
+ 776 0082 1A70     		strb	r2, [r3, #0]
+ 551:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_NO_ERROR;                 /* The LRB was ACKed */
+ 777              		.loc 1 551 0
+ 778 0084 4FF00003 		mov	r3, #0
+ 779 0088 FB73     		strb	r3, [r7, #15]
+ 780 008a 09E0     		b	.L37
+ 781              	.L39:
+ 552:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 553:.\Generated_Source\PSoC5/psoc_MASTER.c ****             else
+ 554:.\Generated_Source\PSoC5/psoc_MASTER.c ****             {
+ 555:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 psoc_state = psoc_SM_MSTR_HALT;     /* Set state to HALT */
+ 782              		.loc 1 555 0
+ 783 008c 40F20003 		movw	r3, #:lower16:psoc_state
+ 784 0090 C0F20003 		movt	r3, #:upper16:psoc_state
+ 785 0094 4FF06002 		mov	r2, #96
+ 786 0098 1A70     		strb	r2, [r3, #0]
+ 556:.\Generated_Source\PSoC5/psoc_MASTER.c ****                 errStatus = psoc_MSTR_ERR_LB_NAK;               /* The LRB was NACKed */
+ 787              		.loc 1 556 0
+ 788 009a 4FF00303 		mov	r3, #3
+ 789 009e FB73     		strb	r3, [r7, #15]
+ 790              	.L37:
+ 557:.\Generated_Source\PSoC5/psoc_MASTER.c ****             }
+ 558:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 559:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 560:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(errStatus);
+ 791              		.loc 1 560 0
+ 792 00a0 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 561:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 793              		.loc 1 561 0
+ 794 00a2 1846     		mov	r0, r3
+ 795 00a4 07F11407 		add	r7, r7, #20
+ 796 00a8 BD46     		mov	sp, r7
+ 797 00aa 80BC     		pop	{r7}
+ 798 00ac 7047     		bx	lr
+ 799              		.cfi_endproc
+ 800              	.LFE5:
+ 801              		.size	psoc_MasterWriteByte, .-psoc_MasterWriteByte
+ 802 00ae 00BF     		.section	.text.psoc_MasterReadByte,"ax",%progbits
+ 803              		.align	2
+ 804              		.global	psoc_MasterReadByte
+ 805              		.thumb
+ 806              		.thumb_func
+ 807              		.type	psoc_MasterReadByte, %function
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 25
+
+
+ 808              	psoc_MasterReadByte:
+ 809              	.LFB6:
+ 562:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 563:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 564:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 565:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterReadByte
+ 566:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 567:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 568:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 569:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Reads one byte from a slave and ACK or NACK the transfer. A valid Start or
+ 570:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  ReStart condition must be generated before this call this function. Function
+ 571:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  do nothing if Start or Restart condition was failed before call this
+ 572:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  function.
+ 573:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 574:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 575:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  acknNack:  Zero, response with NACK, if non-zero response with ACK.
+ 576:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 577:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 578:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Byte read from slave.
+ 579:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 580:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Side Effects:
+ 581:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  This function is entered without a 'byte complete' bit set in the I2C_CSR
+ 582:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  register. It does not exit until it will be set.
+ 583:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 584:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 585:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_state - used to store current state of software FSM.
+ 586:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 587:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 588:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 589:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 590:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 591:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterReadByte(uint8 acknNak) 
+ 592:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 810              		.loc 1 592 0
+ 811              		.cfi_startproc
+ 812              		@ args = 0, pretend = 0, frame = 16
+ 813              		@ frame_needed = 1, uses_anonymous_args = 0
+ 814              		@ link register save eliminated.
+ 815 0000 80B4     		push	{r7}
+ 816              	.LCFI18:
+ 817              		.cfi_def_cfa_offset 4
+ 818              		.cfi_offset 7, -4
+ 819 0002 85B0     		sub	sp, sp, #20
+ 820              	.LCFI19:
+ 821              		.cfi_def_cfa_offset 24
+ 822 0004 00AF     		add	r7, sp, #0
+ 823              	.LCFI20:
+ 824              		.cfi_def_cfa_register 7
+ 825 0006 0346     		mov	r3, r0
+ 826 0008 FB71     		strb	r3, [r7, #7]
+ 593:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 theByte;
+ 594:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 595:.\Generated_Source\PSoC5/psoc_MASTER.c ****     theByte = 0u;
+ 827              		.loc 1 595 0
+ 828 000a 4FF00003 		mov	r3, #0
+ 829 000e FB73     		strb	r3, [r7, #15]
+ 596:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 26
+
+
+ 597:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Check if START condition was generated */
+ 598:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_CHECK_MASTER_MODE(psoc_MCSR_REG))
+ 830              		.loc 1 598 0
+ 831 0010 44F6D913 		movw	r3, #18905
+ 832 0014 C4F20003 		movt	r3, 16384
+ 833 0018 1B78     		ldrb	r3, [r3, #0]
+ 834 001a DBB2     		uxtb	r3, r3
+ 835 001c 03F00403 		and	r3, r3, #4
+ 836 0020 002B     		cmp	r3, #0
+ 837 0022 38D0     		beq	.L42
+ 599:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 600:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* When address phase need release the bus and receive the byte, then decide ACK or NACK */
+ 601:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(psoc_SM_MSTR_RD_ADDR == psoc_state)
+ 838              		.loc 1 601 0
+ 839 0024 40F20003 		movw	r3, #:lower16:psoc_state
+ 840 0028 C0F20003 		movt	r3, #:upper16:psoc_state
+ 841 002c 1B78     		ldrb	r3, [r3, #0]
+ 842 002e DBB2     		uxtb	r3, r3
+ 843 0030 492B     		cmp	r3, #73
+ 844 0032 0DD1     		bne	.L47
+ 602:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 603:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state = psoc_SM_MSTR_RD_DATA;
+ 845              		.loc 1 603 0
+ 846 0034 40F20003 		movw	r3, #:lower16:psoc_state
+ 847 0038 C0F20003 		movt	r3, #:upper16:psoc_state
+ 848 003c 4FF04A02 		mov	r2, #74
+ 849 0040 1A70     		strb	r2, [r3, #0]
+ 604:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_READY_TO_READ_MANUAL;
+ 850              		.loc 1 604 0
+ 851 0042 44F6D713 		movw	r3, #18903
+ 852 0046 C4F20003 		movt	r3, 16384
+ 853 004a 4FF00002 		mov	r2, #0
+ 854 004e 1A70     		strb	r2, [r3, #0]
+ 855              	.L47:
+ 605:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 606:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 607:.\Generated_Source\PSoC5/psoc_MASTER.c ****         while(psoc_WAIT_BYTE_COMPLETE(psoc_CSR_REG))
+ 856              		.loc 1 607 0
+ 857 0050 00BF     		nop
+ 858              	.L44:
+ 859              		.loc 1 607 0 is_stmt 0 discriminator 1
+ 860 0052 44F6D713 		movw	r3, #18903
+ 861 0056 C4F20003 		movt	r3, 16384
+ 862 005a 1B78     		ldrb	r3, [r3, #0]
+ 863 005c DBB2     		uxtb	r3, r3
+ 864 005e 03F00103 		and	r3, r3, #1
+ 865 0062 002B     		cmp	r3, #0
+ 866 0064 F5D0     		beq	.L44
+ 608:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 609:.\Generated_Source\PSoC5/psoc_MASTER.c ****             ; /* Wait for byte to be read */
+ 610:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 611:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 612:.\Generated_Source\PSoC5/psoc_MASTER.c ****         theByte = psoc_DATA_REG;
+ 867              		.loc 1 612 0 is_stmt 1
+ 868 0066 44F6D813 		movw	r3, #18904
+ 869 006a C4F20003 		movt	r3, 16384
+ 870 006e 1B78     		ldrb	r3, [r3, #0]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 27
+
+
+ 871 0070 FB73     		strb	r3, [r7, #15]
+ 613:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 614:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Now if the ACK flag was set, ACK the data which will release the bus and
+ 615:.\Generated_Source\PSoC5/psoc_MASTER.c ****            start the next byte in otherwise do NOTHING to the CSR reg.
+ 616:.\Generated_Source\PSoC5/psoc_MASTER.c ****            This will allow the calling routine to generate a repeat start or
+ 617:.\Generated_Source\PSoC5/psoc_MASTER.c ****            stop depending on it's preference. */
+ 618:.\Generated_Source\PSoC5/psoc_MASTER.c ****         if(acknNak != 0u)   /* Do ACK */
+ 872              		.loc 1 618 0
+ 873 0072 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 874 0074 002B     		cmp	r3, #0
+ 875 0076 07D0     		beq	.L45
+ 619:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 620:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_ACK_AND_RECEIVE_MANUAL;
+ 876              		.loc 1 620 0
+ 877 0078 44F6D713 		movw	r3, #18903
+ 878 007c C4F20003 		movt	r3, 16384
+ 879 0080 4FF01002 		mov	r2, #16
+ 880 0084 1A70     		strb	r2, [r3, #0]
+ 881 0086 06E0     		b	.L42
+ 882              	.L45:
+ 621:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 622:.\Generated_Source\PSoC5/psoc_MASTER.c ****         else                /* Do NACK */
+ 623:.\Generated_Source\PSoC5/psoc_MASTER.c ****         {
+ 624:.\Generated_Source\PSoC5/psoc_MASTER.c ****             /* Do nothing to be able work with ReStart */
+ 625:.\Generated_Source\PSoC5/psoc_MASTER.c ****             psoc_state = psoc_SM_MSTR_HALT;
+ 883              		.loc 1 625 0
+ 884 0088 40F20003 		movw	r3, #:lower16:psoc_state
+ 885 008c C0F20003 		movt	r3, #:upper16:psoc_state
+ 886 0090 4FF06002 		mov	r2, #96
+ 887 0094 1A70     		strb	r2, [r3, #0]
+ 888              	.L42:
+ 626:.\Generated_Source\PSoC5/psoc_MASTER.c ****         }
+ 627:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 628:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 629:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(theByte);
+ 889              		.loc 1 629 0
+ 890 0096 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 630:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 891              		.loc 1 630 0
+ 892 0098 1846     		mov	r0, r3
+ 893 009a 07F11407 		add	r7, r7, #20
+ 894 009e BD46     		mov	sp, r7
+ 895 00a0 80BC     		pop	{r7}
+ 896 00a2 7047     		bx	lr
+ 897              		.cfi_endproc
+ 898              	.LFE6:
+ 899              		.size	psoc_MasterReadByte, .-psoc_MasterReadByte
+ 900              		.section	.text.psoc_MasterStatus,"ax",%progbits
+ 901              		.align	2
+ 902              		.global	psoc_MasterStatus
+ 903              		.thumb
+ 904              		.thumb_func
+ 905              		.type	psoc_MasterStatus, %function
+ 906              	psoc_MasterStatus:
+ 907              	.LFB7:
+ 631:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 632:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 28
+
+
+ 633:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 634:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterStatus
+ 635:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 636:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 637:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 638:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Returns the master's communication status.
+ 639:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 640:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 641:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 642:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 643:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 644:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Current status of I2C master.
+ 645:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 646:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 647:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus - used to store current status of I2C Master.
+ 648:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 649:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 650:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterStatus(void) 
+ 651:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 908              		.loc 1 651 0
+ 909              		.cfi_startproc
+ 910              		@ args = 0, pretend = 0, frame = 8
+ 911              		@ frame_needed = 1, uses_anonymous_args = 0
+ 912              		@ link register save eliminated.
+ 913 0000 80B4     		push	{r7}
+ 914              	.LCFI21:
+ 915              		.cfi_def_cfa_offset 4
+ 916              		.cfi_offset 7, -4
+ 917 0002 83B0     		sub	sp, sp, #12
+ 918              	.LCFI22:
+ 919              		.cfi_def_cfa_offset 16
+ 920 0004 00AF     		add	r7, sp, #0
+ 921              	.LCFI23:
+ 922              		.cfi_def_cfa_register 7
+ 652:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 status;
+ 653:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 654:.\Generated_Source\PSoC5/psoc_MASTER.c ****     status = psoc_mstrStatus;
+ 923              		.loc 1 654 0
+ 924 0006 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 925 000a C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 926 000e 1B78     		ldrb	r3, [r3, #0]
+ 927 0010 FB71     		strb	r3, [r7, #7]
+ 655:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 656:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* When in Master state only transaction is in progress */
+ 657:.\Generated_Source\PSoC5/psoc_MASTER.c ****     if(psoc_CHECK_SM_MASTER)
+ 928              		.loc 1 657 0
+ 929 0012 40F20003 		movw	r3, #:lower16:psoc_state
+ 930 0016 C0F20003 		movt	r3, #:upper16:psoc_state
+ 931 001a 1B78     		ldrb	r3, [r3, #0]
+ 932 001c DBB2     		uxtb	r3, r3
+ 933 001e 03F04003 		and	r3, r3, #64
+ 934 0022 DBB2     		uxtb	r3, r3
+ 935 0024 002B     		cmp	r3, #0
+ 936 0026 03D0     		beq	.L49
+ 658:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 659:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Add transaction in progress activity to master status */
+ 660:.\Generated_Source\PSoC5/psoc_MASTER.c ****         status |= psoc_MSTAT_XFER_INP;
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 29
+
+
+ 937              		.loc 1 660 0
+ 938 0028 FB79     		ldrb	r3, [r7, #7]
+ 939 002a 43F00403 		orr	r3, r3, #4
+ 940 002e FB71     		strb	r3, [r7, #7]
+ 941              	.L49:
+ 661:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 662:.\Generated_Source\PSoC5/psoc_MASTER.c ****     else
+ 663:.\Generated_Source\PSoC5/psoc_MASTER.c ****     {
+ 664:.\Generated_Source\PSoC5/psoc_MASTER.c ****         /* Current master status is valid */
+ 665:.\Generated_Source\PSoC5/psoc_MASTER.c ****     }
+ 666:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 667:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(status);
+ 942              		.loc 1 667 0
+ 943 0030 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 668:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 944              		.loc 1 668 0
+ 945 0032 1846     		mov	r0, r3
+ 946 0034 07F10C07 		add	r7, r7, #12
+ 947 0038 BD46     		mov	sp, r7
+ 948 003a 80BC     		pop	{r7}
+ 949 003c 7047     		bx	lr
+ 950              		.cfi_endproc
+ 951              	.LFE7:
+ 952              		.size	psoc_MasterStatus, .-psoc_MasterStatus
+ 953 003e 00BF     		.section	.text.psoc_MasterClearStatus,"ax",%progbits
+ 954              		.align	2
+ 955              		.global	psoc_MasterClearStatus
+ 956              		.thumb
+ 957              		.thumb_func
+ 958              		.type	psoc_MasterClearStatus, %function
+ 959              	psoc_MasterClearStatus:
+ 960              	.LFB8:
+ 669:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 670:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 671:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 672:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterClearStatus
+ 673:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 674:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 675:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 676:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Clears all status flags and returns the master status.
+ 677:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 678:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 679:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 680:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 681:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 682:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Current status of I2C master.
+ 683:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 684:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 685:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus - used to store current status of I2C Master.
+ 686:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 687:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 688:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 689:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 690:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 691:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterClearStatus(void) 
+ 692:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 961              		.loc 1 692 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 30
+
+
+ 962              		.cfi_startproc
+ 963              		@ args = 0, pretend = 0, frame = 8
+ 964              		@ frame_needed = 1, uses_anonymous_args = 0
+ 965              		@ link register save eliminated.
+ 966 0000 80B4     		push	{r7}
+ 967              	.LCFI24:
+ 968              		.cfi_def_cfa_offset 4
+ 969              		.cfi_offset 7, -4
+ 970 0002 83B0     		sub	sp, sp, #12
+ 971              	.LCFI25:
+ 972              		.cfi_def_cfa_offset 16
+ 973 0004 00AF     		add	r7, sp, #0
+ 974              	.LCFI26:
+ 975              		.cfi_def_cfa_register 7
+ 693:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Current master status */
+ 694:.\Generated_Source\PSoC5/psoc_MASTER.c ****     uint8 status;
+ 695:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 696:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Read and clear master status */
+ 697:.\Generated_Source\PSoC5/psoc_MASTER.c ****     status = psoc_mstrStatus;
+ 976              		.loc 1 697 0
+ 977 0006 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 978 000a C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 979 000e 1B78     		ldrb	r3, [r3, #0]
+ 980 0010 FB71     		strb	r3, [r7, #7]
+ 698:.\Generated_Source\PSoC5/psoc_MASTER.c ****     psoc_mstrStatus = psoc_MSTAT_CLEAR;
+ 981              		.loc 1 698 0
+ 982 0012 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 983 0016 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 984 001a 4FF00002 		mov	r2, #0
+ 985 001e 1A70     		strb	r2, [r3, #0]
+ 699:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 700:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(status);
+ 986              		.loc 1 700 0
+ 987 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 701:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 988              		.loc 1 701 0
+ 989 0022 1846     		mov	r0, r3
+ 990 0024 07F10C07 		add	r7, r7, #12
+ 991 0028 BD46     		mov	sp, r7
+ 992 002a 80BC     		pop	{r7}
+ 993 002c 7047     		bx	lr
+ 994              		.cfi_endproc
+ 995              	.LFE8:
+ 996              		.size	psoc_MasterClearStatus, .-psoc_MasterClearStatus
+ 997 002e 00BF     		.section	.text.psoc_MasterGetReadBufSize,"ax",%progbits
+ 998              		.align	2
+ 999              		.global	psoc_MasterGetReadBufSize
+ 1000              		.thumb
+ 1001              		.thumb_func
+ 1002              		.type	psoc_MasterGetReadBufSize, %function
+ 1003              	psoc_MasterGetReadBufSize:
+ 1004              	.LFB9:
+ 702:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 703:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 704:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 705:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterGetReadBufSize
+ 706:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 31
+
+
+ 707:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 708:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 709:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Returns the amount of bytes that has been transferred with an
+ 710:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  I2C_MasterReadBuf command.
+ 711:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 712:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 713:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 714:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 715:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 716:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Byte count of transfer. If the transfer is not yet complete, it will return
+ 717:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  the byte count transferred so far.
+ 718:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 719:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 720:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufIndex - used to current index within master read
+ 721:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  buffer.
+ 722:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 723:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 724:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterGetReadBufSize(void) 
+ 725:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 1005              		.loc 1 725 0
+ 1006              		.cfi_startproc
+ 1007              		@ args = 0, pretend = 0, frame = 0
+ 1008              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1009              		@ link register save eliminated.
+ 1010 0000 80B4     		push	{r7}
+ 1011              	.LCFI27:
+ 1012              		.cfi_def_cfa_offset 4
+ 1013              		.cfi_offset 7, -4
+ 1014 0002 00AF     		add	r7, sp, #0
+ 1015              	.LCFI28:
+ 1016              		.cfi_def_cfa_register 7
+ 726:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(psoc_mstrRdBufIndex);
+ 1017              		.loc 1 726 0
+ 1018 0004 40F20003 		movw	r3, #:lower16:psoc_mstrRdBufIndex
+ 1019 0008 C0F20003 		movt	r3, #:upper16:psoc_mstrRdBufIndex
+ 1020 000c 1B78     		ldrb	r3, [r3, #0]
+ 1021 000e DBB2     		uxtb	r3, r3
+ 727:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 1022              		.loc 1 727 0
+ 1023 0010 1846     		mov	r0, r3
+ 1024 0012 BD46     		mov	sp, r7
+ 1025 0014 80BC     		pop	{r7}
+ 1026 0016 7047     		bx	lr
+ 1027              		.cfi_endproc
+ 1028              	.LFE9:
+ 1029              		.size	psoc_MasterGetReadBufSize, .-psoc_MasterGetReadBufSize
+ 1030              		.section	.text.psoc_MasterGetWriteBufSize,"ax",%progbits
+ 1031              		.align	2
+ 1032              		.global	psoc_MasterGetWriteBufSize
+ 1033              		.thumb
+ 1034              		.thumb_func
+ 1035              		.type	psoc_MasterGetWriteBufSize, %function
+ 1036              	psoc_MasterGetWriteBufSize:
+ 1037              	.LFB10:
+ 728:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 729:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 730:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 32
+
+
+ 731:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterGetWriteBufSize
+ 732:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 733:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 734:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 735:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Returns the amount of bytes that has been transferred with an
+ 736:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  I2C_MasterWriteBuf command.
+ 737:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 738:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 739:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 740:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 741:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 742:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Byte count of transfer. If the transfer is not yet complete, it will return
+ 743:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  the byte count transferred so far.
+ 744:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 745:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 746:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrWrBufIndex - used to current index within master write
+ 747:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  buffer.
+ 748:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 749:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 750:.\Generated_Source\PSoC5/psoc_MASTER.c **** uint8 psoc_MasterGetWriteBufSize(void) 
+ 751:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 1038              		.loc 1 751 0
+ 1039              		.cfi_startproc
+ 1040              		@ args = 0, pretend = 0, frame = 0
+ 1041              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1042              		@ link register save eliminated.
+ 1043 0000 80B4     		push	{r7}
+ 1044              	.LCFI29:
+ 1045              		.cfi_def_cfa_offset 4
+ 1046              		.cfi_offset 7, -4
+ 1047 0002 00AF     		add	r7, sp, #0
+ 1048              	.LCFI30:
+ 1049              		.cfi_def_cfa_register 7
+ 752:.\Generated_Source\PSoC5/psoc_MASTER.c ****     return(psoc_mstrWrBufIndex);
+ 1050              		.loc 1 752 0
+ 1051 0004 40F20003 		movw	r3, #:lower16:psoc_mstrWrBufIndex
+ 1052 0008 C0F20003 		movt	r3, #:upper16:psoc_mstrWrBufIndex
+ 1053 000c 1B78     		ldrb	r3, [r3, #0]
+ 1054 000e DBB2     		uxtb	r3, r3
+ 753:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 1055              		.loc 1 753 0
+ 1056 0010 1846     		mov	r0, r3
+ 1057 0012 BD46     		mov	sp, r7
+ 1058 0014 80BC     		pop	{r7}
+ 1059 0016 7047     		bx	lr
+ 1060              		.cfi_endproc
+ 1061              	.LFE10:
+ 1062              		.size	psoc_MasterGetWriteBufSize, .-psoc_MasterGetWriteBufSize
+ 1063              		.section	.text.psoc_MasterClearReadBuf,"ax",%progbits
+ 1064              		.align	2
+ 1065              		.global	psoc_MasterClearReadBuf
+ 1066              		.thumb
+ 1067              		.thumb_func
+ 1068              		.type	psoc_MasterClearReadBuf, %function
+ 1069              	psoc_MasterClearReadBuf:
+ 1070              	.LFB11:
+ 754:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 33
+
+
+ 755:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 756:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 757:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterClearReadBuf
+ 758:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 759:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 760:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 761:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Resets the read buffer pointer back to the first byte in the buffer.
+ 762:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 763:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 764:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 765:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 766:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 767:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 768:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 769:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 770:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufIndex - used to current index within master read
+ 771:.\Generated_Source\PSoC5/psoc_MASTER.c **** *   buffer.
+ 772:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus - used to store current status of I2C Master.
+ 773:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 774:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 775:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 776:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 777:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 778:.\Generated_Source\PSoC5/psoc_MASTER.c **** void psoc_MasterClearReadBuf(void) 
+ 779:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 1071              		.loc 1 779 0
+ 1072              		.cfi_startproc
+ 1073              		@ args = 0, pretend = 0, frame = 0
+ 1074              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1075              		@ link register save eliminated.
+ 1076 0000 80B4     		push	{r7}
+ 1077              	.LCFI31:
+ 1078              		.cfi_def_cfa_offset 4
+ 1079              		.cfi_offset 7, -4
+ 1080 0002 00AF     		add	r7, sp, #0
+ 1081              	.LCFI32:
+ 1082              		.cfi_def_cfa_register 7
+ 780:.\Generated_Source\PSoC5/psoc_MASTER.c ****     psoc_mstrRdBufIndex = 0u;
+ 1083              		.loc 1 780 0
+ 1084 0004 40F20003 		movw	r3, #:lower16:psoc_mstrRdBufIndex
+ 1085 0008 C0F20003 		movt	r3, #:upper16:psoc_mstrRdBufIndex
+ 1086 000c 4FF00002 		mov	r2, #0
+ 1087 0010 1A70     		strb	r2, [r3, #0]
+ 781:.\Generated_Source\PSoC5/psoc_MASTER.c ****     psoc_mstrStatus    &= ((uint8) ~psoc_MSTAT_RD_CMPLT);
+ 1088              		.loc 1 781 0
+ 1089 0012 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 1090 0016 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 1091 001a 1B78     		ldrb	r3, [r3, #0]
+ 1092 001c DBB2     		uxtb	r3, r3
+ 1093 001e 23F00103 		bic	r3, r3, #1
+ 1094 0022 DAB2     		uxtb	r2, r3
+ 1095 0024 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 1096 0028 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 1097 002c 1A70     		strb	r2, [r3, #0]
+ 782:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 1098              		.loc 1 782 0
+ 1099 002e BD46     		mov	sp, r7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 34
+
+
+ 1100 0030 80BC     		pop	{r7}
+ 1101 0032 7047     		bx	lr
+ 1102              		.cfi_endproc
+ 1103              	.LFE11:
+ 1104              		.size	psoc_MasterClearReadBuf, .-psoc_MasterClearReadBuf
+ 1105              		.section	.text.psoc_MasterClearWriteBuf,"ax",%progbits
+ 1106              		.align	2
+ 1107              		.global	psoc_MasterClearWriteBuf
+ 1108              		.thumb
+ 1109              		.thumb_func
+ 1110              		.type	psoc_MasterClearWriteBuf, %function
+ 1111              	psoc_MasterClearWriteBuf:
+ 1112              	.LFB12:
+ 783:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 784:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 785:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 786:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_MasterClearWriteBuf
+ 787:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 788:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 789:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 790:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Resets the write buffer pointer back to the first byte in the buffer.
+ 791:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 792:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 793:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 794:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 795:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 796:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 797:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 798:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Global variables:
+ 799:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrRdBufIndex - used to current index within master read
+ 800:.\Generated_Source\PSoC5/psoc_MASTER.c **** *   buffer.
+ 801:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  psoc_mstrStatus - used to store current status of I2C Master.
+ 802:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 803:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 804:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 805:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 806:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 807:.\Generated_Source\PSoC5/psoc_MASTER.c **** void psoc_MasterClearWriteBuf(void) 
+ 808:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 1113              		.loc 1 808 0
+ 1114              		.cfi_startproc
+ 1115              		@ args = 0, pretend = 0, frame = 0
+ 1116              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1117              		@ link register save eliminated.
+ 1118 0000 80B4     		push	{r7}
+ 1119              	.LCFI33:
+ 1120              		.cfi_def_cfa_offset 4
+ 1121              		.cfi_offset 7, -4
+ 1122 0002 00AF     		add	r7, sp, #0
+ 1123              	.LCFI34:
+ 1124              		.cfi_def_cfa_register 7
+ 809:.\Generated_Source\PSoC5/psoc_MASTER.c ****     psoc_mstrWrBufIndex = 0u;
+ 1125              		.loc 1 809 0
+ 1126 0004 40F20003 		movw	r3, #:lower16:psoc_mstrWrBufIndex
+ 1127 0008 C0F20003 		movt	r3, #:upper16:psoc_mstrWrBufIndex
+ 1128 000c 4FF00002 		mov	r2, #0
+ 1129 0010 1A70     		strb	r2, [r3, #0]
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 35
+
+
+ 810:.\Generated_Source\PSoC5/psoc_MASTER.c ****     psoc_mstrStatus    &= ((uint8) ~psoc_MSTAT_WR_CMPLT);
+ 1130              		.loc 1 810 0
+ 1131 0012 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 1132 0016 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 1133 001a 1B78     		ldrb	r3, [r3, #0]
+ 1134 001c DBB2     		uxtb	r3, r3
+ 1135 001e 23F00203 		bic	r3, r3, #2
+ 1136 0022 DAB2     		uxtb	r2, r3
+ 1137 0024 40F20003 		movw	r3, #:lower16:psoc_mstrStatus
+ 1138 0028 C0F20003 		movt	r3, #:upper16:psoc_mstrStatus
+ 1139 002c 1A70     		strb	r2, [r3, #0]
+ 811:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 1140              		.loc 1 811 0
+ 1141 002e BD46     		mov	sp, r7
+ 1142 0030 80BC     		pop	{r7}
+ 1143 0032 7047     		bx	lr
+ 1144              		.cfi_endproc
+ 1145              	.LFE12:
+ 1146              		.size	psoc_MasterClearWriteBuf, .-psoc_MasterClearWriteBuf
+ 1147              		.section	.text.psoc_Workaround,"ax",%progbits
+ 1148              		.align	2
+ 1149              		.global	psoc_Workaround
+ 1150              		.thumb
+ 1151              		.thumb_func
+ 1152              		.type	psoc_Workaround, %function
+ 1153              	psoc_Workaround:
+ 1154              	.LFB13:
+ 812:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 813:.\Generated_Source\PSoC5/psoc_MASTER.c **** 
+ 814:.\Generated_Source\PSoC5/psoc_MASTER.c **** /*******************************************************************************
+ 815:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Function Name: psoc_Workaround
+ 816:.\Generated_Source\PSoC5/psoc_MASTER.c **** ********************************************************************************
+ 817:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 818:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Summary:
+ 819:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  Do nothing. This fake fuction use as workaround for CDT 78083.
+ 820:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 821:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Parameters:
+ 822:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 823:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 824:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Return:
+ 825:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  None
+ 826:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 827:.\Generated_Source\PSoC5/psoc_MASTER.c **** * Reentrant:
+ 828:.\Generated_Source\PSoC5/psoc_MASTER.c **** *  No
+ 829:.\Generated_Source\PSoC5/psoc_MASTER.c **** *
+ 830:.\Generated_Source\PSoC5/psoc_MASTER.c **** *******************************************************************************/
+ 831:.\Generated_Source\PSoC5/psoc_MASTER.c **** void psoc_Workaround(void) 
+ 832:.\Generated_Source\PSoC5/psoc_MASTER.c **** {
+ 1155              		.loc 1 832 0
+ 1156              		.cfi_startproc
+ 1157              		@ args = 0, pretend = 0, frame = 0
+ 1158              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1159              		@ link register save eliminated.
+ 1160 0000 80B4     		push	{r7}
+ 1161              	.LCFI35:
+ 1162              		.cfi_def_cfa_offset 4
+ 1163              		.cfi_offset 7, -4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 36
+
+
+ 1164 0002 00AF     		add	r7, sp, #0
+ 1165              	.LCFI36:
+ 1166              		.cfi_def_cfa_register 7
+ 833:.\Generated_Source\PSoC5/psoc_MASTER.c ****     /* Does nothing */
+ 834:.\Generated_Source\PSoC5/psoc_MASTER.c **** }
+ 1167              		.loc 1 834 0
+ 1168 0004 BD46     		mov	sp, r7
+ 1169 0006 80BC     		pop	{r7}
+ 1170 0008 7047     		bx	lr
+ 1171              		.cfi_endproc
+ 1172              	.LFE13:
+ 1173              		.size	psoc_Workaround, .-psoc_Workaround
+ 1174 000a 00BF     		.text
+ 1175              	.Letext0:
+ 1176              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 1177              		.file 3 ".\\Generated_Source\\PSoC5\\psoc_PVT.h"
+ 1178              		.section	.debug_info,"",%progbits
+ 1179              	.Ldebug_info0:
+ 1180 0000 4F040000 		.4byte	0x44f
+ 1181 0004 0200     		.2byte	0x2
+ 1182 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1183 000a 04       		.byte	0x4
+ 1184 000b 01       		.uleb128 0x1
+ 1185 000c A6020000 		.4byte	.LASF49
+ 1186 0010 01       		.byte	0x1
+ 1187 0011 2F030000 		.4byte	.LASF50
+ 1188 0015 27000000 		.4byte	.LASF51
+ 1189 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1190 001d 00000000 		.4byte	0
+ 1191 0021 00000000 		.4byte	0
+ 1192 0025 00000000 		.4byte	.Ldebug_line0
+ 1193 0029 02       		.uleb128 0x2
+ 1194 002a 01       		.byte	0x1
+ 1195 002b 06       		.byte	0x6
+ 1196 002c 23030000 		.4byte	.LASF0
+ 1197 0030 02       		.uleb128 0x2
+ 1198 0031 01       		.byte	0x1
+ 1199 0032 08       		.byte	0x8
+ 1200 0033 E7000000 		.4byte	.LASF1
+ 1201 0037 02       		.uleb128 0x2
+ 1202 0038 02       		.byte	0x2
+ 1203 0039 05       		.byte	0x5
+ 1204 003a 94020000 		.4byte	.LASF2
+ 1205 003e 02       		.uleb128 0x2
+ 1206 003f 02       		.byte	0x2
+ 1207 0040 07       		.byte	0x7
+ 1208 0041 68000000 		.4byte	.LASF3
+ 1209 0045 02       		.uleb128 0x2
+ 1210 0046 04       		.byte	0x4
+ 1211 0047 05       		.byte	0x5
+ 1212 0048 03030000 		.4byte	.LASF4
+ 1213 004c 02       		.uleb128 0x2
+ 1214 004d 04       		.byte	0x4
+ 1215 004e 07       		.byte	0x7
+ 1216 004f 0C010000 		.4byte	.LASF5
+ 1217 0053 02       		.uleb128 0x2
+ 1218 0054 08       		.byte	0x8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 37
+
+
+ 1219 0055 05       		.byte	0x5
+ 1220 0056 13020000 		.4byte	.LASF6
+ 1221 005a 02       		.uleb128 0x2
+ 1222 005b 08       		.byte	0x8
+ 1223 005c 07       		.byte	0x7
+ 1224 005d AF010000 		.4byte	.LASF7
+ 1225 0061 03       		.uleb128 0x3
+ 1226 0062 04       		.byte	0x4
+ 1227 0063 05       		.byte	0x5
+ 1228 0064 696E7400 		.ascii	"int\000"
+ 1229 0068 02       		.uleb128 0x2
+ 1230 0069 04       		.byte	0x4
+ 1231 006a 07       		.byte	0x7
+ 1232 006b 92000000 		.4byte	.LASF8
+ 1233 006f 04       		.uleb128 0x4
+ 1234 0070 33010000 		.4byte	.LASF9
+ 1235 0074 02       		.byte	0x2
+ 1236 0075 5B       		.byte	0x5b
+ 1237 0076 30000000 		.4byte	0x30
+ 1238 007a 04       		.uleb128 0x4
+ 1239 007b 99010000 		.4byte	.LASF10
+ 1240 007f 02       		.byte	0x2
+ 1241 0080 5D       		.byte	0x5d
+ 1242 0081 4C000000 		.4byte	0x4c
+ 1243 0085 02       		.uleb128 0x2
+ 1244 0086 04       		.byte	0x4
+ 1245 0087 04       		.byte	0x4
+ 1246 0088 E1000000 		.4byte	.LASF11
+ 1247 008c 02       		.uleb128 0x2
+ 1248 008d 08       		.byte	0x8
+ 1249 008e 04       		.byte	0x4
+ 1250 008f 69010000 		.4byte	.LASF12
+ 1251 0093 02       		.uleb128 0x2
+ 1252 0094 01       		.byte	0x1
+ 1253 0095 08       		.byte	0x8
+ 1254 0096 0C030000 		.4byte	.LASF13
+ 1255 009a 04       		.uleb128 0x4
+ 1256 009b 07010000 		.4byte	.LASF14
+ 1257 009f 02       		.byte	0x2
+ 1258 00a0 F0       		.byte	0xf0
+ 1259 00a1 A5000000 		.4byte	0xa5
+ 1260 00a5 05       		.uleb128 0x5
+ 1261 00a6 6F000000 		.4byte	0x6f
+ 1262 00aa 04       		.uleb128 0x4
+ 1263 00ab 07000000 		.4byte	.LASF15
+ 1264 00af 02       		.byte	0x2
+ 1265 00b0 F2       		.byte	0xf2
+ 1266 00b1 B5000000 		.4byte	0xb5
+ 1267 00b5 05       		.uleb128 0x5
+ 1268 00b6 7A000000 		.4byte	0x7a
+ 1269 00ba 02       		.uleb128 0x2
+ 1270 00bb 04       		.byte	0x4
+ 1271 00bc 07       		.byte	0x7
+ 1272 00bd 0A020000 		.4byte	.LASF16
+ 1273 00c1 06       		.uleb128 0x6
+ 1274 00c2 01       		.byte	0x1
+ 1275 00c3 CD000000 		.4byte	.LASF20
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 38
+
+
+ 1276 00c7 01       		.byte	0x1
+ 1277 00c8 4D       		.byte	0x4d
+ 1278 00c9 01       		.byte	0x1
+ 1279 00ca 6F000000 		.4byte	0x6f
+ 1280 00ce 00000000 		.4byte	.LFB0
+ 1281 00d2 58010000 		.4byte	.LFE0
+ 1282 00d6 00000000 		.4byte	.LLST0
+ 1283 00da 01       		.byte	0x1
+ 1284 00db 26010000 		.4byte	0x126
+ 1285 00df 07       		.uleb128 0x7
+ 1286 00e0 FD010000 		.4byte	.LASF17
+ 1287 00e4 01       		.byte	0x1
+ 1288 00e5 4D       		.byte	0x4d
+ 1289 00e6 6F000000 		.4byte	0x6f
+ 1290 00ea 02       		.byte	0x2
+ 1291 00eb 91       		.byte	0x91
+ 1292 00ec 6F       		.sleb128 -17
+ 1293 00ed 07       		.uleb128 0x7
+ 1294 00ee A8010000 		.4byte	.LASF18
+ 1295 00f2 01       		.byte	0x1
+ 1296 00f3 4D       		.byte	0x4d
+ 1297 00f4 26010000 		.4byte	0x126
+ 1298 00f8 02       		.byte	0x2
+ 1299 00f9 91       		.byte	0x91
+ 1300 00fa 68       		.sleb128 -24
+ 1301 00fb 08       		.uleb128 0x8
+ 1302 00fc 636E7400 		.ascii	"cnt\000"
+ 1303 0100 01       		.byte	0x1
+ 1304 0101 4D       		.byte	0x4d
+ 1305 0102 6F000000 		.4byte	0x6f
+ 1306 0106 02       		.byte	0x2
+ 1307 0107 91       		.byte	0x91
+ 1308 0108 6E       		.sleb128 -18
+ 1309 0109 07       		.uleb128 0x7
+ 1310 010a F8010000 		.4byte	.LASF19
+ 1311 010e 01       		.byte	0x1
+ 1312 010f 4D       		.byte	0x4d
+ 1313 0110 6F000000 		.4byte	0x6f
+ 1314 0114 02       		.byte	0x2
+ 1315 0115 91       		.byte	0x91
+ 1316 0116 6D       		.sleb128 -19
+ 1317 0117 09       		.uleb128 0x9
+ 1318 0118 4C010000 		.4byte	.LASF23
+ 1319 011c 01       		.byte	0x1
+ 1320 011d 50       		.byte	0x50
+ 1321 011e 6F000000 		.4byte	0x6f
+ 1322 0122 02       		.byte	0x2
+ 1323 0123 91       		.byte	0x91
+ 1324 0124 77       		.sleb128 -9
+ 1325 0125 00       		.byte	0
+ 1326 0126 0A       		.uleb128 0xa
+ 1327 0127 04       		.byte	0x4
+ 1328 0128 6F000000 		.4byte	0x6f
+ 1329 012c 06       		.uleb128 0x6
+ 1330 012d 01       		.byte	0x1
+ 1331 012e 14000000 		.4byte	.LASF21
+ 1332 0132 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 39
+
+
+ 1333 0133 B4       		.byte	0xb4
+ 1334 0134 01       		.byte	0x1
+ 1335 0135 6F000000 		.4byte	0x6f
+ 1336 0139 00000000 		.4byte	.LFB1
+ 1337 013d 5E010000 		.4byte	.LFE1
+ 1338 0141 38000000 		.4byte	.LLST1
+ 1339 0145 01       		.byte	0x1
+ 1340 0146 91010000 		.4byte	0x191
+ 1341 014a 07       		.uleb128 0x7
+ 1342 014b FD010000 		.4byte	.LASF17
+ 1343 014f 01       		.byte	0x1
+ 1344 0150 B4       		.byte	0xb4
+ 1345 0151 6F000000 		.4byte	0x6f
+ 1346 0155 02       		.byte	0x2
+ 1347 0156 91       		.byte	0x91
+ 1348 0157 6F       		.sleb128 -17
+ 1349 0158 07       		.uleb128 0x7
+ 1350 0159 00000000 		.4byte	.LASF22
+ 1351 015d 01       		.byte	0x1
+ 1352 015e B4       		.byte	0xb4
+ 1353 015f 26010000 		.4byte	0x126
+ 1354 0163 02       		.byte	0x2
+ 1355 0164 91       		.byte	0x91
+ 1356 0165 68       		.sleb128 -24
+ 1357 0166 08       		.uleb128 0x8
+ 1358 0167 636E7400 		.ascii	"cnt\000"
+ 1359 016b 01       		.byte	0x1
+ 1360 016c B4       		.byte	0xb4
+ 1361 016d 6F000000 		.4byte	0x6f
+ 1362 0171 02       		.byte	0x2
+ 1363 0172 91       		.byte	0x91
+ 1364 0173 6E       		.sleb128 -18
+ 1365 0174 07       		.uleb128 0x7
+ 1366 0175 F8010000 		.4byte	.LASF19
+ 1367 0179 01       		.byte	0x1
+ 1368 017a B4       		.byte	0xb4
+ 1369 017b 6F000000 		.4byte	0x6f
+ 1370 017f 02       		.byte	0x2
+ 1371 0180 91       		.byte	0x91
+ 1372 0181 6D       		.sleb128 -19
+ 1373 0182 09       		.uleb128 0x9
+ 1374 0183 4C010000 		.4byte	.LASF23
+ 1375 0187 01       		.byte	0x1
+ 1376 0188 B7       		.byte	0xb7
+ 1377 0189 6F000000 		.4byte	0x6f
+ 1378 018d 02       		.byte	0x2
+ 1379 018e 91       		.byte	0x91
+ 1380 018f 77       		.sleb128 -9
+ 1381 0190 00       		.byte	0
+ 1382 0191 0B       		.uleb128 0xb
+ 1383 0192 01       		.byte	0x1
+ 1384 0193 1E010000 		.4byte	.LASF24
+ 1385 0197 01       		.byte	0x1
+ 1386 0198 0F01     		.2byte	0x10f
+ 1387 019a 01       		.byte	0x1
+ 1388 019b 6F000000 		.4byte	0x6f
+ 1389 019f 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 40
+
+
+ 1390 01a3 F2000000 		.4byte	.LFE2
+ 1391 01a7 70000000 		.4byte	.LLST2
+ 1392 01ab 01       		.byte	0x1
+ 1393 01ac DE010000 		.4byte	0x1de
+ 1394 01b0 0C       		.uleb128 0xc
+ 1395 01b1 FD010000 		.4byte	.LASF17
+ 1396 01b5 01       		.byte	0x1
+ 1397 01b6 0F01     		.2byte	0x10f
+ 1398 01b8 6F000000 		.4byte	0x6f
+ 1399 01bc 02       		.byte	0x2
+ 1400 01bd 91       		.byte	0x91
+ 1401 01be 6F       		.sleb128 -17
+ 1402 01bf 0C       		.uleb128 0xc
+ 1403 01c0 70010000 		.4byte	.LASF25
+ 1404 01c4 01       		.byte	0x1
+ 1405 01c5 0F01     		.2byte	0x10f
+ 1406 01c7 6F000000 		.4byte	0x6f
+ 1407 01cb 02       		.byte	0x2
+ 1408 01cc 91       		.byte	0x91
+ 1409 01cd 6E       		.sleb128 -18
+ 1410 01ce 0D       		.uleb128 0xd
+ 1411 01cf 4C010000 		.4byte	.LASF23
+ 1412 01d3 01       		.byte	0x1
+ 1413 01d4 1201     		.2byte	0x112
+ 1414 01d6 6F000000 		.4byte	0x6f
+ 1415 01da 02       		.byte	0x2
+ 1416 01db 91       		.byte	0x91
+ 1417 01dc 77       		.sleb128 -9
+ 1418 01dd 00       		.byte	0
+ 1419 01de 0B       		.uleb128 0xb
+ 1420 01df 01       		.byte	0x1
+ 1421 01e0 C6010000 		.4byte	.LASF26
+ 1422 01e4 01       		.byte	0x1
+ 1423 01e5 7901     		.2byte	0x179
+ 1424 01e7 01       		.byte	0x1
+ 1425 01e8 6F000000 		.4byte	0x6f
+ 1426 01ec 00000000 		.4byte	.LFB3
+ 1427 01f0 DA000000 		.4byte	.LFE3
+ 1428 01f4 A8000000 		.4byte	.LLST3
+ 1429 01f8 01       		.byte	0x1
+ 1430 01f9 2B020000 		.4byte	0x22b
+ 1431 01fd 0C       		.uleb128 0xc
+ 1432 01fe FD010000 		.4byte	.LASF17
+ 1433 0202 01       		.byte	0x1
+ 1434 0203 7901     		.2byte	0x179
+ 1435 0205 6F000000 		.4byte	0x6f
+ 1436 0209 02       		.byte	0x2
+ 1437 020a 91       		.byte	0x91
+ 1438 020b 6F       		.sleb128 -17
+ 1439 020c 0C       		.uleb128 0xc
+ 1440 020d 70010000 		.4byte	.LASF25
+ 1441 0211 01       		.byte	0x1
+ 1442 0212 7901     		.2byte	0x179
+ 1443 0214 6F000000 		.4byte	0x6f
+ 1444 0218 02       		.byte	0x2
+ 1445 0219 91       		.byte	0x91
+ 1446 021a 6E       		.sleb128 -18
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 41
+
+
+ 1447 021b 0D       		.uleb128 0xd
+ 1448 021c 4C010000 		.4byte	.LASF23
+ 1449 0220 01       		.byte	0x1
+ 1450 0221 7C01     		.2byte	0x17c
+ 1451 0223 6F000000 		.4byte	0x6f
+ 1452 0227 02       		.byte	0x2
+ 1453 0228 91       		.byte	0x91
+ 1454 0229 77       		.sleb128 -9
+ 1455 022a 00       		.byte	0
+ 1456 022b 0B       		.uleb128 0xb
+ 1457 022c 01       		.byte	0x1
+ 1458 022d 45020000 		.4byte	.LASF27
+ 1459 0231 01       		.byte	0x1
+ 1460 0232 CC01     		.2byte	0x1cc
+ 1461 0234 01       		.byte	0x1
+ 1462 0235 6F000000 		.4byte	0x6f
+ 1463 0239 00000000 		.4byte	.LFB4
+ 1464 023d 74000000 		.4byte	.LFE4
+ 1465 0241 E0000000 		.4byte	.LLST4
+ 1466 0245 01       		.byte	0x1
+ 1467 0246 5A020000 		.4byte	0x25a
+ 1468 024a 0D       		.uleb128 0xd
+ 1469 024b 4C010000 		.4byte	.LASF23
+ 1470 024f 01       		.byte	0x1
+ 1471 0250 CE01     		.2byte	0x1ce
+ 1472 0252 6F000000 		.4byte	0x6f
+ 1473 0256 02       		.byte	0x2
+ 1474 0257 91       		.byte	0x91
+ 1475 0258 77       		.sleb128 -9
+ 1476 0259 00       		.byte	0
+ 1477 025a 0B       		.uleb128 0xb
+ 1478 025b 01       		.byte	0x1
+ 1479 025c 66030000 		.4byte	.LASF28
+ 1480 0260 01       		.byte	0x1
+ 1481 0261 0402     		.2byte	0x204
+ 1482 0263 01       		.byte	0x1
+ 1483 0264 6F000000 		.4byte	0x6f
+ 1484 0268 00000000 		.4byte	.LFB5
+ 1485 026c AE000000 		.4byte	.LFE5
+ 1486 0270 18010000 		.4byte	.LLST5
+ 1487 0274 01       		.byte	0x1
+ 1488 0275 98020000 		.4byte	0x298
+ 1489 0279 0C       		.uleb128 0xc
+ 1490 027a 9E020000 		.4byte	.LASF29
+ 1491 027e 01       		.byte	0x1
+ 1492 027f 0402     		.2byte	0x204
+ 1493 0281 6F000000 		.4byte	0x6f
+ 1494 0285 02       		.byte	0x2
+ 1495 0286 91       		.byte	0x91
+ 1496 0287 6F       		.sleb128 -17
+ 1497 0288 0D       		.uleb128 0xd
+ 1498 0289 4C010000 		.4byte	.LASF23
+ 1499 028d 01       		.byte	0x1
+ 1500 028e 0602     		.2byte	0x206
+ 1501 0290 6F000000 		.4byte	0x6f
+ 1502 0294 02       		.byte	0x2
+ 1503 0295 91       		.byte	0x91
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 42
+
+
+ 1504 0296 77       		.sleb128 -9
+ 1505 0297 00       		.byte	0
+ 1506 0298 0B       		.uleb128 0xb
+ 1507 0299 01       		.byte	0x1
+ 1508 029a 21020000 		.4byte	.LASF30
+ 1509 029e 01       		.byte	0x1
+ 1510 029f 4F02     		.2byte	0x24f
+ 1511 02a1 01       		.byte	0x1
+ 1512 02a2 6F000000 		.4byte	0x6f
+ 1513 02a6 00000000 		.4byte	.LFB6
+ 1514 02aa A4000000 		.4byte	.LFE6
+ 1515 02ae 50010000 		.4byte	.LLST6
+ 1516 02b2 01       		.byte	0x1
+ 1517 02b3 D6020000 		.4byte	0x2d6
+ 1518 02b7 0C       		.uleb128 0xc
+ 1519 02b8 A0010000 		.4byte	.LASF31
+ 1520 02bc 01       		.byte	0x1
+ 1521 02bd 4F02     		.2byte	0x24f
+ 1522 02bf 6F000000 		.4byte	0x6f
+ 1523 02c3 02       		.byte	0x2
+ 1524 02c4 91       		.byte	0x91
+ 1525 02c5 6F       		.sleb128 -17
+ 1526 02c6 0D       		.uleb128 0xd
+ 1527 02c7 9E020000 		.4byte	.LASF29
+ 1528 02cb 01       		.byte	0x1
+ 1529 02cc 5102     		.2byte	0x251
+ 1530 02ce 6F000000 		.4byte	0x6f
+ 1531 02d2 02       		.byte	0x2
+ 1532 02d3 91       		.byte	0x91
+ 1533 02d4 77       		.sleb128 -9
+ 1534 02d5 00       		.byte	0
+ 1535 02d6 0B       		.uleb128 0xb
+ 1536 02d7 01       		.byte	0x1
+ 1537 02d8 F5000000 		.4byte	.LASF32
+ 1538 02dc 01       		.byte	0x1
+ 1539 02dd 8A02     		.2byte	0x28a
+ 1540 02df 01       		.byte	0x1
+ 1541 02e0 6F000000 		.4byte	0x6f
+ 1542 02e4 00000000 		.4byte	.LFB7
+ 1543 02e8 3E000000 		.4byte	.LFE7
+ 1544 02ec 88010000 		.4byte	.LLST7
+ 1545 02f0 01       		.byte	0x1
+ 1546 02f1 05030000 		.4byte	0x305
+ 1547 02f5 0D       		.uleb128 0xd
+ 1548 02f6 0D000000 		.4byte	.LASF33
+ 1549 02fa 01       		.byte	0x1
+ 1550 02fb 8C02     		.2byte	0x28c
+ 1551 02fd 6F000000 		.4byte	0x6f
+ 1552 0301 02       		.byte	0x2
+ 1553 0302 91       		.byte	0x91
+ 1554 0303 77       		.sleb128 -9
+ 1555 0304 00       		.byte	0
+ 1556 0305 0B       		.uleb128 0xb
+ 1557 0306 01       		.byte	0x1
+ 1558 0307 7B000000 		.4byte	.LASF34
+ 1559 030b 01       		.byte	0x1
+ 1560 030c B302     		.2byte	0x2b3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 43
+
+
+ 1561 030e 01       		.byte	0x1
+ 1562 030f 6F000000 		.4byte	0x6f
+ 1563 0313 00000000 		.4byte	.LFB8
+ 1564 0317 2E000000 		.4byte	.LFE8
+ 1565 031b C0010000 		.4byte	.LLST8
+ 1566 031f 01       		.byte	0x1
+ 1567 0320 34030000 		.4byte	0x334
+ 1568 0324 0D       		.uleb128 0xd
+ 1569 0325 0D000000 		.4byte	.LASF33
+ 1570 0329 01       		.byte	0x1
+ 1571 032a B602     		.2byte	0x2b6
+ 1572 032c 6F000000 		.4byte	0x6f
+ 1573 0330 02       		.byte	0x2
+ 1574 0331 91       		.byte	0x91
+ 1575 0332 77       		.sleb128 -9
+ 1576 0333 00       		.byte	0
+ 1577 0334 0E       		.uleb128 0xe
+ 1578 0335 01       		.byte	0x1
+ 1579 0336 B3000000 		.4byte	.LASF35
+ 1580 033a 01       		.byte	0x1
+ 1581 033b D402     		.2byte	0x2d4
+ 1582 033d 01       		.byte	0x1
+ 1583 033e 6F000000 		.4byte	0x6f
+ 1584 0342 00000000 		.4byte	.LFB9
+ 1585 0346 18000000 		.4byte	.LFE9
+ 1586 034a F8010000 		.4byte	.LLST9
+ 1587 034e 01       		.byte	0x1
+ 1588 034f 0E       		.uleb128 0xe
+ 1589 0350 01       		.byte	0x1
+ 1590 0351 DD010000 		.4byte	.LASF36
+ 1591 0355 01       		.byte	0x1
+ 1592 0356 EE02     		.2byte	0x2ee
+ 1593 0358 01       		.byte	0x1
+ 1594 0359 6F000000 		.4byte	0x6f
+ 1595 035d 00000000 		.4byte	.LFB10
+ 1596 0361 18000000 		.4byte	.LFE10
+ 1597 0365 24020000 		.4byte	.LLST10
+ 1598 0369 01       		.byte	0x1
+ 1599 036a 0F       		.uleb128 0xf
+ 1600 036b 01       		.byte	0x1
+ 1601 036c 6A020000 		.4byte	.LASF37
+ 1602 0370 01       		.byte	0x1
+ 1603 0371 0A03     		.2byte	0x30a
+ 1604 0373 01       		.byte	0x1
+ 1605 0374 00000000 		.4byte	.LFB11
+ 1606 0378 34000000 		.4byte	.LFE11
+ 1607 037c 50020000 		.4byte	.LLST11
+ 1608 0380 01       		.byte	0x1
+ 1609 0381 0F       		.uleb128 0xf
+ 1610 0382 01       		.byte	0x1
+ 1611 0383 80010000 		.4byte	.LASF38
+ 1612 0387 01       		.byte	0x1
+ 1613 0388 2703     		.2byte	0x327
+ 1614 038a 01       		.byte	0x1
+ 1615 038b 00000000 		.4byte	.LFB12
+ 1616 038f 34000000 		.4byte	.LFE12
+ 1617 0393 7C020000 		.4byte	.LLST12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 44
+
+
+ 1618 0397 01       		.byte	0x1
+ 1619 0398 0F       		.uleb128 0xf
+ 1620 0399 01       		.byte	0x1
+ 1621 039a 35020000 		.4byte	.LASF39
+ 1622 039e 01       		.byte	0x1
+ 1623 039f 3F03     		.2byte	0x33f
+ 1624 03a1 01       		.byte	0x1
+ 1625 03a2 00000000 		.4byte	.LFB13
+ 1626 03a6 0A000000 		.4byte	.LFE13
+ 1627 03aa A8020000 		.4byte	.LLST13
+ 1628 03ae 01       		.byte	0x1
+ 1629 03af 10       		.uleb128 0x10
+ 1630 03b0 75010000 		.4byte	.LASF40
+ 1631 03b4 03       		.byte	0x3
+ 1632 03b5 23       		.byte	0x23
+ 1633 03b6 A5000000 		.4byte	0xa5
+ 1634 03ba 01       		.byte	0x1
+ 1635 03bb 01       		.byte	0x1
+ 1636 03bc 11       		.uleb128 0x11
+ 1637 03bd 56030000 		.4byte	.LASF41
+ 1638 03c1 01       		.byte	0x1
+ 1639 03c2 19       		.byte	0x19
+ 1640 03c3 A5000000 		.4byte	0xa5
+ 1641 03c7 01       		.byte	0x1
+ 1642 03c8 05       		.byte	0x5
+ 1643 03c9 03       		.byte	0x3
+ 1644 03ca 00000000 		.4byte	psoc_mstrStatus
+ 1645 03ce 11       		.uleb128 0x11
+ 1646 03cf 59020000 		.4byte	.LASF42
+ 1647 03d3 01       		.byte	0x1
+ 1648 03d4 1A       		.byte	0x1a
+ 1649 03d5 A5000000 		.4byte	0xa5
+ 1650 03d9 01       		.byte	0x1
+ 1651 03da 05       		.byte	0x5
+ 1652 03db 03       		.byte	0x3
+ 1653 03dc 00000000 		.4byte	psoc_mstrControl
+ 1654 03e0 11       		.uleb128 0x11
+ 1655 03e1 11030000 		.4byte	.LASF43
+ 1656 03e5 01       		.byte	0x1
+ 1657 03e6 1D       		.byte	0x1d
+ 1658 03e7 F2030000 		.4byte	0x3f2
+ 1659 03eb 01       		.byte	0x1
+ 1660 03ec 05       		.byte	0x5
+ 1661 03ed 03       		.byte	0x3
+ 1662 03ee 00000000 		.4byte	psoc_mstrRdBufPtr
+ 1663 03f2 0A       		.uleb128 0xa
+ 1664 03f3 04       		.byte	0x4
+ 1665 03f4 A5000000 		.4byte	0xa5
+ 1666 03f8 11       		.uleb128 0x11
+ 1667 03f9 56010000 		.4byte	.LASF44
+ 1668 03fd 01       		.byte	0x1
+ 1669 03fe 1E       		.byte	0x1e
+ 1670 03ff A5000000 		.4byte	0xa5
+ 1671 0403 01       		.byte	0x1
+ 1672 0404 05       		.byte	0x5
+ 1673 0405 03       		.byte	0x3
+ 1674 0406 00000000 		.4byte	psoc_mstrRdBufSize
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 45
+
+
+ 1675 040a 11       		.uleb128 0x11
+ 1676 040b 9F000000 		.4byte	.LASF45
+ 1677 040f 01       		.byte	0x1
+ 1678 0410 1F       		.byte	0x1f
+ 1679 0411 A5000000 		.4byte	0xa5
+ 1680 0415 01       		.byte	0x1
+ 1681 0416 05       		.byte	0x5
+ 1682 0417 03       		.byte	0x3
+ 1683 0418 00000000 		.4byte	psoc_mstrRdBufIndex
+ 1684 041c 11       		.uleb128 0x11
+ 1685 041d 82020000 		.4byte	.LASF46
+ 1686 0421 01       		.byte	0x1
+ 1687 0422 22       		.byte	0x22
+ 1688 0423 F2030000 		.4byte	0x3f2
+ 1689 0427 01       		.byte	0x1
+ 1690 0428 05       		.byte	0x5
+ 1691 0429 03       		.byte	0x3
+ 1692 042a 00000000 		.4byte	psoc_mstrWrBufPtr
+ 1693 042e 11       		.uleb128 0x11
+ 1694 042f 39010000 		.4byte	.LASF47
+ 1695 0433 01       		.byte	0x1
+ 1696 0434 23       		.byte	0x23
+ 1697 0435 A5000000 		.4byte	0xa5
+ 1698 0439 01       		.byte	0x1
+ 1699 043a 05       		.byte	0x5
+ 1700 043b 03       		.byte	0x3
+ 1701 043c 00000000 		.4byte	psoc_mstrWrBufSize
+ 1702 0440 11       		.uleb128 0x11
+ 1703 0441 EF020000 		.4byte	.LASF48
+ 1704 0445 01       		.byte	0x1
+ 1705 0446 24       		.byte	0x24
+ 1706 0447 A5000000 		.4byte	0xa5
+ 1707 044b 01       		.byte	0x1
+ 1708 044c 05       		.byte	0x5
+ 1709 044d 03       		.byte	0x3
+ 1710 044e 00000000 		.4byte	psoc_mstrWrBufIndex
+ 1711 0452 00       		.byte	0
+ 1712              		.section	.debug_abbrev,"",%progbits
+ 1713              	.Ldebug_abbrev0:
+ 1714 0000 01       		.uleb128 0x1
+ 1715 0001 11       		.uleb128 0x11
+ 1716 0002 01       		.byte	0x1
+ 1717 0003 25       		.uleb128 0x25
+ 1718 0004 0E       		.uleb128 0xe
+ 1719 0005 13       		.uleb128 0x13
+ 1720 0006 0B       		.uleb128 0xb
+ 1721 0007 03       		.uleb128 0x3
+ 1722 0008 0E       		.uleb128 0xe
+ 1723 0009 1B       		.uleb128 0x1b
+ 1724 000a 0E       		.uleb128 0xe
+ 1725 000b 55       		.uleb128 0x55
+ 1726 000c 06       		.uleb128 0x6
+ 1727 000d 11       		.uleb128 0x11
+ 1728 000e 01       		.uleb128 0x1
+ 1729 000f 52       		.uleb128 0x52
+ 1730 0010 01       		.uleb128 0x1
+ 1731 0011 10       		.uleb128 0x10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 46
+
+
+ 1732 0012 06       		.uleb128 0x6
+ 1733 0013 00       		.byte	0
+ 1734 0014 00       		.byte	0
+ 1735 0015 02       		.uleb128 0x2
+ 1736 0016 24       		.uleb128 0x24
+ 1737 0017 00       		.byte	0
+ 1738 0018 0B       		.uleb128 0xb
+ 1739 0019 0B       		.uleb128 0xb
+ 1740 001a 3E       		.uleb128 0x3e
+ 1741 001b 0B       		.uleb128 0xb
+ 1742 001c 03       		.uleb128 0x3
+ 1743 001d 0E       		.uleb128 0xe
+ 1744 001e 00       		.byte	0
+ 1745 001f 00       		.byte	0
+ 1746 0020 03       		.uleb128 0x3
+ 1747 0021 24       		.uleb128 0x24
+ 1748 0022 00       		.byte	0
+ 1749 0023 0B       		.uleb128 0xb
+ 1750 0024 0B       		.uleb128 0xb
+ 1751 0025 3E       		.uleb128 0x3e
+ 1752 0026 0B       		.uleb128 0xb
+ 1753 0027 03       		.uleb128 0x3
+ 1754 0028 08       		.uleb128 0x8
+ 1755 0029 00       		.byte	0
+ 1756 002a 00       		.byte	0
+ 1757 002b 04       		.uleb128 0x4
+ 1758 002c 16       		.uleb128 0x16
+ 1759 002d 00       		.byte	0
+ 1760 002e 03       		.uleb128 0x3
+ 1761 002f 0E       		.uleb128 0xe
+ 1762 0030 3A       		.uleb128 0x3a
+ 1763 0031 0B       		.uleb128 0xb
+ 1764 0032 3B       		.uleb128 0x3b
+ 1765 0033 0B       		.uleb128 0xb
+ 1766 0034 49       		.uleb128 0x49
+ 1767 0035 13       		.uleb128 0x13
+ 1768 0036 00       		.byte	0
+ 1769 0037 00       		.byte	0
+ 1770 0038 05       		.uleb128 0x5
+ 1771 0039 35       		.uleb128 0x35
+ 1772 003a 00       		.byte	0
+ 1773 003b 49       		.uleb128 0x49
+ 1774 003c 13       		.uleb128 0x13
+ 1775 003d 00       		.byte	0
+ 1776 003e 00       		.byte	0
+ 1777 003f 06       		.uleb128 0x6
+ 1778 0040 2E       		.uleb128 0x2e
+ 1779 0041 01       		.byte	0x1
+ 1780 0042 3F       		.uleb128 0x3f
+ 1781 0043 0C       		.uleb128 0xc
+ 1782 0044 03       		.uleb128 0x3
+ 1783 0045 0E       		.uleb128 0xe
+ 1784 0046 3A       		.uleb128 0x3a
+ 1785 0047 0B       		.uleb128 0xb
+ 1786 0048 3B       		.uleb128 0x3b
+ 1787 0049 0B       		.uleb128 0xb
+ 1788 004a 27       		.uleb128 0x27
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 47
+
+
+ 1789 004b 0C       		.uleb128 0xc
+ 1790 004c 49       		.uleb128 0x49
+ 1791 004d 13       		.uleb128 0x13
+ 1792 004e 11       		.uleb128 0x11
+ 1793 004f 01       		.uleb128 0x1
+ 1794 0050 12       		.uleb128 0x12
+ 1795 0051 01       		.uleb128 0x1
+ 1796 0052 40       		.uleb128 0x40
+ 1797 0053 06       		.uleb128 0x6
+ 1798 0054 9742     		.uleb128 0x2117
+ 1799 0056 0C       		.uleb128 0xc
+ 1800 0057 01       		.uleb128 0x1
+ 1801 0058 13       		.uleb128 0x13
+ 1802 0059 00       		.byte	0
+ 1803 005a 00       		.byte	0
+ 1804 005b 07       		.uleb128 0x7
+ 1805 005c 05       		.uleb128 0x5
+ 1806 005d 00       		.byte	0
+ 1807 005e 03       		.uleb128 0x3
+ 1808 005f 0E       		.uleb128 0xe
+ 1809 0060 3A       		.uleb128 0x3a
+ 1810 0061 0B       		.uleb128 0xb
+ 1811 0062 3B       		.uleb128 0x3b
+ 1812 0063 0B       		.uleb128 0xb
+ 1813 0064 49       		.uleb128 0x49
+ 1814 0065 13       		.uleb128 0x13
+ 1815 0066 02       		.uleb128 0x2
+ 1816 0067 0A       		.uleb128 0xa
+ 1817 0068 00       		.byte	0
+ 1818 0069 00       		.byte	0
+ 1819 006a 08       		.uleb128 0x8
+ 1820 006b 05       		.uleb128 0x5
+ 1821 006c 00       		.byte	0
+ 1822 006d 03       		.uleb128 0x3
+ 1823 006e 08       		.uleb128 0x8
+ 1824 006f 3A       		.uleb128 0x3a
+ 1825 0070 0B       		.uleb128 0xb
+ 1826 0071 3B       		.uleb128 0x3b
+ 1827 0072 0B       		.uleb128 0xb
+ 1828 0073 49       		.uleb128 0x49
+ 1829 0074 13       		.uleb128 0x13
+ 1830 0075 02       		.uleb128 0x2
+ 1831 0076 0A       		.uleb128 0xa
+ 1832 0077 00       		.byte	0
+ 1833 0078 00       		.byte	0
+ 1834 0079 09       		.uleb128 0x9
+ 1835 007a 34       		.uleb128 0x34
+ 1836 007b 00       		.byte	0
+ 1837 007c 03       		.uleb128 0x3
+ 1838 007d 0E       		.uleb128 0xe
+ 1839 007e 3A       		.uleb128 0x3a
+ 1840 007f 0B       		.uleb128 0xb
+ 1841 0080 3B       		.uleb128 0x3b
+ 1842 0081 0B       		.uleb128 0xb
+ 1843 0082 49       		.uleb128 0x49
+ 1844 0083 13       		.uleb128 0x13
+ 1845 0084 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 48
+
+
+ 1846 0085 0A       		.uleb128 0xa
+ 1847 0086 00       		.byte	0
+ 1848 0087 00       		.byte	0
+ 1849 0088 0A       		.uleb128 0xa
+ 1850 0089 0F       		.uleb128 0xf
+ 1851 008a 00       		.byte	0
+ 1852 008b 0B       		.uleb128 0xb
+ 1853 008c 0B       		.uleb128 0xb
+ 1854 008d 49       		.uleb128 0x49
+ 1855 008e 13       		.uleb128 0x13
+ 1856 008f 00       		.byte	0
+ 1857 0090 00       		.byte	0
+ 1858 0091 0B       		.uleb128 0xb
+ 1859 0092 2E       		.uleb128 0x2e
+ 1860 0093 01       		.byte	0x1
+ 1861 0094 3F       		.uleb128 0x3f
+ 1862 0095 0C       		.uleb128 0xc
+ 1863 0096 03       		.uleb128 0x3
+ 1864 0097 0E       		.uleb128 0xe
+ 1865 0098 3A       		.uleb128 0x3a
+ 1866 0099 0B       		.uleb128 0xb
+ 1867 009a 3B       		.uleb128 0x3b
+ 1868 009b 05       		.uleb128 0x5
+ 1869 009c 27       		.uleb128 0x27
+ 1870 009d 0C       		.uleb128 0xc
+ 1871 009e 49       		.uleb128 0x49
+ 1872 009f 13       		.uleb128 0x13
+ 1873 00a0 11       		.uleb128 0x11
+ 1874 00a1 01       		.uleb128 0x1
+ 1875 00a2 12       		.uleb128 0x12
+ 1876 00a3 01       		.uleb128 0x1
+ 1877 00a4 40       		.uleb128 0x40
+ 1878 00a5 06       		.uleb128 0x6
+ 1879 00a6 9742     		.uleb128 0x2117
+ 1880 00a8 0C       		.uleb128 0xc
+ 1881 00a9 01       		.uleb128 0x1
+ 1882 00aa 13       		.uleb128 0x13
+ 1883 00ab 00       		.byte	0
+ 1884 00ac 00       		.byte	0
+ 1885 00ad 0C       		.uleb128 0xc
+ 1886 00ae 05       		.uleb128 0x5
+ 1887 00af 00       		.byte	0
+ 1888 00b0 03       		.uleb128 0x3
+ 1889 00b1 0E       		.uleb128 0xe
+ 1890 00b2 3A       		.uleb128 0x3a
+ 1891 00b3 0B       		.uleb128 0xb
+ 1892 00b4 3B       		.uleb128 0x3b
+ 1893 00b5 05       		.uleb128 0x5
+ 1894 00b6 49       		.uleb128 0x49
+ 1895 00b7 13       		.uleb128 0x13
+ 1896 00b8 02       		.uleb128 0x2
+ 1897 00b9 0A       		.uleb128 0xa
+ 1898 00ba 00       		.byte	0
+ 1899 00bb 00       		.byte	0
+ 1900 00bc 0D       		.uleb128 0xd
+ 1901 00bd 34       		.uleb128 0x34
+ 1902 00be 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 49
+
+
+ 1903 00bf 03       		.uleb128 0x3
+ 1904 00c0 0E       		.uleb128 0xe
+ 1905 00c1 3A       		.uleb128 0x3a
+ 1906 00c2 0B       		.uleb128 0xb
+ 1907 00c3 3B       		.uleb128 0x3b
+ 1908 00c4 05       		.uleb128 0x5
+ 1909 00c5 49       		.uleb128 0x49
+ 1910 00c6 13       		.uleb128 0x13
+ 1911 00c7 02       		.uleb128 0x2
+ 1912 00c8 0A       		.uleb128 0xa
+ 1913 00c9 00       		.byte	0
+ 1914 00ca 00       		.byte	0
+ 1915 00cb 0E       		.uleb128 0xe
+ 1916 00cc 2E       		.uleb128 0x2e
+ 1917 00cd 00       		.byte	0
+ 1918 00ce 3F       		.uleb128 0x3f
+ 1919 00cf 0C       		.uleb128 0xc
+ 1920 00d0 03       		.uleb128 0x3
+ 1921 00d1 0E       		.uleb128 0xe
+ 1922 00d2 3A       		.uleb128 0x3a
+ 1923 00d3 0B       		.uleb128 0xb
+ 1924 00d4 3B       		.uleb128 0x3b
+ 1925 00d5 05       		.uleb128 0x5
+ 1926 00d6 27       		.uleb128 0x27
+ 1927 00d7 0C       		.uleb128 0xc
+ 1928 00d8 49       		.uleb128 0x49
+ 1929 00d9 13       		.uleb128 0x13
+ 1930 00da 11       		.uleb128 0x11
+ 1931 00db 01       		.uleb128 0x1
+ 1932 00dc 12       		.uleb128 0x12
+ 1933 00dd 01       		.uleb128 0x1
+ 1934 00de 40       		.uleb128 0x40
+ 1935 00df 06       		.uleb128 0x6
+ 1936 00e0 9742     		.uleb128 0x2117
+ 1937 00e2 0C       		.uleb128 0xc
+ 1938 00e3 00       		.byte	0
+ 1939 00e4 00       		.byte	0
+ 1940 00e5 0F       		.uleb128 0xf
+ 1941 00e6 2E       		.uleb128 0x2e
+ 1942 00e7 00       		.byte	0
+ 1943 00e8 3F       		.uleb128 0x3f
+ 1944 00e9 0C       		.uleb128 0xc
+ 1945 00ea 03       		.uleb128 0x3
+ 1946 00eb 0E       		.uleb128 0xe
+ 1947 00ec 3A       		.uleb128 0x3a
+ 1948 00ed 0B       		.uleb128 0xb
+ 1949 00ee 3B       		.uleb128 0x3b
+ 1950 00ef 05       		.uleb128 0x5
+ 1951 00f0 27       		.uleb128 0x27
+ 1952 00f1 0C       		.uleb128 0xc
+ 1953 00f2 11       		.uleb128 0x11
+ 1954 00f3 01       		.uleb128 0x1
+ 1955 00f4 12       		.uleb128 0x12
+ 1956 00f5 01       		.uleb128 0x1
+ 1957 00f6 40       		.uleb128 0x40
+ 1958 00f7 06       		.uleb128 0x6
+ 1959 00f8 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 50
+
+
+ 1960 00fa 0C       		.uleb128 0xc
+ 1961 00fb 00       		.byte	0
+ 1962 00fc 00       		.byte	0
+ 1963 00fd 10       		.uleb128 0x10
+ 1964 00fe 34       		.uleb128 0x34
+ 1965 00ff 00       		.byte	0
+ 1966 0100 03       		.uleb128 0x3
+ 1967 0101 0E       		.uleb128 0xe
+ 1968 0102 3A       		.uleb128 0x3a
+ 1969 0103 0B       		.uleb128 0xb
+ 1970 0104 3B       		.uleb128 0x3b
+ 1971 0105 0B       		.uleb128 0xb
+ 1972 0106 49       		.uleb128 0x49
+ 1973 0107 13       		.uleb128 0x13
+ 1974 0108 3F       		.uleb128 0x3f
+ 1975 0109 0C       		.uleb128 0xc
+ 1976 010a 3C       		.uleb128 0x3c
+ 1977 010b 0C       		.uleb128 0xc
+ 1978 010c 00       		.byte	0
+ 1979 010d 00       		.byte	0
+ 1980 010e 11       		.uleb128 0x11
+ 1981 010f 34       		.uleb128 0x34
+ 1982 0110 00       		.byte	0
+ 1983 0111 03       		.uleb128 0x3
+ 1984 0112 0E       		.uleb128 0xe
+ 1985 0113 3A       		.uleb128 0x3a
+ 1986 0114 0B       		.uleb128 0xb
+ 1987 0115 3B       		.uleb128 0x3b
+ 1988 0116 0B       		.uleb128 0xb
+ 1989 0117 49       		.uleb128 0x49
+ 1990 0118 13       		.uleb128 0x13
+ 1991 0119 3F       		.uleb128 0x3f
+ 1992 011a 0C       		.uleb128 0xc
+ 1993 011b 02       		.uleb128 0x2
+ 1994 011c 0A       		.uleb128 0xa
+ 1995 011d 00       		.byte	0
+ 1996 011e 00       		.byte	0
+ 1997 011f 00       		.byte	0
+ 1998              		.section	.debug_loc,"",%progbits
+ 1999              	.Ldebug_loc0:
+ 2000              	.LLST0:
+ 2001 0000 00000000 		.4byte	.LFB0
+ 2002 0004 02000000 		.4byte	.LCFI0
+ 2003 0008 0200     		.2byte	0x2
+ 2004 000a 7D       		.byte	0x7d
+ 2005 000b 00       		.sleb128 0
+ 2006 000c 02000000 		.4byte	.LCFI0
+ 2007 0010 04000000 		.4byte	.LCFI1
+ 2008 0014 0200     		.2byte	0x2
+ 2009 0016 7D       		.byte	0x7d
+ 2010 0017 04       		.sleb128 4
+ 2011 0018 04000000 		.4byte	.LCFI1
+ 2012 001c 06000000 		.4byte	.LCFI2
+ 2013 0020 0200     		.2byte	0x2
+ 2014 0022 7D       		.byte	0x7d
+ 2015 0023 18       		.sleb128 24
+ 2016 0024 06000000 		.4byte	.LCFI2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 51
+
+
+ 2017 0028 58010000 		.4byte	.LFE0
+ 2018 002c 0200     		.2byte	0x2
+ 2019 002e 77       		.byte	0x77
+ 2020 002f 18       		.sleb128 24
+ 2021 0030 00000000 		.4byte	0
+ 2022 0034 00000000 		.4byte	0
+ 2023              	.LLST1:
+ 2024 0038 00000000 		.4byte	.LFB1
+ 2025 003c 02000000 		.4byte	.LCFI3
+ 2026 0040 0200     		.2byte	0x2
+ 2027 0042 7D       		.byte	0x7d
+ 2028 0043 00       		.sleb128 0
+ 2029 0044 02000000 		.4byte	.LCFI3
+ 2030 0048 04000000 		.4byte	.LCFI4
+ 2031 004c 0200     		.2byte	0x2
+ 2032 004e 7D       		.byte	0x7d
+ 2033 004f 04       		.sleb128 4
+ 2034 0050 04000000 		.4byte	.LCFI4
+ 2035 0054 06000000 		.4byte	.LCFI5
+ 2036 0058 0200     		.2byte	0x2
+ 2037 005a 7D       		.byte	0x7d
+ 2038 005b 18       		.sleb128 24
+ 2039 005c 06000000 		.4byte	.LCFI5
+ 2040 0060 5E010000 		.4byte	.LFE1
+ 2041 0064 0200     		.2byte	0x2
+ 2042 0066 77       		.byte	0x77
+ 2043 0067 18       		.sleb128 24
+ 2044 0068 00000000 		.4byte	0
+ 2045 006c 00000000 		.4byte	0
+ 2046              	.LLST2:
+ 2047 0070 00000000 		.4byte	.LFB2
+ 2048 0074 02000000 		.4byte	.LCFI6
+ 2049 0078 0200     		.2byte	0x2
+ 2050 007a 7D       		.byte	0x7d
+ 2051 007b 00       		.sleb128 0
+ 2052 007c 02000000 		.4byte	.LCFI6
+ 2053 0080 04000000 		.4byte	.LCFI7
+ 2054 0084 0200     		.2byte	0x2
+ 2055 0086 7D       		.byte	0x7d
+ 2056 0087 04       		.sleb128 4
+ 2057 0088 04000000 		.4byte	.LCFI7
+ 2058 008c 06000000 		.4byte	.LCFI8
+ 2059 0090 0200     		.2byte	0x2
+ 2060 0092 7D       		.byte	0x7d
+ 2061 0093 18       		.sleb128 24
+ 2062 0094 06000000 		.4byte	.LCFI8
+ 2063 0098 F2000000 		.4byte	.LFE2
+ 2064 009c 0200     		.2byte	0x2
+ 2065 009e 77       		.byte	0x77
+ 2066 009f 18       		.sleb128 24
+ 2067 00a0 00000000 		.4byte	0
+ 2068 00a4 00000000 		.4byte	0
+ 2069              	.LLST3:
+ 2070 00a8 00000000 		.4byte	.LFB3
+ 2071 00ac 02000000 		.4byte	.LCFI9
+ 2072 00b0 0200     		.2byte	0x2
+ 2073 00b2 7D       		.byte	0x7d
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 52
+
+
+ 2074 00b3 00       		.sleb128 0
+ 2075 00b4 02000000 		.4byte	.LCFI9
+ 2076 00b8 04000000 		.4byte	.LCFI10
+ 2077 00bc 0200     		.2byte	0x2
+ 2078 00be 7D       		.byte	0x7d
+ 2079 00bf 04       		.sleb128 4
+ 2080 00c0 04000000 		.4byte	.LCFI10
+ 2081 00c4 06000000 		.4byte	.LCFI11
+ 2082 00c8 0200     		.2byte	0x2
+ 2083 00ca 7D       		.byte	0x7d
+ 2084 00cb 18       		.sleb128 24
+ 2085 00cc 06000000 		.4byte	.LCFI11
+ 2086 00d0 DA000000 		.4byte	.LFE3
+ 2087 00d4 0200     		.2byte	0x2
+ 2088 00d6 77       		.byte	0x77
+ 2089 00d7 18       		.sleb128 24
+ 2090 00d8 00000000 		.4byte	0
+ 2091 00dc 00000000 		.4byte	0
+ 2092              	.LLST4:
+ 2093 00e0 00000000 		.4byte	.LFB4
+ 2094 00e4 02000000 		.4byte	.LCFI12
+ 2095 00e8 0200     		.2byte	0x2
+ 2096 00ea 7D       		.byte	0x7d
+ 2097 00eb 00       		.sleb128 0
+ 2098 00ec 02000000 		.4byte	.LCFI12
+ 2099 00f0 04000000 		.4byte	.LCFI13
+ 2100 00f4 0200     		.2byte	0x2
+ 2101 00f6 7D       		.byte	0x7d
+ 2102 00f7 04       		.sleb128 4
+ 2103 00f8 04000000 		.4byte	.LCFI13
+ 2104 00fc 06000000 		.4byte	.LCFI14
+ 2105 0100 0200     		.2byte	0x2
+ 2106 0102 7D       		.byte	0x7d
+ 2107 0103 10       		.sleb128 16
+ 2108 0104 06000000 		.4byte	.LCFI14
+ 2109 0108 74000000 		.4byte	.LFE4
+ 2110 010c 0200     		.2byte	0x2
+ 2111 010e 77       		.byte	0x77
+ 2112 010f 10       		.sleb128 16
+ 2113 0110 00000000 		.4byte	0
+ 2114 0114 00000000 		.4byte	0
+ 2115              	.LLST5:
+ 2116 0118 00000000 		.4byte	.LFB5
+ 2117 011c 02000000 		.4byte	.LCFI15
+ 2118 0120 0200     		.2byte	0x2
+ 2119 0122 7D       		.byte	0x7d
+ 2120 0123 00       		.sleb128 0
+ 2121 0124 02000000 		.4byte	.LCFI15
+ 2122 0128 04000000 		.4byte	.LCFI16
+ 2123 012c 0200     		.2byte	0x2
+ 2124 012e 7D       		.byte	0x7d
+ 2125 012f 04       		.sleb128 4
+ 2126 0130 04000000 		.4byte	.LCFI16
+ 2127 0134 06000000 		.4byte	.LCFI17
+ 2128 0138 0200     		.2byte	0x2
+ 2129 013a 7D       		.byte	0x7d
+ 2130 013b 18       		.sleb128 24
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 53
+
+
+ 2131 013c 06000000 		.4byte	.LCFI17
+ 2132 0140 AE000000 		.4byte	.LFE5
+ 2133 0144 0200     		.2byte	0x2
+ 2134 0146 77       		.byte	0x77
+ 2135 0147 18       		.sleb128 24
+ 2136 0148 00000000 		.4byte	0
+ 2137 014c 00000000 		.4byte	0
+ 2138              	.LLST6:
+ 2139 0150 00000000 		.4byte	.LFB6
+ 2140 0154 02000000 		.4byte	.LCFI18
+ 2141 0158 0200     		.2byte	0x2
+ 2142 015a 7D       		.byte	0x7d
+ 2143 015b 00       		.sleb128 0
+ 2144 015c 02000000 		.4byte	.LCFI18
+ 2145 0160 04000000 		.4byte	.LCFI19
+ 2146 0164 0200     		.2byte	0x2
+ 2147 0166 7D       		.byte	0x7d
+ 2148 0167 04       		.sleb128 4
+ 2149 0168 04000000 		.4byte	.LCFI19
+ 2150 016c 06000000 		.4byte	.LCFI20
+ 2151 0170 0200     		.2byte	0x2
+ 2152 0172 7D       		.byte	0x7d
+ 2153 0173 18       		.sleb128 24
+ 2154 0174 06000000 		.4byte	.LCFI20
+ 2155 0178 A4000000 		.4byte	.LFE6
+ 2156 017c 0200     		.2byte	0x2
+ 2157 017e 77       		.byte	0x77
+ 2158 017f 18       		.sleb128 24
+ 2159 0180 00000000 		.4byte	0
+ 2160 0184 00000000 		.4byte	0
+ 2161              	.LLST7:
+ 2162 0188 00000000 		.4byte	.LFB7
+ 2163 018c 02000000 		.4byte	.LCFI21
+ 2164 0190 0200     		.2byte	0x2
+ 2165 0192 7D       		.byte	0x7d
+ 2166 0193 00       		.sleb128 0
+ 2167 0194 02000000 		.4byte	.LCFI21
+ 2168 0198 04000000 		.4byte	.LCFI22
+ 2169 019c 0200     		.2byte	0x2
+ 2170 019e 7D       		.byte	0x7d
+ 2171 019f 04       		.sleb128 4
+ 2172 01a0 04000000 		.4byte	.LCFI22
+ 2173 01a4 06000000 		.4byte	.LCFI23
+ 2174 01a8 0200     		.2byte	0x2
+ 2175 01aa 7D       		.byte	0x7d
+ 2176 01ab 10       		.sleb128 16
+ 2177 01ac 06000000 		.4byte	.LCFI23
+ 2178 01b0 3E000000 		.4byte	.LFE7
+ 2179 01b4 0200     		.2byte	0x2
+ 2180 01b6 77       		.byte	0x77
+ 2181 01b7 10       		.sleb128 16
+ 2182 01b8 00000000 		.4byte	0
+ 2183 01bc 00000000 		.4byte	0
+ 2184              	.LLST8:
+ 2185 01c0 00000000 		.4byte	.LFB8
+ 2186 01c4 02000000 		.4byte	.LCFI24
+ 2187 01c8 0200     		.2byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 54
+
+
+ 2188 01ca 7D       		.byte	0x7d
+ 2189 01cb 00       		.sleb128 0
+ 2190 01cc 02000000 		.4byte	.LCFI24
+ 2191 01d0 04000000 		.4byte	.LCFI25
+ 2192 01d4 0200     		.2byte	0x2
+ 2193 01d6 7D       		.byte	0x7d
+ 2194 01d7 04       		.sleb128 4
+ 2195 01d8 04000000 		.4byte	.LCFI25
+ 2196 01dc 06000000 		.4byte	.LCFI26
+ 2197 01e0 0200     		.2byte	0x2
+ 2198 01e2 7D       		.byte	0x7d
+ 2199 01e3 10       		.sleb128 16
+ 2200 01e4 06000000 		.4byte	.LCFI26
+ 2201 01e8 2E000000 		.4byte	.LFE8
+ 2202 01ec 0200     		.2byte	0x2
+ 2203 01ee 77       		.byte	0x77
+ 2204 01ef 10       		.sleb128 16
+ 2205 01f0 00000000 		.4byte	0
+ 2206 01f4 00000000 		.4byte	0
+ 2207              	.LLST9:
+ 2208 01f8 00000000 		.4byte	.LFB9
+ 2209 01fc 02000000 		.4byte	.LCFI27
+ 2210 0200 0200     		.2byte	0x2
+ 2211 0202 7D       		.byte	0x7d
+ 2212 0203 00       		.sleb128 0
+ 2213 0204 02000000 		.4byte	.LCFI27
+ 2214 0208 04000000 		.4byte	.LCFI28
+ 2215 020c 0200     		.2byte	0x2
+ 2216 020e 7D       		.byte	0x7d
+ 2217 020f 04       		.sleb128 4
+ 2218 0210 04000000 		.4byte	.LCFI28
+ 2219 0214 18000000 		.4byte	.LFE9
+ 2220 0218 0200     		.2byte	0x2
+ 2221 021a 77       		.byte	0x77
+ 2222 021b 04       		.sleb128 4
+ 2223 021c 00000000 		.4byte	0
+ 2224 0220 00000000 		.4byte	0
+ 2225              	.LLST10:
+ 2226 0224 00000000 		.4byte	.LFB10
+ 2227 0228 02000000 		.4byte	.LCFI29
+ 2228 022c 0200     		.2byte	0x2
+ 2229 022e 7D       		.byte	0x7d
+ 2230 022f 00       		.sleb128 0
+ 2231 0230 02000000 		.4byte	.LCFI29
+ 2232 0234 04000000 		.4byte	.LCFI30
+ 2233 0238 0200     		.2byte	0x2
+ 2234 023a 7D       		.byte	0x7d
+ 2235 023b 04       		.sleb128 4
+ 2236 023c 04000000 		.4byte	.LCFI30
+ 2237 0240 18000000 		.4byte	.LFE10
+ 2238 0244 0200     		.2byte	0x2
+ 2239 0246 77       		.byte	0x77
+ 2240 0247 04       		.sleb128 4
+ 2241 0248 00000000 		.4byte	0
+ 2242 024c 00000000 		.4byte	0
+ 2243              	.LLST11:
+ 2244 0250 00000000 		.4byte	.LFB11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 55
+
+
+ 2245 0254 02000000 		.4byte	.LCFI31
+ 2246 0258 0200     		.2byte	0x2
+ 2247 025a 7D       		.byte	0x7d
+ 2248 025b 00       		.sleb128 0
+ 2249 025c 02000000 		.4byte	.LCFI31
+ 2250 0260 04000000 		.4byte	.LCFI32
+ 2251 0264 0200     		.2byte	0x2
+ 2252 0266 7D       		.byte	0x7d
+ 2253 0267 04       		.sleb128 4
+ 2254 0268 04000000 		.4byte	.LCFI32
+ 2255 026c 34000000 		.4byte	.LFE11
+ 2256 0270 0200     		.2byte	0x2
+ 2257 0272 77       		.byte	0x77
+ 2258 0273 04       		.sleb128 4
+ 2259 0274 00000000 		.4byte	0
+ 2260 0278 00000000 		.4byte	0
+ 2261              	.LLST12:
+ 2262 027c 00000000 		.4byte	.LFB12
+ 2263 0280 02000000 		.4byte	.LCFI33
+ 2264 0284 0200     		.2byte	0x2
+ 2265 0286 7D       		.byte	0x7d
+ 2266 0287 00       		.sleb128 0
+ 2267 0288 02000000 		.4byte	.LCFI33
+ 2268 028c 04000000 		.4byte	.LCFI34
+ 2269 0290 0200     		.2byte	0x2
+ 2270 0292 7D       		.byte	0x7d
+ 2271 0293 04       		.sleb128 4
+ 2272 0294 04000000 		.4byte	.LCFI34
+ 2273 0298 34000000 		.4byte	.LFE12
+ 2274 029c 0200     		.2byte	0x2
+ 2275 029e 77       		.byte	0x77
+ 2276 029f 04       		.sleb128 4
+ 2277 02a0 00000000 		.4byte	0
+ 2278 02a4 00000000 		.4byte	0
+ 2279              	.LLST13:
+ 2280 02a8 00000000 		.4byte	.LFB13
+ 2281 02ac 02000000 		.4byte	.LCFI35
+ 2282 02b0 0200     		.2byte	0x2
+ 2283 02b2 7D       		.byte	0x7d
+ 2284 02b3 00       		.sleb128 0
+ 2285 02b4 02000000 		.4byte	.LCFI35
+ 2286 02b8 04000000 		.4byte	.LCFI36
+ 2287 02bc 0200     		.2byte	0x2
+ 2288 02be 7D       		.byte	0x7d
+ 2289 02bf 04       		.sleb128 4
+ 2290 02c0 04000000 		.4byte	.LCFI36
+ 2291 02c4 0A000000 		.4byte	.LFE13
+ 2292 02c8 0200     		.2byte	0x2
+ 2293 02ca 77       		.byte	0x77
+ 2294 02cb 04       		.sleb128 4
+ 2295 02cc 00000000 		.4byte	0
+ 2296 02d0 00000000 		.4byte	0
+ 2297              		.section	.debug_aranges,"",%progbits
+ 2298 0000 84000000 		.4byte	0x84
+ 2299 0004 0200     		.2byte	0x2
+ 2300 0006 00000000 		.4byte	.Ldebug_info0
+ 2301 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 56
+
+
+ 2302 000b 00       		.byte	0
+ 2303 000c 0000     		.2byte	0
+ 2304 000e 0000     		.2byte	0
+ 2305 0010 00000000 		.4byte	.LFB0
+ 2306 0014 58010000 		.4byte	.LFE0-.LFB0
+ 2307 0018 00000000 		.4byte	.LFB1
+ 2308 001c 5E010000 		.4byte	.LFE1-.LFB1
+ 2309 0020 00000000 		.4byte	.LFB2
+ 2310 0024 F2000000 		.4byte	.LFE2-.LFB2
+ 2311 0028 00000000 		.4byte	.LFB3
+ 2312 002c DA000000 		.4byte	.LFE3-.LFB3
+ 2313 0030 00000000 		.4byte	.LFB4
+ 2314 0034 74000000 		.4byte	.LFE4-.LFB4
+ 2315 0038 00000000 		.4byte	.LFB5
+ 2316 003c AE000000 		.4byte	.LFE5-.LFB5
+ 2317 0040 00000000 		.4byte	.LFB6
+ 2318 0044 A4000000 		.4byte	.LFE6-.LFB6
+ 2319 0048 00000000 		.4byte	.LFB7
+ 2320 004c 3E000000 		.4byte	.LFE7-.LFB7
+ 2321 0050 00000000 		.4byte	.LFB8
+ 2322 0054 2E000000 		.4byte	.LFE8-.LFB8
+ 2323 0058 00000000 		.4byte	.LFB9
+ 2324 005c 18000000 		.4byte	.LFE9-.LFB9
+ 2325 0060 00000000 		.4byte	.LFB10
+ 2326 0064 18000000 		.4byte	.LFE10-.LFB10
+ 2327 0068 00000000 		.4byte	.LFB11
+ 2328 006c 34000000 		.4byte	.LFE11-.LFB11
+ 2329 0070 00000000 		.4byte	.LFB12
+ 2330 0074 34000000 		.4byte	.LFE12-.LFB12
+ 2331 0078 00000000 		.4byte	.LFB13
+ 2332 007c 0A000000 		.4byte	.LFE13-.LFB13
+ 2333 0080 00000000 		.4byte	0
+ 2334 0084 00000000 		.4byte	0
+ 2335              		.section	.debug_ranges,"",%progbits
+ 2336              	.Ldebug_ranges0:
+ 2337 0000 00000000 		.4byte	.LFB0
+ 2338 0004 58010000 		.4byte	.LFE0
+ 2339 0008 00000000 		.4byte	.LFB1
+ 2340 000c 5E010000 		.4byte	.LFE1
+ 2341 0010 00000000 		.4byte	.LFB2
+ 2342 0014 F2000000 		.4byte	.LFE2
+ 2343 0018 00000000 		.4byte	.LFB3
+ 2344 001c DA000000 		.4byte	.LFE3
+ 2345 0020 00000000 		.4byte	.LFB4
+ 2346 0024 74000000 		.4byte	.LFE4
+ 2347 0028 00000000 		.4byte	.LFB5
+ 2348 002c AE000000 		.4byte	.LFE5
+ 2349 0030 00000000 		.4byte	.LFB6
+ 2350 0034 A4000000 		.4byte	.LFE6
+ 2351 0038 00000000 		.4byte	.LFB7
+ 2352 003c 3E000000 		.4byte	.LFE7
+ 2353 0040 00000000 		.4byte	.LFB8
+ 2354 0044 2E000000 		.4byte	.LFE8
+ 2355 0048 00000000 		.4byte	.LFB9
+ 2356 004c 18000000 		.4byte	.LFE9
+ 2357 0050 00000000 		.4byte	.LFB10
+ 2358 0054 18000000 		.4byte	.LFE10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 57
+
+
+ 2359 0058 00000000 		.4byte	.LFB11
+ 2360 005c 34000000 		.4byte	.LFE11
+ 2361 0060 00000000 		.4byte	.LFB12
+ 2362 0064 34000000 		.4byte	.LFE12
+ 2363 0068 00000000 		.4byte	.LFB13
+ 2364 006c 0A000000 		.4byte	.LFE13
+ 2365 0070 00000000 		.4byte	0
+ 2366 0074 00000000 		.4byte	0
+ 2367              		.section	.debug_line,"",%progbits
+ 2368              	.Ldebug_line0:
+ 2369 0000 F1010000 		.section	.debug_str,"MS",%progbits,1
+ 2369      02005800 
+ 2369      00000201 
+ 2369      FB0E0D00 
+ 2369      01010101 
+ 2370              	.LASF22:
+ 2371 0000 72644461 		.ascii	"rdData\000"
+ 2371      746100
+ 2372              	.LASF15:
+ 2373 0007 72656733 		.ascii	"reg32\000"
+ 2373      3200
+ 2374              	.LASF33:
+ 2375 000d 73746174 		.ascii	"status\000"
+ 2375      757300
+ 2376              	.LASF21:
+ 2377 0014 70736F63 		.ascii	"psoc_MasterReadBuf\000"
+ 2377      5F4D6173 
+ 2377      74657252 
+ 2377      65616442 
+ 2377      756600
+ 2378              	.LASF51:
+ 2379 0027 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 2379      73657273 
+ 2379      5C527961 
+ 2379      6E5C446F 
+ 2379      63756D65 
+ 2380 0055 54686572 		.ascii	"Thermocouple.cydsn\000"
+ 2380      6D6F636F 
+ 2380      75706C65 
+ 2380      2E637964 
+ 2380      736E00
+ 2381              	.LASF3:
+ 2382 0068 73686F72 		.ascii	"short unsigned int\000"
+ 2382      7420756E 
+ 2382      7369676E 
+ 2382      65642069 
+ 2382      6E7400
+ 2383              	.LASF34:
+ 2384 007b 70736F63 		.ascii	"psoc_MasterClearStatus\000"
+ 2384      5F4D6173 
+ 2384      74657243 
+ 2384      6C656172 
+ 2384      53746174 
+ 2385              	.LASF8:
+ 2386 0092 756E7369 		.ascii	"unsigned int\000"
+ 2386      676E6564 
+ 2386      20696E74 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 58
+
+
+ 2386      00
+ 2387              	.LASF45:
+ 2388 009f 70736F63 		.ascii	"psoc_mstrRdBufIndex\000"
+ 2388      5F6D7374 
+ 2388      72526442 
+ 2388      7566496E 
+ 2388      64657800 
+ 2389              	.LASF35:
+ 2390 00b3 70736F63 		.ascii	"psoc_MasterGetReadBufSize\000"
+ 2390      5F4D6173 
+ 2390      74657247 
+ 2390      65745265 
+ 2390      61644275 
+ 2391              	.LASF20:
+ 2392 00cd 70736F63 		.ascii	"psoc_MasterWriteBuf\000"
+ 2392      5F4D6173 
+ 2392      74657257 
+ 2392      72697465 
+ 2392      42756600 
+ 2393              	.LASF11:
+ 2394 00e1 666C6F61 		.ascii	"float\000"
+ 2394      7400
+ 2395              	.LASF1:
+ 2396 00e7 756E7369 		.ascii	"unsigned char\000"
+ 2396      676E6564 
+ 2396      20636861 
+ 2396      7200
+ 2397              	.LASF32:
+ 2398 00f5 70736F63 		.ascii	"psoc_MasterStatus\000"
+ 2398      5F4D6173 
+ 2398      74657253 
+ 2398      74617475 
+ 2398      7300
+ 2399              	.LASF14:
+ 2400 0107 72656738 		.ascii	"reg8\000"
+ 2400      00
+ 2401              	.LASF5:
+ 2402 010c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2402      20756E73 
+ 2402      69676E65 
+ 2402      6420696E 
+ 2402      7400
+ 2403              	.LASF24:
+ 2404 011e 70736F63 		.ascii	"psoc_MasterSendStart\000"
+ 2404      5F4D6173 
+ 2404      74657253 
+ 2404      656E6453 
+ 2404      74617274 
+ 2405              	.LASF9:
+ 2406 0133 75696E74 		.ascii	"uint8\000"
+ 2406      3800
+ 2407              	.LASF47:
+ 2408 0139 70736F63 		.ascii	"psoc_mstrWrBufSize\000"
+ 2408      5F6D7374 
+ 2408      72577242 
+ 2408      75665369 
+ 2408      7A6500
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 59
+
+
+ 2409              	.LASF23:
+ 2410 014c 65727253 		.ascii	"errStatus\000"
+ 2410      74617475 
+ 2410      7300
+ 2411              	.LASF44:
+ 2412 0156 70736F63 		.ascii	"psoc_mstrRdBufSize\000"
+ 2412      5F6D7374 
+ 2412      72526442 
+ 2412      75665369 
+ 2412      7A6500
+ 2413              	.LASF12:
+ 2414 0169 646F7562 		.ascii	"double\000"
+ 2414      6C6500
+ 2415              	.LASF25:
+ 2416 0170 525F6E57 		.ascii	"R_nW\000"
+ 2416      00
+ 2417              	.LASF40:
+ 2418 0175 70736F63 		.ascii	"psoc_state\000"
+ 2418      5F737461 
+ 2418      746500
+ 2419              	.LASF38:
+ 2420 0180 70736F63 		.ascii	"psoc_MasterClearWriteBuf\000"
+ 2420      5F4D6173 
+ 2420      74657243 
+ 2420      6C656172 
+ 2420      57726974 
+ 2421              	.LASF10:
+ 2422 0199 75696E74 		.ascii	"uint32\000"
+ 2422      333200
+ 2423              	.LASF31:
+ 2424 01a0 61636B6E 		.ascii	"acknNak\000"
+ 2424      4E616B00 
+ 2425              	.LASF18:
+ 2426 01a8 77724461 		.ascii	"wrData\000"
+ 2426      746100
+ 2427              	.LASF7:
+ 2428 01af 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2428      206C6F6E 
+ 2428      6720756E 
+ 2428      7369676E 
+ 2428      65642069 
+ 2429              	.LASF26:
+ 2430 01c6 70736F63 		.ascii	"psoc_MasterSendRestart\000"
+ 2430      5F4D6173 
+ 2430      74657253 
+ 2430      656E6452 
+ 2430      65737461 
+ 2431              	.LASF36:
+ 2432 01dd 70736F63 		.ascii	"psoc_MasterGetWriteBufSize\000"
+ 2432      5F4D6173 
+ 2432      74657247 
+ 2432      65745772 
+ 2432      69746542 
+ 2433              	.LASF19:
+ 2434 01f8 6D6F6465 		.ascii	"mode\000"
+ 2434      00
+ 2435              	.LASF17:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 60
+
+
+ 2436 01fd 736C6176 		.ascii	"slaveAddress\000"
+ 2436      65416464 
+ 2436      72657373 
+ 2436      00
+ 2437              	.LASF16:
+ 2438 020a 73697A65 		.ascii	"sizetype\000"
+ 2438      74797065 
+ 2438      00
+ 2439              	.LASF6:
+ 2440 0213 6C6F6E67 		.ascii	"long long int\000"
+ 2440      206C6F6E 
+ 2440      6720696E 
+ 2440      7400
+ 2441              	.LASF30:
+ 2442 0221 70736F63 		.ascii	"psoc_MasterReadByte\000"
+ 2442      5F4D6173 
+ 2442      74657252 
+ 2442      65616442 
+ 2442      79746500 
+ 2443              	.LASF39:
+ 2444 0235 70736F63 		.ascii	"psoc_Workaround\000"
+ 2444      5F576F72 
+ 2444      6B61726F 
+ 2444      756E6400 
+ 2445              	.LASF27:
+ 2446 0245 70736F63 		.ascii	"psoc_MasterSendStop\000"
+ 2446      5F4D6173 
+ 2446      74657253 
+ 2446      656E6453 
+ 2446      746F7000 
+ 2447              	.LASF42:
+ 2448 0259 70736F63 		.ascii	"psoc_mstrControl\000"
+ 2448      5F6D7374 
+ 2448      72436F6E 
+ 2448      74726F6C 
+ 2448      00
+ 2449              	.LASF37:
+ 2450 026a 70736F63 		.ascii	"psoc_MasterClearReadBuf\000"
+ 2450      5F4D6173 
+ 2450      74657243 
+ 2450      6C656172 
+ 2450      52656164 
+ 2451              	.LASF46:
+ 2452 0282 70736F63 		.ascii	"psoc_mstrWrBufPtr\000"
+ 2452      5F6D7374 
+ 2452      72577242 
+ 2452      75665074 
+ 2452      7200
+ 2453              	.LASF2:
+ 2454 0294 73686F72 		.ascii	"short int\000"
+ 2454      7420696E 
+ 2454      7400
+ 2455              	.LASF29:
+ 2456 029e 74686542 		.ascii	"theByte\000"
+ 2456      79746500 
+ 2457              	.LASF49:
+ 2458 02a6 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccGkvRFG.s 			page 61
+
+
+ 2458      4320342E 
+ 2458      372E3320 
+ 2458      32303133 
+ 2458      30333132 
+ 2459 02d9 616E6368 		.ascii	"anch revision 196615]\000"
+ 2459      20726576 
+ 2459      6973696F 
+ 2459      6E203139 
+ 2459      36363135 
+ 2460              	.LASF48:
+ 2461 02ef 70736F63 		.ascii	"psoc_mstrWrBufIndex\000"
+ 2461      5F6D7374 
+ 2461      72577242 
+ 2461      7566496E 
+ 2461      64657800 
+ 2462              	.LASF4:
+ 2463 0303 6C6F6E67 		.ascii	"long int\000"
+ 2463      20696E74 
+ 2463      00
+ 2464              	.LASF13:
+ 2465 030c 63686172 		.ascii	"char\000"
+ 2465      00
+ 2466              	.LASF43:
+ 2467 0311 70736F63 		.ascii	"psoc_mstrRdBufPtr\000"
+ 2467      5F6D7374 
+ 2467      72526442 
+ 2467      75665074 
+ 2467      7200
+ 2468              	.LASF0:
+ 2469 0323 7369676E 		.ascii	"signed char\000"
+ 2469      65642063 
+ 2469      68617200 
+ 2470              	.LASF50:
+ 2471 032f 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\psoc_MASTER.c\000"
+ 2471      6E657261 
+ 2471      7465645F 
+ 2471      536F7572 
+ 2471      63655C50 
+ 2472              	.LASF41:
+ 2473 0356 70736F63 		.ascii	"psoc_mstrStatus\000"
+ 2473      5F6D7374 
+ 2473      72537461 
+ 2473      74757300 
+ 2474              	.LASF28:
+ 2475 0366 70736F63 		.ascii	"psoc_MasterWriteByte\000"
+ 2475      5F4D6173 
+ 2475      74657257 
+ 2475      72697465 
+ 2475      42797465 
+ 2476              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
