@@ -27,14 +27,17 @@ int main()
 	CyGlobalIntEnable;  /* Uncomment this line to enable global interrupts. */
     UART_Wind_Start();
 	isr_Wind_StartEx(IntWind);
-	CyDelay(1000u);
 	UART_Wind_PutString("0R\r\n");
+
 	for(;;)
     {
 		if(packetReceived){
 			processPacket();
 		}
-        /*put in a timer here that says to break out of loop once we've recorded data for x time?*/
+	   //CyDelay(100u);
+	   //UART_Wind_PutString("0R1\r\n");
+        /*put in a timer 
+	here that says to break out of loop once we've recorded data for x time?*/
     }
 }
 

@@ -1,43 +1,8 @@
---------------- Build Started: 04/14/2014 16:06:06 Project: WindSensor, Configuration: ARM GCC 4.7.3 Debug ---------------
-cydsfit.exe "-.appdatapath" "C:\Users\Kevin\AppData\Local\Cypress Semiconductor\PSoC Creator\3.0" "-.fdsnotice" "-.fdswarpdepfile=warp_dependencies.txt" "-.fdselabdepfile=elab_dependencies.txt" "-.fdsbldfile=generated_files.txt" "-p" "C:\Users\Kevin\Google Drive\PSoC_Sensor tutorial\WindSensor\WindSensor.cydsn\WindSensor.cyprj" "-d" "CY8C5868AXI-LP035" "-s" "C:\Users\Kevin\Google Drive\PSoC_Sensor tutorial\WindSensor\WindSensor.cydsn\Generated_Source\PSoC5" "--" "-yv2" "-v3" "-ygs" "-q10" "-o2" "-.fftcfgtype=LE"
-Elaborating Design...
-HDL Generation ...
-Synthesis ...
-Place and Route ...
-Tech mapping ...
-Info: mpr.M0037: Unused pieces of the design have been optimized out. See the Tech mapping section of the report file for details. (App=cydsfit)
-Analog Placement ...
-Analog Routing ...
-Analog Code Generation ...
-Digital Placement ...
-Digital Routing ...
-Bitstream Generation ...
-Static timing analysis ...
-API Generation ...
-Dependency Generation ...
-Clean Temporary Files ...
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM3\ARM_GCC_473\Debug\main.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyfitter_cfg.c -o .\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cymetadata.lst -ffunction-sections -c .\Generated_Source\PSoC5\cymetadata.c -o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\UART_Wind.lst -ffunction-sections -c .\Generated_Source\PSoC5\UART_Wind.c -o .\CortexM3\ARM_GCC_473\Debug\UART_Wind.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\UART_Wind_PM.lst -ffunction-sections -c .\Generated_Source\PSoC5\UART_Wind_PM.c -o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_PM.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\UART_Wind_INT.lst -ffunction-sections -c .\Generated_Source\PSoC5\UART_Wind_INT.c -o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_INT.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\UART_Wind_BOOT.lst -ffunction-sections -c .\Generated_Source\PSoC5\UART_Wind_BOOT.c -o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_BOOT.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\UART_Wind_IntClock.lst -ffunction-sections -c .\Generated_Source\PSoC5\UART_Wind_IntClock.c -o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_IntClock.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\Cm3Start.lst -ffunction-sections -c .\Generated_Source\PSoC5\Cm3Start.c -o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
-arm-none-eabi-as.exe -I. -I./Generated_Source/PSoC5 -mcpu=cortex-m3 -mthumb -g -alh=.\CortexM3\ARM_GCC_473\Debug/CyBootAsmGnu.lst -o .\CortexM3\ARM_GCC_473\Debug\CyBootAsmGnu.o .\Generated_Source\PSoC5\CyBootAsmGnu.s
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyDmac.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyDmac.c -o .\CortexM3\ARM_GCC_473\Debug\CyDmac.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyFlash.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyFlash.c -o .\CortexM3\ARM_GCC_473\Debug\CyFlash.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CyLib.lst -ffunction-sections -c .\Generated_Source\PSoC5\CyLib.c -o .\CortexM3\ARM_GCC_473\Debug\CyLib.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyPm.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyPm.c -o .\CortexM3\ARM_GCC_473\Debug\cyPm.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\CySpc.lst -ffunction-sections -c .\Generated_Source\PSoC5\CySpc.c -o .\CortexM3\ARM_GCC_473\Debug\CySpc.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\cyutils.lst -ffunction-sections -c .\Generated_Source\PSoC5\cyutils.c -o .\CortexM3\ARM_GCC_473\Debug\cyutils.o
-arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\isr_Wind.lst -ffunction-sections -c .\Generated_Source\PSoC5\isr_Wind.c -o .\CortexM3\ARM_GCC_473\Debug\isr_Wind.o
-arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_473\Debug\WindSensor.a .\CortexM3\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_473\Debug\UART_Wind.o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_PM.o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_INT.o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_BOOT.o .\CortexM3\ARM_GCC_473\Debug\UART_Wind_IntClock.o .\CortexM3\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM3\ARM_GCC_473\Debug\CyDmac.o .\CortexM3\ARM_GCC_473\Debug\CyFlash.o .\CortexM3\ARM_GCC_473\Debug\CyLib.o .\CortexM3\ARM_GCC_473\Debug\cyPm.o .\CortexM3\ARM_GCC_473\Debug\CySpc.o .\CortexM3\ARM_GCC_473\Debug\cyutils.o .\CortexM3\ARM_GCC_473\Debug\isr_Wind.o
-arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_473\Debug\WindSensor.a
-arm-none-eabi-gcc.exe -mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g -Wl,-Map,.\CortexM3\ARM_GCC_473\Debug\WindSensor.map -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o .\CortexM3\ARM_GCC_473\Debug\WindSensor.elf .\CortexM3\ARM_GCC_473\Debug\main.o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o .\CortexM3\ARM_GCC_473\Debug\WindSensor.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_473\Debug\CyComponentLibrary.a" -Wl,--end-group
-cyelftool.exe -C "C:\Users\Kevin\Google Drive\PSoC_Sensor tutorial\WindSensor\WindSensor.cydsn\CortexM3\ARM_GCC_473\Debug\WindSensor.elf" --flash_size 262144 --flash_row_size 256
-cyelftool.exe -S "C:\Users\Kevin\Google Drive\PSoC_Sensor tutorial\WindSensor\WindSensor.cydsn\CortexM3\ARM_GCC_473\Debug\WindSensor.elf"
-Flash used: 2766 of 262144 bytes (1.1 %).
-SRAM used: 21061 of 65536 bytes (32.1 %).
---------------- Build Succeeded: 04/14/2014 16:06:43 ---------------
+--------------- Build Started: 06/11/2014 16:28:14 Project: WindSensor, Configuration: ARM GCC 4.7.3 Debug ---------------
+The code generation step is up to date.
+The compile step is up to date, no work needs to be done.
+The link step is up to date, no work needs to be done.
+cyelftool.exe -S C:\Users\Ryan\Documents\summer2014\WindSensor\WindSensor.cydsn\CortexM3\ARM_GCC_473\Debug\WindSensor.elf
+Flash used: 2670 of 262144 bytes (1.0 %).
+SRAM used: 21045 of 65536 bytes (32.1 %).
+--------------- Build Succeeded: 06/11/2014 16:28:15 ---------------

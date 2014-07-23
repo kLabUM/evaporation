@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
   55 001f 40       		.byte	64
   56 0020 36       		.byte	54
   57 0021 17       		.byte	23
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 2
 
 
   58 0022 01       		.byte	1
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  112 0058 08       		.byte	8
  113 0059 09       		.byte	9
  114 005a 09       		.byte	9
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 3
 
 
  115 005b 30       		.byte	48
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  169 0091 04       		.byte	4
  170 0092 45       		.byte	69
  171 0093 E0       		.byte	-32
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 4
 
 
  172 0094 46       		.byte	70
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  226 00ca A4       		.byte	-92
  227 00cb 08       		.byte	8
  228 00cc AB       		.byte	-85
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 5
 
 
  229 00cd 04       		.byte	4
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  283 0103 04       		.byte	4
  284 0104 01       		.byte	1
  285 0105 02       		.byte	2
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 6
 
 
  286 0106 03       		.byte	3
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  340 013c 33       		.byte	51
  341 013d 01       		.byte	1
  342 013e 35       		.byte	53
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 7
 
 
  343 013f 12       		.byte	18
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  397 0175 18       		.byte	24
  398 0176 0A       		.byte	10
  399 0177 0C       		.byte	12
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 8
 
 
  400 0178 0C       		.byte	12
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  454 01ae 3F       		.byte	63
  455 01af 04       		.byte	4
  456 01b0 56       		.byte	86
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 9
 
 
  457 01b1 02       		.byte	2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  511 01e7 04       		.byte	4
  512 01e8 D9       		.byte	-39
  513 01e9 04       		.byte	4
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 10
 
 
  514 01ea DF       		.byte	-33
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  568 0220 32       		.byte	50
  569 0221 09       		.byte	9
  570 0222 33       		.byte	51
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 11
 
 
  571 0223 04       		.byte	4
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  625 0259 02       		.byte	2
  626 025a A2       		.byte	-94
  627 025b 18       		.byte	24
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 12
 
 
  628 025c A3       		.byte	-93
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  682 0292 34       		.byte	52
  683 0293 0C       		.byte	12
  684 0294 36       		.byte	54
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 13
 
 
  685 0295 30       		.byte	48
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  739 02cb 10       		.byte	16
  740 02cc 6A       		.byte	106
  741 02cd 30       		.byte	48
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 14
 
 
  742 02ce 6B       		.byte	107
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  796 0304 AF       		.byte	-81
  797 0305 01       		.byte	1
  798 0306 B0       		.byte	-80
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 15
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 15
 
 
  799 0307 07       		.byte	7
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  853 033d 09       		.byte	9
  854 033e 23       		.byte	35
  855 033f B0       		.byte	-80
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 16
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 16
 
 
  856 0340 27       		.byte	39
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  910 0376 CE       		.byte	-50
  911 0377 8E       		.byte	-114
  912 0378 D0       		.byte	-48
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 17
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 17
 
 
  913 0379 70       		.byte	112
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  967 03af 02       		.byte	2
  968 03b0 02       		.byte	2
  969 03b1 00       		.byte	0
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 18
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 18
 
 
  970 03b2 02       		.byte	2
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1020 000b 00       		.byte	0
  1021              		.text
  1022              	.Letext0:
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 19
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 19
 
 
  1023              		.file 1 ".\\Generated_Source\\PSoC5\\cymetadata.c"
@@ -1090,15 +1090,15 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1029 0006 00000000 		.4byte	.Ldebug_abbrev0
  1030 000a 04       		.byte	0x4
  1031 000b 01       		.uleb128 0x1
- 1032 000c 54010000 		.4byte	.LASF18
+ 1032 000c 46010000 		.4byte	.LASF18
  1033 0010 01       		.byte	0x1
  1034 0011 00000000 		.4byte	.LASF19
- 1035 0015 F7000000 		.4byte	.LASF20
+ 1035 0015 6B000000 		.4byte	.LASF20
  1036 0019 00000000 		.4byte	.Ldebug_line0
  1037 001d 02       		.uleb128 0x2
  1038 001e 01       		.byte	0x1
  1039 001f 06       		.byte	0x6
- 1040 0020 A6010000 		.4byte	.LASF0
+ 1040 0020 98010000 		.4byte	.LASF0
  1041 0024 02       		.uleb128 0x2
  1042 0025 01       		.byte	0x1
  1043 0026 08       		.byte	0x8
@@ -1106,7 +1106,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1045 002b 02       		.uleb128 0x2
  1046 002c 02       		.byte	0x2
  1047 002d 05       		.byte	0x5
- 1048 002e 44010000 		.4byte	.LASF2
+ 1048 002e 36010000 		.4byte	.LASF2
  1049 0032 02       		.uleb128 0x2
  1050 0033 02       		.byte	0x2
  1051 0034 07       		.byte	0x7
@@ -1114,7 +1114,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1053 0039 02       		.uleb128 0x2
  1054 003a 04       		.byte	0x4
  1055 003b 05       		.byte	0x5
- 1056 003c 9D010000 		.4byte	.LASF4
+ 1056 003c 8F010000 		.4byte	.LASF4
  1057 0040 02       		.uleb128 0x2
  1058 0041 04       		.byte	0x4
  1059 0042 07       		.byte	0x7
@@ -1122,11 +1122,11 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1061 0047 02       		.uleb128 0x2
  1062 0048 08       		.byte	0x8
  1063 0049 05       		.byte	0x5
- 1064 004a E4000000 		.4byte	.LASF6
+ 1064 004a 23010000 		.4byte	.LASF6
  1065 004e 02       		.uleb128 0x2
  1066 004f 08       		.byte	0x8
  1067 0050 07       		.byte	0x7
- 1068 0051 A1000000 		.4byte	.LASF7
+ 1068 0051 E0000000 		.4byte	.LASF7
  1069 0055 03       		.uleb128 0x3
  1070 0056 04       		.byte	0x4
  1071 0057 05       		.byte	0x5
@@ -1134,11 +1134,11 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1073 005c 02       		.uleb128 0x2
  1074 005d 04       		.byte	0x4
  1075 005e 07       		.byte	0x7
- 1076 005f 94000000 		.4byte	.LASF8
+ 1076 005f D3000000 		.4byte	.LASF8
  1077 0063 04       		.uleb128 0x4
- 1078 0064 4E010000 		.4byte	.LASF21
+ 1078 0064 40010000 		.4byte	.LASF21
  1079 0068 02       		.byte	0x2
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 20
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 20
 
 
  1080 0069 5B       		.byte	0x5b
@@ -1150,11 +1150,11 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1086 0075 02       		.uleb128 0x2
  1087 0076 08       		.byte	0x8
  1088 0077 04       		.byte	0x4
- 1089 0078 6B000000 		.4byte	.LASF10
+ 1089 0078 AA000000 		.4byte	.LASF10
  1090 007c 02       		.uleb128 0x2
  1091 007d 01       		.byte	0x1
  1092 007e 08       		.byte	0x8
- 1093 007f F2000000 		.4byte	.LASF11
+ 1093 007f 31010000 		.4byte	.LASF11
  1094 0083 05       		.uleb128 0x5
  1095 0084 63000000 		.4byte	0x63
  1096 0088 94000000 		.4byte	0x94
@@ -1165,9 +1165,9 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1101 0094 02       		.uleb128 0x2
  1102 0095 04       		.byte	0x4
  1103 0096 07       		.byte	0x7
- 1104 0097 DB000000 		.4byte	.LASF12
+ 1104 0097 1A010000 		.4byte	.LASF12
  1105 009b 07       		.uleb128 0x7
- 1106 009c 82000000 		.4byte	.LASF13
+ 1106 009c C1000000 		.4byte	.LASF13
  1107 00a0 01       		.byte	0x1
  1108 00a1 1C       		.byte	0x1c
  1109 00a2 AD000000 		.4byte	0xad
@@ -1185,7 +1185,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1121 00c0 03       		.byte	0x3
  1122 00c1 00       		.byte	0
  1123 00c2 07       		.uleb128 0x7
- 1124 00c3 72000000 		.4byte	.LASF14
+ 1124 00c3 B1000000 		.4byte	.LASF14
  1125 00c7 01       		.byte	0x1
  1126 00c8 9D       		.byte	0x9d
  1127 00c9 D4000000 		.4byte	0xd4
@@ -1196,9 +1196,9 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1132 00d4 08       		.uleb128 0x8
  1133 00d5 B2000000 		.4byte	0xb2
  1134 00d9 07       		.uleb128 0x7
- 1135 00da CD000000 		.4byte	.LASF15
+ 1135 00da 0C010000 		.4byte	.LASF15
  1136 00de 01       		.byte	0x1
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 21
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 21
 
 
  1137 00df A8       		.byte	0xa8
@@ -1217,7 +1217,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1150 00fe FF       		.byte	0xff
  1151 00ff 00       		.byte	0
  1152 0100 07       		.uleb128 0x7
- 1153 0101 B8000000 		.4byte	.LASF16
+ 1153 0101 F7000000 		.4byte	.LASF16
  1154 0105 01       		.byte	0x1
  1155 0106 B3       		.byte	0xb3
  1156 0107 12010000 		.4byte	0x112
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1191 0007 03       		.uleb128 0x3
  1192 0008 0E       		.uleb128 0xe
  1193 0009 1B       		.uleb128 0x1b
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 22
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 22
 
 
  1194 000a 0E       		.uleb128 0xe
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1248 0040 2F       		.uleb128 0x2f
  1249 0041 05       		.uleb128 0x5
  1250 0042 00       		.byte	0
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 23
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 23
 
 
  1251 0043 00       		.byte	0
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1300      6E657261 
  1300      7465645F 
  1300      536F7572 
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 24
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 24
 
 
  1300      63655C50 
@@ -1406,92 +1406,92 @@ ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 1
  1310      7369676E 
  1310      65642069 
  1310      6E7400
- 1311              	.LASF10:
- 1312 006b 646F7562 		.ascii	"double\000"
- 1312      6C6500
- 1313              	.LASF14:
- 1314 0072 63795F6D 		.ascii	"cy_meta_custnvl\000"
- 1314      6574615F 
- 1314      63757374 
- 1314      6E766C00 
- 1315              	.LASF13:
- 1316 0082 63795F6D 		.ascii	"cy_meta_configecc\000"
- 1316      6574615F 
- 1316      636F6E66 
- 1316      69676563 
- 1316      6300
- 1317              	.LASF8:
- 1318 0094 756E7369 		.ascii	"unsigned int\000"
- 1318      676E6564 
- 1318      20696E74 
- 1318      00
- 1319              	.LASF7:
- 1320 00a1 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1320      206C6F6E 
- 1320      6720756E 
- 1320      7369676E 
- 1320      65642069 
- 1321              	.LASF16:
- 1322 00b8 63795F6D 		.ascii	"cy_meta_flashprotect\000"
- 1322      6574615F 
- 1322      666C6173 
- 1322      6870726F 
- 1322      74656374 
- 1323              	.LASF15:
-ARM GAS  C:\Users\Kevin\AppData\Local\Temp\cc4ZHXFv.s 			page 25
+ 1311              	.LASF20:
+ 1312 006b 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 1312      73657273 
+ 1312      5C527961 
+ 1312      6E5C446F 
+ 1312      63756D65 
+ 1313 0099 57696E64 		.ascii	"WindSensor.cydsn\000"
+ 1313      53656E73 
+ 1313      6F722E63 
+ 1313      7964736E 
+ 1313      00
+ 1314              	.LASF10:
+ 1315 00aa 646F7562 		.ascii	"double\000"
+ 1315      6C6500
+ 1316              	.LASF14:
+ 1317 00b1 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1317      6574615F 
+ 1317      63757374 
+ 1317      6E766C00 
+ 1318              	.LASF13:
+ 1319 00c1 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1319      6574615F 
+ 1319      636F6E66 
+ 1319      69676563 
+ 1319      6300
+ 1320              	.LASF8:
+ 1321 00d3 756E7369 		.ascii	"unsigned int\000"
+ 1321      676E6564 
+ 1321      20696E74 
+ 1321      00
+ 1322              	.LASF7:
+ 1323 00e0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccYJGJGh.s 			page 25
 
 
- 1324 00cd 63795F6D 		.ascii	"cy_meta_wonvl\000"
- 1324      6574615F 
- 1324      776F6E76 
- 1324      6C00
- 1325              	.LASF12:
- 1326 00db 73697A65 		.ascii	"sizetype\000"
- 1326      74797065 
- 1326      00
- 1327              	.LASF6:
- 1328 00e4 6C6F6E67 		.ascii	"long long int\000"
- 1328      206C6F6E 
- 1328      6720696E 
- 1328      7400
- 1329              	.LASF11:
- 1330 00f2 63686172 		.ascii	"char\000"
- 1330      00
- 1331              	.LASF20:
- 1332 00f7 433A5C55 		.ascii	"C:\\Users\\Kevin\\Google Drive\\PSoC_Sensor tutoria"
- 1332      73657273 
- 1332      5C4B6576 
- 1332      696E5C47 
- 1332      6F6F676C 
- 1333 0126 6C5C5769 		.ascii	"l\\WindSensor\\WindSensor.cydsn\000"
- 1333      6E645365 
- 1333      6E736F72 
- 1333      5C57696E 
- 1333      6453656E 
+ 1323      206C6F6E 
+ 1323      6720756E 
+ 1323      7369676E 
+ 1323      65642069 
+ 1324              	.LASF16:
+ 1325 00f7 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1325      6574615F 
+ 1325      666C6173 
+ 1325      6870726F 
+ 1325      74656374 
+ 1326              	.LASF15:
+ 1327 010c 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1327      6574615F 
+ 1327      776F6E76 
+ 1327      6C00
+ 1328              	.LASF12:
+ 1329 011a 73697A65 		.ascii	"sizetype\000"
+ 1329      74797065 
+ 1329      00
+ 1330              	.LASF6:
+ 1331 0123 6C6F6E67 		.ascii	"long long int\000"
+ 1331      206C6F6E 
+ 1331      6720696E 
+ 1331      7400
+ 1332              	.LASF11:
+ 1333 0131 63686172 		.ascii	"char\000"
+ 1333      00
  1334              	.LASF2:
- 1335 0144 73686F72 		.ascii	"short int\000"
+ 1335 0136 73686F72 		.ascii	"short int\000"
  1335      7420696E 
  1335      7400
  1336              	.LASF21:
- 1337 014e 75696E74 		.ascii	"uint8\000"
+ 1337 0140 75696E74 		.ascii	"uint8\000"
  1337      3800
  1338              	.LASF18:
- 1339 0154 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1339 0146 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
  1339      4320342E 
  1339      372E3320 
  1339      32303133 
  1339      30333132 
- 1340 0187 616E6368 		.ascii	"anch revision 196615]\000"
+ 1340 0179 616E6368 		.ascii	"anch revision 196615]\000"
  1340      20726576 
  1340      6973696F 
  1340      6E203139 
  1340      36363135 
  1341              	.LASF4:
- 1342 019d 6C6F6E67 		.ascii	"long int\000"
+ 1342 018f 6C6F6E67 		.ascii	"long int\000"
  1342      20696E74 
  1342      00
  1343              	.LASF0:
- 1344 01a6 7369676E 		.ascii	"signed char\000"
+ 1344 0198 7369676E 		.ascii	"signed char\000"
  1344      65642063 
  1344      68617200 
  1345              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

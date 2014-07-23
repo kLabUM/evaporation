@@ -2,7 +2,7 @@
 --	Conversion of WindSensor.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Apr 14 16:06:18 2014
+--	Wed May 14 12:04:09 2014
 --
 
 USE cypress.cypress.all;

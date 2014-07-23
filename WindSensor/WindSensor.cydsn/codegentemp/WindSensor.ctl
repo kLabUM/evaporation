@@ -1,6 +1,6 @@
 -- ======================================================================
 -- WindSensor.ctl generated from WindSensor
--- 04/14/2014 at 16:06
+-- 05/14/2014 at 12:04
 -- This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 -- ======================================================================
 
