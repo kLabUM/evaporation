@@ -1,0 +1,1429 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"psoc.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	psoc_initVar
+  19              		.bss
+  20              		.type	psoc_initVar, %object
+  21              		.size	psoc_initVar, 1
+  22              	psoc_initVar:
+  23 0000 00       		.space	1
+  24              		.comm	psoc_state,1,1
+  25              		.section	.text.psoc_Init,"ax",%progbits
+  26              		.align	2
+  27              		.global	psoc_Init
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	psoc_Init, %function
+  31              	psoc_Init:
+  32              	.LFB0:
+  33              		.file 1 ".\\Generated_Source\\PSoC5\\psoc.c"
+   1:.\Generated_Source\PSoC5/psoc.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/psoc.c **** * File Name: psoc.c
+   3:.\Generated_Source\PSoC5/psoc.c **** * Version 3.30
+   4:.\Generated_Source\PSoC5/psoc.c **** *
+   5:.\Generated_Source\PSoC5/psoc.c **** * Description:
+   6:.\Generated_Source\PSoC5/psoc.c **** *  This file provides the source code of APIs for the I2C component.
+   7:.\Generated_Source\PSoC5/psoc.c **** *  Actual protocol and operation code resides in the interrupt service routine
+   8:.\Generated_Source\PSoC5/psoc.c **** *  file.
+   9:.\Generated_Source\PSoC5/psoc.c **** *
+  10:.\Generated_Source\PSoC5/psoc.c **** * Note:
+  11:.\Generated_Source\PSoC5/psoc.c **** *
+  12:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************
+  13:.\Generated_Source\PSoC5/psoc.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation. All rights reserved.
+  14:.\Generated_Source\PSoC5/psoc.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC5/psoc.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC5/psoc.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/psoc.c **** 
+  19:.\Generated_Source\PSoC5/psoc.c **** #include "psoc_PVT.h"
+  20:.\Generated_Source\PSoC5/psoc.c **** 
+  21:.\Generated_Source\PSoC5/psoc.c **** 
+  22:.\Generated_Source\PSoC5/psoc.c **** /**********************************
+  23:.\Generated_Source\PSoC5/psoc.c **** *      System variables
+  24:.\Generated_Source\PSoC5/psoc.c **** **********************************/
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 2
+
+
+  25:.\Generated_Source\PSoC5/psoc.c **** 
+  26:.\Generated_Source\PSoC5/psoc.c **** uint8 psoc_initVar = 0u;    /* Defines if component was initialized */
+  27:.\Generated_Source\PSoC5/psoc.c **** 
+  28:.\Generated_Source\PSoC5/psoc.c **** volatile uint8 psoc_state;  /* Current state of I2C FSM */
+  29:.\Generated_Source\PSoC5/psoc.c **** 
+  30:.\Generated_Source\PSoC5/psoc.c **** 
+  31:.\Generated_Source\PSoC5/psoc.c **** /*******************************************************************************
+  32:.\Generated_Source\PSoC5/psoc.c **** * Function Name: psoc_Init
+  33:.\Generated_Source\PSoC5/psoc.c **** ********************************************************************************
+  34:.\Generated_Source\PSoC5/psoc.c **** *
+  35:.\Generated_Source\PSoC5/psoc.c **** * Summary:
+  36:.\Generated_Source\PSoC5/psoc.c **** *  Initializes I2C registers with initial values provided from customizer.
+  37:.\Generated_Source\PSoC5/psoc.c **** *
+  38:.\Generated_Source\PSoC5/psoc.c **** * Parameters:
+  39:.\Generated_Source\PSoC5/psoc.c **** *  None
+  40:.\Generated_Source\PSoC5/psoc.c **** *
+  41:.\Generated_Source\PSoC5/psoc.c **** * Return:
+  42:.\Generated_Source\PSoC5/psoc.c **** *  None
+  43:.\Generated_Source\PSoC5/psoc.c **** *
+  44:.\Generated_Source\PSoC5/psoc.c **** * Global variables:
+  45:.\Generated_Source\PSoC5/psoc.c **** *  None
+  46:.\Generated_Source\PSoC5/psoc.c **** *
+  47:.\Generated_Source\PSoC5/psoc.c **** * Reentrant:
+  48:.\Generated_Source\PSoC5/psoc.c **** *  No
+  49:.\Generated_Source\PSoC5/psoc.c **** *
+  50:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************/
+  51:.\Generated_Source\PSoC5/psoc.c **** void psoc_Init(void) 
+  52:.\Generated_Source\PSoC5/psoc.c **** {
+  34              		.loc 1 52 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 00AF     		add	r7, sp, #0
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_register 7
+  53:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_FF_IMPLEMENTED)
+  54:.\Generated_Source\PSoC5/psoc.c ****         psoc_CFG_REG  = psoc_DEFAULT_CFG;
+  46              		.loc 1 54 0
+  47 0004 44F6D613 		movw	r3, #18902
+  48 0008 C4F20003 		movt	r3, 16384
+  49 000c 4FF00202 		mov	r2, #2
+  50 0010 1A70     		strb	r2, [r3, #0]
+  55:.\Generated_Source\PSoC5/psoc.c ****         psoc_XCFG_REG = psoc_DEFAULT_XCFG;
+  51              		.loc 1 55 0
+  52 0012 44F6C813 		movw	r3, #18888
+  53 0016 C4F20003 		movt	r3, 16384
+  54 001a 4FF08102 		mov	r2, #129
+  55 001e 1A70     		strb	r2, [r3, #0]
+  56:.\Generated_Source\PSoC5/psoc.c **** 
+  57:.\Generated_Source\PSoC5/psoc.c ****         #if(CY_PSOC5A)
+  58:.\Generated_Source\PSoC5/psoc.c ****             psoc_CLKDIV_REG  = LO8(psoc_DEFAULT_DIVIDE_FACTOR);
+  59:.\Generated_Source\PSoC5/psoc.c ****         #else
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 3
+
+
+  60:.\Generated_Source\PSoC5/psoc.c ****             psoc_CLKDIV1_REG = LO8(psoc_DEFAULT_DIVIDE_FACTOR);
+  56              		.loc 1 60 0
+  57 0020 44F6DB13 		movw	r3, #18907
+  58 0024 C4F20003 		movt	r3, 16384
+  59 0028 4FF00F02 		mov	r2, #15
+  60 002c 1A70     		strb	r2, [r3, #0]
+  61:.\Generated_Source\PSoC5/psoc.c ****             psoc_CLKDIV2_REG = HI8(psoc_DEFAULT_DIVIDE_FACTOR);
+  61              		.loc 1 61 0
+  62 002e 44F6DC13 		movw	r3, #18908
+  63 0032 C4F20003 		movt	r3, 16384
+  64 0036 4FF00002 		mov	r2, #0
+  65 003a 1A70     		strb	r2, [r3, #0]
+  62:.\Generated_Source\PSoC5/psoc.c ****         #endif /* (CY_PSOC5A) */
+  63:.\Generated_Source\PSoC5/psoc.c **** 
+  64:.\Generated_Source\PSoC5/psoc.c ****     #else
+  65:.\Generated_Source\PSoC5/psoc.c ****         uint8 enableInterrupts;
+  66:.\Generated_Source\PSoC5/psoc.c **** 
+  67:.\Generated_Source\PSoC5/psoc.c ****         psoc_CFG_REG      = psoc_DEFAULT_CFG;      /* control  */
+  68:.\Generated_Source\PSoC5/psoc.c ****         psoc_INT_MASK_REG = psoc_DEFAULT_INT_MASK; /* int_mask */
+  69:.\Generated_Source\PSoC5/psoc.c **** 
+  70:.\Generated_Source\PSoC5/psoc.c ****         /* Enable interrupts from block */
+  71:.\Generated_Source\PSoC5/psoc.c ****         enableInterrupts = CyEnterCriticalSection();
+  72:.\Generated_Source\PSoC5/psoc.c ****         psoc_INT_ENABLE_REG |= psoc_INTR_ENABLE; /* aux_ctl */
+  73:.\Generated_Source\PSoC5/psoc.c ****         CyExitCriticalSection(enableInterrupts);
+  74:.\Generated_Source\PSoC5/psoc.c **** 
+  75:.\Generated_Source\PSoC5/psoc.c ****         #if(psoc_MODE_MASTER_ENABLED)
+  76:.\Generated_Source\PSoC5/psoc.c ****             psoc_MCLK_PRD_REG = psoc_DEFAULT_MCLK_PRD;
+  77:.\Generated_Source\PSoC5/psoc.c ****             psoc_MCLK_CMP_REG = psoc_DEFAULT_MCLK_CMP;
+  78:.\Generated_Source\PSoC5/psoc.c ****          #endif /* (psoc_MODE_MASTER_ENABLED) */
+  79:.\Generated_Source\PSoC5/psoc.c **** 
+  80:.\Generated_Source\PSoC5/psoc.c ****         #if(psoc_MODE_SLAVE_ENABLED)
+  81:.\Generated_Source\PSoC5/psoc.c ****             psoc_PERIOD_REG = psoc_DEFAULT_PERIOD;
+  82:.\Generated_Source\PSoC5/psoc.c ****         #endif  /* (psoc_MODE_SLAVE_ENABLED) */
+  83:.\Generated_Source\PSoC5/psoc.c **** 
+  84:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_FF_IMPLEMENTED) */
+  85:.\Generated_Source\PSoC5/psoc.c **** 
+  86:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_TIMEOUT_ENABLED)
+  87:.\Generated_Source\PSoC5/psoc.c ****         psoc_TimeoutInit();
+  88:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_TIMEOUT_ENABLED) */
+  89:.\Generated_Source\PSoC5/psoc.c **** 
+  90:.\Generated_Source\PSoC5/psoc.c ****     /* Disable Interrupt and set vector and priority */
+  91:.\Generated_Source\PSoC5/psoc.c ****     CyIntDisable    (psoc_ISR_NUMBER);
+  66              		.loc 1 91 0
+  67 003c 4EF28013 		movw	r3, #57728
+  68 0040 CEF20003 		movt	r3, 57344
+  69 0044 4FF40042 		mov	r2, #32768
+  70 0048 1A60     		str	r2, [r3, #0]
+  92:.\Generated_Source\PSoC5/psoc.c ****     CyIntSetPriority(psoc_ISR_NUMBER, psoc_ISR_PRIORITY);
+  71              		.loc 1 92 0
+  72 004a 4FF00F00 		mov	r0, #15
+  73 004e 4FF00701 		mov	r1, #7
+  74 0052 FFF7FEFF 		bl	CyIntSetPriority
+  93:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_INTERN_I2C_INTR_HANDLER)
+  94:.\Generated_Source\PSoC5/psoc.c ****         (void) CyIntSetVector(psoc_ISR_NUMBER, &psoc_ISR);
+  75              		.loc 1 94 0
+  76 0056 4FF00F00 		mov	r0, #15
+  77 005a 40F20001 		movw	r1, #:lower16:psoc_ISR
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 4
+
+
+  78 005e C0F20001 		movt	r1, #:upper16:psoc_ISR
+  79 0062 FFF7FEFF 		bl	CyIntSetVector
+  95:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_INTERN_I2C_INTR_HANDLER) */
+  96:.\Generated_Source\PSoC5/psoc.c **** 
+  97:.\Generated_Source\PSoC5/psoc.c **** 
+  98:.\Generated_Source\PSoC5/psoc.c ****     /* Put state machine in idle state */
+  99:.\Generated_Source\PSoC5/psoc.c ****     psoc_state = psoc_SM_IDLE;
+  80              		.loc 1 99 0
+  81 0066 40F20003 		movw	r3, #:lower16:psoc_state
+  82 006a C0F20003 		movt	r3, #:upper16:psoc_state
+  83 006e 4FF01002 		mov	r2, #16
+  84 0072 1A70     		strb	r2, [r3, #0]
+ 100:.\Generated_Source\PSoC5/psoc.c **** 
+ 101:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_MODE_SLAVE_ENABLED)
+ 102:.\Generated_Source\PSoC5/psoc.c ****         /* Reset status and buffers index */
+ 103:.\Generated_Source\PSoC5/psoc.c ****         psoc_SlaveClearReadBuf();
+ 104:.\Generated_Source\PSoC5/psoc.c ****         psoc_SlaveClearWriteBuf();
+ 105:.\Generated_Source\PSoC5/psoc.c ****         psoc_slStatus = 0u; /* Reset slave status */
+ 106:.\Generated_Source\PSoC5/psoc.c **** 
+ 107:.\Generated_Source\PSoC5/psoc.c ****         /* Set default address */
+ 108:.\Generated_Source\PSoC5/psoc.c ****         psoc_SlaveSetAddress(psoc_DEFAULT_ADDR);
+ 109:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 110:.\Generated_Source\PSoC5/psoc.c **** 
+ 111:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_MODE_MASTER_ENABLED)
+ 112:.\Generated_Source\PSoC5/psoc.c ****         /* Reset status and buffers index */
+ 113:.\Generated_Source\PSoC5/psoc.c ****         psoc_MasterClearReadBuf();
+  85              		.loc 1 113 0
+  86 0074 FFF7FEFF 		bl	psoc_MasterClearReadBuf
+ 114:.\Generated_Source\PSoC5/psoc.c ****         psoc_MasterClearWriteBuf();
+  87              		.loc 1 114 0
+  88 0078 FFF7FEFF 		bl	psoc_MasterClearWriteBuf
+ 115:.\Generated_Source\PSoC5/psoc.c ****         (void) psoc_MasterClearStatus();
+  89              		.loc 1 115 0
+  90 007c FFF7FEFF 		bl	psoc_MasterClearStatus
+ 116:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_MODE_MASTER_ENABLED) */
+ 117:.\Generated_Source\PSoC5/psoc.c **** }
+  91              		.loc 1 117 0
+  92 0080 80BD     		pop	{r7, pc}
+  93              		.cfi_endproc
+  94              	.LFE0:
+  95              		.size	psoc_Init, .-psoc_Init
+  96 0082 00BF     		.section	.text.psoc_Enable,"ax",%progbits
+  97              		.align	2
+  98              		.global	psoc_Enable
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	psoc_Enable, %function
+ 102              	psoc_Enable:
+ 103              	.LFB1:
+ 118:.\Generated_Source\PSoC5/psoc.c **** 
+ 119:.\Generated_Source\PSoC5/psoc.c **** 
+ 120:.\Generated_Source\PSoC5/psoc.c **** /*******************************************************************************
+ 121:.\Generated_Source\PSoC5/psoc.c **** * Function Name: psoc_Enable
+ 122:.\Generated_Source\PSoC5/psoc.c **** ********************************************************************************
+ 123:.\Generated_Source\PSoC5/psoc.c **** *
+ 124:.\Generated_Source\PSoC5/psoc.c **** * Summary:
+ 125:.\Generated_Source\PSoC5/psoc.c **** *  Enables I2C operations.
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 5
+
+
+ 126:.\Generated_Source\PSoC5/psoc.c **** *
+ 127:.\Generated_Source\PSoC5/psoc.c **** * Parameters:
+ 128:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 129:.\Generated_Source\PSoC5/psoc.c **** *
+ 130:.\Generated_Source\PSoC5/psoc.c **** * Return:
+ 131:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 132:.\Generated_Source\PSoC5/psoc.c **** *
+ 133:.\Generated_Source\PSoC5/psoc.c **** * Global variables:
+ 134:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 135:.\Generated_Source\PSoC5/psoc.c **** *
+ 136:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************/
+ 137:.\Generated_Source\PSoC5/psoc.c **** void psoc_Enable(void) 
+ 138:.\Generated_Source\PSoC5/psoc.c **** {
+ 104              		.loc 1 138 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 8
+ 107              		@ frame_needed = 1, uses_anonymous_args = 0
+ 108 0000 80B5     		push	{r7, lr}
+ 109              	.LCFI2:
+ 110              		.cfi_def_cfa_offset 8
+ 111              		.cfi_offset 7, -8
+ 112              		.cfi_offset 14, -4
+ 113 0002 82B0     		sub	sp, sp, #8
+ 114              	.LCFI3:
+ 115              		.cfi_def_cfa_offset 16
+ 116 0004 00AF     		add	r7, sp, #0
+ 117              	.LCFI4:
+ 118              		.cfi_def_cfa_register 7
+ 139:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_FF_IMPLEMENTED)
+ 140:.\Generated_Source\PSoC5/psoc.c ****         uint8 enableInterrupts;
+ 141:.\Generated_Source\PSoC5/psoc.c **** 
+ 142:.\Generated_Source\PSoC5/psoc.c ****         /* Enable power to I2C FF block */
+ 143:.\Generated_Source\PSoC5/psoc.c ****         enableInterrupts = CyEnterCriticalSection();
+ 119              		.loc 1 143 0
+ 120 0006 FFF7FEFF 		bl	CyEnterCriticalSection
+ 121 000a 0346     		mov	r3, r0
+ 122 000c FB71     		strb	r3, [r7, #7]
+ 144:.\Generated_Source\PSoC5/psoc.c ****         psoc_ACT_PWRMGR_REG  |= psoc_ACT_PWR_EN;
+ 123              		.loc 1 144 0
+ 124 000e 44F2A533 		movw	r3, #17317
+ 125 0012 C4F20003 		movt	r3, 16384
+ 126 0016 44F2A532 		movw	r2, #17317
+ 127 001a C4F20002 		movt	r2, 16384
+ 128 001e 1278     		ldrb	r2, [r2, #0]
+ 129 0020 D2B2     		uxtb	r2, r2
+ 130 0022 42F00402 		orr	r2, r2, #4
+ 131 0026 D2B2     		uxtb	r2, r2
+ 132 0028 1A70     		strb	r2, [r3, #0]
+ 145:.\Generated_Source\PSoC5/psoc.c ****         psoc_STBY_PWRMGR_REG |= psoc_STBY_PWR_EN;
+ 133              		.loc 1 145 0
+ 134 002a 44F2B533 		movw	r3, #17333
+ 135 002e C4F20003 		movt	r3, 16384
+ 136 0032 44F2B532 		movw	r2, #17333
+ 137 0036 C4F20002 		movt	r2, 16384
+ 138 003a 1278     		ldrb	r2, [r2, #0]
+ 139 003c D2B2     		uxtb	r2, r2
+ 140 003e 42F00402 		orr	r2, r2, #4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 6
+
+
+ 141 0042 D2B2     		uxtb	r2, r2
+ 142 0044 1A70     		strb	r2, [r3, #0]
+ 146:.\Generated_Source\PSoC5/psoc.c ****         CyExitCriticalSection(enableInterrupts);
+ 143              		.loc 1 146 0
+ 144 0046 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 145 0048 1846     		mov	r0, r3
+ 146 004a FFF7FEFF 		bl	CyExitCriticalSection
+ 147:.\Generated_Source\PSoC5/psoc.c **** 
+ 148:.\Generated_Source\PSoC5/psoc.c ****     #else
+ 149:.\Generated_Source\PSoC5/psoc.c **** 
+ 150:.\Generated_Source\PSoC5/psoc.c ****         #if(psoc_MODE_SLAVE_ENABLED)
+ 151:.\Generated_Source\PSoC5/psoc.c ****             uint8 enableInterrupts;
+ 152:.\Generated_Source\PSoC5/psoc.c ****         #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 153:.\Generated_Source\PSoC5/psoc.c **** 
+ 154:.\Generated_Source\PSoC5/psoc.c ****         #if(psoc_MODE_SLAVE_ENABLED)
+ 155:.\Generated_Source\PSoC5/psoc.c ****             /* Enable slave bit counter */
+ 156:.\Generated_Source\PSoC5/psoc.c ****             enableInterrupts = CyEnterCriticalSection();
+ 157:.\Generated_Source\PSoC5/psoc.c ****             psoc_COUNTER_AUX_CTL_REG |= psoc_CNT7_ENABLE;   /* aux_ctl */
+ 158:.\Generated_Source\PSoC5/psoc.c ****             CyExitCriticalSection(enableInterrupts);
+ 159:.\Generated_Source\PSoC5/psoc.c ****         #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 160:.\Generated_Source\PSoC5/psoc.c **** 
+ 161:.\Generated_Source\PSoC5/psoc.c ****         psoc_CFG_REG |= psoc_ENABLE_MS;
+ 162:.\Generated_Source\PSoC5/psoc.c **** 
+ 163:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_FF_IMPLEMENTED) */
+ 164:.\Generated_Source\PSoC5/psoc.c **** 
+ 165:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_TIMEOUT_ENABLED)
+ 166:.\Generated_Source\PSoC5/psoc.c ****         psoc_TimeoutEnable();
+ 167:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_TIMEOUT_ENABLED) */
+ 168:.\Generated_Source\PSoC5/psoc.c **** }
+ 147              		.loc 1 168 0
+ 148 004e 07F10807 		add	r7, r7, #8
+ 149 0052 BD46     		mov	sp, r7
+ 150 0054 80BD     		pop	{r7, pc}
+ 151              		.cfi_endproc
+ 152              	.LFE1:
+ 153              		.size	psoc_Enable, .-psoc_Enable
+ 154 0056 00BF     		.section	.text.psoc_Start,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	psoc_Start
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	psoc_Start, %function
+ 160              	psoc_Start:
+ 161              	.LFB2:
+ 169:.\Generated_Source\PSoC5/psoc.c **** 
+ 170:.\Generated_Source\PSoC5/psoc.c **** 
+ 171:.\Generated_Source\PSoC5/psoc.c **** /*******************************************************************************
+ 172:.\Generated_Source\PSoC5/psoc.c **** * Function Name: psoc_Start
+ 173:.\Generated_Source\PSoC5/psoc.c **** ********************************************************************************
+ 174:.\Generated_Source\PSoC5/psoc.c **** *
+ 175:.\Generated_Source\PSoC5/psoc.c **** * Summary:
+ 176:.\Generated_Source\PSoC5/psoc.c **** *  Starts the I2C hardware. Enables Active mode power template bits or clock
+ 177:.\Generated_Source\PSoC5/psoc.c **** *  gating as appropriate. It is required to be executed before I2C bus
+ 178:.\Generated_Source\PSoC5/psoc.c **** *  operation.
+ 179:.\Generated_Source\PSoC5/psoc.c **** *  The I2C interrupt remains disabled after this function call.
+ 180:.\Generated_Source\PSoC5/psoc.c **** *
+ 181:.\Generated_Source\PSoC5/psoc.c **** * Parameters:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 7
+
+
+ 182:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 183:.\Generated_Source\PSoC5/psoc.c **** *
+ 184:.\Generated_Source\PSoC5/psoc.c **** * Return:
+ 185:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 186:.\Generated_Source\PSoC5/psoc.c **** *
+ 187:.\Generated_Source\PSoC5/psoc.c **** * Side Effects:
+ 188:.\Generated_Source\PSoC5/psoc.c **** *  This component automatically enables it's interrupt.  If I2C is enabled
+ 189:.\Generated_Source\PSoC5/psoc.c **** *  without the interrupt enabled, it could lock up the I2C bus.
+ 190:.\Generated_Source\PSoC5/psoc.c **** *
+ 191:.\Generated_Source\PSoC5/psoc.c **** * Global variables:
+ 192:.\Generated_Source\PSoC5/psoc.c **** *  psoc_initVar - used to check initial configuration, modified
+ 193:.\Generated_Source\PSoC5/psoc.c **** *  on first function call.
+ 194:.\Generated_Source\PSoC5/psoc.c **** *
+ 195:.\Generated_Source\PSoC5/psoc.c **** * Reentrant:
+ 196:.\Generated_Source\PSoC5/psoc.c **** *  No
+ 197:.\Generated_Source\PSoC5/psoc.c **** *
+ 198:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************/
+ 199:.\Generated_Source\PSoC5/psoc.c **** void psoc_Start(void) 
+ 200:.\Generated_Source\PSoC5/psoc.c **** {
+ 162              		.loc 1 200 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 1, uses_anonymous_args = 0
+ 166 0000 80B5     		push	{r7, lr}
+ 167              	.LCFI5:
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 7, -8
+ 170              		.cfi_offset 14, -4
+ 171 0002 00AF     		add	r7, sp, #0
+ 172              	.LCFI6:
+ 173              		.cfi_def_cfa_register 7
+ 201:.\Generated_Source\PSoC5/psoc.c ****     /* Initialize I2C registers, reset I2C buffer index and clears status */
+ 202:.\Generated_Source\PSoC5/psoc.c ****     if(0u == psoc_initVar)
+ 174              		.loc 1 202 0
+ 175 0004 40F20003 		movw	r3, #:lower16:psoc_initVar
+ 176 0008 C0F20003 		movt	r3, #:upper16:psoc_initVar
+ 177 000c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 178 000e 002B     		cmp	r3, #0
+ 179 0010 08D1     		bne	.L4
+ 203:.\Generated_Source\PSoC5/psoc.c ****     {
+ 204:.\Generated_Source\PSoC5/psoc.c ****         psoc_Init();
+ 180              		.loc 1 204 0
+ 181 0012 FFF7FEFF 		bl	psoc_Init
+ 205:.\Generated_Source\PSoC5/psoc.c ****         psoc_initVar = 1u; /* Component initialized */
+ 182              		.loc 1 205 0
+ 183 0016 40F20003 		movw	r3, #:lower16:psoc_initVar
+ 184 001a C0F20003 		movt	r3, #:upper16:psoc_initVar
+ 185 001e 4FF00102 		mov	r2, #1
+ 186 0022 1A70     		strb	r2, [r3, #0]
+ 187              	.L4:
+ 206:.\Generated_Source\PSoC5/psoc.c ****     }
+ 207:.\Generated_Source\PSoC5/psoc.c **** 
+ 208:.\Generated_Source\PSoC5/psoc.c ****     psoc_Enable();
+ 188              		.loc 1 208 0
+ 189 0024 FFF7FEFF 		bl	psoc_Enable
+ 209:.\Generated_Source\PSoC5/psoc.c ****     psoc_EnableInt();
+ 190              		.loc 1 209 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 8
+
+
+ 191 0028 4FF46143 		mov	r3, #57600
+ 192 002c CEF20003 		movt	r3, 57344
+ 193 0030 4FF40042 		mov	r2, #32768
+ 194 0034 1A60     		str	r2, [r3, #0]
+ 210:.\Generated_Source\PSoC5/psoc.c **** }
+ 195              		.loc 1 210 0
+ 196 0036 80BD     		pop	{r7, pc}
+ 197              		.cfi_endproc
+ 198              	.LFE2:
+ 199              		.size	psoc_Start, .-psoc_Start
+ 200              		.section	.text.psoc_Stop,"ax",%progbits
+ 201              		.align	2
+ 202              		.global	psoc_Stop
+ 203              		.thumb
+ 204              		.thumb_func
+ 205              		.type	psoc_Stop, %function
+ 206              	psoc_Stop:
+ 207              	.LFB3:
+ 211:.\Generated_Source\PSoC5/psoc.c **** 
+ 212:.\Generated_Source\PSoC5/psoc.c **** 
+ 213:.\Generated_Source\PSoC5/psoc.c **** /*******************************************************************************
+ 214:.\Generated_Source\PSoC5/psoc.c **** * Function Name: psoc_Stop
+ 215:.\Generated_Source\PSoC5/psoc.c **** ********************************************************************************
+ 216:.\Generated_Source\PSoC5/psoc.c **** *
+ 217:.\Generated_Source\PSoC5/psoc.c **** * Summary:
+ 218:.\Generated_Source\PSoC5/psoc.c **** *  Disables I2C hardware and disables I2C interrupt. Disables Active mode power
+ 219:.\Generated_Source\PSoC5/psoc.c **** *  template bits or clock gating as appropriate.
+ 220:.\Generated_Source\PSoC5/psoc.c **** *
+ 221:.\Generated_Source\PSoC5/psoc.c **** * Parameters:
+ 222:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 223:.\Generated_Source\PSoC5/psoc.c **** *
+ 224:.\Generated_Source\PSoC5/psoc.c **** * Return:
+ 225:.\Generated_Source\PSoC5/psoc.c **** *  None
+ 226:.\Generated_Source\PSoC5/psoc.c **** *
+ 227:.\Generated_Source\PSoC5/psoc.c **** *******************************************************************************/
+ 228:.\Generated_Source\PSoC5/psoc.c **** void psoc_Stop(void) 
+ 229:.\Generated_Source\PSoC5/psoc.c **** {
+ 208              		.loc 1 229 0
+ 209              		.cfi_startproc
+ 210              		@ args = 0, pretend = 0, frame = 8
+ 211              		@ frame_needed = 1, uses_anonymous_args = 0
+ 212 0000 80B5     		push	{r7, lr}
+ 213              	.LCFI7:
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 7, -8
+ 216              		.cfi_offset 14, -4
+ 217 0002 82B0     		sub	sp, sp, #8
+ 218              	.LCFI8:
+ 219              		.cfi_def_cfa_offset 16
+ 220 0004 00AF     		add	r7, sp, #0
+ 221              	.LCFI9:
+ 222              		.cfi_def_cfa_register 7
+ 230:.\Generated_Source\PSoC5/psoc.c ****     #if((psoc_FF_IMPLEMENTED)  || \
+ 231:.\Generated_Source\PSoC5/psoc.c ****         (psoc_UDB_IMPLEMENTED && psoc_MODE_SLAVE_ENABLED))
+ 232:.\Generated_Source\PSoC5/psoc.c ****         uint8 enableInterrupts;
+ 233:.\Generated_Source\PSoC5/psoc.c ****     #endif /* ((psoc_FF_IMPLEMENTED)  || \
+ 234:.\Generated_Source\PSoC5/psoc.c ****                (psoc_UDB_IMPLEMENTED && psoc_MODE_SLAVE_ENABLED)) */
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 9
+
+
+ 235:.\Generated_Source\PSoC5/psoc.c **** 
+ 236:.\Generated_Source\PSoC5/psoc.c ****     psoc_DisableInt();
+ 223              		.loc 1 236 0
+ 224 0006 4EF28013 		movw	r3, #57728
+ 225 000a CEF20003 		movt	r3, 57344
+ 226 000e 4FF40042 		mov	r2, #32768
+ 227 0012 1A60     		str	r2, [r3, #0]
+ 237:.\Generated_Source\PSoC5/psoc.c **** 
+ 238:.\Generated_Source\PSoC5/psoc.c ****     psoc_DISABLE_INT_ON_STOP;   /* Interrupt on Stop can be enabled by write */
+ 228              		.loc 1 238 0
+ 229 0014 44F6D613 		movw	r3, #18902
+ 230 0018 C4F20003 		movt	r3, 16384
+ 231 001c 44F6D612 		movw	r2, #18902
+ 232 0020 C4F20002 		movt	r2, 16384
+ 233 0024 1278     		ldrb	r2, [r2, #0]
+ 234 0026 D2B2     		uxtb	r2, r2
+ 235 0028 22F01002 		bic	r2, r2, #16
+ 236 002c D2B2     		uxtb	r2, r2
+ 237 002e 1A70     		strb	r2, [r3, #0]
+ 239:.\Generated_Source\PSoC5/psoc.c ****     (void) psoc_CSR_REG;        /* Clear CSR reg */
+ 238              		.loc 1 239 0
+ 239 0030 44F6D713 		movw	r3, #18903
+ 240 0034 C4F20003 		movt	r3, 16384
+ 241 0038 1B78     		ldrb	r3, [r3, #0]
+ 240:.\Generated_Source\PSoC5/psoc.c ****     
+ 241:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_TIMEOUT_ENABLED)
+ 242:.\Generated_Source\PSoC5/psoc.c ****         psoc_TimeoutStop();
+ 243:.\Generated_Source\PSoC5/psoc.c ****     #endif  /* End (psoc_TIMEOUT_ENABLED) */
+ 244:.\Generated_Source\PSoC5/psoc.c **** 
+ 245:.\Generated_Source\PSoC5/psoc.c ****     #if(psoc_FF_IMPLEMENTED)
+ 246:.\Generated_Source\PSoC5/psoc.c ****         #if(CY_PSOC3 || CY_PSOC5LP)
+ 247:.\Generated_Source\PSoC5/psoc.c ****             /* Store registers which are held in reset when Master and Slave bits are cleared */
+ 248:.\Generated_Source\PSoC5/psoc.c ****             #if(psoc_MODE_SLAVE_ENABLED)
+ 249:.\Generated_Source\PSoC5/psoc.c ****                 psoc_backup.addr = psoc_ADDR_REG;
+ 250:.\Generated_Source\PSoC5/psoc.c ****             #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 251:.\Generated_Source\PSoC5/psoc.c **** 
+ 252:.\Generated_Source\PSoC5/psoc.c ****             psoc_backup.clkDiv1  = psoc_CLKDIV1_REG;
+ 242              		.loc 1 252 0
+ 243 003a 44F6DB13 		movw	r3, #18907
+ 244 003e C4F20003 		movt	r3, 16384
+ 245 0042 1B78     		ldrb	r3, [r3, #0]
+ 246 0044 DAB2     		uxtb	r2, r3
+ 247 0046 40F20003 		movw	r3, #:lower16:psoc_backup
+ 248 004a C0F20003 		movt	r3, #:upper16:psoc_backup
+ 249 004e DA70     		strb	r2, [r3, #3]
+ 253:.\Generated_Source\PSoC5/psoc.c ****             psoc_backup.clkDiv2  = psoc_CLKDIV2_REG;
+ 250              		.loc 1 253 0
+ 251 0050 44F6DC13 		movw	r3, #18908
+ 252 0054 C4F20003 		movt	r3, 16384
+ 253 0058 1B78     		ldrb	r3, [r3, #0]
+ 254 005a DAB2     		uxtb	r2, r3
+ 255 005c 40F20003 		movw	r3, #:lower16:psoc_backup
+ 256 0060 C0F20003 		movt	r3, #:upper16:psoc_backup
+ 257 0064 1A71     		strb	r2, [r3, #4]
+ 254:.\Generated_Source\PSoC5/psoc.c **** 
+ 255:.\Generated_Source\PSoC5/psoc.c **** 
+ 256:.\Generated_Source\PSoC5/psoc.c ****             /* Reset FF block */
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 10
+
+
+ 257:.\Generated_Source\PSoC5/psoc.c ****             psoc_CFG_REG &= ((uint8) ~psoc_ENABLE_MS);
+ 258              		.loc 1 257 0
+ 259 0066 44F6D613 		movw	r3, #18902
+ 260 006a C4F20003 		movt	r3, 16384
+ 261 006e 44F6D612 		movw	r2, #18902
+ 262 0072 C4F20002 		movt	r2, 16384
+ 263 0076 1278     		ldrb	r2, [r2, #0]
+ 264 0078 D2B2     		uxtb	r2, r2
+ 265 007a 22F00202 		bic	r2, r2, #2
+ 266 007e D2B2     		uxtb	r2, r2
+ 267 0080 1A70     		strb	r2, [r3, #0]
+ 258:.\Generated_Source\PSoC5/psoc.c ****             CyDelayUs(psoc_FF_RESET_DELAY);
+ 268              		.loc 1 258 0
+ 269 0082 4FF00200 		mov	r0, #2
+ 270 0086 FFF7FEFF 		bl	CyDelayUs
+ 259:.\Generated_Source\PSoC5/psoc.c ****             psoc_CFG_REG |= ((uint8)  psoc_ENABLE_MS);
+ 271              		.loc 1 259 0
+ 272 008a 44F6D613 		movw	r3, #18902
+ 273 008e C4F20003 		movt	r3, 16384
+ 274 0092 44F6D612 		movw	r2, #18902
+ 275 0096 C4F20002 		movt	r2, 16384
+ 276 009a 1278     		ldrb	r2, [r2, #0]
+ 277 009c D2B2     		uxtb	r2, r2
+ 278 009e 42F00202 		orr	r2, r2, #2
+ 279 00a2 D2B2     		uxtb	r2, r2
+ 280 00a4 1A70     		strb	r2, [r3, #0]
+ 260:.\Generated_Source\PSoC5/psoc.c **** 
+ 261:.\Generated_Source\PSoC5/psoc.c **** 
+ 262:.\Generated_Source\PSoC5/psoc.c ****             /* Restore registers */
+ 263:.\Generated_Source\PSoC5/psoc.c ****             #if(psoc_MODE_SLAVE_ENABLED)
+ 264:.\Generated_Source\PSoC5/psoc.c ****                 psoc_ADDR_REG = psoc_backup.addr;
+ 265:.\Generated_Source\PSoC5/psoc.c ****             #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 266:.\Generated_Source\PSoC5/psoc.c **** 
+ 267:.\Generated_Source\PSoC5/psoc.c ****             psoc_CLKDIV1_REG = psoc_backup.clkDiv1;
+ 281              		.loc 1 267 0
+ 282 00a6 44F6DB13 		movw	r3, #18907
+ 283 00aa C4F20003 		movt	r3, 16384
+ 284 00ae 40F20002 		movw	r2, #:lower16:psoc_backup
+ 285 00b2 C0F20002 		movt	r2, #:upper16:psoc_backup
+ 286 00b6 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 287 00b8 1A70     		strb	r2, [r3, #0]
+ 268:.\Generated_Source\PSoC5/psoc.c ****             psoc_CLKDIV2_REG = psoc_backup.clkDiv2;
+ 288              		.loc 1 268 0
+ 289 00ba 44F6DC13 		movw	r3, #18908
+ 290 00be C4F20003 		movt	r3, 16384
+ 291 00c2 40F20002 		movw	r2, #:lower16:psoc_backup
+ 292 00c6 C0F20002 		movt	r2, #:upper16:psoc_backup
+ 293 00ca 1279     		ldrb	r2, [r2, #4]	@ zero_extendqisi2
+ 294 00cc 1A70     		strb	r2, [r3, #0]
+ 269:.\Generated_Source\PSoC5/psoc.c **** 
+ 270:.\Generated_Source\PSoC5/psoc.c ****         #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+ 271:.\Generated_Source\PSoC5/psoc.c **** 
+ 272:.\Generated_Source\PSoC5/psoc.c ****         /* Disable power to I2C block */
+ 273:.\Generated_Source\PSoC5/psoc.c ****         enableInterrupts = CyEnterCriticalSection();
+ 295              		.loc 1 273 0
+ 296 00ce FFF7FEFF 		bl	CyEnterCriticalSection
+ 297 00d2 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 11
+
+
+ 298 00d4 FB71     		strb	r3, [r7, #7]
+ 274:.\Generated_Source\PSoC5/psoc.c ****         psoc_ACT_PWRMGR_REG  &= ((uint8) ~psoc_ACT_PWR_EN);
+ 299              		.loc 1 274 0
+ 300 00d6 44F2A533 		movw	r3, #17317
+ 301 00da C4F20003 		movt	r3, 16384
+ 302 00de 44F2A532 		movw	r2, #17317
+ 303 00e2 C4F20002 		movt	r2, 16384
+ 304 00e6 1278     		ldrb	r2, [r2, #0]
+ 305 00e8 D2B2     		uxtb	r2, r2
+ 306 00ea 22F00402 		bic	r2, r2, #4
+ 307 00ee D2B2     		uxtb	r2, r2
+ 308 00f0 1A70     		strb	r2, [r3, #0]
+ 275:.\Generated_Source\PSoC5/psoc.c ****         psoc_STBY_PWRMGR_REG &= ((uint8) ~psoc_STBY_PWR_EN);
+ 309              		.loc 1 275 0
+ 310 00f2 44F2B533 		movw	r3, #17333
+ 311 00f6 C4F20003 		movt	r3, 16384
+ 312 00fa 44F2B532 		movw	r2, #17333
+ 313 00fe C4F20002 		movt	r2, 16384
+ 314 0102 1278     		ldrb	r2, [r2, #0]
+ 315 0104 D2B2     		uxtb	r2, r2
+ 316 0106 22F00402 		bic	r2, r2, #4
+ 317 010a D2B2     		uxtb	r2, r2
+ 318 010c 1A70     		strb	r2, [r3, #0]
+ 276:.\Generated_Source\PSoC5/psoc.c ****         CyExitCriticalSection(enableInterrupts);
+ 319              		.loc 1 276 0
+ 320 010e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 321 0110 1846     		mov	r0, r3
+ 322 0112 FFF7FEFF 		bl	CyExitCriticalSection
+ 277:.\Generated_Source\PSoC5/psoc.c **** 
+ 278:.\Generated_Source\PSoC5/psoc.c ****     #else
+ 279:.\Generated_Source\PSoC5/psoc.c **** 
+ 280:.\Generated_Source\PSoC5/psoc.c ****         #if(psoc_MODE_SLAVE_ENABLED)
+ 281:.\Generated_Source\PSoC5/psoc.c ****             /* Disable slave bit counter */
+ 282:.\Generated_Source\PSoC5/psoc.c ****             enableInterrupts = CyEnterCriticalSection();
+ 283:.\Generated_Source\PSoC5/psoc.c ****             psoc_COUNTER_AUX_CTL_REG &= ((uint8) ~psoc_CNT7_ENABLE);
+ 284:.\Generated_Source\PSoC5/psoc.c ****             CyExitCriticalSection(enableInterrupts);
+ 285:.\Generated_Source\PSoC5/psoc.c ****         #endif /* (psoc_MODE_SLAVE_ENABLED) */
+ 286:.\Generated_Source\PSoC5/psoc.c **** 
+ 287:.\Generated_Source\PSoC5/psoc.c ****         psoc_CFG_REG &= ((uint8) ~psoc_ENABLE_MS);
+ 288:.\Generated_Source\PSoC5/psoc.c **** 
+ 289:.\Generated_Source\PSoC5/psoc.c ****     #endif /* (psoc_FF_IMPLEMENTED) */
+ 290:.\Generated_Source\PSoC5/psoc.c **** 
+ 291:.\Generated_Source\PSoC5/psoc.c ****     psoc_ClearPendingInt();  /* Clear interrupt triggers on reset */
+ 323              		.loc 1 291 0
+ 324 0116 4EF28023 		movw	r3, #57984
+ 325 011a CEF20003 		movt	r3, 57344
+ 326 011e 4FF40042 		mov	r2, #32768
+ 327 0122 1A60     		str	r2, [r3, #0]
+ 292:.\Generated_Source\PSoC5/psoc.c **** 
+ 293:.\Generated_Source\PSoC5/psoc.c ****     psoc_state = psoc_SM_IDLE;  /* Reset software FSM */
+ 328              		.loc 1 293 0
+ 329 0124 40F20003 		movw	r3, #:lower16:psoc_state
+ 330 0128 C0F20003 		movt	r3, #:upper16:psoc_state
+ 331 012c 4FF01002 		mov	r2, #16
+ 332 0130 1A70     		strb	r2, [r3, #0]
+ 294:.\Generated_Source\PSoC5/psoc.c **** }
+ 333              		.loc 1 294 0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 12
+
+
+ 334 0132 07F10807 		add	r7, r7, #8
+ 335 0136 BD46     		mov	sp, r7
+ 336 0138 80BD     		pop	{r7, pc}
+ 337              		.cfi_endproc
+ 338              	.LFE3:
+ 339              		.size	psoc_Stop, .-psoc_Stop
+ 340 013a 00BF     		.text
+ 341              	.Letext0:
+ 342              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 343              		.file 3 ".\\Generated_Source\\PSoC5\\psoc.h"
+ 344              		.file 4 ".\\Generated_Source\\PSoC5\\psoc_PVT.h"
+ 345              		.section	.debug_info,"",%progbits
+ 346              	.Ldebug_info0:
+ 347 0000 D2010000 		.4byte	0x1d2
+ 348 0004 0200     		.2byte	0x2
+ 349 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 350 000a 04       		.byte	0x4
+ 351 000b 01       		.uleb128 0x1
+ 352 000c 85010000 		.4byte	.LASF31
+ 353 0010 01       		.byte	0x1
+ 354 0011 19000000 		.4byte	.LASF32
+ 355 0015 8E000000 		.4byte	.LASF33
+ 356 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 357 001d 00000000 		.4byte	0
+ 358 0021 00000000 		.4byte	0
+ 359 0025 00000000 		.4byte	.Ldebug_line0
+ 360 0029 02       		.uleb128 0x2
+ 361 002a 01       		.byte	0x1
+ 362 002b 06       		.byte	0x6
+ 363 002c E3010000 		.4byte	.LASF0
+ 364 0030 02       		.uleb128 0x2
+ 365 0031 01       		.byte	0x1
+ 366 0032 08       		.byte	0x8
+ 367 0033 3F000000 		.4byte	.LASF1
+ 368 0037 02       		.uleb128 0x2
+ 369 0038 02       		.byte	0x2
+ 370 0039 05       		.byte	0x5
+ 371 003a 7B010000 		.4byte	.LASF2
+ 372 003e 02       		.uleb128 0x2
+ 373 003f 02       		.byte	0x2
+ 374 0040 07       		.byte	0x7
+ 375 0041 06000000 		.4byte	.LASF3
+ 376 0045 02       		.uleb128 0x2
+ 377 0046 04       		.byte	0x4
+ 378 0047 05       		.byte	0x5
+ 379 0048 CE010000 		.4byte	.LASF4
+ 380 004c 02       		.uleb128 0x2
+ 381 004d 04       		.byte	0x4
+ 382 004e 07       		.byte	0x7
+ 383 004f 52000000 		.4byte	.LASF5
+ 384 0053 02       		.uleb128 0x2
+ 385 0054 08       		.byte	0x8
+ 386 0055 05       		.byte	0x5
+ 387 0056 4E010000 		.4byte	.LASF6
+ 388 005a 02       		.uleb128 0x2
+ 389 005b 08       		.byte	0x8
+ 390 005c 07       		.byte	0x7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 13
+
+
+ 391 005d 11010000 		.4byte	.LASF7
+ 392 0061 03       		.uleb128 0x3
+ 393 0062 04       		.byte	0x4
+ 394 0063 05       		.byte	0x5
+ 395 0064 696E7400 		.ascii	"int\000"
+ 396 0068 02       		.uleb128 0x2
+ 397 0069 04       		.byte	0x4
+ 398 006a 07       		.byte	0x7
+ 399 006b 04010000 		.4byte	.LASF8
+ 400 006f 04       		.uleb128 0x4
+ 401 0070 64000000 		.4byte	.LASF9
+ 402 0074 02       		.byte	0x2
+ 403 0075 5B       		.byte	0x5b
+ 404 0076 30000000 		.4byte	0x30
+ 405 007a 04       		.uleb128 0x4
+ 406 007b D3000000 		.4byte	.LASF10
+ 407 007f 02       		.byte	0x2
+ 408 0080 5C       		.byte	0x5c
+ 409 0081 3E000000 		.4byte	0x3e
+ 410 0085 04       		.uleb128 0x4
+ 411 0086 E5000000 		.4byte	.LASF11
+ 412 008a 02       		.byte	0x2
+ 413 008b 5D       		.byte	0x5d
+ 414 008c 4C000000 		.4byte	0x4c
+ 415 0090 02       		.uleb128 0x2
+ 416 0091 04       		.byte	0x4
+ 417 0092 04       		.byte	0x4
+ 418 0093 39000000 		.4byte	.LASF12
+ 419 0097 02       		.uleb128 0x2
+ 420 0098 08       		.byte	0x8
+ 421 0099 04       		.byte	0x4
+ 422 009a CC000000 		.4byte	.LASF13
+ 423 009e 02       		.uleb128 0x2
+ 424 009f 01       		.byte	0x1
+ 425 00a0 08       		.byte	0x8
+ 426 00a1 5C010000 		.4byte	.LASF14
+ 427 00a5 04       		.uleb128 0x4
+ 428 00a6 4D000000 		.4byte	.LASF15
+ 429 00aa 02       		.byte	0x2
+ 430 00ab F0       		.byte	0xf0
+ 431 00ac B0000000 		.4byte	0xb0
+ 432 00b0 05       		.uleb128 0x5
+ 433 00b1 6F000000 		.4byte	0x6f
+ 434 00b5 04       		.uleb128 0x4
+ 435 00b6 00000000 		.4byte	.LASF16
+ 436 00ba 02       		.byte	0x2
+ 437 00bb F2       		.byte	0xf2
+ 438 00bc C0000000 		.4byte	0xc0
+ 439 00c0 05       		.uleb128 0x5
+ 440 00c1 85000000 		.4byte	0x85
+ 441 00c5 02       		.uleb128 0x2
+ 442 00c6 04       		.byte	0x4
+ 443 00c7 07       		.byte	0x7
+ 444 00c8 45010000 		.4byte	.LASF17
+ 445 00cc 06       		.uleb128 0x6
+ 446 00cd 05       		.byte	0x5
+ 447 00ce 03       		.byte	0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 14
+
+
+ 448 00cf 78       		.byte	0x78
+ 449 00d0 1B010000 		.4byte	0x11b
+ 450 00d4 07       		.uleb128 0x7
+ 451 00d5 EC000000 		.4byte	.LASF18
+ 452 00d9 03       		.byte	0x3
+ 453 00da 7A       		.byte	0x7a
+ 454 00db 6F000000 		.4byte	0x6f
+ 455 00df 02       		.byte	0x2
+ 456 00e0 23       		.byte	0x23
+ 457 00e1 00       		.uleb128 0
+ 458 00e2 07       		.uleb128 0x7
+ 459 00e3 6B010000 		.4byte	.LASF19
+ 460 00e7 03       		.byte	0x3
+ 461 00e8 7D       		.byte	0x7d
+ 462 00e9 6F000000 		.4byte	0x6f
+ 463 00ed 02       		.byte	0x2
+ 464 00ee 23       		.byte	0x23
+ 465 00ef 01       		.uleb128 0x1
+ 466 00f0 08       		.uleb128 0x8
+ 467 00f1 63666700 		.ascii	"cfg\000"
+ 468 00f5 03       		.byte	0x3
+ 469 00f6 7E       		.byte	0x7e
+ 470 00f7 6F000000 		.4byte	0x6f
+ 471 00fb 02       		.byte	0x2
+ 472 00fc 23       		.byte	0x23
+ 473 00fd 02       		.uleb128 0x2
+ 474 00fe 07       		.uleb128 0x7
+ 475 00ff 28010000 		.4byte	.LASF20
+ 476 0103 03       		.byte	0x3
+ 477 0104 87       		.byte	0x87
+ 478 0105 6F000000 		.4byte	0x6f
+ 479 0109 02       		.byte	0x2
+ 480 010a 23       		.byte	0x23
+ 481 010b 03       		.uleb128 0x3
+ 482 010c 07       		.uleb128 0x7
+ 483 010d 30010000 		.4byte	.LASF21
+ 484 0111 03       		.byte	0x3
+ 485 0112 88       		.byte	0x88
+ 486 0113 6F000000 		.4byte	0x6f
+ 487 0117 02       		.byte	0x2
+ 488 0118 23       		.byte	0x23
+ 489 0119 04       		.uleb128 0x4
+ 490 011a 00       		.byte	0
+ 491 011b 04       		.uleb128 0x4
+ 492 011c 6A000000 		.4byte	.LASF22
+ 493 0120 03       		.byte	0x3
+ 494 0121 A2       		.byte	0xa2
+ 495 0122 CC000000 		.4byte	0xcc
+ 496 0126 09       		.uleb128 0x9
+ 497 0127 01       		.byte	0x1
+ 498 0128 61010000 		.4byte	.LASF23
+ 499 012c 01       		.byte	0x1
+ 500 012d 33       		.byte	0x33
+ 501 012e 01       		.byte	0x1
+ 502 012f 00000000 		.4byte	.LFB0
+ 503 0133 82000000 		.4byte	.LFE0
+ 504 0137 00000000 		.4byte	.LLST0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 15
+
+
+ 505 013b 01       		.byte	0x1
+ 506 013c 0A       		.uleb128 0xa
+ 507 013d 01       		.byte	0x1
+ 508 013e F8000000 		.4byte	.LASF25
+ 509 0142 01       		.byte	0x1
+ 510 0143 89       		.byte	0x89
+ 511 0144 01       		.byte	0x1
+ 512 0145 00000000 		.4byte	.LFB1
+ 513 0149 56000000 		.4byte	.LFE1
+ 514 014d 2C000000 		.4byte	.LLST1
+ 515 0151 01       		.byte	0x1
+ 516 0152 65010000 		.4byte	0x165
+ 517 0156 0B       		.uleb128 0xb
+ 518 0157 7D000000 		.4byte	.LASF27
+ 519 015b 01       		.byte	0x1
+ 520 015c 8C       		.byte	0x8c
+ 521 015d 6F000000 		.4byte	0x6f
+ 522 0161 02       		.byte	0x2
+ 523 0162 91       		.byte	0x91
+ 524 0163 77       		.sleb128 -9
+ 525 0164 00       		.byte	0
+ 526 0165 09       		.uleb128 0x9
+ 527 0166 01       		.byte	0x1
+ 528 0167 70010000 		.4byte	.LASF24
+ 529 016b 01       		.byte	0x1
+ 530 016c C7       		.byte	0xc7
+ 531 016d 01       		.byte	0x1
+ 532 016e 00000000 		.4byte	.LFB2
+ 533 0172 38000000 		.4byte	.LFE2
+ 534 0176 64000000 		.4byte	.LLST2
+ 535 017a 01       		.byte	0x1
+ 536 017b 0A       		.uleb128 0xa
+ 537 017c 01       		.byte	0x1
+ 538 017d EF010000 		.4byte	.LASF26
+ 539 0181 01       		.byte	0x1
+ 540 0182 E4       		.byte	0xe4
+ 541 0183 01       		.byte	0x1
+ 542 0184 00000000 		.4byte	.LFB3
+ 543 0188 3A010000 		.4byte	.LFE3
+ 544 018c 90000000 		.4byte	.LLST3
+ 545 0190 01       		.byte	0x1
+ 546 0191 A4010000 		.4byte	0x1a4
+ 547 0195 0B       		.uleb128 0xb
+ 548 0196 7D000000 		.4byte	.LASF27
+ 549 019a 01       		.byte	0x1
+ 550 019b E8       		.byte	0xe8
+ 551 019c 6F000000 		.4byte	0x6f
+ 552 01a0 02       		.byte	0x2
+ 553 01a1 91       		.byte	0x91
+ 554 01a2 77       		.sleb128 -9
+ 555 01a3 00       		.byte	0
+ 556 01a4 0C       		.uleb128 0xc
+ 557 01a5 38010000 		.4byte	.LASF28
+ 558 01a9 01       		.byte	0x1
+ 559 01aa 1A       		.byte	0x1a
+ 560 01ab 6F000000 		.4byte	0x6f
+ 561 01af 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 16
+
+
+ 562 01b0 05       		.byte	0x5
+ 563 01b1 03       		.byte	0x3
+ 564 01b2 00000000 		.4byte	psoc_initVar
+ 565 01b6 0D       		.uleb128 0xd
+ 566 01b7 D7010000 		.4byte	.LASF29
+ 567 01bb 04       		.byte	0x4
+ 568 01bc 21       		.byte	0x21
+ 569 01bd 1B010000 		.4byte	0x11b
+ 570 01c1 01       		.byte	0x1
+ 571 01c2 01       		.byte	0x1
+ 572 01c3 0C       		.uleb128 0xc
+ 573 01c4 DA000000 		.4byte	.LASF30
+ 574 01c8 01       		.byte	0x1
+ 575 01c9 1C       		.byte	0x1c
+ 576 01ca B0000000 		.4byte	0xb0
+ 577 01ce 01       		.byte	0x1
+ 578 01cf 05       		.byte	0x5
+ 579 01d0 03       		.byte	0x3
+ 580 01d1 00000000 		.4byte	psoc_state
+ 581 01d5 00       		.byte	0
+ 582              		.section	.debug_abbrev,"",%progbits
+ 583              	.Ldebug_abbrev0:
+ 584 0000 01       		.uleb128 0x1
+ 585 0001 11       		.uleb128 0x11
+ 586 0002 01       		.byte	0x1
+ 587 0003 25       		.uleb128 0x25
+ 588 0004 0E       		.uleb128 0xe
+ 589 0005 13       		.uleb128 0x13
+ 590 0006 0B       		.uleb128 0xb
+ 591 0007 03       		.uleb128 0x3
+ 592 0008 0E       		.uleb128 0xe
+ 593 0009 1B       		.uleb128 0x1b
+ 594 000a 0E       		.uleb128 0xe
+ 595 000b 55       		.uleb128 0x55
+ 596 000c 06       		.uleb128 0x6
+ 597 000d 11       		.uleb128 0x11
+ 598 000e 01       		.uleb128 0x1
+ 599 000f 52       		.uleb128 0x52
+ 600 0010 01       		.uleb128 0x1
+ 601 0011 10       		.uleb128 0x10
+ 602 0012 06       		.uleb128 0x6
+ 603 0013 00       		.byte	0
+ 604 0014 00       		.byte	0
+ 605 0015 02       		.uleb128 0x2
+ 606 0016 24       		.uleb128 0x24
+ 607 0017 00       		.byte	0
+ 608 0018 0B       		.uleb128 0xb
+ 609 0019 0B       		.uleb128 0xb
+ 610 001a 3E       		.uleb128 0x3e
+ 611 001b 0B       		.uleb128 0xb
+ 612 001c 03       		.uleb128 0x3
+ 613 001d 0E       		.uleb128 0xe
+ 614 001e 00       		.byte	0
+ 615 001f 00       		.byte	0
+ 616 0020 03       		.uleb128 0x3
+ 617 0021 24       		.uleb128 0x24
+ 618 0022 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 17
+
+
+ 619 0023 0B       		.uleb128 0xb
+ 620 0024 0B       		.uleb128 0xb
+ 621 0025 3E       		.uleb128 0x3e
+ 622 0026 0B       		.uleb128 0xb
+ 623 0027 03       		.uleb128 0x3
+ 624 0028 08       		.uleb128 0x8
+ 625 0029 00       		.byte	0
+ 626 002a 00       		.byte	0
+ 627 002b 04       		.uleb128 0x4
+ 628 002c 16       		.uleb128 0x16
+ 629 002d 00       		.byte	0
+ 630 002e 03       		.uleb128 0x3
+ 631 002f 0E       		.uleb128 0xe
+ 632 0030 3A       		.uleb128 0x3a
+ 633 0031 0B       		.uleb128 0xb
+ 634 0032 3B       		.uleb128 0x3b
+ 635 0033 0B       		.uleb128 0xb
+ 636 0034 49       		.uleb128 0x49
+ 637 0035 13       		.uleb128 0x13
+ 638 0036 00       		.byte	0
+ 639 0037 00       		.byte	0
+ 640 0038 05       		.uleb128 0x5
+ 641 0039 35       		.uleb128 0x35
+ 642 003a 00       		.byte	0
+ 643 003b 49       		.uleb128 0x49
+ 644 003c 13       		.uleb128 0x13
+ 645 003d 00       		.byte	0
+ 646 003e 00       		.byte	0
+ 647 003f 06       		.uleb128 0x6
+ 648 0040 13       		.uleb128 0x13
+ 649 0041 01       		.byte	0x1
+ 650 0042 0B       		.uleb128 0xb
+ 651 0043 0B       		.uleb128 0xb
+ 652 0044 3A       		.uleb128 0x3a
+ 653 0045 0B       		.uleb128 0xb
+ 654 0046 3B       		.uleb128 0x3b
+ 655 0047 0B       		.uleb128 0xb
+ 656 0048 01       		.uleb128 0x1
+ 657 0049 13       		.uleb128 0x13
+ 658 004a 00       		.byte	0
+ 659 004b 00       		.byte	0
+ 660 004c 07       		.uleb128 0x7
+ 661 004d 0D       		.uleb128 0xd
+ 662 004e 00       		.byte	0
+ 663 004f 03       		.uleb128 0x3
+ 664 0050 0E       		.uleb128 0xe
+ 665 0051 3A       		.uleb128 0x3a
+ 666 0052 0B       		.uleb128 0xb
+ 667 0053 3B       		.uleb128 0x3b
+ 668 0054 0B       		.uleb128 0xb
+ 669 0055 49       		.uleb128 0x49
+ 670 0056 13       		.uleb128 0x13
+ 671 0057 38       		.uleb128 0x38
+ 672 0058 0A       		.uleb128 0xa
+ 673 0059 00       		.byte	0
+ 674 005a 00       		.byte	0
+ 675 005b 08       		.uleb128 0x8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 18
+
+
+ 676 005c 0D       		.uleb128 0xd
+ 677 005d 00       		.byte	0
+ 678 005e 03       		.uleb128 0x3
+ 679 005f 08       		.uleb128 0x8
+ 680 0060 3A       		.uleb128 0x3a
+ 681 0061 0B       		.uleb128 0xb
+ 682 0062 3B       		.uleb128 0x3b
+ 683 0063 0B       		.uleb128 0xb
+ 684 0064 49       		.uleb128 0x49
+ 685 0065 13       		.uleb128 0x13
+ 686 0066 38       		.uleb128 0x38
+ 687 0067 0A       		.uleb128 0xa
+ 688 0068 00       		.byte	0
+ 689 0069 00       		.byte	0
+ 690 006a 09       		.uleb128 0x9
+ 691 006b 2E       		.uleb128 0x2e
+ 692 006c 00       		.byte	0
+ 693 006d 3F       		.uleb128 0x3f
+ 694 006e 0C       		.uleb128 0xc
+ 695 006f 03       		.uleb128 0x3
+ 696 0070 0E       		.uleb128 0xe
+ 697 0071 3A       		.uleb128 0x3a
+ 698 0072 0B       		.uleb128 0xb
+ 699 0073 3B       		.uleb128 0x3b
+ 700 0074 0B       		.uleb128 0xb
+ 701 0075 27       		.uleb128 0x27
+ 702 0076 0C       		.uleb128 0xc
+ 703 0077 11       		.uleb128 0x11
+ 704 0078 01       		.uleb128 0x1
+ 705 0079 12       		.uleb128 0x12
+ 706 007a 01       		.uleb128 0x1
+ 707 007b 40       		.uleb128 0x40
+ 708 007c 06       		.uleb128 0x6
+ 709 007d 9642     		.uleb128 0x2116
+ 710 007f 0C       		.uleb128 0xc
+ 711 0080 00       		.byte	0
+ 712 0081 00       		.byte	0
+ 713 0082 0A       		.uleb128 0xa
+ 714 0083 2E       		.uleb128 0x2e
+ 715 0084 01       		.byte	0x1
+ 716 0085 3F       		.uleb128 0x3f
+ 717 0086 0C       		.uleb128 0xc
+ 718 0087 03       		.uleb128 0x3
+ 719 0088 0E       		.uleb128 0xe
+ 720 0089 3A       		.uleb128 0x3a
+ 721 008a 0B       		.uleb128 0xb
+ 722 008b 3B       		.uleb128 0x3b
+ 723 008c 0B       		.uleb128 0xb
+ 724 008d 27       		.uleb128 0x27
+ 725 008e 0C       		.uleb128 0xc
+ 726 008f 11       		.uleb128 0x11
+ 727 0090 01       		.uleb128 0x1
+ 728 0091 12       		.uleb128 0x12
+ 729 0092 01       		.uleb128 0x1
+ 730 0093 40       		.uleb128 0x40
+ 731 0094 06       		.uleb128 0x6
+ 732 0095 9642     		.uleb128 0x2116
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 19
+
+
+ 733 0097 0C       		.uleb128 0xc
+ 734 0098 01       		.uleb128 0x1
+ 735 0099 13       		.uleb128 0x13
+ 736 009a 00       		.byte	0
+ 737 009b 00       		.byte	0
+ 738 009c 0B       		.uleb128 0xb
+ 739 009d 34       		.uleb128 0x34
+ 740 009e 00       		.byte	0
+ 741 009f 03       		.uleb128 0x3
+ 742 00a0 0E       		.uleb128 0xe
+ 743 00a1 3A       		.uleb128 0x3a
+ 744 00a2 0B       		.uleb128 0xb
+ 745 00a3 3B       		.uleb128 0x3b
+ 746 00a4 0B       		.uleb128 0xb
+ 747 00a5 49       		.uleb128 0x49
+ 748 00a6 13       		.uleb128 0x13
+ 749 00a7 02       		.uleb128 0x2
+ 750 00a8 0A       		.uleb128 0xa
+ 751 00a9 00       		.byte	0
+ 752 00aa 00       		.byte	0
+ 753 00ab 0C       		.uleb128 0xc
+ 754 00ac 34       		.uleb128 0x34
+ 755 00ad 00       		.byte	0
+ 756 00ae 03       		.uleb128 0x3
+ 757 00af 0E       		.uleb128 0xe
+ 758 00b0 3A       		.uleb128 0x3a
+ 759 00b1 0B       		.uleb128 0xb
+ 760 00b2 3B       		.uleb128 0x3b
+ 761 00b3 0B       		.uleb128 0xb
+ 762 00b4 49       		.uleb128 0x49
+ 763 00b5 13       		.uleb128 0x13
+ 764 00b6 3F       		.uleb128 0x3f
+ 765 00b7 0C       		.uleb128 0xc
+ 766 00b8 02       		.uleb128 0x2
+ 767 00b9 0A       		.uleb128 0xa
+ 768 00ba 00       		.byte	0
+ 769 00bb 00       		.byte	0
+ 770 00bc 0D       		.uleb128 0xd
+ 771 00bd 34       		.uleb128 0x34
+ 772 00be 00       		.byte	0
+ 773 00bf 03       		.uleb128 0x3
+ 774 00c0 0E       		.uleb128 0xe
+ 775 00c1 3A       		.uleb128 0x3a
+ 776 00c2 0B       		.uleb128 0xb
+ 777 00c3 3B       		.uleb128 0x3b
+ 778 00c4 0B       		.uleb128 0xb
+ 779 00c5 49       		.uleb128 0x49
+ 780 00c6 13       		.uleb128 0x13
+ 781 00c7 3F       		.uleb128 0x3f
+ 782 00c8 0C       		.uleb128 0xc
+ 783 00c9 3C       		.uleb128 0x3c
+ 784 00ca 0C       		.uleb128 0xc
+ 785 00cb 00       		.byte	0
+ 786 00cc 00       		.byte	0
+ 787 00cd 00       		.byte	0
+ 788              		.section	.debug_loc,"",%progbits
+ 789              	.Ldebug_loc0:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 20
+
+
+ 790              	.LLST0:
+ 791 0000 00000000 		.4byte	.LFB0
+ 792 0004 02000000 		.4byte	.LCFI0
+ 793 0008 0200     		.2byte	0x2
+ 794 000a 7D       		.byte	0x7d
+ 795 000b 00       		.sleb128 0
+ 796 000c 02000000 		.4byte	.LCFI0
+ 797 0010 04000000 		.4byte	.LCFI1
+ 798 0014 0200     		.2byte	0x2
+ 799 0016 7D       		.byte	0x7d
+ 800 0017 08       		.sleb128 8
+ 801 0018 04000000 		.4byte	.LCFI1
+ 802 001c 82000000 		.4byte	.LFE0
+ 803 0020 0200     		.2byte	0x2
+ 804 0022 77       		.byte	0x77
+ 805 0023 08       		.sleb128 8
+ 806 0024 00000000 		.4byte	0
+ 807 0028 00000000 		.4byte	0
+ 808              	.LLST1:
+ 809 002c 00000000 		.4byte	.LFB1
+ 810 0030 02000000 		.4byte	.LCFI2
+ 811 0034 0200     		.2byte	0x2
+ 812 0036 7D       		.byte	0x7d
+ 813 0037 00       		.sleb128 0
+ 814 0038 02000000 		.4byte	.LCFI2
+ 815 003c 04000000 		.4byte	.LCFI3
+ 816 0040 0200     		.2byte	0x2
+ 817 0042 7D       		.byte	0x7d
+ 818 0043 08       		.sleb128 8
+ 819 0044 04000000 		.4byte	.LCFI3
+ 820 0048 06000000 		.4byte	.LCFI4
+ 821 004c 0200     		.2byte	0x2
+ 822 004e 7D       		.byte	0x7d
+ 823 004f 10       		.sleb128 16
+ 824 0050 06000000 		.4byte	.LCFI4
+ 825 0054 56000000 		.4byte	.LFE1
+ 826 0058 0200     		.2byte	0x2
+ 827 005a 77       		.byte	0x77
+ 828 005b 10       		.sleb128 16
+ 829 005c 00000000 		.4byte	0
+ 830 0060 00000000 		.4byte	0
+ 831              	.LLST2:
+ 832 0064 00000000 		.4byte	.LFB2
+ 833 0068 02000000 		.4byte	.LCFI5
+ 834 006c 0200     		.2byte	0x2
+ 835 006e 7D       		.byte	0x7d
+ 836 006f 00       		.sleb128 0
+ 837 0070 02000000 		.4byte	.LCFI5
+ 838 0074 04000000 		.4byte	.LCFI6
+ 839 0078 0200     		.2byte	0x2
+ 840 007a 7D       		.byte	0x7d
+ 841 007b 08       		.sleb128 8
+ 842 007c 04000000 		.4byte	.LCFI6
+ 843 0080 38000000 		.4byte	.LFE2
+ 844 0084 0200     		.2byte	0x2
+ 845 0086 77       		.byte	0x77
+ 846 0087 08       		.sleb128 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 21
+
+
+ 847 0088 00000000 		.4byte	0
+ 848 008c 00000000 		.4byte	0
+ 849              	.LLST3:
+ 850 0090 00000000 		.4byte	.LFB3
+ 851 0094 02000000 		.4byte	.LCFI7
+ 852 0098 0200     		.2byte	0x2
+ 853 009a 7D       		.byte	0x7d
+ 854 009b 00       		.sleb128 0
+ 855 009c 02000000 		.4byte	.LCFI7
+ 856 00a0 04000000 		.4byte	.LCFI8
+ 857 00a4 0200     		.2byte	0x2
+ 858 00a6 7D       		.byte	0x7d
+ 859 00a7 08       		.sleb128 8
+ 860 00a8 04000000 		.4byte	.LCFI8
+ 861 00ac 06000000 		.4byte	.LCFI9
+ 862 00b0 0200     		.2byte	0x2
+ 863 00b2 7D       		.byte	0x7d
+ 864 00b3 10       		.sleb128 16
+ 865 00b4 06000000 		.4byte	.LCFI9
+ 866 00b8 3A010000 		.4byte	.LFE3
+ 867 00bc 0200     		.2byte	0x2
+ 868 00be 77       		.byte	0x77
+ 869 00bf 10       		.sleb128 16
+ 870 00c0 00000000 		.4byte	0
+ 871 00c4 00000000 		.4byte	0
+ 872              		.section	.debug_aranges,"",%progbits
+ 873 0000 34000000 		.4byte	0x34
+ 874 0004 0200     		.2byte	0x2
+ 875 0006 00000000 		.4byte	.Ldebug_info0
+ 876 000a 04       		.byte	0x4
+ 877 000b 00       		.byte	0
+ 878 000c 0000     		.2byte	0
+ 879 000e 0000     		.2byte	0
+ 880 0010 00000000 		.4byte	.LFB0
+ 881 0014 82000000 		.4byte	.LFE0-.LFB0
+ 882 0018 00000000 		.4byte	.LFB1
+ 883 001c 56000000 		.4byte	.LFE1-.LFB1
+ 884 0020 00000000 		.4byte	.LFB2
+ 885 0024 38000000 		.4byte	.LFE2-.LFB2
+ 886 0028 00000000 		.4byte	.LFB3
+ 887 002c 3A010000 		.4byte	.LFE3-.LFB3
+ 888 0030 00000000 		.4byte	0
+ 889 0034 00000000 		.4byte	0
+ 890              		.section	.debug_ranges,"",%progbits
+ 891              	.Ldebug_ranges0:
+ 892 0000 00000000 		.4byte	.LFB0
+ 893 0004 82000000 		.4byte	.LFE0
+ 894 0008 00000000 		.4byte	.LFB1
+ 895 000c 56000000 		.4byte	.LFE1
+ 896 0010 00000000 		.4byte	.LFB2
+ 897 0014 38000000 		.4byte	.LFE2
+ 898 0018 00000000 		.4byte	.LFB3
+ 899 001c 3A010000 		.4byte	.LFE3
+ 900 0020 00000000 		.4byte	0
+ 901 0024 00000000 		.4byte	0
+ 902              		.section	.debug_line,"",%progbits
+ 903              	.Ldebug_line0:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 22
+
+
+ 904 0000 D2000000 		.section	.debug_str,"MS",%progbits,1
+ 904      02005B00 
+ 904      00000201 
+ 904      FB0E0D00 
+ 904      01010101 
+ 905              	.LASF16:
+ 906 0000 72656733 		.ascii	"reg32\000"
+ 906      3200
+ 907              	.LASF3:
+ 908 0006 73686F72 		.ascii	"short unsigned int\000"
+ 908      7420756E 
+ 908      7369676E 
+ 908      65642069 
+ 908      6E7400
+ 909              	.LASF32:
+ 910 0019 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\psoc.c\000"
+ 910      6E657261 
+ 910      7465645F 
+ 910      536F7572 
+ 910      63655C50 
+ 911              	.LASF12:
+ 912 0039 666C6F61 		.ascii	"float\000"
+ 912      7400
+ 913              	.LASF1:
+ 914 003f 756E7369 		.ascii	"unsigned char\000"
+ 914      676E6564 
+ 914      20636861 
+ 914      7200
+ 915              	.LASF15:
+ 916 004d 72656738 		.ascii	"reg8\000"
+ 916      00
+ 917              	.LASF5:
+ 918 0052 6C6F6E67 		.ascii	"long unsigned int\000"
+ 918      20756E73 
+ 918      69676E65 
+ 918      6420696E 
+ 918      7400
+ 919              	.LASF9:
+ 920 0064 75696E74 		.ascii	"uint8\000"
+ 920      3800
+ 921              	.LASF22:
+ 922 006a 70736F63 		.ascii	"psoc_BACKUP_STRUCT\000"
+ 922      5F424143 
+ 922      4B55505F 
+ 922      53545255 
+ 922      435400
+ 923              	.LASF27:
+ 924 007d 656E6162 		.ascii	"enableInterrupts\000"
+ 924      6C65496E 
+ 924      74657272 
+ 924      75707473 
+ 924      00
+ 925              	.LASF33:
+ 926 008e 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 926      73657273 
+ 926      5C527961 
+ 926      6E5C446F 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 23
+
+
+ 926      63756D65 
+ 927 00bc 52485F53 		.ascii	"RH_Sensor.cydsn\000"
+ 927      656E736F 
+ 927      722E6379 
+ 927      64736E00 
+ 928              	.LASF13:
+ 929 00cc 646F7562 		.ascii	"double\000"
+ 929      6C6500
+ 930              	.LASF10:
+ 931 00d3 75696E74 		.ascii	"uint16\000"
+ 931      313600
+ 932              	.LASF30:
+ 933 00da 70736F63 		.ascii	"psoc_state\000"
+ 933      5F737461 
+ 933      746500
+ 934              	.LASF11:
+ 935 00e5 75696E74 		.ascii	"uint32\000"
+ 935      333200
+ 936              	.LASF18:
+ 937 00ec 656E6162 		.ascii	"enableState\000"
+ 937      6C655374 
+ 937      61746500 
+ 938              	.LASF25:
+ 939 00f8 70736F63 		.ascii	"psoc_Enable\000"
+ 939      5F456E61 
+ 939      626C6500 
+ 940              	.LASF8:
+ 941 0104 756E7369 		.ascii	"unsigned int\000"
+ 941      676E6564 
+ 941      20696E74 
+ 941      00
+ 942              	.LASF7:
+ 943 0111 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 943      206C6F6E 
+ 943      6720756E 
+ 943      7369676E 
+ 943      65642069 
+ 944              	.LASF20:
+ 945 0128 636C6B44 		.ascii	"clkDiv1\000"
+ 945      69763100 
+ 946              	.LASF21:
+ 947 0130 636C6B44 		.ascii	"clkDiv2\000"
+ 947      69763200 
+ 948              	.LASF28:
+ 949 0138 70736F63 		.ascii	"psoc_initVar\000"
+ 949      5F696E69 
+ 949      74566172 
+ 949      00
+ 950              	.LASF17:
+ 951 0145 73697A65 		.ascii	"sizetype\000"
+ 951      74797065 
+ 951      00
+ 952              	.LASF6:
+ 953 014e 6C6F6E67 		.ascii	"long long int\000"
+ 953      206C6F6E 
+ 953      6720696E 
+ 953      7400
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccTt0lAw.s 			page 24
+
+
+ 954              	.LASF14:
+ 955 015c 63686172 		.ascii	"char\000"
+ 955      00
+ 956              	.LASF23:
+ 957 0161 70736F63 		.ascii	"psoc_Init\000"
+ 957      5F496E69 
+ 957      7400
+ 958              	.LASF19:
+ 959 016b 78636667 		.ascii	"xcfg\000"
+ 959      00
+ 960              	.LASF24:
+ 961 0170 70736F63 		.ascii	"psoc_Start\000"
+ 961      5F537461 
+ 961      727400
+ 962              	.LASF2:
+ 963 017b 73686F72 		.ascii	"short int\000"
+ 963      7420696E 
+ 963      7400
+ 964              	.LASF31:
+ 965 0185 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 965      4320342E 
+ 965      372E3320 
+ 965      32303133 
+ 965      30333132 
+ 966 01b8 616E6368 		.ascii	"anch revision 196615]\000"
+ 966      20726576 
+ 966      6973696F 
+ 966      6E203139 
+ 966      36363135 
+ 967              	.LASF4:
+ 968 01ce 6C6F6E67 		.ascii	"long int\000"
+ 968      20696E74 
+ 968      00
+ 969              	.LASF29:
+ 970 01d7 70736F63 		.ascii	"psoc_backup\000"
+ 970      5F626163 
+ 970      6B757000 
+ 971              	.LASF0:
+ 972 01e3 7369676E 		.ascii	"signed char\000"
+ 972      65642063 
+ 972      68617200 
+ 973              	.LASF26:
+ 974 01ef 70736F63 		.ascii	"psoc_Stop\000"
+ 974      5F53746F 
+ 974      7000
+ 975              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

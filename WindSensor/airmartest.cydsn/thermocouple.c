@@ -8,11 +8,9 @@ int16 gettemperature()
 	uint16 compare= 8192;
 	float accuratetemp = 0;
 	master_WriteTxData(5);
-    temperature = master_ReadRxData();
-	CyDelay(100u);
-	master_WriteTxData(5);
-    temperature = master_ReadRxData();
-	master_WriteTxData(5);
+	while(!master_GetRxBufferSize())
+	{
+	}
     temperature = master_ReadRxData();
 	for(i = 0; i < 14; i++)
 	{

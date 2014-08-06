@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspc" version="5" xml_contents_version="2" name="WindSensor" persistent="" platform="NOT_USED">
-<current_project name=".\TransmitReadings_freeSoC.cydsn\TransmitReadings_freeSoC.cyprj" />
+<current_project name=".\airmartest.cydsn\airmartest.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -16,6 +16,8 @@
 <name_val_pair name="TransmitReadings_freeSoC" v=".\TransmitReadings_freeSoC.cydsn\TransmitReadings_freeSoC.cyprj" />
 <name_val_pair name="Alternative Power Scheme" v=".\Alternative Power Scheme.cydsn\Alternative Power Scheme.cyprj" />
 <name_val_pair name="airmartest" v=".\airmartest.cydsn\airmartest.cyprj" />
+<name_val_pair name="voltage reader" v=".\voltage reader.cydsn\voltage reader.cyprj" />
+<name_val_pair name="RH_Sensor" v=".\RH_Sensor.cydsn\RH_Sensor.cyprj" />
 </projects>
 <workspace_id v="40755a7a-bfff-4674-bed5-fe0ac4e6b006" />
 <WriteAppVersionLastSavedWith v="3.0.0.3023" />

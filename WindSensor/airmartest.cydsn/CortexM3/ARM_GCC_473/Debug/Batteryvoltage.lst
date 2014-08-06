@@ -1,0 +1,616 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Batteryvoltage.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_f2d
+  19              		.global	__aeabi_ddiv
+  20              		.global	__aeabi_dmul
+  21              		.global	__aeabi_d2iz
+  22              		.section	.text.getvoltage,"ax",%progbits
+  23              		.align	2
+  24              		.global	getvoltage
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	getvoltage, %function
+  28              	getvoltage:
+  29              	.LFB56:
+  30              		.file 1 ".\\Batteryvoltage.c"
+   1:.\Batteryvoltage.c **** #include<batteryvoltage.h>
+   2:.\Batteryvoltage.c **** 
+   3:.\Batteryvoltage.c **** int16 getvoltage()
+   4:.\Batteryvoltage.c **** {
+  31              		.loc 1 4 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 16
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 84B0     		sub	sp, sp, #16
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 24
+  43 0004 00AF     		add	r7, sp, #0
+  44              	.LCFI2:
+  45              		.cfi_def_cfa_register 7
+   5:.\Batteryvoltage.c **** 	int16 value;
+   6:.\Batteryvoltage.c **** 	int32 offset;
+   7:.\Batteryvoltage.c **** 	int16 result;
+   8:.\Batteryvoltage.c **** 	
+   9:.\Batteryvoltage.c **** 	AMux_Select(1);
+  46              		.loc 1 9 0
+  47 0006 4FF00100 		mov	r0, #1
+  48 000a FFF7FEFF 		bl	AMux_Select
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 2
+
+
+  10:.\Batteryvoltage.c **** 	ADC_StartConvert();
+  49              		.loc 1 10 0
+  50 000e FFF7FEFF 		bl	ADC_StartConvert
+  11:.\Batteryvoltage.c ****     if(ADC_IsEndConversion(ADC_WAIT_FOR_RESULT))
+  51              		.loc 1 11 0
+  52 0012 4FF00000 		mov	r0, #0
+  53 0016 FFF7FEFF 		bl	ADC_IsEndConversion
+  54 001a 0346     		mov	r3, r0
+  55 001c 002B     		cmp	r3, #0
+  56 001e 03D0     		beq	.L2
+  12:.\Batteryvoltage.c **** 	{
+  13:.\Batteryvoltage.c **** 		offset = ADC_GetResult16();
+  57              		.loc 1 13 0
+  58 0020 FFF7FEFF 		bl	ADC_GetResult16
+  59 0024 0346     		mov	r3, r0
+  60 0026 BB60     		str	r3, [r7, #8]
+  61              	.L2:
+  14:.\Batteryvoltage.c **** 	}
+  15:.\Batteryvoltage.c **** 	ADC_StopConvert();
+  62              		.loc 1 15 0
+  63 0028 FFF7FEFF 		bl	ADC_StopConvert
+  16:.\Batteryvoltage.c **** 	
+  17:.\Batteryvoltage.c **** 	AMux_Select(0);
+  64              		.loc 1 17 0
+  65 002c 4FF00000 		mov	r0, #0
+  66 0030 FFF7FEFF 		bl	AMux_Select
+  18:.\Batteryvoltage.c **** 	ADC_SetOffset(offset);
+  67              		.loc 1 18 0
+  68 0034 B868     		ldr	r0, [r7, #8]
+  69 0036 FFF7FEFF 		bl	ADC_SetOffset
+  19:.\Batteryvoltage.c **** 	ADC_StartConvert();
+  70              		.loc 1 19 0
+  71 003a FFF7FEFF 		bl	ADC_StartConvert
+  20:.\Batteryvoltage.c ****     if(ADC_IsEndConversion(ADC_WAIT_FOR_RESULT))
+  72              		.loc 1 20 0
+  73 003e 4FF00000 		mov	r0, #0
+  74 0042 FFF7FEFF 		bl	ADC_IsEndConversion
+  75 0046 0346     		mov	r3, r0
+  76 0048 002B     		cmp	r3, #0
+  77 004a 03D0     		beq	.L3
+  21:.\Batteryvoltage.c **** 	{
+  22:.\Batteryvoltage.c **** 		value = ADC_GetResult16();
+  78              		.loc 1 22 0
+  79 004c FFF7FEFF 		bl	ADC_GetResult16
+  80 0050 0346     		mov	r3, r0
+  81 0052 FB81     		strh	r3, [r7, #14]	@ movhi
+  82              	.L3:
+  23:.\Batteryvoltage.c **** 	}
+  24:.\Batteryvoltage.c **** 	ADC_StopConvert();
+  83              		.loc 1 24 0
+  84 0054 FFF7FEFF 		bl	ADC_StopConvert
+  25:.\Batteryvoltage.c **** 	
+  26:.\Batteryvoltage.c **** 	result = 100 * (ADC_CountsTo_Volts(value) / 0.31973); // 10k and 4.7k resistor
+  85              		.loc 1 26 0
+  86 0058 B7F90E30 		ldrsh	r3, [r7, #14]
+  87 005c 1846     		mov	r0, r3
+  88 005e FFF7FEFF 		bl	ADC_CountsTo_Volts
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 3
+
+
+  89 0062 0346     		mov	r3, r0
+  90 0064 1846     		mov	r0, r3
+  91 0066 FFF7FEFF 		bl	__aeabi_f2d
+  92 006a 0246     		mov	r2, r0
+  93 006c 0B46     		mov	r3, r1
+  94 006e 1046     		mov	r0, r2
+  95 0070 1946     		mov	r1, r3
+  96 0072 11A3     		adr	r3, .L5
+  97 0074 D3E90023 		ldrd	r2, [r3]
+  98 0078 FFF7FEFF 		bl	__aeabi_ddiv
+  99 007c 0246     		mov	r2, r0
+ 100 007e 0B46     		mov	r3, r1
+ 101 0080 1046     		mov	r0, r2
+ 102 0082 1946     		mov	r1, r3
+ 103 0084 4FF00002 		mov	r2, #0
+ 104 0088 4FF00003 		mov	r3, #0
+ 105 008c C4F25903 		movt	r3, 16473
+ 106 0090 FFF7FEFF 		bl	__aeabi_dmul
+ 107 0094 0246     		mov	r2, r0
+ 108 0096 0B46     		mov	r3, r1
+ 109 0098 1046     		mov	r0, r2
+ 110 009a 1946     		mov	r1, r3
+ 111 009c FFF7FEFF 		bl	__aeabi_d2iz
+ 112 00a0 0346     		mov	r3, r0
+ 113 00a2 FB80     		strh	r3, [r7, #6]	@ movhi
+  27:.\Batteryvoltage.c **** 	
+  28:.\Batteryvoltage.c **** 	return result;
+ 114              		.loc 1 28 0
+ 115 00a4 FB88     		ldrh	r3, [r7, #6]
+ 116 00a6 1BB2     		sxth	r3, r3
+  29:.\Batteryvoltage.c **** }
+ 117              		.loc 1 29 0
+ 118 00a8 1846     		mov	r0, r3
+ 119 00aa 07F11007 		add	r7, r7, #16
+ 120 00ae BD46     		mov	sp, r7
+ 121 00b0 80BD     		pop	{r7, pc}
+ 122              	.L6:
+ 123 00b2 00BFAFF3 		.align	3
+ 123      0080
+ 124              	.L5:
+ 125 00b8 833463D1 		.word	-782027645
+ 126 00bc 7476D43F 		.word	1070888564
+ 127              		.cfi_endproc
+ 128              	.LFE56:
+ 129              		.size	getvoltage, .-getvoltage
+ 130              		.text
+ 131              	.Letext0:
+ 132              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 133              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 134              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 135              		.section	.debug_info,"",%progbits
+ 136              	.Ldebug_info0:
+ 137 0000 04010000 		.4byte	0x104
+ 138 0004 0200     		.2byte	0x2
+ 139 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 140 000a 04       		.byte	0x4
+ 141 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 4
+
+
+ 142 000c 34000000 		.4byte	.LASF19
+ 143 0010 01       		.byte	0x1
+ 144 0011 21000000 		.4byte	.LASF20
+ 145 0015 03010000 		.4byte	.LASF21
+ 146 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 147 001d 00000000 		.4byte	0
+ 148 0021 00000000 		.4byte	0
+ 149 0025 00000000 		.4byte	.Ldebug_line0
+ 150 0029 02       		.uleb128 0x2
+ 151 002a 01       		.byte	0x1
+ 152 002b 06       		.byte	0x6
+ 153 002c F7000000 		.4byte	.LASF0
+ 154 0030 02       		.uleb128 0x2
+ 155 0031 01       		.byte	0x1
+ 156 0032 08       		.byte	0x8
+ 157 0033 C0000000 		.4byte	.LASF1
+ 158 0037 02       		.uleb128 0x2
+ 159 0038 02       		.byte	0x2
+ 160 0039 05       		.byte	0x5
+ 161 003a 4E010000 		.4byte	.LASF2
+ 162 003e 02       		.uleb128 0x2
+ 163 003f 02       		.byte	0x2
+ 164 0040 07       		.byte	0x7
+ 165 0041 A6000000 		.4byte	.LASF3
+ 166 0045 03       		.uleb128 0x3
+ 167 0046 58010000 		.4byte	.LASF9
+ 168 004a 02       		.byte	0x2
+ 169 004b 4F       		.byte	0x4f
+ 170 004c 50000000 		.4byte	0x50
+ 171 0050 02       		.uleb128 0x2
+ 172 0051 04       		.byte	0x4
+ 173 0052 05       		.byte	0x5
+ 174 0053 DA000000 		.4byte	.LASF4
+ 175 0057 02       		.uleb128 0x2
+ 176 0058 04       		.byte	0x4
+ 177 0059 07       		.byte	0x7
+ 178 005a 7D000000 		.4byte	.LASF5
+ 179 005e 02       		.uleb128 0x2
+ 180 005f 08       		.byte	0x8
+ 181 0060 05       		.byte	0x5
+ 182 0061 00000000 		.4byte	.LASF6
+ 183 0065 02       		.uleb128 0x2
+ 184 0066 08       		.byte	0x8
+ 185 0067 07       		.byte	0x7
+ 186 0068 8F000000 		.4byte	.LASF7
+ 187 006c 04       		.uleb128 0x4
+ 188 006d 04       		.byte	0x4
+ 189 006e 05       		.byte	0x5
+ 190 006f 696E7400 		.ascii	"int\000"
+ 191 0073 02       		.uleb128 0x2
+ 192 0074 04       		.byte	0x4
+ 193 0075 07       		.byte	0x7
+ 194 0076 14000000 		.4byte	.LASF8
+ 195 007a 03       		.uleb128 0x3
+ 196 007b 48010000 		.4byte	.LASF10
+ 197 007f 03       		.byte	0x3
+ 198 0080 5F       		.byte	0x5f
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 5
+
+
+ 199 0081 37000000 		.4byte	0x37
+ 200 0085 03       		.uleb128 0x3
+ 201 0086 74010000 		.4byte	.LASF11
+ 202 008a 03       		.byte	0x3
+ 203 008b 60       		.byte	0x60
+ 204 008c 50000000 		.4byte	0x50
+ 205 0090 02       		.uleb128 0x2
+ 206 0091 04       		.byte	0x4
+ 207 0092 04       		.byte	0x4
+ 208 0093 42010000 		.4byte	.LASF12
+ 209 0097 02       		.uleb128 0x2
+ 210 0098 08       		.byte	0x8
+ 211 0099 04       		.byte	0x4
+ 212 009a E3000000 		.4byte	.LASF13
+ 213 009e 02       		.uleb128 0x2
+ 214 009f 01       		.byte	0x1
+ 215 00a0 08       		.byte	0x8
+ 216 00a1 CE000000 		.4byte	.LASF14
+ 217 00a5 02       		.uleb128 0x2
+ 218 00a6 04       		.byte	0x4
+ 219 00a7 07       		.byte	0x7
+ 220 00a8 6B010000 		.4byte	.LASF15
+ 221 00ac 05       		.uleb128 0x5
+ 222 00ad 01       		.byte	0x1
+ 223 00ae 60010000 		.4byte	.LASF22
+ 224 00b2 01       		.byte	0x1
+ 225 00b3 03       		.byte	0x3
+ 226 00b4 7A000000 		.4byte	0x7a
+ 227 00b8 00000000 		.4byte	.LFB56
+ 228 00bc C0000000 		.4byte	.LFE56
+ 229 00c0 00000000 		.4byte	.LLST0
+ 230 00c4 01       		.byte	0x1
+ 231 00c5 F4000000 		.4byte	0xf4
+ 232 00c9 06       		.uleb128 0x6
+ 233 00ca 0E000000 		.4byte	.LASF16
+ 234 00ce 01       		.byte	0x1
+ 235 00cf 05       		.byte	0x5
+ 236 00d0 7A000000 		.4byte	0x7a
+ 237 00d4 02       		.byte	0x2
+ 238 00d5 91       		.byte	0x91
+ 239 00d6 76       		.sleb128 -10
+ 240 00d7 06       		.uleb128 0x6
+ 241 00d8 B9000000 		.4byte	.LASF17
+ 242 00dc 01       		.byte	0x1
+ 243 00dd 06       		.byte	0x6
+ 244 00de 85000000 		.4byte	0x85
+ 245 00e2 02       		.byte	0x2
+ 246 00e3 91       		.byte	0x91
+ 247 00e4 70       		.sleb128 -16
+ 248 00e5 06       		.uleb128 0x6
+ 249 00e6 D3000000 		.4byte	.LASF18
+ 250 00ea 01       		.byte	0x1
+ 251 00eb 07       		.byte	0x7
+ 252 00ec 7A000000 		.4byte	0x7a
+ 253 00f0 02       		.byte	0x2
+ 254 00f1 91       		.byte	0x91
+ 255 00f2 6E       		.sleb128 -18
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 6
+
+
+ 256 00f3 00       		.byte	0
+ 257 00f4 07       		.uleb128 0x7
+ 258 00f5 EA000000 		.4byte	.LASF23
+ 259 00f9 04       		.byte	0x4
+ 260 00fa 1606     		.2byte	0x616
+ 261 00fc 02010000 		.4byte	0x102
+ 262 0100 01       		.byte	0x1
+ 263 0101 01       		.byte	0x1
+ 264 0102 08       		.uleb128 0x8
+ 265 0103 45000000 		.4byte	0x45
+ 266 0107 00       		.byte	0
+ 267              		.section	.debug_abbrev,"",%progbits
+ 268              	.Ldebug_abbrev0:
+ 269 0000 01       		.uleb128 0x1
+ 270 0001 11       		.uleb128 0x11
+ 271 0002 01       		.byte	0x1
+ 272 0003 25       		.uleb128 0x25
+ 273 0004 0E       		.uleb128 0xe
+ 274 0005 13       		.uleb128 0x13
+ 275 0006 0B       		.uleb128 0xb
+ 276 0007 03       		.uleb128 0x3
+ 277 0008 0E       		.uleb128 0xe
+ 278 0009 1B       		.uleb128 0x1b
+ 279 000a 0E       		.uleb128 0xe
+ 280 000b 55       		.uleb128 0x55
+ 281 000c 06       		.uleb128 0x6
+ 282 000d 11       		.uleb128 0x11
+ 283 000e 01       		.uleb128 0x1
+ 284 000f 52       		.uleb128 0x52
+ 285 0010 01       		.uleb128 0x1
+ 286 0011 10       		.uleb128 0x10
+ 287 0012 06       		.uleb128 0x6
+ 288 0013 00       		.byte	0
+ 289 0014 00       		.byte	0
+ 290 0015 02       		.uleb128 0x2
+ 291 0016 24       		.uleb128 0x24
+ 292 0017 00       		.byte	0
+ 293 0018 0B       		.uleb128 0xb
+ 294 0019 0B       		.uleb128 0xb
+ 295 001a 3E       		.uleb128 0x3e
+ 296 001b 0B       		.uleb128 0xb
+ 297 001c 03       		.uleb128 0x3
+ 298 001d 0E       		.uleb128 0xe
+ 299 001e 00       		.byte	0
+ 300 001f 00       		.byte	0
+ 301 0020 03       		.uleb128 0x3
+ 302 0021 16       		.uleb128 0x16
+ 303 0022 00       		.byte	0
+ 304 0023 03       		.uleb128 0x3
+ 305 0024 0E       		.uleb128 0xe
+ 306 0025 3A       		.uleb128 0x3a
+ 307 0026 0B       		.uleb128 0xb
+ 308 0027 3B       		.uleb128 0x3b
+ 309 0028 0B       		.uleb128 0xb
+ 310 0029 49       		.uleb128 0x49
+ 311 002a 13       		.uleb128 0x13
+ 312 002b 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 7
+
+
+ 313 002c 00       		.byte	0
+ 314 002d 04       		.uleb128 0x4
+ 315 002e 24       		.uleb128 0x24
+ 316 002f 00       		.byte	0
+ 317 0030 0B       		.uleb128 0xb
+ 318 0031 0B       		.uleb128 0xb
+ 319 0032 3E       		.uleb128 0x3e
+ 320 0033 0B       		.uleb128 0xb
+ 321 0034 03       		.uleb128 0x3
+ 322 0035 08       		.uleb128 0x8
+ 323 0036 00       		.byte	0
+ 324 0037 00       		.byte	0
+ 325 0038 05       		.uleb128 0x5
+ 326 0039 2E       		.uleb128 0x2e
+ 327 003a 01       		.byte	0x1
+ 328 003b 3F       		.uleb128 0x3f
+ 329 003c 0C       		.uleb128 0xc
+ 330 003d 03       		.uleb128 0x3
+ 331 003e 0E       		.uleb128 0xe
+ 332 003f 3A       		.uleb128 0x3a
+ 333 0040 0B       		.uleb128 0xb
+ 334 0041 3B       		.uleb128 0x3b
+ 335 0042 0B       		.uleb128 0xb
+ 336 0043 49       		.uleb128 0x49
+ 337 0044 13       		.uleb128 0x13
+ 338 0045 11       		.uleb128 0x11
+ 339 0046 01       		.uleb128 0x1
+ 340 0047 12       		.uleb128 0x12
+ 341 0048 01       		.uleb128 0x1
+ 342 0049 40       		.uleb128 0x40
+ 343 004a 06       		.uleb128 0x6
+ 344 004b 9642     		.uleb128 0x2116
+ 345 004d 0C       		.uleb128 0xc
+ 346 004e 01       		.uleb128 0x1
+ 347 004f 13       		.uleb128 0x13
+ 348 0050 00       		.byte	0
+ 349 0051 00       		.byte	0
+ 350 0052 06       		.uleb128 0x6
+ 351 0053 34       		.uleb128 0x34
+ 352 0054 00       		.byte	0
+ 353 0055 03       		.uleb128 0x3
+ 354 0056 0E       		.uleb128 0xe
+ 355 0057 3A       		.uleb128 0x3a
+ 356 0058 0B       		.uleb128 0xb
+ 357 0059 3B       		.uleb128 0x3b
+ 358 005a 0B       		.uleb128 0xb
+ 359 005b 49       		.uleb128 0x49
+ 360 005c 13       		.uleb128 0x13
+ 361 005d 02       		.uleb128 0x2
+ 362 005e 0A       		.uleb128 0xa
+ 363 005f 00       		.byte	0
+ 364 0060 00       		.byte	0
+ 365 0061 07       		.uleb128 0x7
+ 366 0062 34       		.uleb128 0x34
+ 367 0063 00       		.byte	0
+ 368 0064 03       		.uleb128 0x3
+ 369 0065 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 8
+
+
+ 370 0066 3A       		.uleb128 0x3a
+ 371 0067 0B       		.uleb128 0xb
+ 372 0068 3B       		.uleb128 0x3b
+ 373 0069 05       		.uleb128 0x5
+ 374 006a 49       		.uleb128 0x49
+ 375 006b 13       		.uleb128 0x13
+ 376 006c 3F       		.uleb128 0x3f
+ 377 006d 0C       		.uleb128 0xc
+ 378 006e 3C       		.uleb128 0x3c
+ 379 006f 0C       		.uleb128 0xc
+ 380 0070 00       		.byte	0
+ 381 0071 00       		.byte	0
+ 382 0072 08       		.uleb128 0x8
+ 383 0073 35       		.uleb128 0x35
+ 384 0074 00       		.byte	0
+ 385 0075 49       		.uleb128 0x49
+ 386 0076 13       		.uleb128 0x13
+ 387 0077 00       		.byte	0
+ 388 0078 00       		.byte	0
+ 389 0079 00       		.byte	0
+ 390              		.section	.debug_loc,"",%progbits
+ 391              	.Ldebug_loc0:
+ 392              	.LLST0:
+ 393 0000 00000000 		.4byte	.LFB56
+ 394 0004 02000000 		.4byte	.LCFI0
+ 395 0008 0200     		.2byte	0x2
+ 396 000a 7D       		.byte	0x7d
+ 397 000b 00       		.sleb128 0
+ 398 000c 02000000 		.4byte	.LCFI0
+ 399 0010 04000000 		.4byte	.LCFI1
+ 400 0014 0200     		.2byte	0x2
+ 401 0016 7D       		.byte	0x7d
+ 402 0017 08       		.sleb128 8
+ 403 0018 04000000 		.4byte	.LCFI1
+ 404 001c 06000000 		.4byte	.LCFI2
+ 405 0020 0200     		.2byte	0x2
+ 406 0022 7D       		.byte	0x7d
+ 407 0023 18       		.sleb128 24
+ 408 0024 06000000 		.4byte	.LCFI2
+ 409 0028 C0000000 		.4byte	.LFE56
+ 410 002c 0200     		.2byte	0x2
+ 411 002e 77       		.byte	0x77
+ 412 002f 18       		.sleb128 24
+ 413 0030 00000000 		.4byte	0
+ 414 0034 00000000 		.4byte	0
+ 415              		.section	.debug_aranges,"",%progbits
+ 416 0000 1C000000 		.4byte	0x1c
+ 417 0004 0200     		.2byte	0x2
+ 418 0006 00000000 		.4byte	.Ldebug_info0
+ 419 000a 04       		.byte	0x4
+ 420 000b 00       		.byte	0
+ 421 000c 0000     		.2byte	0
+ 422 000e 0000     		.2byte	0
+ 423 0010 00000000 		.4byte	.LFB56
+ 424 0014 C0000000 		.4byte	.LFE56-.LFB56
+ 425 0018 00000000 		.4byte	0
+ 426 001c 00000000 		.4byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 9
+
+
+ 427              		.section	.debug_ranges,"",%progbits
+ 428              	.Ldebug_ranges0:
+ 429 0000 00000000 		.4byte	.LFB56
+ 430 0004 C0000000 		.4byte	.LFE56
+ 431 0008 00000000 		.4byte	0
+ 432 000c 00000000 		.4byte	0
+ 433              		.section	.debug_line,"",%progbits
+ 434              	.Ldebug_line0:
+ 435 0000 26010000 		.section	.debug_str,"MS",%progbits,1
+ 435      02000301 
+ 435      00000201 
+ 435      FB0E0D00 
+ 435      01010101 
+ 436              	.LASF6:
+ 437 0000 6C6F6E67 		.ascii	"long long int\000"
+ 437      206C6F6E 
+ 437      6720696E 
+ 437      7400
+ 438              	.LASF16:
+ 439 000e 76616C75 		.ascii	"value\000"
+ 439      6500
+ 440              	.LASF8:
+ 441 0014 756E7369 		.ascii	"unsigned int\000"
+ 441      676E6564 
+ 441      20696E74 
+ 441      00
+ 442              	.LASF20:
+ 443 0021 2E5C4261 		.ascii	".\\Batteryvoltage.c\000"
+ 443      74746572 
+ 443      79766F6C 
+ 443      74616765 
+ 443      2E6300
+ 444              	.LASF19:
+ 445 0034 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 445      4320342E 
+ 445      372E3320 
+ 445      32303133 
+ 445      30333132 
+ 446 0067 616E6368 		.ascii	"anch revision 196615]\000"
+ 446      20726576 
+ 446      6973696F 
+ 446      6E203139 
+ 446      36363135 
+ 447              	.LASF5:
+ 448 007d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 448      20756E73 
+ 448      69676E65 
+ 448      6420696E 
+ 448      7400
+ 449              	.LASF7:
+ 450 008f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 450      206C6F6E 
+ 450      6720756E 
+ 450      7369676E 
+ 450      65642069 
+ 451              	.LASF3:
+ 452 00a6 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 10
+
+
+ 452      7420756E 
+ 452      7369676E 
+ 452      65642069 
+ 452      6E7400
+ 453              	.LASF17:
+ 454 00b9 6F666673 		.ascii	"offset\000"
+ 454      657400
+ 455              	.LASF1:
+ 456 00c0 756E7369 		.ascii	"unsigned char\000"
+ 456      676E6564 
+ 456      20636861 
+ 456      7200
+ 457              	.LASF14:
+ 458 00ce 63686172 		.ascii	"char\000"
+ 458      00
+ 459              	.LASF18:
+ 460 00d3 72657375 		.ascii	"result\000"
+ 460      6C7400
+ 461              	.LASF4:
+ 462 00da 6C6F6E67 		.ascii	"long int\000"
+ 462      20696E74 
+ 462      00
+ 463              	.LASF13:
+ 464 00e3 646F7562 		.ascii	"double\000"
+ 464      6C6500
+ 465              	.LASF23:
+ 466 00ea 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 466      52784275 
+ 466      66666572 
+ 466      00
+ 467              	.LASF0:
+ 468 00f7 7369676E 		.ascii	"signed char\000"
+ 468      65642063 
+ 468      68617200 
+ 469              	.LASF21:
+ 470 0103 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 470      73657273 
+ 470      5C527961 
+ 470      6E5C446F 
+ 470      63756D65 
+ 471 0131 6169726D 		.ascii	"airmartest.cydsn\000"
+ 471      61727465 
+ 471      73742E63 
+ 471      7964736E 
+ 471      00
+ 472              	.LASF12:
+ 473 0142 666C6F61 		.ascii	"float\000"
+ 473      7400
+ 474              	.LASF10:
+ 475 0148 696E7431 		.ascii	"int16\000"
+ 475      3600
+ 476              	.LASF2:
+ 477 014e 73686F72 		.ascii	"short int\000"
+ 477      7420696E 
+ 477      7400
+ 478              	.LASF9:
+ 479 0158 696E7433 		.ascii	"int32_t\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cccigPeg.s 			page 11
+
+
+ 479      325F7400 
+ 480              	.LASF22:
+ 481 0160 67657476 		.ascii	"getvoltage\000"
+ 481      6F6C7461 
+ 481      676500
+ 482              	.LASF15:
+ 483 016b 73697A65 		.ascii	"sizetype\000"
+ 483      74797065 
+ 483      00
+ 484              	.LASF11:
+ 485 0174 696E7433 		.ascii	"int32\000"
+ 485      3200
+ 486              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

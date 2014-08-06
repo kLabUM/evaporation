@@ -1,8 +1,18 @@
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/A_in.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.c 
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.c 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.h : 
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.h : 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in_aliases.h : 
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_theACLK.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h : 
 
@@ -10,9 +20,47 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h : 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h : 
-
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_Ext_CP_Clk.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_INT.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_INT.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_INT.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_IRQ.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_IRQ.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_IRQ.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_IRQ.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_IRQ.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_PM.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_PM.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_PM.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_theACLK.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_theACLK.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/ADC_theACLK.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/AMux.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/AMux.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/AMux.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/AMux.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/AMux.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/A_in.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/A_in.c : 
 
@@ -29,14 +77,6 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Airmar.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Airmar_IntClock.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Airmar.c : 
 
@@ -72,11 +112,25 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/B_out.c : 
 
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/Battery_Ground.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_Ground.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/Battery_in.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Battery_in.c : 
+
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/Cm3Start.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Cm3Start.c 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyDmac.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Cm3Start.c : 
 
@@ -106,27 +160,27 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.c : 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/Pin_1.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1.c 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_1.c : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/Pin_2.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2.c 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2_aliases.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/Pin_2.c : 
-
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/SBD_reply.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SBD_reply.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SBD_reply.c 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SBD_reply.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SBD_reply.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/SCL_1.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SCL_1.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/SDA_1.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/SDA_1.c : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/UART_SBD.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/UART_SBD.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/UART_SBD_IntClock.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/UART_SBD.c 
 
@@ -211,6 +265,34 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/master_PM.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/master.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/master_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/master_PM.c 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/master_PM.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc_BOOT.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_BOOT.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_BOOT.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc_INT.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_INT.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_INT.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc_MASTER.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_MASTER.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_MASTER.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc_PM.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PM.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PM.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/psoc_SLAVE.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_PVT.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_SLAVE.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/psoc_SLAVE.c : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/CortexM3/ARM_GCC_473/Debug/selectPin.o : C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/selectPin.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/selectPin_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/airmartest.cydsn/Generated_Source/PSoC5/selectPin.c 
 

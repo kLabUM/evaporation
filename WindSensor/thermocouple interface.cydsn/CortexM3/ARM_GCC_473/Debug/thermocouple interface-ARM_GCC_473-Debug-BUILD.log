@@ -1,4 +1,4 @@
---------------- Build Started: 07/22/2014 17:56:37 Project: thermocouple interface, Configuration: ARM GCC 4.7.3 Debug ---------------
+--------------- Build Started: 07/31/2014 17:49:48 Project: thermocouple interface, Configuration: ARM GCC 4.7.3 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM3\ARM_GCC_473\Debug\main.o
 .\main.c: In function 'main':
@@ -8,6 +8,6 @@ arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_473\Debug\thermocouple interfa
 arm-none-eabi-gcc.exe -mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g "-Wl,-Map,.\CortexM3\ARM_GCC_473\Debug\thermocouple interface.map" -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o ".\CortexM3\ARM_GCC_473\Debug\thermocouple interface.elf" .\CortexM3\ARM_GCC_473\Debug\main.o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o ".\CortexM3\ARM_GCC_473\Debug\thermocouple interface.a" "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_473\Debug\CyComponentLibrary.a" -l m -Wl,--end-group
 cyelftool.exe -C "C:\Users\Ryan\Documents\summer2014\WindSensor\thermocouple interface.cydsn\CortexM3\ARM_GCC_473\Debug\thermocouple interface.elf" --flash_size 262144 --flash_row_size 256
 cyelftool.exe -S "C:\Users\Ryan\Documents\summer2014\WindSensor\thermocouple interface.cydsn\CortexM3\ARM_GCC_473\Debug\thermocouple interface.elf"
-Flash used: 12754 of 262144 bytes (4.9 %).
+Flash used: 12794 of 262144 bytes (4.9 %).
 SRAM used: 20901 of 65536 bytes (31.9 %).
---------------- Build Succeeded: 07/22/2014 17:56:41 ---------------
+--------------- Build Succeeded: 07/31/2014 17:49:54 ---------------

@@ -30,14 +30,14 @@ int16 gettemperature()
 		
 	for(i = 1; i < 14; i++)
 	{
-		accuratetemp = accuratetemp + temp[i] * pow(2,(11-i));
+		accuratetemp = accuratetemp + (float)temp[i] * (float)pow(2,(11-i));
 	}
 	if(temp[0] == 1)
 	{
-		accuratetemp = accuratetemp * -1;
+		accuratetemp = accuratetemp * (float)-1;
 	}
 		
-	temperature = (accuratetemp * 100);
+	temperature = (accuratetemp * (float)100);
 	return temperature;
 	
 }

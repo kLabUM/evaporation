@@ -15,13 +15,14 @@
 #include <stdlib.h>
 #include <thermocouple.h>
 #include <wind.h>
+#include <RH.h>
+#include <batteryvoltage.h>
 
 CY_ISR_PROTO(airmar_int);
 void clearPacketwind();
 char windData[128];
 char gpsData[128];
 char text[256];
-struct speedheading dataforavg[64];
 struct windvector vectorforavg[64];
 int samplesize = 0;
 int windDataPointer = 0;
@@ -36,20 +37,33 @@ char pressure[8];
 char airtemp[8];
 char windDirection[8];
 char windSpeed[8];
+char time[8];
+char validornot[8];
+char northgps[8];
+char westgps[8];
+char date[8];
+struct speedheading resultantavg;
 int16 watertemp;
+uint16 relh;
+int16 battery;
 
 int main()
 {
+	struct speedheading current;
+	
 	memset (pressure, 0, 8);
 	memset (airtemp, 0, 8);
 	memset (windDirection, 0, 8);
 	memset (windSpeed, 0, 8);
 	
 	Comp_Start();
+	psoc_Start();
     Airmar_Start();
 	master_Start();
 	UART_SBD_Start();
 	isr_airmar_StartEx(airmar_int);
+	ADC_Start();
+	AMux_Start();
 
     CyGlobalIntEnable;
 	isr_airmar_Stop();
@@ -74,10 +88,9 @@ int main()
 					{
 						gpsretry++;
 						gpsvalid = 0;
-						isr_airmar_StartEx(airmar_int);
 						
 						
-						if(gpsretry >= 5)
+						if(gpsretry >= 10)
 						{
 							memcpy(gpsData, windData, 128);
 							gpsvalid = 1;
@@ -87,8 +100,12 @@ int main()
 		
 					if(windData[i] == 'A')
 					{
+						gpsretry++;
+						if(gpsretry >= 10)
+						{
 						gpsvalid = 1;
 						memcpy(gpsData, windData, 128);
+						}
 						
 						break;
 					}
@@ -116,13 +133,19 @@ int main()
 			
     			}
 				
-				
+				current.speed = atof(windSpeed);
+				current.heading = atof(windDirection);
+				vectorforavg[samplesize] = definevectors(current);
+				samplesize++;
 				
 				clearPacketwind();
+				isr_airmar_StartEx(airmar_int);
 				
 				
 			}
 		}
+		
+		resultantavg = converttospeedandheading(avgwind(vectorforavg, samplesize));
 		
 		isr_airmar_Stop();
 		Airmar_PutString("$PAMTX\r\n");
@@ -162,7 +185,7 @@ int main()
 		}
 		
 		isr_airmar_Stop();
-		Airmar_PutString("$PAMTX\r\n");
+		/*Airmar_PutString("$PAMTX\r\n");
 		Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
 		Airmar_PutString("$PAMTC,EN,MWD,1,5\r\n");
 		Airmar_PutString("$PAMTX,1\r\n");
@@ -192,11 +215,55 @@ int main()
 			}
 			
     	}
-		clearPacketwind();
+		clearPacketwind();*/
+		
+		pch = strtok (gpsData,",");
+  			for(i=1;i<6;i++)
+  			{
+    			pch = strtok (NULL, ",");
+				
+				switch(i)
+				{
+					case 1:
+					sprintf(time, "%s", pch);
+					break;
+					
+					case 2:
+					sprintf(validornot, "%s", pch);
+					break;
+					
+					case 3:
+					sprintf(northgps, "%s", pch);
+					break;
+					
+					case 5:
+					sprintf(westgps, "%s", pch);
+					break;
+					
+					case 9:
+					sprintf(date, "%s", pch);
+					break;
+					
+					default:
+					break;
+				}
+  			}
+			
+			if(validornot[0] == 'A')
+			{
+				gpsvalid = 1;
+			}
+			
+			else
+			{
+				gpsvalid = 0;
+			}
 		
 		watertemp = gettemperature();
+		relh = getRH();
+		battery = getvoltage();
 		
-		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%d\r\n", gpsData, windDirection, windSpeed, airtemp,pressure, (int)watertemp);
+		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%d,%d,%s,%s,%d,%d\r\n", time, northgps, westgps, date, (int)(resultantavg.heading * 100), (int)(resultantavg.speed * 100), airtemp,pressure, (int)watertemp, (int)relh);
 		UART_SBD_PutString(text);
 		UART_SBD_PutString("AT-WSEPOFF\r\n");
 	}		

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
   29:.\Generated_Source\PSoC5/dataPin.c **** * Summary:
   30:.\Generated_Source\PSoC5/dataPin.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/dataPin.c **** *
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/dataPin.c **** * Parameters:  
@@ -89,7 +89,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
   43 0008 FB71     		strb	r3, [r7, #7]
   41:.\Generated_Source\PSoC5/dataPin.c ****     uint8 staticBits = (dataPin_DR & (uint8)(~dataPin_MASK));
   44              		.loc 1 41 0
-  45 000a 45F24013 		movw	r3, #20800
+  45 000a 45F2C013 		movw	r3, #20928
   46 000e C4F20003 		movt	r3, 16384
   47 0012 1B78     		ldrb	r3, [r3, #0]
   48 0014 DBB2     		uxtb	r3, r3
@@ -97,7 +97,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
   50 001a FB73     		strb	r3, [r7, #15]
   42:.\Generated_Source\PSoC5/dataPin.c ****     dataPin_DR = staticBits | ((uint8)(value << dataPin_SHIFT) & dataPin_MASK);
   51              		.loc 1 42 0
-  52 001c 45F24013 		movw	r3, #20800
+  52 001c 45F2C013 		movw	r3, #20928
   53 0020 C4F20003 		movt	r3, 16384
   54 0024 FA79     		ldrb	r2, [r7, #7]
   55 0026 4FEAC212 		lsl	r2, r2, #7
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
   69 003e 00BF     		.section	.text.dataPin_SetDriveMode,"ax",%progbits
   70              		.align	2
   71              		.global	dataPin_SetDriveMode
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 3
 
 
   72              		.thumb
@@ -172,13 +172,13 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
   93 0008 FB71     		strb	r3, [r7, #7]
   71:.\Generated_Source\PSoC5/dataPin.c **** 	CyPins_SetPinDriveMode(dataPin_0, mode);
   94              		.loc 1 71 0
-  95 000a 45F22703 		movw	r3, #20519
+  95 000a 45F26703 		movw	r3, #20583
   96 000e C4F20003 		movt	r3, 16384
-  97 0012 45F22702 		movw	r2, #20519
+  97 0012 45F26702 		movw	r2, #20583
   98 0016 C4F20002 		movt	r2, 16384
   99 001a 1278     		ldrb	r2, [r2, #0]
  100 001c D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 4
 
 
  101 001e D2B2     		uxtb	r2, r2
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  132 0000 80B4     		push	{r7}
  133              	.LCFI6:
  134              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 5
 
 
  135              		.cfi_offset 7, -4
@@ -247,7 +247,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  138              		.cfi_def_cfa_register 7
   95:.\Generated_Source\PSoC5/dataPin.c ****     return (dataPin_PS & dataPin_MASK) >> dataPin_SHIFT;
  139              		.loc 1 95 0
- 140 0004 45F24113 		movw	r3, #20801
+ 140 0004 45F2C113 		movw	r3, #20929
  141 0008 C4F20003 		movt	r3, 16384
  142 000c 1B78     		ldrb	r3, [r3, #0]
  143 000e DBB2     		uxtb	r3, r3
@@ -298,14 +298,14 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  169              		.cfi_def_cfa_offset 4
  170              		.cfi_offset 7, -4
  171 0002 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 6
 
 
  172              	.LCFI9:
  173              		.cfi_def_cfa_register 7
  115:.\Generated_Source\PSoC5/dataPin.c ****     return (dataPin_DR & dataPin_MASK) >> dataPin_SHIFT;
  174              		.loc 1 115 0
- 175 0004 45F24013 		movw	r3, #20800
+ 175 0004 45F2C013 		movw	r3, #20928
  176 0008 C4F20003 		movt	r3, 16384
  177 000c 1B78     		ldrb	r3, [r3, #0]
  178 000e DBB2     		uxtb	r3, r3
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  224 0046 04       		.byte	0x4
  225 0047 05       		.byte	0x5
  226 0048 7C010000 		.4byte	.LASF4
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 7
 
 
  227 004c 02       		.uleb128 0x2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  281 00b5 D6000000 		.4byte	0xd6
  282 00b9 07       		.uleb128 0x7
  283 00ba 00000000 		.4byte	.LASF16
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 8
 
 
  284 00be 01       		.byte	0x1
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  338 012a 1E000000 		.4byte	.LFE3
  339 012e 9C000000 		.4byte	.LLST3
  340 0132 01       		.byte	0x1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 9
 
 
  341 0133 00       		.byte	0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  395 0033 0B       		.uleb128 0xb
  396 0034 49       		.uleb128 0x49
  397 0035 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 10
 
 
  398 0036 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  452 006d 3A       		.uleb128 0x3a
  453 006e 0B       		.uleb128 0xb
  454 006f 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 11
 
 
  455 0070 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  509 002e 77       		.byte	0x77
  510 002f 18       		.sleb128 24
  511 0030 00000000 		.4byte	0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 12
 
 
  512 0034 00000000 		.4byte	0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  566 00b8 1E000000 		.4byte	.LFE3
  567 00bc 0200     		.2byte	0x2
  568 00be 77       		.byte	0x77
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 13
 
 
  569 00bf 04       		.sleb128 4
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  612      7200
  613              	.LASF13:
  614 0025 72656738 		.ascii	"reg8\000"
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 14
 
 
  614      00
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 1
  634              	.LASF17:
  635 00f7 6D6F6465 		.ascii	"mode\000"
  635      00
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc5illM4.s 			page 15
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccm1yvoP.s 			page 15
 
 
  636              	.LASF6:

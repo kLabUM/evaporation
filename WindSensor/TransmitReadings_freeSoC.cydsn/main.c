@@ -66,6 +66,13 @@ void windprocessPacket(){
 	//char weatherdata[256];
 	char gpsdata[64];
 	char8 text[256];
+	char time[8];
+	char validornot[8];
+	char northgps[8];
+	char westgps[8];
+	char date[8];
+	char *pch;
+	
 	
 	// get magnetometer reading
 	readingx = getmeasurement((uint8) 3,(uint8) 4);
@@ -95,6 +102,49 @@ void windprocessPacket(){
 		gpsdata[i] = SBDData[i];
 		i++;
 	}
+	//start changes
+	pch = strtok (SBDData,",");
+  			for(i=1;i<6;i++)
+  			{
+    			pch = strtok (NULL, ",");
+				
+				switch(i)
+				{
+					case 1:
+					sprintf(time, "%s", pch);
+					break;
+					
+					case 2:
+					sprintf(validornot, "%s", pch);
+					break;
+					
+					case 3:
+					sprintf(northgps, "%s", pch);
+					break;
+					
+					case 5:
+					sprintf(westgps, "%s", pch);
+					break;
+					
+					case 9:
+					sprintf(date, "%s", pch);
+					break;
+					
+					default:
+					break;
+				}
+  			}
+			
+			if(validornot[0] == 'A')
+			{
+				gpsvalid = 1;
+			}
+			
+			else
+			{
+				gpsvalid = 0;
+			}
+			//end changes
 	SBD_reply_Start();
 	
 	gpsdata[i] = '\0';
@@ -115,26 +165,7 @@ void windprocessPacket(){
 	}
 	
 	i = 0;
-	//j =0;
-	/*while(!(windData[j] == '0' && windData[j+1] == 'R' && windData[j+2] == '3'))
-	{
-		weatherdata[i] = windData[j];
-		if(windData[j+1] == '\r' && windData[j+2] == '\n')
-		{
-			windData[j+2] = ',';
-			j = j + 2;
-			i++;
-			count++;
-		}
-		
-		else
-		{
-			i++;
-			j++;
-		}
-	}
-	
-	weatherdata[i+1] = '\0';*/
+
 	
 	// fetchs each parameter needed from the weather sensor and put each parameter in a c string
 	char windDirection[4];
@@ -176,13 +207,23 @@ void windprocessPacket(){
 	
 	airpressure[5] = '\0';
 	
-	sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%d,%d\r\n", gpsdata, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (int)watertemperature);
+	sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%d,%d\r\n", gpsdata, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (uint16)watertemperature);
+	//start changes
+	if(gpsvalid == 1)
+	{
+		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%d\r\n", time, northgps, westgps, date, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (uint16)watertemperature);
+	}
+	
+	else
+	{
+		sprintf(text, "AT-WSMOST=INVALID");
+	}
 	
 	
+	//end changes
 	
-	//sprintf(text, "AT-WSMOST=%s,%s %d, %d\r\n", gpsdata, weatherdata, (int)heading, (int)watertemperature);
+	
 	UART_SBD_PutString(text);
-	//UART_SBD_PutString(text);
 	clearPacketSBD();
 	clearPacketwind();
 	UART_SBD_PutString("AT-WSEPOFF\r\n");

@@ -60,8 +60,13 @@ int main()
 		
 		//temperature = temperature >> 2;
 		temperature = (uint16)(accuratetemp * 100);
+		LCD_ClearDisplay();
+		LCD_Position(0,0);
+		LCD_PrintString("Temp: ");
 		LCD_Position(0,5);
 		LCD_PrintNumber(temperature);
+		
+		CyDelay(300);
 		
 		
     }

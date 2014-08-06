@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
   25:.\Generated_Source\PSoC5/Comp_PM.c **** * Function Name: Comp_SaveConfig
   26:.\Generated_Source\PSoC5/Comp_PM.c **** ********************************************************************************
   27:.\Generated_Source\PSoC5/Comp_PM.c **** *
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 2
 
 
   28:.\Generated_Source\PSoC5/Comp_PM.c **** * Summary:
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
   55:.\Generated_Source\PSoC5/Comp_PM.c **** *  void
   56:.\Generated_Source\PSoC5/Comp_PM.c **** *
   57:.\Generated_Source\PSoC5/Comp_PM.c **** ********************************************************************************/
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 3
 
 
   58:.\Generated_Source\PSoC5/Comp_PM.c **** void Comp_RestoreConfig(void) 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
   86              		.cfi_startproc
   87              		@ args = 0, pretend = 0, frame = 0
   88              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 4
 
 
   89 0000 80B5     		push	{r7, lr}
@@ -196,7 +196,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
   99 0008 C4F20003 		movt	r3, 16384
  100 000c 1B78     		ldrb	r3, [r3, #0]
  101 000e DBB2     		uxtb	r3, r3
- 102 0010 03F00403 		and	r3, r3, #4
+ 102 0010 03F00803 		and	r3, r3, #8
  103 0014 002B     		cmp	r3, #0
  104 0016 07D0     		beq	.L4
   86:.\Generated_Source\PSoC5/Comp_PM.c ****     {
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  128              		.align	2
  129              		.global	Comp_Wakeup
  130              		.thumb
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 5
 
 
  131              		.thumb_func
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  157              	.L6:
  127:.\Generated_Source\PSoC5/Comp_PM.c **** 
  128:.\Generated_Source\PSoC5/Comp_PM.c ****     } /* Do nothing if Comp was disabled before */ 
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 6
 
 
  129:.\Generated_Source\PSoC5/Comp_PM.c **** }
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  211 005b 08       		.byte	0x8
  212 005c 07       		.byte	0x7
  213 005d 94000000 		.4byte	.LASF7
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 7
 
 
  214 0061 03       		.uleb128 0x3
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  268 00c4 A6000000 		.4byte	0xa6
  269 00c8 08       		.uleb128 0x8
  270 00c9 01       		.byte	0x1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 8
 
 
  271 00ca F6000000 		.4byte	.LASF16
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  325 0005 13       		.uleb128 0x13
  326 0006 0B       		.uleb128 0xb
  327 0007 03       		.uleb128 0x3
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 9
 
 
  328 0008 0E       		.uleb128 0xe
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  382 003e 00       		.byte	0
  383 003f 06       		.uleb128 0x6
  384 0040 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 10
 
 
  385 0041 01       		.byte	0x1
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  439 0078 03       		.uleb128 0x3
  440 0079 0E       		.uleb128 0xe
  441 007a 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 11
 
 
  442 007b 0B       		.uleb128 0xb
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  496 0034 0200     		.2byte	0x2
  497 0036 7D       		.byte	0x7d
  498 0037 00       		.sleb128 0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 12
 
 
  499 0038 02000000 		.4byte	.LCFI2
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  553 000c 0000     		.2byte	0
  554 000e 0000     		.2byte	0
  555 0010 00000000 		.4byte	.LFB0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 13
 
 
  556 0014 0A000000 		.4byte	.LFE0-.LFB0
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  590      6973696F 
  590      6E203139 
  590      36363135 
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 14
 
 
  591              	.LASF12:
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 1
  614      68617200 
  615              	.LASF22:
  616 012c 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccSfmIuN.s 			page 15
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccNmbi1U.s 			page 15
 
 
  616      73657273 
