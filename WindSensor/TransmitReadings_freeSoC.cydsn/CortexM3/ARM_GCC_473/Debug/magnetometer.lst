@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
   50 001a 0346     		mov	r3, r0
   51 001c FB73     		strb	r3, [r7, #15]
    6:.\magnetometer.c **** 	if(psoc_MSTR_NO_ERROR == writestatus)
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 2
 
 
   52              		.loc 1 6 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
   96              	.LCFI4:
   97              		.cfi_def_cfa_offset 24
   98 0004 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 3
 
 
   99              	.LCFI5:
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  139 0052 FFF7FEFF 		bl	psoc_MasterSendStop
   31:.\magnetometer.c **** 	
   32:.\magnetometer.c **** 	return value;
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 4
 
 
  140              		.loc 1 32 0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  185 001c 1846     		mov	r0, r3
  186 001e FFF7FEFF 		bl	readregister
  187 0022 0346     		mov	r3, r0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 5
 
 
  188 0024 BB73     		strb	r3, [r7, #14]
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  235              		.cfi_def_cfa_register 7
  236 0006 0246     		mov	r2, r0
  237 0008 0B46     		mov	r3, r1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 6
 
 
  238 000a FA80     		strh	r2, [r7, #6]	@ movhi
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  285              		.loc 1 55 0
  286 0084 B7F90430 		ldrsh	r3, [r7, #4]
  287 0088 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 7
 
 
  288 008a 33DA     		bge	.L12
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
   61:.\magnetometer.c **** 		heading = 180;
  337              		.loc 1 61 0 is_stmt 1
  338 0104 4FF0B403 		mov	r3, #180
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 8
 
 
  339 0108 FB81     		strh	r3, [r7, #14]	@ movhi
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  386 002b 06       		.byte	0x6
  387 002c E1010000 		.4byte	.LASF0
  388 0030 02       		.uleb128 0x2
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 9
 
 
  389 0031 01       		.byte	0x1
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  443 0097 37000000 		.4byte	0x37
  444 009b 02       		.uleb128 0x2
  445 009c 04       		.byte	0x4
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 10
 
 
  446 009d 04       		.byte	0x4
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  500 0103 08       		.uleb128 0x8
  501 0104 01       		.byte	0x1
  502 0105 61000000 		.4byte	.LASF23
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 11
 
 
  503 0109 01       		.byte	0x1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  557 0178 06       		.uleb128 0x6
  558 0179 DF000000 		.4byte	.LASF25
  559 017d 01       		.byte	0x1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 12
 
 
  560 017e 23       		.byte	0x23
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  614 01e2 90000000 		.4byte	0x90
  615 01e6 02       		.byte	0x2
  616 01e7 91       		.byte	0x91
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 13
 
 
  617 01e8 6E       		.sleb128 -18
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  671 0018 0B       		.uleb128 0xb
  672 0019 0B       		.uleb128 0xb
  673 001a 3E       		.uleb128 0x3e
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 14
 
 
  674 001b 0B       		.uleb128 0xb
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  728 0052 06       		.uleb128 0x6
  729 0053 05       		.uleb128 0x5
  730 0054 00       		.byte	0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 15
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 15
 
 
  731 0055 03       		.uleb128 0x3
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  785 008c 09       		.uleb128 0x9
  786 008d 34       		.uleb128 0x34
  787 008e 00       		.byte	0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 16
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 16
 
 
  788 008f 03       		.uleb128 0x3
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  842              	.LLST0:
  843 0000 00000000 		.4byte	.LFB56
  844 0004 02000000 		.4byte	.LCFI0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 17
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 17
 
 
  845 0008 0200     		.2byte	0x2
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  899 0088 04000000 		.4byte	.LCFI7
  900 008c 06000000 		.4byte	.LCFI8
  901 0090 0200     		.2byte	0x2
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 18
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 18
 
 
  902 0092 7D       		.byte	0x7d
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  956 0008 00000000 		.4byte	.LFB57
  957 000c 62000000 		.4byte	.LFE57
  958 0010 00000000 		.4byte	.LFB58
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 19
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 19
 
 
  959 0014 44000000 		.4byte	.LFE58
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  987      69676E65 
  987      6420696E 
  987      7400
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 20
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 20
 
 
  988              	.LASF3:
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 1
  1013      65616469 
  1013      6E6700
  1014              	.LASF9:
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccUFTyuN.s 			page 21
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccDahdry.s 			page 21
 
 
  1015 0141 696E7433 		.ascii	"int32_t\000"

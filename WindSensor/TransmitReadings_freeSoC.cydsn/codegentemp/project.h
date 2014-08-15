@@ -38,8 +38,17 @@
 #include <selectPin.h>
 #include <clockPin_aliases.h>
 #include <clockPin.h>
+#include <ADC.h>
+#include <AMux.h>
+#include <Battery_in_aliases.h>
+#include <Battery_in.h>
+#include <Battery_Ground_aliases.h>
+#include <Battery_Ground.h>
 #include <UART_Wind_IntClock.h>
 #include <UART_SBD_IntClock.h>
+#include <ADC_Ext_CP_Clk.h>
+#include <ADC_IRQ.h>
+#include <ADC_theACLK.h>
 #include <core_cm3_psoc5.h>
 #include <core_cm3.h>
 #include <CyDmac.h>

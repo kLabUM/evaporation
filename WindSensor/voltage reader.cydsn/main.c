@@ -43,7 +43,7 @@ int main()
 			LCD_Position(0,0);
 			LCD_PrintString("Voltage: ");
 			LCD_Position(0,8);
-			LCD_PrintNumber((float32)100 * (ADC_CountsTo_Volts(value) / (float32)0.31973)); //for 10k and 4.7k resistor
+			LCD_PrintNumber((float32)100 * (ADC_CountsTo_Volts(value) / (float32)0.1516796742)); //for 10k and 4.7k resistor
 		}
 		ADC_StopConvert();
     }

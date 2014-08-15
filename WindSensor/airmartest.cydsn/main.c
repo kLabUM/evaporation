@@ -18,6 +18,22 @@
 #include <RH.h>
 #include <batteryvoltage.h>
 
+struct evappacket
+{
+	float32 gpstime;
+	float32 gpsnorth;
+	float32 gpswest; 
+	uint32 gpsdate;
+	uint16 airmarwindDirection; 
+	uint8 airmarwindSpeed;
+	int16 airmarairtemp;
+	uint16 airmarrelhumidity;
+	uint16 airmarairpressure;
+	int16 Thermocouplewatertemperature;
+	uint8 battery;
+	uint16 dummychecksum;
+};
+
 CY_ISR_PROTO(airmar_int);
 void clearPacketwind();
 char windData[128];
@@ -31,30 +47,38 @@ int gpsandwindReceived = 0;
 int gpsvalid = 0;
 int i = 0;
 int gpsretry = 0;
+int8 errorcode = -1;
+int count;
 char * pch;
 char * startofwinddata;
-char pressure[8];
-char airtemp[8];
-char windDirection[8];
-char windSpeed[8];
-char time[8];
-char validornot[8];
-char northgps[8];
-char westgps[8];
-char date[8];
+float32 pressure;
+float32 airtemp;
+float windDirection;
+float windSpeed;
+float32 time;
+char validornot = 0;
+int validgpsfound = 0;
+float32 northgps;
+float32 westgps;
+uint32 date;
 struct speedheading resultantavg;
+float windsum = 0;
+float scalerspeed = 0;
 int16 watertemp;
 uint16 relh;
 int16 battery;
+float32 float32size;
+uint32 uint32size;
+uint16 uint16size;
+int16 int16size;
+uint8 uint8size;
+int matches;
 
 int main()
 {
+	gpsretry = 0;
 	struct speedheading current;
-	
-	memset (pressure, 0, 8);
-	memset (airtemp, 0, 8);
-	memset (windDirection, 0, 8);
-	memset (windSpeed, 0, 8);
+	struct evappacket sendpacket;
 	
 	Comp_Start();
 	psoc_Start();
@@ -70,10 +94,11 @@ int main()
 	
     for(;;)
     {
+		gpsretry = 0;
 		Airmar_PutString("$PAMTX\r\n");
        	Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
-		Airmar_PutString("$PAMTC,EN,RMC,1,50\r\n");
-		Airmar_PutString("$PAMTC,EN,MWD,1,50\r\n");
+		Airmar_PutString("$PAMTC,EN,RMC,1,500\r\n");
+		Airmar_PutString("$PAMTC,EN,MWD,1,500\r\n");
 		Airmar_PutString("$PAMTX,1\r\n");
 		isr_airmar_StartEx(airmar_int);
 		
@@ -82,62 +107,45 @@ int main()
 			if(gpsandwindReceived)
 			{
 				isr_airmar_Stop();
-				for(i=0;i<40;i++)
+				
+				sscanf(windData, "$GPRMC,%*f,%c,", validornot);
+				
+				if(validornot == 'A')
 				{
-					if(windData[i] == 'V')
+					validgpsfound = 1;
+					memcpy(gpsData, windData, 128);
+					gpsretry++;
+					if(gpsretry > 80)
 					{
-						gpsretry++;
-						gpsvalid = 0;
-						
-						
-						if(gpsretry >= 10)
-						{
-							memcpy(gpsData, windData, 128);
-							gpsvalid = 1;
-						}
-						break;
-					}
-		
-					if(windData[i] == 'A')
-					{
-						gpsretry++;
-						if(gpsretry >= 10)
-						{
 						gpsvalid = 1;
-						memcpy(gpsData, windData, 128);
-						}
-						
-						break;
 					}
 				}
 				
+				else
+				{
+					gpsretry++;
+					if(gpsretry > 80 && validgpsfound == 0)
+					{
+						memcpy(gpsData, windData, 128);
+						gpsvalid = 1;
+					}
+					
+					else if(gpsretry > 80 && validgpsfound == 1)
+					{
+						gpsvalid = 1;
+					}
+				}
 				startofwinddata = strchr(windData, '\0');
 			
-				pch = strtok (windData + (startofwinddata - windData + 2),",");
-		
-				for(i=1;i<8;i++)
-				{
-					pch = strtok (NULL, ",");
-			
-					switch(i)
-					{
-						case 3:
-							sprintf(windDirection, "%s", pch);
-							break;
-						case 7:
-							sprintf(windSpeed, "%s", pch);
-							break;
-						default:
-							break;
-					}
-			
-    			}
+				sscanf(windData + (startofwinddata - windData + 2),"$WIMWD,%*f,%*c,%f,%*c,%*f,%*c,%f,", windDirection, windSpeed);
 				
-				current.speed = atof(windSpeed);
-				current.heading = atof(windDirection);
+				current.speed = windSpeed;
+				windsum = windsum + current.speed;
+				current.heading = windDirection;
 				vectorforavg[samplesize] = definevectors(current);
 				samplesize++;
-				
+				//sprintf(text, "%d", gpsretry);
+				//UART_SBD_PutString(text);
 				clearPacketwind();
 				isr_airmar_StartEx(airmar_int);
 				
@@ -145,6 +153,7 @@ int main()
 			}
 		}
 		
+		scalerspeed = windsum / samplesize;
 		resultantavg = converttospeedandheading(avgwind(vectorforavg, samplesize));
 		
 		isr_airmar_Stop();
@@ -152,104 +161,34 @@ int main()
 		Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
 		Airmar_PutString("$PAMTC,EN,MDA,1,5\r\n");
 		Airmar_PutString("$PAMTX,1\r\n");
+		clearPacketwind();
 		isr_airmar_StartEx(airmar_int);
 		
 		while(windpacketReceived == 0)
 		{
 		}
-		
-		if(windpacketReceived)
+		count = 0;
+		while(matches != 2)
 		{
-			isr_airmar_Stop();
-			pch = strtok (windData,",");
-  			for(i=1;i<6;i++)
-  			{
-    			pch = strtok (NULL, ",");
-				
-				switch(i)
-				{
-					case 3:
-					sprintf(pressure, "%s", pch);
-					break;
-					
-					case 5:
-					sprintf(airtemp, "%s", pch);
-					break;
-					
-					default:
-					break;
-				}
-  			}
-		
-			clearPacketwind();
-		}
-		
-		isr_airmar_Stop();
-		/*Airmar_PutString("$PAMTX\r\n");
-		Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
-		Airmar_PutString("$PAMTC,EN,MWD,1,5\r\n");
-		Airmar_PutString("$PAMTX,1\r\n");
-		isr_airmar_StartEx(airmar_int);
-		
-		while(windpacketReceived == 0)
-		{
-		}
-		
-		isr_airmar_Stop();
-		pch = strtok (windData,",");
-		
-		for(i=1;i<8;i++)
-		{
-			pch = strtok (NULL, ",");
-			
-			switch(i)
+			count++;
+			if(windpacketReceived)
 			{
-				case 3:
-					sprintf(windDirection, "%s", pch);
-					break;
-				case 7:
-					sprintf(windSpeed, "%s", pch);
-					break;
-				default:
-					break;
+				isr_airmar_Stop();
+				matches = sscanf(windData, "$WIMDA,%*f,%*c,%f,%*c,%f,", &pressure, &airtemp);
+				clearPacketwind();
 			}
 			
-    	}
-		clearPacketwind();*/
+			if(count > 40)
+			{
+				matches = 2;
+			}
+		}
 		
-		pch = strtok (gpsData,",");
-  			for(i=1;i<6;i++)
-  			{
-    			pch = strtok (NULL, ",");
-				
-				switch(i)
-				{
-					case 1:
-					sprintf(time, "%s", pch);
-					break;
-					
-					case 2:
-					sprintf(validornot, "%s", pch);
-					break;
-					
-					case 3:
-					sprintf(northgps, "%s", pch);
-					break;
-					
-					case 5:
-					sprintf(westgps, "%s", pch);
-					break;
-					
-					case 9:
-					sprintf(date, "%s", pch);
-					break;
-					
-					default:
-					break;
-				}
-  			}
+		isr_airmar_Stop();
+
+		sscanf(gpsData, "$GPRMC,%f,%c,%f,%*c,%f,%*c,%*f,%*f,%d", &time, &validornot, &northgps, &westgps, &date);
 			
-			if(validornot[0] == 'A')
+			if(validornot == 'A')
 			{
 				gpsvalid = 1;
 			}
@@ -263,9 +202,45 @@ int main()
 		relh = getRH();
 		battery = getvoltage();
 		
-		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%d,%d,%s,%s,%d,%d\r\n", time, northgps, westgps, date, (int)(resultantavg.heading * 100), (int)(resultantavg.speed * 100), airtemp,pressure, (int)watertemp, (int)relh);
-		UART_SBD_PutString(text);
+		sendpacket.gpstime = time;
+		sendpacket.gpsnorth = northgps;
+		sendpacket.gpswest = westgps;
+		sendpacket.gpsdate = date;
+		sendpacket.airmarwindDirection = (uint16)(resultantavg.heading);
+		sendpacket.airmarwindSpeed = (uint8)(scalerspeed * 10);
+		sendpacket.airmarairtemp = (int16)(airtemp * 10);
+		sendpacket.airmarrelhumidity = relh;
+		sendpacket.airmarairpressure = (uint16)(pressure * 1000);
+		sendpacket.Thermocouplewatertemperature = watertemp;
+		sendpacket.battery = battery;
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSMOBW=28\r\n");
+		UART_SBD_PutArray(&sendpacket.gpstime, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpsnorth, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpswest, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpsdate, sizeof(uint32size));
+		UART_SBD_PutArray(&sendpacket.airmarwindDirection, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.airmarwindSpeed, sizeof(uint8size));
+		UART_SBD_PutArray(&sendpacket.airmarairtemp, sizeof(int16size));
+		UART_SBD_PutArray(&sendpacket.airmarrelhumidity, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.airmarairpressure, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.Thermocouplewatertemperature, sizeof(int16size));
+		UART_SBD_PutArray(&sendpacket.battery, sizeof(uint8size));
+		UART_SBD_PutArray(&sendpacket.dummychecksum, sizeof(uint16size));
+		
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSSBDIS\r\n");
+		//UART_SBD_PutString("AT-WSSBDIS\r\n");
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
 		UART_SBD_PutString("AT-WSEPOFF\r\n");
+		UART_SBD_PutString("AT-WSEPOFF\r\n");
+		
+		CyDelay(5000); 
 	}		
 		
 }

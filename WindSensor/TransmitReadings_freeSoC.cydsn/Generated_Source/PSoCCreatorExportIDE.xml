@@ -7,7 +7,7 @@
       <Tool Name="prebuild" Command="" Options="" />
       <Tool Name="assembler" Command="arm-none-eabi-as.exe" Options="-I. -I./Generated_Source/PSoC5 -mcpu=cortex-m3 -mthumb -g -alh=${OutputDir}/${CompileFile}.lst " />
       <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=${OutputDir}\${CompileFile}.lst -ffunction-sections " />
-      <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g -Wl,-Map,${OutputDir}\${ProjectShortName}.map -specs=nano.specs -Wl,--gc-sections " />
+      <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g -Wl,-Map,${OutputDir}\${ProjectShortName}.map -specs=nano.specs -Wl,--gc-sections -u _scanf_float " />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
     <Toolchain Name="ARM Keil MDK" Selected="False">
@@ -32,8 +32,10 @@
           <File BuildType="BUILD" Toolchain="">.\main.c</File>
           <File BuildType="BUILD" Toolchain="">.\magnetometer.c</File>
           <File BuildType="BUILD" Toolchain="">.\thermocouple.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Batteryvoltage.c</File>
           <File BuildType="BUILD" Toolchain="">.\magnetometer.h</File>
           <File BuildType="BUILD" Toolchain="">.\thermocouple.h</File>
+          <File BuildType="BUILD" Toolchain="">.\batteryvoltage.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\Generated_Source\PSoC5">
@@ -108,6 +110,8 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_Wind_IntClock.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_SBD_IntClock.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\UART_SBD_IntClock.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\AMux.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\master.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\master.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\master_PM.c</File>
@@ -124,6 +128,22 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\clockPin_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\clockPin.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\clockPin.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_INT.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_in_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_in.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_in.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_Ground_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_Ground.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\Battery_Ground.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Ext_CP_Clk.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_Ext_CP_Clk.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\ADC_theACLK.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\prebuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\postbuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CyElfTool.exe</File>

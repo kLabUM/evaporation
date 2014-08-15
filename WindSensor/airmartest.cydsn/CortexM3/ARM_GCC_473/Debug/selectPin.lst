@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
   29:.\Generated_Source\PSoC5/selectPin.c **** * Summary:
   30:.\Generated_Source\PSoC5/selectPin.c **** *  Assign a new value to the digital port's data output register.  
   31:.\Generated_Source\PSoC5/selectPin.c **** *
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 2
 
 
   32:.\Generated_Source\PSoC5/selectPin.c **** * Parameters:  
@@ -89,43 +89,45 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
   43 0008 FB71     		strb	r3, [r7, #7]
   41:.\Generated_Source\PSoC5/selectPin.c ****     uint8 staticBits = (selectPin_DR & (uint8)(~selectPin_MASK));
   44              		.loc 1 41 0
-  45 000a 45F26013 		movw	r3, #20832
+  45 000a 45F22013 		movw	r3, #20768
   46 000e C4F20003 		movt	r3, 16384
   47 0012 1B78     		ldrb	r3, [r3, #0]
   48 0014 DBB2     		uxtb	r3, r3
-  49 0016 23F00103 		bic	r3, r3, #1
+  49 0016 23F00203 		bic	r3, r3, #2
   50 001a FB73     		strb	r3, [r7, #15]
   42:.\Generated_Source\PSoC5/selectPin.c ****     selectPin_DR = staticBits | ((uint8)(value << selectPin_SHIFT) & selectPin_MASK);
   51              		.loc 1 42 0
-  52 001c 45F26013 		movw	r3, #20832
+  52 001c 45F22013 		movw	r3, #20768
   53 0020 C4F20003 		movt	r3, 16384
   54 0024 FA79     		ldrb	r2, [r7, #7]
-  55 0026 02F00102 		and	r2, r2, #1
-  56 002a D1B2     		uxtb	r1, r2
-  57 002c FA7B     		ldrb	r2, [r7, #15]
-  58 002e 0A43     		orrs	r2, r2, r1
-  59 0030 D2B2     		uxtb	r2, r2
-  60 0032 1A70     		strb	r2, [r3, #0]
+  55 0026 4FEA4202 		lsl	r2, r2, #1
+  56 002a D2B2     		uxtb	r2, r2
+  57 002c 02F00202 		and	r2, r2, #2
+  58 0030 D1B2     		uxtb	r1, r2
+  59 0032 FA7B     		ldrb	r2, [r7, #15]
+  60 0034 0A43     		orrs	r2, r2, r1
+  61 0036 D2B2     		uxtb	r2, r2
+  62 0038 1A70     		strb	r2, [r3, #0]
   43:.\Generated_Source\PSoC5/selectPin.c **** }
-  61              		.loc 1 43 0
-  62 0034 07F11407 		add	r7, r7, #20
-  63 0038 BD46     		mov	sp, r7
-  64 003a 80BC     		pop	{r7}
-  65 003c 7047     		bx	lr
-  66              		.cfi_endproc
-  67              	.LFE0:
-  68              		.size	selectPin_Write, .-selectPin_Write
-  69 003e 00BF     		.section	.text.selectPin_SetDriveMode,"ax",%progbits
-  70              		.align	2
-  71              		.global	selectPin_SetDriveMode
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 3
+  63              		.loc 1 43 0
+  64 003a 07F11407 		add	r7, r7, #20
+  65 003e BD46     		mov	sp, r7
+  66 0040 80BC     		pop	{r7}
+  67 0042 7047     		bx	lr
+  68              		.cfi_endproc
+  69              	.LFE0:
+  70              		.size	selectPin_Write, .-selectPin_Write
+  71              		.section	.text.selectPin_SetDriveMode,"ax",%progbits
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 3
 
 
-  72              		.thumb
-  73              		.thumb_func
-  74              		.type	selectPin_SetDriveMode, %function
-  75              	selectPin_SetDriveMode:
-  76              	.LFB1:
+  72              		.align	2
+  73              		.global	selectPin_SetDriveMode
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	selectPin_SetDriveMode, %function
+  77              	selectPin_SetDriveMode:
+  78              	.LFB1:
   44:.\Generated_Source\PSoC5/selectPin.c **** 
   45:.\Generated_Source\PSoC5/selectPin.c **** 
   46:.\Generated_Source\PSoC5/selectPin.c **** /*******************************************************************************
@@ -153,61 +155,61 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
   68:.\Generated_Source\PSoC5/selectPin.c **** *******************************************************************************/
   69:.\Generated_Source\PSoC5/selectPin.c **** void selectPin_SetDriveMode(uint8 mode) 
   70:.\Generated_Source\PSoC5/selectPin.c **** {
-  77              		.loc 1 70 0
-  78              		.cfi_startproc
-  79              		@ args = 0, pretend = 0, frame = 8
-  80              		@ frame_needed = 1, uses_anonymous_args = 0
-  81              		@ link register save eliminated.
-  82 0000 80B4     		push	{r7}
-  83              	.LCFI3:
-  84              		.cfi_def_cfa_offset 4
-  85              		.cfi_offset 7, -4
-  86 0002 83B0     		sub	sp, sp, #12
-  87              	.LCFI4:
-  88              		.cfi_def_cfa_offset 16
-  89 0004 00AF     		add	r7, sp, #0
-  90              	.LCFI5:
-  91              		.cfi_def_cfa_register 7
-  92 0006 0346     		mov	r3, r0
-  93 0008 FB71     		strb	r3, [r7, #7]
+  79              		.loc 1 70 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 8
+  82              		@ frame_needed = 1, uses_anonymous_args = 0
+  83              		@ link register save eliminated.
+  84 0000 80B4     		push	{r7}
+  85              	.LCFI3:
+  86              		.cfi_def_cfa_offset 4
+  87              		.cfi_offset 7, -4
+  88 0002 83B0     		sub	sp, sp, #12
+  89              	.LCFI4:
+  90              		.cfi_def_cfa_offset 16
+  91 0004 00AF     		add	r7, sp, #0
+  92              	.LCFI5:
+  93              		.cfi_def_cfa_register 7
+  94 0006 0346     		mov	r3, r0
+  95 0008 FB71     		strb	r3, [r7, #7]
   71:.\Generated_Source\PSoC5/selectPin.c **** 	CyPins_SetPinDriveMode(selectPin_0, mode);
-  94              		.loc 1 71 0
-  95 000a 45F23003 		movw	r3, #20528
-  96 000e C4F20003 		movt	r3, 16384
-  97 0012 45F23002 		movw	r2, #20528
-  98 0016 C4F20002 		movt	r2, 16384
-  99 001a 1278     		ldrb	r2, [r2, #0]
- 100 001c D2B2     		uxtb	r2, r2
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 4
+  96              		.loc 1 71 0
+  97 000a 45F21103 		movw	r3, #20497
+  98 000e C4F20003 		movt	r3, 16384
+  99 0012 45F21102 		movw	r2, #20497
+ 100 0016 C4F20002 		movt	r2, 16384
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 4
 
 
- 101 001e D2B2     		uxtb	r2, r2
- 102 0020 22F00E02 		bic	r2, r2, #14
- 103 0024 D1B2     		uxtb	r1, r2
- 104 0026 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
- 105 0028 02F00E02 		and	r2, r2, #14
- 106 002c D2B2     		uxtb	r2, r2
- 107 002e 0A43     		orrs	r2, r2, r1
- 108 0030 D2B2     		uxtb	r2, r2
- 109 0032 D2B2     		uxtb	r2, r2
- 110 0034 1A70     		strb	r2, [r3, #0]
+ 101 001a 1278     		ldrb	r2, [r2, #0]
+ 102 001c D2B2     		uxtb	r2, r2
+ 103 001e D2B2     		uxtb	r2, r2
+ 104 0020 22F00E02 		bic	r2, r2, #14
+ 105 0024 D1B2     		uxtb	r1, r2
+ 106 0026 FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 107 0028 02F00E02 		and	r2, r2, #14
+ 108 002c D2B2     		uxtb	r2, r2
+ 109 002e 0A43     		orrs	r2, r2, r1
+ 110 0030 D2B2     		uxtb	r2, r2
+ 111 0032 D2B2     		uxtb	r2, r2
+ 112 0034 1A70     		strb	r2, [r3, #0]
   72:.\Generated_Source\PSoC5/selectPin.c **** }
- 111              		.loc 1 72 0
- 112 0036 07F10C07 		add	r7, r7, #12
- 113 003a BD46     		mov	sp, r7
- 114 003c 80BC     		pop	{r7}
- 115 003e 7047     		bx	lr
- 116              		.cfi_endproc
- 117              	.LFE1:
- 118              		.size	selectPin_SetDriveMode, .-selectPin_SetDriveMode
- 119              		.section	.text.selectPin_Read,"ax",%progbits
- 120              		.align	2
- 121              		.global	selectPin_Read
- 122              		.thumb
- 123              		.thumb_func
- 124              		.type	selectPin_Read, %function
- 125              	selectPin_Read:
- 126              	.LFB2:
+ 113              		.loc 1 72 0
+ 114 0036 07F10C07 		add	r7, r7, #12
+ 115 003a BD46     		mov	sp, r7
+ 116 003c 80BC     		pop	{r7}
+ 117 003e 7047     		bx	lr
+ 118              		.cfi_endproc
+ 119              	.LFE1:
+ 120              		.size	selectPin_SetDriveMode, .-selectPin_SetDriveMode
+ 121              		.section	.text.selectPin_Read,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	selectPin_Read
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	selectPin_Read, %function
+ 127              	selectPin_Read:
+ 128              	.LFB2:
   73:.\Generated_Source\PSoC5/selectPin.c **** 
   74:.\Generated_Source\PSoC5/selectPin.c **** 
   75:.\Generated_Source\PSoC5/selectPin.c **** /*******************************************************************************
@@ -230,46 +232,47 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
   92:.\Generated_Source\PSoC5/selectPin.c **** *******************************************************************************/
   93:.\Generated_Source\PSoC5/selectPin.c **** uint8 selectPin_Read(void) 
   94:.\Generated_Source\PSoC5/selectPin.c **** {
- 127              		.loc 1 94 0
- 128              		.cfi_startproc
- 129              		@ args = 0, pretend = 0, frame = 0
- 130              		@ frame_needed = 1, uses_anonymous_args = 0
- 131              		@ link register save eliminated.
- 132 0000 80B4     		push	{r7}
- 133              	.LCFI6:
- 134              		.cfi_def_cfa_offset 4
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 5
+ 129              		.loc 1 94 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 1, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+ 134 0000 80B4     		push	{r7}
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 5
 
 
- 135              		.cfi_offset 7, -4
- 136 0002 00AF     		add	r7, sp, #0
- 137              	.LCFI7:
- 138              		.cfi_def_cfa_register 7
+ 135              	.LCFI6:
+ 136              		.cfi_def_cfa_offset 4
+ 137              		.cfi_offset 7, -4
+ 138 0002 00AF     		add	r7, sp, #0
+ 139              	.LCFI7:
+ 140              		.cfi_def_cfa_register 7
   95:.\Generated_Source\PSoC5/selectPin.c ****     return (selectPin_PS & selectPin_MASK) >> selectPin_SHIFT;
- 139              		.loc 1 95 0
- 140 0004 45F26113 		movw	r3, #20833
- 141 0008 C4F20003 		movt	r3, 16384
- 142 000c 1B78     		ldrb	r3, [r3, #0]
- 143 000e DBB2     		uxtb	r3, r3
- 144 0010 03F00103 		and	r3, r3, #1
- 145 0014 DBB2     		uxtb	r3, r3
+ 141              		.loc 1 95 0
+ 142 0004 45F22113 		movw	r3, #20769
+ 143 0008 C4F20003 		movt	r3, 16384
+ 144 000c 1B78     		ldrb	r3, [r3, #0]
+ 145 000e DBB2     		uxtb	r3, r3
+ 146 0010 03F00203 		and	r3, r3, #2
+ 147 0014 4FEA5303 		lsr	r3, r3, #1
+ 148 0018 DBB2     		uxtb	r3, r3
   96:.\Generated_Source\PSoC5/selectPin.c **** }
- 146              		.loc 1 96 0
- 147 0016 1846     		mov	r0, r3
- 148 0018 BD46     		mov	sp, r7
- 149 001a 80BC     		pop	{r7}
- 150 001c 7047     		bx	lr
- 151              		.cfi_endproc
- 152              	.LFE2:
- 153              		.size	selectPin_Read, .-selectPin_Read
- 154 001e 00BF     		.section	.text.selectPin_ReadDataReg,"ax",%progbits
- 155              		.align	2
- 156              		.global	selectPin_ReadDataReg
- 157              		.thumb
- 158              		.thumb_func
- 159              		.type	selectPin_ReadDataReg, %function
- 160              	selectPin_ReadDataReg:
- 161              	.LFB3:
+ 149              		.loc 1 96 0
+ 150 001a 1846     		mov	r0, r3
+ 151 001c BD46     		mov	sp, r7
+ 152 001e 80BC     		pop	{r7}
+ 153 0020 7047     		bx	lr
+ 154              		.cfi_endproc
+ 155              	.LFE2:
+ 156              		.size	selectPin_Read, .-selectPin_Read
+ 157 0022 00BF     		.section	.text.selectPin_ReadDataReg,"ax",%progbits
+ 158              		.align	2
+ 159              		.global	selectPin_ReadDataReg
+ 160              		.thumb
+ 161              		.thumb_func
+ 162              		.type	selectPin_ReadDataReg, %function
+ 163              	selectPin_ReadDataReg:
+ 164              	.LFB3:
   97:.\Generated_Source\PSoC5/selectPin.c **** 
   98:.\Generated_Source\PSoC5/selectPin.c **** 
   99:.\Generated_Source\PSoC5/selectPin.c **** /*******************************************************************************
@@ -288,603 +291,604 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 1
  112:.\Generated_Source\PSoC5/selectPin.c **** *******************************************************************************/
  113:.\Generated_Source\PSoC5/selectPin.c **** uint8 selectPin_ReadDataReg(void) 
  114:.\Generated_Source\PSoC5/selectPin.c **** {
- 162              		.loc 1 114 0
- 163              		.cfi_startproc
- 164              		@ args = 0, pretend = 0, frame = 0
- 165              		@ frame_needed = 1, uses_anonymous_args = 0
- 166              		@ link register save eliminated.
- 167 0000 80B4     		push	{r7}
- 168              	.LCFI8:
- 169              		.cfi_def_cfa_offset 4
- 170              		.cfi_offset 7, -4
- 171 0002 00AF     		add	r7, sp, #0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 6
+ 165              		.loc 1 114 0
+ 166              		.cfi_startproc
+ 167              		@ args = 0, pretend = 0, frame = 0
+ 168              		@ frame_needed = 1, uses_anonymous_args = 0
+ 169              		@ link register save eliminated.
+ 170 0000 80B4     		push	{r7}
+ 171              	.LCFI8:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 6
 
 
- 172              	.LCFI9:
- 173              		.cfi_def_cfa_register 7
+ 172              		.cfi_def_cfa_offset 4
+ 173              		.cfi_offset 7, -4
+ 174 0002 00AF     		add	r7, sp, #0
+ 175              	.LCFI9:
+ 176              		.cfi_def_cfa_register 7
  115:.\Generated_Source\PSoC5/selectPin.c ****     return (selectPin_DR & selectPin_MASK) >> selectPin_SHIFT;
- 174              		.loc 1 115 0
- 175 0004 45F26013 		movw	r3, #20832
- 176 0008 C4F20003 		movt	r3, 16384
- 177 000c 1B78     		ldrb	r3, [r3, #0]
- 178 000e DBB2     		uxtb	r3, r3
- 179 0010 03F00103 		and	r3, r3, #1
- 180 0014 DBB2     		uxtb	r3, r3
+ 177              		.loc 1 115 0
+ 178 0004 45F22013 		movw	r3, #20768
+ 179 0008 C4F20003 		movt	r3, 16384
+ 180 000c 1B78     		ldrb	r3, [r3, #0]
+ 181 000e DBB2     		uxtb	r3, r3
+ 182 0010 03F00203 		and	r3, r3, #2
+ 183 0014 4FEA5303 		lsr	r3, r3, #1
+ 184 0018 DBB2     		uxtb	r3, r3
  116:.\Generated_Source\PSoC5/selectPin.c **** }
- 181              		.loc 1 116 0
- 182 0016 1846     		mov	r0, r3
- 183 0018 BD46     		mov	sp, r7
- 184 001a 80BC     		pop	{r7}
- 185 001c 7047     		bx	lr
- 186              		.cfi_endproc
- 187              	.LFE3:
- 188              		.size	selectPin_ReadDataReg, .-selectPin_ReadDataReg
- 189 001e 00BF     		.text
- 190              	.Letext0:
- 191              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
- 192              		.section	.debug_info,"",%progbits
- 193              	.Ldebug_info0:
- 194 0000 30010000 		.4byte	0x130
- 195 0004 0200     		.2byte	0x2
- 196 0006 00000000 		.4byte	.Ldebug_abbrev0
- 197 000a 04       		.byte	0x4
- 198 000b 01       		.uleb128 0x1
- 199 000c 3C010000 		.4byte	.LASF20
- 200 0010 01       		.byte	0x1
- 201 0011 F4000000 		.4byte	.LASF21
- 202 0015 6E000000 		.4byte	.LASF22
- 203 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 204 001d 00000000 		.4byte	0
- 205 0021 00000000 		.4byte	0
- 206 0025 00000000 		.4byte	.Ldebug_line0
- 207 0029 02       		.uleb128 0x2
- 208 002a 01       		.byte	0x1
- 209 002b 06       		.byte	0x6
- 210 002c A4010000 		.4byte	.LASF0
- 211 0030 02       		.uleb128 0x2
- 212 0031 01       		.byte	0x1
- 213 0032 08       		.byte	0x8
- 214 0033 36000000 		.4byte	.LASF1
- 215 0037 02       		.uleb128 0x2
- 216 0038 02       		.byte	0x2
- 217 0039 05       		.byte	0x5
- 218 003a 2C010000 		.4byte	.LASF2
- 219 003e 02       		.uleb128 0x2
- 220 003f 02       		.byte	0x2
- 221 0040 07       		.byte	0x7
- 222 0041 5B000000 		.4byte	.LASF3
- 223 0045 02       		.uleb128 0x2
- 224 0046 04       		.byte	0x4
- 225 0047 05       		.byte	0x5
- 226 0048 9B010000 		.4byte	.LASF4
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 7
+ 185              		.loc 1 116 0
+ 186 001a 1846     		mov	r0, r3
+ 187 001c BD46     		mov	sp, r7
+ 188 001e 80BC     		pop	{r7}
+ 189 0020 7047     		bx	lr
+ 190              		.cfi_endproc
+ 191              	.LFE3:
+ 192              		.size	selectPin_ReadDataReg, .-selectPin_ReadDataReg
+ 193 0022 00BF     		.text
+ 194              	.Letext0:
+ 195              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 196              		.section	.debug_info,"",%progbits
+ 197              	.Ldebug_info0:
+ 198 0000 30010000 		.4byte	0x130
+ 199 0004 0200     		.2byte	0x2
+ 200 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 201 000a 04       		.byte	0x4
+ 202 000b 01       		.uleb128 0x1
+ 203 000c 3C010000 		.4byte	.LASF20
+ 204 0010 01       		.byte	0x1
+ 205 0011 F4000000 		.4byte	.LASF21
+ 206 0015 6E000000 		.4byte	.LASF22
+ 207 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 208 001d 00000000 		.4byte	0
+ 209 0021 00000000 		.4byte	0
+ 210 0025 00000000 		.4byte	.Ldebug_line0
+ 211 0029 02       		.uleb128 0x2
+ 212 002a 01       		.byte	0x1
+ 213 002b 06       		.byte	0x6
+ 214 002c A4010000 		.4byte	.LASF0
+ 215 0030 02       		.uleb128 0x2
+ 216 0031 01       		.byte	0x1
+ 217 0032 08       		.byte	0x8
+ 218 0033 36000000 		.4byte	.LASF1
+ 219 0037 02       		.uleb128 0x2
+ 220 0038 02       		.byte	0x2
+ 221 0039 05       		.byte	0x5
+ 222 003a 2C010000 		.4byte	.LASF2
+ 223 003e 02       		.uleb128 0x2
+ 224 003f 02       		.byte	0x2
+ 225 0040 07       		.byte	0x7
+ 226 0041 5B000000 		.4byte	.LASF3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 7
 
 
- 227 004c 02       		.uleb128 0x2
- 228 004d 04       		.byte	0x4
- 229 004e 07       		.byte	0x7
- 230 004f 49000000 		.4byte	.LASF5
- 231 0053 02       		.uleb128 0x2
- 232 0054 08       		.byte	0x8
- 233 0055 05       		.byte	0x5
- 234 0056 19010000 		.4byte	.LASF6
- 235 005a 02       		.uleb128 0x2
- 236 005b 08       		.byte	0x8
- 237 005c 07       		.byte	0x7
- 238 005d C1000000 		.4byte	.LASF7
- 239 0061 03       		.uleb128 0x3
- 240 0062 04       		.byte	0x4
- 241 0063 05       		.byte	0x5
- 242 0064 696E7400 		.ascii	"int\000"
- 243 0068 02       		.uleb128 0x2
- 244 0069 04       		.byte	0x4
- 245 006a 07       		.byte	0x7
- 246 006b B4000000 		.4byte	.LASF8
- 247 006f 04       		.uleb128 0x4
- 248 0070 36010000 		.4byte	.LASF12
- 249 0074 02       		.byte	0x2
- 250 0075 5B       		.byte	0x5b
- 251 0076 30000000 		.4byte	0x30
- 252 007a 02       		.uleb128 0x2
- 253 007b 04       		.byte	0x4
- 254 007c 04       		.byte	0x4
- 255 007d 30000000 		.4byte	.LASF9
- 256 0081 02       		.uleb128 0x2
- 257 0082 08       		.byte	0x8
- 258 0083 04       		.byte	0x4
- 259 0084 AD000000 		.4byte	.LASF10
- 260 0088 02       		.uleb128 0x2
- 261 0089 01       		.byte	0x1
- 262 008a 08       		.byte	0x8
- 263 008b 27010000 		.4byte	.LASF11
- 264 008f 04       		.uleb128 0x4
- 265 0090 44000000 		.4byte	.LASF13
- 266 0094 02       		.byte	0x2
- 267 0095 F0       		.byte	0xf0
- 268 0096 9A000000 		.4byte	0x9a
- 269 009a 05       		.uleb128 0x5
- 270 009b 6F000000 		.4byte	0x6f
- 271 009f 06       		.uleb128 0x6
- 272 00a0 01       		.byte	0x1
- 273 00a1 11000000 		.4byte	.LASF14
- 274 00a5 01       		.byte	0x1
- 275 00a6 27       		.byte	0x27
- 276 00a7 01       		.byte	0x1
- 277 00a8 00000000 		.4byte	.LFB0
- 278 00ac 3E000000 		.4byte	.LFE0
- 279 00b0 00000000 		.4byte	.LLST0
- 280 00b4 01       		.byte	0x1
- 281 00b5 D6000000 		.4byte	0xd6
- 282 00b9 07       		.uleb128 0x7
- 283 00ba 00000000 		.4byte	.LASF16
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 8
+ 227 0045 02       		.uleb128 0x2
+ 228 0046 04       		.byte	0x4
+ 229 0047 05       		.byte	0x5
+ 230 0048 9B010000 		.4byte	.LASF4
+ 231 004c 02       		.uleb128 0x2
+ 232 004d 04       		.byte	0x4
+ 233 004e 07       		.byte	0x7
+ 234 004f 49000000 		.4byte	.LASF5
+ 235 0053 02       		.uleb128 0x2
+ 236 0054 08       		.byte	0x8
+ 237 0055 05       		.byte	0x5
+ 238 0056 19010000 		.4byte	.LASF6
+ 239 005a 02       		.uleb128 0x2
+ 240 005b 08       		.byte	0x8
+ 241 005c 07       		.byte	0x7
+ 242 005d C1000000 		.4byte	.LASF7
+ 243 0061 03       		.uleb128 0x3
+ 244 0062 04       		.byte	0x4
+ 245 0063 05       		.byte	0x5
+ 246 0064 696E7400 		.ascii	"int\000"
+ 247 0068 02       		.uleb128 0x2
+ 248 0069 04       		.byte	0x4
+ 249 006a 07       		.byte	0x7
+ 250 006b B4000000 		.4byte	.LASF8
+ 251 006f 04       		.uleb128 0x4
+ 252 0070 36010000 		.4byte	.LASF12
+ 253 0074 02       		.byte	0x2
+ 254 0075 5B       		.byte	0x5b
+ 255 0076 30000000 		.4byte	0x30
+ 256 007a 02       		.uleb128 0x2
+ 257 007b 04       		.byte	0x4
+ 258 007c 04       		.byte	0x4
+ 259 007d 30000000 		.4byte	.LASF9
+ 260 0081 02       		.uleb128 0x2
+ 261 0082 08       		.byte	0x8
+ 262 0083 04       		.byte	0x4
+ 263 0084 AD000000 		.4byte	.LASF10
+ 264 0088 02       		.uleb128 0x2
+ 265 0089 01       		.byte	0x1
+ 266 008a 08       		.byte	0x8
+ 267 008b 27010000 		.4byte	.LASF11
+ 268 008f 04       		.uleb128 0x4
+ 269 0090 44000000 		.4byte	.LASF13
+ 270 0094 02       		.byte	0x2
+ 271 0095 F0       		.byte	0xf0
+ 272 0096 9A000000 		.4byte	0x9a
+ 273 009a 05       		.uleb128 0x5
+ 274 009b 6F000000 		.4byte	0x6f
+ 275 009f 06       		.uleb128 0x6
+ 276 00a0 01       		.byte	0x1
+ 277 00a1 11000000 		.4byte	.LASF14
+ 278 00a5 01       		.byte	0x1
+ 279 00a6 27       		.byte	0x27
+ 280 00a7 01       		.byte	0x1
+ 281 00a8 00000000 		.4byte	.LFB0
+ 282 00ac 44000000 		.4byte	.LFE0
+ 283 00b0 00000000 		.4byte	.LLST0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 8
 
 
- 284 00be 01       		.byte	0x1
- 285 00bf 27       		.byte	0x27
- 286 00c0 6F000000 		.4byte	0x6f
- 287 00c4 02       		.byte	0x2
- 288 00c5 91       		.byte	0x91
- 289 00c6 6F       		.sleb128 -17
- 290 00c7 08       		.uleb128 0x8
- 291 00c8 06000000 		.4byte	.LASF23
- 292 00cc 01       		.byte	0x1
- 293 00cd 29       		.byte	0x29
- 294 00ce 6F000000 		.4byte	0x6f
- 295 00d2 02       		.byte	0x2
- 296 00d3 91       		.byte	0x91
- 297 00d4 77       		.sleb128 -9
- 298 00d5 00       		.byte	0
- 299 00d6 06       		.uleb128 0x6
- 300 00d7 01       		.byte	0x1
- 301 00d8 D8000000 		.4byte	.LASF15
- 302 00dc 01       		.byte	0x1
- 303 00dd 45       		.byte	0x45
- 304 00de 01       		.byte	0x1
- 305 00df 00000000 		.4byte	.LFB1
- 306 00e3 40000000 		.4byte	.LFE1
- 307 00e7 38000000 		.4byte	.LLST1
- 308 00eb 01       		.byte	0x1
- 309 00ec FF000000 		.4byte	0xff
- 310 00f0 07       		.uleb128 0x7
- 311 00f1 EF000000 		.4byte	.LASF17
- 312 00f5 01       		.byte	0x1
- 313 00f6 45       		.byte	0x45
- 314 00f7 6F000000 		.4byte	0x6f
- 315 00fb 02       		.byte	0x2
- 316 00fc 91       		.byte	0x91
- 317 00fd 77       		.sleb128 -9
- 318 00fe 00       		.byte	0
- 319 00ff 09       		.uleb128 0x9
- 320 0100 01       		.byte	0x1
- 321 0101 21000000 		.4byte	.LASF18
- 322 0105 01       		.byte	0x1
- 323 0106 5D       		.byte	0x5d
- 324 0107 01       		.byte	0x1
- 325 0108 6F000000 		.4byte	0x6f
- 326 010c 00000000 		.4byte	.LFB2
- 327 0110 1E000000 		.4byte	.LFE2
- 328 0114 70000000 		.4byte	.LLST2
- 329 0118 01       		.byte	0x1
- 330 0119 09       		.uleb128 0x9
- 331 011a 01       		.byte	0x1
- 332 011b 85010000 		.4byte	.LASF19
- 333 011f 01       		.byte	0x1
- 334 0120 71       		.byte	0x71
- 335 0121 01       		.byte	0x1
- 336 0122 6F000000 		.4byte	0x6f
- 337 0126 00000000 		.4byte	.LFB3
- 338 012a 1E000000 		.4byte	.LFE3
- 339 012e 9C000000 		.4byte	.LLST3
- 340 0132 01       		.byte	0x1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 9
+ 284 00b4 01       		.byte	0x1
+ 285 00b5 D6000000 		.4byte	0xd6
+ 286 00b9 07       		.uleb128 0x7
+ 287 00ba 00000000 		.4byte	.LASF16
+ 288 00be 01       		.byte	0x1
+ 289 00bf 27       		.byte	0x27
+ 290 00c0 6F000000 		.4byte	0x6f
+ 291 00c4 02       		.byte	0x2
+ 292 00c5 91       		.byte	0x91
+ 293 00c6 6F       		.sleb128 -17
+ 294 00c7 08       		.uleb128 0x8
+ 295 00c8 06000000 		.4byte	.LASF23
+ 296 00cc 01       		.byte	0x1
+ 297 00cd 29       		.byte	0x29
+ 298 00ce 6F000000 		.4byte	0x6f
+ 299 00d2 02       		.byte	0x2
+ 300 00d3 91       		.byte	0x91
+ 301 00d4 77       		.sleb128 -9
+ 302 00d5 00       		.byte	0
+ 303 00d6 06       		.uleb128 0x6
+ 304 00d7 01       		.byte	0x1
+ 305 00d8 D8000000 		.4byte	.LASF15
+ 306 00dc 01       		.byte	0x1
+ 307 00dd 45       		.byte	0x45
+ 308 00de 01       		.byte	0x1
+ 309 00df 00000000 		.4byte	.LFB1
+ 310 00e3 40000000 		.4byte	.LFE1
+ 311 00e7 38000000 		.4byte	.LLST1
+ 312 00eb 01       		.byte	0x1
+ 313 00ec FF000000 		.4byte	0xff
+ 314 00f0 07       		.uleb128 0x7
+ 315 00f1 EF000000 		.4byte	.LASF17
+ 316 00f5 01       		.byte	0x1
+ 317 00f6 45       		.byte	0x45
+ 318 00f7 6F000000 		.4byte	0x6f
+ 319 00fb 02       		.byte	0x2
+ 320 00fc 91       		.byte	0x91
+ 321 00fd 77       		.sleb128 -9
+ 322 00fe 00       		.byte	0
+ 323 00ff 09       		.uleb128 0x9
+ 324 0100 01       		.byte	0x1
+ 325 0101 21000000 		.4byte	.LASF18
+ 326 0105 01       		.byte	0x1
+ 327 0106 5D       		.byte	0x5d
+ 328 0107 01       		.byte	0x1
+ 329 0108 6F000000 		.4byte	0x6f
+ 330 010c 00000000 		.4byte	.LFB2
+ 331 0110 22000000 		.4byte	.LFE2
+ 332 0114 70000000 		.4byte	.LLST2
+ 333 0118 01       		.byte	0x1
+ 334 0119 09       		.uleb128 0x9
+ 335 011a 01       		.byte	0x1
+ 336 011b 85010000 		.4byte	.LASF19
+ 337 011f 01       		.byte	0x1
+ 338 0120 71       		.byte	0x71
+ 339 0121 01       		.byte	0x1
+ 340 0122 6F000000 		.4byte	0x6f
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 9
 
 
- 341 0133 00       		.byte	0
- 342              		.section	.debug_abbrev,"",%progbits
- 343              	.Ldebug_abbrev0:
- 344 0000 01       		.uleb128 0x1
- 345 0001 11       		.uleb128 0x11
- 346 0002 01       		.byte	0x1
- 347 0003 25       		.uleb128 0x25
- 348 0004 0E       		.uleb128 0xe
- 349 0005 13       		.uleb128 0x13
- 350 0006 0B       		.uleb128 0xb
- 351 0007 03       		.uleb128 0x3
- 352 0008 0E       		.uleb128 0xe
- 353 0009 1B       		.uleb128 0x1b
- 354 000a 0E       		.uleb128 0xe
- 355 000b 55       		.uleb128 0x55
- 356 000c 06       		.uleb128 0x6
- 357 000d 11       		.uleb128 0x11
- 358 000e 01       		.uleb128 0x1
- 359 000f 52       		.uleb128 0x52
- 360 0010 01       		.uleb128 0x1
- 361 0011 10       		.uleb128 0x10
- 362 0012 06       		.uleb128 0x6
- 363 0013 00       		.byte	0
- 364 0014 00       		.byte	0
- 365 0015 02       		.uleb128 0x2
- 366 0016 24       		.uleb128 0x24
- 367 0017 00       		.byte	0
- 368 0018 0B       		.uleb128 0xb
- 369 0019 0B       		.uleb128 0xb
- 370 001a 3E       		.uleb128 0x3e
- 371 001b 0B       		.uleb128 0xb
- 372 001c 03       		.uleb128 0x3
- 373 001d 0E       		.uleb128 0xe
- 374 001e 00       		.byte	0
- 375 001f 00       		.byte	0
- 376 0020 03       		.uleb128 0x3
- 377 0021 24       		.uleb128 0x24
- 378 0022 00       		.byte	0
- 379 0023 0B       		.uleb128 0xb
- 380 0024 0B       		.uleb128 0xb
- 381 0025 3E       		.uleb128 0x3e
- 382 0026 0B       		.uleb128 0xb
- 383 0027 03       		.uleb128 0x3
- 384 0028 08       		.uleb128 0x8
- 385 0029 00       		.byte	0
- 386 002a 00       		.byte	0
- 387 002b 04       		.uleb128 0x4
- 388 002c 16       		.uleb128 0x16
- 389 002d 00       		.byte	0
- 390 002e 03       		.uleb128 0x3
- 391 002f 0E       		.uleb128 0xe
- 392 0030 3A       		.uleb128 0x3a
- 393 0031 0B       		.uleb128 0xb
- 394 0032 3B       		.uleb128 0x3b
- 395 0033 0B       		.uleb128 0xb
- 396 0034 49       		.uleb128 0x49
- 397 0035 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 10
+ 341 0126 00000000 		.4byte	.LFB3
+ 342 012a 22000000 		.4byte	.LFE3
+ 343 012e 9C000000 		.4byte	.LLST3
+ 344 0132 01       		.byte	0x1
+ 345 0133 00       		.byte	0
+ 346              		.section	.debug_abbrev,"",%progbits
+ 347              	.Ldebug_abbrev0:
+ 348 0000 01       		.uleb128 0x1
+ 349 0001 11       		.uleb128 0x11
+ 350 0002 01       		.byte	0x1
+ 351 0003 25       		.uleb128 0x25
+ 352 0004 0E       		.uleb128 0xe
+ 353 0005 13       		.uleb128 0x13
+ 354 0006 0B       		.uleb128 0xb
+ 355 0007 03       		.uleb128 0x3
+ 356 0008 0E       		.uleb128 0xe
+ 357 0009 1B       		.uleb128 0x1b
+ 358 000a 0E       		.uleb128 0xe
+ 359 000b 55       		.uleb128 0x55
+ 360 000c 06       		.uleb128 0x6
+ 361 000d 11       		.uleb128 0x11
+ 362 000e 01       		.uleb128 0x1
+ 363 000f 52       		.uleb128 0x52
+ 364 0010 01       		.uleb128 0x1
+ 365 0011 10       		.uleb128 0x10
+ 366 0012 06       		.uleb128 0x6
+ 367 0013 00       		.byte	0
+ 368 0014 00       		.byte	0
+ 369 0015 02       		.uleb128 0x2
+ 370 0016 24       		.uleb128 0x24
+ 371 0017 00       		.byte	0
+ 372 0018 0B       		.uleb128 0xb
+ 373 0019 0B       		.uleb128 0xb
+ 374 001a 3E       		.uleb128 0x3e
+ 375 001b 0B       		.uleb128 0xb
+ 376 001c 03       		.uleb128 0x3
+ 377 001d 0E       		.uleb128 0xe
+ 378 001e 00       		.byte	0
+ 379 001f 00       		.byte	0
+ 380 0020 03       		.uleb128 0x3
+ 381 0021 24       		.uleb128 0x24
+ 382 0022 00       		.byte	0
+ 383 0023 0B       		.uleb128 0xb
+ 384 0024 0B       		.uleb128 0xb
+ 385 0025 3E       		.uleb128 0x3e
+ 386 0026 0B       		.uleb128 0xb
+ 387 0027 03       		.uleb128 0x3
+ 388 0028 08       		.uleb128 0x8
+ 389 0029 00       		.byte	0
+ 390 002a 00       		.byte	0
+ 391 002b 04       		.uleb128 0x4
+ 392 002c 16       		.uleb128 0x16
+ 393 002d 00       		.byte	0
+ 394 002e 03       		.uleb128 0x3
+ 395 002f 0E       		.uleb128 0xe
+ 396 0030 3A       		.uleb128 0x3a
+ 397 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 10
 
 
- 398 0036 00       		.byte	0
- 399 0037 00       		.byte	0
- 400 0038 05       		.uleb128 0x5
- 401 0039 35       		.uleb128 0x35
- 402 003a 00       		.byte	0
- 403 003b 49       		.uleb128 0x49
- 404 003c 13       		.uleb128 0x13
- 405 003d 00       		.byte	0
- 406 003e 00       		.byte	0
- 407 003f 06       		.uleb128 0x6
- 408 0040 2E       		.uleb128 0x2e
- 409 0041 01       		.byte	0x1
- 410 0042 3F       		.uleb128 0x3f
- 411 0043 0C       		.uleb128 0xc
- 412 0044 03       		.uleb128 0x3
- 413 0045 0E       		.uleb128 0xe
- 414 0046 3A       		.uleb128 0x3a
- 415 0047 0B       		.uleb128 0xb
- 416 0048 3B       		.uleb128 0x3b
- 417 0049 0B       		.uleb128 0xb
- 418 004a 27       		.uleb128 0x27
- 419 004b 0C       		.uleb128 0xc
- 420 004c 11       		.uleb128 0x11
- 421 004d 01       		.uleb128 0x1
- 422 004e 12       		.uleb128 0x12
- 423 004f 01       		.uleb128 0x1
- 424 0050 40       		.uleb128 0x40
- 425 0051 06       		.uleb128 0x6
- 426 0052 9742     		.uleb128 0x2117
- 427 0054 0C       		.uleb128 0xc
- 428 0055 01       		.uleb128 0x1
- 429 0056 13       		.uleb128 0x13
- 430 0057 00       		.byte	0
- 431 0058 00       		.byte	0
- 432 0059 07       		.uleb128 0x7
- 433 005a 05       		.uleb128 0x5
- 434 005b 00       		.byte	0
- 435 005c 03       		.uleb128 0x3
- 436 005d 0E       		.uleb128 0xe
- 437 005e 3A       		.uleb128 0x3a
- 438 005f 0B       		.uleb128 0xb
- 439 0060 3B       		.uleb128 0x3b
- 440 0061 0B       		.uleb128 0xb
- 441 0062 49       		.uleb128 0x49
- 442 0063 13       		.uleb128 0x13
- 443 0064 02       		.uleb128 0x2
- 444 0065 0A       		.uleb128 0xa
- 445 0066 00       		.byte	0
- 446 0067 00       		.byte	0
- 447 0068 08       		.uleb128 0x8
- 448 0069 34       		.uleb128 0x34
- 449 006a 00       		.byte	0
- 450 006b 03       		.uleb128 0x3
- 451 006c 0E       		.uleb128 0xe
- 452 006d 3A       		.uleb128 0x3a
- 453 006e 0B       		.uleb128 0xb
- 454 006f 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 11
+ 398 0032 3B       		.uleb128 0x3b
+ 399 0033 0B       		.uleb128 0xb
+ 400 0034 49       		.uleb128 0x49
+ 401 0035 13       		.uleb128 0x13
+ 402 0036 00       		.byte	0
+ 403 0037 00       		.byte	0
+ 404 0038 05       		.uleb128 0x5
+ 405 0039 35       		.uleb128 0x35
+ 406 003a 00       		.byte	0
+ 407 003b 49       		.uleb128 0x49
+ 408 003c 13       		.uleb128 0x13
+ 409 003d 00       		.byte	0
+ 410 003e 00       		.byte	0
+ 411 003f 06       		.uleb128 0x6
+ 412 0040 2E       		.uleb128 0x2e
+ 413 0041 01       		.byte	0x1
+ 414 0042 3F       		.uleb128 0x3f
+ 415 0043 0C       		.uleb128 0xc
+ 416 0044 03       		.uleb128 0x3
+ 417 0045 0E       		.uleb128 0xe
+ 418 0046 3A       		.uleb128 0x3a
+ 419 0047 0B       		.uleb128 0xb
+ 420 0048 3B       		.uleb128 0x3b
+ 421 0049 0B       		.uleb128 0xb
+ 422 004a 27       		.uleb128 0x27
+ 423 004b 0C       		.uleb128 0xc
+ 424 004c 11       		.uleb128 0x11
+ 425 004d 01       		.uleb128 0x1
+ 426 004e 12       		.uleb128 0x12
+ 427 004f 01       		.uleb128 0x1
+ 428 0050 40       		.uleb128 0x40
+ 429 0051 06       		.uleb128 0x6
+ 430 0052 9742     		.uleb128 0x2117
+ 431 0054 0C       		.uleb128 0xc
+ 432 0055 01       		.uleb128 0x1
+ 433 0056 13       		.uleb128 0x13
+ 434 0057 00       		.byte	0
+ 435 0058 00       		.byte	0
+ 436 0059 07       		.uleb128 0x7
+ 437 005a 05       		.uleb128 0x5
+ 438 005b 00       		.byte	0
+ 439 005c 03       		.uleb128 0x3
+ 440 005d 0E       		.uleb128 0xe
+ 441 005e 3A       		.uleb128 0x3a
+ 442 005f 0B       		.uleb128 0xb
+ 443 0060 3B       		.uleb128 0x3b
+ 444 0061 0B       		.uleb128 0xb
+ 445 0062 49       		.uleb128 0x49
+ 446 0063 13       		.uleb128 0x13
+ 447 0064 02       		.uleb128 0x2
+ 448 0065 0A       		.uleb128 0xa
+ 449 0066 00       		.byte	0
+ 450 0067 00       		.byte	0
+ 451 0068 08       		.uleb128 0x8
+ 452 0069 34       		.uleb128 0x34
+ 453 006a 00       		.byte	0
+ 454 006b 03       		.uleb128 0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 11
 
 
- 455 0070 0B       		.uleb128 0xb
- 456 0071 49       		.uleb128 0x49
- 457 0072 13       		.uleb128 0x13
- 458 0073 02       		.uleb128 0x2
- 459 0074 0A       		.uleb128 0xa
- 460 0075 00       		.byte	0
- 461 0076 00       		.byte	0
- 462 0077 09       		.uleb128 0x9
- 463 0078 2E       		.uleb128 0x2e
- 464 0079 00       		.byte	0
- 465 007a 3F       		.uleb128 0x3f
- 466 007b 0C       		.uleb128 0xc
- 467 007c 03       		.uleb128 0x3
- 468 007d 0E       		.uleb128 0xe
- 469 007e 3A       		.uleb128 0x3a
- 470 007f 0B       		.uleb128 0xb
- 471 0080 3B       		.uleb128 0x3b
- 472 0081 0B       		.uleb128 0xb
- 473 0082 27       		.uleb128 0x27
- 474 0083 0C       		.uleb128 0xc
- 475 0084 49       		.uleb128 0x49
- 476 0085 13       		.uleb128 0x13
- 477 0086 11       		.uleb128 0x11
- 478 0087 01       		.uleb128 0x1
- 479 0088 12       		.uleb128 0x12
- 480 0089 01       		.uleb128 0x1
- 481 008a 40       		.uleb128 0x40
- 482 008b 06       		.uleb128 0x6
- 483 008c 9742     		.uleb128 0x2117
- 484 008e 0C       		.uleb128 0xc
- 485 008f 00       		.byte	0
- 486 0090 00       		.byte	0
- 487 0091 00       		.byte	0
- 488              		.section	.debug_loc,"",%progbits
- 489              	.Ldebug_loc0:
- 490              	.LLST0:
- 491 0000 00000000 		.4byte	.LFB0
- 492 0004 02000000 		.4byte	.LCFI0
- 493 0008 0200     		.2byte	0x2
- 494 000a 7D       		.byte	0x7d
- 495 000b 00       		.sleb128 0
- 496 000c 02000000 		.4byte	.LCFI0
- 497 0010 04000000 		.4byte	.LCFI1
- 498 0014 0200     		.2byte	0x2
- 499 0016 7D       		.byte	0x7d
- 500 0017 04       		.sleb128 4
- 501 0018 04000000 		.4byte	.LCFI1
- 502 001c 06000000 		.4byte	.LCFI2
- 503 0020 0200     		.2byte	0x2
- 504 0022 7D       		.byte	0x7d
- 505 0023 18       		.sleb128 24
- 506 0024 06000000 		.4byte	.LCFI2
- 507 0028 3E000000 		.4byte	.LFE0
- 508 002c 0200     		.2byte	0x2
- 509 002e 77       		.byte	0x77
- 510 002f 18       		.sleb128 24
- 511 0030 00000000 		.4byte	0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 12
+ 455 006c 0E       		.uleb128 0xe
+ 456 006d 3A       		.uleb128 0x3a
+ 457 006e 0B       		.uleb128 0xb
+ 458 006f 3B       		.uleb128 0x3b
+ 459 0070 0B       		.uleb128 0xb
+ 460 0071 49       		.uleb128 0x49
+ 461 0072 13       		.uleb128 0x13
+ 462 0073 02       		.uleb128 0x2
+ 463 0074 0A       		.uleb128 0xa
+ 464 0075 00       		.byte	0
+ 465 0076 00       		.byte	0
+ 466 0077 09       		.uleb128 0x9
+ 467 0078 2E       		.uleb128 0x2e
+ 468 0079 00       		.byte	0
+ 469 007a 3F       		.uleb128 0x3f
+ 470 007b 0C       		.uleb128 0xc
+ 471 007c 03       		.uleb128 0x3
+ 472 007d 0E       		.uleb128 0xe
+ 473 007e 3A       		.uleb128 0x3a
+ 474 007f 0B       		.uleb128 0xb
+ 475 0080 3B       		.uleb128 0x3b
+ 476 0081 0B       		.uleb128 0xb
+ 477 0082 27       		.uleb128 0x27
+ 478 0083 0C       		.uleb128 0xc
+ 479 0084 49       		.uleb128 0x49
+ 480 0085 13       		.uleb128 0x13
+ 481 0086 11       		.uleb128 0x11
+ 482 0087 01       		.uleb128 0x1
+ 483 0088 12       		.uleb128 0x12
+ 484 0089 01       		.uleb128 0x1
+ 485 008a 40       		.uleb128 0x40
+ 486 008b 06       		.uleb128 0x6
+ 487 008c 9742     		.uleb128 0x2117
+ 488 008e 0C       		.uleb128 0xc
+ 489 008f 00       		.byte	0
+ 490 0090 00       		.byte	0
+ 491 0091 00       		.byte	0
+ 492              		.section	.debug_loc,"",%progbits
+ 493              	.Ldebug_loc0:
+ 494              	.LLST0:
+ 495 0000 00000000 		.4byte	.LFB0
+ 496 0004 02000000 		.4byte	.LCFI0
+ 497 0008 0200     		.2byte	0x2
+ 498 000a 7D       		.byte	0x7d
+ 499 000b 00       		.sleb128 0
+ 500 000c 02000000 		.4byte	.LCFI0
+ 501 0010 04000000 		.4byte	.LCFI1
+ 502 0014 0200     		.2byte	0x2
+ 503 0016 7D       		.byte	0x7d
+ 504 0017 04       		.sleb128 4
+ 505 0018 04000000 		.4byte	.LCFI1
+ 506 001c 06000000 		.4byte	.LCFI2
+ 507 0020 0200     		.2byte	0x2
+ 508 0022 7D       		.byte	0x7d
+ 509 0023 18       		.sleb128 24
+ 510 0024 06000000 		.4byte	.LCFI2
+ 511 0028 44000000 		.4byte	.LFE0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 12
 
 
- 512 0034 00000000 		.4byte	0
- 513              	.LLST1:
- 514 0038 00000000 		.4byte	.LFB1
- 515 003c 02000000 		.4byte	.LCFI3
- 516 0040 0200     		.2byte	0x2
- 517 0042 7D       		.byte	0x7d
- 518 0043 00       		.sleb128 0
- 519 0044 02000000 		.4byte	.LCFI3
- 520 0048 04000000 		.4byte	.LCFI4
- 521 004c 0200     		.2byte	0x2
- 522 004e 7D       		.byte	0x7d
- 523 004f 04       		.sleb128 4
- 524 0050 04000000 		.4byte	.LCFI4
- 525 0054 06000000 		.4byte	.LCFI5
- 526 0058 0200     		.2byte	0x2
- 527 005a 7D       		.byte	0x7d
- 528 005b 10       		.sleb128 16
- 529 005c 06000000 		.4byte	.LCFI5
- 530 0060 40000000 		.4byte	.LFE1
- 531 0064 0200     		.2byte	0x2
- 532 0066 77       		.byte	0x77
- 533 0067 10       		.sleb128 16
- 534 0068 00000000 		.4byte	0
- 535 006c 00000000 		.4byte	0
- 536              	.LLST2:
- 537 0070 00000000 		.4byte	.LFB2
- 538 0074 02000000 		.4byte	.LCFI6
- 539 0078 0200     		.2byte	0x2
- 540 007a 7D       		.byte	0x7d
- 541 007b 00       		.sleb128 0
- 542 007c 02000000 		.4byte	.LCFI6
- 543 0080 04000000 		.4byte	.LCFI7
- 544 0084 0200     		.2byte	0x2
- 545 0086 7D       		.byte	0x7d
- 546 0087 04       		.sleb128 4
- 547 0088 04000000 		.4byte	.LCFI7
- 548 008c 1E000000 		.4byte	.LFE2
- 549 0090 0200     		.2byte	0x2
- 550 0092 77       		.byte	0x77
- 551 0093 04       		.sleb128 4
- 552 0094 00000000 		.4byte	0
- 553 0098 00000000 		.4byte	0
- 554              	.LLST3:
- 555 009c 00000000 		.4byte	.LFB3
- 556 00a0 02000000 		.4byte	.LCFI8
- 557 00a4 0200     		.2byte	0x2
- 558 00a6 7D       		.byte	0x7d
- 559 00a7 00       		.sleb128 0
- 560 00a8 02000000 		.4byte	.LCFI8
- 561 00ac 04000000 		.4byte	.LCFI9
- 562 00b0 0200     		.2byte	0x2
- 563 00b2 7D       		.byte	0x7d
- 564 00b3 04       		.sleb128 4
- 565 00b4 04000000 		.4byte	.LCFI9
- 566 00b8 1E000000 		.4byte	.LFE3
- 567 00bc 0200     		.2byte	0x2
- 568 00be 77       		.byte	0x77
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 13
+ 512 002c 0200     		.2byte	0x2
+ 513 002e 77       		.byte	0x77
+ 514 002f 18       		.sleb128 24
+ 515 0030 00000000 		.4byte	0
+ 516 0034 00000000 		.4byte	0
+ 517              	.LLST1:
+ 518 0038 00000000 		.4byte	.LFB1
+ 519 003c 02000000 		.4byte	.LCFI3
+ 520 0040 0200     		.2byte	0x2
+ 521 0042 7D       		.byte	0x7d
+ 522 0043 00       		.sleb128 0
+ 523 0044 02000000 		.4byte	.LCFI3
+ 524 0048 04000000 		.4byte	.LCFI4
+ 525 004c 0200     		.2byte	0x2
+ 526 004e 7D       		.byte	0x7d
+ 527 004f 04       		.sleb128 4
+ 528 0050 04000000 		.4byte	.LCFI4
+ 529 0054 06000000 		.4byte	.LCFI5
+ 530 0058 0200     		.2byte	0x2
+ 531 005a 7D       		.byte	0x7d
+ 532 005b 10       		.sleb128 16
+ 533 005c 06000000 		.4byte	.LCFI5
+ 534 0060 40000000 		.4byte	.LFE1
+ 535 0064 0200     		.2byte	0x2
+ 536 0066 77       		.byte	0x77
+ 537 0067 10       		.sleb128 16
+ 538 0068 00000000 		.4byte	0
+ 539 006c 00000000 		.4byte	0
+ 540              	.LLST2:
+ 541 0070 00000000 		.4byte	.LFB2
+ 542 0074 02000000 		.4byte	.LCFI6
+ 543 0078 0200     		.2byte	0x2
+ 544 007a 7D       		.byte	0x7d
+ 545 007b 00       		.sleb128 0
+ 546 007c 02000000 		.4byte	.LCFI6
+ 547 0080 04000000 		.4byte	.LCFI7
+ 548 0084 0200     		.2byte	0x2
+ 549 0086 7D       		.byte	0x7d
+ 550 0087 04       		.sleb128 4
+ 551 0088 04000000 		.4byte	.LCFI7
+ 552 008c 22000000 		.4byte	.LFE2
+ 553 0090 0200     		.2byte	0x2
+ 554 0092 77       		.byte	0x77
+ 555 0093 04       		.sleb128 4
+ 556 0094 00000000 		.4byte	0
+ 557 0098 00000000 		.4byte	0
+ 558              	.LLST3:
+ 559 009c 00000000 		.4byte	.LFB3
+ 560 00a0 02000000 		.4byte	.LCFI8
+ 561 00a4 0200     		.2byte	0x2
+ 562 00a6 7D       		.byte	0x7d
+ 563 00a7 00       		.sleb128 0
+ 564 00a8 02000000 		.4byte	.LCFI8
+ 565 00ac 04000000 		.4byte	.LCFI9
+ 566 00b0 0200     		.2byte	0x2
+ 567 00b2 7D       		.byte	0x7d
+ 568 00b3 04       		.sleb128 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 13
 
 
- 569 00bf 04       		.sleb128 4
- 570 00c0 00000000 		.4byte	0
- 571 00c4 00000000 		.4byte	0
- 572              		.section	.debug_aranges,"",%progbits
- 573 0000 34000000 		.4byte	0x34
- 574 0004 0200     		.2byte	0x2
- 575 0006 00000000 		.4byte	.Ldebug_info0
- 576 000a 04       		.byte	0x4
- 577 000b 00       		.byte	0
- 578 000c 0000     		.2byte	0
- 579 000e 0000     		.2byte	0
- 580 0010 00000000 		.4byte	.LFB0
- 581 0014 3E000000 		.4byte	.LFE0-.LFB0
- 582 0018 00000000 		.4byte	.LFB1
- 583 001c 40000000 		.4byte	.LFE1-.LFB1
- 584 0020 00000000 		.4byte	.LFB2
- 585 0024 1E000000 		.4byte	.LFE2-.LFB2
- 586 0028 00000000 		.4byte	.LFB3
- 587 002c 1E000000 		.4byte	.LFE3-.LFB3
- 588 0030 00000000 		.4byte	0
- 589 0034 00000000 		.4byte	0
- 590              		.section	.debug_ranges,"",%progbits
- 591              	.Ldebug_ranges0:
- 592 0000 00000000 		.4byte	.LFB0
- 593 0004 3E000000 		.4byte	.LFE0
- 594 0008 00000000 		.4byte	.LFB1
- 595 000c 40000000 		.4byte	.LFE1
- 596 0010 00000000 		.4byte	.LFB2
- 597 0014 1E000000 		.4byte	.LFE2
- 598 0018 00000000 		.4byte	.LFB3
- 599 001c 1E000000 		.4byte	.LFE3
- 600 0020 00000000 		.4byte	0
- 601 0024 00000000 		.4byte	0
- 602              		.section	.debug_line,"",%progbits
- 603              	.Ldebug_line0:
- 604 0000 97000000 		.section	.debug_str,"MS",%progbits,1
- 604      02004800 
- 604      00000201 
- 604      FB0E0D00 
- 604      01010101 
- 605              	.LASF16:
- 606 0000 76616C75 		.ascii	"value\000"
- 606      6500
- 607              	.LASF23:
- 608 0006 73746174 		.ascii	"staticBits\000"
- 608      69634269 
- 608      747300
- 609              	.LASF14:
- 610 0011 73656C65 		.ascii	"selectPin_Write\000"
- 610      63745069 
- 610      6E5F5772 
- 610      69746500 
- 611              	.LASF18:
- 612 0021 73656C65 		.ascii	"selectPin_Read\000"
- 612      63745069 
- 612      6E5F5265 
- 612      616400
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 14
+ 569 00b4 04000000 		.4byte	.LCFI9
+ 570 00b8 22000000 		.4byte	.LFE3
+ 571 00bc 0200     		.2byte	0x2
+ 572 00be 77       		.byte	0x77
+ 573 00bf 04       		.sleb128 4
+ 574 00c0 00000000 		.4byte	0
+ 575 00c4 00000000 		.4byte	0
+ 576              		.section	.debug_aranges,"",%progbits
+ 577 0000 34000000 		.4byte	0x34
+ 578 0004 0200     		.2byte	0x2
+ 579 0006 00000000 		.4byte	.Ldebug_info0
+ 580 000a 04       		.byte	0x4
+ 581 000b 00       		.byte	0
+ 582 000c 0000     		.2byte	0
+ 583 000e 0000     		.2byte	0
+ 584 0010 00000000 		.4byte	.LFB0
+ 585 0014 44000000 		.4byte	.LFE0-.LFB0
+ 586 0018 00000000 		.4byte	.LFB1
+ 587 001c 40000000 		.4byte	.LFE1-.LFB1
+ 588 0020 00000000 		.4byte	.LFB2
+ 589 0024 22000000 		.4byte	.LFE2-.LFB2
+ 590 0028 00000000 		.4byte	.LFB3
+ 591 002c 22000000 		.4byte	.LFE3-.LFB3
+ 592 0030 00000000 		.4byte	0
+ 593 0034 00000000 		.4byte	0
+ 594              		.section	.debug_ranges,"",%progbits
+ 595              	.Ldebug_ranges0:
+ 596 0000 00000000 		.4byte	.LFB0
+ 597 0004 44000000 		.4byte	.LFE0
+ 598 0008 00000000 		.4byte	.LFB1
+ 599 000c 40000000 		.4byte	.LFE1
+ 600 0010 00000000 		.4byte	.LFB2
+ 601 0014 22000000 		.4byte	.LFE2
+ 602 0018 00000000 		.4byte	.LFB3
+ 603 001c 22000000 		.4byte	.LFE3
+ 604 0020 00000000 		.4byte	0
+ 605 0024 00000000 		.4byte	0
+ 606              		.section	.debug_line,"",%progbits
+ 607              	.Ldebug_line0:
+ 608 0000 97000000 		.section	.debug_str,"MS",%progbits,1
+ 608      02004800 
+ 608      00000201 
+ 608      FB0E0D00 
+ 608      01010101 
+ 609              	.LASF16:
+ 610 0000 76616C75 		.ascii	"value\000"
+ 610      6500
+ 611              	.LASF23:
+ 612 0006 73746174 		.ascii	"staticBits\000"
+ 612      69634269 
+ 612      747300
+ 613              	.LASF14:
+ 614 0011 73656C65 		.ascii	"selectPin_Write\000"
+ 614      63745069 
+ 614      6E5F5772 
+ 614      69746500 
+ 615              	.LASF18:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 14
 
 
- 613              	.LASF9:
- 614 0030 666C6F61 		.ascii	"float\000"
- 614      7400
- 615              	.LASF1:
- 616 0036 756E7369 		.ascii	"unsigned char\000"
- 616      676E6564 
- 616      20636861 
- 616      7200
- 617              	.LASF13:
- 618 0044 72656738 		.ascii	"reg8\000"
- 618      00
- 619              	.LASF5:
- 620 0049 6C6F6E67 		.ascii	"long unsigned int\000"
- 620      20756E73 
- 620      69676E65 
- 620      6420696E 
- 620      7400
- 621              	.LASF3:
- 622 005b 73686F72 		.ascii	"short unsigned int\000"
- 622      7420756E 
- 622      7369676E 
- 622      65642069 
- 622      6E7400
- 623              	.LASF22:
- 624 006e 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
- 624      73657273 
- 624      5C527961 
- 624      6E5C446F 
- 624      63756D65 
- 625 009c 6169726D 		.ascii	"airmartest.cydsn\000"
- 625      61727465 
- 625      73742E63 
- 625      7964736E 
- 625      00
- 626              	.LASF10:
- 627 00ad 646F7562 		.ascii	"double\000"
- 627      6C6500
- 628              	.LASF8:
- 629 00b4 756E7369 		.ascii	"unsigned int\000"
- 629      676E6564 
- 629      20696E74 
+ 616 0021 73656C65 		.ascii	"selectPin_Read\000"
+ 616      63745069 
+ 616      6E5F5265 
+ 616      616400
+ 617              	.LASF9:
+ 618 0030 666C6F61 		.ascii	"float\000"
+ 618      7400
+ 619              	.LASF1:
+ 620 0036 756E7369 		.ascii	"unsigned char\000"
+ 620      676E6564 
+ 620      20636861 
+ 620      7200
+ 621              	.LASF13:
+ 622 0044 72656738 		.ascii	"reg8\000"
+ 622      00
+ 623              	.LASF5:
+ 624 0049 6C6F6E67 		.ascii	"long unsigned int\000"
+ 624      20756E73 
+ 624      69676E65 
+ 624      6420696E 
+ 624      7400
+ 625              	.LASF3:
+ 626 005b 73686F72 		.ascii	"short unsigned int\000"
+ 626      7420756E 
+ 626      7369676E 
+ 626      65642069 
+ 626      6E7400
+ 627              	.LASF22:
+ 628 006e 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 628      73657273 
+ 628      5C527961 
+ 628      6E5C446F 
+ 628      63756D65 
+ 629 009c 6169726D 		.ascii	"airmartest.cydsn\000"
+ 629      61727465 
+ 629      73742E63 
+ 629      7964736E 
  629      00
- 630              	.LASF7:
- 631 00c1 6C6F6E67 		.ascii	"long long unsigned int\000"
- 631      206C6F6E 
- 631      6720756E 
- 631      7369676E 
- 631      65642069 
- 632              	.LASF15:
- 633 00d8 73656C65 		.ascii	"selectPin_SetDriveMode\000"
- 633      63745069 
- 633      6E5F5365 
- 633      74447269 
- 633      76654D6F 
- 634              	.LASF17:
- 635 00ef 6D6F6465 		.ascii	"mode\000"
- 635      00
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccsUoj07.s 			page 15
+ 630              	.LASF10:
+ 631 00ad 646F7562 		.ascii	"double\000"
+ 631      6C6500
+ 632              	.LASF8:
+ 633 00b4 756E7369 		.ascii	"unsigned int\000"
+ 633      676E6564 
+ 633      20696E74 
+ 633      00
+ 634              	.LASF7:
+ 635 00c1 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 635      206C6F6E 
+ 635      6720756E 
+ 635      7369676E 
+ 635      65642069 
+ 636              	.LASF15:
+ 637 00d8 73656C65 		.ascii	"selectPin_SetDriveMode\000"
+ 637      63745069 
+ 637      6E5F5365 
+ 637      74447269 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc0TMuua.s 			page 15
 
 
- 636              	.LASF21:
- 637 00f4 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\selectPin.c\000"
- 637      6E657261 
- 637      7465645F 
- 637      536F7572 
- 637      63655C50 
- 638              	.LASF6:
- 639 0119 6C6F6E67 		.ascii	"long long int\000"
- 639      206C6F6E 
- 639      6720696E 
- 639      7400
- 640              	.LASF11:
- 641 0127 63686172 		.ascii	"char\000"
- 641      00
- 642              	.LASF2:
- 643 012c 73686F72 		.ascii	"short int\000"
- 643      7420696E 
+ 637      76654D6F 
+ 638              	.LASF17:
+ 639 00ef 6D6F6465 		.ascii	"mode\000"
+ 639      00
+ 640              	.LASF21:
+ 641 00f4 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\selectPin.c\000"
+ 641      6E657261 
+ 641      7465645F 
+ 641      536F7572 
+ 641      63655C50 
+ 642              	.LASF6:
+ 643 0119 6C6F6E67 		.ascii	"long long int\000"
+ 643      206C6F6E 
+ 643      6720696E 
  643      7400
- 644              	.LASF12:
- 645 0136 75696E74 		.ascii	"uint8\000"
- 645      3800
- 646              	.LASF20:
- 647 013c 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 647      4320342E 
- 647      372E3320 
- 647      32303133 
- 647      30333132 
- 648 016f 616E6368 		.ascii	"anch revision 196615]\000"
- 648      20726576 
- 648      6973696F 
- 648      6E203139 
- 648      36363135 
- 649              	.LASF19:
- 650 0185 73656C65 		.ascii	"selectPin_ReadDataReg\000"
- 650      63745069 
- 650      6E5F5265 
- 650      61644461 
- 650      74615265 
- 651              	.LASF4:
- 652 019b 6C6F6E67 		.ascii	"long int\000"
- 652      20696E74 
- 652      00
- 653              	.LASF0:
- 654 01a4 7369676E 		.ascii	"signed char\000"
- 654      65642063 
- 654      68617200 
- 655              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 644              	.LASF11:
+ 645 0127 63686172 		.ascii	"char\000"
+ 645      00
+ 646              	.LASF2:
+ 647 012c 73686F72 		.ascii	"short int\000"
+ 647      7420696E 
+ 647      7400
+ 648              	.LASF12:
+ 649 0136 75696E74 		.ascii	"uint8\000"
+ 649      3800
+ 650              	.LASF20:
+ 651 013c 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 651      4320342E 
+ 651      372E3320 
+ 651      32303133 
+ 651      30333132 
+ 652 016f 616E6368 		.ascii	"anch revision 196615]\000"
+ 652      20726576 
+ 652      6973696F 
+ 652      6E203139 
+ 652      36363135 
+ 653              	.LASF19:
+ 654 0185 73656C65 		.ascii	"selectPin_ReadDataReg\000"
+ 654      63745069 
+ 654      6E5F5265 
+ 654      61644461 
+ 654      74615265 
+ 655              	.LASF4:
+ 656 019b 6C6F6E67 		.ascii	"long int\000"
+ 656      20696E74 
+ 656      00
+ 657              	.LASF0:
+ 658 01a4 7369676E 		.ascii	"signed char\000"
+ 658      65642063 
+ 658      68617200 
+ 659              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

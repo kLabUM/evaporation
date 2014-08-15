@@ -1,5 +1,5 @@
 -- Project:   airmartest
--- Generated: 08/06/2014 16:20:54
+-- Generated: 08/13/2014 22:54:09
 -- 
 
 ENTITY airmartest IS
@@ -220,17 +220,17 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     SIGNAL \master:BSPIM:sR16:Dp:u1.sor__sig\ : bit;
     SIGNAL \master:BSPIM:sR16:Dp:u1.cmsbo__sig\ : bit;
     ATTRIBUTE lib_model OF A_in(0) : LABEL IS "iocell1";
-    ATTRIBUTE Location OF A_in(0) : LABEL IS "P4[3]";
+    ATTRIBUTE Location OF A_in(0) : LABEL IS "P15[0]";
     ATTRIBUTE lib_model OF A_out(0) : LABEL IS "iocell2";
-    ATTRIBUTE Location OF A_out(0) : LABEL IS "P4[1]";
+    ATTRIBUTE Location OF A_out(0) : LABEL IS "P15[1]";
     ATTRIBUTE lib_model OF B_in(0) : LABEL IS "iocell3";
-    ATTRIBUTE Location OF B_in(0) : LABEL IS "P4[2]";
+    ATTRIBUTE Location OF B_in(0) : LABEL IS "P3[7]";
     ATTRIBUTE lib_model OF B_out(0) : LABEL IS "iocell4";
-    ATTRIBUTE Location OF B_out(0) : LABEL IS "P3[2]";
+    ATTRIBUTE Location OF B_out(0) : LABEL IS "P3[6]";
     ATTRIBUTE lib_model OF Battery_Ground(0) : LABEL IS "iocell5";
-    ATTRIBUTE Location OF Battery_Ground(0) : LABEL IS "P3[7]";
+    ATTRIBUTE Location OF Battery_Ground(0) : LABEL IS "P3[4]";
     ATTRIBUTE lib_model OF Battery_in(0) : LABEL IS "iocell6";
-    ATTRIBUTE Location OF Battery_in(0) : LABEL IS "P3[6]";
+    ATTRIBUTE Location OF Battery_in(0) : LABEL IS "P3[5]";
     ATTRIBUTE lib_model OF MODIN1_0 : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF MODIN1_1 : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF Net_104 : LABEL IS "macrocell3";
@@ -239,7 +239,7 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell6";
     ATTRIBUTE lib_model OF Net_99 : LABEL IS "macrocell7";
     ATTRIBUTE lib_model OF SBD_Rx(0) : LABEL IS "iocell7";
-    ATTRIBUTE Location OF SBD_Rx(0) : LABEL IS "P3[4]";
+    ATTRIBUTE Location OF SBD_Rx(0) : LABEL IS "P3[0]";
     ATTRIBUTE lib_model OF SBD_Tx(0) : LABEL IS "iocell8";
     ATTRIBUTE Location OF SBD_Tx(0) : LABEL IS "P3[1]";
     ATTRIBUTE lib_model OF SCL_1(0) : LABEL IS "iocell9";
@@ -273,7 +273,7 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE lib_model OF \Airmar:BUART:tx_state_2\ : LABEL IS "macrocell26";
     ATTRIBUTE lib_model OF \Airmar:BUART:tx_status_0\ : LABEL IS "macrocell27";
     ATTRIBUTE lib_model OF \Airmar:BUART:tx_status_2\ : LABEL IS "macrocell28";
-    ATTRIBUTE Location OF \Comp:ctComp\ : LABEL IS "F(Comparator,3)";
+    ATTRIBUTE Location OF \Comp:ctComp\ : LABEL IS "F(Comparator,1)";
     ATTRIBUTE lib_model OF \UART_SBD:BUART:counter_load_not\ : LABEL IS "macrocell29";
     ATTRIBUTE lib_model OF \UART_SBD:BUART:pollcount_0\ : LABEL IS "macrocell30";
     ATTRIBUTE lib_model OF \UART_SBD:BUART:pollcount_1\ : LABEL IS "macrocell31";
@@ -320,11 +320,11 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE lib_model OF \master:BSPIM:tx_status_4\ : LABEL IS "macrocell63";
     ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell64";
     ATTRIBUTE lib_model OF clockPin(0) : LABEL IS "iocell11";
-    ATTRIBUTE Location OF clockPin(0) : LABEL IS "P6[6]";
+    ATTRIBUTE Location OF clockPin(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF dataPin(0) : LABEL IS "iocell12";
-    ATTRIBUTE Location OF dataPin(0) : LABEL IS "P12[7]";
+    ATTRIBUTE Location OF dataPin(0) : LABEL IS "P2[2]";
     ATTRIBUTE lib_model OF selectPin(0) : LABEL IS "iocell13";
-    ATTRIBUTE Location OF selectPin(0) : LABEL IS "P6[0]";
+    ATTRIBUTE Location OF selectPin(0) : LABEL IS "P2[1]";
     COMPONENT abufcell
     END COMPONENT;
     COMPONENT boostcell
@@ -2060,7 +2060,7 @@ BEGIN
 
     SCL_1:logicalport
         GENERIC MAP(
-            drive_mode => "100",
+            drive_mode => "010",
             ibuf_enabled => "1",
             id => "02f2cf2c-2c7a-49df-9246-7a3435c21be3",
             init_dr_st => "1",
@@ -2149,7 +2149,7 @@ BEGIN
 
     SDA_1:logicalport
         GENERIC MAP(
-            drive_mode => "100",
+            drive_mode => "010",
             ibuf_enabled => "1",
             id => "22863ebe-a37b-476f-b252-6e49a8c00b12",
             init_dr_st => "1",

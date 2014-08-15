@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <device schemaVersion="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_0.xsd">
-  <name>CY8C5868AXI_LP035</name>
+  <name>CY8C5868LTI_LP039</name>
   <version>0.1</version>
   <description>CY8C58LP</description>
   <addressUnitBits>8</addressUnitBits>
@@ -9,10 +9,10 @@
     <peripheral>
       <name>UART_SBD</name>
       <description>UART</description>
-      <baseAddress>0x40006442</baseAddress>
+      <baseAddress>0x40006445</baseAddress>
       <addressBlock>
         <offset>0</offset>
-        <size>0x126</size>
+        <size>0x101</size>
         <usage>registers</usage>
       </addressBlock>
       <registers>
@@ -28,7 +28,7 @@
         <register>
           <name>TX_UART_SBD_TX_STATUS</name>
           <description>TX status register</description>
-          <addressOffset>0x20</addressOffset>
+          <addressOffset>0x1D</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -65,36 +65,9 @@
           </fields>
         </register>
         <register>
-          <name>RX_UART_SBD_RX_ADDRESS1</name>
-          <description>RX Address1 Register</description>
-          <addressOffset>0xE4</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>RX_UART_SBD_RX_ADDRESS2</name>
-          <description>RX Address2 Register</description>
-          <addressOffset>0xF4</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
-          <name>RX_UART_SBD_RX_DATA</name>
-          <description>RX Data Register</description>
-          <addressOffset>0x104</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
           <name>RX_UART_SBD_RX_STATUS</name>
           <description>RX status register</description>
-          <addressOffset>0x125</addressOffset>
+          <addressOffset>0x21</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -150,6 +123,33 @@
               <access>read-only</access>
             </field>
           </fields>
+        </register>
+        <register>
+          <name>RX_UART_SBD_RX_ADDRESS1</name>
+          <description>RX Address1 Register</description>
+          <addressOffset>0xE0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>RX_UART_SBD_RX_ADDRESS2</name>
+          <description>RX Address2 Register</description>
+          <addressOffset>0xF0</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
+          <name>RX_UART_SBD_RX_DATA</name>
+          <description>RX Data Register</description>
+          <addressOffset>0x100</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
         </register>
       </registers>
     </peripheral>
@@ -4639,7 +4639,7 @@
         <register>
           <name>Comp_Comp_TR0</name>
           <description>Comparator Trim Register_TR0</description>
-          <addressOffset>0x28F</addressOffset>
+          <addressOffset>0x28B</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -4749,7 +4749,7 @@
         <register>
           <name>Comp_Comp_TR1</name>
           <description>Comparator Trim Register_TR1</description>
-          <addressOffset>0x290</addressOffset>
+          <addressOffset>0x28C</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -4859,7 +4859,7 @@
         <register>
           <name>Comp_Comp_CR</name>
           <description>Comparator Control Register</description>
-          <addressOffset>0x149C</addressOffset>
+          <addressOffset>0x149A</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -4994,7 +4994,7 @@
         <register>
           <name>Comp_Comp_SW0</name>
           <description>Comparator Analog Routing Register 0</description>
-          <addressOffset>0x1731</addressOffset>
+          <addressOffset>0x1721</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5157,7 +5157,7 @@
         <register>
           <name>Comp_Comp_SW2</name>
           <description>Comparator Analog Routing Register 2</description>
-          <addressOffset>0x1733</addressOffset>
+          <addressOffset>0x1723</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5206,7 +5206,7 @@
         <register>
           <name>Comp_Comp_SW3</name>
           <description>Comparator Analog Routing Register 3</description>
-          <addressOffset>0x1734</addressOffset>
+          <addressOffset>0x1724</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5312,7 +5312,7 @@
         <register>
           <name>Comp_Comp_SW4</name>
           <description>Comparator Analog Routing Register 4</description>
-          <addressOffset>0x1735</addressOffset>
+          <addressOffset>0x1725</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5399,7 +5399,7 @@
         <register>
           <name>Comp_Comp_SW6</name>
           <description>Comparator Analog Routing Register 6</description>
-          <addressOffset>0x1737</addressOffset>
+          <addressOffset>0x1727</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5448,7 +5448,7 @@
         <register>
           <name>Comp_Comp_CLK</name>
           <description>Comparator Clock Control Register</description>
-          <addressOffset>0x1738</addressOffset>
+          <addressOffset>0x1728</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5590,7 +5590,7 @@
       <baseAddress>0x40006423</baseAddress>
       <addressBlock>
         <offset>0</offset>
-        <size>0x144</size>
+        <size>0x145</size>
         <usage>registers</usage>
       </addressBlock>
       <registers>
@@ -5622,18 +5622,9 @@
           <resetMask>0</resetMask>
         </register>
         <register>
-          <name>TX_Airmar_TX_DATA</name>
-          <description>TX Data Register</description>
-          <addressOffset>0x22</addressOffset>
-          <size>8</size>
-          <access>read-write</access>
-          <resetValue>0</resetValue>
-          <resetMask>0</resetMask>
-        </register>
-        <register>
           <name>RX_Airmar_RX_STATUS</name>
           <description>RX status register</description>
-          <addressOffset>0x43</addressOffset>
+          <addressOffset>0x41</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>
@@ -5691,9 +5682,18 @@
           </fields>
         </register>
         <register>
+          <name>TX_Airmar_TX_DATA</name>
+          <description>TX Data Register</description>
+          <addressOffset>0x121</addressOffset>
+          <size>8</size>
+          <access>read-write</access>
+          <resetValue>0</resetValue>
+          <resetMask>0</resetMask>
+        </register>
+        <register>
           <name>TX_Airmar_TX_STATUS</name>
           <description>TX status register</description>
-          <addressOffset>0x143</addressOffset>
+          <addressOffset>0x144</addressOffset>
           <size>8</size>
           <access>read-write</access>
           <resetValue>0</resetValue>

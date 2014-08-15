@@ -3,6 +3,8 @@
 int16 gettemperature()
 {
 	int16 temperature = 0;
+	uint8 temp1 = 0;
+	uint8 temp2 = 0;
 	int temp[14];
 	int i;
 	uint16 compare= 8192;

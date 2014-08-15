@@ -2,7 +2,7 @@
 --	Conversion of airmartest.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Aug 06 16:20:46 2014
+--	Wed Aug 13 22:54:01 2014
 --
 
 USE cypress.cypress.all;
@@ -1600,7 +1600,7 @@ clock:cy_clock_v1_0
 		id=>"be8a0219-1cef-42c9-9172-b697477b0485",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"333333333.333333",
+		period=>"1000000000",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>Net_107,
@@ -2815,7 +2815,7 @@ SBD_reply:cy_isr_v1_0
 	PORT MAP(int_signal=>Net_33);
 SDA_1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"22863ebe-a37b-476f-b252-6e49a8c00b12",
-		drive_mode=>"100",
+		drive_mode=>"010",
 		ibuf_enabled=>"1",
 		init_dr_st=>"1",
 		input_sync=>"1",
@@ -2880,7 +2880,7 @@ SDA_1:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__SDA_1_net_0);
 SCL_1:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"02f2cf2c-2c7a-49df-9246-7a3435c21be3",
-		drive_mode=>"100",
+		drive_mode=>"010",
 		ibuf_enabled=>"1",
 		init_dr_st=>"1",
 		input_sync=>"1",

@@ -1,6 +1,10 @@
-C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/Cm3Start.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Cm3Start.c 
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.c 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyDmac.h : 
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_theACLK.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h : 
 
@@ -16,9 +20,61 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Gen
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h : 
 
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_Ext_CP_Clk.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_INT.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_INT.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_INT.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_IRQ.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_IRQ.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_IRQ.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_IRQ.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_IRQ.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_PM.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_PM.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_PM.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/ADC_theACLK.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_theACLK.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/ADC_theACLK.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/AMux.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/AMux.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/AMux.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/AMux.h : 
+
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
 
-C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h : 
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/AMux.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/Battery_Ground.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_Ground.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/Battery_in.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in_aliases.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in_aliases.h : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Battery_in.c : 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/CortexM3/ARM_GCC_473/Debug/Cm3Start.o : C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Cm3Start.c 
+
+C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/CyDmac.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/Cm3Start.c : 
 
@@ -49,8 +105,6 @@ C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Cor
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/SCL_1.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/SCL_1_aliases.h : 
-
-C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/cypins.h : 
 
 C:/Users/Ryan/Documents/summer2014/WindSensor/TransmitReadings_freeSoC.cydsn/Generated_Source/PSoC5/SCL_1.c : 
 

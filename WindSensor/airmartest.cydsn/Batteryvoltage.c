@@ -1,10 +1,10 @@
 #include<batteryvoltage.h>
 
-int16 getvoltage()
+uint8 getvoltage()
 {
 	int16 value;
 	int32 offset;
-	int16 result;
+	uint8 result;
 	
 	AMux_Select(1);
 	ADC_StartConvert();
@@ -23,7 +23,7 @@ int16 getvoltage()
 	}
 	ADC_StopConvert();
 	
-	result = 100 * (ADC_CountsTo_Volts(value) / 0.31973); // 10k and 4.7k resistor
+	result = 10 * (ADC_CountsTo_Volts(value) / (float32)0.1525423729) + 0.2; // 10k and 1.8k resistor
 	
 	return result;
 }

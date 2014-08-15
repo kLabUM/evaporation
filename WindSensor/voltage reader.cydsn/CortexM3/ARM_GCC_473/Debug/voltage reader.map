@@ -99,8 +99,6 @@ Discarded input sections
                 0x00000000       0x78 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_GetResult32
                 0x00000000       0xd8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
- .text.ADC_SetOffset
-                0x00000000       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_SetGain
                 0x00000000       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_CountsTo_mVolts
@@ -489,7 +487,7 @@ END GROUP
                 0x00000800                ee_size = (CY_APPL_LOADABLE && ! (CY_EE_IN_BTLDR))?(CY_EE_SIZE / CY_APPL_MAX):CY_EE_SIZE
                 0x00000000                PROVIDE (CY_ECC_OFFSET, ecc_offset)
 
-.text           0x00000000     0x2b0e
+.text           0x00000000     0x2b36
  CREATE_OBJECT_SYMBOLS
                 0x00000000                PROVIDE (__cy_interrupt_vector, RomVectors)
  *(.romvectors)
@@ -506,195 +504,198 @@ END GROUP
                 0x00000001                ASSERT ((((appl_start + .) <= 0x10000) || 0x1), DMA Init must be within the first 64k of flash)
  *(.text .text.* .gnu.linkonce.t.*)
  .text          0x0000002c       0x54 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
- .text.main     0x00000080       0xe8 .\CortexM3\ARM_GCC_473\Debug\main.o
+ .text.main     0x00000080       0xf0 .\CortexM3\ARM_GCC_473\Debug\main.o
                 0x00000080                main
  .text.IntDefaultHandler
-                0x00000168        0x8 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
-                0x00000168                IntDefaultHandler
- .text.Start_c  0x00000170       0xcc .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
-                0x00000170                Start_c
+                0x00000170        0x8 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+                0x00000170                IntDefaultHandler
+ .text.Start_c  0x00000178       0xcc .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+                0x00000178                Start_c
  .text.initialize_psoc
-                0x0000023c       0xb4 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
-                0x0000023c                initialize_psoc
+                0x00000244       0xb4 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+                0x00000244                initialize_psoc
  .text.CYMEMZERO
-                0x000002f0       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x000002f8       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.CYCONFIGCPY
-                0x00000310       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000318       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.CyClockStartupError
-                0x00000330        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000338        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.cfg_write_bytes32
-                0x0000033c       0x84 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000344       0x84 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.ClockSetup
-                0x000003c0      0x1ac .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x000003c8      0x1ac .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.AnalogSetDefault
-                0x0000056c       0x88 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000574       0x88 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
  .text.AMux_CYAMUXSIDE_A_Set
-                0x000005f4       0x8c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x000005f4                AMux_CYAMUXSIDE_A_Set
+                0x000005fc       0x8c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x000005fc                AMux_CYAMUXSIDE_A_Set
  .text.AMux_CYAMUXSIDE_A_Unset
-                0x00000680       0x98 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x00000680                AMux_CYAMUXSIDE_A_Unset
+                0x00000688       0x98 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000688                AMux_CYAMUXSIDE_A_Unset
  .text.AMux_CYAMUXSIDE_B_Set
-                0x00000718       0x8c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x00000718                AMux_CYAMUXSIDE_B_Set
+                0x00000720       0x8c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000720                AMux_CYAMUXSIDE_B_Set
  .text.AMux_CYAMUXSIDE_B_Unset
-                0x000007a4       0x98 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x000007a4                AMux_CYAMUXSIDE_B_Unset
+                0x000007ac       0x98 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x000007ac                AMux_CYAMUXSIDE_B_Unset
  .text.cyfitter_cfg
-                0x0000083c      0x194 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x0000083c                cyfitter_cfg
+                0x00000844      0x194 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00000844                cyfitter_cfg
  .text.ADC_Init
-                0x000009d0      0x1e0 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x000009d0                ADC_Init
+                0x000009d8      0x1e0 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x000009d8                ADC_Init
  .text.ADC_Enable
-                0x00000bb0      0x1e4 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000bb0                ADC_Enable
+                0x00000bb8      0x1e4 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000bb8                ADC_Enable
  .text.ADC_Start
-                0x00000d94       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000d94                ADC_Start
+                0x00000d9c       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000d9c                ADC_Start
  .text.ADC_StartConvert
-                0x00000dd0       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000dd0                ADC_StartConvert
+                0x00000dd8       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000dd8                ADC_StartConvert
  .text.ADC_StopConvert
-                0x00000df8       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000df8                ADC_StopConvert
+                0x00000e00       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000e00                ADC_StopConvert
  .text.ADC_IsEndConversion
-                0x00000e20       0x54 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000e20                ADC_IsEndConversion
+                0x00000e28       0x54 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000e28                ADC_IsEndConversion
  .text.ADC_GetResult16
-                0x00000e74       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000e74                ADC_GetResult16
+                0x00000e7c       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000e7c                ADC_GetResult16
+ .text.ADC_SetOffset
+                0x00000f0c       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000f0c                ADC_SetOffset
  .text.ADC_CountsTo_Volts
-                0x00000f04       0x4c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
-                0x00000f04                ADC_CountsTo_Volts
+                0x00000f2c       0x4c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000f2c                ADC_CountsTo_Volts
  .text.ADC_InitConfig
-                0x00000f50      0x720 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00000f78      0x720 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_GainCompensation
-                0x00001670      0x19c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00001698      0x19c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_SetDSMRef0Reg
-                0x0000180c       0xa8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+                0x00001834       0xa8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
  .text.ADC_ISR1
-                0x000018b4        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
-                0x000018b4                ADC_ISR1
+                0x000018dc        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
+                0x000018dc                ADC_ISR1
  .text.ADC_ISR2
-                0x000018c0        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
-                0x000018c0                ADC_ISR2
+                0x000018e8        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
+                0x000018e8                ADC_ISR2
  .text.ADC_ISR3
-                0x000018cc        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
-                0x000018cc                ADC_ISR3
+                0x000018f4        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
+                0x000018f4                ADC_ISR3
  .text.ADC_ISR4
-                0x000018d8        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
-                0x000018d8                ADC_ISR4
+                0x00001900        0xc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
+                0x00001900                ADC_ISR4
  .text.LCD_Init
-                0x000018e4       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x000018e4                LCD_Init
+                0x0000190c       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x0000190c                LCD_Init
  .text.LCD_Enable
-                0x00001974       0x1c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001974                LCD_Enable
+                0x0000199c       0x1c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x0000199c                LCD_Enable
  .text.LCD_Start
-                0x00001990       0x2c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001990                LCD_Start
+                0x000019b8       0x2c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x000019b8                LCD_Start
  .text.LCD_Position
-                0x000019bc       0x78 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x000019bc                LCD_Position
+                0x000019e4       0x78 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x000019e4                LCD_Position
  .text.LCD_PrintString
-                0x00001a34       0x40 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001a34                LCD_PrintString
+                0x00001a5c       0x40 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001a5c                LCD_PrintString
  .text.LCD_WriteData
-                0x00001a74       0x38 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001a74                LCD_WriteData
+                0x00001a9c       0x38 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001a9c                LCD_WriteData
  .text.LCD_WriteControl
-                0x00001aac       0x38 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001aac                LCD_WriteControl
+                0x00001ad4       0x38 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001ad4                LCD_WriteControl
  .text.LCD_IsReady
-                0x00001ae4      0x208 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001ae4                LCD_IsReady
+                0x00001b0c      0x208 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001b0c                LCD_IsReady
  .text.LCD_WrDatNib
-                0x00001cec       0xb4 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001d14       0xb4 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
  .text.LCD_WrCntrlNib
-                0x00001da0       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001dc8       0x90 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
  .text.LCD_PrintU32Number
-                0x00001e30       0xcc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
-                0x00001e30                LCD_PrintU32Number
+                0x00001e58       0xcc .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+                0x00001e58                LCD_PrintU32Number
  .text.ADC_theACLK_SetDividerRegister
-                0x00001efc      0x1e8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
-                0x00001efc                ADC_theACLK_SetDividerRegister
+                0x00001f24      0x1e8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
+                0x00001f24                ADC_theACLK_SetDividerRegister
  .text.ADC_theACLK_GetDividerRegister
-                0x000020e4       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
-                0x000020e4                ADC_theACLK_GetDividerRegister
+                0x0000210c       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
+                0x0000210c                ADC_theACLK_GetDividerRegister
  .text.ADC_theACLK_SetModeRegister
-                0x000020fc       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
-                0x000020fc                ADC_theACLK_SetModeRegister
+                0x00002124       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
+                0x00002124                ADC_theACLK_SetModeRegister
  .text.ADC_theACLK_GetSourceRegister
-                0x00002138       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
-                0x00002138                ADC_theACLK_GetSourceRegister
- .text          0x00002158       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyBootAsmGnu.o)
-                0x00002158                CyDelayCycles
-                0x0000216c                CyEnterCriticalSection
-                0x00002174                CyExitCriticalSection
- .text.CyHalt   0x00002180       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
-                0x00002180                CyHalt
- .text.CyDelay  0x00002198       0x48 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
-                0x00002198                CyDelay
+                0x00002160       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
+                0x00002160                ADC_theACLK_GetSourceRegister
+ .text          0x00002180       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyBootAsmGnu.o)
+                0x00002180                CyDelayCycles
+                0x00002194                CyEnterCriticalSection
+                0x0000219c                CyExitCriticalSection
+ .text.CyHalt   0x000021a8       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+                0x000021a8                CyHalt
+ .text.CyDelay  0x000021c0       0x48 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+                0x000021c0                CyDelay
  .text.CyDelayUs
-                0x000021e0       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
-                0x000021e0                CyDelayUs
+                0x00002208       0x28 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+                0x00002208                CyDelayUs
  .text.CyIntSetVector
-                0x00002208       0x60 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
-                0x00002208                CyIntSetVector
+                0x00002230       0x60 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+                0x00002230                CyIntSetVector
  .text.CyIntSetPriority
-                0x00002268       0x4c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
-                0x00002268                CyIntSetPriority
+                0x00002290       0x4c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+                0x00002290                CyIntSetPriority
  .text.ADC_Ext_CP_Clk_SetDividerRegister
-                0x000022b4      0x1e8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
-                0x000022b4                ADC_Ext_CP_Clk_SetDividerRegister
+                0x000022dc      0x1e8 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
+                0x000022dc                ADC_Ext_CP_Clk_SetDividerRegister
  .text.ADC_Ext_CP_Clk_GetDividerRegister
-                0x0000249c       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
-                0x0000249c                ADC_Ext_CP_Clk_GetDividerRegister
+                0x000024c4       0x18 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
+                0x000024c4                ADC_Ext_CP_Clk_GetDividerRegister
  .text.ADC_Ext_CP_Clk_SetModeRegister
-                0x000024b4       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
-                0x000024b4                ADC_Ext_CP_Clk_SetModeRegister
+                0x000024dc       0x3c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
+                0x000024dc                ADC_Ext_CP_Clk_SetModeRegister
  .text.ADC_Ext_CP_Clk_GetSourceRegister
-                0x000024f0       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
-                0x000024f0                ADC_Ext_CP_Clk_GetSourceRegister
+                0x00002518       0x20 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
+                0x00002518                ADC_Ext_CP_Clk_GetSourceRegister
  .text.AMux_Start
-                0x00002510       0x44 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
-                0x00002510                AMux_Start
+                0x00002538       0x44 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
+                0x00002538                AMux_Start
  .text.AMux_Select
-                0x00002554       0x2c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
-                0x00002554                AMux_Select
+                0x0000257c       0x2c .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
+                0x0000257c                AMux_Select
  .text.AMux_Connect
-                0x00002580       0x24 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
-                0x00002580                AMux_Connect
- .text          0x000025a4      0x21c c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
-                0x000025a4                __aeabi_frsub
-                0x000025ac                __subsf3
-                0x000025ac                __aeabi_fsub
-                0x000025b0                __aeabi_fadd
-                0x000025b0                __addsf3
-                0x00002710                __aeabi_ui2f
-                0x00002710                __floatunsisf
-                0x00002718                __aeabi_i2f
-                0x00002718                __floatsisf
-                0x00002734                __aeabi_ul2f
-                0x00002734                __floatundisf
-                0x00002744                __aeabi_l2f
-                0x00002744                __floatdisf
- .text          0x000027c0      0x2a0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_muldivsf3.o)
-                0x000027c0                __mulsf3
-                0x000027c0                __aeabi_fmul
-                0x00002928                __aeabi_fdiv
-                0x00002928                __divsf3
- .text          0x00002a60       0x40 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_fixunssfsi.o)
-                0x00002a60                __fixunssfsi
-                0x00002a60                __aeabi_f2uiz
+                0x000025a8       0x24 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
+                0x000025a8                AMux_Connect
+ .text          0x000025cc      0x21c c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_addsubsf3.o)
+                0x000025cc                __aeabi_frsub
+                0x000025d4                __subsf3
+                0x000025d4                __aeabi_fsub
+                0x000025d8                __aeabi_fadd
+                0x000025d8                __addsf3
+                0x00002738                __aeabi_ui2f
+                0x00002738                __floatunsisf
+                0x00002740                __aeabi_i2f
+                0x00002740                __floatsisf
+                0x0000275c                __aeabi_ul2f
+                0x0000275c                __floatundisf
+                0x0000276c                __aeabi_l2f
+                0x0000276c                __floatdisf
+ .text          0x000027e8      0x2a0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_muldivsf3.o)
+                0x000027e8                __mulsf3
+                0x000027e8                __aeabi_fmul
+                0x00002950                __aeabi_fdiv
+                0x00002950                __divsf3
+ .text          0x00002a88       0x40 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m\libgcc.a(_arm_fixunssfsi.o)
+                0x00002a88                __fixunssfsi
+                0x00002a88                __aeabi_f2uiz
  .text.__libc_init_array
-                0x00002aa0       0x4c c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-init.o)
-                0x00002aa0                __libc_init_array
- .text.memcpy   0x00002aec       0x12 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-memcpy.o)
-                0x00002aec                memcpy
- .text.memset   0x00002afe       0x10 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-memset.o)
-                0x00002afe                memset
+                0x00002ac8       0x4c c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-init.o)
+                0x00002ac8                __libc_init_array
+ .text.memcpy   0x00002b14       0x12 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-memcpy.o)
+                0x00002b14                memcpy
+ .text.memset   0x00002b26       0x10 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/lib/armv7-m\libc_s.a(lib_a-memset.o)
+                0x00002b26                memset
  *(.plt)
  *(.gnu.warning)
  *(.glue_7t)
@@ -707,80 +708,80 @@ END GROUP
  *(.ARM.extab* .gnu.linkonce.armextab.*)
  *(.gcc_except_table)
 
-.v4_bx          0x00002b10        0x0
+.v4_bx          0x00002b38        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00002b10        0x0
+.iplt           0x00002b38        0x0
  .iplt          0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x00002b10        0x4
+.eh_frame       0x00002b38        0x4
  *(.eh_frame)
- .eh_frame      0x00002b10        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
- .eh_frame      0x00002b10        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtend.o
-                0x00002b14                PROVIDE (__exidx_start, .)
+ .eh_frame      0x00002b38        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
+ .eh_frame      0x00002b38        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtend.o
+                0x00002b3c                PROVIDE (__exidx_start, .)
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x00002b14                __exidx_end = .
+                0x00002b3c                __exidx_end = .
 
-.rodata         0x00002b14       0xa4
+.rodata         0x00002b3c       0xa4
  *(.rodata .rodata.* .gnu.linkonce.r.*)
- .rodata        0x00002b14        0xc .\CortexM3\ARM_GCC_473\Debug\main.o
- .rodata        0x00002b20       0x60 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
-                0x00002b20                AMux_CYAMUXSIDE_A__addrTable
-                0x00002b30                AMux_CYAMUXSIDE_A__maskTable
-                0x00002b34                AMux_CYAMUXSIDE_B__addrTable
-                0x00002b44                AMux_CYAMUXSIDE_B__maskTable
-                0x00002b80                . = ALIGN (0x4)
+ .rodata        0x00002b3c        0xc .\CortexM3\ARM_GCC_473\Debug\main.o
+ .rodata        0x00002b48       0x60 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+                0x00002b48                AMux_CYAMUXSIDE_A__addrTable
+                0x00002b58                AMux_CYAMUXSIDE_A__maskTable
+                0x00002b5c                AMux_CYAMUXSIDE_B__addrTable
+                0x00002b6c                AMux_CYAMUXSIDE_B__maskTable
+                0x00002ba8                . = ALIGN (0x4)
  *(.init)
- .init          0x00002b80        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crti.o
-                0x00002b80                _init
- .init          0x00002b84        0x8 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtn.o
-                0x00002b8c                . = ALIGN (0x4)
-                0x00002b8c                __preinit_array_start = .
+ .init          0x00002ba8        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crti.o
+                0x00002ba8                _init
+ .init          0x00002bac        0x8 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtn.o
+                0x00002bb4                . = ALIGN (0x4)
+                0x00002bb4                __preinit_array_start = .
  *(.preinit_array)
-                0x00002b8c                __preinit_array_end = .
-                0x00002b8c                . = ALIGN (0x4)
-                0x00002b8c                __init_array_start = .
+                0x00002bb4                __preinit_array_end = .
+                0x00002bb4                . = ALIGN (0x4)
+                0x00002bb4                __init_array_start = .
  *(SORT(.init_array.*))
  *(.init_array)
- .init_array    0x00002b8c        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
- .init_array    0x00002b90        0x4 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
-                0x00002b94                __init_array_end = .
-                0x00002b94                . = ALIGN (0x4)
+ .init_array    0x00002bb4        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
+ .init_array    0x00002bb8        0x4 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+                0x00002bbc                __init_array_end = .
+                0x00002bbc                . = ALIGN (0x4)
  *(.fini)
- .fini          0x00002b94        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crti.o
-                0x00002b94                _fini
- .fini          0x00002b98        0x8 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtn.o
-                0x00002ba0                . = ALIGN (0x4)
-                0x00002ba0                __fini_array_start = .
+ .fini          0x00002bbc        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crti.o
+                0x00002bbc                _fini
+ .fini          0x00002bc0        0x8 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtn.o
+                0x00002bc8                . = ALIGN (0x4)
+                0x00002bc8                __fini_array_start = .
  *(.fini_array)
- .fini_array    0x00002ba0        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
+ .fini_array    0x00002bc8        0x4 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
  *(SORT(.fini_array.*))
-                0x00002ba4                __fini_array_end = .
-                0x00002ba4                . = ALIGN (0x4)
+                0x00002bcc                __fini_array_end = .
+                0x00002bcc                . = ALIGN (0x4)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *crtend.o(.ctors)
-                0x00002ba4                . = ALIGN (0x4)
+                0x00002bcc                . = ALIGN (0x4)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *crtend.o(.dtors)
-                0x00002ba4                . = ALIGN (0x4)
-                0x00002ba4                __cy_regions = .
-                0x00002ba4        0x4 LONG 0x2bb8 __cy_region_init_ram
-                0x00002ba8        0x4 LONG 0x1fff8108 __cy_region_start_data
-                0x00002bac        0x4 LONG 0x20 __cy_region_init_size_ram
-                0x00002bb0        0x4 LONG 0x40 __cy_region_zero_size_ram
-                0x00002bb4                __cy_regions_end = .
-                0x00002bb8                . = ALIGN (0x8)
- *fill*         0x00002bb4        0x4 00
-                0x00002bb8                _etext = .
+                0x00002bcc                . = ALIGN (0x4)
+                0x00002bcc                __cy_regions = .
+                0x00002bcc        0x4 LONG 0x2be0 __cy_region_init_ram
+                0x00002bd0        0x4 LONG 0x1fff8108 __cy_region_start_data
+                0x00002bd4        0x4 LONG 0x20 __cy_region_init_size_ram
+                0x00002bd8        0x4 LONG 0x40 __cy_region_zero_size_ram
+                0x00002bdc                __cy_regions_end = .
+                0x00002be0                . = ALIGN (0x8)
+ *fill*         0x00002bdc        0x4 00
+                0x00002be0                _etext = .
 
 .ramvectors     0x1fff8000      0x100
                 0x1fff8000                __cy_region_start_ram = .
@@ -794,7 +795,7 @@ END GROUP
  .noinit        0x1fff8104        0x1 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
                 0x1fff8104                CyResetStatus
 
-.data           0x1fff8108       0x20 load address 0x00002bb8
+.data           0x1fff8108       0x20 load address 0x00002be0
                 0x1fff8108                __cy_region_start_data = .
  *(.jcr)
  .jcr           0x1fff8108        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
@@ -817,10 +818,10 @@ END GROUP
  *(.ram)
                 0x1fff8128                _edata = .
 
-.igot.plt       0x1fff8128        0x0 load address 0x00002bd8
+.igot.plt       0x1fff8128        0x0 load address 0x00002c00
  .igot.plt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
 
-.bss            0x1fff8128       0x40 load address 0x00002bd8
+.bss            0x1fff8128       0x40 load address 0x00002c00
                 0x1fff8128                PROVIDE (__bss_start__, .)
  *(.shbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
@@ -845,11 +846,11 @@ END GROUP
                 0x1fff8168                __end = .
                 0x1fff8168                PROVIDE (end, .)
                 0x1fff8168                PROVIDE (__bss_end__, .)
-                0x00002bb8                __cy_region_init_ram = LOADADDR (.data)
+                0x00002be0                __cy_region_init_ram = LOADADDR (.data)
                 0x00000020                __cy_region_init_size_ram = (_edata - ADDR (.data))
                 0x00000040                __cy_region_zero_size_ram = (_end - _edata)
 
-.heap           0x1fff8168     0x1000 load address 0x00002bd8
+.heap           0x1fff8168     0x1000 load address 0x00002c00
                 0x1fff8168                . = _end
                 0x1fff9168                . = (. + 0x1000)
  *fill*         0x1fff8168     0x1000 00
@@ -898,7 +899,7 @@ END GROUP
  .cymeta        0x90500000        0xc .\CortexM3\ARM_GCC_473\Debug\cymetadata.o
                 0x90500000                cy_metadata
 
-.rel.dyn        0x00002bd8        0x0 load address 0x9050000c
+.rel.dyn        0x00002c00        0x0 load address 0x9050000c
  .rel.iplt      0x00000000        0x0 c:/program files (x86)/cypress/psoc creator/3.0/psoc creator/import/gnu_cs/arm/4.7.3/bin/../lib/gcc/arm-none-eabi/4.7.3/armv7-m/crtbegin.o
 
 .stab
@@ -991,23 +992,23 @@ END GROUP
  .debug_abbrev  0x00000d30      0x172 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyFlash.o)
  .debug_abbrev  0x00000ea2      0x15f .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CySpc.o)
 
-.debug_line     0x00000000     0x1e81
+.debug_line     0x00000000     0x1e82
  *(.debug_line)
- .debug_line    0x00000000      0x129 .\CortexM3\ARM_GCC_473\Debug\main.o
- .debug_line    0x00000129       0x53 .\CortexM3\ARM_GCC_473\Debug\cymetadata.o
- .debug_line    0x0000017c      0x1b0 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
- .debug_line    0x0000032c      0x25f .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
- .debug_line    0x0000058b      0x3bd .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
- .debug_line    0x00000948       0x8e .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
- .debug_line    0x000009d6      0x214 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
- .debug_line    0x00000bea      0x1c6 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
- .debug_line    0x00000db0       0x68 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyBootAsmGnu.o)
- .debug_line    0x00000e18      0x73b .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
- .debug_line    0x00001553      0x370 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyPm.o)
- .debug_line    0x000018c3      0x1a5 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
- .debug_line    0x00001a68       0xc9 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
- .debug_line    0x00001b31      0x1a9 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyFlash.o)
- .debug_line    0x00001cda      0x1a7 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CySpc.o)
+ .debug_line    0x00000000      0x12a .\CortexM3\ARM_GCC_473\Debug\main.o
+ .debug_line    0x0000012a       0x53 .\CortexM3\ARM_GCC_473\Debug\cymetadata.o
+ .debug_line    0x0000017d      0x1b0 .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o
+ .debug_line    0x0000032d      0x25f .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyfitter_cfg.o)
+ .debug_line    0x0000058c      0x3bd .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC.o)
+ .debug_line    0x00000949       0x8e .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_INT.o)
+ .debug_line    0x000009d7      0x214 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(LCD.o)
+ .debug_line    0x00000beb      0x1c6 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_theACLK.o)
+ .debug_line    0x00000db1       0x68 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyBootAsmGnu.o)
+ .debug_line    0x00000e19      0x73b .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyLib.o)
+ .debug_line    0x00001554      0x370 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(cyPm.o)
+ .debug_line    0x000018c4      0x1a5 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(ADC_Ext_CP_Clk.o)
+ .debug_line    0x00001a69       0xc9 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(AMux.o)
+ .debug_line    0x00001b32      0x1a9 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CyFlash.o)
+ .debug_line    0x00001cdb      0x1a7 .\CortexM3\ARM_GCC_473\Debug\voltage reader.a(CySpc.o)
 
 .debug_frame    0x00000000     0x186c
  *(.debug_frame)

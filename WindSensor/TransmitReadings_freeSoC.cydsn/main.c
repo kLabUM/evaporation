@@ -2,14 +2,31 @@
 #include <magnetometer.h>
 #include <thermocouple.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <batteryvoltage.h>
 
+struct evappacket
+{
+	float32 gpstime; 
+	float32 gpsnorth;
+	float32 gpswest; 
+	uint32 gpsdate;
+	uint16 VaisalawindDirection; 
+	uint8 VaisalawindSpeed;
+	int16 Vaisalaairtemp;
+	uint16 Vaisalarelhumidity;
+	uint16 Vaisalaairpressure;
+	uint16 Magnetometerheading;
+	int16 Thermocouplewatertemperature;
+	uint8 battery;
+	uint16 dummychecksum;
+};
 
 CY_ISR_PROTO(IntWind);
 CY_ISR_PROTO(SBD_int);
 void windprocessPacket();
 void clearPacketSBD();
 void clearPacketwind();
-
 uint8 SBDData[256];
 uint16 SBDPointer = 0;
 uint8 windData[256];
@@ -17,6 +34,12 @@ uint16 windDataPointer = 0;
 uint8 windpacketReceived;
 uint8 SBDpacketReceived;
 int16 readingx, readingy, readingz, heading;
+uint8 voltage;
+float32 float32size;
+int16 int16size;
+uint8 uint8size;
+uint16 uint16size;
+uint32 uint32size;
 
 int main()
 {
@@ -58,6 +81,7 @@ int main()
 }
 
 void windprocessPacket(){
+	struct evappacket sendpacket;
 	int i = 0;
 	//int j = 0;
 	int gpsvalid = 0;
@@ -66,13 +90,12 @@ void windprocessPacket(){
 	//char weatherdata[256];
 	char gpsdata[64];
 	char8 text[256];
-	char time[8];
-	char validornot[8];
-	char northgps[8];
-	char westgps[8];
-	char date[8];
-	char *pch;
-	
+	float time;
+	char validornot;
+	float northgps;
+	float westgps;
+	uint8 date;
+	int matches;
 	
 	// get magnetometer reading
 	readingx = getmeasurement((uint8) 3,(uint8) 4);
@@ -82,6 +105,7 @@ void windprocessPacket(){
 	
 	// get reading from thermocouple output as an integer with last two spots as hundreths and thousandths
 	watertemperature = gettemperature();
+	voltage = getvoltage();
 	
 	clearPacketSBD();
 	//query for last gps fix and wait for response from SBD Warrior 
@@ -96,46 +120,10 @@ void windprocessPacket(){
 	}
 	
 	SBD_reply_Stop();
-	//copies gps data into a c string
-	while(SBDData[i] != '\r')
-	{
-		gpsdata[i] = SBDData[i];
-		i++;
-	}
-	//start changes
-	pch = strtok (SBDData,",");
-  			for(i=1;i<6;i++)
-  			{
-    			pch = strtok (NULL, ",");
-				
-				switch(i)
-				{
-					case 1:
-					sprintf(time, "%s", pch);
-					break;
-					
-					case 2:
-					sprintf(validornot, "%s", pch);
-					break;
-					
-					case 3:
-					sprintf(northgps, "%s", pch);
-					break;
-					
-					case 5:
-					sprintf(westgps, "%s", pch);
-					break;
-					
-					case 9:
-					sprintf(date, "%s", pch);
-					break;
-					
-					default:
-					break;
-				}
-  			}
-			
-			if(validornot[0] == 'A')
+	
+	//extracts needed data from GPRMC Sentance
+	matches = sscanf(SBDData, "$GPRMC,%f,%c,%f,%*c,%f,%*c,%*f,%*f,%d", &time, &validornot, &northgps, &westgps, &date);
+			if(validornot == 'A' && matches == 5)
 			{
 				gpsvalid = 1;
 			}
@@ -144,36 +132,19 @@ void windprocessPacket(){
 			{
 				gpsvalid = 0;
 			}
-			//end changes
+
 	SBD_reply_Start();
-	
-	gpsdata[i] = '\0';
-	// checks if gps is valid and sets gpsvalid to appropriate conclusion
-	for(i=0;i<40;i++)
-	{
-		if(gpsdata[i] == 'v')
-		{
-			gpsvalid = 0;
-			break;
-		}
-		
-		if(gpsdata[i] == 'a')
-		{
-			gpsvalid = 1;
-			break;
-		}
-	}
 	
 	i = 0;
 
-	
 	// fetchs each parameter needed from the weather sensor and put each parameter in a c string
 	char windDirection[4];
 	for(i=0;i<3; i++)
 	{
 		windDirection[i] = windData[15+i];
 	}
-	windDirection[3] = '\0'; 
+	windDirection[3] = '\0';
+	uint16 winddirection = atoi(windDirection);
 	
 	char windSpeed[4];
 	for(i=0;i<3;i++)
@@ -182,6 +153,7 @@ void windprocessPacket(){
 	}
 	
 	windSpeed[3] = '\0';
+	uint8 windspeed = atof(windSpeed) * 10;
 	
 	char airtemp[5];
 	for(i=0;i<4;i++)
@@ -190,6 +162,7 @@ void windprocessPacket(){
 	}
 	
 	airtemp[4] = '\0';
+	int16 airtemperature = atof(airtemp) * 10;
 	
 	char relhumidity[5];
 	for(i=0;i<4;i++)
@@ -198,6 +171,7 @@ void windprocessPacket(){
 	}
 	
 	relhumidity[4] = '\0';
+	uint16 humidity = atof(relhumidity) * 10;
 	
 	char airpressure[6];
 	for(i=0;i<5;i++)
@@ -206,26 +180,62 @@ void windprocessPacket(){
 	}
 	
 	airpressure[5] = '\0';
+	uint16 pressure = atof(airpressure) * 10;
 	
-	sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%d,%d\r\n", gpsdata, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (uint16)watertemperature);
+		sendpacket.gpstime = time;
+		sendpacket.gpsnorth = northgps;
+		sendpacket.gpswest = westgps;
+		sendpacket.gpsdate = date;
+		sendpacket.VaisalawindDirection = winddirection;
+		sendpacket.VaisalawindSpeed = windspeed;
+		sendpacket.Vaisalaairtemp = airtemperature;
+		sendpacket.Vaisalarelhumidity = humidity;
+		sendpacket.Vaisalaairpressure = pressure;
+		sendpacket.Thermocouplewatertemperature = watertemperature;
+		sendpacket.Magnetometerheading = (uint16)heading;
+		sendpacket.battery = voltage;
+	
+	//sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%d,%d\r\n", gpsdata, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (uint16)watertemperature);
 	//start changes
 	if(gpsvalid == 1)
 	{
-		sprintf(text, "AT-WSMOST=%s,%s,%s,%s,%s,%s,%s,%s,%s,%d,%d\r\n", time, northgps, westgps, date, windDirection, windSpeed, airtemp, relhumidity, airpressure, (int)heading, (uint16)watertemperature);
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSMOBW=30\r\n");
+		UART_SBD_PutArray(&sendpacket.gpstime, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpsnorth, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpswest, sizeof(float32size));
+		UART_SBD_PutArray(&sendpacket.gpsdate, sizeof(uint32size));
+		UART_SBD_PutArray(&sendpacket.VaisalawindDirection, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.VaisalawindSpeed, sizeof(uint8size));
+		UART_SBD_PutArray(&sendpacket.Vaisalaairtemp, sizeof(int16size));
+		UART_SBD_PutArray(&sendpacket.Vaisalarelhumidity, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.Vaisalaairpressure, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.Magnetometerheading, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.Thermocouplewatertemperature, sizeof(int16size));
+		UART_SBD_PutArray(&sendpacket.battery, sizeof(uint8size));
+		UART_SBD_PutArray(&sendpacket.dummychecksum, sizeof(uint16size));
 	}
 	
 	else
 	{
-		sprintf(text, "AT-WSMOST=INVALID");
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSMOBW=1\r\n");
+		UART_SBD_PutString("I");
 	}
 	
 	
 	//end changes
 	
-	
-	UART_SBD_PutString(text);
+	UART_SBD_PutString("0000000000000000000000000\r\n");
+	UART_SBD_PutString("AT-WSSBDIS\r\n");
+	//UART_SBD_PutString(text);
 	clearPacketSBD();
 	clearPacketwind();
+	UART_SBD_PutString("AT-WSEPOFF\r\n");
 	UART_SBD_PutString("AT-WSEPOFF\r\n");
 	clearPacketSBD();
 }

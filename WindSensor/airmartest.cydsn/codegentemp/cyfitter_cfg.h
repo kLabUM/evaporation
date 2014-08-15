@@ -36,11 +36,11 @@ extern void AMux_CYAMUXSIDE_B_Unset(uint8 channel);
 /* AMux_CYAMUXSIDE_B__addrTable is an implementation detail of the AMux.
    Code that depends on it may be incompatible with other versions
    of PSoC Creator. */
-extern uint8 CYXDATA * const CYCODE AMux_CYAMUXSIDE_B__addrTable[2];
+extern uint8 CYXDATA * const CYCODE AMux_CYAMUXSIDE_B__addrTable[4];
 /* AMux_CYAMUXSIDE_B__maskTable is an implementation detail of the AMux.
    Code that depends on it may be incompatible with other versions
    of PSoC Creator. */
-extern const uint8 CYCODE AMux_CYAMUXSIDE_B__maskTable[2];
+extern const uint8 CYCODE AMux_CYAMUXSIDE_B__maskTable[4];
 
 
 #endif /* CYFITTER_CFG_H */
