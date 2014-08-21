@@ -87,7 +87,6 @@ int main()
 	UART_SBD_Start();
 	isr_airmar_StartEx(airmar_int);
 	ADC_Start();
-	AMux_Start();
 
     CyGlobalIntEnable;
 	isr_airmar_Stop();
@@ -97,8 +96,8 @@ int main()
 		gpsretry = 0;
 		Airmar_PutString("$PAMTX\r\n");
        	Airmar_PutString("$PAMTC,EN,ALL,0\r\n");
-		Airmar_PutString("$PAMTC,EN,RMC,1,500\r\n");
-		Airmar_PutString("$PAMTC,EN,MWD,1,500\r\n");
+		Airmar_PutString("$PAMTC,EN,RMC,1,50\r\n");
+		Airmar_PutString("$PAMTC,EN,MWD,1,50\r\n");
 		Airmar_PutString("$PAMTX,1\r\n");
 		isr_airmar_StartEx(airmar_int);
 		
@@ -115,7 +114,7 @@ int main()
 					validgpsfound = 1;
 					memcpy(gpsData, windData, 128);
 					gpsretry++;
-					if(gpsretry > 80)
+					if(gpsretry > 5)
 					{
 						gpsvalid = 1;
 					}
@@ -124,13 +123,13 @@ int main()
 				else
 				{
 					gpsretry++;
-					if(gpsretry > 80 && validgpsfound == 0)
+					if(gpsretry > 5 && validgpsfound == 0)
 					{
 						memcpy(gpsData, windData, 128);
 						gpsvalid = 1;
 					}
 					
-					else if(gpsretry > 80 && validgpsfound == 1)
+					else if(gpsretry > 5 && validgpsfound == 1)
 					{
 						gpsvalid = 1;
 					}
@@ -144,8 +143,8 @@ int main()
 				current.heading = windDirection;
 				vectorforavg[samplesize] = definevectors(current);
 				samplesize++;
-				//sprintf(text, "%d", gpsretry);
-				//UART_SBD_PutString(text);
+				sprintf(text, "%d", gpsretry);
+				UART_SBD_PutString(text);
 				clearPacketwind();
 				isr_airmar_StartEx(airmar_int);
 				
@@ -167,6 +166,7 @@ int main()
 		while(windpacketReceived == 0)
 		{
 		}
+		isr_airmar_Stop();
 		count = 0;
 		while(matches != 2)
 		{
@@ -181,6 +181,11 @@ int main()
 			if(count > 40)
 			{
 				matches = 2;
+			}
+			
+			else
+			{
+				isr_airmar_StartEx(airmar_int);
 			}
 		}
 		
@@ -232,8 +237,8 @@ int main()
 		UART_SBD_PutArray(&sendpacket.dummychecksum, sizeof(uint16size));
 		
 		
-		UART_SBD_PutString("0000000000000000000000000\r\n");
-		UART_SBD_PutString("AT-WSSBDIS\r\n");
+		//UART_SBD_PutString("0000000000000000000000000\r\n");
+		//UART_SBD_PutString("AT-WSSBDIS\r\n");
 		//UART_SBD_PutString("AT-WSSBDIS\r\n");
 		
 		UART_SBD_PutString("0000000000000000000000000\r\n");

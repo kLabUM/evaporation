@@ -18,6 +18,7 @@
 <name_val_pair name="airmartest" v=".\airmartest.cydsn\airmartest.cyprj" />
 <name_val_pair name="voltage reader" v=".\voltage reader.cydsn\voltage reader.cyprj" />
 <name_val_pair name="RH_Sensor" v=".\RH_Sensor.cydsn\RH_Sensor.cyprj" />
+<name_val_pair name="airmar_NoGPS" v=".\airmar_NoGPS.cydsn\airmar_NoGPS.cyprj" />
 </projects>
 <workspace_id v="40755a7a-bfff-4674-bed5-fe0ac4e6b006" />
 <WriteAppVersionLastSavedWith v="3.0.0.3023" />

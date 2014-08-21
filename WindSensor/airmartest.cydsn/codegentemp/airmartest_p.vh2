@@ -1,5 +1,5 @@
 -- Project:   airmartest
--- Generated: 08/13/2014 22:54:09
+-- Generated: 08/19/2014 11:41:47
 -- 
 
 ENTITY airmartest IS
@@ -27,7 +27,6 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     SIGNAL A_out(0)__PA : bit;
     SIGNAL B_in(0)__PA : bit;
     SIGNAL B_out(0)__PA : bit;
-    SIGNAL Battery_Ground(0)__PA : bit;
     SIGNAL Battery_in(0)__PA : bit;
     SIGNAL ClockBlock_100k : bit;
     SIGNAL ClockBlock_1k : bit;
@@ -55,7 +54,8 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     SIGNAL Net_107_local : bit;
     SIGNAL Net_115 : bit;
     SIGNAL Net_119 : bit;
-    SIGNAL Net_174 : bit;
+    SIGNAL Net_189 : bit;
+    SIGNAL Net_192 : bit;
     SIGNAL Net_33 : bit;
     SIGNAL Net_71 : bit;
     SIGNAL Net_77 : bit;
@@ -65,28 +65,24 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     SIGNAL SBD_Tx(0)__PA : bit;
     SIGNAL SCL_1(0)__PA : bit;
     SIGNAL SDA_1(0)__PA : bit;
-    SIGNAL \ADC:Net_245_0\ : bit;
-    SIGNAL \ADC:Net_245_1\ : bit;
-    SIGNAL \ADC:Net_245_2\ : bit;
-    SIGNAL \ADC:Net_245_3\ : bit;
-    SIGNAL \ADC:Net_245_4\ : bit;
-    SIGNAL \ADC:Net_245_5\ : bit;
-    SIGNAL \ADC:Net_245_6\ : bit;
-    SIGNAL \ADC:Net_245_7\ : bit;
-    SIGNAL \ADC:Net_488\ : bit;
-    ATTRIBUTE global_signal OF \ADC:Net_488\ : SIGNAL IS true;
-    SIGNAL \ADC:Net_488_adig\ : bit;
-    SIGNAL \ADC:Net_488_adig_local\ : bit;
-    SIGNAL \ADC:Net_488_local\ : bit;
-    SIGNAL \ADC:Net_93\ : bit;
-    ATTRIBUTE global_signal OF \ADC:Net_93\ : SIGNAL IS true;
-    SIGNAL \ADC:Net_93_local\ : bit;
-    SIGNAL \ADC:aclock\ : bit;
-    SIGNAL \ADC:mod_dat_0\ : bit;
-    SIGNAL \ADC:mod_dat_1\ : bit;
-    SIGNAL \ADC:mod_dat_2\ : bit;
-    SIGNAL \ADC:mod_dat_3\ : bit;
-    SIGNAL \ADC:mod_reset\ : bit;
+    SIGNAL \ADC:Net_207_0\ : bit;
+    SIGNAL \ADC:Net_207_10\ : bit;
+    SIGNAL \ADC:Net_207_11\ : bit;
+    SIGNAL \ADC:Net_207_1\ : bit;
+    SIGNAL \ADC:Net_207_2\ : bit;
+    SIGNAL \ADC:Net_207_3\ : bit;
+    SIGNAL \ADC:Net_207_4\ : bit;
+    SIGNAL \ADC:Net_207_5\ : bit;
+    SIGNAL \ADC:Net_207_6\ : bit;
+    SIGNAL \ADC:Net_207_7\ : bit;
+    SIGNAL \ADC:Net_207_8\ : bit;
+    SIGNAL \ADC:Net_207_9\ : bit;
+    SIGNAL \ADC:Net_221\ : bit;
+    ATTRIBUTE global_signal OF \ADC:Net_221\ : SIGNAL IS true;
+    SIGNAL \ADC:Net_221_adig\ : bit;
+    SIGNAL \ADC:Net_221_adig_local\ : bit;
+    SIGNAL \ADC:Net_221_local\ : bit;
+    SIGNAL \ADC:Net_252\ : bit;
     SIGNAL \Airmar:BUART:counter_load_not\ : bit;
     SIGNAL \Airmar:BUART:rx_address_detected\ : bit;
     SIGNAL \Airmar:BUART:rx_bitclk_enable\ : bit;
@@ -227,9 +223,7 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE Location OF B_in(0) : LABEL IS "P3[7]";
     ATTRIBUTE lib_model OF B_out(0) : LABEL IS "iocell4";
     ATTRIBUTE Location OF B_out(0) : LABEL IS "P3[6]";
-    ATTRIBUTE lib_model OF Battery_Ground(0) : LABEL IS "iocell5";
-    ATTRIBUTE Location OF Battery_Ground(0) : LABEL IS "P3[4]";
-    ATTRIBUTE lib_model OF Battery_in(0) : LABEL IS "iocell6";
+    ATTRIBUTE lib_model OF Battery_in(0) : LABEL IS "iocell5";
     ATTRIBUTE Location OF Battery_in(0) : LABEL IS "P3[5]";
     ATTRIBUTE lib_model OF MODIN1_0 : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF MODIN1_1 : LABEL IS "macrocell2";
@@ -238,15 +232,15 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE lib_model OF Net_115 : LABEL IS "macrocell5";
     ATTRIBUTE lib_model OF Net_98 : LABEL IS "macrocell6";
     ATTRIBUTE lib_model OF Net_99 : LABEL IS "macrocell7";
-    ATTRIBUTE lib_model OF SBD_Rx(0) : LABEL IS "iocell7";
+    ATTRIBUTE lib_model OF SBD_Rx(0) : LABEL IS "iocell6";
     ATTRIBUTE Location OF SBD_Rx(0) : LABEL IS "P3[0]";
-    ATTRIBUTE lib_model OF SBD_Tx(0) : LABEL IS "iocell8";
+    ATTRIBUTE lib_model OF SBD_Tx(0) : LABEL IS "iocell7";
     ATTRIBUTE Location OF SBD_Tx(0) : LABEL IS "P3[1]";
-    ATTRIBUTE lib_model OF SCL_1(0) : LABEL IS "iocell9";
+    ATTRIBUTE lib_model OF SCL_1(0) : LABEL IS "iocell8";
     ATTRIBUTE Location OF SCL_1(0) : LABEL IS "P12[0]";
-    ATTRIBUTE lib_model OF SDA_1(0) : LABEL IS "iocell10";
+    ATTRIBUTE lib_model OF SDA_1(0) : LABEL IS "iocell9";
     ATTRIBUTE Location OF SDA_1(0) : LABEL IS "P12[1]";
-    ATTRIBUTE Location OF \ADC:DSM\ : LABEL IS "F(DSM,0)";
+    ATTRIBUTE Location OF \ADC:ADC_SAR\ : LABEL IS "F(SAR,1)";
     ATTRIBUTE lib_model OF \Airmar:BUART:counter_load_not\ : LABEL IS "macrocell8";
     ATTRIBUTE lib_model OF \Airmar:BUART:rx_address_detected\ : LABEL IS "macrocell9";
     ATTRIBUTE lib_model OF \Airmar:BUART:rx_bitclk_enable\ : LABEL IS "macrocell10";
@@ -318,12 +312,11 @@ ARCHITECTURE __DEFAULT__ OF airmartest IS
     ATTRIBUTE lib_model OF \master:BSPIM:state_2\ : LABEL IS "macrocell61";
     ATTRIBUTE lib_model OF \master:BSPIM:tx_status_0\ : LABEL IS "macrocell62";
     ATTRIBUTE lib_model OF \master:BSPIM:tx_status_4\ : LABEL IS "macrocell63";
-    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell64";
-    ATTRIBUTE lib_model OF clockPin(0) : LABEL IS "iocell11";
+    ATTRIBUTE lib_model OF clockPin(0) : LABEL IS "iocell10";
     ATTRIBUTE Location OF clockPin(0) : LABEL IS "P2[0]";
-    ATTRIBUTE lib_model OF dataPin(0) : LABEL IS "iocell12";
+    ATTRIBUTE lib_model OF dataPin(0) : LABEL IS "iocell11";
     ATTRIBUTE Location OF dataPin(0) : LABEL IS "P2[2]";
-    ATTRIBUTE lib_model OF selectPin(0) : LABEL IS "iocell13";
+    ATTRIBUTE lib_model OF selectPin(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF selectPin(0) : LABEL IS "P2[1]";
     COMPONENT abufcell
     END COMPONENT;
@@ -1601,95 +1594,11 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    Battery_Ground:logicalport
-        GENERIC MAP(
-            drive_mode => "000",
-            ibuf_enabled => "0",
-            id => "388bea8f-bf97-4db8-9c90-e4b21b86f287",
-            init_dr_st => "0",
-            input_clk_en => 0,
-            input_sync => "1",
-            input_sync_mode => "0",
-            intr_mode => "00",
-            invert_in_clock => 0,
-            invert_in_clock_en => 0,
-            invert_in_reset => 0,
-            invert_out_clock => 0,
-            invert_out_clock_en => 0,
-            invert_out_reset => 0,
-            io_voltage => "",
-            layout_mode => "CONTIGUOUS",
-            oe_conn => "0",
-            oe_reset => 0,
-            oe_sync => "0",
-            output_clk_en => 0,
-            output_clock_mode => "0",
-            output_conn => "0",
-            output_mode => "0",
-            output_reset => 0,
-            output_sync => "0",
-            pa_in_clock => -1,
-            pa_in_clock_en => -1,
-            pa_in_reset => -1,
-            pa_out_clock => -1,
-            pa_out_clock_en => -1,
-            pa_out_reset => -1,
-            pin_aliases => "",
-            pin_mode => "A",
-            por_state => 4,
-            port_alias_group => "",
-            port_alias_required => 0,
-            sio_group_cnt => 0,
-            sio_hifreq => "",
-            sio_hyst => "0",
-            sio_ibuf => "00000000",
-            sio_info => "00",
-            sio_obuf => "00000000",
-            sio_refsel => "00000000",
-            sio_vtrip => "00000000",
-            slew_rate => "0",
-            spanning => 0,
-            sw_only => 0,
-            use_annotation => "0",
-            vtrip => "10",
-            width => 1,
-            in_clk_inv => 0,
-            in_clken_inv => 0,
-            in_clken_mode => 1,
-            in_rst_inv => 0,
-            out_clk_inv => 0,
-            out_clken_inv => 0,
-            out_clken_mode => 1,
-            out_rst_inv => 0)
-        PORT MAP(
-            in_clock_en => open,
-            in_reset => open,
-            out_clock_en => open,
-            out_reset => open);
-
-    Battery_Ground(0):iocell
-        GENERIC MAP(
-            in_sync_mode => 0,
-            out_sync_mode => 0,
-            oe_sync_mode => 0,
-            logicalport => "Battery_Ground",
-            logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000010")
-        PORT MAP(
-            pa_out => Battery_Ground(0)__PA,
-            oe => open,
-            in_clock => open,
-            in_clock_en => '1',
-            in_reset => '0',
-            out_clock => open,
-            out_clock_en => '1',
-            out_reset => '0');
-
     Battery_in:logicalport
         GENERIC MAP(
             drive_mode => "000",
             ibuf_enabled => "0",
-            id => "aba4e3db-2c29-427c-8d33-752553706025",
+            id => "488a41de-1192-4f74-935b-bc09d019adb9",
             init_dr_st => "0",
             input_clk_en => 0,
             input_sync => "1",
@@ -1784,18 +1693,16 @@ BEGIN
             imo => ClockBlock_IMO,
             dsi_clkin_div => open,
             dsi_glb_div => open,
-            dclk_glb_0 => \ADC:Net_93\,
-            dclk_0 => \ADC:Net_93_local\,
-            dclk_glb_1 => Net_107,
-            dclk_1 => Net_107_local,
-            aclk_glb_0 => \ADC:Net_488\,
-            aclk_0 => \ADC:Net_488_local\,
-            clk_a_dig_glb_0 => \ADC:Net_488_adig\,
-            clk_a_dig_0 => \ADC:Net_488_adig_local\,
-            dclk_glb_2 => \UART_SBD:Net_9\,
-            dclk_2 => \UART_SBD:Net_9_local\,
-            dclk_glb_3 => \Airmar:Net_9\,
-            dclk_3 => \Airmar:Net_9_local\,
+            aclk_glb_0 => \ADC:Net_221\,
+            aclk_0 => \ADC:Net_221_local\,
+            clk_a_dig_glb_0 => \ADC:Net_221_adig\,
+            clk_a_dig_0 => \ADC:Net_221_adig_local\,
+            dclk_glb_0 => Net_107,
+            dclk_0 => Net_107_local,
+            dclk_glb_1 => \UART_SBD:Net_9\,
+            dclk_1 => \UART_SBD:Net_9_local\,
+            dclk_glb_2 => \Airmar:Net_9\,
+            dclk_2 => \Airmar:Net_9_local\,
             clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
             aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\);
 
@@ -2236,47 +2143,42 @@ BEGIN
             out_clock_en => '1',
             out_reset => '0');
 
-    \ADC:DEC\:decimatorcell
+    \ADC:ADC_SAR\:sarcell
         GENERIC MAP(
             cy_registers => "")
         PORT MAP(
-            aclock => \ADC:aclock\,
-            mod_dat_3 => \ADC:mod_dat_3\,
-            mod_dat_2 => \ADC:mod_dat_2\,
-            mod_dat_1 => \ADC:mod_dat_1\,
-            mod_dat_0 => \ADC:mod_dat_0\,
-            ext_start => __ONE__,
-            modrst => \ADC:mod_reset\,
-            interrupt => Net_174);
-
-    \ADC:DSM\:dsmodcell
-        GENERIC MAP(
-            cy_registers => "",
-            resolution => 16)
-        PORT MAP(
-            aclock => \ClockBlock.aclk_glb_ff_0__sig\,
-            reset_udb => open,
-            reset_dec => \ADC:mod_reset\,
-            extclk_cp_udb => \ADC:Net_93_local\,
-            dec_clock => \ADC:aclock\,
-            mod_dat_3 => \ADC:mod_dat_3\,
-            mod_dat_2 => \ADC:mod_dat_2\,
-            mod_dat_1 => \ADC:mod_dat_1\,
-            mod_dat_0 => \ADC:mod_dat_0\,
-            dout_udb_7 => \ADC:Net_245_7\,
-            dout_udb_6 => \ADC:Net_245_6\,
-            dout_udb_5 => \ADC:Net_245_5\,
-            dout_udb_4 => \ADC:Net_245_4\,
-            dout_udb_3 => \ADC:Net_245_3\,
-            dout_udb_2 => \ADC:Net_245_2\,
-            dout_udb_1 => \ADC:Net_245_1\,
-            dout_udb_0 => \ADC:Net_245_0\);
+            clock => \ClockBlock.aclk_glb_ff_0__sig\,
+            pump_clock => \ClockBlock.aclk_glb_ff_0__sig\,
+            sof_udb => open,
+            vp_ctl_udb_3 => open,
+            vp_ctl_udb_2 => open,
+            vp_ctl_udb_1 => open,
+            vp_ctl_udb_0 => open,
+            vn_ctl_udb_3 => open,
+            vn_ctl_udb_2 => open,
+            vn_ctl_udb_1 => open,
+            vn_ctl_udb_0 => open,
+            irq => \ADC:Net_252\,
+            next => Net_192,
+            data_out_udb_11 => \ADC:Net_207_11\,
+            data_out_udb_10 => \ADC:Net_207_10\,
+            data_out_udb_9 => \ADC:Net_207_9\,
+            data_out_udb_8 => \ADC:Net_207_8\,
+            data_out_udb_7 => \ADC:Net_207_7\,
+            data_out_udb_6 => \ADC:Net_207_6\,
+            data_out_udb_5 => \ADC:Net_207_5\,
+            data_out_udb_4 => \ADC:Net_207_4\,
+            data_out_udb_3 => \ADC:Net_207_3\,
+            data_out_udb_2 => \ADC:Net_207_2\,
+            data_out_udb_1 => \ADC:Net_207_1\,
+            data_out_udb_0 => \ADC:Net_207_0\,
+            eof_udb => Net_189);
 
     \ADC:IRQ\:interrupt
         GENERIC MAP(
             int_type => "10")
         PORT MAP(
-            interrupt => Net_174,
+            interrupt => Net_189,
             clock => ClockBlock_BUS_CLK);
 
     \Airmar:BUART:counter_load_not\:macrocell
@@ -3469,12 +3371,6 @@ BEGIN
         PORT MAP(
             interrupt => \psoc:Net_697\,
             clock => ClockBlock_BUS_CLK);
-
-    __ONE__:macrocell
-        GENERIC MAP(
-            eqn_main => "1'b0")
-        PORT MAP(
-            q => __ONE__);
 
     clockPin:logicalport
         GENERIC MAP(

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
   50 0006 4FF00003 		mov	r3, #0
   51 000a 7B87     		strh	r3, [r7, #58]	@ movhi
    6:.\thermocouple.c **** 	int temp[14];
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 2
 
 
    7:.\thermocouple.c **** 	int i;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
   90 0056 4FEA8303 		lsl	r3, r3, #2
   91 005a 07F14802 		add	r2, r7, #72
   92 005e D318     		adds	r3, r2, r3
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 3
 
 
   93 0060 4FF00102 		mov	r2, #1
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  134 00be 1846     		mov	r0, r3
  135 00c0 FFF7FEFF 		bl	__aeabi_i2d
  136 00c4 0246     		mov	r2, r0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 4
 
 
  137 00c6 0B46     		mov	r3, r1
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  182 012a 0346     		mov	r3, r0
  183 012c 7B87     		strh	r3, [r7, #58]	@ movhi
   41:.\thermocouple.c **** 	return temperature;
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 5
 
 
  184              		.loc 1 41 0
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  236 0050 02       		.uleb128 0x2
  237 0051 04       		.byte	0x4
  238 0052 05       		.byte	0x5
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 6
 
 
  239 0053 07010000 		.4byte	.LASF4
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  293 00b9 01       		.byte	0x1
  294 00ba 03       		.byte	0x3
  295 00bb 85000000 		.4byte	0x85
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 7
 
 
  296 00bf 00000000 		.4byte	.LFB56
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  350 0127 3A010000 		.4byte	.LASF25
  351 012b 04       		.byte	0x4
  352 012c 1606     		.2byte	0x616
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 8
 
 
  353 012e 34010000 		.4byte	0x134
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  407 002e 24       		.uleb128 0x24
  408 002f 00       		.byte	0
  409 0030 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 9
 
 
  410 0031 0B       		.uleb128 0xb
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  464 0068 3B       		.uleb128 0x3b
  465 0069 0B       		.uleb128 0xb
  466 006a 49       		.uleb128 0x49
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 10
 
 
  467 006b 13       		.uleb128 0x13
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  521 000a 7D       		.byte	0x7d
  522 000b 00       		.sleb128 0
  523 000c 02000000 		.4byte	.LCFI0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 11
 
 
  524 0010 04000000 		.4byte	.LCFI1
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  566      676E6564 
  566      20696E74 
  566      00
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 12
 
 
  567              	.LASF1:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 1
  588      6420696E 
  588      7400
  589              	.LASF13:
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccWHCnSH.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 13
 
 
  590 0122 646F7562 		.ascii	"double\000"

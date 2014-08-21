@@ -1,0 +1,1993 @@
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"wind.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_fcmpge
+  19              		.global	__aeabi_f2d
+  20              		.global	__aeabi_fsub
+  21              		.global	__aeabi_dmul
+  22              		.global	__aeabi_d2f
+  23              		.section	.text.definevectors,"ax",%progbits
+  24              		.align	2
+  25              		.global	definevectors
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	definevectors, %function
+  29              	definevectors:
+  30              	.LFB0:
+  31              		.file 1 ".\\wind.c"
+   1:.\wind.c      **** #include <wind.h>
+   2:.\wind.c      **** 
+   3:.\wind.c      **** struct windvector definevectors(struct speedheading inputs)
+   4:.\wind.c      **** {
+  32              		.loc 1 4 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 24
+  35              		@ frame_needed = 1, uses_anonymous_args = 0
+  36 0000 B0B5     		push	{r4, r5, r7, lr}
+  37              	.LCFI0:
+  38              		.cfi_def_cfa_offset 16
+  39              		.cfi_offset 4, -16
+  40              		.cfi_offset 5, -12
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 86B0     		sub	sp, sp, #24
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 40
+  46 0004 00AF     		add	r7, sp, #0
+  47              	.LCFI2:
+  48              		.cfi_def_cfa_register 7
+  49 0006 F860     		str	r0, [r7, #12]
+  50 0008 07F10403 		add	r3, r7, #4
+  51 000c 83E80600 		stmia	r3, {r1, r2}
+   5:.\wind.c      **** 	struct windvector output;
+   6:.\wind.c      **** 	
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 2
+
+
+   7:.\wind.c      **** 	if(inputs.heading >= 270)
+  52              		.loc 1 7 0
+  53 0010 BB68     		ldr	r3, [r7, #8]	@ float
+  54 0012 1846     		mov	r0, r3
+  55 0014 4FF00001 		mov	r1, #0
+  56 0018 C4F28731 		movt	r1, 17287
+  57 001c FFF7FEFF 		bl	__aeabi_fcmpge
+  58 0020 0346     		mov	r3, r0
+  59 0022 002B     		cmp	r3, #0
+  60 0024 4ED0     		beq	.L13
+  61              	.L10:
+   8:.\wind.c      **** 	{
+   9:.\wind.c      **** 		output.Ecomponent = -1 * inputs.speed * cos(inputs.heading - 270);
+  62              		.loc 1 9 0
+  63 0026 7B68     		ldr	r3, [r7, #4]	@ float
+  64 0028 83F00043 		eor	r3, r3, #-2147483648
+  65 002c 1846     		mov	r0, r3
+  66 002e FFF7FEFF 		bl	__aeabi_f2d
+  67 0032 0446     		mov	r4, r0
+  68 0034 0D46     		mov	r5, r1
+  69 0036 BB68     		ldr	r3, [r7, #8]	@ float
+  70 0038 1846     		mov	r0, r3
+  71 003a 4FF00001 		mov	r1, #0
+  72 003e C4F28731 		movt	r1, 17287
+  73 0042 FFF7FEFF 		bl	__aeabi_fsub
+  74 0046 0346     		mov	r3, r0
+  75 0048 1846     		mov	r0, r3
+  76 004a FFF7FEFF 		bl	__aeabi_f2d
+  77 004e 0246     		mov	r2, r0
+  78 0050 0B46     		mov	r3, r1
+  79 0052 1046     		mov	r0, r2
+  80 0054 1946     		mov	r1, r3
+  81 0056 FFF7FEFF 		bl	cos
+  82 005a 0246     		mov	r2, r0
+  83 005c 0B46     		mov	r3, r1
+  84 005e 2046     		mov	r0, r4
+  85 0060 2946     		mov	r1, r5
+  86 0062 FFF7FEFF 		bl	__aeabi_dmul
+  87 0066 0246     		mov	r2, r0
+  88 0068 0B46     		mov	r3, r1
+  89 006a 1046     		mov	r0, r2
+  90 006c 1946     		mov	r1, r3
+  91 006e FFF7FEFF 		bl	__aeabi_d2f
+  92 0072 0346     		mov	r3, r0
+  93 0074 7B61     		str	r3, [r7, #20]	@ float
+  10:.\wind.c      **** 		output.Ncomponent = inputs.speed * sin(inputs.heading - 270);
+  94              		.loc 1 10 0
+  95 0076 7B68     		ldr	r3, [r7, #4]	@ float
+  96 0078 1846     		mov	r0, r3
+  97 007a FFF7FEFF 		bl	__aeabi_f2d
+  98 007e 0446     		mov	r4, r0
+  99 0080 0D46     		mov	r5, r1
+ 100 0082 BB68     		ldr	r3, [r7, #8]	@ float
+ 101 0084 1846     		mov	r0, r3
+ 102 0086 4FF00001 		mov	r1, #0
+ 103 008a C4F28731 		movt	r1, 17287
+ 104 008e FFF7FEFF 		bl	__aeabi_fsub
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 3
+
+
+ 105 0092 0346     		mov	r3, r0
+ 106 0094 1846     		mov	r0, r3
+ 107 0096 FFF7FEFF 		bl	__aeabi_f2d
+ 108 009a 0246     		mov	r2, r0
+ 109 009c 0B46     		mov	r3, r1
+ 110 009e 1046     		mov	r0, r2
+ 111 00a0 1946     		mov	r1, r3
+ 112 00a2 FFF7FEFF 		bl	sin
+ 113 00a6 0246     		mov	r2, r0
+ 114 00a8 0B46     		mov	r3, r1
+ 115 00aa 2046     		mov	r0, r4
+ 116 00ac 2946     		mov	r1, r5
+ 117 00ae FFF7FEFF 		bl	__aeabi_dmul
+ 118 00b2 0246     		mov	r2, r0
+ 119 00b4 0B46     		mov	r3, r1
+ 120 00b6 1046     		mov	r0, r2
+ 121 00b8 1946     		mov	r1, r3
+ 122 00ba FFF7FEFF 		bl	__aeabi_d2f
+ 123 00be 0346     		mov	r3, r0
+ 124 00c0 3B61     		str	r3, [r7, #16]	@ float
+ 125 00c2 F1E0     		b	.L4
+ 126              	.L13:
+  11:.\wind.c      **** 	}
+  12:.\wind.c      **** 	
+  13:.\wind.c      **** 	else if(inputs.heading >= 180)
+ 127              		.loc 1 13 0
+ 128 00c4 BB68     		ldr	r3, [r7, #8]	@ float
+ 129 00c6 1846     		mov	r0, r3
+ 130 00c8 4FF00001 		mov	r1, #0
+ 131 00cc C4F23431 		movt	r1, 17204
+ 132 00d0 FFF7FEFF 		bl	__aeabi_fcmpge
+ 133 00d4 0346     		mov	r3, r0
+ 134 00d6 002B     		cmp	r3, #0
+ 135 00d8 50D0     		beq	.L14
+ 136              	.L11:
+  14:.\wind.c      **** 	{
+  15:.\wind.c      **** 		output.Ecomponent = -1 * inputs.speed * sin(inputs.heading - 180);
+ 137              		.loc 1 15 0
+ 138 00da 7B68     		ldr	r3, [r7, #4]	@ float
+ 139 00dc 83F00043 		eor	r3, r3, #-2147483648
+ 140 00e0 1846     		mov	r0, r3
+ 141 00e2 FFF7FEFF 		bl	__aeabi_f2d
+ 142 00e6 0446     		mov	r4, r0
+ 143 00e8 0D46     		mov	r5, r1
+ 144 00ea BB68     		ldr	r3, [r7, #8]	@ float
+ 145 00ec 1846     		mov	r0, r3
+ 146 00ee 4FF00001 		mov	r1, #0
+ 147 00f2 C4F23431 		movt	r1, 17204
+ 148 00f6 FFF7FEFF 		bl	__aeabi_fsub
+ 149 00fa 0346     		mov	r3, r0
+ 150 00fc 1846     		mov	r0, r3
+ 151 00fe FFF7FEFF 		bl	__aeabi_f2d
+ 152 0102 0246     		mov	r2, r0
+ 153 0104 0B46     		mov	r3, r1
+ 154 0106 1046     		mov	r0, r2
+ 155 0108 1946     		mov	r1, r3
+ 156 010a FFF7FEFF 		bl	sin
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 4
+
+
+ 157 010e 0246     		mov	r2, r0
+ 158 0110 0B46     		mov	r3, r1
+ 159 0112 2046     		mov	r0, r4
+ 160 0114 2946     		mov	r1, r5
+ 161 0116 FFF7FEFF 		bl	__aeabi_dmul
+ 162 011a 0246     		mov	r2, r0
+ 163 011c 0B46     		mov	r3, r1
+ 164 011e 1046     		mov	r0, r2
+ 165 0120 1946     		mov	r1, r3
+ 166 0122 FFF7FEFF 		bl	__aeabi_d2f
+ 167 0126 0346     		mov	r3, r0
+ 168 0128 7B61     		str	r3, [r7, #20]	@ float
+  16:.\wind.c      **** 		output.Ncomponent = -1 * inputs.speed * cos(inputs.heading - 180);
+ 169              		.loc 1 16 0
+ 170 012a 7B68     		ldr	r3, [r7, #4]	@ float
+ 171 012c 83F00043 		eor	r3, r3, #-2147483648
+ 172 0130 1846     		mov	r0, r3
+ 173 0132 FFF7FEFF 		bl	__aeabi_f2d
+ 174 0136 0446     		mov	r4, r0
+ 175 0138 0D46     		mov	r5, r1
+ 176 013a BB68     		ldr	r3, [r7, #8]	@ float
+ 177 013c 1846     		mov	r0, r3
+ 178 013e 4FF00001 		mov	r1, #0
+ 179 0142 C4F23431 		movt	r1, 17204
+ 180 0146 FFF7FEFF 		bl	__aeabi_fsub
+ 181 014a 0346     		mov	r3, r0
+ 182 014c 1846     		mov	r0, r3
+ 183 014e FFF7FEFF 		bl	__aeabi_f2d
+ 184 0152 0246     		mov	r2, r0
+ 185 0154 0B46     		mov	r3, r1
+ 186 0156 1046     		mov	r0, r2
+ 187 0158 1946     		mov	r1, r3
+ 188 015a FFF7FEFF 		bl	cos
+ 189 015e 0246     		mov	r2, r0
+ 190 0160 0B46     		mov	r3, r1
+ 191 0162 2046     		mov	r0, r4
+ 192 0164 2946     		mov	r1, r5
+ 193 0166 FFF7FEFF 		bl	__aeabi_dmul
+ 194 016a 0246     		mov	r2, r0
+ 195 016c 0B46     		mov	r3, r1
+ 196 016e 1046     		mov	r0, r2
+ 197 0170 1946     		mov	r1, r3
+ 198 0172 FFF7FEFF 		bl	__aeabi_d2f
+ 199 0176 0346     		mov	r3, r0
+ 200 0178 3B61     		str	r3, [r7, #16]	@ float
+ 201 017a 95E0     		b	.L4
+ 202              	.L14:
+  17:.\wind.c      **** 	}
+  18:.\wind.c      **** 	
+  19:.\wind.c      **** 	else if(inputs.heading >= 90)
+ 203              		.loc 1 19 0
+ 204 017c BB68     		ldr	r3, [r7, #8]	@ float
+ 205 017e 1846     		mov	r0, r3
+ 206 0180 4FF00001 		mov	r1, #0
+ 207 0184 C4F2B421 		movt	r1, 17076
+ 208 0188 FFF7FEFF 		bl	__aeabi_fcmpge
+ 209 018c 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 5
+
+
+ 210 018e 002B     		cmp	r3, #0
+ 211 0190 4ED0     		beq	.L15
+ 212              	.L12:
+  20:.\wind.c      **** 	{
+  21:.\wind.c      **** 		output.Ecomponent = inputs.speed * 	cos(inputs.heading - 90);
+ 213              		.loc 1 21 0
+ 214 0192 7B68     		ldr	r3, [r7, #4]	@ float
+ 215 0194 1846     		mov	r0, r3
+ 216 0196 FFF7FEFF 		bl	__aeabi_f2d
+ 217 019a 0446     		mov	r4, r0
+ 218 019c 0D46     		mov	r5, r1
+ 219 019e BB68     		ldr	r3, [r7, #8]	@ float
+ 220 01a0 1846     		mov	r0, r3
+ 221 01a2 4FF00001 		mov	r1, #0
+ 222 01a6 C4F2B421 		movt	r1, 17076
+ 223 01aa FFF7FEFF 		bl	__aeabi_fsub
+ 224 01ae 0346     		mov	r3, r0
+ 225 01b0 1846     		mov	r0, r3
+ 226 01b2 FFF7FEFF 		bl	__aeabi_f2d
+ 227 01b6 0246     		mov	r2, r0
+ 228 01b8 0B46     		mov	r3, r1
+ 229 01ba 1046     		mov	r0, r2
+ 230 01bc 1946     		mov	r1, r3
+ 231 01be FFF7FEFF 		bl	cos
+ 232 01c2 0246     		mov	r2, r0
+ 233 01c4 0B46     		mov	r3, r1
+ 234 01c6 2046     		mov	r0, r4
+ 235 01c8 2946     		mov	r1, r5
+ 236 01ca FFF7FEFF 		bl	__aeabi_dmul
+ 237 01ce 0246     		mov	r2, r0
+ 238 01d0 0B46     		mov	r3, r1
+ 239 01d2 1046     		mov	r0, r2
+ 240 01d4 1946     		mov	r1, r3
+ 241 01d6 FFF7FEFF 		bl	__aeabi_d2f
+ 242 01da 0346     		mov	r3, r0
+ 243 01dc 7B61     		str	r3, [r7, #20]	@ float
+  22:.\wind.c      **** 		output.Ncomponent = -1 * inputs.speed * sin(inputs.heading - 90);
+ 244              		.loc 1 22 0
+ 245 01de 7B68     		ldr	r3, [r7, #4]	@ float
+ 246 01e0 83F00043 		eor	r3, r3, #-2147483648
+ 247 01e4 1846     		mov	r0, r3
+ 248 01e6 FFF7FEFF 		bl	__aeabi_f2d
+ 249 01ea 0446     		mov	r4, r0
+ 250 01ec 0D46     		mov	r5, r1
+ 251 01ee BB68     		ldr	r3, [r7, #8]	@ float
+ 252 01f0 1846     		mov	r0, r3
+ 253 01f2 4FF00001 		mov	r1, #0
+ 254 01f6 C4F2B421 		movt	r1, 17076
+ 255 01fa FFF7FEFF 		bl	__aeabi_fsub
+ 256 01fe 0346     		mov	r3, r0
+ 257 0200 1846     		mov	r0, r3
+ 258 0202 FFF7FEFF 		bl	__aeabi_f2d
+ 259 0206 0246     		mov	r2, r0
+ 260 0208 0B46     		mov	r3, r1
+ 261 020a 1046     		mov	r0, r2
+ 262 020c 1946     		mov	r1, r3
+ 263 020e FFF7FEFF 		bl	sin
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 6
+
+
+ 264 0212 0246     		mov	r2, r0
+ 265 0214 0B46     		mov	r3, r1
+ 266 0216 2046     		mov	r0, r4
+ 267 0218 2946     		mov	r1, r5
+ 268 021a FFF7FEFF 		bl	__aeabi_dmul
+ 269 021e 0246     		mov	r2, r0
+ 270 0220 0B46     		mov	r3, r1
+ 271 0222 1046     		mov	r0, r2
+ 272 0224 1946     		mov	r1, r3
+ 273 0226 FFF7FEFF 		bl	__aeabi_d2f
+ 274 022a 0346     		mov	r3, r0
+ 275 022c 3B61     		str	r3, [r7, #16]	@ float
+ 276 022e 3BE0     		b	.L4
+ 277              	.L15:
+  23:.\wind.c      **** 	}
+  24:.\wind.c      **** 	
+  25:.\wind.c      **** 	else
+  26:.\wind.c      **** 	{
+  27:.\wind.c      **** 		output.Ecomponent = inputs.speed * sin(inputs.heading);
+ 278              		.loc 1 27 0
+ 279 0230 7B68     		ldr	r3, [r7, #4]	@ float
+ 280 0232 1846     		mov	r0, r3
+ 281 0234 FFF7FEFF 		bl	__aeabi_f2d
+ 282 0238 0446     		mov	r4, r0
+ 283 023a 0D46     		mov	r5, r1
+ 284 023c BB68     		ldr	r3, [r7, #8]	@ float
+ 285 023e 1846     		mov	r0, r3
+ 286 0240 FFF7FEFF 		bl	__aeabi_f2d
+ 287 0244 0246     		mov	r2, r0
+ 288 0246 0B46     		mov	r3, r1
+ 289 0248 1046     		mov	r0, r2
+ 290 024a 1946     		mov	r1, r3
+ 291 024c FFF7FEFF 		bl	sin
+ 292 0250 0246     		mov	r2, r0
+ 293 0252 0B46     		mov	r3, r1
+ 294 0254 2046     		mov	r0, r4
+ 295 0256 2946     		mov	r1, r5
+ 296 0258 FFF7FEFF 		bl	__aeabi_dmul
+ 297 025c 0246     		mov	r2, r0
+ 298 025e 0B46     		mov	r3, r1
+ 299 0260 1046     		mov	r0, r2
+ 300 0262 1946     		mov	r1, r3
+ 301 0264 FFF7FEFF 		bl	__aeabi_d2f
+ 302 0268 0346     		mov	r3, r0
+ 303 026a 7B61     		str	r3, [r7, #20]	@ float
+  28:.\wind.c      **** 		output.Ncomponent = inputs.speed * cos(inputs.heading);
+ 304              		.loc 1 28 0
+ 305 026c 7B68     		ldr	r3, [r7, #4]	@ float
+ 306 026e 1846     		mov	r0, r3
+ 307 0270 FFF7FEFF 		bl	__aeabi_f2d
+ 308 0274 0446     		mov	r4, r0
+ 309 0276 0D46     		mov	r5, r1
+ 310 0278 BB68     		ldr	r3, [r7, #8]	@ float
+ 311 027a 1846     		mov	r0, r3
+ 312 027c FFF7FEFF 		bl	__aeabi_f2d
+ 313 0280 0246     		mov	r2, r0
+ 314 0282 0B46     		mov	r3, r1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 7
+
+
+ 315 0284 1046     		mov	r0, r2
+ 316 0286 1946     		mov	r1, r3
+ 317 0288 FFF7FEFF 		bl	cos
+ 318 028c 0246     		mov	r2, r0
+ 319 028e 0B46     		mov	r3, r1
+ 320 0290 2046     		mov	r0, r4
+ 321 0292 2946     		mov	r1, r5
+ 322 0294 FFF7FEFF 		bl	__aeabi_dmul
+ 323 0298 0246     		mov	r2, r0
+ 324 029a 0B46     		mov	r3, r1
+ 325 029c 1046     		mov	r0, r2
+ 326 029e 1946     		mov	r1, r3
+ 327 02a0 FFF7FEFF 		bl	__aeabi_d2f
+ 328 02a4 0346     		mov	r3, r0
+ 329 02a6 3B61     		str	r3, [r7, #16]	@ float
+ 330              	.L4:
+  29:.\wind.c      **** 	}
+  30:.\wind.c      **** 	
+  31:.\wind.c      **** 	return output;
+ 331              		.loc 1 31 0
+ 332 02a8 FB68     		ldr	r3, [r7, #12]
+ 333 02aa 07F11002 		add	r2, r7, #16
+ 334 02ae 92E80300 		ldmia	r2, {r0, r1}
+ 335 02b2 83E80300 		stmia	r3, {r0, r1}
+  32:.\wind.c      **** }
+ 336              		.loc 1 32 0
+ 337 02b6 F868     		ldr	r0, [r7, #12]
+ 338 02b8 07F11807 		add	r7, r7, #24
+ 339 02bc BD46     		mov	sp, r7
+ 340 02be B0BD     		pop	{r4, r5, r7, pc}
+ 341              		.cfi_endproc
+ 342              	.LFE0:
+ 343              		.size	definevectors, .-definevectors
+ 344              		.global	__aeabi_fadd
+ 345              		.global	__aeabi_i2f
+ 346              		.global	__aeabi_fdiv
+ 347              		.section	.text.avgwind,"ax",%progbits
+ 348              		.align	2
+ 349              		.global	avgwind
+ 350              		.thumb
+ 351              		.thumb_func
+ 352              		.type	avgwind, %function
+ 353              	avgwind:
+ 354              	.LFB1:
+  33:.\wind.c      **** 
+  34:.\wind.c      **** struct windvector avgwind(struct windvector input[], int length)
+  35:.\wind.c      **** {
+ 355              		.loc 1 35 0
+ 356              		.cfi_startproc
+ 357              		@ args = 0, pretend = 0, frame = 40
+ 358              		@ frame_needed = 1, uses_anonymous_args = 0
+ 359 0000 80B5     		push	{r7, lr}
+ 360              	.LCFI3:
+ 361              		.cfi_def_cfa_offset 8
+ 362              		.cfi_offset 7, -8
+ 363              		.cfi_offset 14, -4
+ 364 0002 8AB0     		sub	sp, sp, #40
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 8
+
+
+ 365              	.LCFI4:
+ 366              		.cfi_def_cfa_offset 48
+ 367 0004 00AF     		add	r7, sp, #0
+ 368              	.LCFI5:
+ 369              		.cfi_def_cfa_register 7
+ 370 0006 F860     		str	r0, [r7, #12]
+ 371 0008 B960     		str	r1, [r7, #8]
+ 372 000a 7A60     		str	r2, [r7, #4]
+  36:.\wind.c      **** 	struct windvector output;
+  37:.\wind.c      **** 	int i = 0;
+ 373              		.loc 1 37 0
+ 374 000c 4FF00003 		mov	r3, #0
+ 375 0010 7B62     		str	r3, [r7, #36]
+  38:.\wind.c      **** 	float Nsum = 0, Esum = 0;
+ 376              		.loc 1 38 0
+ 377 0012 4FF00003 		mov	r3, #0
+ 378 0016 3B62     		str	r3, [r7, #32]	@ float
+ 379 0018 4FF00003 		mov	r3, #0
+ 380 001c FB61     		str	r3, [r7, #28]	@ float
+  39:.\wind.c      **** 	
+  40:.\wind.c      **** 	for(i =0;i<length;i++)
+ 381              		.loc 1 40 0
+ 382 001e 4FF00003 		mov	r3, #0
+ 383 0022 7B62     		str	r3, [r7, #36]
+ 384 0024 1BE0     		b	.L17
+ 385              	.L18:
+  41:.\wind.c      **** 	{
+  42:.\wind.c      **** 		Nsum = input[i].Ncomponent + Nsum;
+ 386              		.loc 1 42 0 discriminator 2
+ 387 0026 7B6A     		ldr	r3, [r7, #36]
+ 388 0028 4FEAC303 		lsl	r3, r3, #3
+ 389 002c BA68     		ldr	r2, [r7, #8]
+ 390 002e D318     		adds	r3, r2, r3
+ 391 0030 1B68     		ldr	r3, [r3, #0]	@ float
+ 392 0032 386A     		ldr	r0, [r7, #32]	@ float
+ 393 0034 1946     		mov	r1, r3
+ 394 0036 FFF7FEFF 		bl	__aeabi_fadd
+ 395 003a 0346     		mov	r3, r0
+ 396 003c 3B62     		str	r3, [r7, #32]	@ float
+  43:.\wind.c      **** 		Esum = input[i].Ecomponent + Esum;
+ 397              		.loc 1 43 0 discriminator 2
+ 398 003e 7B6A     		ldr	r3, [r7, #36]
+ 399 0040 4FEAC303 		lsl	r3, r3, #3
+ 400 0044 BA68     		ldr	r2, [r7, #8]
+ 401 0046 D318     		adds	r3, r2, r3
+ 402 0048 5B68     		ldr	r3, [r3, #4]	@ float
+ 403 004a F869     		ldr	r0, [r7, #28]	@ float
+ 404 004c 1946     		mov	r1, r3
+ 405 004e FFF7FEFF 		bl	__aeabi_fadd
+ 406 0052 0346     		mov	r3, r0
+ 407 0054 FB61     		str	r3, [r7, #28]	@ float
+  40:.\wind.c      **** 	for(i =0;i<length;i++)
+ 408              		.loc 1 40 0 discriminator 2
+ 409 0056 7B6A     		ldr	r3, [r7, #36]
+ 410 0058 03F10103 		add	r3, r3, #1
+ 411 005c 7B62     		str	r3, [r7, #36]
+ 412              	.L17:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 9
+
+
+  40:.\wind.c      **** 	for(i =0;i<length;i++)
+ 413              		.loc 1 40 0 is_stmt 0 discriminator 1
+ 414 005e 7A6A     		ldr	r2, [r7, #36]
+ 415 0060 7B68     		ldr	r3, [r7, #4]
+ 416 0062 9A42     		cmp	r2, r3
+ 417 0064 DFDB     		blt	.L18
+  44:.\wind.c      **** 	}
+  45:.\wind.c      **** 	
+  46:.\wind.c      **** 	output.Ncomponent = Nsum / length;
+ 418              		.loc 1 46 0 is_stmt 1
+ 419 0066 7868     		ldr	r0, [r7, #4]
+ 420 0068 FFF7FEFF 		bl	__aeabi_i2f
+ 421 006c 0346     		mov	r3, r0
+ 422 006e 386A     		ldr	r0, [r7, #32]	@ float
+ 423 0070 1946     		mov	r1, r3
+ 424 0072 FFF7FEFF 		bl	__aeabi_fdiv
+ 425 0076 0346     		mov	r3, r0
+ 426 0078 7B61     		str	r3, [r7, #20]	@ float
+  47:.\wind.c      **** 	output.Ecomponent = Esum / length;
+ 427              		.loc 1 47 0
+ 428 007a 7868     		ldr	r0, [r7, #4]
+ 429 007c FFF7FEFF 		bl	__aeabi_i2f
+ 430 0080 0346     		mov	r3, r0
+ 431 0082 F869     		ldr	r0, [r7, #28]	@ float
+ 432 0084 1946     		mov	r1, r3
+ 433 0086 FFF7FEFF 		bl	__aeabi_fdiv
+ 434 008a 0346     		mov	r3, r0
+ 435 008c BB61     		str	r3, [r7, #24]	@ float
+  48:.\wind.c      **** 	
+  49:.\wind.c      **** 	return output;
+ 436              		.loc 1 49 0
+ 437 008e FB68     		ldr	r3, [r7, #12]
+ 438 0090 07F11402 		add	r2, r7, #20
+ 439 0094 92E80300 		ldmia	r2, {r0, r1}
+ 440 0098 83E80300 		stmia	r3, {r0, r1}
+  50:.\wind.c      **** 	
+  51:.\wind.c      **** }
+ 441              		.loc 1 51 0
+ 442 009c F868     		ldr	r0, [r7, #12]
+ 443 009e 07F12807 		add	r7, r7, #40
+ 444 00a2 BD46     		mov	sp, r7
+ 445 00a4 80BD     		pop	{r7, pc}
+ 446              		.cfi_endproc
+ 447              	.LFE1:
+ 448              		.size	avgwind, .-avgwind
+ 449              		.global	__aeabi_fmul
+ 450              		.global	__aeabi_fcmplt
+ 451              		.global	__aeabi_fcmpgt
+ 452              		.global	__aeabi_dadd
+ 453              		.global	__aeabi_fcmpeq
+ 454 00a6 00BF     		.section	.text.converttospeedandheading,"ax",%progbits
+ 455              		.align	2
+ 456              		.global	converttospeedandheading
+ 457              		.thumb
+ 458              		.thumb_func
+ 459              		.type	converttospeedandheading, %function
+ 460              	converttospeedandheading:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 10
+
+
+ 461              	.LFB2:
+  52:.\wind.c      **** 
+  53:.\wind.c      **** struct speedheading converttospeedandheading(struct windvector input)
+  54:.\wind.c      **** {
+ 462              		.loc 1 54 0
+ 463              		.cfi_startproc
+ 464              		@ args = 0, pretend = 0, frame = 24
+ 465              		@ frame_needed = 1, uses_anonymous_args = 0
+ 466 0000 90B5     		push	{r4, r7, lr}
+ 467              	.LCFI6:
+ 468              		.cfi_def_cfa_offset 12
+ 469              		.cfi_offset 4, -12
+ 470              		.cfi_offset 7, -8
+ 471              		.cfi_offset 14, -4
+ 472 0002 87B0     		sub	sp, sp, #28
+ 473              	.LCFI7:
+ 474              		.cfi_def_cfa_offset 40
+ 475 0004 00AF     		add	r7, sp, #0
+ 476              	.LCFI8:
+ 477              		.cfi_def_cfa_register 7
+ 478 0006 F860     		str	r0, [r7, #12]
+ 479 0008 07F10403 		add	r3, r7, #4
+ 480 000c 83E80600 		stmia	r3, {r1, r2}
+  55:.\wind.c      **** 	struct speedheading output;
+  56:.\wind.c      **** 	
+  57:.\wind.c      **** 	output.speed = sqrt((input.Ecomponent * input.Ecomponent) + (input.Ncomponent * input.Ncomponent))
+ 481              		.loc 1 57 0
+ 482 0010 BA68     		ldr	r2, [r7, #8]	@ float
+ 483 0012 BB68     		ldr	r3, [r7, #8]	@ float
+ 484 0014 1046     		mov	r0, r2
+ 485 0016 1946     		mov	r1, r3
+ 486 0018 FFF7FEFF 		bl	__aeabi_fmul
+ 487 001c 0346     		mov	r3, r0
+ 488 001e 1C46     		mov	r4, r3
+ 489 0020 7A68     		ldr	r2, [r7, #4]	@ float
+ 490 0022 7B68     		ldr	r3, [r7, #4]	@ float
+ 491 0024 1046     		mov	r0, r2
+ 492 0026 1946     		mov	r1, r3
+ 493 0028 FFF7FEFF 		bl	__aeabi_fmul
+ 494 002c 0346     		mov	r3, r0
+ 495 002e 2046     		mov	r0, r4
+ 496 0030 1946     		mov	r1, r3
+ 497 0032 FFF7FEFF 		bl	__aeabi_fadd
+ 498 0036 0346     		mov	r3, r0
+ 499 0038 1846     		mov	r0, r3
+ 500 003a FFF7FEFF 		bl	__aeabi_f2d
+ 501 003e 0246     		mov	r2, r0
+ 502 0040 0B46     		mov	r3, r1
+ 503 0042 1046     		mov	r0, r2
+ 504 0044 1946     		mov	r1, r3
+ 505 0046 FFF7FEFF 		bl	sqrt
+ 506 004a 0246     		mov	r2, r0
+ 507 004c 0B46     		mov	r3, r1
+ 508 004e 1046     		mov	r0, r2
+ 509 0050 1946     		mov	r1, r3
+ 510 0052 FFF7FEFF 		bl	__aeabi_d2f
+ 511 0056 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 11
+
+
+ 512 0058 3B61     		str	r3, [r7, #16]	@ float
+  58:.\wind.c      **** 	
+  59:.\wind.c      **** 	if(input.Ecomponent < 0 && input.Ncomponent > 0)
+ 513              		.loc 1 59 0
+ 514 005a BB68     		ldr	r3, [r7, #8]	@ float
+ 515 005c 1846     		mov	r0, r3
+ 516 005e 4FF00001 		mov	r1, #0
+ 517 0062 FFF7FEFF 		bl	__aeabi_fcmplt
+ 518 0066 0346     		mov	r3, r0
+ 519 0068 002B     		cmp	r3, #0
+ 520 006a 2CD0     		beq	.L21
+ 521              	.L47:
+ 522              		.loc 1 59 0 is_stmt 0 discriminator 1
+ 523 006c 7B68     		ldr	r3, [r7, #4]	@ float
+ 524 006e 1846     		mov	r0, r3
+ 525 0070 4FF00001 		mov	r1, #0
+ 526 0074 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 527 0078 0346     		mov	r3, r0
+ 528 007a 002B     		cmp	r3, #0
+ 529 007c 23D0     		beq	.L21
+ 530              	.L48:
+  60:.\wind.c      **** 	{
+  61:.\wind.c      **** 		output.heading = atan(input.Ncomponent / (-1 * input.Ecomponent)) + 270;
+ 531              		.loc 1 61 0 is_stmt 1
+ 532 007e 7A68     		ldr	r2, [r7, #4]	@ float
+ 533 0080 BB68     		ldr	r3, [r7, #8]	@ float
+ 534 0082 83F00043 		eor	r3, r3, #-2147483648
+ 535 0086 1046     		mov	r0, r2
+ 536 0088 1946     		mov	r1, r3
+ 537 008a FFF7FEFF 		bl	__aeabi_fdiv
+ 538 008e 0346     		mov	r3, r0
+ 539 0090 1846     		mov	r0, r3
+ 540 0092 FFF7FEFF 		bl	__aeabi_f2d
+ 541 0096 0246     		mov	r2, r0
+ 542 0098 0B46     		mov	r3, r1
+ 543 009a 1046     		mov	r0, r2
+ 544 009c 1946     		mov	r1, r3
+ 545 009e FFF7FEFF 		bl	atan
+ 546 00a2 0246     		mov	r2, r0
+ 547 00a4 0B46     		mov	r3, r1
+ 548 00a6 1046     		mov	r0, r2
+ 549 00a8 1946     		mov	r1, r3
+ 550 00aa 8BA3     		adr	r3, .L63
+ 551 00ac D3E90023 		ldrd	r2, [r3]
+ 552 00b0 FFF7FEFF 		bl	__aeabi_dadd
+ 553 00b4 0246     		mov	r2, r0
+ 554 00b6 0B46     		mov	r3, r1
+ 555 00b8 1046     		mov	r0, r2
+ 556 00ba 1946     		mov	r1, r3
+ 557 00bc FFF7FEFF 		bl	__aeabi_d2f
+ 558 00c0 0346     		mov	r3, r0
+ 559 00c2 7B61     		str	r3, [r7, #20]	@ float
+ 560 00c4 FBE0     		b	.L24
+ 561              	.L21:
+  62:.\wind.c      **** 	}
+  63:.\wind.c      **** 	
+  64:.\wind.c      **** 	else if(input.Ecomponent < 0 && input.Ncomponent < 0)
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 12
+
+
+ 562              		.loc 1 64 0
+ 563 00c6 BB68     		ldr	r3, [r7, #8]	@ float
+ 564 00c8 1846     		mov	r0, r3
+ 565 00ca 4FF00001 		mov	r1, #0
+ 566 00ce FFF7FEFF 		bl	__aeabi_fcmplt
+ 567 00d2 0346     		mov	r3, r0
+ 568 00d4 002B     		cmp	r3, #0
+ 569 00d6 2DD0     		beq	.L25
+ 570              	.L49:
+ 571              		.loc 1 64 0 is_stmt 0 discriminator 1
+ 572 00d8 7B68     		ldr	r3, [r7, #4]	@ float
+ 573 00da 1846     		mov	r0, r3
+ 574 00dc 4FF00001 		mov	r1, #0
+ 575 00e0 FFF7FEFF 		bl	__aeabi_fcmplt
+ 576 00e4 0346     		mov	r3, r0
+ 577 00e6 002B     		cmp	r3, #0
+ 578 00e8 24D0     		beq	.L25
+ 579              	.L50:
+  65:.\wind.c      **** 	{
+  66:.\wind.c      **** 		output.heading = atan((-1 * input.Ecomponent) / (-1 * input.Ncomponent)) + 180;
+ 580              		.loc 1 66 0 is_stmt 1
+ 581 00ea BA68     		ldr	r2, [r7, #8]	@ float
+ 582 00ec 7B68     		ldr	r3, [r7, #4]	@ float
+ 583 00ee 1046     		mov	r0, r2
+ 584 00f0 1946     		mov	r1, r3
+ 585 00f2 FFF7FEFF 		bl	__aeabi_fdiv
+ 586 00f6 0346     		mov	r3, r0
+ 587 00f8 1846     		mov	r0, r3
+ 588 00fa FFF7FEFF 		bl	__aeabi_f2d
+ 589 00fe 0246     		mov	r2, r0
+ 590 0100 0B46     		mov	r3, r1
+ 591 0102 1046     		mov	r0, r2
+ 592 0104 1946     		mov	r1, r3
+ 593 0106 FFF7FEFF 		bl	atan
+ 594 010a 0246     		mov	r2, r0
+ 595 010c 0B46     		mov	r3, r1
+ 596 010e 1046     		mov	r0, r2
+ 597 0110 1946     		mov	r1, r3
+ 598 0112 4FF00002 		mov	r2, #0
+ 599 0116 4FF40043 		mov	r3, #32768
+ 600 011a C4F26603 		movt	r3, 16486
+ 601 011e FFF7FEFF 		bl	__aeabi_dadd
+ 602 0122 0246     		mov	r2, r0
+ 603 0124 0B46     		mov	r3, r1
+ 604 0126 1046     		mov	r0, r2
+ 605 0128 1946     		mov	r1, r3
+ 606 012a FFF7FEFF 		bl	__aeabi_d2f
+ 607 012e 0346     		mov	r3, r0
+ 608 0130 7B61     		str	r3, [r7, #20]	@ float
+ 609 0132 C4E0     		b	.L24
+ 610              	.L25:
+  67:.\wind.c      **** 	}
+  68:.\wind.c      **** 	
+  69:.\wind.c      **** 	else if(input.Ecomponent > 0 && input.Ncomponent < 0)
+ 611              		.loc 1 69 0
+ 612 0134 BB68     		ldr	r3, [r7, #8]	@ float
+ 613 0136 1846     		mov	r0, r3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 13
+
+
+ 614 0138 4FF00001 		mov	r1, #0
+ 615 013c FFF7FEFF 		bl	__aeabi_fcmpgt
+ 616 0140 0346     		mov	r3, r0
+ 617 0142 002B     		cmp	r3, #0
+ 618 0144 2FD0     		beq	.L28
+ 619              	.L51:
+ 620              		.loc 1 69 0 is_stmt 0 discriminator 1
+ 621 0146 7B68     		ldr	r3, [r7, #4]	@ float
+ 622 0148 1846     		mov	r0, r3
+ 623 014a 4FF00001 		mov	r1, #0
+ 624 014e FFF7FEFF 		bl	__aeabi_fcmplt
+ 625 0152 0346     		mov	r3, r0
+ 626 0154 002B     		cmp	r3, #0
+ 627 0156 26D0     		beq	.L28
+ 628              	.L52:
+  70:.\wind.c      **** 	{
+  71:.\wind.c      **** 		output.heading = atan((-1 * input.Ncomponent) / (input.Ecomponent)) + 90;
+ 629              		.loc 1 71 0 is_stmt 1
+ 630 0158 7B68     		ldr	r3, [r7, #4]	@ float
+ 631 015a 83F00042 		eor	r2, r3, #-2147483648
+ 632 015e BB68     		ldr	r3, [r7, #8]	@ float
+ 633 0160 1046     		mov	r0, r2
+ 634 0162 1946     		mov	r1, r3
+ 635 0164 FFF7FEFF 		bl	__aeabi_fdiv
+ 636 0168 0346     		mov	r3, r0
+ 637 016a 1846     		mov	r0, r3
+ 638 016c FFF7FEFF 		bl	__aeabi_f2d
+ 639 0170 0246     		mov	r2, r0
+ 640 0172 0B46     		mov	r3, r1
+ 641 0174 1046     		mov	r0, r2
+ 642 0176 1946     		mov	r1, r3
+ 643 0178 FFF7FEFF 		bl	atan
+ 644 017c 0246     		mov	r2, r0
+ 645 017e 0B46     		mov	r3, r1
+ 646 0180 1046     		mov	r0, r2
+ 647 0182 1946     		mov	r1, r3
+ 648 0184 4FF00002 		mov	r2, #0
+ 649 0188 4FF40043 		mov	r3, #32768
+ 650 018c C4F25603 		movt	r3, 16470
+ 651 0190 FFF7FEFF 		bl	__aeabi_dadd
+ 652 0194 0246     		mov	r2, r0
+ 653 0196 0B46     		mov	r3, r1
+ 654 0198 1046     		mov	r0, r2
+ 655 019a 1946     		mov	r1, r3
+ 656 019c FFF7FEFF 		bl	__aeabi_d2f
+ 657 01a0 0346     		mov	r3, r0
+ 658 01a2 7B61     		str	r3, [r7, #20]	@ float
+ 659 01a4 8BE0     		b	.L24
+ 660              	.L28:
+  72:.\wind.c      **** 	}
+  73:.\wind.c      **** 	
+  74:.\wind.c      **** 	else if(input.Ecomponent > 0 && input.Ncomponent > 0)
+ 661              		.loc 1 74 0
+ 662 01a6 BB68     		ldr	r3, [r7, #8]	@ float
+ 663 01a8 1846     		mov	r0, r3
+ 664 01aa 4FF00001 		mov	r1, #0
+ 665 01ae FFF7FEFF 		bl	__aeabi_fcmpgt
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 14
+
+
+ 666 01b2 0346     		mov	r3, r0
+ 667 01b4 002B     		cmp	r3, #0
+ 668 01b6 21D0     		beq	.L31
+ 669              	.L53:
+ 670              		.loc 1 74 0 is_stmt 0 discriminator 1
+ 671 01b8 7B68     		ldr	r3, [r7, #4]	@ float
+ 672 01ba 1846     		mov	r0, r3
+ 673 01bc 4FF00001 		mov	r1, #0
+ 674 01c0 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 675 01c4 0346     		mov	r3, r0
+ 676 01c6 002B     		cmp	r3, #0
+ 677 01c8 18D0     		beq	.L31
+ 678              	.L54:
+  75:.\wind.c      **** 	{
+  76:.\wind.c      **** 		output.heading = atan(input.Ecomponent / input.Ncomponent);
+ 679              		.loc 1 76 0 is_stmt 1
+ 680 01ca BA68     		ldr	r2, [r7, #8]	@ float
+ 681 01cc 7B68     		ldr	r3, [r7, #4]	@ float
+ 682 01ce 1046     		mov	r0, r2
+ 683 01d0 1946     		mov	r1, r3
+ 684 01d2 FFF7FEFF 		bl	__aeabi_fdiv
+ 685 01d6 0346     		mov	r3, r0
+ 686 01d8 1846     		mov	r0, r3
+ 687 01da FFF7FEFF 		bl	__aeabi_f2d
+ 688 01de 0246     		mov	r2, r0
+ 689 01e0 0B46     		mov	r3, r1
+ 690 01e2 1046     		mov	r0, r2
+ 691 01e4 1946     		mov	r1, r3
+ 692 01e6 FFF7FEFF 		bl	atan
+ 693 01ea 0246     		mov	r2, r0
+ 694 01ec 0B46     		mov	r3, r1
+ 695 01ee 1046     		mov	r0, r2
+ 696 01f0 1946     		mov	r1, r3
+ 697 01f2 FFF7FEFF 		bl	__aeabi_d2f
+ 698 01f6 0346     		mov	r3, r0
+ 699 01f8 7B61     		str	r3, [r7, #20]	@ float
+ 700 01fa 60E0     		b	.L24
+ 701              	.L31:
+  77:.\wind.c      **** 	}
+  78:.\wind.c      **** 	
+  79:.\wind.c      **** 	else if(input.Ecomponent == 0 && input.Ncomponent > 0)
+ 702              		.loc 1 79 0
+ 703 01fc BB68     		ldr	r3, [r7, #8]	@ float
+ 704 01fe 1846     		mov	r0, r3
+ 705 0200 4FF00001 		mov	r1, #0
+ 706 0204 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 707 0208 0346     		mov	r3, r0
+ 708 020a 002B     		cmp	r3, #0
+ 709 020c 0CD0     		beq	.L34
+ 710              	.L55:
+ 711              		.loc 1 79 0 is_stmt 0 discriminator 1
+ 712 020e 7B68     		ldr	r3, [r7, #4]	@ float
+ 713 0210 1846     		mov	r0, r3
+ 714 0212 4FF00001 		mov	r1, #0
+ 715 0216 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 716 021a 0346     		mov	r3, r0
+ 717 021c 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 15
+
+
+ 718 021e 03D0     		beq	.L34
+ 719              	.L56:
+  80:.\wind.c      **** 	{
+  81:.\wind.c      **** 		output.heading = 0;
+ 720              		.loc 1 81 0 is_stmt 1
+ 721 0220 4FF00003 		mov	r3, #0
+ 722 0224 7B61     		str	r3, [r7, #20]	@ float
+ 723 0226 4AE0     		b	.L24
+ 724              	.L34:
+  82:.\wind.c      **** 	}
+  83:.\wind.c      **** 	
+  84:.\wind.c      **** 	else if(input.Ecomponent == 0 && input.Ncomponent < 0)
+ 725              		.loc 1 84 0
+ 726 0228 BB68     		ldr	r3, [r7, #8]	@ float
+ 727 022a 1846     		mov	r0, r3
+ 728 022c 4FF00001 		mov	r1, #0
+ 729 0230 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 730 0234 0346     		mov	r3, r0
+ 731 0236 002B     		cmp	r3, #0
+ 732 0238 0ED0     		beq	.L37
+ 733              	.L57:
+ 734              		.loc 1 84 0 is_stmt 0 discriminator 1
+ 735 023a 7B68     		ldr	r3, [r7, #4]	@ float
+ 736 023c 1846     		mov	r0, r3
+ 737 023e 4FF00001 		mov	r1, #0
+ 738 0242 FFF7FEFF 		bl	__aeabi_fcmplt
+ 739 0246 0346     		mov	r3, r0
+ 740 0248 002B     		cmp	r3, #0
+ 741 024a 05D0     		beq	.L37
+ 742              	.L58:
+  85:.\wind.c      **** 	{
+  86:.\wind.c      **** 		output.heading = 180;
+ 743              		.loc 1 86 0 is_stmt 1
+ 744 024c 4FF00003 		mov	r3, #0
+ 745 0250 C4F23433 		movt	r3, 17204
+ 746 0254 7B61     		str	r3, [r7, #20]	@ float
+ 747 0256 32E0     		b	.L24
+ 748              	.L37:
+  87:.\wind.c      **** 	}
+  88:.\wind.c      **** 	
+  89:.\wind.c      **** 	else if(input.Ecomponent > 0 && input.Ncomponent == 0)
+ 749              		.loc 1 89 0
+ 750 0258 BB68     		ldr	r3, [r7, #8]	@ float
+ 751 025a 1846     		mov	r0, r3
+ 752 025c 4FF00001 		mov	r1, #0
+ 753 0260 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 754 0264 0346     		mov	r3, r0
+ 755 0266 002B     		cmp	r3, #0
+ 756 0268 0ED0     		beq	.L40
+ 757              	.L59:
+ 758              		.loc 1 89 0 is_stmt 0 discriminator 1
+ 759 026a 7B68     		ldr	r3, [r7, #4]	@ float
+ 760 026c 1846     		mov	r0, r3
+ 761 026e 4FF00001 		mov	r1, #0
+ 762 0272 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 763 0276 0346     		mov	r3, r0
+ 764 0278 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 16
+
+
+ 765 027a 05D0     		beq	.L40
+ 766              	.L60:
+  90:.\wind.c      **** 	{
+  91:.\wind.c      **** 		output.heading = 90;
+ 767              		.loc 1 91 0 is_stmt 1
+ 768 027c 4FF00003 		mov	r3, #0
+ 769 0280 C4F2B423 		movt	r3, 17076
+ 770 0284 7B61     		str	r3, [r7, #20]	@ float
+ 771 0286 1AE0     		b	.L24
+ 772              	.L40:
+  92:.\wind.c      **** 	}
+  93:.\wind.c      **** 	
+  94:.\wind.c      **** 	else if(input.Ecomponent < 0 && input.Ncomponent == 0)
+ 773              		.loc 1 94 0
+ 774 0288 BB68     		ldr	r3, [r7, #8]	@ float
+ 775 028a 1846     		mov	r0, r3
+ 776 028c 4FF00001 		mov	r1, #0
+ 777 0290 FFF7FEFF 		bl	__aeabi_fcmplt
+ 778 0294 0346     		mov	r3, r0
+ 779 0296 002B     		cmp	r3, #0
+ 780 0298 0ED0     		beq	.L43
+ 781              	.L61:
+ 782              		.loc 1 94 0 is_stmt 0 discriminator 1
+ 783 029a 7B68     		ldr	r3, [r7, #4]	@ float
+ 784 029c 1846     		mov	r0, r3
+ 785 029e 4FF00001 		mov	r1, #0
+ 786 02a2 FFF7FEFF 		bl	__aeabi_fcmpeq
+ 787 02a6 0346     		mov	r3, r0
+ 788 02a8 002B     		cmp	r3, #0
+ 789 02aa 05D0     		beq	.L43
+ 790              	.L62:
+  95:.\wind.c      **** 	{
+  96:.\wind.c      **** 		output.heading = 270;
+ 791              		.loc 1 96 0 is_stmt 1
+ 792 02ac 4FF00003 		mov	r3, #0
+ 793 02b0 C4F28733 		movt	r3, 17287
+ 794 02b4 7B61     		str	r3, [r7, #20]	@ float
+ 795 02b6 02E0     		b	.L24
+ 796              	.L43:
+  97:.\wind.c      **** 	}
+  98:.\wind.c      **** 	
+  99:.\wind.c      **** 	else 
+ 100:.\wind.c      **** 	{
+ 101:.\wind.c      **** 		output.heading = 0;
+ 797              		.loc 1 101 0
+ 798 02b8 4FF00003 		mov	r3, #0
+ 799 02bc 7B61     		str	r3, [r7, #20]	@ float
+ 800              	.L24:
+ 102:.\wind.c      **** 	}
+ 103:.\wind.c      **** 	
+ 104:.\wind.c      **** 	return output;
+ 801              		.loc 1 104 0
+ 802 02be FB68     		ldr	r3, [r7, #12]
+ 803 02c0 07F11002 		add	r2, r7, #16
+ 804 02c4 92E80300 		ldmia	r2, {r0, r1}
+ 805 02c8 83E80300 		stmia	r3, {r0, r1}
+ 105:.\wind.c      **** }
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 17
+
+
+ 806              		.loc 1 105 0
+ 807 02cc F868     		ldr	r0, [r7, #12]
+ 808 02ce 07F11C07 		add	r7, r7, #28
+ 809 02d2 BD46     		mov	sp, r7
+ 810 02d4 90BD     		pop	{r4, r7, pc}
+ 811              	.L64:
+ 812 02d6 00BF     		.align	3
+ 813              	.L63:
+ 814 02d8 00000000 		.word	0
+ 815 02dc 00E07040 		.word	1081139200
+ 816              		.cfi_endproc
+ 817              	.LFE2:
+ 818              		.size	converttospeedandheading, .-converttospeedandheading
+ 819              		.section	.text.subtractheadings,"ax",%progbits
+ 820              		.align	2
+ 821              		.global	subtractheadings
+ 822              		.thumb
+ 823              		.thumb_func
+ 824              		.type	subtractheadings, %function
+ 825              	subtractheadings:
+ 826              	.LFB3:
+ 106:.\wind.c      **** 
+ 107:.\wind.c      **** float subtractheadings(float heading, float subtractheading)
+ 108:.\wind.c      **** {
+ 827              		.loc 1 108 0
+ 828              		.cfi_startproc
+ 829              		@ args = 0, pretend = 0, frame = 16
+ 830              		@ frame_needed = 1, uses_anonymous_args = 0
+ 831 0000 80B5     		push	{r7, lr}
+ 832              	.LCFI9:
+ 833              		.cfi_def_cfa_offset 8
+ 834              		.cfi_offset 7, -8
+ 835              		.cfi_offset 14, -4
+ 836 0002 84B0     		sub	sp, sp, #16
+ 837              	.LCFI10:
+ 838              		.cfi_def_cfa_offset 24
+ 839 0004 00AF     		add	r7, sp, #0
+ 840              	.LCFI11:
+ 841              		.cfi_def_cfa_register 7
+ 842 0006 7860     		str	r0, [r7, #4]	@ float
+ 843 0008 3960     		str	r1, [r7, #0]	@ float
+ 109:.\wind.c      **** 	float computation;
+ 110:.\wind.c      **** 	
+ 111:.\wind.c      **** 	computation = heading - subtractheading;
+ 844              		.loc 1 111 0
+ 845 000a 7868     		ldr	r0, [r7, #4]	@ float
+ 846 000c 3968     		ldr	r1, [r7, #0]	@ float
+ 847 000e FFF7FEFF 		bl	__aeabi_fsub
+ 848 0012 0346     		mov	r3, r0
+ 849 0014 FB60     		str	r3, [r7, #12]	@ float
+ 112:.\wind.c      **** 	
+ 113:.\wind.c      **** 	if(computation < 0)
+ 850              		.loc 1 113 0
+ 851 0016 F868     		ldr	r0, [r7, #12]	@ float
+ 852 0018 4FF00001 		mov	r1, #0
+ 853 001c FFF7FEFF 		bl	__aeabi_fcmplt
+ 854 0020 0346     		mov	r3, r0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 18
+
+
+ 855 0022 002B     		cmp	r3, #0
+ 856 0024 08D0     		beq	.L66
+ 857              	.L69:
+ 114:.\wind.c      **** 	{
+ 115:.\wind.c      **** 		computation = 360 + computation;
+ 858              		.loc 1 115 0
+ 859 0026 F868     		ldr	r0, [r7, #12]	@ float
+ 860 0028 4FF00001 		mov	r1, #0
+ 861 002c C4F2B431 		movt	r1, 17332
+ 862 0030 FFF7FEFF 		bl	__aeabi_fadd
+ 863 0034 0346     		mov	r3, r0
+ 864 0036 FB60     		str	r3, [r7, #12]	@ float
+ 865              	.L66:
+ 116:.\wind.c      **** 	}
+ 117:.\wind.c      **** 	
+ 118:.\wind.c      **** 	return computation;
+ 866              		.loc 1 118 0
+ 867 0038 FB68     		ldr	r3, [r7, #12]	@ float
+ 119:.\wind.c      **** }
+ 868              		.loc 1 119 0
+ 869 003a 1846     		mov	r0, r3
+ 870 003c 07F11007 		add	r7, r7, #16
+ 871 0040 BD46     		mov	sp, r7
+ 872 0042 80BD     		pop	{r7, pc}
+ 873              		.cfi_endproc
+ 874              	.LFE3:
+ 875              		.size	subtractheadings, .-subtractheadings
+ 876              		.section	.text.addheadings,"ax",%progbits
+ 877              		.align	2
+ 878              		.global	addheadings
+ 879              		.thumb
+ 880              		.thumb_func
+ 881              		.type	addheadings, %function
+ 882              	addheadings:
+ 883              	.LFB4:
+ 120:.\wind.c      **** 
+ 121:.\wind.c      **** float addheadings(float heading, float subtractheading)
+ 122:.\wind.c      **** {
+ 884              		.loc 1 122 0
+ 885              		.cfi_startproc
+ 886              		@ args = 0, pretend = 0, frame = 16
+ 887              		@ frame_needed = 1, uses_anonymous_args = 0
+ 888 0000 80B5     		push	{r7, lr}
+ 889              	.LCFI12:
+ 890              		.cfi_def_cfa_offset 8
+ 891              		.cfi_offset 7, -8
+ 892              		.cfi_offset 14, -4
+ 893 0002 84B0     		sub	sp, sp, #16
+ 894              	.LCFI13:
+ 895              		.cfi_def_cfa_offset 24
+ 896 0004 00AF     		add	r7, sp, #0
+ 897              	.LCFI14:
+ 898              		.cfi_def_cfa_register 7
+ 899 0006 7860     		str	r0, [r7, #4]	@ float
+ 900 0008 3960     		str	r1, [r7, #0]	@ float
+ 123:.\wind.c      **** 	float computation;
+ 124:.\wind.c      **** 	
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 19
+
+
+ 125:.\wind.c      **** 	computation = heading - subtractheading;
+ 901              		.loc 1 125 0
+ 902 000a 7868     		ldr	r0, [r7, #4]	@ float
+ 903 000c 3968     		ldr	r1, [r7, #0]	@ float
+ 904 000e FFF7FEFF 		bl	__aeabi_fsub
+ 905 0012 0346     		mov	r3, r0
+ 906 0014 FB60     		str	r3, [r7, #12]	@ float
+ 126:.\wind.c      **** 	
+ 127:.\wind.c      **** 	if(computation > 360)
+ 907              		.loc 1 127 0
+ 908 0016 F868     		ldr	r0, [r7, #12]	@ float
+ 909 0018 4FF00001 		mov	r1, #0
+ 910 001c C4F2B431 		movt	r1, 17332
+ 911 0020 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 912 0024 0346     		mov	r3, r0
+ 913 0026 002B     		cmp	r3, #0
+ 914 0028 08D0     		beq	.L71
+ 915              	.L74:
+ 128:.\wind.c      **** 	{
+ 129:.\wind.c      **** 		computation = computation - 360;
+ 916              		.loc 1 129 0
+ 917 002a F868     		ldr	r0, [r7, #12]	@ float
+ 918 002c 4FF00001 		mov	r1, #0
+ 919 0030 C4F2B431 		movt	r1, 17332
+ 920 0034 FFF7FEFF 		bl	__aeabi_fsub
+ 921 0038 0346     		mov	r3, r0
+ 922 003a FB60     		str	r3, [r7, #12]	@ float
+ 923              	.L71:
+ 130:.\wind.c      **** 	}
+ 131:.\wind.c      **** 	
+ 132:.\wind.c      **** 	return computation;
+ 924              		.loc 1 132 0
+ 925 003c FB68     		ldr	r3, [r7, #12]	@ float
+ 133:.\wind.c      **** }...
+ 926              		.loc 1 133 0
+ 927 003e 1846     		mov	r0, r3
+ 928 0040 07F11007 		add	r7, r7, #16
+ 929 0044 BD46     		mov	sp, r7
+ 930 0046 80BD     		pop	{r7, pc}
+ 931              		.cfi_endproc
+ 932              	.LFE4:
+ 933              		.size	addheadings, .-addheadings
+ 934              		.text
+ 935              	.Letext0:
+ 936              		.file 2 "./wind.h"
+ 937              		.section	.debug_info,"",%progbits
+ 938              	.Ldebug_info0:
+ 939 0000 5C020000 		.4byte	0x25c
+ 940 0004 0200     		.2byte	0x2
+ 941 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 942 000a 04       		.byte	0x4
+ 943 000b 01       		.uleb128 0x1
+ 944 000c 8B010000 		.4byte	.LASF32
+ 945 0010 01       		.byte	0x1
+ 946 0011 6D000000 		.4byte	.LASF33
+ 947 0015 2C000000 		.4byte	.LASF34
+ 948 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 20
+
+
+ 949 001d 00000000 		.4byte	0
+ 950 0021 00000000 		.4byte	0
+ 951 0025 00000000 		.4byte	.Ldebug_line0
+ 952 0029 02       		.uleb128 0x2
+ 953 002a 01       		.byte	0x1
+ 954 002b 06       		.byte	0x6
+ 955 002c F4010000 		.4byte	.LASF0
+ 956 0030 02       		.uleb128 0x2
+ 957 0031 01       		.byte	0x1
+ 958 0032 08       		.byte	0x8
+ 959 0033 87000000 		.4byte	.LASF1
+ 960 0037 02       		.uleb128 0x2
+ 961 0038 02       		.byte	0x2
+ 962 0039 05       		.byte	0x5
+ 963 003a 7A010000 		.4byte	.LASF2
+ 964 003e 02       		.uleb128 0x2
+ 965 003f 02       		.byte	0x2
+ 966 0040 07       		.byte	0x7
+ 967 0041 AD000000 		.4byte	.LASF3
+ 968 0045 03       		.uleb128 0x3
+ 969 0046 04       		.byte	0x4
+ 970 0047 05       		.byte	0x5
+ 971 0048 696E7400 		.ascii	"int\000"
+ 972 004c 02       		.uleb128 0x2
+ 973 004d 04       		.byte	0x4
+ 974 004e 07       		.byte	0x7
+ 975 004f F1000000 		.4byte	.LASF4
+ 976 0053 02       		.uleb128 0x2
+ 977 0054 08       		.byte	0x8
+ 978 0055 05       		.byte	0x5
+ 979 0056 67010000 		.4byte	.LASF5
+ 980 005a 02       		.uleb128 0x2
+ 981 005b 08       		.byte	0x8
+ 982 005c 07       		.byte	0x7
+ 983 005d 05010000 		.4byte	.LASF6
+ 984 0061 02       		.uleb128 0x2
+ 985 0062 04       		.byte	0x4
+ 986 0063 05       		.byte	0x5
+ 987 0064 D4010000 		.4byte	.LASF7
+ 988 0068 02       		.uleb128 0x2
+ 989 0069 04       		.byte	0x4
+ 990 006a 07       		.byte	0x7
+ 991 006b 53010000 		.4byte	.LASF8
+ 992 006f 02       		.uleb128 0x2
+ 993 0070 04       		.byte	0x4
+ 994 0071 07       		.byte	0x7
+ 995 0072 9B000000 		.4byte	.LASF9
+ 996 0076 02       		.uleb128 0x2
+ 997 0077 01       		.byte	0x1
+ 998 0078 08       		.byte	0x8
+ 999 0079 75010000 		.4byte	.LASF10
+ 1000 007d 02       		.uleb128 0x2
+ 1001 007e 08       		.byte	0x8
+ 1002 007f 04       		.byte	0x4
+ 1003 0080 C8000000 		.4byte	.LASF11
+ 1004 0084 02       		.uleb128 0x2
+ 1005 0085 04       		.byte	0x4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 21
+
+
+ 1006 0086 04       		.byte	0x4
+ 1007 0087 76000000 		.4byte	.LASF12
+ 1008 008b 02       		.uleb128 0x2
+ 1009 008c 08       		.byte	0x8
+ 1010 008d 04       		.byte	0x4
+ 1011 008e DD010000 		.4byte	.LASF13
+ 1012 0092 04       		.uleb128 0x4
+ 1013 0093 7C000000 		.4byte	.LASF16
+ 1014 0097 08       		.byte	0x8
+ 1015 0098 02       		.byte	0x2
+ 1016 0099 06       		.byte	0x6
+ 1017 009a BB000000 		.4byte	0xbb
+ 1018 009e 05       		.uleb128 0x5
+ 1019 009f E9010000 		.4byte	.LASF14
+ 1020 00a3 02       		.byte	0x2
+ 1021 00a4 08       		.byte	0x8
+ 1022 00a5 84000000 		.4byte	0x84
+ 1023 00a9 02       		.byte	0x2
+ 1024 00aa 23       		.byte	0x23
+ 1025 00ab 00       		.uleb128 0
+ 1026 00ac 05       		.uleb128 0x5
+ 1027 00ad 5C010000 		.4byte	.LASF15
+ 1028 00b1 02       		.byte	0x2
+ 1029 00b2 09       		.byte	0x9
+ 1030 00b3 84000000 		.4byte	0x84
+ 1031 00b7 02       		.byte	0x2
+ 1032 00b8 23       		.byte	0x23
+ 1033 00b9 04       		.uleb128 0x4
+ 1034 00ba 00       		.byte	0
+ 1035 00bb 04       		.uleb128 0x4
+ 1036 00bc 00000000 		.4byte	.LASF17
+ 1037 00c0 08       		.byte	0x8
+ 1038 00c1 02       		.byte	0x2
+ 1039 00c2 0C       		.byte	0xc
+ 1040 00c3 E4000000 		.4byte	0xe4
+ 1041 00c7 05       		.uleb128 0x5
+ 1042 00c8 4D010000 		.4byte	.LASF18
+ 1043 00cc 02       		.byte	0x2
+ 1044 00cd 0E       		.byte	0xe
+ 1045 00ce 84000000 		.4byte	0x84
+ 1046 00d2 02       		.byte	0x2
+ 1047 00d3 23       		.byte	0x23
+ 1048 00d4 00       		.uleb128 0
+ 1049 00d5 05       		.uleb128 0x5
+ 1050 00d6 C0000000 		.4byte	.LASF19
+ 1051 00da 02       		.byte	0x2
+ 1052 00db 0F       		.byte	0xf
+ 1053 00dc 84000000 		.4byte	0x84
+ 1054 00e0 02       		.byte	0x2
+ 1055 00e1 23       		.byte	0x23
+ 1056 00e2 04       		.uleb128 0x4
+ 1057 00e3 00       		.byte	0
+ 1058 00e4 06       		.uleb128 0x6
+ 1059 00e5 01       		.byte	0x1
+ 1060 00e6 1E000000 		.4byte	.LASF20
+ 1061 00ea 01       		.byte	0x1
+ 1062 00eb 03       		.byte	0x3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 22
+
+
+ 1063 00ec 01       		.byte	0x1
+ 1064 00ed 92000000 		.4byte	0x92
+ 1065 00f1 00000000 		.4byte	.LFB0
+ 1066 00f5 C0020000 		.4byte	.LFE0
+ 1067 00f9 00000000 		.4byte	.LLST0
+ 1068 00fd 01       		.byte	0x1
+ 1069 00fe 1F010000 		.4byte	0x11f
+ 1070 0102 07       		.uleb128 0x7
+ 1071 0103 FE000000 		.4byte	.LASF22
+ 1072 0107 01       		.byte	0x1
+ 1073 0108 03       		.byte	0x3
+ 1074 0109 BB000000 		.4byte	0xbb
+ 1075 010d 02       		.byte	0x2
+ 1076 010e 91       		.byte	0x91
+ 1077 010f 5C       		.sleb128 -36
+ 1078 0110 08       		.uleb128 0x8
+ 1079 0111 84010000 		.4byte	.LASF25
+ 1080 0115 01       		.byte	0x1
+ 1081 0116 05       		.byte	0x5
+ 1082 0117 92000000 		.4byte	0x92
+ 1083 011b 02       		.byte	0x2
+ 1084 011c 91       		.byte	0x91
+ 1085 011d 68       		.sleb128 -24
+ 1086 011e 00       		.byte	0
+ 1087 011f 06       		.uleb128 0x6
+ 1088 0120 01       		.byte	0x1
+ 1089 0121 35010000 		.4byte	.LASF21
+ 1090 0125 01       		.byte	0x1
+ 1091 0126 22       		.byte	0x22
+ 1092 0127 01       		.byte	0x1
+ 1093 0128 92000000 		.4byte	0x92
+ 1094 012c 00000000 		.4byte	.LFB1
+ 1095 0130 A6000000 		.4byte	.LFE1
+ 1096 0134 38000000 		.4byte	.LLST1
+ 1097 0138 01       		.byte	0x1
+ 1098 0139 90010000 		.4byte	0x190
+ 1099 013d 07       		.uleb128 0x7
+ 1100 013e 95000000 		.4byte	.LASF23
+ 1101 0142 01       		.byte	0x1
+ 1102 0143 22       		.byte	0x22
+ 1103 0144 90010000 		.4byte	0x190
+ 1104 0148 02       		.byte	0x2
+ 1105 0149 91       		.byte	0x91
+ 1106 014a 58       		.sleb128 -40
+ 1107 014b 07       		.uleb128 0x7
+ 1108 014c 00020000 		.4byte	.LASF24
+ 1109 0150 01       		.byte	0x1
+ 1110 0151 22       		.byte	0x22
+ 1111 0152 45000000 		.4byte	0x45
+ 1112 0156 02       		.byte	0x2
+ 1113 0157 91       		.byte	0x91
+ 1114 0158 54       		.sleb128 -44
+ 1115 0159 08       		.uleb128 0x8
+ 1116 015a 84010000 		.4byte	.LASF25
+ 1117 015e 01       		.byte	0x1
+ 1118 015f 24       		.byte	0x24
+ 1119 0160 92000000 		.4byte	0x92
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 23
+
+
+ 1120 0164 02       		.byte	0x2
+ 1121 0165 91       		.byte	0x91
+ 1122 0166 64       		.sleb128 -28
+ 1123 0167 09       		.uleb128 0x9
+ 1124 0168 6900     		.ascii	"i\000"
+ 1125 016a 01       		.byte	0x1
+ 1126 016b 25       		.byte	0x25
+ 1127 016c 45000000 		.4byte	0x45
+ 1128 0170 02       		.byte	0x2
+ 1129 0171 91       		.byte	0x91
+ 1130 0172 74       		.sleb128 -12
+ 1131 0173 08       		.uleb128 0x8
+ 1132 0174 0D000000 		.4byte	.LASF26
+ 1133 0178 01       		.byte	0x1
+ 1134 0179 26       		.byte	0x26
+ 1135 017a 84000000 		.4byte	0x84
+ 1136 017e 02       		.byte	0x2
+ 1137 017f 91       		.byte	0x91
+ 1138 0180 70       		.sleb128 -16
+ 1139 0181 08       		.uleb128 0x8
+ 1140 0182 EC000000 		.4byte	.LASF27
+ 1141 0186 01       		.byte	0x1
+ 1142 0187 26       		.byte	0x26
+ 1143 0188 84000000 		.4byte	0x84
+ 1144 018c 02       		.byte	0x2
+ 1145 018d 91       		.byte	0x91
+ 1146 018e 6C       		.sleb128 -20
+ 1147 018f 00       		.byte	0
+ 1148 0190 0A       		.uleb128 0xa
+ 1149 0191 04       		.byte	0x4
+ 1150 0192 92000000 		.4byte	0x92
+ 1151 0196 06       		.uleb128 0x6
+ 1152 0197 01       		.byte	0x1
+ 1153 0198 1C010000 		.4byte	.LASF28
+ 1154 019c 01       		.byte	0x1
+ 1155 019d 35       		.byte	0x35
+ 1156 019e 01       		.byte	0x1
+ 1157 019f BB000000 		.4byte	0xbb
+ 1158 01a3 00000000 		.4byte	.LFB2
+ 1159 01a7 E0020000 		.4byte	.LFE2
+ 1160 01ab 70000000 		.4byte	.LLST2
+ 1161 01af 01       		.byte	0x1
+ 1162 01b0 D1010000 		.4byte	0x1d1
+ 1163 01b4 07       		.uleb128 0x7
+ 1164 01b5 95000000 		.4byte	.LASF23
+ 1165 01b9 01       		.byte	0x1
+ 1166 01ba 35       		.byte	0x35
+ 1167 01bb 92000000 		.4byte	0x92
+ 1168 01bf 02       		.byte	0x2
+ 1169 01c0 91       		.byte	0x91
+ 1170 01c1 5C       		.sleb128 -36
+ 1171 01c2 08       		.uleb128 0x8
+ 1172 01c3 84010000 		.4byte	.LASF25
+ 1173 01c7 01       		.byte	0x1
+ 1174 01c8 37       		.byte	0x37
+ 1175 01c9 BB000000 		.4byte	0xbb
+ 1176 01cd 02       		.byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 24
+
+
+ 1177 01ce 91       		.byte	0x91
+ 1178 01cf 68       		.sleb128 -24
+ 1179 01d0 00       		.byte	0
+ 1180 01d1 06       		.uleb128 0x6
+ 1181 01d2 01       		.byte	0x1
+ 1182 01d3 CF000000 		.4byte	.LASF29
+ 1183 01d7 01       		.byte	0x1
+ 1184 01d8 6B       		.byte	0x6b
+ 1185 01d9 01       		.byte	0x1
+ 1186 01da 84000000 		.4byte	0x84
+ 1187 01de 00000000 		.4byte	.LFB3
+ 1188 01e2 44000000 		.4byte	.LFE3
+ 1189 01e6 A8000000 		.4byte	.LLST3
+ 1190 01ea 01       		.byte	0x1
+ 1191 01eb 1A020000 		.4byte	0x21a
+ 1192 01ef 07       		.uleb128 0x7
+ 1193 01f0 C0000000 		.4byte	.LASF19
+ 1194 01f4 01       		.byte	0x1
+ 1195 01f5 6B       		.byte	0x6b
+ 1196 01f6 84000000 		.4byte	0x84
+ 1197 01fa 02       		.byte	0x2
+ 1198 01fb 91       		.byte	0x91
+ 1199 01fc 6C       		.sleb128 -20
+ 1200 01fd 07       		.uleb128 0x7
+ 1201 01fe 3D010000 		.4byte	.LASF30
+ 1202 0202 01       		.byte	0x1
+ 1203 0203 6B       		.byte	0x6b
+ 1204 0204 84000000 		.4byte	0x84
+ 1205 0208 02       		.byte	0x2
+ 1206 0209 91       		.byte	0x91
+ 1207 020a 68       		.sleb128 -24
+ 1208 020b 08       		.uleb128 0x8
+ 1209 020c E0000000 		.4byte	.LASF31
+ 1210 0210 01       		.byte	0x1
+ 1211 0211 6D       		.byte	0x6d
+ 1212 0212 84000000 		.4byte	0x84
+ 1213 0216 02       		.byte	0x2
+ 1214 0217 91       		.byte	0x91
+ 1215 0218 74       		.sleb128 -12
+ 1216 0219 00       		.byte	0
+ 1217 021a 0B       		.uleb128 0xb
+ 1218 021b 01       		.byte	0x1
+ 1219 021c 12000000 		.4byte	.LASF35
+ 1220 0220 01       		.byte	0x1
+ 1221 0221 79       		.byte	0x79
+ 1222 0222 01       		.byte	0x1
+ 1223 0223 84000000 		.4byte	0x84
+ 1224 0227 00000000 		.4byte	.LFB4
+ 1225 022b 48000000 		.4byte	.LFE4
+ 1226 022f E0000000 		.4byte	.LLST4
+ 1227 0233 01       		.byte	0x1
+ 1228 0234 07       		.uleb128 0x7
+ 1229 0235 C0000000 		.4byte	.LASF19
+ 1230 0239 01       		.byte	0x1
+ 1231 023a 79       		.byte	0x79
+ 1232 023b 84000000 		.4byte	0x84
+ 1233 023f 02       		.byte	0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 25
+
+
+ 1234 0240 91       		.byte	0x91
+ 1235 0241 6C       		.sleb128 -20
+ 1236 0242 07       		.uleb128 0x7
+ 1237 0243 3D010000 		.4byte	.LASF30
+ 1238 0247 01       		.byte	0x1
+ 1239 0248 79       		.byte	0x79
+ 1240 0249 84000000 		.4byte	0x84
+ 1241 024d 02       		.byte	0x2
+ 1242 024e 91       		.byte	0x91
+ 1243 024f 68       		.sleb128 -24
+ 1244 0250 08       		.uleb128 0x8
+ 1245 0251 E0000000 		.4byte	.LASF31
+ 1246 0255 01       		.byte	0x1
+ 1247 0256 7B       		.byte	0x7b
+ 1248 0257 84000000 		.4byte	0x84
+ 1249 025b 02       		.byte	0x2
+ 1250 025c 91       		.byte	0x91
+ 1251 025d 74       		.sleb128 -12
+ 1252 025e 00       		.byte	0
+ 1253 025f 00       		.byte	0
+ 1254              		.section	.debug_abbrev,"",%progbits
+ 1255              	.Ldebug_abbrev0:
+ 1256 0000 01       		.uleb128 0x1
+ 1257 0001 11       		.uleb128 0x11
+ 1258 0002 01       		.byte	0x1
+ 1259 0003 25       		.uleb128 0x25
+ 1260 0004 0E       		.uleb128 0xe
+ 1261 0005 13       		.uleb128 0x13
+ 1262 0006 0B       		.uleb128 0xb
+ 1263 0007 03       		.uleb128 0x3
+ 1264 0008 0E       		.uleb128 0xe
+ 1265 0009 1B       		.uleb128 0x1b
+ 1266 000a 0E       		.uleb128 0xe
+ 1267 000b 55       		.uleb128 0x55
+ 1268 000c 06       		.uleb128 0x6
+ 1269 000d 11       		.uleb128 0x11
+ 1270 000e 01       		.uleb128 0x1
+ 1271 000f 52       		.uleb128 0x52
+ 1272 0010 01       		.uleb128 0x1
+ 1273 0011 10       		.uleb128 0x10
+ 1274 0012 06       		.uleb128 0x6
+ 1275 0013 00       		.byte	0
+ 1276 0014 00       		.byte	0
+ 1277 0015 02       		.uleb128 0x2
+ 1278 0016 24       		.uleb128 0x24
+ 1279 0017 00       		.byte	0
+ 1280 0018 0B       		.uleb128 0xb
+ 1281 0019 0B       		.uleb128 0xb
+ 1282 001a 3E       		.uleb128 0x3e
+ 1283 001b 0B       		.uleb128 0xb
+ 1284 001c 03       		.uleb128 0x3
+ 1285 001d 0E       		.uleb128 0xe
+ 1286 001e 00       		.byte	0
+ 1287 001f 00       		.byte	0
+ 1288 0020 03       		.uleb128 0x3
+ 1289 0021 24       		.uleb128 0x24
+ 1290 0022 00       		.byte	0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 26
+
+
+ 1291 0023 0B       		.uleb128 0xb
+ 1292 0024 0B       		.uleb128 0xb
+ 1293 0025 3E       		.uleb128 0x3e
+ 1294 0026 0B       		.uleb128 0xb
+ 1295 0027 03       		.uleb128 0x3
+ 1296 0028 08       		.uleb128 0x8
+ 1297 0029 00       		.byte	0
+ 1298 002a 00       		.byte	0
+ 1299 002b 04       		.uleb128 0x4
+ 1300 002c 13       		.uleb128 0x13
+ 1301 002d 01       		.byte	0x1
+ 1302 002e 03       		.uleb128 0x3
+ 1303 002f 0E       		.uleb128 0xe
+ 1304 0030 0B       		.uleb128 0xb
+ 1305 0031 0B       		.uleb128 0xb
+ 1306 0032 3A       		.uleb128 0x3a
+ 1307 0033 0B       		.uleb128 0xb
+ 1308 0034 3B       		.uleb128 0x3b
+ 1309 0035 0B       		.uleb128 0xb
+ 1310 0036 01       		.uleb128 0x1
+ 1311 0037 13       		.uleb128 0x13
+ 1312 0038 00       		.byte	0
+ 1313 0039 00       		.byte	0
+ 1314 003a 05       		.uleb128 0x5
+ 1315 003b 0D       		.uleb128 0xd
+ 1316 003c 00       		.byte	0
+ 1317 003d 03       		.uleb128 0x3
+ 1318 003e 0E       		.uleb128 0xe
+ 1319 003f 3A       		.uleb128 0x3a
+ 1320 0040 0B       		.uleb128 0xb
+ 1321 0041 3B       		.uleb128 0x3b
+ 1322 0042 0B       		.uleb128 0xb
+ 1323 0043 49       		.uleb128 0x49
+ 1324 0044 13       		.uleb128 0x13
+ 1325 0045 38       		.uleb128 0x38
+ 1326 0046 0A       		.uleb128 0xa
+ 1327 0047 00       		.byte	0
+ 1328 0048 00       		.byte	0
+ 1329 0049 06       		.uleb128 0x6
+ 1330 004a 2E       		.uleb128 0x2e
+ 1331 004b 01       		.byte	0x1
+ 1332 004c 3F       		.uleb128 0x3f
+ 1333 004d 0C       		.uleb128 0xc
+ 1334 004e 03       		.uleb128 0x3
+ 1335 004f 0E       		.uleb128 0xe
+ 1336 0050 3A       		.uleb128 0x3a
+ 1337 0051 0B       		.uleb128 0xb
+ 1338 0052 3B       		.uleb128 0x3b
+ 1339 0053 0B       		.uleb128 0xb
+ 1340 0054 27       		.uleb128 0x27
+ 1341 0055 0C       		.uleb128 0xc
+ 1342 0056 49       		.uleb128 0x49
+ 1343 0057 13       		.uleb128 0x13
+ 1344 0058 11       		.uleb128 0x11
+ 1345 0059 01       		.uleb128 0x1
+ 1346 005a 12       		.uleb128 0x12
+ 1347 005b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 27
+
+
+ 1348 005c 40       		.uleb128 0x40
+ 1349 005d 06       		.uleb128 0x6
+ 1350 005e 9642     		.uleb128 0x2116
+ 1351 0060 0C       		.uleb128 0xc
+ 1352 0061 01       		.uleb128 0x1
+ 1353 0062 13       		.uleb128 0x13
+ 1354 0063 00       		.byte	0
+ 1355 0064 00       		.byte	0
+ 1356 0065 07       		.uleb128 0x7
+ 1357 0066 05       		.uleb128 0x5
+ 1358 0067 00       		.byte	0
+ 1359 0068 03       		.uleb128 0x3
+ 1360 0069 0E       		.uleb128 0xe
+ 1361 006a 3A       		.uleb128 0x3a
+ 1362 006b 0B       		.uleb128 0xb
+ 1363 006c 3B       		.uleb128 0x3b
+ 1364 006d 0B       		.uleb128 0xb
+ 1365 006e 49       		.uleb128 0x49
+ 1366 006f 13       		.uleb128 0x13
+ 1367 0070 02       		.uleb128 0x2
+ 1368 0071 0A       		.uleb128 0xa
+ 1369 0072 00       		.byte	0
+ 1370 0073 00       		.byte	0
+ 1371 0074 08       		.uleb128 0x8
+ 1372 0075 34       		.uleb128 0x34
+ 1373 0076 00       		.byte	0
+ 1374 0077 03       		.uleb128 0x3
+ 1375 0078 0E       		.uleb128 0xe
+ 1376 0079 3A       		.uleb128 0x3a
+ 1377 007a 0B       		.uleb128 0xb
+ 1378 007b 3B       		.uleb128 0x3b
+ 1379 007c 0B       		.uleb128 0xb
+ 1380 007d 49       		.uleb128 0x49
+ 1381 007e 13       		.uleb128 0x13
+ 1382 007f 02       		.uleb128 0x2
+ 1383 0080 0A       		.uleb128 0xa
+ 1384 0081 00       		.byte	0
+ 1385 0082 00       		.byte	0
+ 1386 0083 09       		.uleb128 0x9
+ 1387 0084 34       		.uleb128 0x34
+ 1388 0085 00       		.byte	0
+ 1389 0086 03       		.uleb128 0x3
+ 1390 0087 08       		.uleb128 0x8
+ 1391 0088 3A       		.uleb128 0x3a
+ 1392 0089 0B       		.uleb128 0xb
+ 1393 008a 3B       		.uleb128 0x3b
+ 1394 008b 0B       		.uleb128 0xb
+ 1395 008c 49       		.uleb128 0x49
+ 1396 008d 13       		.uleb128 0x13
+ 1397 008e 02       		.uleb128 0x2
+ 1398 008f 0A       		.uleb128 0xa
+ 1399 0090 00       		.byte	0
+ 1400 0091 00       		.byte	0
+ 1401 0092 0A       		.uleb128 0xa
+ 1402 0093 0F       		.uleb128 0xf
+ 1403 0094 00       		.byte	0
+ 1404 0095 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 28
+
+
+ 1405 0096 0B       		.uleb128 0xb
+ 1406 0097 49       		.uleb128 0x49
+ 1407 0098 13       		.uleb128 0x13
+ 1408 0099 00       		.byte	0
+ 1409 009a 00       		.byte	0
+ 1410 009b 0B       		.uleb128 0xb
+ 1411 009c 2E       		.uleb128 0x2e
+ 1412 009d 01       		.byte	0x1
+ 1413 009e 3F       		.uleb128 0x3f
+ 1414 009f 0C       		.uleb128 0xc
+ 1415 00a0 03       		.uleb128 0x3
+ 1416 00a1 0E       		.uleb128 0xe
+ 1417 00a2 3A       		.uleb128 0x3a
+ 1418 00a3 0B       		.uleb128 0xb
+ 1419 00a4 3B       		.uleb128 0x3b
+ 1420 00a5 0B       		.uleb128 0xb
+ 1421 00a6 27       		.uleb128 0x27
+ 1422 00a7 0C       		.uleb128 0xc
+ 1423 00a8 49       		.uleb128 0x49
+ 1424 00a9 13       		.uleb128 0x13
+ 1425 00aa 11       		.uleb128 0x11
+ 1426 00ab 01       		.uleb128 0x1
+ 1427 00ac 12       		.uleb128 0x12
+ 1428 00ad 01       		.uleb128 0x1
+ 1429 00ae 40       		.uleb128 0x40
+ 1430 00af 06       		.uleb128 0x6
+ 1431 00b0 9642     		.uleb128 0x2116
+ 1432 00b2 0C       		.uleb128 0xc
+ 1433 00b3 00       		.byte	0
+ 1434 00b4 00       		.byte	0
+ 1435 00b5 00       		.byte	0
+ 1436              		.section	.debug_loc,"",%progbits
+ 1437              	.Ldebug_loc0:
+ 1438              	.LLST0:
+ 1439 0000 00000000 		.4byte	.LFB0
+ 1440 0004 02000000 		.4byte	.LCFI0
+ 1441 0008 0200     		.2byte	0x2
+ 1442 000a 7D       		.byte	0x7d
+ 1443 000b 00       		.sleb128 0
+ 1444 000c 02000000 		.4byte	.LCFI0
+ 1445 0010 04000000 		.4byte	.LCFI1
+ 1446 0014 0200     		.2byte	0x2
+ 1447 0016 7D       		.byte	0x7d
+ 1448 0017 10       		.sleb128 16
+ 1449 0018 04000000 		.4byte	.LCFI1
+ 1450 001c 06000000 		.4byte	.LCFI2
+ 1451 0020 0200     		.2byte	0x2
+ 1452 0022 7D       		.byte	0x7d
+ 1453 0023 28       		.sleb128 40
+ 1454 0024 06000000 		.4byte	.LCFI2
+ 1455 0028 C0020000 		.4byte	.LFE0
+ 1456 002c 0200     		.2byte	0x2
+ 1457 002e 77       		.byte	0x77
+ 1458 002f 28       		.sleb128 40
+ 1459 0030 00000000 		.4byte	0
+ 1460 0034 00000000 		.4byte	0
+ 1461              	.LLST1:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 29
+
+
+ 1462 0038 00000000 		.4byte	.LFB1
+ 1463 003c 02000000 		.4byte	.LCFI3
+ 1464 0040 0200     		.2byte	0x2
+ 1465 0042 7D       		.byte	0x7d
+ 1466 0043 00       		.sleb128 0
+ 1467 0044 02000000 		.4byte	.LCFI3
+ 1468 0048 04000000 		.4byte	.LCFI4
+ 1469 004c 0200     		.2byte	0x2
+ 1470 004e 7D       		.byte	0x7d
+ 1471 004f 08       		.sleb128 8
+ 1472 0050 04000000 		.4byte	.LCFI4
+ 1473 0054 06000000 		.4byte	.LCFI5
+ 1474 0058 0200     		.2byte	0x2
+ 1475 005a 7D       		.byte	0x7d
+ 1476 005b 30       		.sleb128 48
+ 1477 005c 06000000 		.4byte	.LCFI5
+ 1478 0060 A6000000 		.4byte	.LFE1
+ 1479 0064 0200     		.2byte	0x2
+ 1480 0066 77       		.byte	0x77
+ 1481 0067 30       		.sleb128 48
+ 1482 0068 00000000 		.4byte	0
+ 1483 006c 00000000 		.4byte	0
+ 1484              	.LLST2:
+ 1485 0070 00000000 		.4byte	.LFB2
+ 1486 0074 02000000 		.4byte	.LCFI6
+ 1487 0078 0200     		.2byte	0x2
+ 1488 007a 7D       		.byte	0x7d
+ 1489 007b 00       		.sleb128 0
+ 1490 007c 02000000 		.4byte	.LCFI6
+ 1491 0080 04000000 		.4byte	.LCFI7
+ 1492 0084 0200     		.2byte	0x2
+ 1493 0086 7D       		.byte	0x7d
+ 1494 0087 0C       		.sleb128 12
+ 1495 0088 04000000 		.4byte	.LCFI7
+ 1496 008c 06000000 		.4byte	.LCFI8
+ 1497 0090 0200     		.2byte	0x2
+ 1498 0092 7D       		.byte	0x7d
+ 1499 0093 28       		.sleb128 40
+ 1500 0094 06000000 		.4byte	.LCFI8
+ 1501 0098 E0020000 		.4byte	.LFE2
+ 1502 009c 0200     		.2byte	0x2
+ 1503 009e 77       		.byte	0x77
+ 1504 009f 28       		.sleb128 40
+ 1505 00a0 00000000 		.4byte	0
+ 1506 00a4 00000000 		.4byte	0
+ 1507              	.LLST3:
+ 1508 00a8 00000000 		.4byte	.LFB3
+ 1509 00ac 02000000 		.4byte	.LCFI9
+ 1510 00b0 0200     		.2byte	0x2
+ 1511 00b2 7D       		.byte	0x7d
+ 1512 00b3 00       		.sleb128 0
+ 1513 00b4 02000000 		.4byte	.LCFI9
+ 1514 00b8 04000000 		.4byte	.LCFI10
+ 1515 00bc 0200     		.2byte	0x2
+ 1516 00be 7D       		.byte	0x7d
+ 1517 00bf 08       		.sleb128 8
+ 1518 00c0 04000000 		.4byte	.LCFI10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 30
+
+
+ 1519 00c4 06000000 		.4byte	.LCFI11
+ 1520 00c8 0200     		.2byte	0x2
+ 1521 00ca 7D       		.byte	0x7d
+ 1522 00cb 18       		.sleb128 24
+ 1523 00cc 06000000 		.4byte	.LCFI11
+ 1524 00d0 44000000 		.4byte	.LFE3
+ 1525 00d4 0200     		.2byte	0x2
+ 1526 00d6 77       		.byte	0x77
+ 1527 00d7 18       		.sleb128 24
+ 1528 00d8 00000000 		.4byte	0
+ 1529 00dc 00000000 		.4byte	0
+ 1530              	.LLST4:
+ 1531 00e0 00000000 		.4byte	.LFB4
+ 1532 00e4 02000000 		.4byte	.LCFI12
+ 1533 00e8 0200     		.2byte	0x2
+ 1534 00ea 7D       		.byte	0x7d
+ 1535 00eb 00       		.sleb128 0
+ 1536 00ec 02000000 		.4byte	.LCFI12
+ 1537 00f0 04000000 		.4byte	.LCFI13
+ 1538 00f4 0200     		.2byte	0x2
+ 1539 00f6 7D       		.byte	0x7d
+ 1540 00f7 08       		.sleb128 8
+ 1541 00f8 04000000 		.4byte	.LCFI13
+ 1542 00fc 06000000 		.4byte	.LCFI14
+ 1543 0100 0200     		.2byte	0x2
+ 1544 0102 7D       		.byte	0x7d
+ 1545 0103 18       		.sleb128 24
+ 1546 0104 06000000 		.4byte	.LCFI14
+ 1547 0108 48000000 		.4byte	.LFE4
+ 1548 010c 0200     		.2byte	0x2
+ 1549 010e 77       		.byte	0x77
+ 1550 010f 18       		.sleb128 24
+ 1551 0110 00000000 		.4byte	0
+ 1552 0114 00000000 		.4byte	0
+ 1553              		.section	.debug_aranges,"",%progbits
+ 1554 0000 3C000000 		.4byte	0x3c
+ 1555 0004 0200     		.2byte	0x2
+ 1556 0006 00000000 		.4byte	.Ldebug_info0
+ 1557 000a 04       		.byte	0x4
+ 1558 000b 00       		.byte	0
+ 1559 000c 0000     		.2byte	0
+ 1560 000e 0000     		.2byte	0
+ 1561 0010 00000000 		.4byte	.LFB0
+ 1562 0014 C0020000 		.4byte	.LFE0-.LFB0
+ 1563 0018 00000000 		.4byte	.LFB1
+ 1564 001c A6000000 		.4byte	.LFE1-.LFB1
+ 1565 0020 00000000 		.4byte	.LFB2
+ 1566 0024 E0020000 		.4byte	.LFE2-.LFB2
+ 1567 0028 00000000 		.4byte	.LFB3
+ 1568 002c 44000000 		.4byte	.LFE3-.LFB3
+ 1569 0030 00000000 		.4byte	.LFB4
+ 1570 0034 48000000 		.4byte	.LFE4-.LFB4
+ 1571 0038 00000000 		.4byte	0
+ 1572 003c 00000000 		.4byte	0
+ 1573              		.section	.debug_ranges,"",%progbits
+ 1574              	.Ldebug_ranges0:
+ 1575 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 31
+
+
+ 1576 0004 C0020000 		.4byte	.LFE0
+ 1577 0008 00000000 		.4byte	.LFB1
+ 1578 000c A6000000 		.4byte	.LFE1
+ 1579 0010 00000000 		.4byte	.LFB2
+ 1580 0014 E0020000 		.4byte	.LFE2
+ 1581 0018 00000000 		.4byte	.LFB3
+ 1582 001c 44000000 		.4byte	.LFE3
+ 1583 0020 00000000 		.4byte	.LFB4
+ 1584 0024 48000000 		.4byte	.LFE4
+ 1585 0028 00000000 		.4byte	0
+ 1586 002c 00000000 		.4byte	0
+ 1587              		.section	.debug_line,"",%progbits
+ 1588              	.Ldebug_line0:
+ 1589 0000 13010000 		.section	.debug_str,"MS",%progbits,1
+ 1589      02002B00 
+ 1589      00000201 
+ 1589      FB0E0D00 
+ 1589      01010101 
+ 1590              	.LASF17:
+ 1591 0000 73706565 		.ascii	"speedheading\000"
+ 1591      64686561 
+ 1591      64696E67 
+ 1591      00
+ 1592              	.LASF26:
+ 1593 000d 4E73756D 		.ascii	"Nsum\000"
+ 1593      00
+ 1594              	.LASF35:
+ 1595 0012 61646468 		.ascii	"addheadings\000"
+ 1595      65616469 
+ 1595      6E677300 
+ 1596              	.LASF20:
+ 1597 001e 64656669 		.ascii	"definevectors\000"
+ 1597      6E657665 
+ 1597      63746F72 
+ 1597      7300
+ 1598              	.LASF34:
+ 1599 002c 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 1599      73657273 
+ 1599      5C527961 
+ 1599      6E5C446F 
+ 1599      63756D65 
+ 1600 005a 6169726D 		.ascii	"airmar_NoGPS.cydsn\000"
+ 1600      61725F4E 
+ 1600      6F475053 
+ 1600      2E637964 
+ 1600      736E00
+ 1601              	.LASF33:
+ 1602 006d 2E5C7769 		.ascii	".\\wind.c\000"
+ 1602      6E642E63 
+ 1602      00
+ 1603              	.LASF12:
+ 1604 0076 666C6F61 		.ascii	"float\000"
+ 1604      7400
+ 1605              	.LASF16:
+ 1606 007c 77696E64 		.ascii	"windvector\000"
+ 1606      76656374 
+ 1606      6F7200
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 32
+
+
+ 1607              	.LASF1:
+ 1608 0087 756E7369 		.ascii	"unsigned char\000"
+ 1608      676E6564 
+ 1608      20636861 
+ 1608      7200
+ 1609              	.LASF23:
+ 1610 0095 696E7075 		.ascii	"input\000"
+ 1610      7400
+ 1611              	.LASF9:
+ 1612 009b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1612      20756E73 
+ 1612      69676E65 
+ 1612      6420696E 
+ 1612      7400
+ 1613              	.LASF3:
+ 1614 00ad 73686F72 		.ascii	"short unsigned int\000"
+ 1614      7420756E 
+ 1614      7369676E 
+ 1614      65642069 
+ 1614      6E7400
+ 1615              	.LASF19:
+ 1616 00c0 68656164 		.ascii	"heading\000"
+ 1616      696E6700 
+ 1617              	.LASF11:
+ 1618 00c8 646F7562 		.ascii	"double\000"
+ 1618      6C6500
+ 1619              	.LASF29:
+ 1620 00cf 73756274 		.ascii	"subtractheadings\000"
+ 1620      72616374 
+ 1620      68656164 
+ 1620      696E6773 
+ 1620      00
+ 1621              	.LASF31:
+ 1622 00e0 636F6D70 		.ascii	"computation\000"
+ 1622      75746174 
+ 1622      696F6E00 
+ 1623              	.LASF27:
+ 1624 00ec 4573756D 		.ascii	"Esum\000"
+ 1624      00
+ 1625              	.LASF4:
+ 1626 00f1 756E7369 		.ascii	"unsigned int\000"
+ 1626      676E6564 
+ 1626      20696E74 
+ 1626      00
+ 1627              	.LASF22:
+ 1628 00fe 696E7075 		.ascii	"inputs\000"
+ 1628      747300
+ 1629              	.LASF6:
+ 1630 0105 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1630      206C6F6E 
+ 1630      6720756E 
+ 1630      7369676E 
+ 1630      65642069 
+ 1631              	.LASF28:
+ 1632 011c 636F6E76 		.ascii	"converttospeedandheading\000"
+ 1632      65727474 
+ 1632      6F737065 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 33
+
+
+ 1632      6564616E 
+ 1632      64686561 
+ 1633              	.LASF21:
+ 1634 0135 61766777 		.ascii	"avgwind\000"
+ 1634      696E6400 
+ 1635              	.LASF30:
+ 1636 013d 73756274 		.ascii	"subtractheading\000"
+ 1636      72616374 
+ 1636      68656164 
+ 1636      696E6700 
+ 1637              	.LASF18:
+ 1638 014d 73706565 		.ascii	"speed\000"
+ 1638      6400
+ 1639              	.LASF8:
+ 1640 0153 73697A65 		.ascii	"sizetype\000"
+ 1640      74797065 
+ 1640      00
+ 1641              	.LASF15:
+ 1642 015c 45636F6D 		.ascii	"Ecomponent\000"
+ 1642      706F6E65 
+ 1642      6E7400
+ 1643              	.LASF5:
+ 1644 0167 6C6F6E67 		.ascii	"long long int\000"
+ 1644      206C6F6E 
+ 1644      6720696E 
+ 1644      7400
+ 1645              	.LASF10:
+ 1646 0175 63686172 		.ascii	"char\000"
+ 1646      00
+ 1647              	.LASF2:
+ 1648 017a 73686F72 		.ascii	"short int\000"
+ 1648      7420696E 
+ 1648      7400
+ 1649              	.LASF25:
+ 1650 0184 6F757470 		.ascii	"output\000"
+ 1650      757400
+ 1651              	.LASF32:
+ 1652 018b 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1652      4320342E 
+ 1652      372E3320 
+ 1652      32303133 
+ 1652      30333132 
+ 1653 01be 616E6368 		.ascii	"anch revision 196615]\000"
+ 1653      20726576 
+ 1653      6973696F 
+ 1653      6E203139 
+ 1653      36363135 
+ 1654              	.LASF7:
+ 1655 01d4 6C6F6E67 		.ascii	"long int\000"
+ 1655      20696E74 
+ 1655      00
+ 1656              	.LASF13:
+ 1657 01dd 6C6F6E67 		.ascii	"long double\000"
+ 1657      20646F75 
+ 1657      626C6500 
+ 1658              	.LASF14:
+ 1659 01e9 4E636F6D 		.ascii	"Ncomponent\000"
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccHscg1a.s 			page 34
+
+
+ 1659      706F6E65 
+ 1659      6E7400
+ 1660              	.LASF0:
+ 1661 01f4 7369676E 		.ascii	"signed char\000"
+ 1661      65642063 
+ 1661      68617200 
+ 1662              	.LASF24:
+ 1663 0200 6C656E67 		.ascii	"length\000"
+ 1663      746800
+ 1664              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

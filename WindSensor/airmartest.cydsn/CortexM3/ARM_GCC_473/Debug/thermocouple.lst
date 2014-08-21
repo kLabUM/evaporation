@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
   51              	.LCFI2:
   52              		.cfi_def_cfa_register 7
    5:.\thermocouple.c **** 	int16 temperature = 0;
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 2
 
 
   53              		.loc 1 5 0
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
   93 005a 9BB2     		uxth	r3, r3
   94 005c 9BB2     		uxth	r3, r3
   95 005e B7F84220 		ldrh	r2, [r7, #66]
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 3
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 3
 
 
   96 0062 9A42     		cmp	r2, r3
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  135 00b4 FFF7FEFF 		bl	__aeabi_f2d
  136 00b8 0446     		mov	r4, r0
  137 00ba 0D46     		mov	r5, r1
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 4
 
 
  138 00bc 7B6C     		ldr	r3, [r7, #68]
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  186              		.loc 1 36 0
  187 012e FB6B     		ldr	r3, [r7, #60]
  188 0130 83F00043 		eor	r3, r3, #-2147483648
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 5
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 5
 
 
  189 0134 FB63     		str	r3, [r7, #60]	@ float
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  237 0030 02       		.uleb128 0x2
  238 0031 01       		.byte	0x1
  239 0032 08       		.byte	0x8
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 6
 
 
  240 0033 21000000 		.4byte	.LASF1
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  294 009c 04       		.byte	0x4
  295 009d 04       		.byte	0x4
  296 009e 00000000 		.4byte	.LASF13
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 7
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 7
 
 
  297 00a2 02       		.uleb128 0x2
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  351 010b 08       		.byte	0x8
  352 010c 3D010000 		.4byte	0x13d
  353 0110 03       		.byte	0x3
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 8
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 8
 
 
  354 0111 91       		.byte	0x91
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  408 0008 0E       		.uleb128 0xe
  409 0009 1B       		.uleb128 0x1b
  410 000a 0E       		.uleb128 0xe
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 9
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 9
 
 
  411 000b 55       		.uleb128 0x55
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  465 0041 3B       		.uleb128 0x3b
  466 0042 0B       		.uleb128 0xb
  467 0043 49       		.uleb128 0x49
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 10
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 10
 
 
  468 0044 13       		.uleb128 0x13
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  522 007b 00       		.byte	0
  523 007c 49       		.uleb128 0x49
  524 007d 13       		.uleb128 0x13
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 11
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 11
 
 
  525 007e 2F       		.uleb128 0x2f
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  579              		.section	.debug_aranges,"",%progbits
  580 0000 1C000000 		.4byte	0x1c
  581 0004 0200     		.2byte	0x2
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 12
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 12
 
 
  582 0006 00000000 		.4byte	.Ldebug_info0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  615      7369676E 
  615      65642069 
  615      6E7400
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 13
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 13
 
 
  616              	.LASF28:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 1
  640 010e 74656D70 		.ascii	"temp1\000"
  640      3100
  641              	.LASF20:
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc3pW47b.s 			page 14
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccbQm2yz.s 			page 14
 
 
  642 0114 74656D70 		.ascii	"temp2\000"

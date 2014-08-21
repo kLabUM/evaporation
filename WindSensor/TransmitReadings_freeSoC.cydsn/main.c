@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <batteryvoltage.h>
+#include <RH.h>
 
 struct evappacket
 {
@@ -15,6 +16,7 @@ struct evappacket
 	uint8 VaisalawindSpeed;
 	int16 Vaisalaairtemp;
 	uint16 Vaisalarelhumidity;
+	uint16 RHsensor;
 	uint16 Vaisalaairpressure;
 	uint16 Magnetometerheading;
 	int16 Thermocouplewatertemperature;
@@ -53,6 +55,7 @@ int main()
 	SBD_reply_StartEx(SBD_int);
 	clock_Start();
 	master_Start();
+	ADC_Start();
 	
 	CyGlobalIntEnable;
 	//Writes to magnetometer to be read from (not calibration mode)
@@ -94,8 +97,9 @@ void windprocessPacket(){
 	char validornot;
 	float northgps;
 	float westgps;
-	uint8 date;
+	uint32 date;
 	int matches;
+	uint16 externalrh;
 	
 	// get magnetometer reading
 	readingx = getmeasurement((uint8) 3,(uint8) 4);
@@ -106,9 +110,11 @@ void windprocessPacket(){
 	// get reading from thermocouple output as an integer with last two spots as hundreths and thousandths
 	watertemperature = gettemperature();
 	voltage = getvoltage();
+	externalrh = getRH();
 	
 	clearPacketSBD();
 	//query for last gps fix and wait for response from SBD Warrior 
+	UART_SBD_PutString("0000000000000000000000000\r\n");
 	UART_SBD_PutString("AT-WSGPLF\r\n");
 	UART_SBD_PutString("AT-WSGPLF\r\n");
 	while(SBDpacketReceived == 0)
@@ -190,6 +196,7 @@ void windprocessPacket(){
 		sendpacket.VaisalawindSpeed = windspeed;
 		sendpacket.Vaisalaairtemp = airtemperature;
 		sendpacket.Vaisalarelhumidity = humidity;
+		sendpacket.RHsensor = externalrh;
 		sendpacket.Vaisalaairpressure = pressure;
 		sendpacket.Thermocouplewatertemperature = watertemperature;
 		sendpacket.Magnetometerheading = (uint16)heading;
@@ -202,7 +209,7 @@ void windprocessPacket(){
 		UART_SBD_PutString("0000000000000000000000000\r\n");
 		
 		UART_SBD_PutString("0000000000000000000000000\r\n");
-		UART_SBD_PutString("AT-WSMOBW=30\r\n");
+		UART_SBD_PutString("AT-WSMOBW=32\r\n");
 		UART_SBD_PutArray(&sendpacket.gpstime, sizeof(float32size));
 		UART_SBD_PutArray(&sendpacket.gpsnorth, sizeof(float32size));
 		UART_SBD_PutArray(&sendpacket.gpswest, sizeof(float32size));
@@ -211,6 +218,7 @@ void windprocessPacket(){
 		UART_SBD_PutArray(&sendpacket.VaisalawindSpeed, sizeof(uint8size));
 		UART_SBD_PutArray(&sendpacket.Vaisalaairtemp, sizeof(int16size));
 		UART_SBD_PutArray(&sendpacket.Vaisalarelhumidity, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.RHsensor, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.Vaisalaairpressure, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.Magnetometerheading, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.Thermocouplewatertemperature, sizeof(int16size));
@@ -231,13 +239,16 @@ void windprocessPacket(){
 	//end changes
 	
 	UART_SBD_PutString("0000000000000000000000000\r\n");
-	UART_SBD_PutString("AT-WSSBDIS\r\n");
+	//UART_SBD_PutString("AT-WSSBDIS\r\n");
 	//UART_SBD_PutString(text);
 	clearPacketSBD();
 	clearPacketwind();
+	UART_SBD_PutString("0000000000000000000000000\r\n");
 	UART_SBD_PutString("AT-WSEPOFF\r\n");
 	UART_SBD_PutString("AT-WSEPOFF\r\n");
 	clearPacketSBD();
+	
+	CyDelay(30000);
 }
 
 void clearPacketSBD(){	

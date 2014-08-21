@@ -64,24 +64,24 @@
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\clockPin_aliases.h" value="NONE;clockPin" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\clockPin.c" value="ARM_C_FILE;clockPin" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\clockPin.h" value="NONE;clockPin" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC.c" value="ARM_C_FILE;ADC" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC.h" value="NONE;ADC" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_PM.c" value="ARM_C_FILE;ADC" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_INT.c" value="ARM_C_FILE;ADC" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\AMux.c" value="ARM_C_FILE;AMux" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\AMux.h" value="NONE;AMux" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_in_aliases.h" value="NONE;Battery_in" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_in.c" value="ARM_C_FILE;Battery_in" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_in.h" value="NONE;Battery_in" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_Ground_aliases.h" value="NONE;Battery_Ground" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_Ground.c" value="ARM_C_FILE;Battery_Ground" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Battery_Ground.h" value="NONE;Battery_Ground" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC.c" value="ARM_C_FILE;ADC" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC.h" value="NONE;ADC" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_INT.c" value="ARM_C_FILE;ADC" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_PM.c" value="ARM_C_FILE;ADC" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Timer.c" value="ARM_C_FILE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Timer.h" value="NONE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\Timer_PM.c" value="ARM_C_FILE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timer_clock.c" value="ARM_C_FILE;timer_clock" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timer_clock.h" value="NONE;timer_clock" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timeout_isr.c" value="ARM_C_FILE;timeout_isr" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timeout_isr.h" value="NONE;timeout_isr" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_Wind_IntClock.c" value="ARM_C_FILE;UART_Wind_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_Wind_IntClock.h" value="NONE;UART_Wind_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_SBD_IntClock.c" value="ARM_C_FILE;UART_SBD_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_SBD_IntClock.h" value="NONE;UART_SBD_IntClock" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_Ext_CP_Clk.c" value="ARM_C_FILE;ADC_Ext_CP_Clk" />
-  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_Ext_CP_Clk.h" value="NONE;ADC_Ext_CP_Clk" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_IRQ.c" value="ARM_C_FILE;ADC_IRQ" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_IRQ.h" value="NONE;ADC_IRQ" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\ADC_theACLK.c" value="ARM_C_FILE;ADC_theACLK" />

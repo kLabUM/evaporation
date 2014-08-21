@@ -1,10 +1,9 @@
 /*******************************************************************************
 * File Name: ADC_PM.c
-* Version 3.0
+* Version 2.10
 *
 * Description:
-*  This file provides the power manager source code to the API for the
-*  Delta-Sigma ADC Component.
+*  This file provides Sleep/WakeUp APIs functionality.
 *
 * Note:
 *
@@ -17,10 +16,14 @@
 
 #include "ADC.h"
 
-static ADC_BACKUP_STRUCT ADC_backup =
+
+/***************************************
+* Local data allocation
+***************************************/
+
+static ADC_BACKUP_STRUCT  ADC_backup =
 {
-    ADC_DISABLED,
-    ADC_CFG1_DEC_CR
+    ADC_DISABLED
 };
 
 
@@ -29,23 +32,18 @@ static ADC_BACKUP_STRUCT ADC_backup =
 ********************************************************************************
 *
 * Summary:
-*  Save the register configuration which are not retention.
+*  Saves the current user configuration.
 *
 * Parameters:
-*  None
+*  None.
 *
 * Return:
-*  None
-*
-* Global variables:
-*  ADC_backup:  This global structure variable is used to store
-*  configuration registers which are non retention whenever user wants to go
-*  sleep mode by calling Sleep() API.
+*  None.
 *
 *******************************************************************************/
-void ADC_SaveConfig(void) 
+void ADC_SaveConfig(void)
 {
-    ADC_backup.deccr = ADC_DEC_CR_REG;
+    /* All configuration registers are marked as [reset_all_retention] */
 }
 
 
@@ -54,23 +52,18 @@ void ADC_SaveConfig(void)
 ********************************************************************************
 *
 * Summary:
-*  Restore the register configurations which are not retention.
+*  Restores the current user configuration.
 *
 * Parameters:
-*  None
+*  None.
 *
 * Return:
-*  None
-*
-* Global variables:
-*  ADC_backup:  This global structure variable is used to restore
-*  configuration registers which are non retention whenever user wants to switch
-*  to active power mode by calling Wakeup() API.
+*  None.
 *
 *******************************************************************************/
-void ADC_RestoreConfig(void) 
+void ADC_RestoreConfig(void)
 {
-    ADC_DEC_CR_REG = ADC_backup.deccr;
+    /* All congiguration registers are marked as [reset_all_retention] */
 }
 
 
@@ -79,44 +72,38 @@ void ADC_RestoreConfig(void)
 ********************************************************************************
 *
 * Summary:
-*  Stops the operation of the block and saves the user configuration.
+*  This is the preferred routine to prepare the component for sleep.
+*  The ADC_Sleep() routine saves the current component state,
+*  then it calls the ADC_Stop() function.
 *
 * Parameters:
-*  None
+*  None.
 *
 * Return:
-*  None
+*  None.
 *
-* Global variables:
-*  ADC_backup:  The structure field 'enableState' is modified
-*  depending on the enable state of the block before entering to sleep mode.
+* Global Variables:
+*  ADC_backup - modified.
 *
 *******************************************************************************/
-void ADC_Sleep(void) 
+void ADC_Sleep(void)
 {
-    /* Save ADC enable state */
-    if((ADC_ACT_PWR_DEC_EN == (ADC_PWRMGR_DEC_REG & ADC_ACT_PWR_DEC_EN)) &&
-       (ADC_ACT_PWR_DSM_EN == (ADC_PWRMGR_DSM_REG & ADC_ACT_PWR_DSM_EN)))
+    if((ADC_PWRMGR_SAR_REG  & ADC_ACT_PWR_SAR_EN) != 0u)
     {
-        /* Component is enabled */
-        ADC_backup.enableState = ADC_ENABLED;
-        if((ADC_DEC_CR_REG & ADC_DEC_START_CONV) != 0u)
-        {   
-            /* Conversion is started */
-            ADC_backup.enableState |= ADC_STARTED;
+        if((ADC_SAR_CSR0_REG & ADC_SAR_SOF_START_CONV) != 0u)
+        {
+            ADC_backup.enableState = ADC_ENABLED | ADC_STARTED;
         }
-		
-        /* Stop the configuration */
+        else
+        {
+            ADC_backup.enableState = ADC_ENABLED;
+        }
         ADC_Stop();
     }
     else
     {
-        /* Component is disabled */
         ADC_backup.enableState = ADC_DISABLED;
     }
-
-    /* Save the user configuration */
-    ADC_SaveConfig();
 }
 
 
@@ -125,33 +112,33 @@ void ADC_Sleep(void)
 ********************************************************************************
 *
 * Summary:
-*  Restores the user configuration and enables the power to the block.
+*  This is the preferred routine to restore the component to the state when
+*  ADC_Sleep() was called. If the component was enabled before the
+*  ADC_Sleep() function was called, the
+*  ADC_Wakeup() function also re-enables the component.
 *
 * Parameters:
-*  None
+*  None.
 *
 * Return:
-*  None
+*  None.
 *
-* Global variables:
-*  ADC_backup:  The structure field 'enableState' is used to
-*  restore the enable state of block after wakeup from sleep mode.
+* Global Variables:
+*  ADC_backup - used to check enabable state.
 *
 *******************************************************************************/
-void ADC_Wakeup(void) 
+void ADC_Wakeup(void)
 {
-    /* Restore the configuration */
-    ADC_RestoreConfig();
-
-    /* Enables the component operation */
     if(ADC_backup.enableState != ADC_DISABLED)
     {
         ADC_Enable();
-        if((ADC_backup.enableState & ADC_STARTED) != 0u)
-        {
-            ADC_StartConvert();
-        }
-    } /* Do nothing if component was disable before */
+        #if(ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER)
+            if((ADC_backup.enableState & ADC_STARTED) != 0u)
+            {
+                ADC_StartConvert();
+            }
+        #endif /* End ADC_DEFAULT_CONV_MODE != ADC__HARDWARE_TRIGGER */
+    }
 }
 
 
