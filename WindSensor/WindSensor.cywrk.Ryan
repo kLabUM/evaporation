@@ -938,7 +938,6 @@
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\cymetadata.c</v>
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\project.h</v>
-<v>WindSensor\TransmitReadings_freeSoC</v>
 <v>WindSensor\TransmitReadings_freeSoC\TopDesign.cysch</v>
 <v>WindSensor\TransmitReadings_freeSoC\TransmitReadings_freeSoC.cydwr</v>
 <v>WindSensor\TransmitReadings_freeSoC\Header Files</v>
@@ -1239,26 +1238,8 @@
 <v>WindSensor\thermocouple interface</v>
 <v>WindSensor\TransmitReadings</v>
 <v>WindSensor\TransmitReadings_freeSoC</v>
-<v>WindSensor\TransmitReadings_freeSoC\TopDesign.cysch</v>
-<v>WindSensor\TransmitReadings_freeSoC\TransmitReadings_freeSoC.cydwr</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\batteryvoltage.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\magnetometer.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\RH.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Header Files\thermocouple.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\Batteryvoltage.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\magnetometer.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\main.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\RH.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Source Files\thermocouple.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC.h</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC_INT.c</v>
-<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC_PM.c</v>
+<v>WindSensor\voltage reader</v>
+<v>WindSensor\WindSensor</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">

@@ -26,6 +26,7 @@ struct evappacket
 
 CY_ISR_PROTO(IntWind);
 CY_ISR_PROTO(SBD_int);
+CY_ISR_PROTO(windtimer);
 void windprocessPacket();
 void clearPacketSBD();
 void clearPacketwind();
@@ -35,6 +36,8 @@ uint8 windData[256];
 uint16 windDataPointer = 0;
 uint8 windpacketReceived;
 uint8 SBDpacketReceived;
+uint8 windtimeout = 0;
+uint16 windtime;
 int16 readingx, readingy, readingz, heading;
 uint8 voltage;
 float32 float32size;
@@ -67,11 +70,19 @@ int main()
 	clearPacketwind();
 	//Query Sensor for wind, pressure, temperature and humidity data
 	UART_Wind_PutString("0R\r\n");
+	
+	timeout_isr_StartEx(windtimer);
+	timer_clock_Start();
+	Timer_Start();
+	windtime = 0;
 
     for(;;)
     {
 		//When the packet is received takes other sensor data, sends packet and turns off power
         if(windpacketReceived){
+			Timer_Stop();
+			timer_clock_Stop();
+			timeout_isr_Stop();
 			windprocessPacket();
 		}
 		//Here to clear any unexpected outputs from SBD Warrior
@@ -79,7 +90,19 @@ int main()
 		{
 			clearPacketSBD();
 		}
+		//changes
+		if(windtimeout == 1)
+		{
+			UART_SBD_PutString("0000000000000000000000000\r\n");
 		
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSMOBW=1\r\n");
+		UART_SBD_PutString("W");
+		UART_SBD_PutString("0000000000000000000000000\r\n");
+		UART_SBD_PutString("AT-WSEPOFF\r\n");
+		UART_SBD_PutString("AT-WSEPOFF\r\n");
+		}
+		//end changes
     }
 }
 
@@ -296,5 +319,23 @@ CY_ISR(SBD_int)
 			}
 			
 		}
+
+CY_ISR(windtimer)
+{
+		/* Read Status register in order to clear the sticky Terminal Count (TC) bit 
+	 * in the status register. Note that the function is not called, but rather 
+	 * the status is read directly.
+	 */
+   	Timer_STATUS;
+    
+	/* Increment the Counter to indicate the keep track of the number of 
+     * interrupts received */
+    windtime++;
+	
+	if(windtime == 1000)
+	{
+		windtimeout = 1;
+	}
+}
 
 /* [] END OF FILE */
