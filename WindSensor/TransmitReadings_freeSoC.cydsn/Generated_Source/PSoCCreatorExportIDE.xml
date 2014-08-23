@@ -146,6 +146,8 @@
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\timer_clock.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\timeout_isr.c</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\timeout_isr.h</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\psoc_IntClock.c</File>
+          <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\psoc_IntClock.h</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\prebuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\postbuild.bat</File>
           <File BuildType="BUILD" Toolchain="">.\Generated_Source\PSoC5\CyElfTool.exe</File>

@@ -44,6 +44,7 @@
 #include <Timer.h>
 #include <timer_clock.h>
 #include <timeout_isr.h>
+#include <psoc_IntClock.h>
 #include <UART_Wind_IntClock.h>
 #include <UART_SBD_IntClock.h>
 #include <ADC_IRQ.h>

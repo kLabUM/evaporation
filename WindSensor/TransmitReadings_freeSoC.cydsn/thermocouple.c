@@ -1,5 +1,26 @@
 #include <thermocouple.h>
 
+uint8 InterruptCnt = 0;
+uint8 temptimeout = 0;
+
+CY_ISR(InterruptHandler)
+{
+	/* Read Status register in order to clear the sticky Terminal Count (TC) bit 
+	 * in the status register. Note that the function is not called, but rather 
+	 * the status is read directly.
+	 */
+   	Timer_STATUS;
+    
+	/* Increment the Counter to indicate the keep track of the number of 
+     * interrupts received */
+    InterruptCnt++;
+	
+	if(InterruptCnt >= 255)
+	{
+		temptimeout = 1;
+	}
+}
+
 int16 gettemperature()
 {
 	int16 temperature = 0;
@@ -10,6 +31,11 @@ int16 gettemperature()
 	master_WriteTxData(5);
 	while(!master_GetRxBufferSize())
 	{
+		if (temptimeout == 1)
+		{
+			temperature = -32768;
+			return temperature;
+		}
 	}
     temperature = master_ReadRxData();
 	//CyDelay(100u);

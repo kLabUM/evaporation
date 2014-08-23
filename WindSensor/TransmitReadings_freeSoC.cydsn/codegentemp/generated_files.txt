@@ -78,6 +78,8 @@
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timer_clock.h" value="NONE;timer_clock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timeout_isr.c" value="ARM_C_FILE;timeout_isr" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\timeout_isr.h" value="NONE;timeout_isr" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\psoc_IntClock.c" value="ARM_C_FILE;psoc_IntClock" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\psoc_IntClock.h" value="NONE;psoc_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_Wind_IntClock.c" value="ARM_C_FILE;UART_Wind_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_Wind_IntClock.h" value="NONE;UART_Wind_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\TransmitReadings_freeSoC.cydsn\codegentemp\UART_SBD_IntClock.c" value="ARM_C_FILE;UART_SBD_IntClock" />

@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 1
 
 
    1              		.syntax unified
@@ -18,758 +18,997 @@ ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 1
   15              		.text
   16              	.Ltext0:
   17              		.cfi_sections	.debug_frame
-  18              		.global	__aeabi_i2f
-  19              		.global	__aeabi_i2d
-  20              		.global	__aeabi_d2f
-  21              		.global	__aeabi_fmul
-  22              		.global	__aeabi_fadd
-  23              		.global	__aeabi_f2iz
-  24              		.section	.text.gettemperature,"ax",%progbits
-  25              		.align	2
-  26              		.global	gettemperature
-  27              		.thumb
-  28              		.thumb_func
-  29              		.type	gettemperature, %function
-  30              	gettemperature:
-  31              	.LFB56:
-  32              		.file 1 ".\\thermocouple.c"
+  18              		.global	InterruptCnt
+  19              		.bss
+  20              		.type	InterruptCnt, %object
+  21              		.size	InterruptCnt, 1
+  22              	InterruptCnt:
+  23 0000 00       		.space	1
+  24              		.global	temptimeout
+  25              		.type	temptimeout, %object
+  26              		.size	temptimeout, 1
+  27              	temptimeout:
+  28 0001 00       		.space	1
+  29              		.section	.text.InterruptHandler,"ax",%progbits
+  30              		.align	2
+  31              		.global	InterruptHandler
+  32              		.thumb
+  33              		.thumb_func
+  34              		.type	InterruptHandler, %function
+  35              	InterruptHandler:
+  36              	.LFB56:
+  37              		.file 1 ".\\thermocouple.c"
    1:.\thermocouple.c **** #include <thermocouple.h>
    2:.\thermocouple.c **** 
-   3:.\thermocouple.c **** int16 gettemperature()
-   4:.\thermocouple.c **** {
-  33              		.loc 1 4 0
-  34              		.cfi_startproc
-  35              		@ args = 0, pretend = 0, frame = 72
-  36              		@ frame_needed = 1, uses_anonymous_args = 0
-  37 0000 90B5     		push	{r4, r7, lr}
-  38              	.LCFI0:
-  39              		.cfi_def_cfa_offset 12
-  40              		.cfi_offset 4, -12
-  41              		.cfi_offset 7, -8
-  42              		.cfi_offset 14, -4
-  43 0002 93B0     		sub	sp, sp, #76
-  44              	.LCFI1:
-  45              		.cfi_def_cfa_offset 88
-  46 0004 00AF     		add	r7, sp, #0
-  47              	.LCFI2:
-  48              		.cfi_def_cfa_register 7
-   5:.\thermocouple.c **** 	int16 temperature = 0;
-  49              		.loc 1 5 0
-  50 0006 4FF00003 		mov	r3, #0
-  51 000a 7B87     		strh	r3, [r7, #58]	@ movhi
-   6:.\thermocouple.c **** 	int temp[14];
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 2
+   3:.\thermocouple.c **** uint8 InterruptCnt = 0;
+   4:.\thermocouple.c **** uint8 temptimeout = 0;
+   5:.\thermocouple.c **** 
+   6:.\thermocouple.c **** CY_ISR(InterruptHandler)
+   7:.\thermocouple.c **** {
+  38              		.loc 1 7 0
+  39              		.cfi_startproc
+  40              		@ args = 0, pretend = 0, frame = 0
+  41              		@ frame_needed = 1, uses_anonymous_args = 0
+  42              		@ link register save eliminated.
+  43 0000 80B4     		push	{r7}
+  44              	.LCFI0:
+  45              		.cfi_def_cfa_offset 4
+  46              		.cfi_offset 7, -4
+  47 0002 00AF     		add	r7, sp, #0
+  48              	.LCFI1:
+  49              		.cfi_def_cfa_register 7
+   8:.\thermocouple.c **** 	/* Read Status register in order to clear the sticky Terminal Count (TC) bit 
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 2
 
 
-   7:.\thermocouple.c **** 	int i;
-   8:.\thermocouple.c **** 	uint16 compare= 8192;
-  52              		.loc 1 8 0
-  53 000c 4FF40053 		mov	r3, #8192
-  54 0010 A7F84230 		strh	r3, [r7, #66]	@ movhi
-   9:.\thermocouple.c **** 	float accuratetemp = 0;
-  55              		.loc 1 9 0
-  56 0014 4FF00003 		mov	r3, #0
-  57 0018 FB63     		str	r3, [r7, #60]	@ float
-  10:.\thermocouple.c **** 	master_WriteTxData(5);
-  58              		.loc 1 10 0
-  59 001a 4FF00500 		mov	r0, #5
-  60 001e FFF7FEFF 		bl	master_WriteTxData
-  11:.\thermocouple.c **** 	while(!master_GetRxBufferSize())
-  61              		.loc 1 11 0
-  62 0022 00BF     		nop
-  63              	.L2:
-  64              		.loc 1 11 0 is_stmt 0 discriminator 1
-  65 0024 FFF7FEFF 		bl	master_GetRxBufferSize
-  66 0028 0346     		mov	r3, r0
-  67 002a 002B     		cmp	r3, #0
-  68 002c FAD0     		beq	.L2
-  12:.\thermocouple.c **** 	{
-  13:.\thermocouple.c **** 	}
-  14:.\thermocouple.c ****     temperature = master_ReadRxData();
-  69              		.loc 1 14 0 is_stmt 1
-  70 002e FFF7FEFF 		bl	master_ReadRxData
-  71 0032 0346     		mov	r3, r0
-  72 0034 7B87     		strh	r3, [r7, #58]	@ movhi
-  15:.\thermocouple.c **** 	//CyDelay(100u);
-  16:.\thermocouple.c **** 	//master_WriteTxData(5);
-  17:.\thermocouple.c ****     //temperature = master_ReadRxData();
-  18:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
-  73              		.loc 1 18 0
-  74 0036 4FF00003 		mov	r3, #0
-  75 003a 7B64     		str	r3, [r7, #68]
-  76 003c 29E0     		b	.L3
-  77              	.L6:
+   9:.\thermocouple.c **** 	 * in the status register. Note that the function is not called, but rather 
+  10:.\thermocouple.c **** 	 * the status is read directly.
+  11:.\thermocouple.c **** 	 */
+  12:.\thermocouple.c ****    	Timer_STATUS;
+  50              		.loc 1 12 0
+  51 0004 44F60373 		movw	r3, #20227
+  52 0008 C4F20003 		movt	r3, 16384
+  53 000c 1B78     		ldrb	r3, [r3, #0]
+  13:.\thermocouple.c ****     
+  14:.\thermocouple.c **** 	/* Increment the Counter to indicate the keep track of the number of 
+  15:.\thermocouple.c ****      * interrupts received */
+  16:.\thermocouple.c ****     InterruptCnt++;
+  54              		.loc 1 16 0
+  55 000e 40F20003 		movw	r3, #:lower16:InterruptCnt
+  56 0012 C0F20003 		movt	r3, #:upper16:InterruptCnt
+  57 0016 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+  58 0018 03F10103 		add	r3, r3, #1
+  59 001c DAB2     		uxtb	r2, r3
+  60 001e 40F20003 		movw	r3, #:lower16:InterruptCnt
+  61 0022 C0F20003 		movt	r3, #:upper16:InterruptCnt
+  62 0026 1A70     		strb	r2, [r3, #0]
+  17:.\thermocouple.c **** 	
+  18:.\thermocouple.c **** 	if(InterruptCnt >= 255)
+  63              		.loc 1 18 0
+  64 0028 40F20003 		movw	r3, #:lower16:InterruptCnt
+  65 002c C0F20003 		movt	r3, #:upper16:InterruptCnt
+  66 0030 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+  67 0032 FF2B     		cmp	r3, #255
+  68 0034 06D1     		bne	.L1
   19:.\thermocouple.c **** 	{
-  20:.\thermocouple.c **** 		if ((uint16)(compare & temperature) == compare)
-  78              		.loc 1 20 0
-  79 003e B7F84230 		ldrh	r3, [r7, #66]
-  80 0042 1A46     		mov	r2, r3	@ movhi
-  81 0044 7B8F     		ldrh	r3, [r7, #58]	@ movhi
-  82 0046 1340     		ands	r3, r3, r2
-  83 0048 9BB2     		uxth	r3, r3
-  84 004a 9BB2     		uxth	r3, r3
-  85 004c B7F84220 		ldrh	r2, [r7, #66]
-  86 0050 9A42     		cmp	r2, r3
-  87 0052 0AD1     		bne	.L4
-  21:.\thermocouple.c **** 		{
-  22:.\thermocouple.c **** 			temp[i] = 1;
-  88              		.loc 1 22 0
-  89 0054 7B6C     		ldr	r3, [r7, #68]
-  90 0056 4FEA8303 		lsl	r3, r3, #2
-  91 005a 07F14802 		add	r2, r7, #72
-  92 005e D318     		adds	r3, r2, r3
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 3
+  20:.\thermocouple.c **** 		temptimeout = 1;
+  69              		.loc 1 20 0
+  70 0036 40F20003 		movw	r3, #:lower16:temptimeout
+  71 003a C0F20003 		movt	r3, #:upper16:temptimeout
+  72 003e 4FF00102 		mov	r2, #1
+  73 0042 1A70     		strb	r2, [r3, #0]
+  74              	.L1:
+  21:.\thermocouple.c **** 	}
+  22:.\thermocouple.c **** }
+  75              		.loc 1 22 0
+  76 0044 BD46     		mov	sp, r7
+  77 0046 80BC     		pop	{r7}
+  78 0048 7047     		bx	lr
+  79              		.cfi_endproc
+  80              	.LFE56:
+  81              		.size	InterruptHandler, .-InterruptHandler
+  82              		.global	__aeabi_i2f
+  83              		.global	__aeabi_i2d
+  84              		.global	__aeabi_d2f
+  85              		.global	__aeabi_fmul
+  86              		.global	__aeabi_fadd
+  87              		.global	__aeabi_f2iz
+  88 004a 00BF     		.section	.text.gettemperature,"ax",%progbits
+  89              		.align	2
+  90              		.global	gettemperature
+  91              		.thumb
+  92              		.thumb_func
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 3
 
 
-  93 0060 4FF00102 		mov	r2, #1
-  94 0064 43F8482C 		str	r2, [r3, #-72]
-  95 0068 09E0     		b	.L5
-  96              	.L4:
-  23:.\thermocouple.c **** 		}
-  24:.\thermocouple.c **** 		else
-  25:.\thermocouple.c **** 		{
-  26:.\thermocouple.c **** 			temp[i] = 0;
-  97              		.loc 1 26 0
-  98 006a 7B6C     		ldr	r3, [r7, #68]
-  99 006c 4FEA8303 		lsl	r3, r3, #2
- 100 0070 07F14802 		add	r2, r7, #72
- 101 0074 D318     		adds	r3, r2, r3
- 102 0076 4FF00002 		mov	r2, #0
- 103 007a 43F8482C 		str	r2, [r3, #-72]
- 104              	.L5:
-  27:.\thermocouple.c **** 		}	
-  28:.\thermocouple.c **** 		compare = compare / 2;
- 105              		.loc 1 28 0
- 106 007e B7F84230 		ldrh	r3, [r7, #66]
- 107 0082 4FEA5303 		lsr	r3, r3, #1
- 108 0086 A7F84230 		strh	r3, [r7, #66]	@ movhi
-  18:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
- 109              		.loc 1 18 0
- 110 008a 7B6C     		ldr	r3, [r7, #68]
- 111 008c 03F10103 		add	r3, r3, #1
- 112 0090 7B64     		str	r3, [r7, #68]
- 113              	.L3:
-  18:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
- 114              		.loc 1 18 0 is_stmt 0 discriminator 1
- 115 0092 7B6C     		ldr	r3, [r7, #68]
- 116 0094 0D2B     		cmp	r3, #13
- 117 0096 D2DD     		ble	.L6
-  29:.\thermocouple.c **** 	}
-  30:.\thermocouple.c **** 		
-  31:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
- 118              		.loc 1 31 0 is_stmt 1
- 119 0098 4FF00103 		mov	r3, #1
- 120 009c 7B64     		str	r3, [r7, #68]
- 121 009e 2FE0     		b	.L7
- 122              	.L8:
-  32:.\thermocouple.c **** 	{
-  33:.\thermocouple.c **** 		accuratetemp = accuratetemp + (float)temp[i] * (float)pow(2,(11-i));
- 123              		.loc 1 33 0 discriminator 2
- 124 00a0 7B6C     		ldr	r3, [r7, #68]
- 125 00a2 4FEA8303 		lsl	r3, r3, #2
- 126 00a6 07F14802 		add	r2, r7, #72
- 127 00aa D318     		adds	r3, r2, r3
- 128 00ac 53F8483C 		ldr	r3, [r3, #-72]
- 129 00b0 1846     		mov	r0, r3
- 130 00b2 FFF7FEFF 		bl	__aeabi_i2f
- 131 00b6 0446     		mov	r4, r0
- 132 00b8 7B6C     		ldr	r3, [r7, #68]
- 133 00ba C3F10B03 		rsb	r3, r3, #11
- 134 00be 1846     		mov	r0, r3
- 135 00c0 FFF7FEFF 		bl	__aeabi_i2d
- 136 00c4 0246     		mov	r2, r0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 4
+  93              		.type	gettemperature, %function
+  94              	gettemperature:
+  95              	.LFB57:
+  23:.\thermocouple.c **** 
+  24:.\thermocouple.c **** int16 gettemperature()
+  25:.\thermocouple.c **** {
+  96              		.loc 1 25 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 72
+  99              		@ frame_needed = 1, uses_anonymous_args = 0
+ 100 0000 90B5     		push	{r4, r7, lr}
+ 101              	.LCFI2:
+ 102              		.cfi_def_cfa_offset 12
+ 103              		.cfi_offset 4, -12
+ 104              		.cfi_offset 7, -8
+ 105              		.cfi_offset 14, -4
+ 106 0002 93B0     		sub	sp, sp, #76
+ 107              	.LCFI3:
+ 108              		.cfi_def_cfa_offset 88
+ 109 0004 00AF     		add	r7, sp, #0
+ 110              	.LCFI4:
+ 111              		.cfi_def_cfa_register 7
+  26:.\thermocouple.c **** 	int16 temperature = 0;
+ 112              		.loc 1 26 0
+ 113 0006 4FF00003 		mov	r3, #0
+ 114 000a 7B87     		strh	r3, [r7, #58]	@ movhi
+  27:.\thermocouple.c **** 	int temp[14];
+  28:.\thermocouple.c **** 	int i;
+  29:.\thermocouple.c **** 	uint16 compare= 8192;
+ 115              		.loc 1 29 0
+ 116 000c 4FF40053 		mov	r3, #8192
+ 117 0010 A7F84230 		strh	r3, [r7, #66]	@ movhi
+  30:.\thermocouple.c **** 	float accuratetemp = 0;
+ 118              		.loc 1 30 0
+ 119 0014 4FF00003 		mov	r3, #0
+ 120 0018 FB63     		str	r3, [r7, #60]	@ float
+  31:.\thermocouple.c **** 	master_WriteTxData(5);
+ 121              		.loc 1 31 0
+ 122 001a 4FF00500 		mov	r0, #5
+ 123 001e FFF7FEFF 		bl	master_WriteTxData
+  32:.\thermocouple.c **** 	while(!master_GetRxBufferSize())
+ 124              		.loc 1 32 0
+ 125 0022 0BE0     		b	.L4
+ 126              	.L6:
+  33:.\thermocouple.c **** 	{
+  34:.\thermocouple.c **** 		if (temptimeout == 1)
+ 127              		.loc 1 34 0
+ 128 0024 40F20003 		movw	r3, #:lower16:temptimeout
+ 129 0028 C0F20003 		movt	r3, #:upper16:temptimeout
+ 130 002c 1B78     		ldrb	r3, [r3, #0]	@ zero_extendqisi2
+ 131 002e 012B     		cmp	r3, #1
+ 132 0030 04D1     		bne	.L4
+  35:.\thermocouple.c **** 		{
+  36:.\thermocouple.c **** 			temperature = -32768;
+ 133              		.loc 1 36 0
+ 134 0032 4FF40043 		mov	r3, #32768
+ 135 0036 7B87     		strh	r3, [r7, #58]	@ movhi
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 4
 
 
- 137 00c6 0B46     		mov	r3, r1
- 138 00c8 4FF00000 		mov	r0, #0
- 139 00cc 4FF08041 		mov	r1, #1073741824
- 140 00d0 FFF7FEFF 		bl	pow
- 141 00d4 0246     		mov	r2, r0
- 142 00d6 0B46     		mov	r3, r1
- 143 00d8 1046     		mov	r0, r2
- 144 00da 1946     		mov	r1, r3
- 145 00dc FFF7FEFF 		bl	__aeabi_d2f
- 146 00e0 0346     		mov	r3, r0
- 147 00e2 2046     		mov	r0, r4
- 148 00e4 1946     		mov	r1, r3
- 149 00e6 FFF7FEFF 		bl	__aeabi_fmul
- 150 00ea 0346     		mov	r3, r0
- 151 00ec F86B     		ldr	r0, [r7, #60]	@ float
- 152 00ee 1946     		mov	r1, r3
- 153 00f0 FFF7FEFF 		bl	__aeabi_fadd
- 154 00f4 0346     		mov	r3, r0
- 155 00f6 FB63     		str	r3, [r7, #60]	@ float
-  31:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
- 156              		.loc 1 31 0 discriminator 2
- 157 00f8 7B6C     		ldr	r3, [r7, #68]
- 158 00fa 03F10103 		add	r3, r3, #1
- 159 00fe 7B64     		str	r3, [r7, #68]
- 160              	.L7:
-  31:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
- 161              		.loc 1 31 0 is_stmt 0 discriminator 1
- 162 0100 7B6C     		ldr	r3, [r7, #68]
- 163 0102 0D2B     		cmp	r3, #13
- 164 0104 CCDD     		ble	.L8
-  34:.\thermocouple.c **** 	}
-  35:.\thermocouple.c **** 	if(temp[0] == 1)
- 165              		.loc 1 35 0 is_stmt 1
- 166 0106 3B68     		ldr	r3, [r7, #0]
- 167 0108 012B     		cmp	r3, #1
- 168 010a 03D1     		bne	.L9
-  36:.\thermocouple.c **** 	{
-  37:.\thermocouple.c **** 		accuratetemp = accuratetemp * (float)-1;
- 169              		.loc 1 37 0
- 170 010c FB6B     		ldr	r3, [r7, #60]
- 171 010e 83F00043 		eor	r3, r3, #-2147483648
- 172 0112 FB63     		str	r3, [r7, #60]	@ float
- 173              	.L9:
-  38:.\thermocouple.c **** 	}
-  39:.\thermocouple.c **** 		
-  40:.\thermocouple.c **** 	temperature = (accuratetemp * (float)100);
- 174              		.loc 1 40 0
- 175 0114 F86B     		ldr	r0, [r7, #60]	@ float
- 176 0116 4FF00001 		mov	r1, #0
- 177 011a C4F2C821 		movt	r1, 17096
- 178 011e FFF7FEFF 		bl	__aeabi_fmul
- 179 0122 0346     		mov	r3, r0
- 180 0124 1846     		mov	r0, r3
- 181 0126 FFF7FEFF 		bl	__aeabi_f2iz
- 182 012a 0346     		mov	r3, r0
- 183 012c 7B87     		strh	r3, [r7, #58]	@ movhi
-  41:.\thermocouple.c **** 	return temperature;
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 5
+  37:.\thermocouple.c **** 			return temperature;
+ 136              		.loc 1 37 0
+ 137 0038 7B8F     		ldrh	r3, [r7, #58]
+ 138 003a 85E0     		b	.L14
+ 139              	.L4:
+  32:.\thermocouple.c **** 	while(!master_GetRxBufferSize())
+ 140              		.loc 1 32 0 discriminator 1
+ 141 003c FFF7FEFF 		bl	master_GetRxBufferSize
+ 142 0040 0346     		mov	r3, r0
+ 143 0042 002B     		cmp	r3, #0
+ 144 0044 EED0     		beq	.L6
+  38:.\thermocouple.c **** 		}
+  39:.\thermocouple.c **** 	}
+  40:.\thermocouple.c ****     temperature = master_ReadRxData();
+ 145              		.loc 1 40 0
+ 146 0046 FFF7FEFF 		bl	master_ReadRxData
+ 147 004a 0346     		mov	r3, r0
+ 148 004c 7B87     		strh	r3, [r7, #58]	@ movhi
+  41:.\thermocouple.c **** 	//CyDelay(100u);
+  42:.\thermocouple.c **** 	//master_WriteTxData(5);
+  43:.\thermocouple.c ****     //temperature = master_ReadRxData();
+  44:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
+ 149              		.loc 1 44 0
+ 150 004e 4FF00003 		mov	r3, #0
+ 151 0052 7B64     		str	r3, [r7, #68]
+ 152 0054 29E0     		b	.L7
+ 153              	.L10:
+  45:.\thermocouple.c **** 	{
+  46:.\thermocouple.c **** 		if ((uint16)(compare & temperature) == compare)
+ 154              		.loc 1 46 0
+ 155 0056 B7F84230 		ldrh	r3, [r7, #66]
+ 156 005a 1A46     		mov	r2, r3	@ movhi
+ 157 005c 7B8F     		ldrh	r3, [r7, #58]	@ movhi
+ 158 005e 1340     		ands	r3, r3, r2
+ 159 0060 9BB2     		uxth	r3, r3
+ 160 0062 9BB2     		uxth	r3, r3
+ 161 0064 B7F84220 		ldrh	r2, [r7, #66]
+ 162 0068 9A42     		cmp	r2, r3
+ 163 006a 0AD1     		bne	.L8
+  47:.\thermocouple.c **** 		{
+  48:.\thermocouple.c **** 			temp[i] = 1;
+ 164              		.loc 1 48 0
+ 165 006c 7B6C     		ldr	r3, [r7, #68]
+ 166 006e 4FEA8303 		lsl	r3, r3, #2
+ 167 0072 07F14802 		add	r2, r7, #72
+ 168 0076 D318     		adds	r3, r2, r3
+ 169 0078 4FF00102 		mov	r2, #1
+ 170 007c 43F8482C 		str	r2, [r3, #-72]
+ 171 0080 09E0     		b	.L9
+ 172              	.L8:
+  49:.\thermocouple.c **** 		}
+  50:.\thermocouple.c **** 		else
+  51:.\thermocouple.c **** 		{
+  52:.\thermocouple.c **** 			temp[i] = 0;
+ 173              		.loc 1 52 0
+ 174 0082 7B6C     		ldr	r3, [r7, #68]
+ 175 0084 4FEA8303 		lsl	r3, r3, #2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 5
 
 
- 184              		.loc 1 41 0
- 185 012e 7B8F     		ldrh	r3, [r7, #58]
- 186 0130 1BB2     		sxth	r3, r3
-  42:.\thermocouple.c **** 	
-  43:.\thermocouple.c **** }...
- 187              		.loc 1 43 0
- 188 0132 1846     		mov	r0, r3
- 189 0134 07F14C07 		add	r7, r7, #76
- 190 0138 BD46     		mov	sp, r7
- 191 013a 90BD     		pop	{r4, r7, pc}
- 192              		.cfi_endproc
- 193              	.LFE56:
- 194              		.size	gettemperature, .-gettemperature
- 195              		.text
- 196              	.Letext0:
- 197              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
- 198              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
- 199              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
- 200              		.section	.debug_info,"",%progbits
- 201              	.Ldebug_info0:
- 202 0000 36010000 		.4byte	0x136
- 203 0004 0200     		.2byte	0x2
- 204 0006 00000000 		.4byte	.Ldebug_abbrev0
- 205 000a 04       		.byte	0x4
- 206 000b 01       		.uleb128 0x1
- 207 000c 41000000 		.4byte	.LASF21
- 208 0010 01       		.byte	0x1
- 209 0011 29010000 		.4byte	.LASF22
- 210 0015 B5000000 		.4byte	.LASF23
- 211 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 212 001d 00000000 		.4byte	0
- 213 0021 00000000 		.4byte	0
- 214 0025 00000000 		.4byte	.Ldebug_line0
- 215 0029 02       		.uleb128 0x2
- 216 002a 01       		.byte	0x1
- 217 002b 06       		.byte	0x6
- 218 002c 47010000 		.4byte	.LASF0
- 219 0030 02       		.uleb128 0x2
- 220 0031 01       		.byte	0x1
- 221 0032 08       		.byte	0x8
- 222 0033 2E000000 		.4byte	.LASF1
- 223 0037 02       		.uleb128 0x2
- 224 0038 02       		.byte	0x2
- 225 0039 05       		.byte	0x5
- 226 003a 87010000 		.4byte	.LASF2
- 227 003e 02       		.uleb128 0x2
- 228 003f 02       		.byte	0x2
- 229 0040 07       		.byte	0x7
- 230 0041 0E000000 		.4byte	.LASF3
- 231 0045 03       		.uleb128 0x3
- 232 0046 98010000 		.4byte	.LASF9
- 233 004a 02       		.byte	0x2
- 234 004b 4F       		.byte	0x4f
- 235 004c 50000000 		.4byte	0x50
- 236 0050 02       		.uleb128 0x2
- 237 0051 04       		.byte	0x4
- 238 0052 05       		.byte	0x5
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 6
+ 176 0088 07F14802 		add	r2, r7, #72
+ 177 008c D318     		adds	r3, r2, r3
+ 178 008e 4FF00002 		mov	r2, #0
+ 179 0092 43F8482C 		str	r2, [r3, #-72]
+ 180              	.L9:
+  53:.\thermocouple.c **** 		}	
+  54:.\thermocouple.c **** 		compare = compare / 2;
+ 181              		.loc 1 54 0
+ 182 0096 B7F84230 		ldrh	r3, [r7, #66]
+ 183 009a 4FEA5303 		lsr	r3, r3, #1
+ 184 009e A7F84230 		strh	r3, [r7, #66]	@ movhi
+  44:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
+ 185              		.loc 1 44 0
+ 186 00a2 7B6C     		ldr	r3, [r7, #68]
+ 187 00a4 03F10103 		add	r3, r3, #1
+ 188 00a8 7B64     		str	r3, [r7, #68]
+ 189              	.L7:
+  44:.\thermocouple.c **** 	for(i = 0; i < 14; i++)
+ 190              		.loc 1 44 0 is_stmt 0 discriminator 1
+ 191 00aa 7B6C     		ldr	r3, [r7, #68]
+ 192 00ac 0D2B     		cmp	r3, #13
+ 193 00ae D2DD     		ble	.L10
+  55:.\thermocouple.c **** 	}
+  56:.\thermocouple.c **** 		
+  57:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
+ 194              		.loc 1 57 0 is_stmt 1
+ 195 00b0 4FF00103 		mov	r3, #1
+ 196 00b4 7B64     		str	r3, [r7, #68]
+ 197 00b6 2FE0     		b	.L11
+ 198              	.L12:
+  58:.\thermocouple.c **** 	{
+  59:.\thermocouple.c **** 		accuratetemp = accuratetemp + (float)temp[i] * (float)pow(2,(11-i));
+ 199              		.loc 1 59 0 discriminator 2
+ 200 00b8 7B6C     		ldr	r3, [r7, #68]
+ 201 00ba 4FEA8303 		lsl	r3, r3, #2
+ 202 00be 07F14802 		add	r2, r7, #72
+ 203 00c2 D318     		adds	r3, r2, r3
+ 204 00c4 53F8483C 		ldr	r3, [r3, #-72]
+ 205 00c8 1846     		mov	r0, r3
+ 206 00ca FFF7FEFF 		bl	__aeabi_i2f
+ 207 00ce 0446     		mov	r4, r0
+ 208 00d0 7B6C     		ldr	r3, [r7, #68]
+ 209 00d2 C3F10B03 		rsb	r3, r3, #11
+ 210 00d6 1846     		mov	r0, r3
+ 211 00d8 FFF7FEFF 		bl	__aeabi_i2d
+ 212 00dc 0246     		mov	r2, r0
+ 213 00de 0B46     		mov	r3, r1
+ 214 00e0 4FF00000 		mov	r0, #0
+ 215 00e4 4FF08041 		mov	r1, #1073741824
+ 216 00e8 FFF7FEFF 		bl	pow
+ 217 00ec 0246     		mov	r2, r0
+ 218 00ee 0B46     		mov	r3, r1
+ 219 00f0 1046     		mov	r0, r2
+ 220 00f2 1946     		mov	r1, r3
+ 221 00f4 FFF7FEFF 		bl	__aeabi_d2f
+ 222 00f8 0346     		mov	r3, r0
+ 223 00fa 2046     		mov	r0, r4
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 6
 
 
- 239 0053 07010000 		.4byte	.LASF4
- 240 0057 02       		.uleb128 0x2
- 241 0058 04       		.byte	0x4
- 242 0059 07       		.byte	0x7
- 243 005a 10010000 		.4byte	.LASF5
- 244 005e 02       		.uleb128 0x2
- 245 005f 08       		.byte	0x8
- 246 0060 05       		.byte	0x5
- 247 0061 00000000 		.4byte	.LASF6
- 248 0065 02       		.uleb128 0x2
- 249 0066 08       		.byte	0x8
- 250 0067 07       		.byte	0x7
- 251 0068 92000000 		.4byte	.LASF7
- 252 006c 04       		.uleb128 0x4
- 253 006d 04       		.byte	0x4
- 254 006e 05       		.byte	0x5
- 255 006f 696E7400 		.ascii	"int\000"
- 256 0073 02       		.uleb128 0x2
- 257 0074 04       		.byte	0x4
- 258 0075 07       		.byte	0x7
- 259 0076 21000000 		.4byte	.LASF8
- 260 007a 03       		.uleb128 0x3
- 261 007b 91010000 		.4byte	.LASF10
- 262 007f 03       		.byte	0x3
- 263 0080 5C       		.byte	0x5c
- 264 0081 3E000000 		.4byte	0x3e
- 265 0085 03       		.uleb128 0x3
- 266 0086 81010000 		.4byte	.LASF11
- 267 008a 03       		.byte	0x3
- 268 008b 5F       		.byte	0x5f
- 269 008c 37000000 		.4byte	0x37
- 270 0090 02       		.uleb128 0x2
- 271 0091 04       		.byte	0x4
- 272 0092 04       		.byte	0x4
- 273 0093 7B010000 		.4byte	.LASF12
- 274 0097 02       		.uleb128 0x2
- 275 0098 08       		.byte	0x8
- 276 0099 04       		.byte	0x4
- 277 009a 22010000 		.4byte	.LASF13
- 278 009e 02       		.uleb128 0x2
- 279 009f 01       		.byte	0x1
- 280 00a0 08       		.byte	0x8
- 281 00a1 02010000 		.4byte	.LASF14
- 282 00a5 02       		.uleb128 0x2
- 283 00a6 04       		.byte	0x4
- 284 00a7 07       		.byte	0x7
- 285 00a8 A0010000 		.4byte	.LASF15
- 286 00ac 02       		.uleb128 0x2
- 287 00ad 08       		.byte	0x8
- 288 00ae 04       		.byte	0x4
- 289 00af 53010000 		.4byte	.LASF16
- 290 00b3 05       		.uleb128 0x5
- 291 00b4 01       		.byte	0x1
- 292 00b5 6C010000 		.4byte	.LASF24
- 293 00b9 01       		.byte	0x1
- 294 00ba 03       		.byte	0x3
- 295 00bb 85000000 		.4byte	0x85
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 7
+ 224 00fc 1946     		mov	r1, r3
+ 225 00fe FFF7FEFF 		bl	__aeabi_fmul
+ 226 0102 0346     		mov	r3, r0
+ 227 0104 F86B     		ldr	r0, [r7, #60]	@ float
+ 228 0106 1946     		mov	r1, r3
+ 229 0108 FFF7FEFF 		bl	__aeabi_fadd
+ 230 010c 0346     		mov	r3, r0
+ 231 010e FB63     		str	r3, [r7, #60]	@ float
+  57:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
+ 232              		.loc 1 57 0 discriminator 2
+ 233 0110 7B6C     		ldr	r3, [r7, #68]
+ 234 0112 03F10103 		add	r3, r3, #1
+ 235 0116 7B64     		str	r3, [r7, #68]
+ 236              	.L11:
+  57:.\thermocouple.c **** 	for(i = 1; i < 14; i++)
+ 237              		.loc 1 57 0 is_stmt 0 discriminator 1
+ 238 0118 7B6C     		ldr	r3, [r7, #68]
+ 239 011a 0D2B     		cmp	r3, #13
+ 240 011c CCDD     		ble	.L12
+  60:.\thermocouple.c **** 	}
+  61:.\thermocouple.c **** 	if(temp[0] == 1)
+ 241              		.loc 1 61 0 is_stmt 1
+ 242 011e 3B68     		ldr	r3, [r7, #0]
+ 243 0120 012B     		cmp	r3, #1
+ 244 0122 03D1     		bne	.L13
+  62:.\thermocouple.c **** 	{
+  63:.\thermocouple.c **** 		accuratetemp = accuratetemp * (float)-1;
+ 245              		.loc 1 63 0
+ 246 0124 FB6B     		ldr	r3, [r7, #60]
+ 247 0126 83F00043 		eor	r3, r3, #-2147483648
+ 248 012a FB63     		str	r3, [r7, #60]	@ float
+ 249              	.L13:
+  64:.\thermocouple.c **** 	}
+  65:.\thermocouple.c **** 		
+  66:.\thermocouple.c **** 	temperature = (accuratetemp * (float)100);
+ 250              		.loc 1 66 0
+ 251 012c F86B     		ldr	r0, [r7, #60]	@ float
+ 252 012e 4FF00001 		mov	r1, #0
+ 253 0132 C4F2C821 		movt	r1, 17096
+ 254 0136 FFF7FEFF 		bl	__aeabi_fmul
+ 255 013a 0346     		mov	r3, r0
+ 256 013c 1846     		mov	r0, r3
+ 257 013e FFF7FEFF 		bl	__aeabi_f2iz
+ 258 0142 0346     		mov	r3, r0
+ 259 0144 7B87     		strh	r3, [r7, #58]	@ movhi
+  67:.\thermocouple.c **** 	return temperature;
+ 260              		.loc 1 67 0
+ 261 0146 7B8F     		ldrh	r3, [r7, #58]
+ 262              	.L14:
+ 263 0148 1BB2     		sxth	r3, r3
+  68:.\thermocouple.c **** 	
+  69:.\thermocouple.c **** }...
+ 264              		.loc 1 69 0
+ 265 014a 1846     		mov	r0, r3
+ 266 014c 07F14C07 		add	r7, r7, #76
+ 267 0150 BD46     		mov	sp, r7
+ 268 0152 90BD     		pop	{r4, r7, pc}
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 7
 
 
- 296 00bf 00000000 		.4byte	.LFB56
- 297 00c3 3C010000 		.4byte	.LFE56
- 298 00c7 00000000 		.4byte	.LLST0
- 299 00cb 01       		.byte	0x1
- 300 00cc 16010000 		.4byte	0x116
- 301 00d0 06       		.uleb128 0x6
- 302 00d1 A9000000 		.4byte	.LASF17
- 303 00d5 01       		.byte	0x1
- 304 00d6 05       		.byte	0x5
- 305 00d7 85000000 		.4byte	0x85
- 306 00db 02       		.byte	0x2
- 307 00dc 91       		.byte	0x91
- 308 00dd 62       		.sleb128 -30
- 309 00de 06       		.uleb128 0x6
- 310 00df 3C000000 		.4byte	.LASF18
- 311 00e3 01       		.byte	0x1
- 312 00e4 06       		.byte	0x6
- 313 00e5 16010000 		.4byte	0x116
- 314 00e9 03       		.byte	0x3
- 315 00ea 91       		.byte	0x91
- 316 00eb A87F     		.sleb128 -88
- 317 00ed 07       		.uleb128 0x7
- 318 00ee 6900     		.ascii	"i\000"
- 319 00f0 01       		.byte	0x1
- 320 00f1 07       		.byte	0x7
- 321 00f2 6C000000 		.4byte	0x6c
- 322 00f6 02       		.byte	0x2
- 323 00f7 91       		.byte	0x91
- 324 00f8 6C       		.sleb128 -20
- 325 00f9 06       		.uleb128 0x6
- 326 00fa 8A000000 		.4byte	.LASF19
- 327 00fe 01       		.byte	0x1
- 328 00ff 08       		.byte	0x8
- 329 0100 7A000000 		.4byte	0x7a
- 330 0104 02       		.byte	0x2
- 331 0105 91       		.byte	0x91
- 332 0106 6A       		.sleb128 -22
- 333 0107 06       		.uleb128 0x6
- 334 0108 5F010000 		.4byte	.LASF20
- 335 010c 01       		.byte	0x1
- 336 010d 09       		.byte	0x9
- 337 010e 90000000 		.4byte	0x90
- 338 0112 02       		.byte	0x2
- 339 0113 91       		.byte	0x91
- 340 0114 64       		.sleb128 -28
- 341 0115 00       		.byte	0
- 342 0116 08       		.uleb128 0x8
- 343 0117 6C000000 		.4byte	0x6c
- 344 011b 26010000 		.4byte	0x126
- 345 011f 09       		.uleb128 0x9
- 346 0120 A5000000 		.4byte	0xa5
- 347 0124 0D       		.byte	0xd
- 348 0125 00       		.byte	0
- 349 0126 0A       		.uleb128 0xa
- 350 0127 3A010000 		.4byte	.LASF25
- 351 012b 04       		.byte	0x4
- 352 012c 1606     		.2byte	0x616
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 8
+ 269              		.cfi_endproc
+ 270              	.LFE57:
+ 271              		.size	gettemperature, .-gettemperature
+ 272              		.text
+ 273              	.Letext0:
+ 274              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 275              		.file 3 "./Generated_Source/PSoC5/cytypes.h"
+ 276              		.file 4 "./Generated_Source/PSoC5/core_cm3.h"
+ 277              		.section	.debug_info,"",%progbits
+ 278              	.Ldebug_info0:
+ 279 0000 8B010000 		.4byte	0x18b
+ 280 0004 0200     		.2byte	0x2
+ 281 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 282 000a 04       		.byte	0x4
+ 283 000b 01       		.uleb128 0x1
+ 284 000c 6C010000 		.4byte	.LASF26
+ 285 0010 01       		.byte	0x1
+ 286 0011 4B010000 		.4byte	.LASF27
+ 287 0015 06000000 		.4byte	.LASF28
+ 288 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 289 001d 00000000 		.4byte	0
+ 290 0021 00000000 		.4byte	0
+ 291 0025 00000000 		.4byte	.Ldebug_line0
+ 292 0029 02       		.uleb128 0x2
+ 293 002a 01       		.byte	0x1
+ 294 002b 06       		.byte	0x6
+ 295 002c CA010000 		.4byte	.LASF0
+ 296 0030 02       		.uleb128 0x2
+ 297 0031 01       		.byte	0x1
+ 298 0032 08       		.byte	0x8
+ 299 0033 87000000 		.4byte	.LASF1
+ 300 0037 02       		.uleb128 0x2
+ 301 0038 02       		.byte	0x2
+ 302 0039 05       		.byte	0x5
+ 303 003a 5C010000 		.4byte	.LASF2
+ 304 003e 02       		.uleb128 0x2
+ 305 003f 02       		.byte	0x2
+ 306 0040 07       		.byte	0x7
+ 307 0041 B7000000 		.4byte	.LASF3
+ 308 0045 03       		.uleb128 0x3
+ 309 0046 27010000 		.4byte	.LASF9
+ 310 004a 02       		.byte	0x2
+ 311 004b 4F       		.byte	0x4f
+ 312 004c 50000000 		.4byte	0x50
+ 313 0050 02       		.uleb128 0x2
+ 314 0051 04       		.byte	0x4
+ 315 0052 05       		.byte	0x5
+ 316 0053 B5010000 		.4byte	.LASF4
+ 317 0057 02       		.uleb128 0x2
+ 318 0058 04       		.byte	0x4
+ 319 0059 07       		.byte	0x7
+ 320 005a A0000000 		.4byte	.LASF5
+ 321 005e 02       		.uleb128 0x2
+ 322 005f 08       		.byte	0x8
+ 323 0060 05       		.byte	0x5
+ 324 0061 38010000 		.4byte	.LASF6
+ 325 0065 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 8
 
 
- 353 012e 34010000 		.4byte	0x134
- 354 0132 01       		.byte	0x1
- 355 0133 01       		.byte	0x1
- 356 0134 0B       		.uleb128 0xb
- 357 0135 45000000 		.4byte	0x45
- 358 0139 00       		.byte	0
- 359              		.section	.debug_abbrev,"",%progbits
- 360              	.Ldebug_abbrev0:
- 361 0000 01       		.uleb128 0x1
- 362 0001 11       		.uleb128 0x11
- 363 0002 01       		.byte	0x1
- 364 0003 25       		.uleb128 0x25
- 365 0004 0E       		.uleb128 0xe
- 366 0005 13       		.uleb128 0x13
- 367 0006 0B       		.uleb128 0xb
- 368 0007 03       		.uleb128 0x3
- 369 0008 0E       		.uleb128 0xe
- 370 0009 1B       		.uleb128 0x1b
- 371 000a 0E       		.uleb128 0xe
- 372 000b 55       		.uleb128 0x55
- 373 000c 06       		.uleb128 0x6
- 374 000d 11       		.uleb128 0x11
- 375 000e 01       		.uleb128 0x1
- 376 000f 52       		.uleb128 0x52
- 377 0010 01       		.uleb128 0x1
- 378 0011 10       		.uleb128 0x10
- 379 0012 06       		.uleb128 0x6
- 380 0013 00       		.byte	0
- 381 0014 00       		.byte	0
- 382 0015 02       		.uleb128 0x2
- 383 0016 24       		.uleb128 0x24
- 384 0017 00       		.byte	0
- 385 0018 0B       		.uleb128 0xb
- 386 0019 0B       		.uleb128 0xb
- 387 001a 3E       		.uleb128 0x3e
- 388 001b 0B       		.uleb128 0xb
- 389 001c 03       		.uleb128 0x3
- 390 001d 0E       		.uleb128 0xe
- 391 001e 00       		.byte	0
- 392 001f 00       		.byte	0
- 393 0020 03       		.uleb128 0x3
- 394 0021 16       		.uleb128 0x16
- 395 0022 00       		.byte	0
- 396 0023 03       		.uleb128 0x3
- 397 0024 0E       		.uleb128 0xe
- 398 0025 3A       		.uleb128 0x3a
- 399 0026 0B       		.uleb128 0xb
- 400 0027 3B       		.uleb128 0x3b
- 401 0028 0B       		.uleb128 0xb
- 402 0029 49       		.uleb128 0x49
- 403 002a 13       		.uleb128 0x13
- 404 002b 00       		.byte	0
- 405 002c 00       		.byte	0
- 406 002d 04       		.uleb128 0x4
- 407 002e 24       		.uleb128 0x24
- 408 002f 00       		.byte	0
- 409 0030 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 9
+ 326 0066 08       		.byte	0x8
+ 327 0067 07       		.byte	0x7
+ 328 0068 FF000000 		.4byte	.LASF7
+ 329 006c 04       		.uleb128 0x4
+ 330 006d 04       		.byte	0x4
+ 331 006e 05       		.byte	0x5
+ 332 006f 696E7400 		.ascii	"int\000"
+ 333 0073 02       		.uleb128 0x2
+ 334 0074 04       		.byte	0x4
+ 335 0075 07       		.byte	0x7
+ 336 0076 F2000000 		.4byte	.LASF8
+ 337 007a 03       		.uleb128 0x3
+ 338 007b 66010000 		.4byte	.LASF10
+ 339 007f 03       		.byte	0x3
+ 340 0080 5B       		.byte	0x5b
+ 341 0081 30000000 		.4byte	0x30
+ 342 0085 03       		.uleb128 0x3
+ 343 0086 DE000000 		.4byte	.LASF11
+ 344 008a 03       		.byte	0x3
+ 345 008b 5C       		.byte	0x5c
+ 346 008c 3E000000 		.4byte	0x3e
+ 347 0090 03       		.uleb128 0x3
+ 348 0091 9A000000 		.4byte	.LASF12
+ 349 0095 03       		.byte	0x3
+ 350 0096 5F       		.byte	0x5f
+ 351 0097 37000000 		.4byte	0x37
+ 352 009b 02       		.uleb128 0x2
+ 353 009c 04       		.byte	0x4
+ 354 009d 04       		.byte	0x4
+ 355 009e 00000000 		.4byte	.LASF13
+ 356 00a2 02       		.uleb128 0x2
+ 357 00a3 08       		.byte	0x8
+ 358 00a4 04       		.byte	0x4
+ 359 00a5 D7000000 		.4byte	.LASF14
+ 360 00a9 02       		.uleb128 0x2
+ 361 00aa 01       		.byte	0x1
+ 362 00ab 08       		.byte	0x8
+ 363 00ac 46010000 		.4byte	.LASF15
+ 364 00b0 03       		.uleb128 0x3
+ 365 00b1 95000000 		.4byte	.LASF16
+ 366 00b5 03       		.byte	0x3
+ 367 00b6 F0       		.byte	0xf0
+ 368 00b7 BB000000 		.4byte	0xbb
+ 369 00bb 05       		.uleb128 0x5
+ 370 00bc 7A000000 		.4byte	0x7a
+ 371 00c0 02       		.uleb128 0x2
+ 372 00c1 04       		.byte	0x4
+ 373 00c2 07       		.byte	0x7
+ 374 00c3 2F010000 		.4byte	.LASF17
+ 375 00c7 02       		.uleb128 0x2
+ 376 00c8 08       		.byte	0x8
+ 377 00c9 04       		.byte	0x4
+ 378 00ca BE010000 		.4byte	.LASF18
+ 379 00ce 06       		.uleb128 0x6
+ 380 00cf 01       		.byte	0x1
+ 381 00d0 16010000 		.4byte	.LASF29
+ 382 00d4 01       		.byte	0x1
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 9
 
 
- 410 0031 0B       		.uleb128 0xb
- 411 0032 3E       		.uleb128 0x3e
- 412 0033 0B       		.uleb128 0xb
- 413 0034 03       		.uleb128 0x3
- 414 0035 08       		.uleb128 0x8
- 415 0036 00       		.byte	0
- 416 0037 00       		.byte	0
- 417 0038 05       		.uleb128 0x5
- 418 0039 2E       		.uleb128 0x2e
- 419 003a 01       		.byte	0x1
- 420 003b 3F       		.uleb128 0x3f
- 421 003c 0C       		.uleb128 0xc
- 422 003d 03       		.uleb128 0x3
- 423 003e 0E       		.uleb128 0xe
- 424 003f 3A       		.uleb128 0x3a
- 425 0040 0B       		.uleb128 0xb
- 426 0041 3B       		.uleb128 0x3b
- 427 0042 0B       		.uleb128 0xb
- 428 0043 49       		.uleb128 0x49
- 429 0044 13       		.uleb128 0x13
- 430 0045 11       		.uleb128 0x11
- 431 0046 01       		.uleb128 0x1
- 432 0047 12       		.uleb128 0x12
- 433 0048 01       		.uleb128 0x1
- 434 0049 40       		.uleb128 0x40
- 435 004a 06       		.uleb128 0x6
- 436 004b 9642     		.uleb128 0x2116
- 437 004d 0C       		.uleb128 0xc
- 438 004e 01       		.uleb128 0x1
- 439 004f 13       		.uleb128 0x13
- 440 0050 00       		.byte	0
- 441 0051 00       		.byte	0
- 442 0052 06       		.uleb128 0x6
- 443 0053 34       		.uleb128 0x34
- 444 0054 00       		.byte	0
- 445 0055 03       		.uleb128 0x3
- 446 0056 0E       		.uleb128 0xe
- 447 0057 3A       		.uleb128 0x3a
- 448 0058 0B       		.uleb128 0xb
- 449 0059 3B       		.uleb128 0x3b
- 450 005a 0B       		.uleb128 0xb
- 451 005b 49       		.uleb128 0x49
- 452 005c 13       		.uleb128 0x13
- 453 005d 02       		.uleb128 0x2
- 454 005e 0A       		.uleb128 0xa
- 455 005f 00       		.byte	0
- 456 0060 00       		.byte	0
- 457 0061 07       		.uleb128 0x7
- 458 0062 34       		.uleb128 0x34
- 459 0063 00       		.byte	0
- 460 0064 03       		.uleb128 0x3
- 461 0065 08       		.uleb128 0x8
- 462 0066 3A       		.uleb128 0x3a
- 463 0067 0B       		.uleb128 0xb
- 464 0068 3B       		.uleb128 0x3b
- 465 0069 0B       		.uleb128 0xb
- 466 006a 49       		.uleb128 0x49
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 10
+ 383 00d5 06       		.byte	0x6
+ 384 00d6 01       		.byte	0x1
+ 385 00d7 00000000 		.4byte	.LFB56
+ 386 00db 4A000000 		.4byte	.LFE56
+ 387 00df 00000000 		.4byte	.LLST0
+ 388 00e3 01       		.byte	0x1
+ 389 00e4 07       		.uleb128 0x7
+ 390 00e5 01       		.byte	0x1
+ 391 00e6 78000000 		.4byte	.LASF30
+ 392 00ea 01       		.byte	0x1
+ 393 00eb 18       		.byte	0x18
+ 394 00ec 90000000 		.4byte	0x90
+ 395 00f0 00000000 		.4byte	.LFB57
+ 396 00f4 54010000 		.4byte	.LFE57
+ 397 00f8 2C000000 		.4byte	.LLST1
+ 398 00fc 01       		.byte	0x1
+ 399 00fd 47010000 		.4byte	0x147
+ 400 0101 08       		.uleb128 0x8
+ 401 0102 6C000000 		.4byte	.LASF19
+ 402 0106 01       		.byte	0x1
+ 403 0107 1A       		.byte	0x1a
+ 404 0108 90000000 		.4byte	0x90
+ 405 010c 02       		.byte	0x2
+ 406 010d 91       		.byte	0x91
+ 407 010e 62       		.sleb128 -30
+ 408 010f 08       		.uleb128 0x8
+ 409 0110 B2000000 		.4byte	.LASF20
+ 410 0114 01       		.byte	0x1
+ 411 0115 1B       		.byte	0x1b
+ 412 0116 47010000 		.4byte	0x147
+ 413 011a 03       		.byte	0x3
+ 414 011b 91       		.byte	0x91
+ 415 011c A87F     		.sleb128 -88
+ 416 011e 09       		.uleb128 0x9
+ 417 011f 6900     		.ascii	"i\000"
+ 418 0121 01       		.byte	0x1
+ 419 0122 1C       		.byte	0x1c
+ 420 0123 6C000000 		.4byte	0x6c
+ 421 0127 02       		.byte	0x2
+ 422 0128 91       		.byte	0x91
+ 423 0129 6C       		.sleb128 -20
+ 424 012a 08       		.uleb128 0x8
+ 425 012b D6010000 		.4byte	.LASF21
+ 426 012f 01       		.byte	0x1
+ 427 0130 1D       		.byte	0x1d
+ 428 0131 85000000 		.4byte	0x85
+ 429 0135 02       		.byte	0x2
+ 430 0136 91       		.byte	0x91
+ 431 0137 6A       		.sleb128 -22
+ 432 0138 08       		.uleb128 0x8
+ 433 0139 E5000000 		.4byte	.LASF22
+ 434 013d 01       		.byte	0x1
+ 435 013e 1E       		.byte	0x1e
+ 436 013f 9B000000 		.4byte	0x9b
+ 437 0143 02       		.byte	0x2
+ 438 0144 91       		.byte	0x91
+ 439 0145 64       		.sleb128 -28
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 10
 
 
- 467 006b 13       		.uleb128 0x13
- 468 006c 02       		.uleb128 0x2
- 469 006d 0A       		.uleb128 0xa
- 470 006e 00       		.byte	0
- 471 006f 00       		.byte	0
- 472 0070 08       		.uleb128 0x8
- 473 0071 01       		.uleb128 0x1
- 474 0072 01       		.byte	0x1
- 475 0073 49       		.uleb128 0x49
- 476 0074 13       		.uleb128 0x13
- 477 0075 01       		.uleb128 0x1
- 478 0076 13       		.uleb128 0x13
- 479 0077 00       		.byte	0
- 480 0078 00       		.byte	0
- 481 0079 09       		.uleb128 0x9
- 482 007a 21       		.uleb128 0x21
- 483 007b 00       		.byte	0
- 484 007c 49       		.uleb128 0x49
- 485 007d 13       		.uleb128 0x13
- 486 007e 2F       		.uleb128 0x2f
- 487 007f 0B       		.uleb128 0xb
- 488 0080 00       		.byte	0
- 489 0081 00       		.byte	0
- 490 0082 0A       		.uleb128 0xa
- 491 0083 34       		.uleb128 0x34
- 492 0084 00       		.byte	0
- 493 0085 03       		.uleb128 0x3
- 494 0086 0E       		.uleb128 0xe
- 495 0087 3A       		.uleb128 0x3a
- 496 0088 0B       		.uleb128 0xb
- 497 0089 3B       		.uleb128 0x3b
- 498 008a 05       		.uleb128 0x5
- 499 008b 49       		.uleb128 0x49
- 500 008c 13       		.uleb128 0x13
- 501 008d 3F       		.uleb128 0x3f
- 502 008e 0C       		.uleb128 0xc
- 503 008f 3C       		.uleb128 0x3c
- 504 0090 0C       		.uleb128 0xc
- 505 0091 00       		.byte	0
- 506 0092 00       		.byte	0
- 507 0093 0B       		.uleb128 0xb
- 508 0094 35       		.uleb128 0x35
- 509 0095 00       		.byte	0
- 510 0096 49       		.uleb128 0x49
- 511 0097 13       		.uleb128 0x13
- 512 0098 00       		.byte	0
- 513 0099 00       		.byte	0
- 514 009a 00       		.byte	0
- 515              		.section	.debug_loc,"",%progbits
- 516              	.Ldebug_loc0:
- 517              	.LLST0:
- 518 0000 00000000 		.4byte	.LFB56
- 519 0004 02000000 		.4byte	.LCFI0
- 520 0008 0200     		.2byte	0x2
- 521 000a 7D       		.byte	0x7d
- 522 000b 00       		.sleb128 0
- 523 000c 02000000 		.4byte	.LCFI0
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 11
+ 440 0146 00       		.byte	0
+ 441 0147 0A       		.uleb128 0xa
+ 442 0148 6C000000 		.4byte	0x6c
+ 443 014c 57010000 		.4byte	0x157
+ 444 0150 0B       		.uleb128 0xb
+ 445 0151 C0000000 		.4byte	0xc0
+ 446 0155 0D       		.byte	0xd
+ 447 0156 00       		.byte	0
+ 448 0157 0C       		.uleb128 0xc
+ 449 0158 CA000000 		.4byte	.LASF23
+ 450 015c 04       		.byte	0x4
+ 451 015d 1606     		.2byte	0x616
+ 452 015f 65010000 		.4byte	0x165
+ 453 0163 01       		.byte	0x1
+ 454 0164 01       		.byte	0x1
+ 455 0165 05       		.uleb128 0x5
+ 456 0166 45000000 		.4byte	0x45
+ 457 016a 0D       		.uleb128 0xd
+ 458 016b 5F000000 		.4byte	.LASF24
+ 459 016f 01       		.byte	0x1
+ 460 0170 03       		.byte	0x3
+ 461 0171 7A000000 		.4byte	0x7a
+ 462 0175 01       		.byte	0x1
+ 463 0176 05       		.byte	0x5
+ 464 0177 03       		.byte	0x3
+ 465 0178 00000000 		.4byte	InterruptCnt
+ 466 017c 0D       		.uleb128 0xd
+ 467 017d 53000000 		.4byte	.LASF25
+ 468 0181 01       		.byte	0x1
+ 469 0182 04       		.byte	0x4
+ 470 0183 7A000000 		.4byte	0x7a
+ 471 0187 01       		.byte	0x1
+ 472 0188 05       		.byte	0x5
+ 473 0189 03       		.byte	0x3
+ 474 018a 00000000 		.4byte	temptimeout
+ 475 018e 00       		.byte	0
+ 476              		.section	.debug_abbrev,"",%progbits
+ 477              	.Ldebug_abbrev0:
+ 478 0000 01       		.uleb128 0x1
+ 479 0001 11       		.uleb128 0x11
+ 480 0002 01       		.byte	0x1
+ 481 0003 25       		.uleb128 0x25
+ 482 0004 0E       		.uleb128 0xe
+ 483 0005 13       		.uleb128 0x13
+ 484 0006 0B       		.uleb128 0xb
+ 485 0007 03       		.uleb128 0x3
+ 486 0008 0E       		.uleb128 0xe
+ 487 0009 1B       		.uleb128 0x1b
+ 488 000a 0E       		.uleb128 0xe
+ 489 000b 55       		.uleb128 0x55
+ 490 000c 06       		.uleb128 0x6
+ 491 000d 11       		.uleb128 0x11
+ 492 000e 01       		.uleb128 0x1
+ 493 000f 52       		.uleb128 0x52
+ 494 0010 01       		.uleb128 0x1
+ 495 0011 10       		.uleb128 0x10
+ 496 0012 06       		.uleb128 0x6
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 11
 
 
- 524 0010 04000000 		.4byte	.LCFI1
- 525 0014 0200     		.2byte	0x2
- 526 0016 7D       		.byte	0x7d
- 527 0017 0C       		.sleb128 12
- 528 0018 04000000 		.4byte	.LCFI1
- 529 001c 06000000 		.4byte	.LCFI2
- 530 0020 0300     		.2byte	0x3
- 531 0022 7D       		.byte	0x7d
- 532 0023 D800     		.sleb128 88
- 533 0025 06000000 		.4byte	.LCFI2
- 534 0029 3C010000 		.4byte	.LFE56
- 535 002d 0300     		.2byte	0x3
- 536 002f 77       		.byte	0x77
- 537 0030 D800     		.sleb128 88
- 538 0032 00000000 		.4byte	0
- 539 0036 00000000 		.4byte	0
- 540              		.section	.debug_aranges,"",%progbits
- 541 0000 1C000000 		.4byte	0x1c
- 542 0004 0200     		.2byte	0x2
- 543 0006 00000000 		.4byte	.Ldebug_info0
- 544 000a 04       		.byte	0x4
- 545 000b 00       		.byte	0
- 546 000c 0000     		.2byte	0
- 547 000e 0000     		.2byte	0
- 548 0010 00000000 		.4byte	.LFB56
- 549 0014 3C010000 		.4byte	.LFE56-.LFB56
- 550 0018 00000000 		.4byte	0
- 551 001c 00000000 		.4byte	0
- 552              		.section	.debug_ranges,"",%progbits
- 553              	.Ldebug_ranges0:
- 554 0000 00000000 		.4byte	.LFB56
- 555 0004 3C010000 		.4byte	.LFE56
- 556 0008 00000000 		.4byte	0
- 557 000c 00000000 		.4byte	0
- 558              		.section	.debug_line,"",%progbits
- 559              	.Ldebug_line0:
- 560 0000 4B010000 		.section	.debug_str,"MS",%progbits,1
- 560      02000101 
- 560      00000201 
- 560      FB0E0D00 
- 560      01010101 
- 561              	.LASF6:
- 562 0000 6C6F6E67 		.ascii	"long long int\000"
- 562      206C6F6E 
- 562      6720696E 
- 562      7400
- 563              	.LASF3:
- 564 000e 73686F72 		.ascii	"short unsigned int\000"
- 564      7420756E 
- 564      7369676E 
- 564      65642069 
- 564      6E7400
- 565              	.LASF8:
- 566 0021 756E7369 		.ascii	"unsigned int\000"
- 566      676E6564 
- 566      20696E74 
- 566      00
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 12
+ 497 0013 00       		.byte	0
+ 498 0014 00       		.byte	0
+ 499 0015 02       		.uleb128 0x2
+ 500 0016 24       		.uleb128 0x24
+ 501 0017 00       		.byte	0
+ 502 0018 0B       		.uleb128 0xb
+ 503 0019 0B       		.uleb128 0xb
+ 504 001a 3E       		.uleb128 0x3e
+ 505 001b 0B       		.uleb128 0xb
+ 506 001c 03       		.uleb128 0x3
+ 507 001d 0E       		.uleb128 0xe
+ 508 001e 00       		.byte	0
+ 509 001f 00       		.byte	0
+ 510 0020 03       		.uleb128 0x3
+ 511 0021 16       		.uleb128 0x16
+ 512 0022 00       		.byte	0
+ 513 0023 03       		.uleb128 0x3
+ 514 0024 0E       		.uleb128 0xe
+ 515 0025 3A       		.uleb128 0x3a
+ 516 0026 0B       		.uleb128 0xb
+ 517 0027 3B       		.uleb128 0x3b
+ 518 0028 0B       		.uleb128 0xb
+ 519 0029 49       		.uleb128 0x49
+ 520 002a 13       		.uleb128 0x13
+ 521 002b 00       		.byte	0
+ 522 002c 00       		.byte	0
+ 523 002d 04       		.uleb128 0x4
+ 524 002e 24       		.uleb128 0x24
+ 525 002f 00       		.byte	0
+ 526 0030 0B       		.uleb128 0xb
+ 527 0031 0B       		.uleb128 0xb
+ 528 0032 3E       		.uleb128 0x3e
+ 529 0033 0B       		.uleb128 0xb
+ 530 0034 03       		.uleb128 0x3
+ 531 0035 08       		.uleb128 0x8
+ 532 0036 00       		.byte	0
+ 533 0037 00       		.byte	0
+ 534 0038 05       		.uleb128 0x5
+ 535 0039 35       		.uleb128 0x35
+ 536 003a 00       		.byte	0
+ 537 003b 49       		.uleb128 0x49
+ 538 003c 13       		.uleb128 0x13
+ 539 003d 00       		.byte	0
+ 540 003e 00       		.byte	0
+ 541 003f 06       		.uleb128 0x6
+ 542 0040 2E       		.uleb128 0x2e
+ 543 0041 00       		.byte	0
+ 544 0042 3F       		.uleb128 0x3f
+ 545 0043 0C       		.uleb128 0xc
+ 546 0044 03       		.uleb128 0x3
+ 547 0045 0E       		.uleb128 0xe
+ 548 0046 3A       		.uleb128 0x3a
+ 549 0047 0B       		.uleb128 0xb
+ 550 0048 3B       		.uleb128 0x3b
+ 551 0049 0B       		.uleb128 0xb
+ 552 004a 27       		.uleb128 0x27
+ 553 004b 0C       		.uleb128 0xc
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 12
 
 
- 567              	.LASF1:
- 568 002e 756E7369 		.ascii	"unsigned char\000"
- 568      676E6564 
- 568      20636861 
- 568      7200
- 569              	.LASF18:
- 570 003c 74656D70 		.ascii	"temp\000"
- 570      00
- 571              	.LASF21:
- 572 0041 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
- 572      4320342E 
- 572      372E3320 
- 572      32303133 
- 572      30333132 
- 573 0074 616E6368 		.ascii	"anch revision 196615]\000"
- 573      20726576 
- 573      6973696F 
- 573      6E203139 
- 573      36363135 
- 574              	.LASF19:
- 575 008a 636F6D70 		.ascii	"compare\000"
- 575      61726500 
- 576              	.LASF7:
- 577 0092 6C6F6E67 		.ascii	"long long unsigned int\000"
- 577      206C6F6E 
- 577      6720756E 
- 577      7369676E 
- 577      65642069 
- 578              	.LASF17:
- 579 00a9 74656D70 		.ascii	"temperature\000"
- 579      65726174 
- 579      75726500 
- 580              	.LASF23:
- 581 00b5 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
- 581      73657273 
- 581      5C527961 
- 581      6E5C446F 
- 581      63756D65 
- 582 00e3 5472616E 		.ascii	"TransmitReadings_freeSoC.cydsn\000"
- 582      736D6974 
- 582      52656164 
- 582      696E6773 
- 582      5F667265 
- 583              	.LASF14:
- 584 0102 63686172 		.ascii	"char\000"
- 584      00
- 585              	.LASF4:
- 586 0107 6C6F6E67 		.ascii	"long int\000"
- 586      20696E74 
- 586      00
- 587              	.LASF5:
- 588 0110 6C6F6E67 		.ascii	"long unsigned int\000"
- 588      20756E73 
- 588      69676E65 
- 588      6420696E 
- 588      7400
- 589              	.LASF13:
-ARM GAS  C:\Users\Ryan\AppData\Local\Temp\ccCZnFLD.s 			page 13
+ 554 004c 11       		.uleb128 0x11
+ 555 004d 01       		.uleb128 0x1
+ 556 004e 12       		.uleb128 0x12
+ 557 004f 01       		.uleb128 0x1
+ 558 0050 40       		.uleb128 0x40
+ 559 0051 06       		.uleb128 0x6
+ 560 0052 9742     		.uleb128 0x2117
+ 561 0054 0C       		.uleb128 0xc
+ 562 0055 00       		.byte	0
+ 563 0056 00       		.byte	0
+ 564 0057 07       		.uleb128 0x7
+ 565 0058 2E       		.uleb128 0x2e
+ 566 0059 01       		.byte	0x1
+ 567 005a 3F       		.uleb128 0x3f
+ 568 005b 0C       		.uleb128 0xc
+ 569 005c 03       		.uleb128 0x3
+ 570 005d 0E       		.uleb128 0xe
+ 571 005e 3A       		.uleb128 0x3a
+ 572 005f 0B       		.uleb128 0xb
+ 573 0060 3B       		.uleb128 0x3b
+ 574 0061 0B       		.uleb128 0xb
+ 575 0062 49       		.uleb128 0x49
+ 576 0063 13       		.uleb128 0x13
+ 577 0064 11       		.uleb128 0x11
+ 578 0065 01       		.uleb128 0x1
+ 579 0066 12       		.uleb128 0x12
+ 580 0067 01       		.uleb128 0x1
+ 581 0068 40       		.uleb128 0x40
+ 582 0069 06       		.uleb128 0x6
+ 583 006a 9642     		.uleb128 0x2116
+ 584 006c 0C       		.uleb128 0xc
+ 585 006d 01       		.uleb128 0x1
+ 586 006e 13       		.uleb128 0x13
+ 587 006f 00       		.byte	0
+ 588 0070 00       		.byte	0
+ 589 0071 08       		.uleb128 0x8
+ 590 0072 34       		.uleb128 0x34
+ 591 0073 00       		.byte	0
+ 592 0074 03       		.uleb128 0x3
+ 593 0075 0E       		.uleb128 0xe
+ 594 0076 3A       		.uleb128 0x3a
+ 595 0077 0B       		.uleb128 0xb
+ 596 0078 3B       		.uleb128 0x3b
+ 597 0079 0B       		.uleb128 0xb
+ 598 007a 49       		.uleb128 0x49
+ 599 007b 13       		.uleb128 0x13
+ 600 007c 02       		.uleb128 0x2
+ 601 007d 0A       		.uleb128 0xa
+ 602 007e 00       		.byte	0
+ 603 007f 00       		.byte	0
+ 604 0080 09       		.uleb128 0x9
+ 605 0081 34       		.uleb128 0x34
+ 606 0082 00       		.byte	0
+ 607 0083 03       		.uleb128 0x3
+ 608 0084 08       		.uleb128 0x8
+ 609 0085 3A       		.uleb128 0x3a
+ 610 0086 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 13
 
 
- 590 0122 646F7562 		.ascii	"double\000"
- 590      6C6500
- 591              	.LASF22:
- 592 0129 2E5C7468 		.ascii	".\\thermocouple.c\000"
- 592      65726D6F 
- 592      636F7570 
- 592      6C652E63 
- 592      00
- 593              	.LASF25:
- 594 013a 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 594      52784275 
- 594      66666572 
- 594      00
- 595              	.LASF0:
- 596 0147 7369676E 		.ascii	"signed char\000"
- 596      65642063 
- 596      68617200 
- 597              	.LASF16:
- 598 0153 6C6F6E67 		.ascii	"long double\000"
- 598      20646F75 
- 598      626C6500 
- 599              	.LASF20:
- 600 015f 61636375 		.ascii	"accuratetemp\000"
- 600      72617465 
- 600      74656D70 
- 600      00
- 601              	.LASF24:
- 602 016c 67657474 		.ascii	"gettemperature\000"
- 602      656D7065 
- 602      72617475 
- 602      726500
- 603              	.LASF12:
- 604 017b 666C6F61 		.ascii	"float\000"
- 604      7400
- 605              	.LASF11:
- 606 0181 696E7431 		.ascii	"int16\000"
- 606      3600
- 607              	.LASF2:
- 608 0187 73686F72 		.ascii	"short int\000"
- 608      7420696E 
- 608      7400
- 609              	.LASF10:
- 610 0191 75696E74 		.ascii	"uint16\000"
- 610      313600
- 611              	.LASF9:
- 612 0198 696E7433 		.ascii	"int32_t\000"
- 612      325F7400 
- 613              	.LASF15:
- 614 01a0 73697A65 		.ascii	"sizetype\000"
- 614      74797065 
- 614      00
- 615              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
+ 611 0087 3B       		.uleb128 0x3b
+ 612 0088 0B       		.uleb128 0xb
+ 613 0089 49       		.uleb128 0x49
+ 614 008a 13       		.uleb128 0x13
+ 615 008b 02       		.uleb128 0x2
+ 616 008c 0A       		.uleb128 0xa
+ 617 008d 00       		.byte	0
+ 618 008e 00       		.byte	0
+ 619 008f 0A       		.uleb128 0xa
+ 620 0090 01       		.uleb128 0x1
+ 621 0091 01       		.byte	0x1
+ 622 0092 49       		.uleb128 0x49
+ 623 0093 13       		.uleb128 0x13
+ 624 0094 01       		.uleb128 0x1
+ 625 0095 13       		.uleb128 0x13
+ 626 0096 00       		.byte	0
+ 627 0097 00       		.byte	0
+ 628 0098 0B       		.uleb128 0xb
+ 629 0099 21       		.uleb128 0x21
+ 630 009a 00       		.byte	0
+ 631 009b 49       		.uleb128 0x49
+ 632 009c 13       		.uleb128 0x13
+ 633 009d 2F       		.uleb128 0x2f
+ 634 009e 0B       		.uleb128 0xb
+ 635 009f 00       		.byte	0
+ 636 00a0 00       		.byte	0
+ 637 00a1 0C       		.uleb128 0xc
+ 638 00a2 34       		.uleb128 0x34
+ 639 00a3 00       		.byte	0
+ 640 00a4 03       		.uleb128 0x3
+ 641 00a5 0E       		.uleb128 0xe
+ 642 00a6 3A       		.uleb128 0x3a
+ 643 00a7 0B       		.uleb128 0xb
+ 644 00a8 3B       		.uleb128 0x3b
+ 645 00a9 05       		.uleb128 0x5
+ 646 00aa 49       		.uleb128 0x49
+ 647 00ab 13       		.uleb128 0x13
+ 648 00ac 3F       		.uleb128 0x3f
+ 649 00ad 0C       		.uleb128 0xc
+ 650 00ae 3C       		.uleb128 0x3c
+ 651 00af 0C       		.uleb128 0xc
+ 652 00b0 00       		.byte	0
+ 653 00b1 00       		.byte	0
+ 654 00b2 0D       		.uleb128 0xd
+ 655 00b3 34       		.uleb128 0x34
+ 656 00b4 00       		.byte	0
+ 657 00b5 03       		.uleb128 0x3
+ 658 00b6 0E       		.uleb128 0xe
+ 659 00b7 3A       		.uleb128 0x3a
+ 660 00b8 0B       		.uleb128 0xb
+ 661 00b9 3B       		.uleb128 0x3b
+ 662 00ba 0B       		.uleb128 0xb
+ 663 00bb 49       		.uleb128 0x49
+ 664 00bc 13       		.uleb128 0x13
+ 665 00bd 3F       		.uleb128 0x3f
+ 666 00be 0C       		.uleb128 0xc
+ 667 00bf 02       		.uleb128 0x2
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 14
+
+
+ 668 00c0 0A       		.uleb128 0xa
+ 669 00c1 00       		.byte	0
+ 670 00c2 00       		.byte	0
+ 671 00c3 00       		.byte	0
+ 672              		.section	.debug_loc,"",%progbits
+ 673              	.Ldebug_loc0:
+ 674              	.LLST0:
+ 675 0000 00000000 		.4byte	.LFB56
+ 676 0004 02000000 		.4byte	.LCFI0
+ 677 0008 0200     		.2byte	0x2
+ 678 000a 7D       		.byte	0x7d
+ 679 000b 00       		.sleb128 0
+ 680 000c 02000000 		.4byte	.LCFI0
+ 681 0010 04000000 		.4byte	.LCFI1
+ 682 0014 0200     		.2byte	0x2
+ 683 0016 7D       		.byte	0x7d
+ 684 0017 04       		.sleb128 4
+ 685 0018 04000000 		.4byte	.LCFI1
+ 686 001c 4A000000 		.4byte	.LFE56
+ 687 0020 0200     		.2byte	0x2
+ 688 0022 77       		.byte	0x77
+ 689 0023 04       		.sleb128 4
+ 690 0024 00000000 		.4byte	0
+ 691 0028 00000000 		.4byte	0
+ 692              	.LLST1:
+ 693 002c 00000000 		.4byte	.LFB57
+ 694 0030 02000000 		.4byte	.LCFI2
+ 695 0034 0200     		.2byte	0x2
+ 696 0036 7D       		.byte	0x7d
+ 697 0037 00       		.sleb128 0
+ 698 0038 02000000 		.4byte	.LCFI2
+ 699 003c 04000000 		.4byte	.LCFI3
+ 700 0040 0200     		.2byte	0x2
+ 701 0042 7D       		.byte	0x7d
+ 702 0043 0C       		.sleb128 12
+ 703 0044 04000000 		.4byte	.LCFI3
+ 704 0048 06000000 		.4byte	.LCFI4
+ 705 004c 0300     		.2byte	0x3
+ 706 004e 7D       		.byte	0x7d
+ 707 004f D800     		.sleb128 88
+ 708 0051 06000000 		.4byte	.LCFI4
+ 709 0055 54010000 		.4byte	.LFE57
+ 710 0059 0300     		.2byte	0x3
+ 711 005b 77       		.byte	0x77
+ 712 005c D800     		.sleb128 88
+ 713 005e 00000000 		.4byte	0
+ 714 0062 00000000 		.4byte	0
+ 715              		.section	.debug_aranges,"",%progbits
+ 716 0000 24000000 		.4byte	0x24
+ 717 0004 0200     		.2byte	0x2
+ 718 0006 00000000 		.4byte	.Ldebug_info0
+ 719 000a 04       		.byte	0x4
+ 720 000b 00       		.byte	0
+ 721 000c 0000     		.2byte	0
+ 722 000e 0000     		.2byte	0
+ 723 0010 00000000 		.4byte	.LFB56
+ 724 0014 4A000000 		.4byte	.LFE56-.LFB56
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 15
+
+
+ 725 0018 00000000 		.4byte	.LFB57
+ 726 001c 54010000 		.4byte	.LFE57-.LFB57
+ 727 0020 00000000 		.4byte	0
+ 728 0024 00000000 		.4byte	0
+ 729              		.section	.debug_ranges,"",%progbits
+ 730              	.Ldebug_ranges0:
+ 731 0000 00000000 		.4byte	.LFB56
+ 732 0004 4A000000 		.4byte	.LFE56
+ 733 0008 00000000 		.4byte	.LFB57
+ 734 000c 54010000 		.4byte	.LFE57
+ 735 0010 00000000 		.4byte	0
+ 736 0014 00000000 		.4byte	0
+ 737              		.section	.debug_line,"",%progbits
+ 738              	.Ldebug_line0:
+ 739 0000 60010000 		.section	.debug_str,"MS",%progbits,1
+ 739      02000101 
+ 739      00000201 
+ 739      FB0E0D00 
+ 739      01010101 
+ 740              	.LASF13:
+ 741 0000 666C6F61 		.ascii	"float\000"
+ 741      7400
+ 742              	.LASF28:
+ 743 0006 433A5C55 		.ascii	"C:\\Users\\Ryan\\Documents\\summer2014\\WindSensor\\"
+ 743      73657273 
+ 743      5C527961 
+ 743      6E5C446F 
+ 743      63756D65 
+ 744 0034 5472616E 		.ascii	"TransmitReadings_freeSoC.cydsn\000"
+ 744      736D6974 
+ 744      52656164 
+ 744      696E6773 
+ 744      5F667265 
+ 745              	.LASF25:
+ 746 0053 74656D70 		.ascii	"temptimeout\000"
+ 746      74696D65 
+ 746      6F757400 
+ 747              	.LASF24:
+ 748 005f 496E7465 		.ascii	"InterruptCnt\000"
+ 748      72727570 
+ 748      74436E74 
+ 748      00
+ 749              	.LASF19:
+ 750 006c 74656D70 		.ascii	"temperature\000"
+ 750      65726174 
+ 750      75726500 
+ 751              	.LASF30:
+ 752 0078 67657474 		.ascii	"gettemperature\000"
+ 752      656D7065 
+ 752      72617475 
+ 752      726500
+ 753              	.LASF1:
+ 754 0087 756E7369 		.ascii	"unsigned char\000"
+ 754      676E6564 
+ 754      20636861 
+ 754      7200
+ 755              	.LASF16:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 16
+
+
+ 756 0095 72656738 		.ascii	"reg8\000"
+ 756      00
+ 757              	.LASF12:
+ 758 009a 696E7431 		.ascii	"int16\000"
+ 758      3600
+ 759              	.LASF5:
+ 760 00a0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 760      20756E73 
+ 760      69676E65 
+ 760      6420696E 
+ 760      7400
+ 761              	.LASF20:
+ 762 00b2 74656D70 		.ascii	"temp\000"
+ 762      00
+ 763              	.LASF3:
+ 764 00b7 73686F72 		.ascii	"short unsigned int\000"
+ 764      7420756E 
+ 764      7369676E 
+ 764      65642069 
+ 764      6E7400
+ 765              	.LASF23:
+ 766 00ca 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 766      52784275 
+ 766      66666572 
+ 766      00
+ 767              	.LASF14:
+ 768 00d7 646F7562 		.ascii	"double\000"
+ 768      6C6500
+ 769              	.LASF11:
+ 770 00de 75696E74 		.ascii	"uint16\000"
+ 770      313600
+ 771              	.LASF22:
+ 772 00e5 61636375 		.ascii	"accuratetemp\000"
+ 772      72617465 
+ 772      74656D70 
+ 772      00
+ 773              	.LASF8:
+ 774 00f2 756E7369 		.ascii	"unsigned int\000"
+ 774      676E6564 
+ 774      20696E74 
+ 774      00
+ 775              	.LASF7:
+ 776 00ff 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 776      206C6F6E 
+ 776      6720756E 
+ 776      7369676E 
+ 776      65642069 
+ 777              	.LASF29:
+ 778 0116 496E7465 		.ascii	"InterruptHandler\000"
+ 778      72727570 
+ 778      7448616E 
+ 778      646C6572 
+ 778      00
+ 779              	.LASF9:
+ 780 0127 696E7433 		.ascii	"int32_t\000"
+ 780      325F7400 
+ 781              	.LASF17:
+ARM GAS  C:\Users\Ryan\AppData\Local\Temp\cc90roYr.s 			page 17
+
+
+ 782 012f 73697A65 		.ascii	"sizetype\000"
+ 782      74797065 
+ 782      00
+ 783              	.LASF6:
+ 784 0138 6C6F6E67 		.ascii	"long long int\000"
+ 784      206C6F6E 
+ 784      6720696E 
+ 784      7400
+ 785              	.LASF15:
+ 786 0146 63686172 		.ascii	"char\000"
+ 786      00
+ 787              	.LASF27:
+ 788 014b 2E5C7468 		.ascii	".\\thermocouple.c\000"
+ 788      65726D6F 
+ 788      636F7570 
+ 788      6C652E63 
+ 788      00
+ 789              	.LASF2:
+ 790 015c 73686F72 		.ascii	"short int\000"
+ 790      7420696E 
+ 790      7400
+ 791              	.LASF10:
+ 792 0166 75696E74 		.ascii	"uint8\000"
+ 792      3800
+ 793              	.LASF26:
+ 794 016c 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 794      4320342E 
+ 794      372E3320 
+ 794      32303133 
+ 794      30333132 
+ 795 019f 616E6368 		.ascii	"anch revision 196615]\000"
+ 795      20726576 
+ 795      6973696F 
+ 795      6E203139 
+ 795      36363135 
+ 796              	.LASF4:
+ 797 01b5 6C6F6E67 		.ascii	"long int\000"
+ 797      20696E74 
+ 797      00
+ 798              	.LASF18:
+ 799 01be 6C6F6E67 		.ascii	"long double\000"
+ 799      20646F75 
+ 799      626C6500 
+ 800              	.LASF0:
+ 801 01ca 7369676E 		.ascii	"signed char\000"
+ 801      65642063 
+ 801      68617200 
+ 802              	.LASF21:
+ 803 01d6 636F6D70 		.ascii	"compare\000"
+ 803      61726500 
+ 804              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

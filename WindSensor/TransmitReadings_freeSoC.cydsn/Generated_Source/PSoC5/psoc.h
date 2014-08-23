@@ -31,7 +31,7 @@
 *   Conditional Compilation Parameters
 ****************************************/
 
-#define psoc_IMPLEMENTATION     (1u)
+#define psoc_IMPLEMENTATION     (0u)
 #define psoc_MODE               (2u)
 #define psoc_ENABLE_WAKEUP      (0u)
 #define psoc_ADDR_DECODE        (1u)
@@ -966,7 +966,7 @@ extern uint8 psoc_initVar;
                                              psoc_ENABLE_SLAVE)
 
     /*psoc_DEFAULT_DIVIDE_FACTOR_REG */
-    #define psoc_DEFAULT_DIVIDE_FACTOR  ((CY_PSOC5A) ? ((uint8) 4u) : ((uint16) 15u))
+    #define psoc_DEFAULT_DIVIDE_FACTOR  ((CY_PSOC5A) ? ((uint8) 0u) : ((uint16) 1u))
 
 #else
     /* psoc_CFG_REG: bits definition  */

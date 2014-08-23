@@ -114,10 +114,17 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <register name="RX_UART_Wind_RX_ADDRESS1" address="0x4000642E" bitWidth="8" desc="RX Address1 Register" />
-    <register name="RX_UART_Wind_RX_ADDRESS2" address="0x4000643E" bitWidth="8" desc="RX Address2 Register" />
-    <register name="RX_UART_Wind_RX_DATA" address="0x4000644E" bitWidth="8" desc="RX Data Register" />
-    <register name="RX_UART_Wind_RX_STATUS" address="0x4000646B" bitWidth="8" desc="RX status register">
+    <register name="RX_UART_Wind_RX_ADDRESS1" address="0x40006429" bitWidth="8" desc="RX Address1 Register" />
+    <register name="RX_UART_Wind_RX_ADDRESS2" address="0x40006439" bitWidth="8" desc="RX Address2 Register" />
+    <register name="TX_UART_Wind_TX_DATA" address="0x40006441" bitWidth="8" desc="TX Data Register" />
+    <register name="RX_UART_Wind_RX_DATA" address="0x40006449" bitWidth="8" desc="RX Data Register" />
+    <register name="TX_UART_Wind_TX_STATUS" address="0x40006461" bitWidth="8" desc="TX status register">
+      <field name="UART_Wind_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
+      <field name="UART_Wind_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="UART_Wind_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
+      <field name="UART_Wind_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
+    </register>
+    <register name="RX_UART_Wind_RX_STATUS" address="0x40006469" bitWidth="8" desc="RX status register">
       <field name="UART_Wind_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
       <field name="UART_Wind_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
       <field name="UART_Wind_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />
@@ -126,101 +133,55 @@
       <field name="UART_Wind_RX_STS_FIFO_NOTEMPTY" from="5" to="5" access="R" resetVal="" desc="" />
       <field name="UART_Wind_RX_STS_ADDR_MATCH" from="6" to="6" access="R" resetVal="" desc="" />
     </register>
-    <register name="TX_UART_Wind_TX_DATA" address="0x4000654B" bitWidth="8" desc="TX Data Register" />
-    <register name="TX_UART_Wind_TX_STATUS" address="0x4000656A" bitWidth="8" desc="TX status register">
-      <field name="UART_Wind_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
-      <field name="UART_Wind_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
-      <field name="UART_Wind_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="UART_Wind_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
-    </register>
   </block>
   <block name="Wind_Rx" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="Wind_Tx" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="SDA_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="SCL_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="psoc" BASE="0x0" SIZE="0x0" desc="" visible="true">
-    <block name="BusClock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="ZeroTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="Vmux_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="or_udb" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="or_ff" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="Vmux_timeout_clock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="or_udb_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="ZeroTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Vmux_scl_in" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Bufoe_sda" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="Vmux_sda_in" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Bufoe_scl" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="ZeroTerminal_3" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <block name="I2C_FF" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="I2C_IRQ" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <register name="psoc_FF_XCFG" address="0x400049C8" bitWidth="8" desc="Extended Configuration Register: I2C_XCFG">
-      <field name="csr_clk_en" from="7" to="7" access="RW" resetVal="" desc="" />
-      <field name="i2c_on" from="6" to="6" access="RW" resetVal="" desc="" />
-      <field name="ready_to_sleep" from="5" to="5" access="R" resetVal="" desc="" />
-      <field name="force_nack" from="4" to="4" access="RW" resetVal="" desc="" />
-      <field name="hw_addr_en" from="0" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF_ADDR" address="0x400049CA" bitWidth="8" desc="Slave Adddress Register: I2C_ADR">
-      <field name="slave_address" from="6" to="0" access="RW" resetVal="" desc="This register holds the slave's 7-bit address." />
-    </register>
-    <register name="psoc_FF_CFG" address="0x400049D6" bitWidth="8" desc="Configuration Register: I2C_CFG">
-      <field name="sio_select" from="7" to="7" access="RW" resetVal="" desc="" />
-      <field name="pselect" from="6" to="6" access="RW" resetVal="" desc="" />
-      <field name="bus_error_ie" from="5" to="5" access="RW" resetVal="" desc="" />
-      <field name="stop_ie" from="4" to="4" access="RW" resetVal="" desc="" />
-      <field name="clock_rate" from="2" to="2" access="RW" resetVal="" desc="" />
-      <field name="en_mstr" from="1" to="1" access="RW" resetVal="" desc="" />
-      <field name="en_slave" from="0" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF_CSR" address="0x400049D7" bitWidth="8" desc="Control and Status Register: I2C_CSR">
-      <field name="bus_error" from="7" to="7" access="RW" resetVal="" desc="" />
-      <field name="lost_arb" from="6" to="6" access="RW" resetVal="" desc="" />
-      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="" />
-      <field name="ack" from="4" to="4" access="RW" resetVal="" desc="" />
-      <field name="address" from="3" to="3" access="RW" resetVal="" desc="" />
-      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="" />
-      <field name="lrb" from="1" to="1" access="RW" resetVal="" desc="" />
-      <field name="byte_complete" from="0" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF_DATA" address="0x400049D8" bitWidth="8" desc="Data Register: I2C_D">
+    <block name="Vmux_interrupt" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="OneTerminal_2" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_sda_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="Vmux_scl_out" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="OneTerminal_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <block name="bI2C_UDB" BASE="0x0" SIZE="0x0" desc="" visible="true" />
+    <register name="psoc_UDB_MSTR_DATA" address="0x40006404" bitWidth="8" desc="Data">
       <field name="data" from="7" to="0" access="RW" resetVal="" desc="This register provides read/write access to the Shift register." />
     </register>
-    <register name="psoc_FF_MCSR" address="0x400049D9" bitWidth="8" desc="Master Control and Status Register: I2C_MCSR">
-      <field name="stop_gen" from="4" to="4" access="RW" resetVal="" desc="" />
-      <field name="bus_busy" from="3" to="3" access="R" resetVal="" desc="" />
+    <register name="psoc_UDB_MSTR_CSR" address="0x40006568" bitWidth="8" desc="Status Register">
+      <field name="interrupt" from="7" to="7" access="R" resetVal="" desc="Interrupt bit" />
+      <field name="lost_arb" from="6" to="6" access="R" resetVal="" desc="" />
+      <field name="stop_status" from="5" to="5" access="RW" resetVal="" desc="" />
+      <field name="bus_busy" from="4" to="4" access="R" resetVal="" desc="" />
+      <field name="address" from="3" to="3" access="R" resetVal="" desc="" />
       <field name="master_mode" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="restart_gen" from="1" to="1" access="RW" resetVal="" desc="" />
-      <field name="start_gen" from="0" to="0" access="RW" resetVal="" desc="" />
+      <field name="lrb" from="1" to="1" access="R" resetVal="" desc="" />
+      <field name="byte_complete" from="0" to="0" access="R" resetVal="" desc="" />
     </register>
-    <register name="psoc_FF__CLK_DIV1" address="0x400049DB" bitWidth="8" desc="Divider of BUS_CLK low part: I2C_CLK_DIV1">
-      <field name="Div" from="7" to="0" access="RW" resetVal="" desc="" />
+    <register name="psoc_UDB_MSTR_CFG" address="0x4000657B" bitWidth="8" desc="Configuration Register">
+      <field name="start_gen" from="7" to="7" access="RW" resetVal="" desc="" />
+      <field name="stop_gen" from="6" to="6" access="RW" resetVal="" desc="" />
+      <field name="restart_gen" from="5" to="5" access="RW" resetVal="" desc="" />
+      <field name="ack" from="4" to="4" access="RW" resetVal="" desc="" />
+      <field name="hw_addr_en" from="3" to="3" access="RW" resetVal="" desc="" />
+      <field name="transmit" from="2" to="2" access="RW" resetVal="" desc="" />
+      <field name="master_en" from="1" to="1" access="RW" resetVal="" desc="" />
     </register>
-    <register name="psoc_FF__CLK_DIV2" address="0x400049DC" bitWidth="8" desc="Divider high part: I2C_CLK_DIV1">
-      <field name="Div" from="1" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF__TMOUT_CSR" address="0x400049DD" bitWidth="8" desc="Extended Configuration Register: I2C_TMOUT_CSR">
-      <field name="sda_pin_status" from="4" to="4" access="RW" resetVal="" desc="" />
-      <field name="scl_pin_status" from="3" to="3" access="RW" resetVal="" desc="" />
-      <field name="i2c_timeout_int_enable" from="2" to="2" access="R" resetVal="" desc="" />
-      <field name="i2c_sda_timeout_enable" from="1" to="1" access="RW" resetVal="" desc="" />
-      <field name="i2c_scl_timeout_enable" from="0" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF__TMOUT_SR" address="0x400049DE" bitWidth="8" desc="Extended Configuration Register: I2C_TMOUT_SR">
-      <field name="sda_tmout_status" from="1" to="1" access="RW" resetVal="" desc="" />
-      <field name="scl_tmout_status" from="0" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF__TMOUT_CFG0" address="0x400049DF" bitWidth="8" desc="Extended Configuration Register: TMOUT_CFG0">
-      <field name="timeout_period_lowbyte" from="7" to="0" access="RW" resetVal="" desc="" />
-    </register>
-    <register name="psoc_FF__TMOUT_CFG1" address="0x400049E0" bitWidth="8" desc="Extended Configuration Register: TMOUT_CFG1">
-      <field name="timeout_period_highnibble" from="3" to="0" access="RW" resetVal="" desc="" />
-    </register>
+    <register name="psoc_UDB_MSTR_INT_MASK" address="0x40006588" bitWidth="8" desc="Interrupt Mask" />
   </block>
   <block name="SBD_Rx" BASE="0x0" SIZE="0x0" desc="" visible="true" />
   <block name="SBD_Tx" BASE="0x0" SIZE="0x0" desc="" visible="true" />
@@ -231,17 +192,17 @@
     <block name="IntClock" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="VirtualMux_1" BASE="0x0" SIZE="0x0" desc="" visible="true" />
     <block name="BUART" BASE="0x0" SIZE="0x0" desc="" visible="true" />
-    <register name="RX_UART_SBD_RX_ADDRESS1" address="0x40006428" bitWidth="8" desc="RX Address1 Register" />
-    <register name="RX_UART_SBD_RX_ADDRESS2" address="0x40006438" bitWidth="8" desc="RX Address2 Register" />
-    <register name="RX_UART_SBD_RX_DATA" address="0x40006448" bitWidth="8" desc="RX Data Register" />
-    <register name="TX_UART_SBD_TX_DATA" address="0x40006449" bitWidth="8" desc="TX Data Register" />
-    <register name="TX_UART_SBD_TX_STATUS" address="0x40006469" bitWidth="8" desc="TX status register">
+    <register name="RX_UART_SBD_RX_ADDRESS1" address="0x4000642A" bitWidth="8" desc="RX Address1 Register" />
+    <register name="RX_UART_SBD_RX_ADDRESS2" address="0x4000643A" bitWidth="8" desc="RX Address2 Register" />
+    <register name="TX_UART_SBD_TX_DATA" address="0x40006443" bitWidth="8" desc="TX Data Register" />
+    <register name="RX_UART_SBD_RX_DATA" address="0x4000644A" bitWidth="8" desc="RX Data Register" />
+    <register name="TX_UART_SBD_TX_STATUS" address="0x40006463" bitWidth="8" desc="TX status register">
       <field name="UART_SBD_TX_STS_COMPLETE" from="0" to="0" access="R" resetVal="" desc="" />
       <field name="UART_SBD_TX_STS_FIFO_EMPTY" from="1" to="1" access="R" resetVal="" desc="" />
       <field name="UART_SBD_TX_STS_FIFO_FULL" from="2" to="2" access="R" resetVal="" desc="" />
       <field name="UART_SBD_TX_STS_FIFO_NOT_FULL" from="3" to="3" access="R" resetVal="" desc="" />
     </register>
-    <register name="RX_UART_SBD_RX_STATUS" address="0x40006568" bitWidth="8" desc="RX status register">
+    <register name="RX_UART_SBD_RX_STATUS" address="0x4000646F" bitWidth="8" desc="RX status register">
       <field name="UART_SBD_RX_STS_MRKSPC" from="0" to="0" access="R" resetVal="" desc="" />
       <field name="UART_SBD_RX_STS_BREAK" from="1" to="1" access="R" resetVal="" desc="" />
       <field name="UART_SBD_RX_STS_PAR_ERROR" from="2" to="2" access="R" resetVal="" desc="" />

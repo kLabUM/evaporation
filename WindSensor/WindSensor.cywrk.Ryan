@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\TransmitReadings_freeSoC">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\TransmitReadings_freeSoC\TopDesign.cysch">
 <ExpandedNodeIds>
 <v>WindSensor</v>
 <v>WindSensor\airmar_NoGPS\TopDesign.cysch</v>
@@ -938,6 +938,7 @@
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\cymetadata.c</v>
 <v>WindSensor\TransmitReadings\Generated_Source\PSoC5\project.h</v>
+<v>WindSensor\TransmitReadings_freeSoC</v>
 <v>WindSensor\TransmitReadings_freeSoC\TopDesign.cysch</v>
 <v>WindSensor\TransmitReadings_freeSoC\TransmitReadings_freeSoC.cydwr</v>
 <v>WindSensor\TransmitReadings_freeSoC\Header Files</v>
@@ -1022,6 +1023,9 @@
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc\psoc_PM.c</v>
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc\psoc_PVT.h</v>
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc\psoc_SLAVE.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc_IntClock</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc_IntClock\psoc_IntClock.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\psoc_IntClock\psoc_IntClock.h</v>
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\SBD_reply</v>
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\SBD_reply\SBD_reply.c</v>
 <v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\SBD_reply\SBD_reply.h</v>
@@ -1238,8 +1242,26 @@
 <v>WindSensor\thermocouple interface</v>
 <v>WindSensor\TransmitReadings</v>
 <v>WindSensor\TransmitReadings_freeSoC</v>
-<v>WindSensor\voltage reader</v>
-<v>WindSensor\WindSensor</v>
+<v>WindSensor\TransmitReadings_freeSoC\TopDesign.cysch</v>
+<v>WindSensor\TransmitReadings_freeSoC\TransmitReadings_freeSoC.cydwr</v>
+<v>WindSensor\TransmitReadings_freeSoC\Header Files</v>
+<v>WindSensor\TransmitReadings_freeSoC\Header Files\batteryvoltage.h</v>
+<v>WindSensor\TransmitReadings_freeSoC\Header Files\magnetometer.h</v>
+<v>WindSensor\TransmitReadings_freeSoC\Header Files\RH.h</v>
+<v>WindSensor\TransmitReadings_freeSoC\Header Files\thermocouple.h</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files\Batteryvoltage.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files\magnetometer.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files\main.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files\RH.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Source Files\thermocouple.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC.h</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC_INT.c</v>
+<v>WindSensor\TransmitReadings_freeSoC\Generated_Source\PSoC5\ADC\ADC_PM.c</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -1743,6 +1765,7 @@
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc.lst</v>
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_BOOT.lst</v>
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_INT.lst</v>
+<v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_IntClock.lst</v>
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_MASTER.lst</v>
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_PM.lst</v>
 <v>WindSensor\TransmitReadings_freeSoC\CortexM3\ARM_GCC_473\Debug\Listing Files\psoc_SLAVE.lst</v>
@@ -1835,35 +1858,6 @@
 <VisibleNodeIds>
 <v>WindSensor</v>
 <v>WindSensor\airmar_NoGPS</v>
-<v>WindSensor\airmar_NoGPS\CortexM3</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\A_in.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\A_out.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_INT.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_IRQ.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_PM.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\ADC_theACLK.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_BOOT.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_INT.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_IntClock.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Airmar_PM.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\B_in.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\B_out.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Battery_in.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Batteryvoltage.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\clock.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\clockPin.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\Comp_PM.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>WindSensor\airmar_NoGPS\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
