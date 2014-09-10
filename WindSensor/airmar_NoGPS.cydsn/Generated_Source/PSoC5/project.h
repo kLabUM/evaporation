@@ -50,6 +50,9 @@
 #include <Battery_in_aliases.h>
 #include <Battery_in.h>
 #include <ADC.h>
+#include <Timer.h>
+#include <timer_clock.h>
+#include <timeout_isr.h>
 #include <Airmar_IntClock.h>
 #include <UART_SBD_IntClock.h>
 #include <ADC_IRQ.h>

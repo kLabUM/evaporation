@@ -1,6 +1,6 @@
 // ======================================================================
 // airmar_NoGPS.v generated from TopDesign.cysch
-// 08/20/2014 at 15:28
+// 09/09/2014 at 21:39
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -801,9 +801,81 @@ module ADC_SAR_v2_10_5 (
 
 endmodule
 
+// Timer_v2_50(CaptureAlternatingFall=false, CaptureAlternatingRise=false, CaptureCount=2, CaptureCounterEnabled=false, CaptureInputEnabled=true, CaptureMode=1, CONTROL3=1, ControlRegRemoved=0, CtlModeReplacementString=SyncCtl, CyGetRegReplacementString=CY_GET_REG16, CySetRegReplacementString=CY_SET_REG16, DeviceFamily=PSoC5, EnableMode=0, FF16=true, FF8=false, FixedFunction=true, FixedFunctionUsed=1, HWCaptureCounterEnabled=false, InterruptOnCapture=false, InterruptOnFIFOFull=false, InterruptOnTC=true, IntOnCapture=0, IntOnFIFOFull=0, IntOnTC=1, NumberOfCaptures=1, param45=1, Period=399, RegDefReplacementString=reg16, RegSizeReplacementString=uint16, Resolution=16, RstStatusReplacementString=rstSts, RunMode=0, SiliconRevision=0, SoftwareCaptureModeEnabled=false, SoftwareTriggerModeEnabled=false, TriggerInputEnabled=false, TriggerMode=0, UDB16=false, UDB24=false, UDB32=false, UDB8=false, UDBControlReg=false, UsesHWEnable=0, VerilogSectionReplacementString=sT16, CY_COMPONENT_NAME=Timer_v2_50, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=Timer, CY_INSTANCE_SHORT_NAME=Timer, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=50, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=Timer, )
+module Timer_v2_50_6 (
+    clock,
+    reset,
+    interrupt,
+    enable,
+    capture,
+    trigger,
+    capture_out,
+    tc);
+    input       clock;
+    input       reset;
+    output      interrupt;
+    input       enable;
+    input       capture;
+    input       trigger;
+    output      capture_out;
+    output      tc;
+
+    parameter CaptureCount = 2;
+    parameter CaptureCounterEnabled = 0;
+    parameter DeviceFamily = "PSoC5";
+    parameter InterruptOnCapture = 0;
+    parameter InterruptOnTC = 1;
+    parameter Resolution = 16;
+    parameter SiliconRevision = "0";
+
+          wire  Net_261;
+          wire  Net_260;
+          wire  Net_266;
+          wire  Net_102;
+          wire  Net_55;
+          wire  Net_57;
+          wire  Net_53;
+          wire  Net_51;
+
+    cy_psoc3_timer_v1_0 TimerHW (
+        .timer_reset(reset),
+        .capture(capture),
+        .enable(Net_266),
+        .kill(Net_260),
+        .clock(clock),
+        .tc(Net_51),
+        .compare(Net_261),
+        .interrupt(Net_57));
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_260));
+
+	// VirtualMux_2 (cy_virtualmux_v1_0)
+	assign interrupt = Net_57;
+
+	// VirtualMux_3 (cy_virtualmux_v1_0)
+	assign tc = Net_51;
+
+    OneTerminal OneTerminal_1 (
+        .o(Net_102));
+
+	// VirtualMux_1 (cy_virtualmux_v1_0)
+	assign Net_266 = Net_102;
+
+
+
+endmodule
+
 // top
 module top ;
 
+          wire  Net_211;
+          wire  Net_210;
+          wire  Net_209;
+          wire  Net_208;
+          wire  Net_207;
+          wire  Net_206;
+          wire  Net_205;
           wire  Net_192;
     electrical  Net_191;
           wire  Net_190;
@@ -861,6 +933,8 @@ module top ;
           wire  Net_105;
           wire  Net_104;
           wire  Net_103;
+          wire  Net_204;
+          wire  Net_116;
           wire  Net_33;
           wire  Net_30;
           wire  Net_77;
@@ -1829,6 +1903,45 @@ module top ;
         .aclk(1'b0),
         .vdac_ref(Net_191),
         .eos(Net_192));
+
+    Timer_v2_50_6 Timer (
+        .reset(Net_204),
+        .interrupt(Net_205),
+        .enable(1'b1),
+        .trigger(1'b0),
+        .capture(1'b0),
+        .capture_out(Net_209),
+        .tc(Net_210),
+        .clock(Net_116));
+    defparam Timer.CaptureCount = 2;
+    defparam Timer.CaptureCounterEnabled = 0;
+    defparam Timer.DeviceFamily = "PSoC5";
+    defparam Timer.InterruptOnCapture = 0;
+    defparam Timer.InterruptOnTC = 1;
+    defparam Timer.Resolution = 16;
+    defparam Timer.SiliconRevision = "0";
+
+
+	cy_clock_v1_0
+		#(.id("c0fb34bd-1044-4931-9788-16b01ce89812"),
+		  .source_clock_id(""),
+		  .divisor(0),
+		  .period("100000000000"),
+		  .is_direct(0),
+		  .is_digital(1))
+		timer_clock
+		 (.clock_out(Net_116));
+
+
+    ZeroTerminal ZeroTerminal_1 (
+        .z(Net_204));
+
+
+	cy_isr_v1_0
+		#(.int_type(2'b10))
+		timeout_isr
+		 (.int_signal(Net_205));
+
 
 
 

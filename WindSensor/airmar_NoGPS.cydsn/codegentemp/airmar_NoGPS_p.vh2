@@ -1,5 +1,5 @@
 -- Project:   airmar_NoGPS
--- Generated: 08/20/2014 15:28:51
+-- Generated: 09/09/2014 21:39:45
 -- 
 
 ENTITY airmar_NoGPS IS
@@ -52,10 +52,14 @@ ARCHITECTURE __DEFAULT__ OF airmar_NoGPS IS
     SIGNAL Net_107 : bit;
     ATTRIBUTE global_signal OF Net_107 : SIGNAL IS true;
     SIGNAL Net_107_local : bit;
+    SIGNAL Net_116 : bit;
+    ATTRIBUTE global_signal OF Net_116 : SIGNAL IS true;
+    SIGNAL Net_116_local : bit;
     SIGNAL Net_189 : bit;
     SIGNAL Net_192 : bit;
     SIGNAL Net_194 : bit;
     SIGNAL Net_198 : bit;
+    SIGNAL Net_205 : bit;
     SIGNAL Net_33 : bit;
     SIGNAL Net_71 : bit;
     SIGNAL Net_77 : bit;
@@ -118,6 +122,8 @@ ARCHITECTURE __DEFAULT__ OF airmar_NoGPS IS
     SIGNAL \Airmar:Net_9\ : bit;
     ATTRIBUTE global_signal OF \Airmar:Net_9\ : SIGNAL IS true;
     SIGNAL \Airmar:Net_9_local\ : bit;
+    SIGNAL \Timer:Net_261\ : bit;
+    SIGNAL \Timer:Net_51\ : bit;
     SIGNAL \UART_SBD:BUART:counter_load_not\ : bit;
     SIGNAL \UART_SBD:BUART:pollcount_0\ : bit;
     SIGNAL \UART_SBD:BUART:pollcount_1\ : bit;
@@ -202,6 +208,7 @@ ARCHITECTURE __DEFAULT__ OF airmar_NoGPS IS
     ATTRIBUTE GROUND OF zero : SIGNAL IS true;
     SIGNAL \ClockBlock.clk_bus_glb_ff__sig\ : bit;
     SIGNAL \ClockBlock.aclk_glb_ff_0__sig\ : bit;
+    SIGNAL \ClockBlock.dclk_glb_ff_3__sig\ : bit;
     SIGNAL \master:BSPIM:sR16:Dp:u0.ce0__sig\ : bit;
     SIGNAL \master:BSPIM:sR16:Dp:u0.cl0__sig\ : bit;
     SIGNAL \master:BSPIM:sR16:Dp:u0.z0__sig\ : bit;
@@ -312,10 +319,11 @@ ARCHITECTURE __DEFAULT__ OF airmar_NoGPS IS
     ATTRIBUTE lib_model OF \master:BSPIM:state_2\ : LABEL IS "macrocell61";
     ATTRIBUTE lib_model OF \master:BSPIM:tx_status_0\ : LABEL IS "macrocell62";
     ATTRIBUTE lib_model OF \master:BSPIM:tx_status_4\ : LABEL IS "macrocell63";
+    ATTRIBUTE lib_model OF __ONE__ : LABEL IS "macrocell64";
     ATTRIBUTE lib_model OF clockPin(0) : LABEL IS "iocell10";
-    ATTRIBUTE Location OF clockPin(0) : LABEL IS "P2[0]";
+    ATTRIBUTE Location OF clockPin(0) : LABEL IS "P2[2]";
     ATTRIBUTE lib_model OF dataPin(0) : LABEL IS "iocell11";
-    ATTRIBUTE Location OF dataPin(0) : LABEL IS "P2[2]";
+    ATTRIBUTE Location OF dataPin(0) : LABEL IS "P2[0]";
     ATTRIBUTE lib_model OF selectPin(0) : LABEL IS "iocell12";
     ATTRIBUTE Location OF selectPin(0) : LABEL IS "P2[1]";
     COMPONENT abufcell
@@ -1703,8 +1711,11 @@ BEGIN
             dclk_1 => \UART_SBD:Net_9_local\,
             dclk_glb_2 => \Airmar:Net_9\,
             dclk_2 => \Airmar:Net_9_local\,
+            dclk_glb_3 => Net_116,
+            dclk_3 => Net_116_local,
             clk_bus_glb_ff => \ClockBlock.clk_bus_glb_ff__sig\,
-            aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\);
+            aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\,
+            dclk_glb_ff_3 => \ClockBlock.dclk_glb_ff_3__sig\);
 
     MODIN1_0:macrocell
         GENERIC MAP(
@@ -2596,6 +2607,19 @@ BEGIN
         PORT MAP(
             out => Net_77);
 
+    \Timer:TimerHW\:timercell
+        GENERIC MAP(
+            cy_registers => "")
+        PORT MAP(
+            clock => \ClockBlock.dclk_glb_ff_3__sig\,
+            kill => open,
+            enable => __ONE__,
+            capture => open,
+            timer_reset => open,
+            tc => \Timer:Net_51\,
+            cmp => \Timer:Net_261\,
+            irq => Net_205);
+
     \UART_SBD:BUART:counter_load_not\:macrocell
         GENERIC MAP(
             eqn_main => "(!main_0 * !main_1 * !main_2) + (!main_0 * !main_1 * main_3)")
@@ -3372,6 +3396,12 @@ BEGIN
             interrupt => \psoc:Net_697\,
             clock => ClockBlock_BUS_CLK);
 
+    __ONE__:macrocell
+        GENERIC MAP(
+            eqn_main => "1'b0")
+        PORT MAP(
+            q => __ONE__);
+
     clockPin:logicalport
         GENERIC MAP(
             drive_mode => "110",
@@ -3639,5 +3669,12 @@ BEGIN
             out_clock => open,
             out_clock_en => '1',
             out_reset => '0');
+
+    timeout_isr:interrupt
+        GENERIC MAP(
+            int_type => "10")
+        PORT MAP(
+            interrupt => Net_205,
+            clock => ClockBlock_BUS_CLK);
 
 END __DEFAULT__;

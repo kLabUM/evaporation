@@ -86,6 +86,13 @@
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\ADC.h" value="NONE;ADC" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\ADC_INT.c" value="ARM_C_FILE;ADC" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\ADC_PM.c" value="ARM_C_FILE;ADC" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\Timer.c" value="ARM_C_FILE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\Timer.h" value="NONE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\Timer_PM.c" value="ARM_C_FILE;Timer" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\timer_clock.c" value="ARM_C_FILE;timer_clock" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\timer_clock.h" value="NONE;timer_clock" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\timeout_isr.c" value="ARM_C_FILE;timeout_isr" />
+  <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\timeout_isr.h" value="NONE;timeout_isr" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\Airmar_IntClock.c" value="ARM_C_FILE;Airmar_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\Airmar_IntClock.h" value="NONE;Airmar_IntClock" />
   <file name="C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\codegentemp\UART_SBD_IntClock.c" value="ARM_C_FILE;UART_SBD_IntClock" />

@@ -2,7 +2,7 @@
 --	Conversion of airmar_NoGPS.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Wed Aug 20 15:28:42 2014
+--	Tue Sep 09 21:39:35 2014
 --
 
 USE cypress.cypress.all;
@@ -1024,6 +1024,16 @@ TERMINAL \ADC:Net_209\ : bit;
 TERMINAL \ADC:Net_149\ : bit;
 TERMINAL \ADC:Net_255\ : bit;
 TERMINAL \ADC:Net_368\ : bit;
+SIGNAL Net_116 : bit;
+SIGNAL \Timer:Net_260\ : bit;
+SIGNAL \Timer:Net_266\ : bit;
+SIGNAL Net_204 : bit;
+SIGNAL \Timer:Net_51\ : bit;
+SIGNAL \Timer:Net_261\ : bit;
+SIGNAL \Timer:Net_57\ : bit;
+SIGNAL Net_205 : bit;
+SIGNAL Net_210 : bit;
+SIGNAL \Timer:Net_102\ : bit;
 SIGNAL \master:BSPIM:so_send_reg\\D\ : bit;
 SIGNAL \master:BSPIM:mosi_reg\\D\ : bit;
 SIGNAL \master:BSPIM:state_2\\D\ : bit;
@@ -3096,6 +3106,29 @@ Battery_in:cy_psoc3_pins_v1_10
 	PORT MAP(noconnect=>\ADC:Net_255\);
 \ADC:noconnect_1\:cy_analog_noconnect_v1_0
 	PORT MAP(noconnect=>\ADC:Net_368\);
+\Timer:TimerHW\:cy_psoc3_timer_v1_0
+	GENERIC MAP(cy_registers=>"")
+	PORT MAP(clock=>Net_116,
+		kill=>zero,
+		enable=>one,
+		capture=>zero,
+		timer_reset=>zero,
+		tc=>\Timer:Net_51\,
+		compare=>\Timer:Net_261\,
+		interrupt=>Net_205);
+timer_clock:cy_clock_v1_0
+	GENERIC MAP(cy_registers=>"",
+		id=>"c0fb34bd-1044-4931-9788-16b01ce89812",
+		source_clock_id=>"",
+		divisor=>0,
+		period=>"100000000000",
+		is_direct=>'0',
+		is_digital=>'1')
+	PORT MAP(clock_out=>Net_116,
+		dig_domain_out=>open);
+timeout_isr:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10")
+	PORT MAP(int_signal=>Net_205);
 \master:BSPIM:so_send_reg\:cy_dff
 	PORT MAP(d=>zero,
 		clk=>\master:BSPIM:clk_fin\,

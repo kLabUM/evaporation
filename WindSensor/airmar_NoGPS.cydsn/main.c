@@ -27,7 +27,8 @@ struct evappacket
 	uint16 airmarwindDirection; 
 	uint8 airmarwindSpeed;
 	int16 airmarairtemp;
-	uint16 airmarrelhumidity;
+	int16 externalairtemp;
+	uint16 externalrelhumidity;
 	uint16 airmarairpressure;
 	int16 Thermocouplewatertemperature;
 	uint8 battery;
@@ -36,6 +37,7 @@ struct evappacket
 
 CY_ISR_PROTO(SBD_int);
 CY_ISR_PROTO(airmar_int);
+CY_ISR_PROTO(windtimer);
 void clearPacketSBD();
 void clearPacketwind();
 uint8 SBDData[256];
@@ -82,6 +84,14 @@ uint16 uint16size;
 int16 int16size;
 uint8 uint8size;
 int matches;
+uint16 windtime = 0;
+uint8 windtimeout = 0;
+uint8 windbroke = 0;
+uint8 gpstimeout = 0;
+uint8 gpsbroke = 0;
+uint8 tempandpressurebroke = 1;
+uint8 temppressuretimeout = 0;
+SensirionData tempandrh;
 
 int main()
 {
@@ -114,8 +124,14 @@ int main()
 		clearPacketwind();
 		isr_airmar_StartEx(airmar_int);
 		
-		while(samplesize < 25)
+			timeout_isr_StartEx(windtimer);
+			timer_clock_Start();
+			Timer_Start();
+			windtime = 0;
+		
+		while(samplesize < 25 && windtimeout != 1)
 		{
+			
 			if(headingandwindReceived)
 			{
 				isr_airmar_Stop();
@@ -145,13 +161,23 @@ int main()
 				}
 				clearPacketwind();
 				isr_airmar_StartEx(airmar_int);
-				
+				windtime = 0;
 				
 			}
+			
 		}
 		
+			Timer_Stop();
+			timer_clock_Stop();
+			timeout_isr_Stop();
+			
 		scalerspeed = windsum / samplesize;
 		resultantavg = converttospeedandheading(avgwind(vectorforavg, samplesize));
+		
+		if(windtimeout == 1)
+		{
+			windbroke = 1;
+		}
 		
 		for(i = 0; i<50;i++)
 		{
@@ -163,9 +189,25 @@ int main()
 		clearPacketwind();
 		isr_airmar_StartEx(airmar_int);
 		
+		timeout_isr_StartEx(windtimer);
+		timer_clock_Start();
+		Timer_Start();
+		windtime = 0;
+		
 		while(windpacketReceived == 0)
 		{
+			if(temppressuretimeout == 1)
+			{
+				tempandpressurebroke = 1;
+				i = 50;
+				break;
+			}
 		}
+		
+		Timer_Stop();
+		timer_clock_Stop();
+		timeout_isr_Stop();
+		
 		isr_airmar_Stop();
 		startofwinddata = strstr(windData, "$WIMDA");
 		matches = sscanf(windData + (startofwinddata - windData), "$WIMDA,%*f,%*c,%f,%*c,%f,", &pressure, &airtemp);
@@ -174,8 +216,13 @@ int main()
 		if(matches == 2)
 		{
 			i = 50;
+			tempandpressurebroke = 0;
 		}
 		}
+		
+		watertemp = gettemperature();
+		tempandrh =  TakeTempRHReading();
+		battery = getvoltage();
 		
 		isr_airmar_Stop();
 		clearPacketSBD();
@@ -183,15 +230,32 @@ int main()
 		UART_SBD_PutString("AT-WSGPLF\r\n");
 		UART_SBD_PutString("AT-WSGPLF\r\n");
 
-		while(SBDpacketReceived == 0)
+		timeout_isr_StartEx(windtimer);
+	timer_clock_Start();
+	Timer_Start();
+	windtime = 0;
+	gpstimeout = 0;
+	while(SBDpacketReceived == 0 && gpsbroke != 1)
+	{
+		if(gpstimeout == 1 && gpsbroke != 1)
 		{
+			gpsbroke = 1;
 		}
-		clearPacketSBD();
-		while(SBDpacketReceived == 0)
+	}
+	clearPacketSBD();
+	while(SBDpacketReceived == 0 && gpsbroke != 1)
+	{
+		if(gpstimeout == 1)
 		{
+			gpsbroke = 1;
 		}
+	}
 	
 		SBD_reply_Stop();
+		
+		Timer_Stop();
+		timer_clock_Stop();
+		timeout_isr_Stop();
 
 		sscanf(SBDData, "$GPRMC,%f,%c,%f,%*c,%f,%*c,%*f,%*f,%d", &time, &validornot, &northgps, &westgps, &date);
 			
@@ -206,7 +270,7 @@ int main()
 			}
 		
 		watertemp = gettemperature();
-		//relh = getRH();
+		tempandrh =  TakeTempRHReading();
 		battery = getvoltage();
 		
 		sendpacket.gpstime = time;
@@ -216,10 +280,37 @@ int main()
 		sendpacket.airmarwindDirection = (uint16)(resultantavg.heading);
 		sendpacket.airmarwindSpeed = (uint8)(scalerspeed * 10);
 		sendpacket.airmarairtemp = (int16)(airtemp * 10);
-		sendpacket.airmarrelhumidity = relh;
+		sendpacket.externalairtemp = (int16)tempandrh.temp;
+		sendpacket.externalrelhumidity = (uint16)tempandrh.rh;
 		sendpacket.airmarairpressure = (uint16)(pressure * 1000);
 		sendpacket.Thermocouplewatertemperature = watertemp;
 		sendpacket.battery = battery;
+		
+		if(windbroke == 1)
+		{
+			sendpacket.airmarwindDirection = 65535;
+			sendpacket.airmarwindSpeed = 255;
+		}
+		
+		if(tempandpressurebroke == 1)
+		{
+			sendpacket.airmarairtemp = -32768;
+			sendpacket.airmarairpressure = 32768;
+		}
+		
+		if (gpsbroke == 1)
+		{
+			sendpacket.gpstime = -1;
+			sendpacket.gpsnorth = 0;
+			sendpacket.gpswest = 0;
+			sendpacket.gpsdate = 4294967295;
+		}
+		
+		if(tempandrh.valid == 0)
+		{
+			sendpacket.externalairtemp = -32768;
+			sendpacket.externalrelhumidity = 65535;
+		}
 		
 		UART_SBD_PutString("0000000000000000000000000\r\n");
 		
@@ -232,7 +323,7 @@ int main()
 		UART_SBD_PutArray(&sendpacket.airmarwindDirection, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.airmarwindSpeed, sizeof(uint8size));
 		UART_SBD_PutArray(&sendpacket.airmarairtemp, sizeof(int16size));
-		UART_SBD_PutArray(&sendpacket.airmarrelhumidity, sizeof(uint16size));
+		UART_SBD_PutArray(&sendpacket.externalrelhumidity, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.airmarairpressure, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.Thermocouplewatertemperature, sizeof(int16size));
 		UART_SBD_PutArray(&sendpacket.battery, sizeof(uint8size));
@@ -304,6 +395,26 @@ void clearPacketSBD(){
 	SBDPointer = 0;
 	SBDpacketReceived = 0;
     
+}
+
+CY_ISR(windtimer)
+{
+		/* Read Status register in order to clear the sticky Terminal Count (TC) bit 
+	 * in the status register. Note that the function is not called, but rather 
+	 * the status is read directly.
+	 */
+   	Timer_STATUS;
+    
+	/* Increment the Counter to indicate the keep track of the number of 
+     * interrupts received */
+    windtime++;
+	
+	if(windtime >= 300)
+	{
+		windtimeout = 1;
+		gpstimeout = 1;
+		temppressuretimeout = 1;
+	}
 }
 
 /* [] END OF FILE */
