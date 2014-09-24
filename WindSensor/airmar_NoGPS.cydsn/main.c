@@ -280,8 +280,8 @@ int main()
 		sendpacket.airmarwindDirection = (uint16)(resultantavg.heading);
 		sendpacket.airmarwindSpeed = (uint8)(scalerspeed * 10);
 		sendpacket.airmarairtemp = (int16)(airtemp * 10);
-		sendpacket.externalairtemp = (int16)tempandrh.temp;
-		sendpacket.externalrelhumidity = (uint16)tempandrh.rh;
+		sendpacket.externalairtemp = (int16)(tempandrh.temp * 10);
+		sendpacket.externalrelhumidity = (uint16)(tempandrh.rh * 10);
 		sendpacket.airmarairpressure = (uint16)(pressure * 1000);
 		sendpacket.Thermocouplewatertemperature = watertemp;
 		sendpacket.battery = battery;
@@ -315,7 +315,7 @@ int main()
 		UART_SBD_PutString("0000000000000000000000000\r\n");
 		
 		UART_SBD_PutString("0000000000000000000000000\r\n");
-		UART_SBD_PutString("AT-WSMOBW=28\r\n");
+		UART_SBD_PutString("AT-WSMOBW=30\r\n");
 		UART_SBD_PutArray(&sendpacket.gpstime, sizeof(float32size));
 		UART_SBD_PutArray(&sendpacket.gpsnorth, sizeof(float32size));
 		UART_SBD_PutArray(&sendpacket.gpswest, sizeof(float32size));
@@ -323,6 +323,7 @@ int main()
 		UART_SBD_PutArray(&sendpacket.airmarwindDirection, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.airmarwindSpeed, sizeof(uint8size));
 		UART_SBD_PutArray(&sendpacket.airmarairtemp, sizeof(int16size));
+		UART_SBD_PutArray(&sendpacket.externalairtemp, sizeof(int16size));
 		UART_SBD_PutArray(&sendpacket.externalrelhumidity, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.airmarairpressure, sizeof(uint16size));
 		UART_SBD_PutArray(&sendpacket.Thermocouplewatertemperature, sizeof(int16size));
