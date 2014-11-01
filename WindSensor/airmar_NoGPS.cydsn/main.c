@@ -122,15 +122,20 @@ int main()
 		Airmar_PutString("$PAMTC,EN,HDG,1,5\r\n");
 		Airmar_PutString("$PAMTX,1\r\n");
 		clearPacketwind();
-		isr_airmar_StartEx(airmar_int);
+		//isr_airmar_StartEx(airmar_int);
 		
-			timeout_isr_StartEx(windtimer);
+		/*	timeout_isr_StartEx(windtimer);
 			timer_clock_Start();
 			Timer_Start();
-			windtime = 0;
+			windtime = 0; */
 		
-		while(samplesize < 25 && windtimeout != 1)
+		// CyDelay(5000u);
+		
+		while(samplesize < 25 /*&& windtimeout != 1*/)
 		{
+			isr_airmar_StartEx(airmar_int);
+			CyDelay(100u);
+			isr_airmar_Stop();
 			
 			if(headingandwindReceived)
 			{
@@ -157,7 +162,7 @@ int main()
 				vectorforavg[samplesize] = definevectors(current);
 				if(matches1 == 1 && matches2 == 3)
 				{
-				samplesize++;
+					//samplesize++;
 				}
 				clearPacketwind();
 				isr_airmar_StartEx(airmar_int);
@@ -165,7 +170,8 @@ int main()
 				
 			}
 			
-		}
+			samplesize++;
+		}	
 		
 			Timer_Stop();
 			timer_clock_Stop();
@@ -410,7 +416,7 @@ CY_ISR(windtimer)
      * interrupts received */
     windtime++;
 	
-	if(windtime >= 300)
+	if(windtime >= 10)
 	{
 		windtimeout = 1;
 		gpstimeout = 1;

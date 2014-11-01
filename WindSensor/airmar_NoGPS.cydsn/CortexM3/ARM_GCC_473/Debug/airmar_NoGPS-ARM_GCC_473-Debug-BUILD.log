@@ -1,55 +1,55 @@
---------------- Build Started: 09/11/2014 16:37:20 Project: airmar_NoGPS, Configuration: ARM GCC 4.7.3 Debug ---------------
+--------------- Build Started: 10/31/2014 17:05:44 Project: airmar_NoGPS, Configuration: ARM GCC 4.7.3 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC5 -Wno-main -mcpu=cortex-m3 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM3\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM3\ARM_GCC_473\Debug\main.o
 .\main.c: In function 'main':
-.\main.c:140:9: warning: variable 'location' set but not used [-Wunused-but-set-variable]
-.\main.c:260:3: warning: pointer targets in passing argument 1 of 'sscanf' differ in signedness [-Wpointer-sign]
+.\main.c:145:9: warning: variable 'location' set but not used [-Wunused-but-set-variable]
+.\main.c:266:3: warning: pointer targets in passing argument 1 of 'sscanf' differ in signedness [-Wpointer-sign]
 In file included from .\main.c:14:0:
 c:\program files (x86)\cypress\psoc creator\3.0\psoc creator\import\gnu_cs\arm\4.7.3\bin\../lib/gcc/arm-none-eabi/4.7.3/../../../../arm-none-eabi/include/stdio.h:186:5: note: expected 'const char *' but argument is of type 'uint8 *'
-.\main.c:260:3: warning: format '%d' expects argument of type 'int *', but argument 7 has type 'uint32 *' [-Wformat]
-.\main.c:260:3: warning: format '%d' expects argument of type 'int *', but argument 7 has type 'uint32 *' [-Wformat]
-.\main.c:306:4: warning: this decimal constant is unsigned only in ISO C90 [enabled by default]
-.\main.c:319:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
-In file included from ./Generated_Source/PSoC5/project.h:43:0,
-                 from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
-.\main.c:320:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
-In file included from ./Generated_Source/PSoC5/project.h:43:0,
-                 from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
-.\main.c:321:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
-In file included from ./Generated_Source/PSoC5/project.h:43:0,
-                 from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
-.\main.c:322:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
-In file included from ./Generated_Source/PSoC5/project.h:43:0,
-                 from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint32 *'
-.\main.c:323:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
-In file included from ./Generated_Source/PSoC5/project.h:43:0,
-                 from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
+.\main.c:266:3: warning: format '%d' expects argument of type 'int *', but argument 7 has type 'uint32 *' [-Wformat]
+.\main.c:266:3: warning: format '%d' expects argument of type 'int *', but argument 7 has type 'uint32 *' [-Wformat]
+.\main.c:312:4: warning: this decimal constant is unsigned only in ISO C90 [enabled by default]
 .\main.c:325:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
 .\main.c:326:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
 .\main.c:327:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'float32 *'
 .\main.c:328:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint32 *'
 .\main.c:329:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
-./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
 .\main.c:331:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
+In file included from ./Generated_Source/PSoC5/project.h:43:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+.\main.c:332:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
+In file included from ./Generated_Source/PSoC5/project.h:43:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+.\main.c:333:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
+In file included from ./Generated_Source/PSoC5/project.h:43:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
+.\main.c:334:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
+In file included from ./Generated_Source/PSoC5/project.h:43:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
+.\main.c:335:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
+In file included from ./Generated_Source/PSoC5/project.h:43:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'int16 *'
+.\main.c:337:3: warning: passing argument 1 of 'UART_SBD_PutArray' from incompatible pointer type [enabled by default]
 In file included from ./Generated_Source/PSoC5/project.h:43:0,
                  from .\main.c:12:
 ./Generated_Source/PSoC5/UART_SBD.h:161:10: note: expected 'const uint8 *' but argument is of type 'uint16 *'
@@ -58,6 +58,6 @@ arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.a
 arm-none-eabi-gcc.exe -mthumb -march=armv7-m -mfix-cortex-m3-ldrd -T .\Generated_Source\PSoC5\cm3gcc.ld -g -Wl,-Map,.\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.map -specs=nano.specs -Wl,--gc-sections -u _scanf_float -Wl,--start-group -o .\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.elf .\CortexM3\ARM_GCC_473\Debug\main.o .\CortexM3\ARM_GCC_473\Debug\wind.o .\CortexM3\ARM_GCC_473\Debug\Batteryvoltage.o .\CortexM3\ARM_GCC_473\Debug\RH.o .\CortexM3\ARM_GCC_473\Debug\thermocouple.o .\CortexM3\ARM_GCC_473\Debug\cymetadata.o .\CortexM3\ARM_GCC_473\Debug\Cm3Start.o .\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_473\Debug\CyComponentLibrary.a" -l m -Wl,--end-group
 cyelftool.exe -C C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.elf --flash_size 262144 --flash_row_size 256
 cyelftool.exe -S C:\Users\Ryan\Documents\summer2014\WindSensor\airmar_NoGPS.cydsn\CortexM3\ARM_GCC_473\Debug\airmar_NoGPS.elf
-Flash used: 45812 of 262144 bytes (17.5 %).
+Flash used: 45796 of 262144 bytes (17.5 %).
 SRAM used: 22765 of 65536 bytes (34.7 %).
---------------- Build Succeeded: 09/11/2014 16:37:30 ---------------
+--------------- Build Succeeded: 10/31/2014 17:05:50 ---------------
