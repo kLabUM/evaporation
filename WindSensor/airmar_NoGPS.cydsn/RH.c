@@ -29,16 +29,27 @@ CY_ISR(InterruptHandler2)
 uint16 GetSensirionValue(uint8 sensorCommand){
     psoc_MasterClearStatus();
     psoc_MasterWriteBuf(sensirion_addr,&sensorCommand,1,psoc_MODE_COMPLETE_XFER);
-
-    while (((0u == (psoc_MasterStatus() & psoc_MSTAT_WR_CMPLT))))
+	
+	int i;
+    for (i = 0;i < 100; i++)
 	{
+		CyDelay(100u);
+		if((0u != (psoc_MasterStatus() & psoc_MSTAT_WR_CMPLT)))
+			break;
+		else if(i == 100)
+			return 65535;
 	}
     uint8 i2cBufferRead[2];
     psoc_MasterClearStatus();
     psoc_MasterReadBuf(sensirion_addr,i2cBufferRead,2,psoc_MODE_COMPLETE_XFER);
 
-    while ((0u == (psoc_MasterStatus() & psoc_MSTAT_RD_CMPLT)))
+    for (i = 0;i < 100; i++)
 	{
+		CyDelay(100u);
+		if((0u != (psoc_MasterStatus() & psoc_MSTAT_WR_CMPLT)))
+			break;
+		else if(i == 100)
+			return 65535;
 	}
     uint16 returnValue = (i2cBufferRead[0] <<8) + i2cBufferRead[1];
     return returnValue;

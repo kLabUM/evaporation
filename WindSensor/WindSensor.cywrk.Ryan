@@ -13,10 +13,9 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\airmar_NoGPS\airmar_NoGPS.cydwr">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="WindSensor\airmar_NoGPS">
 <ExpandedNodeIds>
 <v>WindSensor</v>
-<v>WindSensor\airmar_NoGPS</v>
 <v>WindSensor\airmar_NoGPS\TopDesign.cysch</v>
 <v>WindSensor\airmar_NoGPS\airmar_NoGPS.cydwr</v>
 <v>WindSensor\airmar_NoGPS\Header Files</v>
@@ -1243,35 +1242,17 @@
 <VisibleNodeIds>
 <v>WindSensor</v>
 <v>WindSensor\airmar_NoGPS</v>
-<v>WindSensor\airmar_NoGPS\TopDesign.cysch</v>
-<v>WindSensor\airmar_NoGPS\airmar_NoGPS.cydwr</v>
-<v>WindSensor\airmar_NoGPS\Header Files</v>
-<v>WindSensor\airmar_NoGPS\Header Files\batteryvoltage.h</v>
-<v>WindSensor\airmar_NoGPS\Header Files\RH.h</v>
-<v>WindSensor\airmar_NoGPS\Header Files\thermocouple.h</v>
-<v>WindSensor\airmar_NoGPS\Header Files\wind.h</v>
-<v>WindSensor\airmar_NoGPS\Source Files</v>
-<v>WindSensor\airmar_NoGPS\Source Files\Batteryvoltage.c</v>
-<v>WindSensor\airmar_NoGPS\Source Files\main.c</v>
-<v>WindSensor\airmar_NoGPS\Source Files\RH.c</v>
-<v>WindSensor\airmar_NoGPS\Source Files\thermocouple.c</v>
-<v>WindSensor\airmar_NoGPS\Source Files\wind.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_in</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_in\A_in.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_in\A_in.h</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_in\A_in_aliases.h</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_out</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_out\A_out.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_out\A_out.h</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\A_out\A_out_aliases.h</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC\ADC.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC\ADC.h</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC\ADC_INT.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC\ADC_PM.c</v>
-<v>WindSensor\airmar_NoGPS\Generated_Source\PSoC5\ADC_IRQ</v>
+<v>WindSensor\airmartest</v>
+<v>WindSensor\Alternative Power Scheme</v>
+<v>WindSensor\Communicating_to_SBD</v>
+<v>WindSensor\Magnetometer</v>
+<v>WindSensor\RH_Sensor</v>
+<v>WindSensor\Thermocouple</v>
+<v>WindSensor\thermocouple interface</v>
+<v>WindSensor\TransmitReadings</v>
+<v>WindSensor\TransmitReadings_freeSoC</v>
+<v>WindSensor\voltage reader</v>
+<v>WindSensor\WindSensor</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
@@ -2086,6 +2067,8 @@
 <name v=".\airmar_NoGPS.cydsn\airmar_NoGPS.cydwr" />
 <name v=".\airmar_NoGPS.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\airmar_NoGPS.cydsn\RH.c" />
+<name v=".\airmar_NoGPS.cydsn\Generated_Source\PSoC5\Airmar.c" />
+<name v=".\airmar_NoGPS.cydsn\Generated_Source\PSoC5\CyBootAsmGnu.s" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />
