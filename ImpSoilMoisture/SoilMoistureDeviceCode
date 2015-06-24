@@ -1,0 +1,23 @@
+hardware.pin2.configure(DIGITAL_OUT, 0);
+
+function log() {
+  imp.onidle(function() { 
+          hardware.pin2.write(1);
+    local average = 0;
+    for(local i = 0; i < 10; i++)
+    {
+        hardware.pin1.configure(ANALOG_IN)
+        local reading = hardware.pin1.read();
+        average = reading + average;
+        imp.sleep(1);
+    }
+    average = average / 10;
+  server.log(average*1000/65535);
+  agent.send("HourlyRead", "SoilMoisture, " + (average*1000/65535));
+  hardware.pin2.write(0);
+      
+    server.log("sleeping");
+  server.sleepfor(120);
+})}
+
+imp.onidle(log);
